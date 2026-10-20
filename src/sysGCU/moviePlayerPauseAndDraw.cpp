@@ -6,7 +6,6 @@
 #include "Game/Navi.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Iterator.h"
-#include "nans.h"
 
 namespace Game {
 

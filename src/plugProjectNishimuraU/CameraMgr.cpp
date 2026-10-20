@@ -3,10 +3,6 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "Game/Navi.h"
 #include "Viewport.h"
-#include "nans.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "246-CameraMgr";
 
 namespace Game {
 

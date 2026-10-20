@@ -7,7 +7,6 @@
 #include "Game/Navi.h"
 #include "Game/PikiMgr.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
-#include "nans.h"
 
 namespace Game {
 namespace KingChappy {
@@ -961,10 +960,6 @@ void StateAppear::exec(EnemyBase* enemy)
 		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_END_BLEND:
 			OBJ(enemy)->endBlendAnimation();
-			break;
-
-		case KEYEVENT_2:
-			// probably some commented out code
 			break;
 
 		case KEYEVENT_3:

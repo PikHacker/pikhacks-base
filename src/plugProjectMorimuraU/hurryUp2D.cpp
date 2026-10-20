@@ -5,10 +5,6 @@
 #include "Game/MoviePlayer.h"
 #include "Game/gamePlayData.h"
 #include "Game/Navi.h"
-#include "nans.h"
-
-static const int unusedHurryUpArray[] = { 0, 0, 0 };
-static const char name[]              = "hurryUp2D";
 
 namespace Morimura {
 

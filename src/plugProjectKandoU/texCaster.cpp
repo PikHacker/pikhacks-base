@@ -6,8 +6,6 @@
 
 namespace TexCaster {
 
-static const char unusedName[] = "texCaster";
-
 Mgr* Mgr::sInstance;
 
 /**

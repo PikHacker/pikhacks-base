@@ -47,7 +47,6 @@ struct Obj : public EnemyBase {
 	////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                                                // _30
 	virtual void onKill(CreatureKillArg* settings);                                                // _34
-	virtual void doDirectDraw(Graphics& gfx);                                                      // _50
 	virtual void getShadowParam(ShadowParam& settings);                                            // _134
 	virtual ~Obj() { }                                                                             // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);                                 // _1C4
@@ -55,7 +54,6 @@ struct Obj : public EnemyBase {
 	virtual void doUpdateCommon();                                                                 // _1D0
 	virtual void doUpdateCarcass();                                                                // _1D4
 	virtual void doAnimationCullingOff();                                                          // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                                                       // _1EC
 	virtual void initWalkSmokeEffect();                                                            // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                                         // _234
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_MiniHoudai; } // _258 (weak)
@@ -110,7 +108,6 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 
-	void shotGunDoDebugDraw(Graphics&);
 	void setShotGunTarget(Vector3f&);
 
 	// _00 		= VTBL
@@ -126,7 +123,6 @@ struct Obj : public EnemyBase {
 	WayPoint* mNearestWaypoint;          // _2F0
 	WayPoint* mOldNearestWaypoint;       // _2F4
 	MiniHoudaiShotGunMgr* mShotgunMgr;   // _2F8
-	u8 _2FC[0x4];                        // _2FC, entirely unused?
 	efx::TChibiCharge* mEfxCharge;       // _300
 	efx::TChibiDeadLight* mEfxDeadLight; // _304
 };
@@ -212,7 +208,6 @@ struct MiniHoudaiShotGunNode : public CNode {
 	void startShotGun(bool);
 	void effectDrawOn();
 	void effectDrawOff();
-	void doDebugDraw(Graphics&);
 
 	// _00		= VTBL
 	// _00-_18 	= CNode
@@ -245,7 +240,6 @@ struct MiniHoudaiShotGunMgr {
 	void rotateVertical(J3DJoint*);
 	void effectDrawOn();
 	void effectDrawOff();
-	void doDebugDraw(Graphics&);
 
 	Obj* mOwner;                           // _00
 	bool mIsShotGunRotation;               // _04
@@ -255,7 +249,6 @@ struct MiniHoudaiShotGunMgr {
 	f32 mAngle;                            // _0C
 	Matrixf* mHeadMtx;                     // _10
 	Vector3f mTargetPosition;              // _14
-	u8 _20[0xC];                           // _20, unknown
 	MiniHoudaiShotGunNode* mActiveNodes;   // _2C
 	MiniHoudaiShotGunNode* mInactiveNodes; // _30
 };

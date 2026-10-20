@@ -3,8 +3,6 @@
 namespace Game {
 namespace Sokkuri {
 
-static const char sokkuriMgrName[] = "246-SokkuriMgr";
-
 /**
  * @note Address: 0x802F0C04
  * @note Size: 0x50

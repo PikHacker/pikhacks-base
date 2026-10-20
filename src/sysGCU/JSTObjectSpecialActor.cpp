@@ -3,7 +3,6 @@
 #include "Game/CameraMgr.h"
 #include "Game/MoviePlayer.h"
 #include "System.h"
-#include "nans.h"
 
 namespace Game {
 namespace P2JST {

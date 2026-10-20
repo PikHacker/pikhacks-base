@@ -13,7 +13,6 @@
 #include "efx/Arg.h"
 #include "SysShape/Animator.h"
 #include "Sys/DrawBuffers.h"
-#include "nans.h"
 #include "ParticleID.h"
 #include "VSOtakaraName.h"
 #include "Radar.h"
@@ -30,9 +29,6 @@ Game::ItemOnyon::Mgr* Game::ItemOnyon::mgr;
 static bool sVolveFlag;
 
 namespace Game {
-
-static const char UNUSED_1[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-static const char UNUSED_2[] = "onyonMgr";
 
 /**
  * @note Address: 0x80174CA0
@@ -602,33 +598,6 @@ void Onyon::stopPropera()
 }
 
 /**
- * @note Address: 0x80176E9C
- * @note Size: 0x16C
- */
-void Onyon::doDirectDraw(Graphics& gfx)
-{
-	if (mOnyonType == ONYON_TYPE_SHIP) {
-		gfx.initPrimDraw(0);
-		Vector3f pos   = getInStart_UFO();
-		gfx.mDrawColor = Color4(0, 255, 0, 255);
-		gfx.drawSphere(pos, 5.0);
-		pos            = getOutStart_UFO();
-		gfx.mDrawColor = Color4(100, 255, 0, 255);
-		gfx.drawSphere(pos, 5.0);
-		SysShape::Joint* jnt = mModel->getJoint("start1");
-		Matrixf* mtx         = jnt->getWorldMatrix();
-		pos.x                = mtx->mMatrix.structView.tx;
-		pos.y                = mtx->mMatrix.structView.ty;
-		pos.z                = mtx->mMatrix.structView.tz;
-		gfx.mDrawColor       = Color4(100, 255, 0, 255);
-		gfx.drawSphere(pos, 20.0);
-	}
-
-	Vector3f orig = Vector3f(mPosition.x, mPosition.y + 40.0f, mPosition.z);
-	drawLODInfo(gfx, orig);
-}
-
-/**
  * @note Address: N/A
  * @note Size: 0xB0
  */
@@ -985,7 +954,6 @@ void Onyon::do_doAnimation()
 				sound->specializePerspCalc(persp);
 
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSSystem::validateSceneMgr(mgr);
 				PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 				scene                  = (static_cast<PSM::SceneBase*>(scene)->isGameScene()) ? scene : nullptr;
 
@@ -1423,7 +1391,6 @@ void Onyon::setSpotEffect(bool flag)
 		} else {
 			mPodOpenA->fade();
 			mPodOpenB->fade();
-			mPodOpenA->fade(); // yes it does this one twice for some reason
 			mPodSpot->fade();
 		}
 	} else if (mOnyonType < ONYON_TYPE_POD) {
@@ -2164,7 +2131,6 @@ void ItemOnyon::Mgr::init()
  */
 void ItemOnyon::Mgr::load()
 {
-	sys->heapStatusStart("onyon-arc", nullptr);
 	LoadResource::Arg loadarg("user/Kando/onyon/arc.szs");
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(loadarg);
 	JKRArchive* onyonarc;
@@ -2173,7 +2139,6 @@ void ItemOnyon::Mgr::load()
 	} else {
 		onyonarc = nullptr;
 	}
-	sys->heapStatusEnd("onyon-arc");
 
 	void* file = JKRFileLoader::getGlbResource("goal.bmd", nullptr);
 #if defined(VERSION_JP)

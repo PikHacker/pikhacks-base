@@ -7,8 +7,6 @@
 
 namespace Game {
 
-static const char unusedRumbleName[] = "246-RumbleMgr";
-
 RumbleMgr* rumbleMgr;
 
 /**

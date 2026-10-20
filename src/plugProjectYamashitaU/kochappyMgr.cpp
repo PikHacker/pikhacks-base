@@ -4,8 +4,6 @@
 namespace Game {
 namespace Kochappy {
 
-static const char kochappyMgrName[] = "kochappyMgr";
-
 namespace {
 static const char* cKochappyChangeTexName = "/enemy/data/Kochappy/kochappy_body_s3tc.1.bti";
 } // namespace

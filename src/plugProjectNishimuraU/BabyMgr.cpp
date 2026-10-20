@@ -3,8 +3,6 @@
 namespace Game {
 namespace Baby {
 
-static const char babyMgrName[] = "246-BabyMgr";
-
 /**
  * @note Address: 0x8028D0C0
  * @note Size: 0x50

@@ -47,7 +47,6 @@ struct TParticle2dMgr : public CNode, JKRDisposer {
 	JPAResourceManager* mResourceManager; // _34
 	JKRSolidHeap* mSolidHeap;             // _38
 	JPAEmitterManager* mEmitterBackup;    // _3C
-	u8 _40[4];                            // _40
 
 	static TParticle2dMgr* _instance;
 };

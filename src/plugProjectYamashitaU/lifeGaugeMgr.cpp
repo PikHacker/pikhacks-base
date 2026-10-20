@@ -3,7 +3,6 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "Game/MoviePlayer.h"
 #include "Viewport.h"
-#include "nans.h"
 
 // i'd put this in Vector3f but i really dont wanna include all of GX in that - HP.
 inline void GXDrawVector3f(Vector3f& vec)

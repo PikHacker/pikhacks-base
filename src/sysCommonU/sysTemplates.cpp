@@ -18,7 +18,6 @@ BitFlags::BitFlags()
  */
 void BitFlags::dump()
 {
-	for (s32 i = 0; i < mFlagListSize; i++) { }
 }
 
 /**

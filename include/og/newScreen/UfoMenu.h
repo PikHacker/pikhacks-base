@@ -60,13 +60,11 @@ struct ObjUfoMenu : public ::Screen::ObjBase {
 	Screen::DispMemberUfoGroup* mDisp; // _38
 	P2DScreen::Mgr_tuning* mUfoScreen; // _3C
 	P2DScreen::Mgr* mPikiScreen;       // _40
-	u8 _44[0x4];                       // _44, unknown
 	int mSelectIndex;                  // _48
 	Screen::MenuMgr* mMenu;            // _4C
 	u8 mDoEnd;                         // _50
 	f32 mScreenMovePos;                // _54
 	Screen::AnimGroup* mLightAnims;    // _58
-	u8 _5C[0x4];                       // _5C, unknown
 	Screen::AnimGroup* mPikiAnims;     // _60
 	J2DPane* mPaneWhiteWalk;           // _64
 	J2DPane* mPaneWhiteStand;          // _68

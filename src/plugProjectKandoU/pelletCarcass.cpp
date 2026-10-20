@@ -20,11 +20,9 @@ Mgr::Mgr()
  */
 void Mgr::setupResources()
 {
-	sys->heapStatusStart("Carcass", nullptr);
 	alloc(PELLET_CARCASS_MAXCOUNT);
 	load();
 	mCollPartMgr.alloc(PELLET_CARCASS_MAXCOLLPART);
-	sys->heapStatusEnd("Carcass");
 }
 
 } // namespace PelletCarcass

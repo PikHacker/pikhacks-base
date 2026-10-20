@@ -3,13 +3,9 @@
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
 #include "Game/EnemyFunc.h"
-#include "nans.h"
 
 namespace Game {
 namespace MiniHoudai {
-
-static const int unusedArray[] = { 0, 0, 0 };
-static const char unusedName[] = "246-MiniHoudaiState";
 
 /**
  * @note Address: 0x802E7F4C

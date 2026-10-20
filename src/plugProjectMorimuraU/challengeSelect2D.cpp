@@ -12,8 +12,6 @@
 
 namespace Morimura {
 
-static const char name[] = "challengeSelect2D";
-
 bool TChallengeSelect::mSelected1p       = true;
 f32 TChallengeSelect::mAlphaSpeed        = 0.05f;
 s16 TChallengeSelect::mFlashAnimInterval = 300;
@@ -1281,25 +1279,13 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	if (mIsSection) {
 		if (mDebugHeapParent) {
 			mDebugHeap = JKRExpHeap::create(0x100000, mDebugHeapParent, true);
-#if defined(VERSION_PAL)
-			P2ASSERTLINE(1340, mDebugHeap);
-#elif defined(VERSION_JP)
-			P2ASSERTLINE(1299, mDebugHeap);
-#else
 			P2ASSERTLINE(1339, mDebugHeap);
-#endif
 			mDisp                        = new (mDebugHeap, 0) DispMemberChallengeSelect;
 			mDisp->mDebugExpHeap         = mDebugHeap;
 			mDisp->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
 			getOwner()->setDispMember(mDisp);
 		} else {
-#if defined(VERSION_PAL)
-			JUT_PANICLINE(1350, "set DebugHeapParent. mail to morimun.\n");
-#elif defined(VERSION_JP)
-			JUT_PANICLINE(1309, "set DebugHeapParent. mail to morimun.\n");
-#else
 			JUT_PANICLINE(1349, "set DebugHeapParent. mail to morimun.\n");
-#endif
 		}
 		mStageList = new Game::ChallengeGame::StageList;
 		void* file = JKRDvdRipper::loadToMainRAM("/user/Matoba/challenge/stages.txt", nullptr, Switch_0, 0, nullptr,

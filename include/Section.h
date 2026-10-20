@@ -69,9 +69,7 @@ struct Section : public ISection {
 	f32 mTimeStep;                // _30
 	volatile bool mIsMainActive;  // _34, needs to be volatile in PAL at least, for titleSection
 	bool mIsDisplayNew;           // _35
-	u8 _36;                       // _36
 	bool mIsLoadingDVD;           // _37
-	u8 _38;                       // _38
 #if defined(VERSION_US_DEMO)      //
 	OSTime mOsTime;               // _40 NB: this causes other structs to align-64, hence the "padding" we had
 	JUTGamePad* mDemoController1; // _48

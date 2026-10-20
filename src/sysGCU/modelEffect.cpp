@@ -1,6 +1,5 @@
 #include "P2Macros.h"
 #include "ParticleMgr.h"
-#include "nans.h"
 
 /**
  * @note Address: 0x8043D49C

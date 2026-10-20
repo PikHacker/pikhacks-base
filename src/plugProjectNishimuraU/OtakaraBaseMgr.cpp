@@ -5,8 +5,6 @@
 namespace Game {
 namespace OtakaraBase {
 
-static const char otakaraBaseMgrName[] = "246-OtakaraBaseMgr";
-
 /**
  * @note Address: 0x802B5E98
  * @note Size: 0x50

@@ -55,7 +55,6 @@ struct DispMemberBase {
 struct DispMemberAnaDemo : public DispMemberBase {
 	inline DispMemberAnaDemo()
 	{
-		mUnusedValue    = 0;
 		mCaveOtakaraNum = 24;
 		mCaveOtakaraMax = 69;
 		mExitStatus     = MENUFINISH_GetFromSubMember;
@@ -81,7 +80,6 @@ struct DispMemberAnaDemo : public DispMemberBase {
 	u8 mPayedDebt;       // _1D
 	u8 mSelected;        // _1E
 	u8 mExitStatus;      // _1F
-	u32 mUnusedValue;    // _20
 };
 
 // size 0x10
@@ -165,7 +163,6 @@ struct DispMemberCaveMore : public DispMemberAnaDemo {
 	{
 		mPikiInDanger   = 0;
 		mCantProceed    = 0;
-		mUnusedValue    = 0;
 		mCaveOtakaraNum = 4;
 		mCaveOtakaraMax = 4;
 		mPikis          = 10;
@@ -372,7 +369,6 @@ struct DispMemberKanketuMenu : public DispMemberAnaDemo {
 		mPikiInDanger   = 0;
 		mCantProceed    = 0;
 		mIsChallenge    = 0;
-		mUnusedValue    = 0;
 		mCaveOtakaraNum = 4;
 		mCaveOtakaraMax = 4;
 		mPikis          = 10;
@@ -418,7 +414,6 @@ struct DispMemberKantei : public DispMemberBase {
 	u32 mPelletValue;                                    // _08
 	u32 mTotalPokos;                                     // _0C
 	Delegate1<Game::BaseGameSection, Rectf&>* mDelegate; // _10
-	u8 _14[0x4];                                         // _14, unknown
 	u64 mPelletMessageID;                                // _18
 	u32 mPelletOffset;                                   // _20
 	int mTotalPokosCave;                                 // _24
@@ -429,8 +424,6 @@ struct DispMemberKantei : public DispMemberBase {
 	u32 mKanteiType;                                     // _34, pre or post-debt
 	u8 mInCave;                                          // _38
 	u8 mDoPlayBGM;                                       // _39
-	u8 _3A[0x2];                                         // _3A, unknown, possibly padding
-	u8 _3C[0x4];                                         // _3C, unknown
 };
 
 // size 0xC
@@ -756,13 +749,10 @@ struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	int mResult;        // _08
-	u8 _0C[0x4];        // _0C, unknown
 	u64 mMsgIDYes;      // _10
 	u64 mMsgIDNo;       // _18
 	u8 mBgAlpha;        // _20
 	u8 mStartSelection; // _21
-	u8 _22[0x2];        // _22, possibly padding
-	u8 _24[0x4];        // _24, unknown
 };
 
 // size 0x10, "Land in this area?" popup in world map

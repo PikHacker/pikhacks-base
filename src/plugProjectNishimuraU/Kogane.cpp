@@ -92,23 +92,6 @@ void Kogane::Obj::doUpdateCommon()
 }
 
 /**
- * @note Address: 0x8025DF98
- * @note Size: 0x4
- */
-void Kogane::Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x8025DF9C
- * @note Size: 0x20
- */
-void Kogane::Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
-
-/**
  * @note Address: 0x8025DFBC
  * @note Size: 0x4C
  */

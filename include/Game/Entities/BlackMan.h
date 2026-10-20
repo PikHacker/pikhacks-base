@@ -47,7 +47,6 @@ struct Obj : public EnemyBase {
 	virtual void onKill(CreatureKillArg* settings);                             // _34
 	virtual void doEntry();                                                     // _40
 	virtual void doSimulation(f32);                                             // _4C
-	virtual void doDirectDraw(Graphics& gfx);                                   // _50
 	virtual bool isUnderground();                                               // _D0
 	virtual void collisionCallback(CollEvent& event);                           // _EC
 	virtual void getShadowParam(ShadowParam& settings);                         // _134
@@ -55,7 +54,6 @@ struct Obj : public EnemyBase {
 	virtual void birth(Vector3f&, f32);                                         // _1C0
 	virtual void doUpdate();                                                    // _1CC
 	virtual void doAnimationCullingOff();                                       // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
 	virtual void changeMaterial();                                              // _200
 	virtual void setParameters();                                               // _228
 	virtual void initWalkSmokeEffect();                                         // _230
@@ -184,7 +182,6 @@ struct Obj : public EnemyBase {
 	J3DMaterial* mBodyMaterial;             // _37C
 	Color4 mActiveColor;                    // _380
 	Color4 mTargetColor;                    // _384
-	Color4 mUnusedColor;                    // _388
 	Color4 mFadeColor;                      // _38C
 	efx::TKageMove* mEfxMove;               // _390
 	efx::TKageRun* mEfxRun;                 // _394
@@ -405,7 +402,6 @@ struct StateDead : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u8 _10[0x4]; // _10, unknown
 };
 
 struct StateEscape : public State {

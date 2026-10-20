@@ -38,7 +38,6 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	virtual void doSetView(int viewportNumber) { }                            // _10 (weak)
 	virtual void doViewCalc() { }                                             // _14 (weak)
 	virtual void doSimulation(f32 rate) { }                                   // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }                              // _1C (weak)
 	virtual void loadResources();                                             // _24
 	virtual void initDependency() = 0;                                        // _38
 	virtual void killAll() { }                                                // _3C (weak)
@@ -99,7 +98,6 @@ struct NodeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual void doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); } // _10 (weak)
 	virtual void doViewCalc() { mNodeObjectMgr.doViewCalc(); }                               // _14 (weak)
 	virtual void doSimulation(f32 step) { mNodeObjectMgr.doSimulation(step); }               // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
 
 	// vtable 2
 	void entry(T* item);
@@ -129,7 +127,6 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doSetView(int viewportNumber); // _6C (weak)
 	virtual void doViewCalc();                  // _70 (weak)
 	virtual void doSimulation(f32 rate);        // _74 (weak)
-	virtual void doDirectDraw(Graphics&);       // _78 (weak)
 	virtual void loadResources();               // _80 (weak)
 	virtual void doSimpleDraw(Viewport*);       // _84 (weak)
 
@@ -161,7 +158,6 @@ struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
 	virtual void doSetView(int viewportNumber) { getObjectMgr()->doSetView(viewportNumber); } // _10 (weak)
 	virtual void doViewCalc() { getObjectMgr()->doViewCalc(); }                               // _14 (weak)
 	virtual void doSimulation(f32 rate) { getObjectMgr()->doSimulation(rate); }               // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { getObjectMgr()->doDirectDraw(gfx); }           // _1C (weak)
 	virtual void initDependency();                                                            // _38
 	virtual void killAll();                                                                   // _3C
 	virtual BaseItem* get(void* ptr) { return mNodeObjectMgr.get(ptr); }                      // _A8 (weak)
@@ -202,7 +198,6 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual void doSetView(int viewportNumber) { mMonoObjectMgr.doSetView(viewportNumber); } // _10 (weak)
 	virtual void doViewCalc() { mMonoObjectMgr.doViewCalc(); }                               // _14 (weak)
 	virtual void doSimulation(f32 rate) { mMonoObjectMgr.doSimulation(rate); }               // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { mMonoObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
 	virtual u32 generatorGetID()                                  = 0;                       // _58
 	virtual T* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0;                       // _5C
 	virtual void kill(T* item) { mMonoObjectMgr.kill(item); }                                // _A8 (weak)

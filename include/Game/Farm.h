@@ -38,7 +38,6 @@ struct Farm : public CNode {
 	Plant* addPlant(Creature*);
 	Plant* createNewPlant(Creature*);
 	void updateObjectRelation(bool);
-	void doDebugDraw(Graphics&);
 	void initAllObjectNodes();
 
 	Vector3f mPosition;             // _18
@@ -59,9 +58,6 @@ struct Obstacle : public CNode {
 
 	void setPower(f32);
 
-	// Unused/inlined:
-	void doDebugDraw(Graphics&);
-
 	Farm* mFarm;                            // _18
 	Creature* mCreature;                    // _1C
 	FieldVtxColorControl* mVtxColorControl; // _20
@@ -77,7 +73,6 @@ struct Plant : public CNode {
 
 	// Unused/inlined:
 	void sendInteraction();
-	void doDebugDraw(Graphics&);
 
 	Creature* mCreature; // _18
 	int mCurrentPower;   // _1C
@@ -92,9 +87,7 @@ struct FarmMgr : public GenericObjectMgr, public CNode {
 	virtual void doSetView(int viewportNumber); // _10
 	virtual void doViewCalc();                  // _14
 	virtual void doSimulation(f32);             // _18
-	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	// vtable 2 (CNode+self)
-	virtual void doDebugDraw(Graphics& gfx); // _48
 	virtual ~FarmMgr();                      // _4C (thunked at _40)
 
 	void setupSound();
@@ -110,8 +103,6 @@ struct FarmMgr : public GenericObjectMgr, public CNode {
 	u32 mModelType;                         // _1C
 	CNode mFarmsRootNode;                   // _20
 	PSM::DirectorUpdator* mDirectorUpdator; // _38
-	u8 mUnused1;                            // _3C
-	u8 mUnused2;                            // _3D
 };
 
 extern FarmMgr* farmMgr;

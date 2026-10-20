@@ -7,18 +7,6 @@
 #include "Light.h"
 #include "Game/GameLight.h"
 #include "Game/cellPyramid.h"
-#include "nans.h"
-
-static const u32 padding[] = { 0, 0, 0 };
-
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* name, ...)
-{
-	OSReport("particleMgr");
-}
 
 ParticleMgr* particleMgr;
 volatile bool ParticleMgr::disableCulling;
@@ -60,7 +48,6 @@ ParticleMgr::ParticleMgr()
 	mEmitterManager          = nullptr;
 	mResourceManager         = nullptr;
 	mReferencedViewportCount = 0;
-	mUnusedVal               = 200;
 	mLightMgr                = nullptr;
 }
 
@@ -92,12 +79,6 @@ void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
 {
 	JUT_ASSERTLINE(209, mHeap, "effect heap not allocated !\n");
 
-	// don't even ASK me about these.
-	int b, a;
-	a = flag1;
-	b = flag2;
-
-	sys->heapStatusStart("particleMgr", mHeap);
 	JKRHeap* oldheap = JKRGetCurrentHeap();
 	mHeap->becomeCurrentHeap();
 
@@ -106,10 +87,8 @@ void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
 	oldheap->becomeCurrentHeap();
 
 	mResourceManager = new (mHeap, 0) JPAResourceManager(file, mHeap);
-	mEmitterManager  = new (mHeap, 0) JPAEmitterManager(a, b, mHeap, 9, 8);
+	mEmitterManager  = new (mHeap, 0) JPAEmitterManager(flag1, flag2, mHeap, 9, 8);
 	mEmitterManager->entryResourceManager(mResourceManager, 0);
-
-	sys->heapStatusEnd("particleMgr");
 }
 
 /**

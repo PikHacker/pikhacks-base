@@ -7,15 +7,6 @@
 #include "PSSystem/PSSystemIF.h"
 #include "SoundID.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* name, ...)
-{
-	OSReport("ebiScreenOption");
-}
-
 using namespace Game::CommonSaveData;
 
 namespace ebi {
@@ -131,12 +122,8 @@ void TOptionParameter::initParamForTest()
  */
 void TOption::doSetArchive(JKRArchive* archive)
 {
-	sys->heapStatusStart("Screen::TOption::setArchive", nullptr);
-
-	sys->heapStatusStart("Screen::TOption::set_blo_P2DScreen::Mgr", nullptr);
 	mMainScreen = new P2DScreen::Mgr_tuning;
 	mMainScreen->set("option.blo", 0x1100000, archive);
-	sys->heapStatusEnd("Screen::TOption::set_blo_P2DScreen::Mgr");
 #if defined(VERSION_JP)
 	mPaneRubyYes = (J2DTextBox*)E2DScreen_searchAssert(mMainScreen, 'Tfri_y');
 	mPaneRubyNo  = (J2DTextBox*)E2DScreen_searchAssert(mMainScreen, 'Tfri_n');
@@ -179,9 +166,7 @@ void TOption::doSetArchive(JKRArchive* archive)
 	mButtonPaneList[5] = E2DScreen_searchAssert(mMainScreen, 'Wsetdef');
 	mButtonPaneList[6] = E2DScreen_searchAssert(mMainScreen, 'Wsetsav');
 
-	sys->heapStatusStart("Screen::TOption::new_ogCallBack", nullptr);
 	E2DPane_setTreeCallBackMessage(mMainScreen, mMainScreen);
-	sys->heapStatusEnd("Screen::TOption::new_ogCallBack");
 	mMainScreen->addCallBackPane(mMainScreen, &mAnimOpenScreen);
 	mMainScreen->addCallBackPane(mMainScreen, &mAnimCalc);
 	mAnimOpenScreen.loadAnm("option.bck", archive, 20, 41);
@@ -235,8 +220,6 @@ void TOption::doSetArchive(JKRArchive* archive)
 	E2DPane_setTreeHide(E2DScreen_searchAssert(mMainScreen, 'DATA'));
 	E2DPane_setTreeInfluencedAlpha(mDeflickerScreen, true);
 	mDeflickerScreen->setAlpha(0);
-
-	sys->heapStatusEnd("Screen::TOption::setArchive");
 }
 
 /**
@@ -614,7 +597,6 @@ void TOption::doDraw()
 void TOption::loadResource()
 {
 	char resName[PATH_MAX];
-	sys->heapStatusStart("TOption::loadResource", nullptr);
 #if defined(VERSION_JP)
 	og::newScreen::makeLanguageResName(resName, "option_jp.szs");
 #elif defined(VERSION_PAL)
@@ -628,7 +610,6 @@ void TOption::loadResource()
 #else
 	P2ASSERTLINE(757, (archive != nullptr));
 #endif
-	sys->heapStatusEnd("TOption::loadResource");
 	setArchive(archive);
 }
 

@@ -83,7 +83,6 @@ J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
 	mOffsetX         = 0.0f;
 	mOffsetY         = 0.0f;
 	mIsTextFontOwned = false;
-	_140             = 0;
 }
 
 /**
@@ -92,9 +91,6 @@ J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 fla
  */
 J2DTextBoxEx::~J2DTextBoxEx()
 {
-	if (_140) {
-		delete mMaterial;
-	}
 }
 
 /**
@@ -632,11 +628,4 @@ const J2DAnmTransform* J2DTextBoxEx::animationPane(const J2DAnmTransform* anm)
 		}
 	}
 	J2DPane::animationPane(anm);
-}
-
-// fix weak function order
-static void fakematch()
-{
-	J2DTextBoxEx* p = nullptr;
-	p->getMaterial();
 }

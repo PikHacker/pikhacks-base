@@ -313,14 +313,12 @@ inline PSSystem::SceneMgr* PSMGetSceneMgr()
 inline PSSystem::SceneMgr* PSMGetSceneMgrCheck()
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
 	return mgr;
 }
 
 inline PSGame::PikSceneMgr* PSMGetPikSceneMgrCheck()
 {
 	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-	PSSystem::validateSceneMgr(mgr);
 	return mgr;
 }
 

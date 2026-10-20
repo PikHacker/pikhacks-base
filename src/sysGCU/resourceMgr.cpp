@@ -351,10 +351,9 @@ Node* Mgr::createNewNode(char const* path)
 	u8 id     = mHeap->getCurrentGroupId();
 	int nodes = 0;
 
-	// this is extremely dumb, but the for loop wont unroll correctly unless its exactly like this
 	u8 useList[256];
-	for (u32 i = 0; i < 256; i += 4) {
-		*(u32*)&useList[i] = 0;
+	for (u32 i = 0; i < 256; i++) {
+		useList[i] = 0;
 	}
 
 	FOREACH_NODE(Node, mNodes.mChild, node)

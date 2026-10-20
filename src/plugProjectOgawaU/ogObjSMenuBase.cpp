@@ -6,15 +6,6 @@
 #include "System.h"
 #include "trig.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace og {
 namespace newScreen {
 
@@ -33,7 +24,6 @@ ObjSMenuBase::ObjSMenuBase()
 	mCancelToState   = MENUCLOSE_None;
 	mEnableYaji      = false;
 	mAlpha           = 0;
-	mUnused88        = 0.0f;
 	mButtonStates[1] = Controller::PRESS_R;
 	mButtonStates[0] = Controller::PRESS_L;
 
@@ -47,7 +37,6 @@ ObjSMenuBase::ObjSMenuBase()
 	mTyaji_l    = nullptr;
 	mTyaji_r    = nullptr;
 	mScreenMain = nullptr;
-	mUnusedA4   = 1.0f;
 	mPaneNsize  = nullptr;
 	mArrowBlink = new og::Screen::ArrowAlphaBlink;
 }

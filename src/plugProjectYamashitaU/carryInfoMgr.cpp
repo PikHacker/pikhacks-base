@@ -3,7 +3,6 @@
 #include "Viewport.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "Game/MoviePlayer.h"
-#include "nans.h"
 
 namespace {
 GXColor sColorTableNumerator[CINFOCOLOR_ColorCount] = {

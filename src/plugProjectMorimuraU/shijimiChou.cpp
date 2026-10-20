@@ -13,8 +13,6 @@
 namespace Game {
 namespace ShijimiChou {
 
-static const char unusedName[] = "shijimiChou";
-
 static J2DGXColorS10 mMatColorY0;
 static J2DGXColorS10 mMatColorR0;
 static J2DGXColorS10 mMatColorB0;
@@ -150,23 +148,6 @@ void Obj::doUpdate()
 {
 	mFsm->exec(this);
 	mPitchAmp = sinf(TAU * mPitchRate);
-}
-
-/**
- * @note Address: 0x80389C8C
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x80389C90
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

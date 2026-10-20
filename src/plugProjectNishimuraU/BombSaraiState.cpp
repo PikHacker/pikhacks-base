@@ -4,13 +4,9 @@
 #include "Game/MapMgr.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
-#include "nans.h"
 
 namespace Game {
 namespace BombSarai {
-
-static const int unusedBombSaraiArray[] = { 0, 0, 0 };
-static const char bombSaraiStateName[]  = "246-BombSaraiState";
 
 /**
  * @note Address: 0x802AFC74

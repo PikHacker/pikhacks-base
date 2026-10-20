@@ -3,8 +3,6 @@
 namespace Game {
 namespace Kurage {
 
-static const char kurageMgrName[] = "246-KurageMgr";
-
 /**
  * @note Address: 0x802AD104
  * @note Size: 0x50

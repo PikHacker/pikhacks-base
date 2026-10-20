@@ -11,22 +11,11 @@
 #include "Game/pelletMgr.h"
 #include "Game/GameConfig.h"
 #include "Game/AIConstants.h"
-#include "nans.h"
 
 namespace Game {
 namespace VsGame {
 
-static const int unusedVsCardArray[] = { 0, 0, 0 };
-static const char unusedVsCardName[] = "vsCardMgr";
-
 namespace {
-// this is just straight up never used lol
-static const CardData cardData[12] = {
-	{ "pikmin_5.bti", 1 },   { "pikmin_10.bti", 1 }, { "all_flower.bti", 1 },   { "pikmin_xlu.bti", 1 },
-	{ "dope_black.bti", 1 }, { "dope_red.bti", 1 },  { "reset_bedama.bti", 1 }, { "teki_hanachirashi", 1 },
-	{ "teki_sarai.bti", 1 }, { "teki_rock.bti", 1 }, { "teki_tank.bti", 1 },    { 0, 0 },
-};
-
 static const char* tex_names[] = {
 	"pikmin_5.bti",   "pikmin_10.bti", "all_flower.bti",
 	"pikmin_xlu.bti", // ghost powerup

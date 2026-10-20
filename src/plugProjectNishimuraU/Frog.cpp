@@ -5,7 +5,6 @@
 #include "Game/EnemyFunc.h"
 #include "efx/efxEnemy.h"
 #include "PS.h"
-#include "nans.h"
 
 namespace Game {
 namespace Frog {
@@ -102,23 +101,6 @@ void Obj::doSimulationFlying(f32 step)
 	}
 
 	mAirTimer += sys->mDeltaTime;
-}
-
-/**
- * @note Address: 0x80258A04
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics& gfx)
-{
-}
-
-/**
- * @note Address: 0x80258A08
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

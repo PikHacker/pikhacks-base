@@ -226,7 +226,6 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	virtual void onInit(CreatureInitArg* settings);                    // _30
 	virtual void constructor();                                        // _2C
-	virtual void doDirectDraw(Graphics& gfx);                          // _50
 	virtual void updateTrMatrix();                                     // _78
 	virtual void onStickStart(Creature* stuck);                        // _158
 	virtual void onStickEnd(Creature* stuck);                          // _15C
@@ -309,7 +308,6 @@ struct Plant : public Item {
 	virtual void onInit(CreatureInitArg* initArg);  // _30
 	virtual void onKill(CreatureKillArg* killArg);  // _34
 	virtual void doAnimation();                     // _3C
-	virtual void doDirectDraw(Graphics& gfx);       // _50
 	virtual void doAI();                            // _1C8
 	virtual void do_updateLOD();                    // _1D4
 	virtual bool interactEat(InteractEat& eat);     // _1E8
@@ -326,7 +324,6 @@ struct Plant : public Item {
 	// _00      = VTBL
 	// _00-_204 = Item
 	SysShape::BlendAnimator mBlendAnimator; // _204
-	u8 _254;                                // _254, unused, just set to 0 on init
 	f32 mBlendStepTime;                     // _258, probably - related to blend animation somehow
 	ProcAnimator mProcAnimator;             // _25C
 	Fruits* mFruits;                        // _288

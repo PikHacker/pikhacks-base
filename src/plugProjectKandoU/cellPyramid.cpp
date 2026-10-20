@@ -19,7 +19,6 @@ CellPyramid* Cell::sCurrCellMgr;
 int CellPyramid::sCellBugID;
 
 u8 CellPyramid::sOptResolveColl     = 2;
-static const char cellPyramidName[] = "cellPyramid";
 
 /**
  * @note Address: 0x801565C8

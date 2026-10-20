@@ -3,8 +3,6 @@
 namespace Game {
 namespace ElecHiba {
 
-static const char elecHibaMgrName[] = "246-ElecHibaMgr";
-
 /**
  * @note Address: 0x8026EA08
  * @note Size: 0x8C

@@ -6,8 +6,6 @@
 namespace Game {
 namespace Hanachirashi {
 
-static const char unusedName[] = "246-HanachirashiState";
-
 /**
  * @note Address: 0x8029F228
  * @note Size: 0x480

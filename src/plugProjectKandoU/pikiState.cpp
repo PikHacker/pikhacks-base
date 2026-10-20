@@ -25,12 +25,8 @@
 #include "trig.h"
 #include "System.h"
 #include "PikiAI.h"
-#include "nans.h"
 
 namespace Game {
-
-static const int someArray[3] = { 0, 0, 0 };
-static const char fileName[]  = "pikiState";
 
 /**
  * @note Address: 0x80189378
@@ -65,7 +61,6 @@ void PikiFSM::init(Piki* piki)
 	registerState(new PikiFlyingState);
 	registerState(new PikiKokeDamageState);
 	registerState(new PikiBlowState);
-	registerState(new PikiFlickState);
 	registerState(new PikiDrownState);
 	registerState(new PikiSwallowedState);
 	registerState(new PikiNukareState);
@@ -321,7 +316,6 @@ void PikiSwallowedState::init(Piki* piki, StateArg* stateArg)
 	if (piki->getCurrAction()) {
 		piki->getCurrAction()->cleanup();
 		piki->clearCurrAction();
-		piki->getCreatureID();
 	}
 
 	if (creature != nullptr && collpart) {
@@ -349,7 +343,6 @@ void PikiSwallowedState::cleanup(Piki* piki)
 {
 	piki->endStick();
 	piki->mBrain->start(PikiAI::ACT_Free, nullptr);
-	piki->getCreatureID();
 }
 
 /**
@@ -738,8 +731,6 @@ void PikiDopeState::exec(Piki* piki)
 		}
 
 	} else if (!piki->assertMotion(mAnimIdx)) {
-		piki->getCreatureID();
-
 		if (mNavi) {
 			piki->mNavi = mNavi;
 			PikiAI::ActFormationInitArg initArg(piki->mNavi);
@@ -2279,7 +2270,6 @@ void PikiFlyingState::init(Piki* piki, StateArg* stateArg)
 
 	mIsFlowerPiki = 0;
 	mFrameCounter = 0;
-	mUnusedVal    = 0;
 	piki->setMoveVelocity(false);
 
 	efx::TPkEffect* effectsObj = piki->mEffectsObj;
@@ -2466,132 +2456,6 @@ void PikiFlyingState::cleanup(Piki* piki)
 	piki->setMoveVelocity(true);
 	piki->mEffectsObj->killNage_();
 	piki->setDebugCollision(false);
-}
-
-/**
- * @note Address: 0x8018FB1C
- * @note Size: 0x170
- */
-void PikiFlickState::init(Piki* piki, StateArg* stateArg)
-{
-	// ??
-#if defined(VERSION_PAL)
-	JUT_PANICLINE(3066, "flick:init:erase\n");
-#else
-	JUT_PANICLINE(3057, "flick:init:erase\n");
-#endif
-	mState = FLICK_Start;
-
-	FlickStateArg* flickArg = static_cast<FlickStateArg*>(stateArg);
-	mKnockBackAngle         = flickArg->mAngle;
-	mFaceDirOffset          = 0.1f * (PI * randFloat());
-	piki->mVelocity.y       = 50.0f * randFloat() + 100.0f;
-	f32 baseSpeed           = flickArg->mSpeed;
-	mKnockBackSpeed         = (0.1f * baseSpeed) * randFloat() + baseSpeed;
-
-	piki->startMotion(IPikiAnims::JHIT, IPikiAnims::JHIT, this, nullptr);
-	mPiki       = piki;
-	mIsWhistled = false;
-}
-
-/**
- * @note Address: 0x8018FC8C
- * @note Size: 0x18
- */
-void PikiFlickState::onFlute(Piki* piki, Navi* navi)
-{
-	mKnockDownTimer = 0.0f;
-	mIsWhistled     = true;
-	piki->mNavi     = navi;
-}
-
-/**
- * @note Address: 0x8018FCA4
- * @note Size: 0x208
- */
-void PikiFlickState::exec(Piki* piki)
-{
-	// ???
-#if defined(VERSION_PAL)
-	JUT_PANICLINE(3101, "flick:exec:erase\n");
-#else
-	JUT_PANICLINE(3092, "flick:exec:erase\n");
-#endif
-	if (mState == FLICK_Start) { // yeet the piki.
-		f32 speed         = mKnockBackSpeed;
-		piki->mVelocity.x = -speed * sinf(mKnockBackAngle);
-		piki->mVelocity.z = -speed * cosf(mKnockBackAngle);
-
-		piki->mFaceDir = roundAng(piki->mFaceDir + mFaceDirOffset);
-		return;
-	}
-
-	if (mState == FLICK_Land) { // piki has landed.
-		mKnockDownTimer -= sys->mDeltaTime;
-		if (mKnockDownTimer < 0.0f && piki->isAlive()) { // if knock down timer has expired + piki is alive (!), get up.
-			piki->startMotion(IPikiAnims::GETUP, IPikiAnims::GETUP, this, nullptr);
-			mState = FLICK_Stand;
-		}
-
-		// Adjust simulation velocity?
-		piki->mVelocity.x = 0.9f * piki->mVelocity.x;
-		piki->mVelocity.z = 0.9f * piki->mVelocity.z;
-
-		// set actual velocity to 0.
-		piki->mTargetVelocity = Vector3f(0.0f);
-		return;
-	}
-
-	// we're either flying through the air or standing up
-	piki->mVelocity.x = 0.9f * piki->mVelocity.x;
-	piki->mVelocity.z = 0.9f * piki->mVelocity.z;
-
-	piki->mTargetVelocity = Vector3f(0.0f);
-}
-
-/**
- * @note Address: 0x8018FEAC
- * @note Size: 0x124
- */
-void PikiFlickState::onKeyEvent(SysShape::KeyEvent const& event)
-{
-	Piki* piki = mPiki;
-	switch (event.mType) {
-	case KEYEVENT_END:
-		if (mState == FLICK_Start) { // initial flick anim ends
-			piki->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, this, nullptr);
-			mState = FLICK_InAir;
-			return;
-		}
-
-		if (mState == FLICK_InAir) { // thrown through air animation ends
-			mState      = FLICK_Land;
-			f32 minTime = static_cast<PikiParms*>(piki->mParms)->mPikiParms.mKnockdownRecoverTimeMin.mValue;
-			f32 maxTime = static_cast<PikiParms*>(piki->mParms)->mPikiParms.mKnockdownRecoverTimeMax.mValue;
-
-			mKnockDownTimer = (maxTime - minTime) * randFloat() + minTime;
-			return;
-		}
-
-		// getup animation ends
-		randFloat(); // something's gotten commented out here I assume
-		transit(piki, PIKISTATE_Walk, nullptr);
-		break;
-	}
-}
-
-/**
- * @note Address: 0x8018FFD0
- * @note Size: 0xAC
- */
-void PikiFlickState::cleanup(Piki* piki)
-{
-	// if piki is alive and has been whistled by a captain, put them in the party!
-	if (piki->isAlive() && mIsWhistled) {
-		PikiAI::ActFormationInitArg initArg(piki->mNavi);
-		initArg.mDoUseTouchCooldown = true;
-		piki->mBrain->start(PikiAI::ACT_Formation, &initArg);
-	}
 }
 
 /**
@@ -2936,7 +2800,6 @@ void PikiDrownState::init(Piki* piki, StateArg* stateArg)
 
 	mSizumuAnimDelay      = randInt(2) + 6;
 	piki->mTargetVelocity = Vector3f(0.0f);
-	mUnusedVal            = 0;
 	piki->mTargetVelocity = Vector3f(0.0f);
 
 	if (piki->isStickTo()) {
@@ -3179,9 +3042,6 @@ void PikiDrownState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 
 	case KEYEVENT_END:
 		switch (mSubState) {
-		case 0:
-			// commented out code probably
-			break;
 		case 2:
 			DeathMgr::inc(DeathCounter::COD_Water);
 			piki->mTekiKillID = -1;
@@ -3206,7 +3066,6 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 #endif
 
 	mEmotionType = emotionArg->mType;
-	mUnusedVal   = 0;
 
 	if (mEmotionType == 9) {
 		return;
@@ -3552,15 +3411,6 @@ void PikiEscapeState::initRun(Piki* piki)
 
 	mDoFinishAnim = check;
 }
-
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x120
-//  */
-// void PikiEscapeState::initKoke(Piki* piki)
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /**
  * @note Address: N/A

@@ -12,15 +12,9 @@
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "PS.h"
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 namespace Game {
 namespace BigTreasure {
-
-#if MATCHING
-static const int unusedBigTreasureArray[] = { 0, 0, 0 };
-static const char bigTreasureName[]       = "246-BigTreasure";
-#endif
 
 /**
  * @note Address: 0x802DBBB4
@@ -198,23 +192,6 @@ void Obj::changeMaterial()
 	eyeMat2->getTevBlock()->setTevColor(0, color2);
 
 	j3dModel->calcMaterial();
-}
-
-/**
- * @note Address: 0x802DC230
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802DC234
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

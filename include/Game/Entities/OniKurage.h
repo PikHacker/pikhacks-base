@@ -40,7 +40,6 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                            // _30
 	virtual void onKill(CreatureKillArg* settings);                            // _34
-	virtual void doDirectDraw(Graphics& gfx);                                  // _50
 	virtual void inWaterCallback(WaterBox* wb) { }                             // _84 (weak)
 	virtual void outWaterCallback() { }                                        // _88 (weak)
 	virtual void getShadowParam(ShadowParam& settings);                        // _134
@@ -48,7 +47,6 @@ struct Obj : public EnemyBase {
 	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
 	virtual void doUpdate();                                                   // _1CC
 	virtual void doUpdateCommon();                                             // _1D0
-	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
 	virtual void initMouthSlots();                                             // _22C
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
 	virtual void doStartStoneState();                                          // _2A4

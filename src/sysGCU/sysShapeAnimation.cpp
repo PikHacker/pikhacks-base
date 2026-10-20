@@ -8,15 +8,8 @@
 #include "JSystem/JKernel/JKRFileLoader.h"
 
 #include "stream.h"
-#include "nans.h"
 
 namespace SysShape {
-
-static void strippedFunc()
-{
-	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
-	OSReport("sysShapeModel");
-}
 
 /**
  * @note Address: 0x8043DCDC

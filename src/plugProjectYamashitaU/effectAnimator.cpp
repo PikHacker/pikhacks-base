@@ -82,7 +82,6 @@ void Obj::setup(KeyData* data)
 	mCount = count;
 	mData  = data;
 
-	for (int i = 0; i < mCount; i++) { }
 }
 
 /**

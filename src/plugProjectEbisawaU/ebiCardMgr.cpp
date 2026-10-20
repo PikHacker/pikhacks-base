@@ -6,8 +6,6 @@
 namespace ebi {
 namespace CardError {
 
-static const char unusedCardMgrName[] = "ebiCardMgr";
-
 /**
  * @note Address: 0x803D1104
  * @note Size: 0xA2C

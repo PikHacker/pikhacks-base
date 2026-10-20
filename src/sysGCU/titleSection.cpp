@@ -15,13 +15,8 @@
 #include "Dolphin/rand.h"
 #include "Morimura/HiScore.h"
 #include "ebi/E2DGraph.h"
-#include "menu.h"
-#include "nans.h"
 #include "JSystem/J2D/J2DPrint.h"
 #include "JSystem/JFramework/JFWSystem.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "titleSection";
 
 namespace {
 static u8 sMovieIndex[7] = { 0, 2, 4, 1, 3, 11, 11 };
@@ -76,7 +71,6 @@ Section::~Section()
 void Section::doExit()
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 	mThpPlayer->stop();
 	if (!Screen::gGame2DMgr->mScreenMgr->reset()) {
@@ -114,7 +108,6 @@ void Section::loadResident()
 
 	if (!sys->isFlag(System::SF_LoadResident)) {
 		sys->mSysHeap->becomeCurrentHeap();
-		sys->heapStatusStart("titleSection::loadResident", nullptr);
 
 		char* path      = "/user/Kando/piki/pikis.szs";
 		JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
@@ -139,8 +132,6 @@ void Section::loadResident()
 #else
 		JUT_ASSERTLINE(590, arc, "%s : mount failed !!\n", path);
 #endif
-
-		sys->heapStatusEnd("titleSection::loadResident");
 		sys->setFlag(System::SF_LoadResident);
 	}
 
@@ -154,53 +145,13 @@ void Section::loadResident()
  */
 void Section::init()
 {
-	sys->heapStatusStart("TitleSection::init", nullptr);
+	initHIO(new HIORootNode(this, "title")); // "Title Section"
 
-	sys->heapStatusStart("JMANewSinTable", nullptr);
-	sys->heapStatusEnd("JMANewSinTable");
-
-	initHIO(new HIORootNode(this, "タイトルセクション")); // "Title Section"
-
-	sys->heapStatusStart("frameBuffer", nullptr);
 	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);
-	sys->heapStatusEnd("frameBuffer");
 
 	mController1 = new Controller(JUTGamePad::PORT_0);
-	mController2 = new Controller(JUTGamePad::PORT_1);
 
 	sys->setFrameRate(1); // 60fps title screen
-
-	// this entire menu class seems to be for a scrapped debug menu
-	mMenu      = new Menu(mController1, JFWSystem::systemFont, false);
-	mMenu->_48 = 260;
-	mMenu->addKeyEvent(Menu::KeyEvent::U6, Controller::PRESS_B, new Delegate1<Section, Menu&>(this, &menuCancel));
-	mMenu->addKeyEvent(Menu::KeyEvent::INVOKE_ACTION_ON_BUTTON_PRESS, Controller::PRESS_A,
-	                   new Delegate1<Section, Menu&>(this, &menuSelect));
-
-	JUTFont* font;
-	int i     = 0;
-	int sects = 0;
-	for (i = 0; i < GameFlow::SN_SECTION_COUNT; i++) {
-		SectionInfo* data = GameFlow::getSectionInfo(i);
-
-		if (data) {
-			if ((!Game::gGameConfig.mParms.mMarioClubDevelop() || data->mId.mSectionId[2]) && data->mId.mSectionId[1]) {
-				mMenu->addOption(i, data->mName, nullptr, true);
-				sects++;
-			}
-		} else {
-			mMenu->addOption(i, "NO NAME", nullptr, true);
-			sects++;
-		}
-	}
-
-	font       = JFWSystem::systemFont;
-	int x      = 300;
-	int height = sys->getRenderModeObj()->efbHeight;
-	int y      = height - (sects * font->getHeight() + 60);
-	mMenu->setPosition(Vector2i(x, y));
-
-	sys->heapStatusEnd("TitleSection::init");
 
 	PSM::ObjMgr::newInstance();
 
@@ -229,11 +180,6 @@ void Section::menuCancel(Menu&)
  */
 void Section::menuSelect(Menu& menu)
 {
-	if (menu.mState == 2 || menu.mState == 1) {
-		mIsMainActive                = false;
-		GameFlow::mActiveSectionFlag = menu.mCurrentItem->mSectionFlags;
-		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
-	}
 }
 
 /**
@@ -319,27 +265,6 @@ void Section::drawDebugInfo(Graphics& gfx)
  */
 void Section::updateMenu()
 {
-	if (mDoCheckShortCut) {
-		mMenu->doUpdate(false);
-		if (mMenu->mState == 2 || mMenu->mState == 1) {
-			if (mController1->getButtonDown() & Controller::PRESS_DPAD_UP && Game::gGameConfig.mParms.mShortCutUp.mData >= 0) {
-				GameFlow::mActiveSectionFlag = Game::gGameConfig.mParms.mShortCutUp.mData;
-				mIsMainActive                = false;
-			}
-			if (mController1->getButtonDown() & Controller::PRESS_DPAD_DOWN && Game::gGameConfig.mParms.mShortCutDown.mData >= 0) {
-				GameFlow::mActiveSectionFlag = Game::gGameConfig.mParms.mShortCutDown.mData;
-				mIsMainActive                = false;
-			}
-			if (mController1->getButtonDown() & Controller::PRESS_DPAD_LEFT && Game::gGameConfig.mParms.mShortCutLeft.mData >= 0) {
-				GameFlow::mActiveSectionFlag = Game::gGameConfig.mParms.mShortCutLeft.mData;
-				mIsMainActive                = false;
-			}
-			if (mController1->getButtonDown() & Controller::PRESS_DPAD_RIGHT && Game::gGameConfig.mParms.mShortCutRight.mData >= 0) {
-				GameFlow::mActiveSectionFlag = Game::gGameConfig.mParms.mShortCutRight.mData;
-				mIsMainActive                = false;
-			}
-		}
-	}
 }
 
 /**
@@ -367,7 +292,6 @@ void Section::doUpdateMainTitle()
 	PSSystem::SeqBase* seq;
 	if (mMainTitleMgr.mDoEndBGM) {
 		mgr = PSSystem::getSceneMgr();
-		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
 
@@ -394,7 +318,6 @@ void Section::doUpdateMainTitle()
 			mOptionMgr.start();
 			mIsMainActive = true;
 			mgr           = PSSystem::getSceneMgr();
-			PSSystem::validateSceneMgr(mgr);
 			mgr->checkScene();
 			seq = PSSystem::getSeqData(mgr, BGM_Options);
 			seq->startSeq();
@@ -407,7 +330,6 @@ void Section::doUpdateMainTitle()
 				disp.mImageArchive = mHiScoreTex;
 				Screen::gGame2DMgr->open_HighScore(disp);
 				mgr = PSSystem::getSceneMgr();
-				PSSystem::validateSceneMgr(mgr);
 				mgr->checkScene();
 				seq = PSSystem::getSeqData(mgr, BGM_HiScore);
 				seq->startSeq();
@@ -419,7 +341,6 @@ void Section::doUpdateMainTitle()
 			mOmakeMgr.start();
 			mIsMainActive = true;
 			mgr           = PSSystem::getSceneMgr();
-			PSSystem::validateSceneMgr(mgr);
 			mgr->checkScene();
 			seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 			seq->startSeq();
@@ -432,16 +353,8 @@ void Section::doUpdateMainTitle()
 			break;
 		}
 	} else {
-#if defined(VERSION_JP)
-		if (mGoToDemoTimer > 40.0f) {
-#else
 		if (mGoToDemoTimer > 43.0f) {
-#endif
-			if (
-#if defined(VERSION_JP)
-			    !Game::gGameConfig.mParms.mE3version.mData &&
-#endif
-			    !Game::gGameConfig.mParms.mKFesVersion.mData && !Game::gGameConfig.mParms.mNintendoVersion.mData) {
+			if (!Game::gGameConfig.mParms.mKFesVersion.mData && !Game::gGameConfig.mParms.mNintendoVersion.mData) {
 				mMainTitleMgr.forceQuit();
 				mIsMainActive                = false;
 				GameFlow::mActiveSectionFlag = GameFlow::SN_Demo;
@@ -480,8 +393,6 @@ void Section::doUpdateOmake()
 	mOmakeMgr.update();
 	if (mOmakeMgr.mIsFinished) {
 		mgr = PSSystem::getSceneMgr();
-		PSSystem::validateSceneMgr(mgr);
-		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 		f32 rate               = (ebi::E2DFader::kFadeTime / sys->mDeltaTime);
 		rate                   = ROUND_F32_TO_U8(rate);
@@ -491,8 +402,6 @@ void Section::doUpdateOmake()
 	if (mOmakeMgr.isMovieState()) {
 		if (mMovieIndex < 0) {
 			mgr = PSSystem::getSceneMgr();
-			PSSystem::validateSceneMgr(mgr);
-			mgr->checkScene();
 			PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 			seq->stopSeq(0);
 			mMovieIndex = sMovieIndex[mOmakeMgr.getMovieID()];
@@ -519,7 +428,6 @@ void Section::doUpdateOmake()
 				mOmakeMgr.restartFromMovieState();
 				mMovieIndex = -1;
 				mgr         = PSSystem::getSceneMgr();
-				PSSystem::validateSceneMgr(mgr);
 				mgr->checkScene();
 				seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 				seq->startSeq();
@@ -697,7 +605,6 @@ bool Section::doLoading()
  */
 void Section::loadResource()
 {
-	sys->heapStatusStart("TitleSection::loadResource", nullptr);
 	createScreenRootNode();
 	PSGame::SceneInfo info;
 	info.mSceneType          = PSGame::SceneInfo::TITLE_SCREEN;
@@ -709,13 +616,10 @@ void Section::loadResource()
 	mgr2->checkScene();
 	mgr2->mScenes->mChild->scene1stLoadSync();
 
-	sys->heapStatusStart("TParticle2dMgr", nullptr);
 	TParticle2dMgr::globalInstance();
 	particle2dMgr->createHeap(TITLESCREEN_PARTICLE_HEAP_SIZE);
 	particle2dMgr->createMgr("user/Ebisawa/effect/eff2d_game2d.jpc", 2000, 0x80, 0x80);
-	sys->heapStatusEnd("TParticle2dMgr");
 
-	sys->heapStatusStart("titleMgr", nullptr);
 	int id;
 	if (sSeasonIndex == -1) {
 		id = randInt(12);
@@ -773,14 +677,10 @@ void Section::loadResource()
 	}
 	mMainTitleMgr.loadResource();
 	mMainTitleMgr.setController(mController1);
-	sys->heapStatusEnd("titleMgr");
 
-	sys->heapStatusStart("optionMgr", nullptr);
 	mOptionMgr.loadResource();
 	mOptionMgr.setController(mController1);
-	sys->heapStatusEnd("optionMgr");
 
-	sys->heapStatusStart("hiscoreTexture", nullptr);
 	mHiScoreTex = nullptr;
 
 	const char* name = "res_hiscoreTexture.szs";
@@ -788,89 +688,10 @@ void Section::loadResource()
 	og::newScreen::makeLanguageResName(buf, name);
 
 	mHiScoreTex = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
-#if defined(VERSION_PAL)
-	JUT_ASSERTLINE(1801, mHiScoreTex, "arcName = %s\n", buf);
-#elif defined(VERSION_JP)
-	JUT_ASSERTLINE(1671, mHiScoreTex, "arcName = %s\n", buf);
-#elif defined(VERSION_US_DEMO1)
-	JUT_ASSERTLINE(1706, mHiScoreTex, "arcName = %s\n", buf);
-#else
 	JUT_ASSERTLINE(1700, mHiScoreTex, "arcName = %s\n", buf);
-#endif
-	sys->heapStatusEnd("hiscoreTexture");
-
-	sys->heapStatusStart("omakeMgr", nullptr);
 	mOmakeMgr.newCardEMgrAndTask();
 	mOmakeMgr.loadResource();
 	mOmakeMgr.setControllers(mController1);
-	sys->heapStatusEnd("omakeMgr");
-
-	sys->heapStatusEnd("TitleSection::loadResource");
 }
 
 } // namespace Title
-
-/**
- * @note Address: N/A
- * @note Size: 0x100
- */
-TitleDummy::Section::Section(JKRHeap*)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x34
- */
-void TitleDummy::Section::init()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x1C0
- */
-void TitleDummy::Section::loadResource()
-{
-	sys->heapStatusStart("TitleDummySection::loadResource", nullptr);
-	static const char* test  = "/user/Yamashita/testResource/tex";
-	static const char* test2 = "titlelogo.bti";
-	sys->heapStatusEnd("TitleDummySection::loadResource");
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x124
- */
-bool TitleDummy::Section::doUpdate()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0xC0
- */
-void TitleDummy::Section::doDraw(Graphics& gfx)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x60
- */
-TitleDummy::Section::~Section()
-{
-	// UNUSED FUNCTION
-}
-
-static void fakefunc()
-{
-	// need this to spawn before ~HIORootNode
-	Title::Section* s = new Title::Section(0);
-	s->forceReset();
-}

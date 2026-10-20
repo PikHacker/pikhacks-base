@@ -4,14 +4,10 @@
 #include "Controller.h"
 #include "Dolphin/rand.h"
 #include "trig.h"
-#include "nans.h"
 
 namespace ebi {
 namespace title {
 namespace Kogane {
-
-static const int padding[]    = { 0, 0, 0 };
-static const char className[] = "ebiP2TitleKogane";
 
 /**
  * @note Address: 0x803E7358

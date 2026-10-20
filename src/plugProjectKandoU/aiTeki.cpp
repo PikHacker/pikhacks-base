@@ -31,19 +31,7 @@ void ActTeki::init(PikiAI::ActionArg* arg)
 
 	mFollowingTeki = static_cast<Game::EnemyBase*>(cArg->mCreature);
 
-	mUnusedZeroVector = Vector3f(0.0f, 0.0f, 0.0f);
-
-	mUnused1 = 0.0f;
-	mUnused2 = 0.0f;
-	mUnused3 = 0.0f;
-
-	mUnusedDotProduct  = 0.0f;
-	mTargetFootprint   = 0;
-	mParentFollowTimer = 0.0f;
-
 	mFollowState = TFS_Parent;
-	mUnused0     = -1;
-
 	mMoveSpeed = 0.0f;
 
 	mIsLeafChappy = false;
@@ -236,18 +224,6 @@ void ActTeki::test_0()
 }
 
 /**
- * @note Address: 0x80213318
- * @note Size: 0x58
- */
-void ActTeki::doDirectDraw(Graphics& gfx)
-{
-	if (mTargetFootprint) {
-		gfx.mDrawColor = Color4(255, 100, 10, 255);
-		gfx.drawSphere(mTargetFootprint->mPosition, 10.0f);
-	}
-}
-
-/**
  * @note Address: 0x80213370
  * @note Size: 0x130
  */
@@ -282,20 +258,6 @@ void ActTeki::cleanup()
  */
 void ActTeki::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
 {
-	Vector3f collidedPos = event.mCollidingCreature->getPosition();
-	Vector3f currentPos  = mParent->getPosition();
-
-	// Unfortunately, this code must've been a result of testing
-	// And doesn't logically make sense, mUnusedZeroVector is always Vector3f(0, 0, 0)
-	// Meaning the dot product is always 0, thus mUnusedDotProduct is always -0.1f
-	Vector3f sep      = currentPos - collidedPos;
-	f32 dotProd       = mUnusedZeroVector.dot(sep);
-	mUnusedDotProduct = dotProd;
-	if (dotProd > 0.0f) {
-		mUnusedDotProduct = 0.1f;
-	} else {
-		mUnusedDotProduct = -0.1f;
-	}
 }
 
 void ActTeki::onKeyEvent(const SysShape::KeyEvent& event)

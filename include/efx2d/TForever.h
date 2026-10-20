@@ -47,9 +47,6 @@ struct TForeverN : public TBaseIF {
 
 	// _00 VTBL
 	u8 mLength;          // _04
-	u8 _05;              // _05
-	u8 _06;              // _06
-	u8 _07;              // _07
 	TForever* mForevers; // _08
 };
 

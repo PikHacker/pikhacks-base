@@ -42,7 +42,6 @@ struct Rigid {
 	Matrixf mPrimaryMatrix;     // _004
 	RigidConfig mConfigs[2];    // _034, [1] at _0BC
 	Matrixf mTransformationMtx; // _144
-	u8 _174;                    // _174
 	BitFlag<u8> mFlags;         // _175
 };
 } // namespace Game

@@ -1,6 +1,5 @@
 #include "Game/MoviePlayer.h"
 #include "og/newScreen/ogUtil.h"
-#include "nans.h"
 
 namespace og {
 namespace newScreen {

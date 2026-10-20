@@ -4,8 +4,6 @@
 namespace Game {
 namespace Wealthy {
 
-static const char wealthyMgrName[] = "246-WealthyMgr";
-
 namespace {
 static const char* cKoganeChangeTexName = "/enemy/data/Wealthy/oogane_s3tc.bti";
 } // namespace

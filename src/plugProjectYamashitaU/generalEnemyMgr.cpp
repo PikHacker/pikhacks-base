@@ -74,8 +74,6 @@
 #include "Game/Interaction.h"
 #include "LoadResource.h"
 
-static const char matchText[] = "enemyBase";
-
 namespace Game {
 
 GeneralEnemyMgr* generalEnemyMgr;
@@ -208,7 +206,6 @@ void GeneralEnemyMgr::createEnemyMgr(u8 viewNum, int enemyID, int limit)
 {
 	EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
 	char* name = getEnemyName(enemyID, 0xFFFF);
-	sys->heapStatusStart(name, nullptr);
 
 	EnemyMgrBase* mgr;
 
@@ -502,7 +499,6 @@ void GeneralEnemyMgr::createEnemyMgr(u8 viewNum, int enemyID, int limit)
 	mgr->alloc();
 	mEnemyMgrNode.add(new EnemyMgrNode(enemyID, name, mgr));
 	add(mgr);
-	sys->heapStatusEnd(name);
 }
 
 /**
@@ -514,12 +510,10 @@ GeneralEnemyMgr::GeneralEnemyMgr()
     , mEnemyNumInfo()
     , mHeap(nullptr)
 {
-	sys->heapStatusStart("GeneralEnemyMgr", nullptr);
 	mName = "敵マネージャ"; // enemy manager
 
 	mEnemyNumInfo.init();
 
-	sys->heapStatusEnd("GeneralEnemyMgr");
 	resetEnemyNum();
 	mFlags.clear();
 	mFlags.set(GEM_DoSimulate);
@@ -561,14 +555,12 @@ void GeneralEnemyMgr::doAnimation()
 {
 	mCullCount  = 0;
 	mTotalCount = 0;
-	sys->mTimers->_start("doaTEKI", true);
 	if (mFlags.isSet(GEM_DoSimulate)) {
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doAnimation();
 		}
 	}
-	sys->mTimers->_stop("doaTEKI");
 }
 
 /**
@@ -623,20 +615,6 @@ void GeneralEnemyMgr::doSimulation(f32 constraint)
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doSimulation(constraint);
-		}
-	}
-}
-
-/**
- * @note Address: 0x8010D32C
- * @note Size: 0x68
- */
-void GeneralEnemyMgr::doDirectDraw(Graphics& gfx)
-{
-	if (mFlags.isSet(GEM_DoDraw)) {
-		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
-		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
-			childNode->doDirectDraw(gfx);
 		}
 	}
 }
@@ -763,7 +741,6 @@ void GeneralEnemyMgr::allocateEnemys(u8 viewNum, int heapSize)
 		mHeapSize = heapSize;
 	}
 
-	sys->heapStatusStart("enemyHeap", nullptr);
 	JKRHeap* currentHeap = JKRGetCurrentHeap();
 	mHeap                = JKRSolidHeap::create(mHeapSize, currentHeap, true);
 	mHeap->becomeCurrentHeap();
@@ -779,9 +756,6 @@ void GeneralEnemyMgr::allocateEnemys(u8 viewNum, int heapSize)
 	LoadResource::Node* resourceNode = gLoadResourceMgr->mountArchive(arg);
 	gParmArc                         = resourceNode->mArchive;
 
-	sys->heapStatusStart("allocateEnemys", nullptr);
-	sys->heapStatusIndividual();
-
 	for (int i = 0; i < gEnemyInfoNum; i++) {
 		int enemyNum = getEnemyNum(gEnemyInfo[i].mId, true);
 		if ((gEnemyInfo[i].mFlags & EFlag_UseOwnID) && (enemyNum > 0)) {
@@ -789,14 +763,11 @@ void GeneralEnemyMgr::allocateEnemys(u8 viewNum, int heapSize)
 		}
 	}
 
-	sys->heapStatusNormal();
-	sys->heapStatusEnd("allocateEnemys");
 	currentHeap->becomeCurrentHeap();
 	mHeap->mInitFlag = 1;
 	delete resourceNode;
 
 	gParmArc = nullptr;
-	sys->heapStatusEnd("enemyHeap");
 }
 
 /**
@@ -928,10 +899,6 @@ void GeneralEnemyMgr::prepareDayendEnemies()
 	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 
 		EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(childNode->mEnemyID, 0xFFFF);
-
-		// love a random trivial loop - probably debug stuff?
-		EnemyMgrNode* otherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
-		for (otherNode; otherNode != nullptr; otherNode = static_cast<EnemyMgrNode*>(otherNode->mNext)) { }
 
 		if (info->mFlags & EFlag_CanAppearDayEnd) {
 			EnemyKillArg killArg(CKILL_NULL);
@@ -1137,23 +1104,4 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& birthSphere)
 	}
 }
 
-/**
- * @note Address: N/A
- * @note Size: 0x5C
- */
-void GeneralEnemyMgr::setParmsDebugNameAndID()
-{
-	// more than this but this is the essential bit for weak function ordering
-	mEnemyMgrNode.setDebugParm(0);
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x50
- */
-void GeneralEnemyMgr::resetParmsDebugNameAndID()
-{
-	// more than this but this is the essential bit for weak function ordering
-	mEnemyMgrNode.resetDebugParm(0);
-}
 } // namespace Game

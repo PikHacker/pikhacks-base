@@ -38,7 +38,6 @@ struct JKRADCommand : public JSULink<JKRADCommand> {
 	JKRADCommand();
 	~JKRADCommand();
 
-	u8 _10[0x18];                             // _10 - unknown/padding
 	JKRDvdFile* mDvdFile;                     // _28
 	u32 mAddress;                             // _2C
 	JKRAramBlock* mBlock;                     // _30

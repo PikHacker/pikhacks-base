@@ -3,8 +3,6 @@
 namespace Game {
 namespace SnakeWhole {
 
-static const char snakeWholeMgrName[] = "246-SnakeWholeMgr";
-
 /**
  * @note Address: 0x802CE2DC
  * @note Size: 0x50

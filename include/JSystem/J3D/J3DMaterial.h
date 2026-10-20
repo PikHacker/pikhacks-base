@@ -152,7 +152,6 @@ struct J3DMaterial {
 	u32 mMaterialMode;               // _10
 	u16 mIndex;                      // _14
 	u32 mInvalid;                    // _18
-	u8 _1C[4];                       // _1C
 	u32 mDiffFlag;                   // _20
 	J3DColorBlock* mColorBlock;      // _24
 	J3DTexGenBlock* mTexGenBlock;    // _28

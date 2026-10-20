@@ -87,7 +87,6 @@ Mgr::Mgr()
  */
 void Mgr::setupResources()
 {
-	sys->heapStatusStart("NumberPellet", nullptr);
 	alloc(PELLET_NUMBER_MAXCOUNT);
 	// make all 4 types of number pellet always marked as active
 	setUse(0);
@@ -101,7 +100,6 @@ void Mgr::setupResources()
 	mModelData[3]->newSharedDisplayList(0x40000);
 	useModelMgr(PELLET_NUMBER_MAXMODEL, 0x80000);
 	mCollPartMgr.alloc(PELLET_NUMBER_MAXCOLLPART);
-	sys->heapStatusEnd("NumberPellet");
 }
 
 /**

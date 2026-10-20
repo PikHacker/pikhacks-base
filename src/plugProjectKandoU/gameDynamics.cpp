@@ -218,10 +218,6 @@ void Game::Rigid::integrate(f32 timeStep, int configIdx)
  */
 bool Game::Rigid::resolveCollision(int configIndex, Vector3f& collisionPoint, Vector3f& collisionNormal, f32 restitutionCoefficient)
 {
-	if (1120.0f * DynamicsParms::mInstance->mMicroCollision.mValue > 0.0f) {
-		// probably some commented-out/otherwise stripped code here
-		restitutionCoefficient = restitutionCoefficient;
-	}
 	f32 zero = 0.0f;
 
 	RigidConfig& config      = mConfigs[configIndex];

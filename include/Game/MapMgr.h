@@ -79,7 +79,6 @@ struct MapMgr : virtual public GenericObjectMgr {
 	virtual void do_update() { }                                                // _40 (weak)
 	virtual void drawCollision(Graphics& gfx, Sys::Sphere& boundingSphere) = 0; // _44
 	virtual void doSimulation(f32 rate) { }                                     // _48 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }                                // _4C (weak)
 
 	WaterBox* findWater(Sys::Sphere&);
 	f32 getMapRotation();

@@ -58,7 +58,6 @@ struct Obj : public EnemyBase {
 	virtual void onKill(CreatureKillArg* settings);                             // _34
 	virtual void doAnimation();                                                 // _3C
 	virtual void doSimulation(f32);                                             // _4C
-	virtual void doDirectDraw(Graphics& gfx);                                   // _50
 	virtual void inWaterCallback(WaterBox* wb);                                 // _84
 	virtual void outWaterCallback();                                            // _88
 	virtual void bounceCallback(Sys::Triangle* tri);                            // _E8
@@ -69,7 +68,6 @@ struct Obj : public EnemyBase {
 	virtual void birth(Vector3f&, f32);                                         // _1C0
 	virtual void doUpdate();                                                    // _1CC
 	virtual void doAnimationStick();                                            // _1E4
-	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
 	virtual void setParameters();                                               // _228
 	virtual void initMouthSlots();                                              // _22C
 	virtual void initWalkSmokeEffect();                                         // _230
@@ -173,7 +171,6 @@ struct Obj : public EnemyBase {
 	f32 mCarrySizeDiff;                                 // _32C
 	f32 mShadowSize;                                    // _330
 	f32 mCarryingYPosition;                             // _334
-	f32 mUnusedVal;                                     // _338
 	f32 mBounceEffectSize;                              // _33C
 	f32 mAppearEffectSize;                              // _340
 	StateID mNextState;                                 // _344

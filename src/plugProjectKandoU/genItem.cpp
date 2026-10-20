@@ -184,5 +184,4 @@ Creature* GenItem::birth(Game::GenArg* arg)
 	return baseItem;
 }
 
-static const char unusedGenItemStr[] = "オニョンを発生";
 } // namespace Game

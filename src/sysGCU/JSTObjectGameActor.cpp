@@ -2,11 +2,7 @@
 #include "Game/MoviePlayer.h"
 #include "Game/Piki.h"
 #include "Game/MapMgr.h"
-#include "nans.h"
 #include "JSystem/JStudio/stb.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "ObjectGameActor";
 
 namespace Game {
 namespace P2JST {
@@ -61,9 +57,6 @@ void ObjectGameActor::stop()
 
 	if (mSRTCommand == 1) {
 		mGameObject->movieSetFaceDir(mObjectFaceDir);
-		if (mGameObject->isNavi()) {
-			mGameObject->getCreatureID();
-		}
 	}
 
 	SysShape::Model* model = mGameObject->mModel;
@@ -89,9 +82,6 @@ void ObjectGameActor::update()
 		if (joint) {
 			Matrixf* mtx   = joint->getWorldMatrix();
 			mObjectFaceDir = JMAAtan2Radian(mtx->mMatrix.structView.zx, mtx->mMatrix.structView.zz);
-			if (mGameObject->isNavi()) {
-				mGameObject->getCreatureID();
-			}
 		}
 	}
 

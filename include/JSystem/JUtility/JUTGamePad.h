@@ -344,7 +344,6 @@ struct JUTGamePadLongPress {
 
 	static JSUList<JUTGamePadLongPress> sPatternList;
 
-	u8 _00[0x10];           // _00, unknown
 	bool mIsValid;          // _10
 	bool _11;               // _11
 	u32 mPattern;           // _14

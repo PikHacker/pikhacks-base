@@ -8,7 +8,6 @@
 #include "Screen/Game2DMgr.h"
 #include "Controller.h"
 
-static const char unusedName[] = "vsSelect2D";
 namespace Morimura {
 f32 TVsSelect::mAngRate       = 0.2f;
 f32 TVsSelect::mMoveSpeed     = 25.0f;
@@ -716,14 +715,12 @@ void TVsSelect::doCreate(JKRArchive* arc)
 
 	JKRHeap* backup = JKRGetCurrentHeap();
 	mDispMember->mDebugExpHeap->becomeCurrentHeap();
-	sys->heapStatusStart("vsSelectTexture", nullptr);
 	mVsSelectTextureArc = nullptr;
 	char path[50];
 	const char* textureArchiveName = "res_vsSelectTexture.szs";
 	og::newScreen::makeLanguageResName(path, textureArchiveName);
 	mVsSelectTextureArc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	JUT_ASSERTLINE(893, mVsSelectTextureArc, "arcName = %s\n", path);
-	sys->heapStatusEnd("vsSelectTexture");
 
 	const char* texNames[VS_Stage_Count]
 	    = { "timg/otegaru.bti",  "timg/ujyaujya.bti", "timg/hirobiro.bti", "timg/karakuchi.bti", "timg/semai.bti",

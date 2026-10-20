@@ -12,11 +12,8 @@
 #include "Game/DeathMgr.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "PikiAI.h"
-#include "nans.h"
 
 namespace Game {
-
-static const int unusedPikiMgrArray[] = { 0, 0, 0 };
 
 bool PikiMgr::throwPikiDebug = false;
 PikiMgr* pikiMgr;
@@ -203,10 +200,8 @@ void PikiMgr::load(int viewNum)
 	mHappaModel[Flower_Red] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower_red.bmd"),
 	                                                       J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
 
-	sys->heapStatusStart("pikmin-ModelMgr", nullptr);
 	mModelMgr = new SysShape::ModelMgr(PikiColorCount, &mBluPikiModel, MAX_PIKI_COUNT, 0x20000, viewNum,
 	                                   new Delegate1<PikiMgr, SysShape::Model*>(this, createModelCallback));
-	sys->heapStatusEnd("pikmin-ModelMgr");
 
 	for (int i = 0; i < PikiHappaCount; i++) {
 		J3DModelData* model = mHappaModel[i];
@@ -300,19 +295,6 @@ void PikiMgr::setMovieDraw(bool drawOn)
 }
 
 /**
- * @note Address: 0x8015F200
- * @note Size: 0x84
- */
-void PikiMgr::debugShapeDL(char* text)
-{
-	for (int i = 0; i < mMax; i++) {
-		if (!mOpenIds[i]) {
-			mArray[i].debugShapeDL(text);
-		}
-	}
-}
-
-/**
  * @note Address: 0x8015F284
  * @note Size: 0x198
  */
@@ -387,7 +369,6 @@ inline void PikiMgr::updateArrayAt(int i)
  */
 void PikiMgr::doAnimation()
 {
-	sys->mTimers->_start("doaPIKI", true);
 	mUpdateMgr2->update();
 	if (mFlags[1] & 1) {
 		for (int i = 0; i < mMax; i++) {
@@ -410,8 +391,6 @@ void PikiMgr::doAnimation()
 	if (mDopedPikis > 0 && gameSystem && gameSystem->isFlag(GAMESYS_IsGameWorldActive) && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_PK_UNDER_DOPING, 0);
 	}
-
-	sys->mTimers->_stop("doaPIKI");
 }
 
 /**
@@ -687,23 +666,10 @@ void PikiMgr::caveSaveFormationPikmins(bool doKill)
 		}
 	}
 
-	if (squadCount == 0) {
-		// you're not bringing pikmin with you? sit and think about what you've done.
-		for (int j = 125; j > 0; j--) { }
-	}
-
 	for (int j = 0; j < squadCount; j++) {
 		// put squad in cave
 		playData->mCaveSaveData.mCavePikis(squadList[j])++;
-
-		// this never happens (doKill is always false) - why would you wanna kill all your squad when you enter a cave you monsters?
-		if (doKill) {
-			PikiKillArg arg(CKILL_DontCountAsDeath | CKILL_Unk17);
-			squadList[j]->kill(&arg);
-		}
 	}
-
-	playData->mCaveSaveData.mCavePikis.dump("caveSaveFormationPikmins");
 }
 
 /**

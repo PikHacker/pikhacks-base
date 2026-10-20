@@ -63,7 +63,6 @@ struct JUTVideo {
 	u32 _08;                                        // _08
 	u32 mRetraceCount;                              // _0C
 	int _10;                                        // _10
-	u8 _14[4];                                      // _14
 	u32 _18;                                        // _18
 	VIRetraceCallback mPreviousPreRetraceCallback;  // _1C
 	VIRetraceCallback mPreviousPostRetraceCallback; // _20

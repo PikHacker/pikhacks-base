@@ -10,19 +10,8 @@
 #include "THP/THPRead.h"
 #include "System.h"
 #include "Graphics.h"
-#if defined(VERSION_US_DEMO)
-#include "Game/GameConfig.h"
-#endif
 
-static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
-
-#include "nans.h"
-
-#if defined(VERSION_JP)
-static OSTime sPlayTime = OSSecondsToTicks((OSTime)780);
-#else
 static OSTime sPlayTime = OSSecondsToTicks((OSTime)300);
-#endif
 
 /**
  * @note Address: 0x80423770
@@ -46,9 +35,7 @@ Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 	mDisplayWiper = nullptr;
 	mTimeStep     = 0.5f;
 	mIsMainActive = true;
-	_36           = 0;
 	mIsDisplayNew = false;
-	_38           = 0;
 
 	if (heap) {
 		mDisplayHeap = JKRExpHeap::create(heap->getFreeSize(), heap, true);
@@ -180,14 +167,10 @@ void Section::main()
 		beginFrame();
 		beginRender();
 
-		sys->mTimers->_start("draw", true);
 		draw(*mGraphics);
-		sys->mTimers->_stop("draw");
 		endRender();
 
-		sys->mTimers->_start("update", true);
 		update();
-		sys->mTimers->_stop("update");
 		endFrame();
 #if defined(VERSION_US_DEMO)
 		if ((config->mParms.mE3version() || config->mParms.mNintendoVersion()) && forceReset()) {

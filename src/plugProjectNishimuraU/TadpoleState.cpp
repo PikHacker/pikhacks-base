@@ -246,7 +246,6 @@ void StateEscape::exec(EnemyBase* enemy)
 	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_GENERALPARMS(tadpole).mViewAngle.mValue,
 	                                       CG_GENERALPARMS(tadpole).mSightRadius.mValue, nullptr, nullptr);
 	if (navi) {
-		Vector3f tadpolePos = tadpole->getPosition(); // this is pointless
 		Vector3f targetPos  = tadpole->getTargetPosition(navi);
 
 		EnemyFunc::walkToTarget(tadpole, targetPos, CG_GENERALPARMS(tadpole).mMoveSpeed.mValue, CG_GENERALPARMS(tadpole).mTurnSpeed.mValue,

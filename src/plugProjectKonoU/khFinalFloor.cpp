@@ -2,17 +2,10 @@
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "PSSystem/PSSystemIF.h"
-#include "nans.h"
 #include "Game/GameSystem.h"
 #include "og/newScreen/Challenge.h"
 #include "Screen/Game2DMgr.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
-
-static void strippedFunc()
-{
-	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
-}
-
 namespace kh {
 namespace Screen {
 

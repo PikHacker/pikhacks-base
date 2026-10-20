@@ -104,7 +104,6 @@ struct JFWDisplay {
 	u32 mFrameDuration;           // _30
 	u32 mTickDifference;          // _34
 	s16 mCurrentXfbIndex;         // _38, NB: TP has more members here.
-	u8 _3A;                       // _3A
 };
 
 #endif

@@ -3,14 +3,10 @@
 #include "types.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "Game/Piki.h"
-#include "nans.h"
 #include "Dolphin/rand.h"
 
 namespace ebi {
 namespace title {
-
-static const int unusedArray[]            = { 0, 0, 0 };
-static const char unusedPikminTitleName[] = "ebiP2TitlePikmin";
 
 /**
  * @note Address: N/A

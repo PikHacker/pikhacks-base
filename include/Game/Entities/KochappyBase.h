@@ -36,14 +36,12 @@ struct Obj : public EnemyBase {
 
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                           // _30
-	virtual void doDirectDraw(Graphics& gfx);                                 // _50
 	virtual void bounceCallback(Sys::Triangle* tri);                          // _E8
 	virtual void getShadowParam(ShadowParam& settings);                       // _134
 	virtual ~Obj() { }                                                        // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                                       // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase* params);            // _1C4
 	virtual void doUpdate();                                                  // _1C8
-	virtual void doDebugDraw(Graphics& gfx);                                  // _1EC
 	virtual void changeMaterial() = 0;                                        // _200
 	virtual Vector3f getOffsetForMapCollision();                              // _224
 	virtual void initMouthSlots();                                            // _22C

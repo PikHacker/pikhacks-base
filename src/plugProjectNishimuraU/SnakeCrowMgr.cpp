@@ -3,8 +3,6 @@
 namespace Game {
 namespace SnakeCrow {
 
-static const char snakeCrowMgrName[] = "246-SnakeCrowMgr";
-
 /**
  * @note Address: 0x80292B9C
  * @note Size: 0x50

@@ -4,8 +4,6 @@
 namespace Game {
 namespace Rock {
 
-static const char rockMgrName[] = "246-RockMgr";
-
 /**
  * @note Address: 0x802628F0
  * @note Size: 0x9C

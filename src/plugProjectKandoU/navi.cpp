@@ -26,12 +26,8 @@
 #include "Iterator.h"
 #include "PikiAI.h"
 #include "Radar.h"
-#include "nans.h"
 #include "utilityU.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/arith.h"
-
-static const u32 fillerbytes[3] = { 0, 0, 0 };
-int numSearch;
 
 namespace Game {
 
@@ -129,19 +125,13 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	mWhistle = new NaviWhistle(this);
 
-	_2DE           = 0;
 	mNextThrowPiki = nullptr;
 	mHoldPikiTimer = 0.0f;
-	mUnusedFlag2   = 0;
 
 	mCollTree->createFromFactory(mModel, naviMgr->mCollData, nullptr);
-	JUT_ASSERTLINE(838, ((int)mCollTree->mPart) >= 0x80000000,
-	               "ザンーー（・д・）−−ネン\n"); // 'disappointttttt D: ?? ment' (lol)
 	mCollTree->attachModel(mModel);
 
 	mFsm->start(this, NSID_Walk, nullptr);
-
-	getCreatureID();
 
 	mBeaconJoint = mModel->getJoint("happajnt3");
 
@@ -157,7 +147,6 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	setLifeMax();
 
 	mPluckingCounter = 0;
-	mUnusedFlag      = 0;
 
 	Vector3f modelScale;
 	modelScale = Vector3f(OLIMAR_SCALE);
@@ -368,11 +357,6 @@ void Navi::setupNukuAdjustArg(ItemPikihead::Item* item, NaviNukuAdjustStateArg& 
 
 	f32 distance = pikmin2_sqrtf(direction.sqrLength());
 	f32 norm     = 1.0f / distance;
-
-	// These two lines are unused
-	// Minimum distance to item is 15.0f
-	arg.mUnusedVelocity = direction * (3.0003002f * (norm * (distance - 15.0f)));
-	arg.mUnusedState    = 2;
 
 	arg.mPikihead = item;
 }
@@ -1380,41 +1364,6 @@ f32 Navi::getMapCollisionRadius()
 }
 
 /**
- * @note Address: 0x80143AF4
- * @note Size: 0x4
- */
-void Navi::doDirectDraw(Graphics&)
-{
-}
-
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x4
-//  */
-// void Navi::draw2d(J2DGrafContext&)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x8
-//  */
-// void Navi::changeCamera(Camera*)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0xC
-//  */
-// void Navi::restoreCamera()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/**
  * @note Address: 0x80143AF8
  * @note Size: 0xC
  */
@@ -1422,24 +1371,6 @@ void Navi::disableController()
 {
 	mController1 = nullptr;
 }
-
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x8
-//  */
-// void Navi::changeController(Controller*)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0xC
-//  */
-// void Navi::restoreController()
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /**
  * @note Address: 0x80143B04
@@ -1599,7 +1530,6 @@ void Navi::reviseController(Vector3f& input)
  */
 void Navi::callPikis()
 {
-	numSearch = 0;
 	Vector3f mPos(mWhistle->mPosition);
 	Sys::Sphere bounds(mPos, mWhistle->mRadius);
 	CellIteratorArg arg(bounds);

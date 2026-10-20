@@ -6,11 +6,6 @@
 #include "JSystem/J2D/J2DAnmLoader.h"
 #include "Screen/Game2DMgr.h"
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace kh {
 namespace Screen {
 

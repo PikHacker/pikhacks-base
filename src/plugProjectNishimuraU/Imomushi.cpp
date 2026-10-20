@@ -141,23 +141,6 @@ void Obj::doAnimationStick()
 }
 
 /**
- * @note Address: 0x802BC8A4
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802BC8A8
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
-
-/**
  * @note Address: 0x802BC8C8
  * @note Size: 0x4C
  */

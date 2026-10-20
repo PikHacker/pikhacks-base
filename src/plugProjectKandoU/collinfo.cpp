@@ -760,7 +760,6 @@ void CollPart::init(SysShape::MtxObject* mtxObject)
 	mPosition   = Vector3f(0.0f);
 	mModel      = mtxObject;
 	mJointIndex = -1;
-	mUnusedVal  = 0;
 	mAttribute  = 0;
 	mPartType   = COLLTYPE_SPHERE;
 	mSpecialID.setID('____');
@@ -1050,7 +1049,6 @@ MouthCollPart::MouthCollPart()
 	mPosition   = Vector3f(0.0f);
 	mModel      = nullptr;
 	mJointIndex = -1;
-	mUnusedVal  = 0;
 	mAttribute  = 0;
 	mPartType   = COLLTYPE_SPHERE;
 	mSpecialID.setID('____');
@@ -1241,7 +1239,6 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 	copy->mPartType   = mPartType;
 	copy->mJointIndex = mJointIndex;
 	copy->mModel      = mModel;
-	copy->mUnusedVal  = mUnusedVal;
 	copy->mAttribute  = mAttribute;
 	copy->mModel      = mtxObject;
 

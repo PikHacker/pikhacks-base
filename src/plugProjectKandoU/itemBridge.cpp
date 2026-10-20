@@ -14,8 +14,6 @@ static f32 bridgeGrad[4]     = { 0.0f, 8.0f, 0.0f, 0.0f };
 namespace Game {
 namespace ItemBridge {
 
-static const char bridgeName[] = "itemBridge";
-
 Mgr* mgr;
 
 /**
@@ -161,14 +159,6 @@ void Item::do_updateLOD()
 	AILODParm parm;
 	parm.mIsCylinder = true;
 	updateLOD(parm);
-}
-
-/**
- * @note Address: 0x801EE4C0
- * @note Size: 0x4
- */
-void Item::doDirectDraw(Graphics&)
-{
 }
 
 /**

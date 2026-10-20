@@ -5,8 +5,6 @@
 namespace Game {
 namespace TamagoMushi {
 
-static const char tamagoMushiMgrName[] = "tamagoMushiMgr";
-
 /**
  * @note Address: 0x8036D988
  * @note Size: 0x50

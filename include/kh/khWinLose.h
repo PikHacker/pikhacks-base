@@ -101,8 +101,6 @@ struct ObjWinLoseReason : public ::Screen::ObjBase {
 		mScreen  = nullptr;
 		mAnim1   = nullptr;
 		mAnim2   = nullptr;
-		mUnused2 = 0.0f;
-		mUnused1 = 0.0f;
 		mType    = type;
 	}
 
@@ -117,8 +115,6 @@ struct ObjWinLoseReason : public ::Screen::ObjBase {
 	P2DScreen::Mgr_tuning* mScreen; // _38
 	J2DAnmBase* mAnim1;             // _3C
 	J2DAnmBase* mAnim2;             // _40
-	f32 mUnused1;                   // _44
-	f32 mUnused2;                   // _48
 	u32 mType;                      // _4C
 
 	static struct StaticValues {

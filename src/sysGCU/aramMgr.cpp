@@ -15,10 +15,6 @@ ARAM::Mgr* gAramMgr;
 #define RESOURCE_HEAP (JKRGetSystemHeap())
 #endif
 
-#if MATCHING
-static const char* SDATA2_FIX = "";
-#endif
-
 namespace ARAM {
 /**
  * @note Address: N/A

@@ -5,15 +5,11 @@
 #include "Game/Navi.h"
 #include "Dolphin/rand.h"
 #include "JSystem/J3D/J3DTransform.h"
-#include "nans.h"
 
 #define UJAMUSHI_DROP_THRESHOLD (0.4f)
 
 namespace Game {
 namespace ItemUjamushi {
-
-static const int unusedArray[]         = { 0, 0, 0 };
-static const char unusedUjamushiName[] = "itemUjamushi";
 
 Mgr* mgr;
 
@@ -175,7 +171,6 @@ void Uja::init(Mgr* mgr, Vector3f& pos)
 	mState = STATE_Appear;
 
 	_AD           = (int)(100.0f * randFloat()) + 20;
-	_B0           = 0;
 	_AE           = 0;
 	mHeightOffset = 0.0f;
 	// UNUSED FUNCTION
@@ -315,9 +310,7 @@ void Uja::update(BoidParms& parms)
 
 	Vector3f moveDir(0.0f);
 
-	sys->mTimers->_start("AI PIKI", true);
 	updateBuffer();
-	sys->mTimers->_stop("AI PIKI");
 
 	Vector3f separationVec;
 	separationVec = mFlockMgr->mFlockCentre - *this;
@@ -326,9 +319,6 @@ void Uja::update(BoidParms& parms)
 	// To avoid collisions, we have an arbitrary size (representing the Uja) to keep away from other Uja
 	// While calculating the alignment vector.
 	f32 alignmentThreshold = 1280.0f;
-
-	// AI Alignment
-	sys->mTimers->_start("AI ALN", true);
 
 	Vector3f alignmentVec;
 	if (!mUpdateContext.updatable()) {
@@ -398,8 +388,6 @@ void Uja::update(BoidParms& parms)
 			mPreviousMoveDir = separationVec;
 		}
 	}
-
-	sys->mTimers->_stop("AI ALN");
 
 	// UNUSED
 	Vector3f directionTo_44(0.0f);
@@ -719,7 +707,6 @@ void UjaMgr::test_createUjas()
 			uja->mState = Uja::STATE_Appear;
 
 			uja->_AD           = (int)(100.0f * randFloat()) + 20;
-			uja->_B0           = 0;
 			uja->_AE           = 0;
 			uja->mHeightOffset = 0.0f;
 
@@ -752,8 +739,6 @@ void UjaMgr::do_update()
 	}
 
 	mBoidParameter->getParms(_98, _9C, _A0, mBoidParms);
-
-	sys->mTimers->_start("ujaAI", true);
 
 	mUpdateMgr->update();
 
@@ -793,8 +778,6 @@ void UjaMgr::do_update()
 
 		static_cast<Uja*>(getFlock(i))->update(mBoidParms);
 	}
-
-	sys->mTimers->_stop("ujaAI");
 }
 
 /**

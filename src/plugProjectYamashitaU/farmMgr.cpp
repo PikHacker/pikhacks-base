@@ -6,7 +6,6 @@
 #include "Game/Farm.h"
 #include "PSM/Creature.h"
 #include "utilityU.h"
-#include "nans.h"
 
 namespace Game {
 namespace Farm {
@@ -22,12 +21,8 @@ FarmMgr::FarmMgr(u32 farmType)
     , mModelType(farmType)
     , mFarmsRootNode("農耕ポイント")
     , mDirectorUpdator(nullptr)
-    , mUnused1(0)
-    , mUnused2(0)
 {
 	add(&mFarmsRootNode);
-	mUnused1 = 0;
-	mUnused2 = 0;
 }
 
 /**
@@ -131,34 +126,12 @@ void FarmMgr::doSimulation(f32)
 }
 
 /**
- * @note Address: 0x80124344
- * @note Size: 0x4
- */
-void FarmMgr::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x80124348
- * @note Size: 0x50
- */
-void FarmMgr::doDebugDraw(Graphics& gfx)
-{
-	FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
-	{
-		farm->doDebugDraw(gfx);
-	}
-}
-
-/**
  * @note Address: 0x80124398
  * @note Size: 0x68
  */
 void FarmMgr::addFarmBmd(void* bmd)
 {
-	sys->heapStatusStart("FarmMgr Resource", nullptr);
 	createNewFarm(bmd);
-	sys->heapStatusEnd("FarmMgr Resource");
 }
 
 /**

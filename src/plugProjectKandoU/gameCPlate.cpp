@@ -82,9 +82,7 @@ CPlate::CPlate(int slotLimit)
 	mSlots           = new Slot[mSlotLimit];
 	mActiveGroupSize = 0;
 	mSlotCount       = 0;
-	_110             = 0;
 	mIsPositionUnset = 1;
-	mUnused          = Vector3f(0.0f);
 	for (int i = 0; i < ARRAY_SIZE(mHappaStageCounts); i++) {
 		mHappaStageCounts[i] = 0;
 	}
@@ -219,10 +217,6 @@ void CPlate::releaseSlot(Creature* creature, int idx)
 
 	mSlotCount--;
 	mActiveGroupSize--;
-	if (mSlotCount < 0) {
-		// Stripped debug code
-		creature->getTypeName();
-	}
 
 	for (int i = idx; i < mSlotCount; i++) {
 		mSlots[i].mCreature = nullptr;
@@ -454,7 +448,6 @@ void CPlate::refreshSlot(f32 p1)
 	f32 maxSize        = maxPositionSize * shrinkModifier;
 
 	Vector3f vec(0.0f);
-	mUnused = rotationMtx.mtxMult(vec);
 
 	int i;
 	int direction = 1;

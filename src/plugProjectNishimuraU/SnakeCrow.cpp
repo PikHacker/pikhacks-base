@@ -9,13 +9,9 @@
 #include "Game/rumble.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 namespace Game {
 namespace SnakeCrow {
-
-static const int unusedSnakeCrowArray[] = { 0, 0, 0 };
-static const char unusedSnakeCrowName[] = "246-SnakeCrow";
 
 /**
  * @note Address: 0x80293094
@@ -142,23 +138,6 @@ void Obj::doAnimationCullingOff()
 	EnemyBase::doAnimationCullingOff();
 	doAnimationShadowSystem();
 	finishAnimationJointCallBack();
-}
-
-/**
- * @note Address: 0x802934E8
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802934EC
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

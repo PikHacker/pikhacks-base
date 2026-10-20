@@ -48,7 +48,6 @@ struct Mgr : public CNode {
 
 	P2JME::Caption::TControl* mControls; // _18
 	Node* mNode;                         // _1C
-	BitFlag<u32> mUnusedFlags;           // _20
 };
 } // namespace Caption
 

@@ -7,11 +7,6 @@
 
 Pikmin2ARAM::Mgr* gPikmin2AramMgr;
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace Pikmin2ARAM {
 
 namespace {
@@ -69,14 +64,6 @@ char* sAramResItem[] = { "user/Kando/onyon/arc.szs",
                          "user/Kando/bridge/l_bridge/texts.szs" };
 } // namespace
 
-static const char unusedQueenModelBtk[] = "/enemy/data/Queen/queenchappy_model.btk";
-static const char unusedQueenModelSzs[] = "/enemy/data/Queen/model.szs";
-static const char unusedQueenAnim[]     = "/enemy/data/Queen/anim.szs";
-static const char unusedTDModelSzs[]    = "/enemy/data/BigTreasure/model.szs";
-static const char unusedTDAnim[]        = "/enemy/data/BigTreasure/anim.szs";
-static const char unusedBabyModelSzs[]  = "/enemy/data/Baby/model.szs";
-static const char unusedBabyAnim[]      = "/enemy/data/Baby/anim.szs";
-
 /**
  * @note Address: 0x80455C30
  * @note Size: 0x60
@@ -129,7 +116,6 @@ void Mgr::load()
 	load2D();
 	loadDemo();
 	loadItem();
-	dump();
 	heap->becomeCurrentHeap();
 }
 

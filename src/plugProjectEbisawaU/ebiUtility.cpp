@@ -105,19 +105,4 @@ void EUTColor_complement(JUtility::TColor& color1, JUtility::TColor& color2, f32
 	outColor->a = color1Weight * color1.a + color2Weight * color2.a;
 }
 
-/**
- * @note Address: 0x803C1EB4
- * @note Size: 0x4
- */
-void EUTDebug_Tag64ToName(u64, char*)
-{
-}
-
-/**
- * @note Address: 0x803C1EB8
- * @note Size: 0x4
- */
-void EUTDebug_Tag32ToName(u32, char*)
-{
-}
 } // namespace ebi

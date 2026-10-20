@@ -6,9 +6,6 @@
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "JSystem/J3D/J3DTexMtx.h"
 #include "System.h"
-#include "nans.h"
-
-static const u32 padding[3] = { 0, 0, 0 };
 
 namespace Game {
 

@@ -3,9 +3,6 @@
 #include "Game/gameStat.h"
 #include "Game/Entities/ItemPlant.h"
 #include "PikiAI.h"
-#include "types.h"
-
-static const char unusedName[] = "actBreakWall";
 
 namespace PikiAI {
 

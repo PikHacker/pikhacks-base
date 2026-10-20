@@ -42,14 +42,6 @@ void Plant::sendInteraction()
 
 /**
  * @note Address: N/A
- * @note Size: 0x4
- */
-void Plant::doDebugDraw(Graphics& gfx)
-{
-}
-
-/**
- * @note Address: N/A
  * @note Size: 0xF0
  */
 Obstacle::Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, f32 radius, f32 power)
@@ -69,24 +61,6 @@ void Obstacle::setPower(f32 power)
 {
 	mVtxColorControl->mPower = power;
 	mFarm->updateObjectRelation(true);
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0xC0
- */
-void Obstacle::doDebugDraw(Graphics& gfx)
-{
-	Vector3f creaturePos = mCreature->getPosition();
-
-	gfx.mDrawColor = Color4(255, 255, 255, 255);
-	gfx.drawSphere(creaturePos, mVtxColorControl->mRadius);
-
-	gfx.mDrawColor = Color4(255, 55, 55, 255);
-
-	f32 power = mVtxColorControl->mPower;
-	power     = mVtxColorControl->mRadius * power;
-	gfx.drawSphere(creaturePos, power);
 }
 
 /**
@@ -111,10 +85,7 @@ Farm::Farm()
  */
 void Farm::loadResource(u32 modelType, void* mdlData)
 {
-	sys->heapStatusStart("Farm resource", nullptr);
-	sys->heapStatusStart("mdlData", nullptr);
 	mModelData = J3DModelLoaderDataBase::load(mdlData, J3DMLF_Material_PE_FogOff);
-	sys->heapStatusEnd("mdlData");
 	mPosition = Vector3f(0.0f);
 
 	Vector3f* vtxPos = (Vector3f*)mModelData->getVtxPosArray();
@@ -127,18 +98,13 @@ void Farm::loadResource(u32 modelType, void* mdlData)
 	f32 norm = 1.0f / mModelData->getVertexData()->getVtxNum();
 	mPosition *= norm;
 
-	sys->heapStatusStart("createModel", nullptr);
 	mModel = new SysShape::Model(mModelData, 0, modelType);
-	sys->heapStatusEnd("createModel");
 
-	sys->heapStatusStart("vtxClrAnm", nullptr);
 	mVtxColorMgr = new FieldVtxColorMgr(mModelData);
 	mVtxColorMgr->initVtxColor();
 	add(mVtxColorMgr);
-	sys->heapStatusEnd("vtxClrAnm");
 
 	mModel->mJ3dModel->setVtxColorCalc(mVtxColorMgr, DeformAttach_0);
-	sys->heapStatusEnd("Farm resource");
 }
 
 /**
@@ -261,24 +227,6 @@ void Farm::updateObjectRelation(bool doInteract)
 		if (doInteract) {
 			plantNode->sendInteraction();
 		}
-	}
-}
-
-/**
- * @note Address: 0x80123CF8
- * @note Size: 0x108
- */
-void Farm::doDebugDraw(Graphics& gfx)
-{
-	gfx.initPrimDraw(gfx.mCurrentViewport->getMatrix(false));
-
-	FOREACH_NODE(Obstacle, mObstacleRootNode.mChild, obstacle)
-	{
-		obstacle->doDebugDraw(gfx);
-	}
-
-	FOREACH_NODE(Obstacle, mObstacleRootNode.mChild, obstacle2)
-	{
 	}
 }
 

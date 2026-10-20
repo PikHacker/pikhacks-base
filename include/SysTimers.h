@@ -53,7 +53,6 @@ struct SysTimers : public CNode {
 	s32 mFrameCount;   // _18
 	s32 mTimerCount;   // _1C
 	TimerInf* mTimers; // _20
-	f32 mUnused;       // _24
 
 	static u8 drawFlag;
 };

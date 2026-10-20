@@ -2,8 +2,6 @@
 #include "Game/Navi.h"
 #include "CollInfo.h"
 
-static const char className[] = "creatureStick";
-
 namespace Game {
 
 int Stickers::numBuffer     = 0;
@@ -228,7 +226,7 @@ void Creature::updateStick(Vector3f& pos)
 		if (static_cast<MouthCollPart*>(mStuckCollPart)->mIsOniKurage) {
 			if (isNavi()) {
 				// use olimar/louie's scale
-				if (getCreatureID() == 0) {
+				if (((Navi*)this)->mNaviIndex == 0) {
 					scale = OLIMAR_SCALE;
 				} else {
 					scale = LOUIE_SCALE;

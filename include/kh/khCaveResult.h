@@ -139,7 +139,6 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	u32 mScissorMax;                                           // _EC
 	int mStatus;                                               // _F0
 	int mChangeStateDelay;                                     // _F4
-	u32 mUnusedValue;                                          // _F8
 	f32 mItemDropBaseXPos;                                     // _FC
 	f32 mItemDropBaseYPos;                                     // _100
 	u8 mFlag;                                                  // _104
@@ -172,10 +171,8 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 		f32 mAnimSpeed;                       // _00
 		f32 mCompEfxOffsetX;                  // _04
 		f32 mCompEfxOffsetY;                  // _08
-		f32 mUnused1;                         // _0C
 		f32 mCollectedTreasureCounterOffsetX; // _10
 		f32 mCollectedTreasureCounterOffsetY; // _14
-		f32 mUnused2;                         // _18
 		uint mScrollTargetInitialDist;        // _1C
 		uint mInputScrollInitialDist;         // _20
 		f32 mLostItemSmokeOffsetX1;           // _24

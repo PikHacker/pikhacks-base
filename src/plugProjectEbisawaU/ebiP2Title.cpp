@@ -4,10 +4,6 @@
 #include "Dolphin/rand.h"
 #include "Controller.h"
 #include "trig.h"
-#include "nans.h"
-
-static const char idk[]  = "\0\0\0\0\0\0\0\0\0";
-static const char name[] = "ebiP2Title";
 
 namespace ebi {
 namespace title {
@@ -23,7 +19,6 @@ TTitleMgr::TTitleMgr()
     : CNode("TTitleMgr")
     , mLightMgr()
 {
-	_F54          = true;
 	mState        = TITLE_Inactive;
 	mLevelSetting = LEVEL_Summer;
 
@@ -37,7 +32,7 @@ TTitleMgr::TTitleMgr()
 
 	mController  = nullptr;
 	mDrawBufferA = nullptr;
-	mDrawBufferA = nullptr; // Someone made an oopsie here
+	mDrawBufferB = nullptr;
 }
 
 /**
@@ -90,8 +85,6 @@ void TTitleMgr::deleteInstance()
  */
 void TTitleMgr::init()
 {
-	sys->heapStatusStart("J3DDrawBuffer", nullptr);
-
 	mDrawBufferA = new J3DDrawBuffer(0x400);
 	j3dSys.setDrawBuffer(mDrawBufferA, J3DSys::SYSDRAW_Opa);
 
@@ -101,8 +94,6 @@ void TTitleMgr::init()
 
 	mDrawBufferA->frameInit();
 	mDrawBufferB->frameInit();
-
-	sys->heapStatusEnd("J3DDrawBuffer");
 
 	mCameraMgr.mPosition.x = 0.0f;
 	mCameraMgr.mPosition.y = 1.0f;
@@ -232,13 +223,8 @@ bool TTitleMgr::isAssemble()
  */
 void TTitleMgr::loadResource()
 {
-	sys->heapStatusStart("TTitleMgr::loadResource()", nullptr);
-	sys->heapStatusStart("TTitleMgr::loadResource--mount_arc", nullptr);
-
 	JKRArchive* arc = JKRMountArchive("user/Ebisawa/title/title.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(258, arc);
-
-	sys->heapStatusEnd("TTitleMgr::loadResource--mount_arc");
 
 	readTitleParam(arc, "param/param_title.txt");
 
@@ -305,16 +291,12 @@ void TTitleMgr::loadResource()
 		break;
 	}
 
-	sys->heapStatusStart("TTitleMgr::loadResource--mount_arc", nullptr);
 	JKRArchive* levelarc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(342, levelarc);
-	sys->heapStatusEnd("TTitleMgr::loadResource--mount_arc");
 
 	mBlackPlane.setArchive(levelarc);
 	mMapBase.setArchive(levelarc);
 	mBgEnemyBase.setArchive(levelarc);
-
-	sys->heapStatusEnd("TTitleMgr::loadResource()");
 }
 
 /**

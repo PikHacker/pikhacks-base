@@ -26,7 +26,6 @@ struct NaviLifeGauge : public P2DScreen::Mgr_tuning {
 	CallBack_LifeGauge* mCallBackLifeGauge; // _148
 	CallBack_DrawAfter* mCallBackDrawAfter; // _14C
 	DataNavi* mDataNavi;                    // _150
-	u8 _154[0x4];                           // _154, unknown
 };
 } // namespace Screen
 } // namespace og

@@ -9,12 +9,9 @@
 #include "efx/efxEnemyBoss.h"
 #include "SoundID.h"
 #include "System.h"
-#include "nans.h"
 
 namespace Game {
 namespace Tyre {
-
-static const int unusedTyreArray[] = { 0, 0, 0 };
 
 Obj* curT;
 
@@ -173,23 +170,6 @@ void Obj::doAnimationCullingOff()
 		mShadowMgr->mGlobalScale = mShadowScale;
 		mShadowMgr->update();
 	}
-}
-
-/**
- * @note Address: 0x803ACA3C
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x803ACA40
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

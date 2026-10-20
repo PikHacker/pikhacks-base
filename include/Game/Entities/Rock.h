@@ -61,7 +61,6 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                             // _30
 	virtual void onKill(CreatureKillArg* settings);                             // _34
-	virtual void doDirectDraw(Graphics& gfx);                                   // _50
 	virtual void inWaterCallback(WaterBox* wb);                                 // _84
 	virtual void outWaterCallback();                                            // _88
 	virtual bool isLivingThing() { return false; }                              // _D4 (weak)
@@ -73,7 +72,6 @@ struct Obj : public EnemyBase {
 	virtual void birth(Vector3f&, f32);                                         // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase* params);              // _1C4
 	virtual void doUpdate();                                                    // _1CC
-	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return mRockType; }    // _258 (weak)
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
 	virtual void wallCallback(const MoveInfo& info);                            // _2E8

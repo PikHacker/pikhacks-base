@@ -54,9 +54,6 @@ struct ObjectCamera : public JStage::TCamera, public ObjectBase {
 
 	// _00 - VTABLE (JStage::TCamera)
 	// _04 - VTABLE2 (ObjectBase)
-	u8 _20[0x34];          // _20 - unknown
-	u32 _54;               // _54 - unknown
-	u8 _58[0x8];           // _58 - unknown
 	Matrixf mViewMatrix;   // _60
 	Vec mViewPos;          // _90 - view position?
 	Vec mViewTargetPos;    // _9C - view target position?

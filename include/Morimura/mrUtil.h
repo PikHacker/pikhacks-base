@@ -213,7 +213,6 @@ struct THuWhitePaneSet : public J2DPictureEx {
 	Vector2f _1A8;   // _1A8
 	Matrixf mMatrix; // _1B0
 	u8 mAlpha;       // _1E0
-	u8 _1E1[0x7];    // _1E1, unknown
 };
 
 struct TIndPane : public CNode {

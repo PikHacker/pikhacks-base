@@ -11,15 +11,6 @@
 #include "PSSystem/PSGame.h"
 #include "PSM/Scene.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace og {
 namespace newScreen {
 
@@ -485,7 +476,6 @@ bool ObjKantei::doStart(::Screen::StartSceneArg const*)
 	mFadeLevel2 = 0.0f;
 	if (mDisp->mDoPlayBGM) {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::validateSceneMgr(mgr);
 		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 		PSSystem::checkChildScene(scene)->startMainSeq();
 	}

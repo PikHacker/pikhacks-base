@@ -4,8 +4,6 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "P2Macros.h"
 
-static const char name[] = "ebiCardEReader";
-
 namespace ebi {
 CardEReader::TMgr* gCardEMgr;
 namespace CardEReader {

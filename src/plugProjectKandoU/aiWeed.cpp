@@ -2,13 +2,10 @@
 #include "efx/efxObject.h"
 #include "Game/Entities/ItemWeed.h"
 #include "Game/Piki.h"
-#include "nans.h"
 #include "PikiAI.h"
 #include "string.h"
 
 namespace PikiAI {
-
-static const int unusedArray[] = { 0, 0, 0 };
 
 /**
  * @note Address: 0x8020D784

@@ -872,14 +872,6 @@ void ItemMgr::doSimulation(f32 p1)
 }
 
 /**
- * @note Address: 0x801CE8CC
- * @note Size: 0x4
- */
-void ItemMgr::doDirectDraw(Graphics&)
-{
-}
-
-/**
  * doSimpleDraw__Q24Game7ItemMgrFP8Viewport
  * @note Address: 0x801CE8D0
  * @note Size: 0x1F4

@@ -3,8 +3,6 @@
 namespace Game {
 namespace Houdai {
 
-static const char houdaiShadowName[] = "246-HoudaiShadow";
-
 /**
  * @note Address: 0x802BF47C
  * @note Size: 0x27C

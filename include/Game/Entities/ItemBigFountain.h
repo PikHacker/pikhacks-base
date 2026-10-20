@@ -147,7 +147,6 @@ struct Item : public WorkItem<Item, FSM, State> {
 	virtual void constructor();               // _2C
 	virtual void onInit(CreatureInitArg*);    // _30
 	virtual void doSimulation(f32);           // _4C
-	virtual void doDirectDraw(Graphics& gfx); // _50
 	virtual f32 getFaceDir()                  // _64 (weak)
 	{
 		return mFaceDir;

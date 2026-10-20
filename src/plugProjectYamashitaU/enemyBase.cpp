@@ -33,23 +33,11 @@
 
 // Utility
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 // Archives
 JKRArchive* Game::gParmArc;
 
 namespace Game {
-
-static const int _UNUSED[3] = { 0, 0, 0 };
-/**
- * Unused. Just here to make the rodata line up.
- * @note Address: N/A
- * @note Size: 0xe4
- */
-static void _Print(char* format, ...)
-{
-	OSReport(format, "enemyBase");
-}
 
 namespace EnemyBaseFSM {
 /**
@@ -418,8 +406,6 @@ void EnemyBaseFSM::LivingState::simulation(EnemyBase* enemy, f32 frameRate)
 	Creature::CheckHellArg hellArg;
 	hellArg.mIsKillPiki = false;
 	if (enemy->checkHell(hellArg) == CREATURE_HELL_DEATH) {
-		enemy->getCreatureName();
-		enemy->getCreatureID();
 		enemy->gotoHell();
 	}
 }
@@ -477,8 +463,6 @@ void LivingState::updateAlways(EnemyBase* enemy)
  */
 void LivingState::update(EnemyBase* enemy)
 {
-	sys->mTimers->_start("e-upd-do", true);
-
 	enemy->disableEvent(0, EB_AttackingNavi0);
 	enemy->disableEvent(0, EB_AttackingNavi1);
 
@@ -509,8 +493,6 @@ void LivingState::update(EnemyBase* enemy)
 			}
 		}
 	}
-
-	sys->mTimers->_stop("e-upd-do");
 }
 
 /**
@@ -846,7 +828,7 @@ EnemyBase::EnemyBase()
     , mEventBuffer()
     , mSfxEmotion(EMOTE_Caution)
     , mCreatureID(0xFF)
-    , mUnused1F2(0xFF)
+    , mEnemyID(0xFF)
     , mStuckPikminCount(0)
     , mStunAnimTimer(0.0f)
     , mFriction(0.0f)
@@ -1269,9 +1251,6 @@ void EnemyBase::deathMethod()
  */
 void EnemyBase::onKill(CreatureKillArg* inputArg)
 {
-	getCreatureName();
-	getCreatureID();
-
 	CreatureKillArg* killArg = nullptr;
 	if (inputArg && strcmp(inputArg->getName(), "EnemyKillArg") == 0) {
 		killArg = inputArg;
@@ -1494,7 +1473,6 @@ void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 	updateSpheres();
 	resetCollEvent();
 
-	mUnused1F2 = 0xFF;
 	setParameters();
 
 	shadowMgr->addShadow(this);
@@ -1705,10 +1683,8 @@ void EnemyBase::doAnimationCullingOff()
 		mBaseTrMatrix.makeSRT(mScale, rot, mPosition);
 	}
 
-	sys->mTimers->_start("e-calc", true);
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
-	sys->mTimers->_stop("e-calc");
 	mCollTree->update();
 
 	if (mAnimator->getAnimator().isFlag(SysShape::Animator::AnimCompleted)) {
@@ -2651,14 +2627,6 @@ void EnemyBase::throwupItem()
 			pellet->createKiraEffect(throwupPosition);
 		}
 	}
-}
-
-/**
- * @note Address: 0x80105E6C
- * @note Size: 0x4
- */
-void EnemyBase::doDebugDraw(Graphics&)
-{
 }
 
 /**

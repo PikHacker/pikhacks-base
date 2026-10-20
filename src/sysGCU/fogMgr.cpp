@@ -6,7 +6,6 @@
 #include "System.h"
 #include "types.h"
 #include "Viewport.h"
-#include "nans.h"
 
 /**
  * __ct

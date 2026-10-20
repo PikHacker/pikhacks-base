@@ -7,15 +7,6 @@
 #include "Game/TimeMgr.h"
 #include "Game/gameStages.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* name, ...)
-{
-	OSReport("PlayDataMemCard");
-}
-
 namespace Game {
 
 int PlayData::sCurrPlayDataSize = 0;

@@ -1,20 +1,14 @@
 #include "Game/Entities/Item.h"
 #include "System.h"
-#include "nans.h"
 
 namespace Game {
 
-static const int someArray[3] = { 0, 0, 0 };
-static const char fileName[]  = "registItem";
-
 template <typename T, typename T2>
-inline void GenerateMgr(T2& mgr, char* name)
+inline void GenerateMgr(T2& mgr)
 {
-	sys->heapStatusStart(name, nullptr);
 	mgr = new T();
 	mgr->loadResources();
 	itemMgr->addMgr(mgr);
-	sys->heapStatusEnd(name);
 }
 
 /**
@@ -26,10 +20,9 @@ void ItemMgr::createManagers(u32 flags)
 	bool isGround = (flags >> 1) & 1;
 	bool isCave   = flags & 1;
 
-	GenerateMgr<ItemBarrel::Mgr>(ItemBarrel::mgr, "-Barrel-");
-	GenerateMgr<ItemUjamushi::Mgr>(ItemUjamushi::mgr, "-Ujamushi-");
+	GenerateMgr<ItemBarrel::Mgr>(ItemBarrel::mgr);
+	GenerateMgr<ItemUjamushi::Mgr>(ItemUjamushi::mgr);
 
-	sys->heapStatusStart("-Weed-", nullptr);
 	if (isGround) {
 		ItemWeed::mgr = new ItemWeed::Mgr;
 		ItemWeed::mgr->loadResources();
@@ -37,13 +30,11 @@ void ItemMgr::createManagers(u32 flags)
 	} else {
 		ItemWeed::mgr = nullptr;
 	}
-	sys->heapStatusEnd("-Weed-");
 
-	GenerateMgr<ItemDownFloor::Mgr>(ItemDownFloor::mgr, "-DownFloor-");
-	GenerateMgr<ItemTreasure::Mgr>(ItemTreasure::mgr, "-Treasure-");
-	GenerateMgr<ItemPikihead::Mgr>(ItemPikihead::mgr, "-PikiHead-");
+	GenerateMgr<ItemDownFloor::Mgr>(ItemDownFloor::mgr);
+	GenerateMgr<ItemTreasure::Mgr>(ItemTreasure::mgr);
+	GenerateMgr<ItemPikihead::Mgr>(ItemPikihead::mgr);
 
-	sys->heapStatusStart("-Plant-", nullptr);
 	if (isGround) {
 		ItemPlant::mgr = new ItemPlant::Mgr;
 		ItemPlant::mgr->loadResources();
@@ -51,9 +42,7 @@ void ItemMgr::createManagers(u32 flags)
 	} else {
 		ItemPlant::mgr = nullptr;
 	}
-	sys->heapStatusEnd("-Plant-");
 
-	sys->heapStatusStart("-Rock-", nullptr);
 	if (isGround) {
 		ItemRock::mgr = new ItemRock::Mgr;
 		ItemRock::mgr->loadResources();
@@ -61,18 +50,13 @@ void ItemMgr::createManagers(u32 flags)
 	} else {
 		ItemRock::mgr = nullptr;
 	}
-	sys->heapStatusEnd("-Rock-");
 
-	GenerateMgr<ItemHoney::Mgr>(ItemHoney::mgr, "-Honey-");
+	GenerateMgr<ItemHoney::Mgr>(ItemHoney::mgr);
 
-	// Had to be custom
-	sys->heapStatusStart("-Onyon-", nullptr);
 	ItemOnyon::mgr = new ItemOnyon::Mgr;
 	itemMgr->addMgr(ItemOnyon::mgr);
 	ItemOnyon::mgr->init();
-	sys->heapStatusEnd("-Onyon-");
 
-	sys->heapStatusStart("-Hole-", nullptr);
 	if (isCave) {
 		ItemHole::mgr = new ItemHole::Mgr;
 		ItemHole::mgr->loadResources();
@@ -80,9 +64,7 @@ void ItemMgr::createManagers(u32 flags)
 	} else {
 		ItemHole::mgr = nullptr;
 	}
-	sys->heapStatusEnd("-Hole-");
 
-	sys->heapStatusStart("-Cave-", nullptr);
 	if (isGround) {
 		ItemCave::mgr = new ItemCave::Mgr;
 		ItemCave::mgr->loadResources();
@@ -90,9 +72,7 @@ void ItemMgr::createManagers(u32 flags)
 	} else {
 		ItemCave::mgr = nullptr;
 	}
-	sys->heapStatusEnd("-Cave-");
 
-	sys->heapStatusStart("-BigFountain-", nullptr);
 	if (isCave) {
 		ItemBigFountain::mgr = new ItemBigFountain::Mgr;
 		ItemBigFountain::mgr->loadResources();
@@ -100,9 +80,7 @@ void ItemMgr::createManagers(u32 flags)
 	} else {
 		ItemBigFountain::mgr = nullptr;
 	}
-	sys->heapStatusEnd("-BigFountain-");
 
-	sys->heapStatusStart("-Bridge-", nullptr);
 	if (isGround) {
 		ItemBridge::mgr = new ItemBridge::Mgr;
 		ItemBridge::mgr->loadResources();
@@ -110,21 +88,16 @@ void ItemMgr::createManagers(u32 flags)
 	} else {
 		ItemBridge::mgr = nullptr;
 	}
-	sys->heapStatusEnd("-Bridge-");
 
-	sys->heapStatusStart("-Gate-", nullptr);
 	itemGateMgr = new ItemGateMgr();
 	itemMgr->addMgr(itemGateMgr);
-	sys->heapStatusEnd("-Gate-");
 
-	sys->heapStatusStart("-DengekiGate-", nullptr);
 	if (isGround) {
 		ItemDengekiGate::mgr = new ItemDengekiGate::Mgr;
 		itemMgr->addMgr(ItemDengekiGate::mgr);
 	} else {
 		ItemDengekiGate::mgr = nullptr;
 	}
-	sys->heapStatusEnd("-DengekiGate-");
 }
 
 /**

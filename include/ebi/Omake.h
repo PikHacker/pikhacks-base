@@ -112,7 +112,6 @@ struct TMgr {
 	inline StateType* getCurrState() { return mCurrentState; }
 
 	Controller* mController;              // _000
-	u8 _004[4];                           // _004
 	ebi::Screen::TOmake mOmake;           // _008
 	ebi::Screen::TOmakeCardE mOmakeCardE; // _468
 	ebi::Screen::TOmakeGame mOmakeGame;   // _5DC

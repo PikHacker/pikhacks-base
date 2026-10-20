@@ -49,9 +49,7 @@ HoudaiShotGunNode::HoudaiShotGunNode(Obj* owner)
  * @note Size: 0xE8
  */
 void HoudaiShotGunNode::create()
-{
-	mVelocity = Vector3f(0.0f, 1.0f, 0.0f); // fake just to line up sdata
-	                                        // UNUSED/INLINED
+{	                                        // UNUSED/INLINED
 }
 
 /**

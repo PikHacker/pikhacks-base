@@ -42,12 +42,10 @@ struct Obj : public EnemyBase {
 	////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                             // _30
 	virtual void onKill(CreatureKillArg* settings);                             // _34
-	virtual void doDirectDraw(Graphics& gfx);                                   // _50
 	virtual void getShadowParam(ShadowParam& settings);                         // _134
 	virtual ~Obj() { }                                                          // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);              // _1C4
 	virtual void doUpdate();                                                    // _1CC
-	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
 	virtual void initMouthSlots();                                              // _22C
 	virtual void initWalkSmokeEffect();                                         // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                      // _234
@@ -78,7 +76,6 @@ struct Obj : public EnemyBase {
 	// _00-_2B8	= EnemyBase
 	FSM* mFsm;                          // _2BC
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2C0
-	f32 mUnusedValue;                   // _2C8
 	StateID mNextState;                 // _2CC
 	MouthSlots mMouthSlots;             // _2D0
 	Vector3f mTargetParentPosition;     // _2D8

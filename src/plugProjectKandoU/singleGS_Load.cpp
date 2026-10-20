@@ -1,5 +1,3 @@
-#include "types.h"
-#include "nans.h"
 #include "TParticle2dMgr.h"
 #include "Game/gameStat.h"
 #include "Game/SingleGame.h"
@@ -10,15 +8,6 @@
 
 namespace Game {
 namespace SingleGame {
-
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-// void _Print(char*, ...)
-//{
-// UNUSED FUNCTION
-//}
 
 /**
  * @note Address: 0x80239E84

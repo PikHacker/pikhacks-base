@@ -6,8 +6,6 @@
 #include "JSystem/JParticle/JPAMath.h"
 #include "Matrixf.h"
 
-static const char name[] = "efx2dEffect";
-
 namespace efx2d {
 /**
  * @note Address: 0x803BA18C

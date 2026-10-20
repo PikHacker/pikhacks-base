@@ -3,8 +3,6 @@
 #include "Game/MemoryCard/Mgr.h"
 #include "PSSystem/PSSystemIF.h"
 
-static const char className[] = "ebiScreenFileSelect_Mgr";
-
 namespace ebi {
 namespace FS {
 
@@ -830,9 +828,6 @@ void TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo& info)
 		mMainScreen.getFileData(i)->setData(info.isNewFile(i), player->mDay, player->mBluePikis, player->mRedPikis, player->mYellowPikis,
 		                                    player->mPurplePikis, player->mWhitePikis, player->mPokos, player->mTreasures, player->mCaveID,
 		                                    player->mCaveFloor, player->mPlayTime / 60, player->mPlayTime % 60, info.isBrokenFile(i));
-
-		char buffer[16];
-		EUTDebug_Tag32ToName(player->mCaveID, buffer);
 	}
 }
 

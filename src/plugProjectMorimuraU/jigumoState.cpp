@@ -4,7 +4,6 @@
 #include "Game/EnemyFunc.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
-#include "nans.h"
 
 namespace Game {
 namespace Jigumo {
@@ -401,7 +400,6 @@ void StateMiss::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	OBJ(enemy)->mNextFaceDir = enemy->mFaceDir;
 	enemy->startMotion(JIGUMOANIM_Miss, nullptr);
-	mUnused = 0;
 }
 
 /**

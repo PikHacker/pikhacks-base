@@ -6,19 +6,6 @@
 #include "Screen/Enums.h"
 #include "System.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* format, ...)
-{
-	char buffer[512];
-	va_list args;
-	va_start(args, format);
-	sprintf(format, __FILE__, buffer);
-	vprintf(buffer, args);
-}
-
 namespace og {
 namespace newScreen {
 

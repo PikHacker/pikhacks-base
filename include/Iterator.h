@@ -43,6 +43,7 @@ struct Iterator {
 			}
 			mIndex = mContainer->getNext(mIndex);
 		}
+		FORCE_DONT_INLINE;
 	}
 
 	/**
@@ -63,6 +64,7 @@ struct Iterator {
 			}
 			mIndex = mContainer->getNext(mIndex);
 		}
+		FORCE_DONT_INLINE;
 	}
 
 	/**
@@ -73,6 +75,7 @@ struct Iterator {
 	virtual bool isDone() // _10
 	{
 		return mIndex == mContainer->getEnd();
+		FORCE_DONT_INLINE;
 	}
 
 	/**
@@ -101,7 +104,11 @@ struct Iterator {
 	 *
 	 * @return true if the current element satisfies the condition, false otherwise.
 	 */
-	inline bool satisfy() { return mCondition->satisfy(Iterator<T>::operator*()); }
+	inline bool satisfy()
+	{
+		return mCondition->satisfy(Iterator<T>::operator*());
+		FORCE_DONT_INLINE;
+	}
 
 	void* mIndex;             // _04;
 	Container<T>* mContainer; // _08

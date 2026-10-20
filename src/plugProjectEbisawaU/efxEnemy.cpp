@@ -6,11 +6,6 @@
 
 namespace efx {
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 /**
  * @note Address: 0x803B2D84
  * @note Size: 0x124

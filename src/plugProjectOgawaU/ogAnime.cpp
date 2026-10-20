@@ -25,7 +25,6 @@ AnimBaseBase::AnimBaseBase()
 	mSpeed          = 1.0f;
 	mSpeedSub       = 1.0f;
 	mIsRepeating    = true;
-	mUnusedFlag     = false;
 	mMinFrame       = 0.0f;
 	mArea           = 1.0f;
 	mLength         = mArea - mMinFrame;
@@ -104,7 +103,6 @@ bool AnimBaseBase::updateSub()
 {
 	bool result = true;
 
-	mUnusedFlag = false;
 	if (mDoDelayUpdate != 0) {
 		mDoDelayUpdate = 0;
 	} else {
@@ -117,7 +115,6 @@ bool AnimBaseBase::updateSub()
 				}
 
 				mCurrentFrame = mMinFrame + temp;
-				mUnusedFlag   = true;
 			} else {
 				mCurrentFrame = mArea;
 				moveAnim();
@@ -131,7 +128,6 @@ bool AnimBaseBase::updateSub()
 				}
 
 				mCurrentFrame = mArea - temp;
-				mUnusedFlag   = true;
 			} else {
 				mCurrentFrame = mMinFrame;
 				moveAnim();

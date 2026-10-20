@@ -7,10 +7,6 @@
 #include "JSystem/JMath.h"
 #include "efx/efxPikmin.h"
 #include "P2Macros.h"
-#include "nans.h"
-
-static const int padding[]    = { 0, 0, 0 };
-static const char className[] = "itemWeed";
 
 #define WEED_NECTAR_CHANCE (0.08f)
 #define WEED_MAX_ATTACKERS (5)
@@ -19,11 +15,6 @@ namespace Game {
 namespace ItemWeed {
 
 Mgr* mgr;
-
-static void fakeFunc(Item* item)
-{
-	item->FSMItem<Item, FSM, State>::doAI();
-}
 
 /**
  * @note Address: 0x8020F280

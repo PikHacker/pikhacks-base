@@ -5,8 +5,6 @@
 namespace Game {
 namespace Tank {
 
-static const char tankMgrName[] = "246-TankMgr";
-
 /**
  * @note Address: 0x80275A18
  * @note Size: 0x50

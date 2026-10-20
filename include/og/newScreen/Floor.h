@@ -72,7 +72,6 @@ struct ObjFloor : public ::Screen::ObjBase {
 	// _00-_38 = Screen::ObjBase
 	og::Screen::DispMemberFloor* mDisp;            // _38
 	char mTextTag[8];                              // _3C
-	u8 _44[4];                                     // _44
 	P2DScreen::Mgr_tuning* mScreenName;            // _48
 	P2DScreen::Mgr_tuning* mScreenFont;            // _4C
 	P2DScreen::Mgr_tuning* mScreenRules;           // _50
@@ -81,7 +80,6 @@ struct ObjFloor : public ::Screen::ObjBase {
 	f32 mAlpha;                                    // _5C
 	f32 mTimer;                                    // _60
 	u8 mDoFadeout;                                 // _64
-	u8 _65[0x3];                                   // _65, padding/unknown
 	JUtility::TColor mColor;                       // _68
 	u8 mDoEnd;                                     // _6C
 	f32 mBackgroundAlpha;                          // _70
@@ -111,14 +109,12 @@ struct ObjFloor : public ::Screen::ObjBase {
 			mStandardNameXOffset   = 0.0f;
 			mStandardNameYOffset   = -15.0f;
 			mStandardNameScale     = 1.0f;
-			mUnused1               = 30.0f;
 			mVsNameXOffset         = 0.0f;
 			mVsNameYOffset         = -50.0f;
 			mVsNameScale           = 1.0f;
 			mSublevelXOffset       = -15.0f;
 			mSublevelYOffset       = 0.0f;
 			mSublevelScale         = 1.5f;
-			mUnused2               = 0.0f;
 			mSublevel2DigitXOffset = 15.0f;
 			mScaleParm1            = 0.12f;
 			mScaleParm2            = 7.0f;
@@ -132,7 +128,6 @@ struct ObjFloor : public ::Screen::ObjBase {
 
 			mColors1[2].set(255, 255, 156, 255);
 			mColors2[2].set(255, 255, 0, 0);
-			mUnused3               = false;
 			mChallengeTitleYOffset = 10.0f;
 			mStoryTitleYOffset     = 0.0f;
 			mVsTitleYOffset        = 3.0f;
@@ -147,14 +142,12 @@ struct ObjFloor : public ::Screen::ObjBase {
 		f32 mStandardNameXOffset;     // _10
 		f32 mStandardNameYOffset;     // _14
 		f32 mStandardNameScale;       // _18
-		f32 mUnused1;                 // _1C
 		f32 mVsNameXOffset;           // _20
 		f32 mVsNameYOffset;           // _24
 		f32 mVsNameScale;             // _28
 		f32 mSublevelXOffset;         // _2C
 		f32 mSublevelYOffset;         // _30
 		f32 mSublevelScale;           // _34
-		f32 mUnused2;                 // _38
 		f32 mSublevel2DigitXOffset;   // _3C
 		f32 mScaleParm1;              // _40
 		f32 mScaleParm2;              // _44
@@ -166,7 +159,6 @@ struct ObjFloor : public ::Screen::ObjBase {
 		JUtility::TColor mColors1[3]; // _5C
 		JUtility::TColor mColors2[3]; // _68
 		int mRuleMsgIndex;            // _74
-		u8 mUnused3;                  // _78
 		bool mDoUseSetRuleMsgIndex;   // _79
 	} msVal;
 };

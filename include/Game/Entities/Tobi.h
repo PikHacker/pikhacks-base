@@ -48,12 +48,10 @@ struct Obj : public EnemyBase {
 
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                                          // _30
-	virtual void doDirectDraw(Graphics& gfx);                                                // _50
 	virtual void getShadowParam(ShadowParam& settings);                                      // _134
 	virtual ~Obj() { }                                                                       // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);                           // _1C4
 	virtual void doUpdate();                                                                 // _1CC
-	virtual void doDebugDraw(Graphics& gfx);                                                 // _1EC
 	virtual void initMouthSlots();                                                           // _22C
 	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);                // _27C
 	bool flyCollisionCallBack(Creature* source, f32 damage, CollPart* part);                 // _280

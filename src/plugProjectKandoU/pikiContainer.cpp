@@ -6,8 +6,6 @@
 
 #define CONTAINER_LENGTH (PikiColorCount * PikiGrowthStageCount)
 
-static const char fakeMatch__UnitName[] = "pikiContainer";
-
 namespace Game {
 /**
  * @note Address: 0x801F1240
@@ -43,25 +41,11 @@ void PikiContainer::operator=(Game::PikiContainer& other)
 }
 
 /**
- * @param sourceOfCall A string loosely identifying the caller in some way.
  * @note Address: 0x801F13A8
  * @note Size: 0x74
  */
 void PikiContainer::dump(char* sourceOfCall)
 {
-#if DEBUG
-	OSReport("PikiContainer::dump (from %s):\n", sourceOfCall);
-#endif
-	for (int type = 0; type < PikiColorCount; type++) {
-		int colorTotal = getColorSum(type);
-		int colorHappa[PikiGrowthStageCount];
-		for (int happa = 0; happa < PikiGrowthStageCount; happa++) {
-			colorHappa[happa] = getCount(type, happa);
-		}
-#if DEBUG
-		OSReport("\tType %d: %d + %d + %d = %d\n", type, colorHappa[0], colorHappa[1], colorHappa[2], colorTotal);
-#endif
-	}
 }
 
 /**

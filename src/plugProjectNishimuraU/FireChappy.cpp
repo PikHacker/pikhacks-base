@@ -38,23 +38,6 @@ void Obj::onKill(CreatureKillArg* killArg)
 }
 
 /**
- * @note Address: 0x8028F778
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics& gfx)
-{
-}
-
-/**
- * @note Address: 0x8028F77C
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
-
-/**
  * @note Address: 0x8028F79C
  * @note Size: 0xC0
  */

@@ -41,12 +41,10 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                // _30
 	virtual void onKill(CreatureKillArg* settings);                // _34
-	virtual void doDirectDraw(Graphics& gfx);                      // _50
 	virtual void getShadowParam(ShadowParam& settings);            // _134
 	virtual ~Obj() { }                                             // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
 	virtual void doUpdate();                                       // _1CC
-	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
 	virtual void changeMaterial() = 0;                             // _200
 	virtual void getCommonEffectPos(Vector3f&);                    // _204
 	virtual Vector3f getOffsetForMapCollision();                   // _224

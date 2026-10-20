@@ -380,7 +380,6 @@ struct SeqUpdateData {
 	f32* mTrackFxmixes;             // _2C, length seqTrackMax
 	f32* mTrackPans;                // _30, length seqTrackMax
 	f32* mTrackDolbys;              // _34, length seqTrackMax
-	u8 _38[8];                      // _38, unknown
 	u8* mFilePtr;                   // _40, pointer to a data file loaded in by getSeqData
 	u32* _44;                       // _44, length seqTrackMax + 1
 	JAISequence* mSequence;         // _48

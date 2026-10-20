@@ -3,7 +3,6 @@
 #include "System.h"
 #include "og/Sound.h"
 #include "trig.h"
-#include "nans.h"
 
 namespace og {
 namespace newScreen {

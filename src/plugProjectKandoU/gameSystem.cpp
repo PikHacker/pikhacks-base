@@ -7,10 +7,6 @@
 #include "Game/gameStat.h"
 #include "Game/MoviePlayer.h"
 #include "SysShape/Model.h"
-#include "nans.h"
-
-static const int unusedArray[] = { 0, 0, 0 };
-static const char name[]       = "gameSystem";
 
 #define FRAMECOUNT_MAX 0x40000000
 
@@ -54,9 +50,7 @@ void GameSystem::init()
 	mFlags.clear();
 	mFrameTimer = 0;
 
-	sys->heapStatusStart("DynParticle", nullptr);
 	dynParticleMgr = new DynParticleMgr(512);
-	sys->heapStatusEnd("DynParticle");
 
 	_aiConstants = new AIConstants;
 
@@ -64,7 +58,6 @@ void GameSystem::init()
 	GameStat::clear();
 
 	mIsFrozen     = false;
-	mUnused       = 0;
 	mIsPaused     = 0;
 	mIsPausedSoft = false;
 
@@ -379,14 +372,6 @@ void GameSystem::doSimpleDraw(Viewport* vp)
 		GenericObjectMgr* obj = *it;
 		obj->doSimpleDraw(vp);
 	}
-}
-
-/**
- * @note Address: 0x801B5F40
- * @note Size: 0x4
- */
-void GameSystem::doDirectDraw(Graphics&)
-{
 }
 
 /**

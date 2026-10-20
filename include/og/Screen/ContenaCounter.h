@@ -23,7 +23,6 @@ struct ContenaCounter : public P2DScreen::Mgr_tuning {
 	CallBack_CounterRV* mInTransferCounter; // _150
 	CallBack_CounterRV* mInSquadCounter;    // _154
 	CallBack_CounterRV* mOnFieldCounter;    // _158
-	u8 _15C[0x8];                           // _15C, unknown
 	u32* mInOnion;                          // _164, pikmin in the onion
 	u32* mInTransfer;                       // _168, pikmin involved in transfer
 	u32* mInSquad;                          // _16C, new number of this pikmin type in squad

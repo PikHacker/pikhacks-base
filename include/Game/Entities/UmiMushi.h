@@ -111,13 +111,9 @@ struct Parms : public EnemyParmsBase {
 		mIsAIAlwaysActiveOnWait = 1;
 		mDoUseFindState         = 1;
 		mCanEatNavis            = 1;
-		mUnused1                = 1;
 		mDoUseParamEyeCalc      = 0;
-		mUnused2                = 1;
-		mUnused3                = -1;
 		mWalkAngleSpeed         = 10.0f;
 		mRotateAngleDelta       = 0.05f;
-		mUnused4                = 1.0f;
 		mEyeYOffset             = 10.0f;
 		mBlindTurnRateReduction = 0.3f;
 		mDefaultEyeScale        = 1.0f;
@@ -137,13 +133,9 @@ struct Parms : public EnemyParmsBase {
 	u8 mIsAIAlwaysActiveOnWait;  // _A11
 	u8 mDoUseFindState;          // _A12
 	u8 mCanEatNavis;             // _A13
-	u8 mUnused1;                 // _A14
 	u8 mDoUseParamEyeCalc;       // _A15
-	u8 mUnused2;                 // _A16
-	s16 mUnused3;                // _A18
 	f32 mWalkAngleSpeed;         // _A1C
 	f32 mRotateAngleDelta;       // _A20
-	f32 mUnused4;                // _A24
 	f32 mEyeYOffset;             // _A28
 	f32 mBlindTurnRateReduction; // _A2C
 	f32 mDefaultEyeScale;        // _A30
@@ -156,7 +148,6 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                             // _30
 	virtual void doSimulation(f32);                                             // _4C
-	virtual void doDirectDraw(Graphics& gfx);                                   // _50
 	virtual f32 getBodyRadius();                                                // _54
 	virtual void collisionCallback(CollEvent& event);                           // _EC
 	virtual void getShadowParam(ShadowParam& settings);                         // _134
@@ -167,7 +158,6 @@ struct Obj : public EnemyBase {
 	virtual void doUpdate();                                                    // _1CC
 	virtual void doAnimationCullingOff();                                       // _1DC
 	virtual void doAnimationCullingOn();                                        // _1E0
-	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
 	virtual void changeMaterial();                                              // _200
 	virtual void setParameters();                                               // _228
 	virtual void initMouthSlots();                                              // _22C

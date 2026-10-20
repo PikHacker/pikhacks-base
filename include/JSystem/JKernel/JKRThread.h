@@ -37,10 +37,8 @@ struct JKRThreadSwitch {
 	static OSTime getTotalStart() { return sTotalStart; }
 
 	// _00 VTBL
-	u8 _04[8];           // _04 - unknown/padding
 	int _0C;             // _0C
 	int _10;             // _10
-	u8 _14[4];           // _14 - unknown/padding
 	u64 _18;             // _18
 	JUTConsole* _20;     // _20
 	JKRThreadName_* _24; // _24

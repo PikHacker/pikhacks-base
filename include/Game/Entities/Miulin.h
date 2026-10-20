@@ -137,14 +137,12 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                                            // _30
 	virtual void doSimulation(f32);                                                            // _4C
-	virtual void doDirectDraw(Graphics& gfx);                                                  // _50
 	virtual void getShadowParam(ShadowParam& settings);                                        // _134
 	virtual void setInitialSetting(EnemyInitialParamBase*) { }                                 // _1C4 (weak)
 	virtual void applyImpulse(Vector3f&, Vector3f&) { }                                        // _18C (weak)
 	virtual ~Obj() { }                                                                         // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                                                        // _1C0
 	virtual void doUpdate();                                                                   // _1CC
-	virtual void doDebugDraw(Graphics& gfx);                                                   // _1EC
 	virtual void setParameters();                                                              // _228
 	virtual void initWalkSmokeEffect();                                                        // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                                     // _234

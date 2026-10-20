@@ -9,13 +9,9 @@
 #include "PSSystem/PSSystemIF.h"
 #include "Dolphin/rand.h"
 #include "Platform.h"
-#include "nans.h"
 
 namespace Game {
 namespace ItemDownFloor {
-
-static const int unusedArray[] = { 0, 0, 0 };
-static const char unusedName[] = "itemDownFloor";
 
 Mgr* mgr;
 
@@ -464,7 +460,6 @@ void Item::getCarryInfoParam(CarryInfoParam& param)
 	param.mPosition = mPosition;
 	param.mPosition.y += 50.0f;
 	param.mYOffsetMax    = 50.0f;
-	param.mUnused        = 1;
 	param.mCurrentWeight = mCurrentWeight;
 	param.mMaxWeight     = mBagMaxWeight;
 	param.mColor         = CINFOCOLOR_DownFloor;
@@ -478,7 +473,6 @@ void Item::getCarryInfoParam(CarryInfoParam& param)
 Mgr::Mgr()
 {
 	mItemName = "DownFloor";
-	sys->heapStatusStart("ItemDownFloor", nullptr);
 	mObjectPathComponent = "user/Kando/objects/downfloor";
 	setModelSize(3);
 
@@ -508,8 +502,6 @@ Mgr::Mgr()
 	}
 
 	closeTextArc(textArc);
-
-	sys->heapStatusEnd("ItemDownFloor");
 }
 
 /**
@@ -518,13 +510,11 @@ Mgr::Mgr()
  */
 void Mgr::setupDownFloor(Item* item)
 {
-	sys->heapStatusStart("new Model", nullptr);
 	item->mModel = new SysShape::Model(mModelData[item->mModelType], J3DMODEL_CreateNewDL, 2);
 	item->mModel->mJ3dModel->calc();
 	item->mModel->mJ3dModel->calcMaterial();
 	item->mModel->mJ3dModel->makeDL();
 	item->mModel->mJ3dModel->lock();
-	sys->heapStatusEnd("new Model");
 	item->mAnimator.mAnimMgr = mAnimMgr;
 	item->mAnimator.startAnim(0, nullptr);
 }
@@ -535,8 +525,6 @@ void Mgr::setupDownFloor(Item* item)
  */
 void Mgr::setupPlatform(Item* item)
 {
-	sys->heapStatusStart("Platform", nullptr);
-	sys->heapStatusStart("Platform-Down", nullptr);
 	Matrixf* worldMat = item->mModel->getJoint("move")->getWorldMatrix();
 	if (!worldMat) {
 		item->mModel->mJoints[0].getWorldMatrix(); // feel like worldMat is meant to get set to this, but it doesn't.
@@ -550,9 +538,6 @@ void Mgr::setupPlatform(Item* item)
 	platArg.mMatrix   = worldMat;
 
 	item->mPlatInstance = platMgr->addInstance(platArg);
-
-	sys->heapStatusEnd("Platform-Down");
-	sys->heapStatusEnd("Platform");
 }
 
 /**
@@ -569,10 +554,8 @@ void Mgr::onLoadResources()
  */
 BaseItem* Mgr::birth()
 {
-	sys->heapStatusStart("ItemDownFloor", nullptr);
 	Item* downFloor = new Item;
 	entry(downFloor);
-	sys->heapStatusEnd("ItemDownFloor");
 	return downFloor;
 }
 

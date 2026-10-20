@@ -10,10 +10,6 @@
 #include "efx2d/efx2dEffect.h"
 #include "Screen/Game2DMgr.h"
 
-static const int unusedArray[] = { 0, 0, 0 };
-
-#include "nans.h"
-
 namespace Morimura {
 s16 TZukanBase::mRequestTimerMax    = 10;
 bool TZukanBase::mIconMove          = true;
@@ -1158,13 +1154,6 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 		} else {
 			setShortenIndex(i, index, true);
 		}
-		if (index >= 0 && _B0) {
-			pane->setMsgID(getNameID(index));
-		}
-	}
-
-	for (int i = 0; i < mNumActiveRows; i++) {
-		// some commented out/debug code probably
 	}
 }
 
@@ -2453,14 +2442,9 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 		} else {
 			setShortenIndex(i, index, true);
 		}
-		if (index >= 0 && _B0) {
-			pane->setMsgID(getNameID(index));
-		}
+
 	}
 
-	for (int i = 0; i < mNumActiveRows; i++) {
-		// some commented out/debug code here
-	}
 	_243 = false;
 }
 

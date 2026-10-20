@@ -3,8 +3,6 @@
 namespace Game {
 namespace BigTreasure {
 
-static const char bigTreasureShadowName[] = "246-BigTreasureShadow";
-
 /**
  * @note Address: 0x802DA5C8
  * @note Size: 0x418

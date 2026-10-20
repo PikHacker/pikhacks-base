@@ -13,14 +13,7 @@
 namespace PSSystem {
 inline PSSystem::SceneMgr* getSceneMgr()
 {
-	P2ASSERTLINE(467, spSceneMgr);
-
 	return spSceneMgr;
-}
-
-inline void validateSceneMgr(SceneMgr* mgr)
-{
-	P2ASSERTLINE(476, mgr);
 }
 
 inline Scene* getChildScene(SceneMgr* mgr)

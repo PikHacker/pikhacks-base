@@ -11,16 +11,6 @@ namespace Screen {
 
 ResTIMG* PikiIconTextureResTIMG[NUM_PIKI_ICONS];
 
-static void _Print(char* format, ...)
-{
-	OSReport("ogScreen");
-	char buffer[512];
-	va_list args;
-	va_start(args, format);
-	sprintf(buffer, format, __FILE__, buffer);
-	vprintf(buffer, args);
-}
-
 /**
  * @note Address: 0x80301EB8
  * @note Size: 0x8

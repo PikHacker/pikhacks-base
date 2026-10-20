@@ -2,8 +2,6 @@
 #include "Controller.h"
 #include "ebi/Utility.h"
 
-static const char name[] = "ebiSaveMgr";
-
 namespace ebi {
 
 namespace Save {

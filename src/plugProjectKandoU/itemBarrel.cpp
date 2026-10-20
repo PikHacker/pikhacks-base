@@ -14,14 +14,10 @@
 #include "PSSystem/PSSystemIF.h"
 #include "Sys/Sphere.h"
 #include "SysShape/Model.h"
-#include "nans.h"
 #include "stream.h"
 
 namespace Game {
 namespace ItemBarrel {
-
-static const int unusedBarrelArray[] = { 0, 0, 0 };
-static const char unusedBarrelName[] = "itemBarrel";
 
 Mgr* mgr;
 
@@ -346,7 +342,6 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 void Item::createBarrel()
 {
 	mHealth       = mgr->mParms->mBarrelParms.mHealth.mValue;
-	mBackupHealth = mHealth;
 	mStoredDamage = 0.0f;
 }
 

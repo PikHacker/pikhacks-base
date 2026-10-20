@@ -5,15 +5,6 @@
 #include "JSystem/J2D/J2DMaterial.h"
 #include "System.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace og {
 namespace newScreen {
 

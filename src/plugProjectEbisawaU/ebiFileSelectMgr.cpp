@@ -3,8 +3,6 @@
 #include "Game/MemoryCard/Mgr.h"
 #include "MemoryCardMgr.h"
 
-static const char name[] = "ebiFileSelectMgr";
-
 namespace ebi {
 namespace FileSelect {
 

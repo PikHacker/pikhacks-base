@@ -109,13 +109,11 @@ struct MapUnit {
 	virtual void doSetView(int viewportNumber) { } // _14 (weak)
 	virtual void doViewCalc() { }                  // _18 (weak)
 	virtual void doSimulation(f32) { }             // _1C (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }   // _20 (weak)
 
 	void load(Stream&);
 	void save(Stream&);
 	void setupSizeInfo();
 
-	s16 mUnusedIdx;                    // _04
 	char* mName;                       // _08
 	J3DModelData* mModelData;          // _0C
 	MapCollision mCollision;           // _10
@@ -124,7 +122,6 @@ struct MapUnit {
 	SeaMgr mSeaMgr;                    // _34
 	BoundBox mBoundingBox;             // _7C
 	Vector2<u16> mCellSize;            // _94
-	u8 _98[0x10];                      // _98
 	u8 mHasCollision;                  // _A8, not used?
 	EditorRouteMgr mRouteMgr;          // _AC
 	int mAnimationCount;               // _E8
@@ -142,7 +139,6 @@ struct PartsView : public CNode {
 	virtual void doSetView(int viewportNumber); // _1C
 	virtual void doViewCalc();                  // _20
 	virtual void doSimulation(f32) { }          // _24 (weak)
-	virtual void doDirectDraw(Graphics& gfx);   // _28
 
 	void getHalfX();
 	void getOffset();
@@ -152,12 +148,6 @@ struct PartsView : public CNode {
 	MapUnit* mMapUnit;           // _018
 	SysShape::Model* mModel;     // _01C
 	Mtx _20;                     // _020
-	f32 _50;                     // _050
-	f32 _54;                     // _054
-	u32 _58;                     // _058
-	u32 _5C;                     // _05C
-	u32 _60;                     // _060
-	u8 _64[8];                   // _064
 	s16 mUnitKind;               // _06C, 0=cap, 1=room, 2=corridor
 	BitFlag<u16> mFlags;         // _06E
 	EditorRouteMgr mRouteMgr;    // _070
@@ -207,7 +197,6 @@ struct MapRoom : public CellObject {
 	virtual void doSetView(int viewportNumber);                                       // _38
 	virtual void doViewCalc();                                                        // _3C
 	virtual void doSimulation(f32);                                                   // _40
-	virtual void doDirectDraw(Graphics&);                                             // _44
 
 	void placeObjects(Cave::FloorInfo* floorInfo, bool isFinalFloor);
 	void countItems();
@@ -269,7 +258,6 @@ struct RoomMapMgr : public MapMgr {
 	virtual void setupJUTTextures();                                                      // _34
 	virtual void drawCollision(Graphics&, Sys::Sphere&);                                  // _44
 	virtual void doSimulation(f32);                                                       // _48
-	virtual void doDirectDraw(Graphics&);                                                 // _4C
 	virtual void doAnimation();                                                           // _50
 	virtual void doEntry();                                                               // _54
 	virtual void doSetView(int viewportNumber);                                           // _58

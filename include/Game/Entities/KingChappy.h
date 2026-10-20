@@ -149,7 +149,6 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);                               // _30
 	virtual void onKill(CreatureKillArg* settings);                               // _34
 	virtual void doSimulation(f32);                                               // _4C
-	virtual void doDirectDraw(Graphics& gfx);                                     // _50
 	virtual void inWaterCallback(WaterBox* wb);                                   // _84
 	virtual void collisionCallback(CollEvent& event);                             // _EC
 	virtual void getShadowParam(ShadowParam& settings);                           // _134
@@ -158,7 +157,6 @@ struct Obj : public EnemyBase {
 	virtual void doUpdate();                                                      // _1CC
 	virtual void doAnimationUpdateAnimator();                                     // _1D8
 	virtual void doAnimationCullingOff();                                         // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                                      // _1EC
 	virtual void setParameters();                                                 // _228
 	virtual void initMouthSlots();                                                // _22C
 	virtual void initWalkSmokeEffect();                                           // _230

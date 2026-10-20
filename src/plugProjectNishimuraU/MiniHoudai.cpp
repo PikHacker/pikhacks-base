@@ -100,23 +100,6 @@ void Obj::doAnimationCullingOff()
 }
 
 /**
- * @note Address: 0x802EC31C
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802EC320
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
-
-/**
  * @note Address: 0x802EC340
  * @note Size: 0x4C
  */
@@ -654,15 +637,6 @@ void Obj::emitShotGun()
 void Obj::setShotGunTargetPosition()
 {
 	mShotgunMgr->setShotGunTarget(mTargetPosition);
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x24
- */
-void Obj::shotGunDoDebugDraw(Graphics& gfx)
-{
-	mShotgunMgr->doDebugDraw(gfx);
 }
 
 /**

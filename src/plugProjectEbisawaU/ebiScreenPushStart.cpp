@@ -9,8 +9,6 @@
 #include "SoundID.h"
 #include "Dolphin/rand.h"
 
-static const char name[] = "ebiScreenPushStart";
-
 namespace ebi {
 namespace Screen {
 
@@ -20,31 +18,17 @@ namespace Screen {
  */
 void TPressStart::doSetArchive(JKRArchive* arc)
 {
-	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_a", nullptr);
 	mScreens[0] = new P2DScreen::Mgr_tuning;
 	mScreens[0]->set("push_start_a.blo", 0x1100000, arc);
-	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_a");
-
-	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_b", nullptr);
 	mScreens[1] = new P2DScreen::Mgr_tuning;
 	mScreens[1]->set("push_start_b.blo", 0x1100000, arc);
-	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_b");
-
-	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_c", nullptr);
 	mScreens[2] = new P2DScreen::Mgr_tuning;
 	mScreens[2]->set("push_start_c.blo", 0x1100000, arc);
-	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_c");
-
-	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_d", nullptr);
 	mScreens[3] = new P2DScreen::Mgr_tuning;
 	mScreens[3]->set("push_start_d.blo", 0x1100000, arc);
-	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_d");
-
-	sys->heapStatusStart("TScreenPushStart::setArchive--makeAnmPointer", nullptr);
 	for (int i = 0; i < 4; i++) {
 		mScreens[i]->makeAnmPointer();
 	}
-	sys->heapStatusEnd("TScreenPushStart::setArchive--makeAnmPointer");
 
 	for (int i = 0; i < 4; i++) {
 		static_cast<P2DScreen::Mgr*>(mScreens[i])->addCallBackPane(mScreens[i], &mAnims1[i]);

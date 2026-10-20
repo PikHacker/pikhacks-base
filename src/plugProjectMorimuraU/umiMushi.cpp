@@ -11,8 +11,6 @@
 namespace Game {
 namespace UmiMushi {
 
-static const char unusedString[] = "umiMushi";
-
 Obj* curU;
 
 /**
@@ -365,23 +363,6 @@ void Obj::doAnimationCullingOn()
 {
 	EnemyBase::doAnimationCullingOn();
 	createColorEffect();
-}
-
-/**
- * @note Address: 0x80384204
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics& gfx)
-{
-}
-
-/**
- * @note Address: 0x80384208
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

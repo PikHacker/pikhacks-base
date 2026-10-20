@@ -3,8 +3,6 @@
 namespace Game {
 namespace Armor {
 
-static const char armorMgrName[] = "246-ArmorMgr";
-
 /**
  * @note Address: 0x8027D2B8
  * @note Size: 0x50

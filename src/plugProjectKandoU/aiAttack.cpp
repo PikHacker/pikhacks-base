@@ -8,8 +8,6 @@
 
 #define PIKIATTACK_JUMP_CHANCE (0.2f)
 
-static const char aiAttackName[] = "actAttack";
-
 namespace PikiAI {
 
 /**

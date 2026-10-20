@@ -15,7 +15,6 @@
 #include "Game/MapMgr.h"
 #include "Game/DeathMgr.h"
 #include "Game/CollEvent.h"
-#include "nans.h"
 
 namespace Game {
 
@@ -608,11 +607,6 @@ void Creature::checkCollision(CellObject* other)
 {
 	Creature* cellCreature = static_cast<Creature*>(other);
 
-	if (isDebugCollision()) {
-		getCreatureName();
-		cellCreature->getCreatureName();
-	}
-
 	if (!cellCreature->isAtari() || !isAtari()) {
 		return;
 	}
@@ -629,8 +623,6 @@ void Creature::checkCollision(CellObject* other)
 	if (!creatureObj->isAlive() || !isAlive()) {
 		return;
 	}
-
-	isDebugCollision();
 
 	Delegate3<Creature, CollPart*, CollPart*, Vector3f&> delegate
 	    = Delegate3<Creature, CollPart*, CollPart*, Vector3f&>(this, &resolveOneColl);
@@ -754,18 +746,7 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 	CollEvent srcToDestEvent(this, source, dest);
 	op->collisionCallback(srcToDestEvent);
 
-	if (sepDot <= 0.0f) {
-		if (isDebugCollision()) {
-			getCreatureName();
-			op->getCreatureName();
-		}
-
-		return;
-	}
-
-	isDebugCollision();
-	if (flickCheck) {
-		isDebugCollision();
+	if (sepDot <= 0.0f || flickCheck) {
 		return;
 	}
 

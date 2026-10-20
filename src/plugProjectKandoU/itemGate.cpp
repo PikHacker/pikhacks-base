@@ -10,12 +10,8 @@
 #include "Game/gamePlayData.h"
 #include "Game/MoviePlayer.h"
 #include "PSSystem/PSSystemIF.h"
-#include "nans.h"
 
 namespace Game {
-
-static const int unusedItemGateArray[] = { 0, 0, 0 };
-static const char unusedItemGateName[] = "itemGate";
 
 ItemGateMgr* itemGateMgr;
 ItemDengekiGate::Mgr* ItemDengekiGate::mgr;
@@ -443,7 +439,6 @@ ItemGateMgr::ItemGateMgr()
     : BaseItemMgr(1)
 {
 	mItemName = "Gate";
-	sys->heapStatusStart("ItemGate", nullptr);
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
 	loadArchive("gate-arc.szs");
@@ -458,7 +453,6 @@ ItemGateMgr::ItemGateMgr()
 	SysShape::Model::enableMaterialAnim(mModelData[0], 0);
 	void* brk = JKRFileLoader::getGlbResource("gate_soft.brk", nullptr);
 	mMatTevRegAnim.attachResource(brk, mModelData[0]);
-	sys->heapStatusEnd("ItemGate");
 }
 
 /**
@@ -467,9 +461,7 @@ ItemGateMgr::ItemGateMgr()
  */
 void ItemGateMgr::setupGate(Game::ItemGate* gate)
 {
-	sys->heapStatusStart("new Model", nullptr);
 	gate->mModel = new SysShape::Model(mModelData[0], 0, 2);
-	sys->heapStatusEnd("new Model");
 	gate->mAnimator.mAnimMgr = mAnimMgr;
 	gate->mAnimator.startAnim(0, nullptr);
 }
@@ -480,7 +472,6 @@ void ItemGateMgr::setupGate(Game::ItemGate* gate)
  */
 void ItemGateMgr::setupPlatform(Game::ItemGate* gate)
 {
-	sys->heapStatusStart("Platform", nullptr);
 	Matrixf* moveJointMatrix = gate->mModel->getJoint("move")->getWorldMatrix();
 	ID32 centreID            = 'gate';
 	PlatAddInstanceArg platArgCentre;
@@ -489,7 +480,6 @@ void ItemGateMgr::setupPlatform(Game::ItemGate* gate)
 	platArgCentre.mPlatform   = mCentrePlatform;
 	platArgCentre.mMatrix     = moveJointMatrix;
 	gate->mCentrePlatInstance = platMgr->addInstance(platArgCentre);
-	sys->heapStatusStart("Clone-Plat", nullptr);
 	Matrixf* fixJointMatrix = gate->mModel->getJoint("fix")->getWorldMatrix();
 	ID32 sideID             = 'none';
 	PlatAddInstanceArg platArgSide;
@@ -499,8 +489,6 @@ void ItemGateMgr::setupPlatform(Game::ItemGate* gate)
 	platArgSide.mMatrix           = fixJointMatrix;
 	platArgSide.mEnableGlobalPlat = true;
 	gate->mSidePlatInstance       = platMgr->addInstance(platArgSide);
-	sys->heapStatusEnd("Clone-Plat");
-	sys->heapStatusEnd("Platform");
 }
 
 /**
@@ -509,13 +497,11 @@ void ItemGateMgr::setupPlatform(Game::ItemGate* gate)
  */
 BaseItem* ItemGateMgr::birth()
 {
-	sys->heapStatusStart("ItemGate", nullptr);
 	ItemGate* item                 = new ItemGate;
 	TObjectNode<ItemGate>* objNode = new TObjectNode<ItemGate>;
 	objNode->mContents             = item;
 	mNodeObjectMgr.mNode.add(objNode);
 	objNode->mContents->constructor();
-	sys->heapStatusEnd("ItemGate");
 	return item;
 }
 
@@ -801,7 +787,6 @@ void GateDownState::onKeyEvent(Game::ItemGate* gate, const SysShape::KeyEvent& k
 ItemDengekiGate::Mgr::Mgr()
 {
 	mItemName = "電撃ゲート"; // electric shock gate
-	sys->heapStatusStart("ItemDengekiGate", nullptr);
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
 	loadArchive("e-gate-arc.szs");
@@ -816,7 +801,6 @@ ItemDengekiGate::Mgr::Mgr()
 	SysShape::Model::enableMaterialAnim(mModelData[0], 0);
 	void* brk = JKRFileLoader::getGlbResource("e-gate.btk", nullptr);
 	mMatAnimation.attachResource(brk, mModelData[0]);
-	sys->heapStatusEnd("ItemDengekiGate");
 }
 
 /**
@@ -827,9 +811,7 @@ ItemDengekiGate::Mgr::Mgr()
 void ItemDengekiGate::Mgr::setupGate(Game::ItemGate* gate)
 {
 	gate->mIsElectric = true;
-	sys->heapStatusStart("new Model", nullptr);
 	gate->mModel = new SysShape::Model(mModelData[0], 0, 2);
-	sys->heapStatusEnd("new Model");
 	gate->mAnimator.mAnimMgr = mAnimMgr;
 	gate->mAnimator.startAnim(0, nullptr);
 }
@@ -840,7 +822,6 @@ void ItemDengekiGate::Mgr::setupGate(Game::ItemGate* gate)
  */
 void ItemDengekiGate::Mgr::setupPlatform(Game::ItemGate* gate)
 {
-	sys->heapStatusStart("Platform", nullptr);
 	Matrixf* moveJointMatrix = gate->mModel->getJoint("gate")->getWorldMatrix();
 	ID32 centreID            = 'elec';
 	PlatAddInstanceArg platArgCentre;
@@ -849,7 +830,6 @@ void ItemDengekiGate::Mgr::setupPlatform(Game::ItemGate* gate)
 	platArgCentre.mPlatform   = mCentrePlatform;
 	platArgCentre.mMatrix     = moveJointMatrix;
 	gate->mCentrePlatInstance = platMgr->addInstance(platArgCentre);
-	sys->heapStatusStart("Clone-Plat", nullptr);
 	Matrixf* fixJointMatrix = gate->mModel->getJoint("pole")->getWorldMatrix();
 	ID32 sideID             = 'side';
 	PlatAddInstanceArg platArgSide;
@@ -859,8 +839,6 @@ void ItemDengekiGate::Mgr::setupPlatform(Game::ItemGate* gate)
 	platArgSide.mMatrix           = fixJointMatrix;
 	platArgSide.mEnableGlobalPlat = true;
 	gate->mSidePlatInstance       = platMgr->addInstance(platArgSide);
-	sys->heapStatusEnd("Clone-Plat");
-	sys->heapStatusEnd("Platform");
 }
 
 /**

@@ -6,7 +6,6 @@
 #include "Game/GameSystem.h"
 #include "efx/efxEnemy.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
-#include "nans.h"
 
 namespace Game {
 
@@ -123,15 +122,6 @@ void Plants::Obj::doAnimationCullingOff()
 			mModel->mJ3dModel->calc();
 		}
 	}
-}
-
-/**
- * @note Address: 0x80358820
- * @note Size: 0x20
- */
-void Plants::Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

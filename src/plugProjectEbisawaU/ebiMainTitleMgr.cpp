@@ -1,13 +1,9 @@
 #include "ebi/TMainTitleMgr.h"
 #include "ebi/title/TTitle.h"
 #include "ebi/E2DGraph.h"
-#include "nans.h"
 #include "og/newScreen/ogUtil.h"
 #include "Game/GameConfig.h"
 #include "Game/Data.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "ebiMainTitleMgr";
 
 namespace ebi {
 
@@ -54,15 +50,11 @@ void TMainTitleMgr::setMode(s32 set)
  */
 void TMainTitleMgr::loadResource()
 {
-	sys->heapStatusStart("TMainTitleMgr::loadResource", nullptr);
-	sys->heapStatusStart("TTitleMenu::loadResource", nullptr);
-
 	char buf[PATH_MAX];
 	og::newScreen::makeLanguageResName(buf, "title.szs");
 
 	JKRArchive* arc = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(69, arc);
-	sys->heapStatusEnd("TTitleMenu::loadResource");
 
 #if defined(VERSION_JP)
 	if (Game::gGameConfig.mParms.mE3version.mData) {
@@ -78,8 +70,6 @@ void TMainTitleMgr::loadResource()
 
 	title::titleMgr->loadResource();
 	title::titleMgr->initAfterLoadRes();
-
-	sys->heapStatusEnd("TMainTitleMgr::loadResource");
 }
 
 /**

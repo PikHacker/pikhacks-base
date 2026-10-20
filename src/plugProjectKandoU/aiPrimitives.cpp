@@ -13,10 +13,6 @@
 #include "Game/mapParts.h"
 #include "Game/Stickers.h"
 #include "Game/PikiParms.h"
-#include "nans.h"
-
-static const int unusedAiPrimArray[] = { 0, 0, 0 };
-static const char unusedAiPrimName[] = "aiPrimitives";
 
 namespace PikiAI {
 
@@ -480,12 +476,6 @@ void ActPathMove::init(ActionArg* settings)
 	mOnyon  = nullptr;
 	mPellet = pathMoveArg->mPellet;
 
-	// this doesn't seem to be used, input is always 0 anyway.
-	mUnusedPathFlag = (pathMoveArg->_18 > 0);
-	if (mUnusedPathFlag) {
-		mUnusedSlotId = pathMoveArg->_18;
-	}
-
 	mContextHandle = 0;
 	mNewVelocity   = Vector3f(0.0f);
 
@@ -715,15 +705,6 @@ int ActPathMove::execPathfinding()
 
 		// initialize spline system
 		crInit();
-
-		// debug
-		int endIdx = -1;
-		FOREACH_NODE(Game::PathNode, mStartNode, node)
-		{
-			endIdx = node->mWpIndex;
-		}
-		char buf[256];
-		sprintf(buf, "%d->%d->...->%d", mStartNode->mWpIndex, (mStartNode->mNext) ? (char*)mStartNode->mNext->mWpIndex : "...", endIdx);
 		return ACTEXEC_Continue;
 
 	case Game::PATHFIND_Start: // make a new context and start a path
@@ -762,40 +743,6 @@ int ActPathMove::execPathfinding()
 	}
 
 	return ACTEXEC_Continue;
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x1AC
- */
-f32 ActPathMove::getCarrySpeed()
-{
-	f32 carryPower;
-	f32 maxFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mCarryMaxFactor.mValue;
-	f32 minFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mCarryMinFactor.mValue;
-
-	P2ASSERTLINE(1215, mPellet->mObjectTypeID == OBJTYPE_Pellet);
-
-	Game::Pellet* pellet = mPellet;
-	// if we're carrying a captain, go at FULL SPEED
-	if (pellet->mPelletView && pellet->mPelletView->mCreature->isNavi()) {
-		return static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed();
-
-		// if we're carrying a cherry in VS mode, go at FULL SPEED
-	} else if (Game::gameSystem->isVersusMode() && pellet->mPelletFlag == Game::Pellet::FLAG_VS_CHERRY) {
-		return static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed();
-	}
-
-	f32 maxSpeed = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * maxFactor;
-	f32 minSpeed = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * minFactor;
-
-	int min = pellet->getPelletConfigMin();
-	int max = pellet->getPelletConfigMax();
-
-	carryPower = pellet->getCarryPower();
-	JUT_ASSERTLINE(1248, max, "max is 0 [%s]\n", pellet->mConfig->mParams.mName.mData);
-
-	return minSpeed + (((1.0f + carryPower) - (f32)min) / (f32)max) * (maxSpeed - minSpeed);
 }
 
 /**
@@ -1023,6 +970,40 @@ int ActPathMove::execMoveGuru()
 	}
 
 	return ACTEXEC_Continue;
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0x1AC
+ */
+f32 ActPathMove::getCarrySpeed()
+{
+	f32 carryPower;
+	f32 maxFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mCarryMaxFactor.mValue;
+	f32 minFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mCarryMinFactor.mValue;
+
+	P2ASSERTLINE(1215, mPellet->mObjectTypeID == OBJTYPE_Pellet);
+
+	Game::Pellet* pellet = mPellet;
+	// if we're carrying a captain, go at FULL SPEED
+	if (pellet->mPelletView && pellet->mPelletView->mCreature->isNavi()) {
+		return static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed();
+
+		// if we're carrying a cherry in VS mode, go at FULL SPEED
+	} else if (Game::gameSystem->isVersusMode() && pellet->mPelletFlag == Game::Pellet::FLAG_VS_CHERRY) {
+		return static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed();
+	}
+
+	f32 maxSpeed = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * maxFactor;
+	f32 minSpeed = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * minFactor;
+
+	int min = pellet->getPelletConfigMin();
+	int max = pellet->getPelletConfigMax();
+
+	carryPower = pellet->getCarryPower();
+	JUT_ASSERTLINE(1248, max, "max is 0 [%s]\n", pellet->mConfig->mParams.mName.mData);
+
+	return minSpeed + (((1.0f + carryPower) - (f32)min) / (f32)max) * (maxSpeed - minSpeed);
 }
 
 /**

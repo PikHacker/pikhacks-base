@@ -12,13 +12,9 @@
 #include "Controller.h"
 #include "TParticle2dMgr.h"
 #include "System.h"
-#include "nans.h"
 
 namespace Game {
 namespace VsGame {
-
-static const char vsGSResultUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-static const char vsGSResultName[]        = "vsGS_Result";
 
 /**
  * @note Address: 0x8022C7F4
@@ -29,7 +25,6 @@ ResultState::ResultState()
 {
 	mEndFlags.clear();
 	mPlayer1Controller = new Controller(JUTGamePad::PORT_0);
-	mPlayer2Controller = new Controller(JUTGamePad::PORT_1);
 	mDelegate          = new Delegate<ResultState>(this, &dvdload);
 }
 
@@ -112,7 +107,7 @@ void ResultState::prepareMorimuraInfo(VsGameSection* section)
 	if (isNormalEnd()) {
 		if (!sys->getPlayCommonData()->challenge_checkClear(stageIndex)) {
 			int courseID = sys->getPlayCommonData()->challenge_openNewCourse();
-			OSReport("＠＠＠ Course %d Opened !!\n", courseID);
+			OSReport("Course %d Opened !!\n", courseID);
 			sys->getPlayCommonData()->challenge_setClear(stageIndex);
 		}
 

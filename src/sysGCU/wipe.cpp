@@ -1,7 +1,6 @@
 #include "Graphics.h"
 #include "System.h"
 #include "wipe.h"
-#include "nans.h"
 
 /**
  * @note Address: 0x8042BD0C
@@ -12,7 +11,6 @@ WipeBase::WipeBase()
 	mTimer    = 0.0f;
 	mSpeed    = 1.0f;
 	mIsActive = false;
-	mUnused   = 1;
 }
 
 /**
@@ -287,118 +285,4 @@ void BlackFader::do_draw(f32 rate)
 	f32 zero = 0.0f;
 	JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 	graf->fillBox(box);
-}
-
-// Note:: All of BallFader went unused and has been stripped
-
-/**
- * @note Address: N/A
- * @note Size: 0x164
- */
-BallFader::BallFader(int)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x4
- */
-BallFader::Ball::Ball()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x58
- */
-void BallFader::on_start()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x50
- */
-void BallFader::do_draw(f32)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x48
- */
-void BallFader::computeForces()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x180
- */
-void BallFader::emitBalls(f32)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x17C
- */
-void drawBall(Graphics&, Vector2f, f32)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x334
- */
-void drawBall2(Graphics&, Vector2f, f32)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0xB0
- */
-void BallFader::drawAll()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0xA8
- */
-void BallFader::simulate()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x324
- */
-void BallFader::resolveCollision()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x48
- */
-void BallFader::birth()
-{
-	// this is just here to generate weak functions in the right order
-	WipeBase* base;
-	base->isBlack();
-	base->isWhite();
-	// UNUSED FUNCTION
 }

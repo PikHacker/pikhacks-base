@@ -3,8 +3,6 @@
 namespace Game {
 namespace Imomushi {
 
-static const char imomushiMgrName[] = "246-ImomushiMgr";
-
 /**
  * @note Address: 0x802BBCD4
  * @note Size: 0x50

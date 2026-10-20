@@ -4,7 +4,6 @@
 #include "Sys/Sphere.h"
 #include "Sys/Cylinder.h"
 #include "Viewport.h"
-#include "nans.h"
 
 namespace Game {
 

@@ -5,7 +5,6 @@
 #include "Game/rumble.h"
 #include "efx/efxEnemy.h"
 #include "PS.h"
-#include "nans.h"
 
 namespace Game {
 namespace Kurage {

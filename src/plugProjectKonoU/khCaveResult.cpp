@@ -124,7 +124,6 @@ ObjCaveResult::ObjCaveResult()
 	mScissorMin            = 0;
 	mStatus                = 3;
 	mChangeStateDelay      = 0;
-	mUnusedValue           = 0;
 	mFlag                  = 0;
 	mAlpha                 = 255;
 	mScrollMoveDownCounter = 0;

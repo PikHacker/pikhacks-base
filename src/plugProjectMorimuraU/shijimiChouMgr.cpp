@@ -5,8 +5,6 @@
 namespace Game {
 namespace ShijimiChou {
 
-static const char shijimiChouMgrName[] = "shijimiChouMgr";
-
 /**
  * @note Address: 0x803884C0
  * @note Size: 0x5C

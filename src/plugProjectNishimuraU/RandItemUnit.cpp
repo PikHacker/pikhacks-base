@@ -8,8 +8,6 @@
 namespace Game {
 namespace Cave {
 
-static const char randItemUnitName[] = "246-RandItemUnit";
-
 /**
  * @note Address: 0x8024E38C
  * @note Size: 0x64

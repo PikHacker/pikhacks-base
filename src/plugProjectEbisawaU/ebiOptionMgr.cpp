@@ -9,15 +9,6 @@
 #include "SoundID.h"
 #include "System.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* name, ...)
-{
-	OSReport("ebiOptionMgr");
-}
-
 namespace ebi {
 namespace Option {
 /**
@@ -308,10 +299,7 @@ TMgr::TMgr()
  */
 void TMgr::loadResource()
 {
-	sys->heapStatusStart("Option::TMgr::loadResource", nullptr);
 	mOptionScreen.loadResource();
-	sys->heapStatusEnd("Option::TMgr::loadResource");
-
 	mSaveMgr->doLoadMenuResource();
 }
 

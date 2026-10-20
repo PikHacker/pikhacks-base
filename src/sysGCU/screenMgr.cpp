@@ -4,9 +4,6 @@
 #include "og/Screen/DispMember.h"
 #include "Game/MoviePlayer.h"
 #include "TParticle2dMgr.h"
-#include "nans.h"
-
-static const u32 padding[3] = { 0, 0, 0 };
 
 namespace Screen {
 

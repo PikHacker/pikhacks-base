@@ -17,18 +17,6 @@ void Node::init()
  */
 void Node::displayInfo(int whitespaceAmt)
 {
-	for (s32 i = 0; i < whitespaceAmt; i++) {
-		OSReport("    ");
-	}
-
-	OSReport("[%s]\n", mName);
-
-	JSUTreeIterator<CoreNode> iterator;
-	for (iterator = mTree.getFirstChild(); iterator != mTree.getEndChild();) {
-		Node* child = static_cast<Node*>(iterator.getObject());
-		child->displayInfo(whitespaceAmt + 1);
-		iterator++;
-	}
 }
 
 /**

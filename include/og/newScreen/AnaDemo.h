@@ -98,20 +98,16 @@ struct ObjAnaDemo : public ::Screen::ObjBase {
 	int mCurrMenuSel;                           // _48
 	P2DScreen::Mgr_tuning* mScreen;             // _4C
 	og::Screen::MenuMgr* mMenuMgr;              // _50
-	u32 mUnusedObj;                             // _54
 	og::Screen::AnimText_Screen* mMenuSelTitle; // _58
 	og::Screen::AnimText_Screen* mMenuSelYes;   // _5C
 	og::Screen::AnimText_Screen* mMenuSelNo;    // _60
 	og::Screen::AnimGroup* mAnimGroup;          // _64
-	f32 mUnused0;                               // _68
-	u32 mUnused1;                               // _6C
 	J2DPane* mPaneError;                        // _70
 	f32 mTimer3;                                // _74
 	f32 mTimer4;                                // _78
 	u8 mAlpha;                                  // _7C
 	f32 mTimer1;                                // _80
 	f32 mTimer2;                                // _84
-	u32 mUnused2;                               // _88
 	f32 mSwingMovePosition;                     // _8C
 	f32 mCloseTimer;                            // _90
 

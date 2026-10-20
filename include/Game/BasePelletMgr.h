@@ -50,7 +50,6 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	virtual void doSetView(int viewportNumber) { }               // _10 (weak)
 	virtual void doViewCalc() { }                                // _14 (weak)
 	virtual void doSimulation(f32 rate) { }                      // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }                 // _1C (weak)
 	virtual J3DModelData* generatorGetShape(GenPelletParm*);     // _80
 	virtual GenPelletParm* generatorNewPelletParm();             // _84
 	virtual Pellet* getObjectPtr(void*) = 0;                     // _88
@@ -108,7 +107,6 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 	virtual void doSetView(int viewportNumber);   // _10
 	virtual void doViewCalc();                    // _14
 	virtual void doSimulation(f32 rate);          // _18
-	virtual void doDirectDraw(Graphics& gfx);     // _1C
 	virtual void kill(Pellet*);                   // _40
 	virtual void* getNext(void*);                 // _8C
 	virtual void* getStart();                     // _90
@@ -194,12 +192,6 @@ template <typename T>
 void FixedSizePelletMgr<T>::doSimulation(f32 step)
 {
 	mMonoObjectMgr.doSimulation(step);
-}
-
-template <typename T>
-void FixedSizePelletMgr<T>::doDirectDraw(Graphics& gfx)
-{
-	mMonoObjectMgr.doDirectDraw(gfx);
 }
 
 template <typename T>

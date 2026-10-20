@@ -6,11 +6,6 @@
 namespace og {
 namespace newScreen {
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 /**
  * @note Address: 0x80330658
  * @note Size: 0x64

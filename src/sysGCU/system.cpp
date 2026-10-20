@@ -246,11 +246,6 @@ System::FragmentationChecker::~FragmentationChecker()
  */
 int System::assert_fragmentation(char*)
 {
-	u32 free  = JKRGetCurrentHeap()->getFreeSize();
-	u32 total = JKRGetCurrentHeap()->getTotalFreeSize();
-	if (free < total) {
-		return; // probably commented out code?
-	}
 }
 
 /**
@@ -274,8 +269,6 @@ int System::disableCPULockDetector()
 	mCpuRetraceCount = 0;
 	return locks;
 }
-
-static const char aramStrmName[] = "aramStrm";
 
 /**
  * @note Address: 0x80422344
@@ -390,7 +383,6 @@ System::System()
 	JKRHeap* heap = JKRGetCurrentHeap();
 	mSysHeap      = JKRExpHeap::create(SYSTEM_HEAP_SIZE, nullptr, true);
 	mSysHeap->becomeCurrentHeap();
-	mHeapStatus = new HeapStatus;
 	construct();
 	heap->becomeCurrentHeap();
 	mGfx = nullptr;
@@ -417,23 +409,16 @@ System::~System()
  */
 void System::construct()
 {
-	heapStatusStart("construct", nullptr);
 	srand(OSGetTick());
 
 	_30 = 0;
 	_34 = 0;
 
-	heapStatusStart("DvdThread", nullptr);
 	mDvdThread = new DvdThread(0x8000, 16, 29);
-	heapStatusEnd("DvdThread");
 
-	heapStatusStart("SysTimers", nullptr);
 	mTimers = new SysTimers;
-	heapStatusEnd("SysTimers");
 
-	heapStatusStart("ResetManager", nullptr);
 	mResetMgr = new ResetManager(0.5f);
-	heapStatusEnd("ResetManager");
 
 	mCardMgr = new Game::MemoryCard::Mgr;
 	mCardMgr->init();
@@ -441,25 +426,16 @@ void System::construct()
 	mTask = JKRTask::create(1, 17, 0x4000, nullptr);
 	mTask->request(myTask, nullptr, nullptr);
 
-	heapStatusStart("ARAMMgr", nullptr);
 	ARAM::Mgr::init();
 	Pikmin2ARAM::Mgr::init();
-	heapStatusEnd("ARAMMgr");
 
-	heapStatusStart("ResourceMgr2D", nullptr);
 	Resource::Mgr2D::init(JKRGetCurrentHeap());
-	heapStatusEnd("ResourceMgr2D");
 
-#if !defined(VERSION_PAL)
-	// we initialise this the ctor for PAL, not here
-	mPlayData = new Game::CommonSaveData::Mgr;
-#endif
+	mPlayData  = new Game::CommonSaveData::Mgr;
 	mDvdStatus = new DvdStatus;
 	LoadResource::Mgr::init();
 
 	mGameFlow = new GameFlow;
-
-	heapStatusEnd("construct");
 }
 
 /**
@@ -477,17 +453,14 @@ void System::constructWithDvdAccessFirst()
 	JKRHeap* old = JKRGetCurrentHeap();
 	mSysHeap->becomeCurrentHeap();
 
-	heapStatusStart("constructWithDvdAccess1st", nullptr);
 	Game::gGameConfig.load("gameConfig.ini");
 	createSoundSystem();
-	heapStatusEnd("constructWithDvdAccess1st");
 
 	mSysHeap->getTotalFreeSize();
 	mSysHeap->getTotalFreeSize();
 	mSysHeap->getFreeSize();
 	mSysHeap->getFreeSize();
 	old->becomeCurrentHeap();
-	heapStatusDump(true);
 }
 
 /**
@@ -507,22 +480,17 @@ void System::constructWithDvdAccessSecond()
 	JKRExpHeap* old = static_cast<JKRExpHeap*>(JKRGetCurrentHeap());
 	mSysHeap->becomeCurrentHeap();
 
-	heapStatusStart("constructWithDvdAccess2nd", nullptr);
-	heapStatusStart("P2JME::Mgr", nullptr);
 	P2JME::Mgr::create(old);
-	heapStatusEnd("P2JME::Mgr");
 	Game::PelletList::Mgr::globalInstance();
 	Game::stageList = new Game::Stages;
 	Game::PlayData::construct();
 	Game::MovieList::construct();
-	heapStatusEnd("constructWithDvdAccess2nd");
 
 	mSysHeap->getTotalFreeSize();
 	mSysHeap->getTotalFreeSize();
 	mSysHeap->getFreeSize();
 	mSysHeap->getFreeSize();
 	old->becomeCurrentHeap();
-	heapStatusDump(true);
 }
 
 /**
@@ -550,7 +518,6 @@ void System::destroyRomFont()
  */
 void System::createSoundSystem()
 {
-	sys->heapStatusStart("SoundSystem", nullptr);
 	JKRHeap* old = JKRHeap::getCurrentHeap();
 
 #if defined(VERSION_PAL)
@@ -598,7 +565,6 @@ void System::createSoundSystem()
 	old->becomeCurrentHeap();
 	newheap->destroy();
 
-	sys->heapStatusEnd("SoundSystem");
 	gResMgr2D->mRemainingSize = gResMgr2D->mHeapSize;
 }
 
@@ -613,7 +579,6 @@ void System::loadSoundResource()
 	newheap->becomeCurrentHeap();
 
 	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-	PSSystem::validateSceneMgr(mgr);
 	PSSystem::Scene* scene = mgr->getScene();
 #if defined(VERSION_PAL)
 	P2ASSERTLINE(1284, scene);
@@ -632,8 +597,6 @@ void System::loadSoundResource()
  */
 System::GXVerifyArg::GXVerifyArg()
 {
-	mUnused00 = 1;
-	mUnused04 = 0;
 }
 
 /**
@@ -918,9 +881,7 @@ void System::endRender()
 {
 	PSSystem::SysIF* sysif;
 	if (sysif = PSSystem::spSysIF) {
-		sys->mTimers->_start("sound", true);
 		sysif->mainLoop();
-		sys->mTimers->_stop("sound");
 	}
 	mDvdStatus->draw();
 	mResetMgr->draw();
@@ -990,56 +951,6 @@ void System::changeRenderMode(ERenderMode newmode)
 	}
 
 	mPlayData->setDeflicker();
-}
-
-/**
- * @note Address: 0x8042335C
- * @note Size: 0x8
- */
-u32 System::heapStatusStart(char*, JKRHeap*)
-{
-	return 0;
-}
-
-/**
- * @note Address: 0x80423364
- * @note Size: 0x4
- */
-void System::heapStatusEnd(char*)
-{
-}
-
-/**
- * @note Address: 0x80423368
- * @note Size: 0x4
- */
-void System::heapStatusDump(bool)
-{
-}
-
-/**
- * @note Address: 0x8042336C
- * @note Size: 0x4
- */
-void System::heapStatusIndividual()
-{
-}
-
-/**
- * @note Address: 0x80423370
- * @note Size: 0x4
- */
-void System::heapStatusNormal()
-{
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x4
- */
-void System::heapStatusDumpNode()
-{
-	// UNUSED FUNCTION
 }
 
 /**

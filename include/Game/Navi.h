@@ -123,7 +123,6 @@ struct Navi : public FakePiki, virtual public PelletView {
 	virtual void doSetView(int viewportNumber);                         // _44
 	virtual void doViewCalc();                                          // _48
 	virtual void doSimulation(f32);                                     // _4C
-	virtual void doDirectDraw(Graphics& gfx);                           // _50
 	virtual void setVelocity(Vector3f& vel) { mTargetVelocity = vel; }  // _68 (weak)
 	virtual void onSetPosition(Vector3f& dest);                         // _70
 	virtual void inWaterCallback(WaterBox* wb);                         // _84
@@ -262,9 +261,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	u8 mPlateScaleTimer;                    // _258
 	u8 mStickCount;                         // _259
 	s32 mSprayCounts[2];                    // _25C proven signed by Navi::hasDope
-	u8 _264[4];                             // _264
 	bool mHideModel;                        // _268
-	u8 mUnusedFlag;                         // _269
 	u8 mPluckingCounter;                    // _26A
 	PSM::Navi* mSoundObj;                   // _26C
 	NaviFSM* mFsm;                          // _270
@@ -282,7 +279,6 @@ struct Navi : public FakePiki, virtual public PelletView {
 	f32 mHealth;                            // _2A0
 	u8 mInvincibleTimer;                    // _2A4
 	Piki* mNextThrowPiki;                   // _2A8
-	u8 mUnusedFlag2;                        // _2AC
 	f32 mHoldPikiTimer;                     // _2B0
 	f32 mHoldPikiCharge;                    // _2B4, neither charge is used for anything
 	f32 mHoldPikiCharge2;                   // _2B8
@@ -293,7 +289,6 @@ struct Navi : public FakePiki, virtual public PelletView {
 	s8 mDisbandTimer;                       // _2D4
 	Footmarks* mFootmarks;                  // _2D8
 	u16 mNaviIndex;                         // _2DC
-	u8 _2DE;                                // _2DE
 	Vector3f mCStickTargetVector;           // _2E0
 	Vector3f mCStickPosition;               // _2EC
 	f32 mCStickAngle;                       // _2F8
@@ -351,7 +346,6 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	// _00-_30 = MonoObjectMgr
 	// _30     = VTBL 3
 	// _30-_48 = JKRDisposer
-	PSM::DirectorUpdator* mBackupPSMMgr;     // _48 (appears to be completely unused)
 	PSM::DirectorUpdator* mPSMMgr;           // _4C (used for damage taking bgm mix)
 	int mDeadNavis;                          // _50
 	int mNaviDeadFlags[2];                   // _54 (seems to translate the order of killed captains to their ids?)
@@ -361,7 +355,6 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	J3DModelData* mOlimarModel;              // _B0
 	J3DModelData* mLouieModel;               // _B4 (also president model)
 	J3DModelData* mCursorModelData;          // _B8
-	u8 _BC[8];                               // _BC, unused?
 	J3DModelData* mMarkerModelData;          // _C4
 	NaviParms* mNaviParms;                   // _C8
 	CollPartFactory* mCollData;              // _CC

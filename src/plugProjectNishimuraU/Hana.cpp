@@ -5,7 +5,6 @@
 #include "Game/rumble.h"
 #include "Game/ConditionNotStick.h"
 #include "trig.h"
-#include "nans.h"
 
 namespace Game {
 namespace Hana {
@@ -29,14 +28,6 @@ void Obj::onInit(CreatureInitArg* arg)
 	mShadowJoint = mModel->getJoint("kosi");
 	setUnderGround();
 	setupEffect();
-}
-
-/**
- * @note Address: 0x802F3248
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
 }
 
 /**

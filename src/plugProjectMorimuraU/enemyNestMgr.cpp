@@ -5,8 +5,6 @@
 namespace Game {
 namespace Nest {
 
-static const char enemyNestMgrName[] = "enemyNestMgr";
-
 J2DGXColorS10 mMatColor;
 
 /**

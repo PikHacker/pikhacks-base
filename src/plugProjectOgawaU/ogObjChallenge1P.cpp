@@ -3,12 +3,9 @@
 #include "og/Screen/PikminCounter.h"
 #include "trig.h"
 #include "System.h"
-#include "nans.h"
 
 namespace og {
 namespace newScreen {
-
-static const char objChall1PUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 /**
  * @note Address: 0x80327D48

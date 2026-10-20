@@ -14,11 +14,6 @@
 #include "efx2d/efx2dEffect.h"
 #include "Controller.h"
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace kh {
 
 namespace Screen {
@@ -241,8 +236,6 @@ void WorldMap::loadResource()
 	LoadResource::Node* mapNode = gLoadResourceMgr->mountArchive(mapArg);
 	if (mapNode) {
 		arc = mapNode->mArchive;
-	} else {
-		JUT_PANICLINE(278, "failed");
 	}
 	P2ASSERTLINE(279, arc);
 
@@ -1519,10 +1512,6 @@ void WorldMap::changeInfo()
 	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
 
-	u64 unusedtags1[4]  = { 'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02' };
-	u64 unusedtags2[16] = { 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01', 'P1_p_02', 'P1_c_01', 'P1_c_02',
-	                        'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
-
 	u64 floTags[4] = { 'Nca_fl0', 'Nca_fl1', 'Nca_fl2', 'Nca_fl3' };
 
 	mScreenInfo->search('Pc_name')->setMsgID(courseTags[mCurrentCourseIndex]);
@@ -1627,10 +1616,6 @@ void WorldMap::effectFirstTime()
 	u64 tags4[4] = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 }; // Note: this generates some 0s in the rodata, so its place is important
-
-	u64 unusedtags1[4]  = { 'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02' };
-	u64 unusedtags2[16] = { 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01', 'P1_p_02', 'P1_c_01', 'P1_c_02',
-	                        'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
 
 	bool isIncPoko = false;
 	bool isNewOta  = false;

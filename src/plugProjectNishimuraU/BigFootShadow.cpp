@@ -3,8 +3,6 @@
 namespace Game {
 namespace BigFoot {
 
-static const char bigFootShadowName[] = "246-BigFootShadow";
-
 /**
  * @note Address: 0x802C7810
  * @note Size: 0x20C

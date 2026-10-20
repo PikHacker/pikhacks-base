@@ -8,15 +8,6 @@
 #include "Controller.h"
 #include "trig.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace og {
 namespace newScreen {
 

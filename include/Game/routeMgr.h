@@ -113,8 +113,6 @@ struct WayPoint : public JKRDisposer {
 	s16 mNumToLinks;    // _5C
 	s16 mToLinks[8];    // _5E
 	u8 mDoFloorSnap;    // _6E
-	u32 mUnused0;       // _70
-	u8 mUnused1;        // _74
 	s16 mDoorIndex;     // _76
 };
 

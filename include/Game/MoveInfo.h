@@ -25,12 +25,9 @@ struct MoveInfo {
 	    , mVelocity(velocity)
 	    , mRestitution(restitution)
 	{
-		mUnused0           = 0.0f;
 		mIntersectCallback = nullptr;
 		mFloorTriangle     = nullptr;
-		mUnused3           = 0;
 		mDoHardIntersect   = false;
-		mUnused1           = 0;
 		mWallTriangle      = nullptr;
 		mMovingCreature    = nullptr;
 		mMapCode.mContents = 0;
@@ -47,12 +44,9 @@ struct MoveInfo {
 	    , mVelocity(velocity)
 	    , mRestitution(restitution)
 	{
-		mUnused0           = 0.0f;
 		mIntersectCallback = delegate;
 		mFloorTriangle     = nullptr;
-		mUnused3           = 0;
 		mDoHardIntersect   = false;
-		mUnused1           = 0;
 		mWallTriangle      = nullptr;
 		mMovingCreature    = nullptr;
 		mMapCode.mContents = 0;
@@ -69,25 +63,20 @@ struct MoveInfo {
 	Sys::Sphere* mMoveSphere;              // _00
 	Vector3f* mVelocity;                   // _04
 	f32 mRestitution;                      // _08, how elastic to make the collision (1=perfectly elastic, 0=perfectly inelastic)
-	f32 mUnused0;                          // _0C
 	RigidBodyCallback* mIntersectCallback; // _10
 	Creature* mMovingCreature;             // _14
-	u8 mUnused1;                           // _18
 	bool mDoHardIntersect;                 // _19
 	u8 mIntersectType;                     // _1A, see IntersectType enum - always IT_Triangle
 	Vector3f mCylinderAxis;                // _1C, axis for cylinder-like collisions - never used
 	f32 mCylinderHeight;                   // _28, length for cylinder-like collisions - never used
 	f32 mWallThreshold;                    // _2C
 	f32 mFloorThreshold;                   // _30, how vertical does the normal have to be to be considered floor?
-	u8 mUnused2[16];                       // _34
 	Sys::Triangle* mFloorTriangle;         // _44
 	Sys::Triangle* mWallTriangle;          // _48
 	Sys::Triangle* mOtherTriangle;         // _4C, not flat enough to be floor, not vertical enough to be wall
 	Vector3f mFloorNormal;                 // _50, normal to mFloorTriangle
 	Vector3f mWallNormal;                  // _5C, normal to mWallTriangle
 	Vector3f mOtherNormal;                 // _68, normal to mOtherTriangle
-	u8 mUnused3;                           // _74
-	Vector3f mUnusedNormal;                // _78, only set, never used
 	Vector3f mBaseSpherePos;               // _84, the bottom of the move sphere
 	MapCode::Code mMapCode;                // _90
 	TDispTriangleArray* mTriangleArray;    // _94

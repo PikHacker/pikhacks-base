@@ -22,11 +22,8 @@
 #include "Game/Navi.h"
 #include "Game/PikiMgr.h"
 #include "Game/CameraMgr.h"
-#include "nans.h"
 #include "PSMath.h"
 #include "utilityU.h"
-
-static const u32 padding[] = { 0, 0, 0 };
 
 namespace PSM {
 

@@ -40,7 +40,6 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doSetView(int viewportNumber); // _6C (weak)
 	virtual void doViewCalc();                  // _70 (weak)
 	virtual void doSimulation(f32 rate);        // _74 (weak)
-	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual void startFrame();                  // _80
 	virtual void endFrame();                    // _84
 	virtual void doSimpleDraw(Viewport* vp);    // _88 (weak)
@@ -88,7 +87,6 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	TimeMgr* mTimeMgr;         // _40
 	GameSystemMode mMode;      // _44
 	u8 mIsInCave;              // _48
-	u8 mUnused;                // _49
 	bool mIsFrozen;            // _4A
 	u8 mIsPaused;              // _4B, not a bool
 	bool mIsPausedSoft;        // _4C

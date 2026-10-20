@@ -22,16 +22,10 @@
 #include "Game/PikiState.h"
 #include "PSSystem/PSSystemIF.h"
 #include "KandoLib/Choice.h"
-#include "nans.h"
 #include "Game/CPlate.h"
 #include "Screen/Game2DMgr.h"
 #include "utilityU.h"
 #include "JSystem/JUtility/JUTGamePad.h"
-
-int unusedNaviStateArray[] = { 1, 2, 3, 0 }; // ?
-
-static const int unusedNaviStateArray2[] = { 0, 0, 0 };
-static const char unusedNaviStateName[]  = "naviState";
 
 namespace {
 SoundID se_taisos[3]    = { PSSE_PL_WAIT_TAISO_ORIMA, PSSE_PL_WAIT_TAISO_LUGI, PSSE_PL_WAIT_TAISO_SHACHO };
@@ -51,24 +45,6 @@ namespace Game {
 void NaviState::draw2d(J2DGrafContext& graf, int& a2)
 {
 }
-
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0xC
-//  */
-// void NaviState::getBackupStateID()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x94
-//  */
-// void NaviState::playBiku(Navi* navi)
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /**
  * @note Address: N/A
@@ -167,7 +143,6 @@ void NaviFSM::init(Navi* navi)
 	registerState(new NaviDemo_HoleInState);
 	registerState(new NaviPelletState);
 	registerState(new NaviCarryBombState);
-	registerState(new NaviClimbState);
 	registerState(new NaviPathMoveState);
 }
 
@@ -370,7 +345,6 @@ void NaviWalkState::init(Navi* navi, StateArg* stateArg)
 	mAIState        = WALKAI_Control;
 	mIdleTimer      = 3.0f;
 	mTarget         = nullptr;
-	mPosition       = navi->getPosition();
 	mCollisionTimer = 0;
 }
 
@@ -407,8 +381,6 @@ void NaviWalkState::exec(Navi* navi)
 		}
 
 		if (!navi->mController1 || navi->isMovieActor()) {
-			// feels like commented out code here.
-			navi->isMovieActor();
 			return;
 		}
 
@@ -497,8 +469,6 @@ void NaviWalkState::exec(Navi* navi)
 						InteractFue whistle(otherNavi, false, false); // don't combine parties, is NOT new to party
 						navi->stimulate(whistle);
 					}
-
-					otherNavi->getStateID(); // commented out code probably.
 
 					if (otherNavi->mCurrentState->needYChangeMotion()) {
 						otherNavi->mFsm->transit(otherNavi, NSID_Change, nullptr);
@@ -871,7 +841,6 @@ void NaviWalkState::execAI_escape(Navi* navi)
 	mTarget->getBoundingSphere(boundingSphere);
 
 	f32 dist = length - boundingSphere.mRadius;
-	mTarget->isTeki(); // probably some commented out code around here.
 
 	if (dist > 35.0f) {
 		mIdleTimer = 5.0f;
@@ -1273,21 +1242,11 @@ void NaviPunchState::init(Navi* navi, StateArg* stateArg)
 	mIsPunchReady     = false;
 	mNavi             = navi;
 	mTarget           = nullptr;
-	mUnused1C         = 0;
 	mComboCounter     = 0;
 	mIsNextPunchReady = false;
 	mIdleCounter      = 0;
 	mIsTargetHit      = false;
 }
-
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x108
-//  */
-// void NaviPunchState::renzokuInit(Navi* navi)
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /**
  * @note Address: 0x80180EFC
@@ -1385,14 +1344,10 @@ void NaviPunchState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 
 		CI_LOOP(iter)
 		{
-			iter.dump(); // debug
-
 			Creature* creature = static_cast<Creature*>(*iter);
 			if (!creature->isNavi() && creature->mCollTree && creature != navi && creature->isAlive()) {
 				// punchable!
 				mTarget = creature;
-
-				P2DEBUG("%s, %s", creature->getCreatureName(), creature->getCreatureID()); // debug thing probably
 
 				Delegate1<NaviPunchState, CollPart*> delegate(this, hitCallback);
 				creature->mCollTree->checkCollision(hitSphere, &delegate);
@@ -1418,7 +1373,6 @@ void NaviPunchState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 				navi->enableMotionBlend();
 				mIsPunchReady     = false;
 				mTarget           = nullptr;
-				mUnused1C         = 0;
 				mIsNextPunchReady = false;
 				mIsTargetHit      = false;
 
@@ -1656,7 +1610,6 @@ void NaviNukuState::init(Navi* navi, StateArg* stateArg)
 	mDidPluckSE = false;
 	mIsActive   = false;
 	mDidPressA  = false;
-	mUnusedBool = false;
 	navi->mMass = 0.0f;
 }
 
@@ -1714,7 +1667,6 @@ void NaviNukuState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	switch (key.mType) {
 	case KEYEVENT_2:
-		mUnusedBool = true;
 		mCounter--;
 		if (mCounter == 0) {
 			navi->mSoundObj->startSound(PSSE_PL_PULLOUT_PIKI, 0);
@@ -1762,11 +1714,8 @@ void NaviNukuAdjustState::init(Navi* navi, StateArg* stateArg)
 	NaviNukuAdjustStateArg* arg = static_cast<NaviNukuAdjustStateArg*>(stateArg);
 
 	mAngleToItem    = arg->mAngleToItem;
-	mUnusedVelocity = arg->mUnusedVelocity;
-	mUnusedState    = arg->mUnusedState;
 	mPikiHead       = arg->mPikihead;
 	mIsFollowing    = arg->mIsFollowing;
-	mUnusedBool     = false;
 
 	Vector3f diff;
 	diff         = arg->mPikihead->getPosition() - navi->getPosition();
@@ -2074,107 +2023,6 @@ void NaviDopeState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 	if (mUsedDope && keyEvent.mType == KEYEVENT_END) {
 		transit(navi, NSID_Walk, nullptr);
 	}
-}
-
-/**
- * @note Address: 0x801832C8
- * @note Size: 0xE0
- */
-void NaviClimbState::init(Navi* navi, StateArg* stateArg)
-{
-#if defined(VERSION_JP)
-	JUT_PANICLINE(3100, "navi climb\n");
-#else
-	JUT_PANICLINE(3109, "navi climb\n");
-#endif
-
-#if defined(VERSION_JP)
-	P2ASSERTLINE(3103, stateArg);
-#else
-	P2ASSERTLINE(3112, stateArg);
-#endif
-	navi->startMotion(IPikiAnims::HNOBORU, IPikiAnims::HNOBORU, navi, nullptr);
-	navi->enableMotionBlend();
-	mClimbObj = static_cast<ClimbStateArg*>(stateArg)->mObj;
-	mTubePart = mClimbObj->mCollTree->mPart->getChild();
-	prepare(navi);
-}
-
-/**
- * @note Address: 0x801833A8
- * @note Size: 0xBC
- */
-void NaviClimbState::prepare(Navi* navi)
-{
-	navi->endStick();
-	navi->startStick(mClimbObj, mTubePart);
-	Sys::Tube tube;
-	mTubePart->getTube(tube);
-	tube.getAxisVector(mClimbAxis);
-	mClimbDist = tube.mStartPos.distance(tube.mEndPos);
-}
-
-/**
- * @note Address: 0x80183464
- * @note Size: 0x2BC
- */
-void NaviClimbState::exec(Navi* navi)
-{
-	navi->mVelocity = mClimbAxis * 100.0f * navi->mController1->mMStick.mYPos;
-	navi->move(sys->mDeltaTime);
-	if (navi->mController1->getButton() & Controller::PRESS_B) {
-		transit(navi, NSID_Walk, nullptr);
-	}
-
-	f32 climbY = navi->mClimbingPosition.y;
-
-	Sys::Sphere naviSphere;
-	navi->getBoundingSphere(naviSphere);
-
-	f32 factor = 4.0f / mClimbDist;
-	if (climbY > 1.0f + factor) {
-		CollPart* child = mTubePart->getChild();
-		if (child && (child->isTube() || child->isTubeTree())) {
-			mTubePart = child;
-			navi->endStick();
-			navi->startStick(mClimbObj, mTubePart);
-
-			Sys::Tube tube;
-			mTubePart->getTube(tube);
-			tube.getAxisVector(mClimbAxis);
-			mClimbDist = tube.mStartPos.distance(tube.mEndPos);
-			return;
-		}
-
-		transit(navi, NSID_Walk, nullptr);
-		return;
-	}
-
-	if (climbY < -factor) {
-		CollPart* parent = mTubePart->getParent();
-		if (parent && (parent->isTube() || parent->isTubeTree())) {
-			mTubePart = parent;
-			navi->endStick();
-			navi->startStick(mClimbObj, mTubePart);
-
-			Sys::Tube tube;
-			mTubePart->getTube(tube);
-			tube.getAxisVector(mClimbAxis);
-			mClimbDist = tube.mStartPos.distance(tube.mEndPos);
-			return;
-		}
-
-		transit(navi, NSID_Walk, nullptr);
-	}
-}
-
-/**
- * @note Address: 0x80183720
- * @note Size: 0x24
- */
-void NaviClimbState::cleanup(Navi* navi)
-{
-	navi->endStick();
 }
 
 /**

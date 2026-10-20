@@ -130,7 +130,6 @@ struct J2DTextBox : public J2DPane {
 	u8 mFlags;                       // _130
 	bool mIsTextFontOwned;           // _131
 	s16 mStringLength;               // _132
-	u8 _134[4];                      // _134
 };
 
 // Size: 0x148
@@ -178,7 +177,6 @@ struct J2DTextBoxEx : public J2DTextBox {
 	J2DMaterial* mMaterial;               // _138
 	u16 mAnimVisibilityIndex;             // _13C
 	u16 mMaterialID;                      // _13E
-	u8 _140;                              // _140
 	J2DAnmVisibilityFull* mAnmVisibility; // _144
 };
 

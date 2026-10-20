@@ -147,7 +147,6 @@ struct Piki : public FakePiki {
 	virtual void onInit(CreatureInitArg* settings);                 // _30
 	virtual void onKill(CreatureKillArg* settings);                 // _34
 	virtual void doAnimation();                                     // _3C
-	virtual void doDirectDraw(Graphics& gfx);                       // _50
 	virtual void inWaterCallback(WaterBox* wb);                     // _84
 	virtual void outWaterCallback();                                // _88
 	virtual bool isAlive();                                         // _A8
@@ -176,7 +175,6 @@ struct Piki : public FakePiki {
 	virtual int getDownfloorMass();           // _1BC
 	virtual bool isPikmin();                  // _1C0
 	virtual void doColorChange();             // _1C4
-	virtual void doDebugDL();                 // _1C8
 	virtual void update();                    // _1CC
 	virtual void wallCallback(Vector3f& pos); // _204
 	virtual void startMotion(int anim1Idx, int anim2Idx, SysShape::MotionListener* ml1,
@@ -271,7 +269,6 @@ struct Piki : public FakePiki {
 	Vector3f mLeafStemPosition;       // _26C
 	SysShape::Joint* mHappaJoint1;    // _278
 	efx::Context* mEffectsContext;    // _27C
-	u8 _280[4];                       // _280
 	s16 mIsDoped;                     // _284
 	f32 mDopeTime;                    // _288
 	PikiFSM* mFsm;                    // _28C

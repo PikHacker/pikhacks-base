@@ -22,17 +22,12 @@
 #include "id32.h"
 #include "mapCode.h"
 #include "sysMath.h"
-#include "types.h"
-#include "nans.h"
 #include "Game/Entities/ItemHole.h"
 #include "SoundID.h"
 #include "PSSystem/PSSystemIF.h"
 
 namespace Game {
 namespace ItemHole {
-
-static const int unusedArray[]         = { 0, 0, 0 };
-static const char unusedItemHoleName[] = "itemHole";
 
 Mgr* mgr;
 
@@ -362,28 +357,6 @@ void Item::doAI()
 			PSPlayCaveHoleSound(mSoundObj);
 		}
 	}
-}
-
-/**
- * @note Address: 0x801D2630
- * @note Size: 0xBC
- */
-void Item::doDirectDraw(Graphics& gfx)
-{
-	Matrixf v1;
-	gfx.initPrimDraw(nullptr);
-	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, v1.mMatrix.mtxView);
-
-	Vector3f translation = v1.getTranslation();
-	translation.y += 10.0f;
-	v1.setTranslation(translation);
-
-	GXSetLineWidth(40, GX_TO_ZERO);
-	gfx.drawAxis(50.0f, &v1);
-	gfx.initPrimDraw(nullptr);
-	Vector3f infoPos(mPosition.x, mPosition.y + 40.0f, mPosition.z);
-
-	drawLODInfo(gfx, infoPos);
 }
 
 /**

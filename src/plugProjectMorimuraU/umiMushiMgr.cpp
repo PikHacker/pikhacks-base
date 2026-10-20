@@ -5,8 +5,6 @@
 namespace Game {
 namespace UmiMushi {
 
-static const char umiMushiMgrName[] = "umiMushiMgr";
-
 /**
  * @note Address: 0x8038273C
  * @note Size: 0x50

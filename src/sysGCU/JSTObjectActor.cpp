@@ -7,9 +7,6 @@
 #include "Viewport.h"
 #include "nans.h"
 
-static const u32 filler[]    = { 0, 0, 0 };
-static const char filename[] = "JSTObjectActor";
-
 namespace Game {
 
 namespace P2JST {

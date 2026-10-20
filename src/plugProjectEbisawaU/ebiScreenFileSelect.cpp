@@ -16,21 +16,15 @@ namespace Screen {
 
 namespace FileSelect {
 
-static const char className[] = "ebiScreenFileSelect";
-
 /*  * @note Address: N/A
  * @note Size: 0xB8
  */
 void TScreenDataWindow_new::setArchive(JKRArchive* arc)
 {
-	sys->heapStatusStart("TScreenDataWindow::setArchive--set__blo", nullptr);
 	mScreenObj = new P2DScreen::Mgr;
 	mScreenObj->set("file_select_dw_new.blo", 0x1100000, arc);
-	sys->heapStatusEnd("TScreenDataWindow::setArchive--set__blo");
 
-	sys->heapStatusStart("TScreen_FS_scene_open::setArchive--callback_message", nullptr);
 	E2DPane_setTreeCallBackMessage(mScreenObj, mScreenObj);
-	sys->heapStatusEnd("TScreen_FS_scene_open::setArchive--callback_message");
 }
 
 /**
@@ -60,14 +54,10 @@ void TScreenDataWindow_new::setData(s32 fileID, u64 mesg)
  */
 void TScreenDataWindow_data::setArchive(JKRArchive* arc)
 {
-	sys->heapStatusStart("TScreenDataWindow::setArchive--set__blo", nullptr);
 	mScreenObj = new P2DScreen::Mgr;
 	mScreenObj->set("file_select_dw_data.blo", 0x1100000, arc);
-	sys->heapStatusEnd("TScreenDataWindow::setArchive--set__blo");
 
-	sys->heapStatusStart("TScreen_FS_scene_open::setArchive--callback_message", nullptr);
 	E2DPane_setTreeCallBackMessage(mScreenObj, mScreenObj);
-	sys->heapStatusEnd("TScreen_FS_scene_open::setArchive--callback_message");
 
 	og::Screen::setCallBack_CounterRV(mScreenObj, 'Pln01', 'Pln02', 'Pln05', &mPokos, 10, 1, false, arc);
 	mCounterA = og::Screen::setCallBack_CounterRV(mScreenObj, 'Ptr01', 'Ptr02', 'Ptr03', &mTreasures, 3, 1, false, arc);
@@ -126,10 +116,6 @@ void TScreenDataWindow_data::setData(s32 fileID, u32 pokos, u32 treasures, u32 c
 	J2DPane* cavetreasure = E2DScreen_searchAssert(mScreenObj, 'Panac');
 	J2DPane* cavename     = E2DScreen_searchAssert(mScreenObj, 'Tananame');
 	u64 tag               = og::newScreen::caveIDtoMsgID(mCaveID);
-	char buf2[8];
-	char buf[8];
-	EUTDebug_Tag32ToName(mCaveID, buf);
-	EUTDebug_Tag64ToName(tag, buf2);
 	if (tag == 0) {
 		cavetreasure->hide();
 	} else {
@@ -191,12 +177,10 @@ TMainScreen::TMainScreen()
  */
 void TMainScreen::loadResource()
 {
-	sys->heapStatusStart("TScreenFileSelect::loadResource", nullptr);
 	char path[PATH_MAX];
 	og::newScreen::makeLanguageResName(path, "file_select.szs");
 	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(255, arc);
-	sys->heapStatusEnd("TScreenFileSelect::loadResource");
 	setArchive(arc);
 }
 
@@ -207,12 +191,9 @@ void TMainScreen::loadResource()
 void TMainScreen::doSetArchive(JKRArchive* archive)
 {
 	JKRArchive* const arc = archive;
-	sys->heapStatusStart("TScreenFileSelect::setArchive", nullptr);
 
-	sys->heapStatusStart("TScreenFileSelect::setArchive--set__blo", nullptr);
 	mMainScreen = new P2DScreen::Mgr_tuning;
 	mMainScreen->set("file_select.blo", 0x1100000, arc);
-	sys->heapStatusEnd("TScreenFileSelect::setArchive--set__blo");
 
 	mNewScreen.setArchive(arc);
 	mDataScreen.setArchive(arc);
@@ -289,9 +270,7 @@ void TMainScreen::doSetArchive(JKRArchive* archive)
 	setMsgID_('5479_00', '5479_00', '5479_00'); // "Choose a Ship's Log."
 #endif
 
-	sys->heapStatusStart("TScreen_FS_scene_open::setArchive--callback_message", nullptr);
 	E2DPane_setTreeCallBackMessage(mMainScreen, mMainScreen);
-	sys->heapStatusEnd("TScreen_FS_scene_open::setArchive--callback_message");
 	mMainScreen->addCallBackPane(mMainScreen, &mAnimOpenScreenA);
 	mMainScreen->addCallBackPane(mMainScreen, &mAnimOpenScreenB);
 	for (int i = 0; i < 3; i++) {
@@ -396,8 +375,6 @@ void TMainScreen::doSetArchive(JKRArchive* archive)
 	                             nullptr, nullptr);
 	P2ASSERTLINE(518, file);
 	mParticleResource = new JPAResourceManager(file, JKRGetCurrentHeap());
-
-	sys->heapStatusEnd("TScreenFileSelect::setArchive");
 }
 
 /**

@@ -158,26 +158,6 @@ struct ClimbStateArg : public StateArg {
 	Creature* mObj; // _00
 };
 
-struct NaviClimbState : public NaviState {
-	inline NaviClimbState()
-	    : NaviState(NSID_Climb)
-	{
-	}
-
-	virtual void init(Navi*, StateArg*); // _08
-	virtual void exec(Navi*);            // _0C
-	virtual void cleanup(Navi*);         // _10
-
-	void prepare(Navi*);
-
-	// _00     = VTBL
-	// _00-_10 = NaviState
-	Vector3f mClimbAxis; // _10
-	f32 mClimbDist;      // _1C
-	Creature* mClimbObj; // _20
-	CollPart* mTubePart; // _24
-};
-
 struct NaviContainerArg : public StateArg {
 	inline NaviContainerArg(Onyon* onyon)
 	    : mOnyon(onyon)
@@ -533,8 +513,6 @@ struct NaviNukuAdjustStateArg : public StateArg {
 	}
 
 	f32 mAngleToItem;              // _00
-	Vector3f mUnusedVelocity;      // _04
-	int mUnusedState;              // _10
 	ItemPikihead::Item* mPikihead; // _14
 	bool mIsFollowing;             // _18
 };
@@ -557,14 +535,10 @@ struct NaviNukuAdjustState : public NaviState {
 	// _00-_10 = NaviState
 	f32 mAngleToPiki;               // _10
 	Vector3f mTargetPosition;       // _14
-	bool mUnusedBool;               // _20
 	Vector3f mNaviPosition;         // _24
 	f32 mAngleToItem;               // _30
-	Vector3f mUnusedVelocity;       // _34
-	int mUnusedState;               // _40
 	ItemPikihead::Item* mPikiHead;  // _44
 	bool mIsFollowing;              // _48
-	u8 _49[0x3];                    // _49, unknown/buffer
 	u8 mIsMoving;                   // _4C
 	Vector3f mCollidedPikiPosition; // _50
 	u8 mWallHitCounter;             // _5C
@@ -592,7 +566,6 @@ struct NaviNukuState : public NaviState {
 	bool mDidPluckSE; // _12
 	bool mDidPressA;  // _13
 	bool mIsActive;   // _14
-	bool mUnusedBool; // _15
 	s16 mAnimID;      // _16
 	bool mIsFollower; // _18
 };
@@ -715,12 +688,10 @@ struct NaviPunchState : public NaviState {
 	bool mIsPunchReady;     // _10, just gets set and unset, doesn't get checked
 	Creature* mTarget;      // _14
 	Navi* mNavi;            // _18
-	u8 mUnused1C;           // _1C, unused, just set to 0, probably some leftover debug thing
 	bool mIsNextPunchReady; // _1D
 	u8 mComboCounter;       // _1E, 0=first punch, 1=second punch, 2=final punch (big one for rocket fist)
 	bool mIsTargetHit;      // _1F, just gets set and unset, doesn't get checked
 	u8 mIdleCounter;        // _20
-	u8 mUnused21[0x3];      // _21, padding
 	bool mIsFollowing;      // _24, is navi following another navi
 	u32 mNextStateID;       // _28
 };
@@ -876,7 +847,6 @@ struct NaviWalkState : public NaviState {
 	u8 mAIState;        // _10, see AIState enum
 	f32 mIdleTimer;     // _14, counts down to 0; once at 0, do idle animation.
 	Creature* mTarget;  // _18
-	Vector3f mPosition; // _1C, gets set and never used?
 	bool mIsEscapeCCW;  // _28, do we run counter clockwise (true) or clockwise (false) around enemy? flips on wall hit
 	u8 mEscapeTimer;    // _29, counts number of frames since starting escaping
 	u8 mAnimIdx;        // _2A, anim id for current AI_animation

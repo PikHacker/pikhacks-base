@@ -179,32 +179,6 @@ struct OlimarData {
 	void write(Stream&);
 	void read(Stream&);
 
-	/**
-	 * This function is never used for anything that gets seen and should be ignored for modding
-	 * Seemingly the pause map screen would have checked if you have the treasure radar/napsack unlocked
-	 */
-	static inline int getDetectorFlags(bool hasPrototypeDetector, bool hasNapsack)
-	{
-		int mapType;
-		bool flag = false;
-		if (hasPrototypeDetector && hasNapsack) {
-			flag = true;
-		}
-
-		if (flag) {
-			mapType = 3;
-		} else if (hasPrototypeDetector) {
-			mapType = 1;
-		} else {
-			mapType = 0;
-			if (hasNapsack) {
-				mapType = 2;
-			}
-		}
-
-		return mapType;
-	}
-
 	BitFlag<u16> mFlags; // _00
 };
 

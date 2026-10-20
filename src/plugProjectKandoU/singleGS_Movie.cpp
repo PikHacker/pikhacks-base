@@ -1,54 +1,5 @@
 #include "Game/SingleGame.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "nans.h"
-
-static struct DummyPlayer {
-	inline DummyPlayer(int count, f32 v)
-	    : mCount(count)
-	    , _04(v)
-	{
-	}
-	inline void initMsgs(const char** ptr)
-	{
-		mMsgs  = ptr;
-		mCount = 0;
-		while (true) {
-			if (ptr[mCount] == nullptr) {
-				break;
-			}
-			mCount++;
-		}
-	}
-	int mCount;         // _00
-	f32 _04;            // _04, unknown
-	const char** mMsgs; // _08
-} dummyPlayer(0, 480.0f);
-
-static int idk[4]                    = { 1, 2, 3, 0 };
-const char* opening_strings[]        = { "Opening Movie",
-                                         "",
-                                         "",
-                                         "-- Director --",
-                                         "Geshifumi Hino",
-                                         "Mamamichi Abe",
-                                         "",
-                                         "",
-                                         "-- Main Programmer --",
-                                         "Tepen-kei",
-                                         "",
-                                         "",
-                                         "",
-                                         "",
-                                         "",
-                                         "",
-                                         "",
-                                         "(C) Nintendo",
-                                         nullptr };
-const char* ending_strings[]         = { "Ending Movie", "", "", "", "", "", "(C) Ninteno" };
-const char* endingcomplete_strings[] = { "Ending(Complete) Movie", "", "", "", "", "", "(C) Ninteno" };
-const char* staffroll_strings[]
-    = { "Pikmin2", "", "", "* Director", "Geshifumi Hino", "Mamamichi Abe", "", "* Otakara Design", "Hideo Ota", "", "(C) Ninteno" };
-const char* mezase_strings[] = { "Mezase Complete Movie", "", "", "", "", "", "(C) Ninteno" };
 
 namespace Game {
 namespace SingleGame {
@@ -84,27 +35,6 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 	mMoviePlayer->init(nullptr);
 	mIsMovieLoaded = false;
 	mMoviePlayer->load(THPPlayer::OPENING_GameStart);
-
-	// even though its already set to open the GameStart thp, sure
-	P2ASSERTLINE(223, arg);
-	mMovieID = static_cast<MovieArg*>(arg)->mMovieIndex;
-	switch (mMovieID) {
-	case THPPlayer::OPENING_GameStart:
-		dummyPlayer.initMsgs(opening_strings);
-		break;
-	case THPPlayer::OPENING_PostDebtStart:
-		dummyPlayer.initMsgs(ending_strings);
-		break;
-	case THPPlayer::ENDING_PayDebt:
-		dummyPlayer.initMsgs(endingcomplete_strings);
-		break;
-	case THPPlayer::ENDING_AllTreasures:
-		dummyPlayer.initMsgs(staffroll_strings);
-		break;
-	case THPPlayer::STAFF_ROLL:
-		dummyPlayer.initMsgs(mezase_strings);
-		break;
-	}
 }
 
 /**

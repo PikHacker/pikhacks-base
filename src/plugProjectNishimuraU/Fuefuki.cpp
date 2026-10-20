@@ -108,23 +108,6 @@ void Obj::doUpdate()
 }
 
 /**
- * @note Address: 0x8029C4E4
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x8029C4E8
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
-
-/**
  * @note Address: 0x8029C508
  * @note Size: 0x4C
  */

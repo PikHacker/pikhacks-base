@@ -6,7 +6,6 @@
 #include "Game/flockMgr.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DSys.h"
-#include "nans.h"
 
 namespace Game {
 /**

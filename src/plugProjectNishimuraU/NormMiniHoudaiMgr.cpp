@@ -3,8 +3,6 @@
 namespace Game {
 namespace NormMiniHoudai {
 
-static const char normMiniHoudaiMgrName[] = "246-NormMiniHoudaiMgr";
-
 /**
  * @note Address: 0x803011F8
  * @note Size: 0x50

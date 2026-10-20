@@ -3,8 +3,6 @@
 namespace Game {
 namespace Jigumo {
 
-static const char jigumoMgrName[] = "jigumoMgr";
-
 /**
  * @note Address: 0x803688CC
  * @note Size: 0x50

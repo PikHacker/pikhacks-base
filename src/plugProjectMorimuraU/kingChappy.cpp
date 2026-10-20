@@ -14,14 +14,10 @@
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 namespace Game {
 namespace KingChappy {
 Obj* curK;
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "kingChappy";
 
 /**
  * @note Address: 0x8035CCE8
@@ -237,23 +233,6 @@ void Obj::doUpdate()
 	mCollTree->mPart->setScale(mScaleModifier);
 
 	mFsm->exec(this);
-}
-
-/**
- * @note Address: 0x8035E2C0
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x8035E2C4
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

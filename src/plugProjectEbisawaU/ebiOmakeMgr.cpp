@@ -4,11 +4,6 @@
 #include "PSSystem/PSSystemIF.h"
 #include "og/newScreen/ogUtil.h"
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace ebi {
 namespace Omake {
 
@@ -55,7 +50,6 @@ void FSMState_OmakeScreen::do_init(TMgr* mgr, Game::StateArg*)
 		Screen::ArgOpenOmake arg(sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed),
 		                         sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_AllTreasures),
 		                         sys->getPlayCommonData()->isPerfectChallenge());
-		arg.mUnusedVal = -1;
 
 		mgr->mOmake.openScreen(&arg);
 	} else if (mgr->mOmake.mState2 == 1) {
@@ -215,8 +209,6 @@ TMgr::TMgr()
  */
 void TMgr::loadResource()
 {
-	sys->heapStatusStart("TOmakeMgr::loadResource", nullptr);
-
 	char buf[PATH_MAX];
 	og::newScreen::makeLanguageResName(buf, "omake.szs");
 	JKRArchive* arc = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
@@ -226,7 +218,6 @@ void TMgr::loadResource()
 	mOmakeCardE.setArchive(arc);
 	mOmakeGame.setArchive(arc);
 
-	sys->heapStatusEnd("TOmakeMgr::loadResource");
 	gCardEMgr->loadResource();
 }
 

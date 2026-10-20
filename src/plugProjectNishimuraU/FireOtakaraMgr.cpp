@@ -4,8 +4,6 @@
 namespace Game {
 namespace FireOtakara {
 
-static const char fireOtakaraMgrName[] = "246-FireOtakaraMgr";
-
 namespace {
 static const char* cOtakaraChangeTexName = "/enemy/data/FireOtakara/otakara_red_s3tc.bti";
 } // namespace

@@ -122,14 +122,10 @@ ObjAnaDemo::ObjAnaDemo(const char* name)
 	mScreen            = nullptr;
 	mMenuMgr           = nullptr;
 	mAnimGroup         = nullptr;
-	mUnusedObj         = nullptr;
 	mMenuSelTitle      = nullptr;
 	mMenuSelYes        = nullptr;
 	mMenuSelNo         = nullptr;
-	mUnused0           = 0.0f;
-	mUnused1           = 0;
 	mPaneError         = nullptr;
-	mUnused2           = 0;
 	mSwingMovePosition = 0.0f;
 	mCloseTimer        = 0.0f;
 
@@ -544,7 +540,6 @@ bool ObjAnaDemo::doUpdate()
 						mCloseTimer = 0.0f;
 						ogSound->setDecide();
 					} else {
-						mUnused0 = 0.5f;
 						ogSound->setDecide();
 						mState      = ANADEMOSTATE_Exit;
 						mCloseTimer = 0.0f;

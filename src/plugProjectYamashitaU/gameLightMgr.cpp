@@ -6,15 +6,11 @@
 #include "Game/GameSystem.h"
 #include "Game/gamePlayData.h"
 #include "Viewport.h"
-#include "nans.h"
 
 namespace Game {
 
 template <class T>
 T complement(T start, T end, T ratio);
-
-static const int unusedGameLightArray[] = { 0, 0, 0 };
-static const char unusedGameLightName[] = "gameLightMgr";
 
 /**
  * @note Address: N/A
@@ -790,8 +786,6 @@ void GameLightMgr::set(Graphics& gfx)
 	LightMgr::set(gfx);
 	mFogMgr->set(gfx);
 }
-
-static const char unusedIniPath[] = "/user/Yamashita/testResource/light/light.ini";
 
 /**
  * @note Address: 0x80121FA8

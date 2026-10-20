@@ -6,13 +6,9 @@
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "PSSystem/PSSystemIF.h"
 #include "Radar.h"
-#include "nans.h"
 
 namespace Game {
 namespace ItemBigFountain {
-
-static const int unusedArray[]   = { 0, 0, 0 };
-static const char unusedBFName[] = "itemBigFountain";
 
 Mgr* mgr;
 
@@ -403,30 +399,6 @@ void Item::doAI()
 }
 
 /**
- * @note Address: 0x801ED0C0
- * @note Size: 0x16C
- */
-void Item::doDirectDraw(Graphics& gfx)
-{
-	gfx.initPrimDraw(nullptr);
-	gfx.mDrawColor = Color4(200, 250, 200, 255);
-	gfx.drawSphere(mBoundingSphere.mPosition, mBoundingSphere.mRadius);
-
-	PerspPrintfInfo printInfo;
-	gfx.initPerspPrintf(gfx.mCurrentViewport);
-
-	printInfo.mColorA = Color4(200, 0, 0, 255);
-	printInfo.mColorB = Color4(200, 200, 200, 255);
-	printInfo.mScale  = 1.2f;
-
-	Vector3f pos = mPosition;
-	pos.y += 120.0f;
-	const char* status = (isAlive()) ? "alv" : "ded";
-
-	gfx.perspPrintf(printInfo, pos, "%s %s", mLod.isFlag(AILOD_IsVisible) ? "vis" : "x", status);
-}
-
-/**
  * @note Address: 0x801ED22C
  * @note Size: 0x38
  */
@@ -442,12 +414,6 @@ void Item::updateBoundSphere()
  */
 void Item::doSimulation(f32)
 {
-}
-
-// this is here to fix the weak function ordering. - HP
-static void fakeFunc(Item* item)
-{
-	item->FSMItem::doAI();
 }
 
 /**

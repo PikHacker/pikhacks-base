@@ -10,11 +10,6 @@
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "PSM/Scene.h"
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace Demo {
 namespace {
 
@@ -64,17 +59,10 @@ Section::~Section()
  */
 void Section::init()
 {
-	sys->heapStatusStart("TitleSection::init", nullptr);
-
-	sys->heapStatusStart("JMANewSinTable", nullptr);
-	sys->heapStatusEnd("JMANewSinTable");
-
 	HIORootNode* root = new HIORootNode(this);
 	initHIO(root);
 
-	sys->heapStatusStart("frameBuffer", nullptr);
 	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);
-	sys->heapStatusEnd("frameBuffer");
 
 	mController = new Controller(JUTGamePad::PORT_0);
 

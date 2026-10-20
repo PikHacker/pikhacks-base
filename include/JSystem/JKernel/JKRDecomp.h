@@ -35,7 +35,6 @@ struct JKRDecompCommand {
 	JKRDecompCommand();
 	~JKRDecompCommand();
 
-	u8 _00[4];                    // _00, unknown
 	u8* mSourceBuffer;            // _04
 	u8* mDestBuffer;              // _08
 	u32 mSourceLength;            // _0C

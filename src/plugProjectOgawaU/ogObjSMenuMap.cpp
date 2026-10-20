@@ -8,9 +8,6 @@
 #include "Game/CameraMgr.h"
 #include "Game/Cave/RandMapMgr.h"
 #include "Radar.h"
-#include "nans.h"
-
-static const u32 padding[] = { 0, 0, 0 };
 
 namespace og {
 namespace newScreen {
@@ -332,9 +329,6 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 
 			u64 tag             = map_icon_tag[objType];
 			J2DPictureEx* cPane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mIconScreen, tag));
-			cPane->getTypeID(); // probably debug
-			char iconName[16];
-			og::Screen::TagToName(tag, iconName); // also probably debug
 
 			// set up relevant map icons
 			switch (objType) {

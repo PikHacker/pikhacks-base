@@ -1,6 +1,5 @@
 #include "og/Screen/DispMember.h"
 #include "og/newScreen/SMenu.h"
-#include "nans.h"
 
 namespace og {
 namespace newScreen {

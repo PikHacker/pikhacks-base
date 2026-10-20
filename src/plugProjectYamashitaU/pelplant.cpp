@@ -16,27 +16,6 @@ static f32 sLODRadius[4] = { 45.0f, 60.0f, 103.0f, 133.0f }; // one, five, ten, 
 } // namespace Pelplant
 } // namespace Game
 
-static const char* unused[] = { __FILE__, "/enemy/data/pelplant", "/enemy/parm/pelplant" };
-
-static f32 negSin(f32 x)
-{
-	return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first;
-}
-static f32 posSin(f32 x)
-{
-	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first;
-}
-
-// Custom version of pikmin2_sinf from trig.h
-inline f32 pikmin2_sinf_(f32 x)
-{
-	if (x < 0.0f) {
-		return negSin(x);
-	} else {
-		return posSin(x);
-	}
-}
-
 namespace Game {
 namespace Pelplant {
 /**
@@ -45,7 +24,7 @@ namespace Pelplant {
  */
 f32 BlendAccelerationFunc::getValue(f32 t)
 {
-	f32 sinTheta = pikmin2_sinf_(TAU * (3.0f * -t));
+	f32 sinTheta = pikmin2_sinf(TAU * (3.0f * -t));
 	f32 value    = ((0.5f * (1.0f - t)) * sinTheta) + t;
 
 	if (value > 1.0f) {
@@ -202,38 +181,6 @@ void Pelplant::Obj::updateLODSphereRadius(int size)
 }
 
 /**
- * @note Address: 0x80108980
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x80108984
- * @note Size: 0x18C
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-	if (C_PARMS->mFlags[0].typeView & 1) {
-		gfx.initPerspPrintf(gfx.mCurrentViewport);
-
-		PerspPrintfInfo info;
-		Vector3f pos(mPosition.x, 100.0f + mPosition.y, mPosition.z);
-
-		info.mColorA = Color4(0xC8, 0xC8, 0xFF, 0xC8);
-		info.mColorB = Color4(0x64, 0x64, 0xFF, 0xC8);
-		gfx.perspPrintf(info, pos, "FARM_POW(%d) Grow%s", mFarmPow, isPelFlag(PELPLANTFLAG_Growing) ? "on" : "off");
-
-		pos.y += 16.0f;
-		info.mColorA = Color4(0xFF, 0xC8, 0xFF, 0xC8);
-		info.mColorB = Color4(0xC8, 0x64, 0xFF, 0xC8);
-		gfx.perspPrintf(info, pos, "%s %4.2f", mFsm->getCurrName(this), mGrowTimer);
-	}
-}
-
-/**
  * @note Address: 0x80108B10
  * @note Size: 0xC0
  */
@@ -326,8 +273,6 @@ void Obj::getNeckScale(Vector3f* scale)
  */
 void Obj::doAnimation()
 {
-	sys->mTimers->_start("zama", true);
-
 	f32 headScale = getHeadScale();
 
 	Obj::sCurrentObj = this;
@@ -362,8 +307,6 @@ void Obj::doAnimation()
 		mat.makeSRT(scale, rotation, translation);
 		mPellet->updateCapture(mat);
 	}
-
-	sys->mTimers->_stop("zama");
 }
 
 /**

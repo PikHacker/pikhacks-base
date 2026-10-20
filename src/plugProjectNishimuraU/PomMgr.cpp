@@ -5,13 +5,9 @@
 #include "Game/gameStat.h"
 #include "Game/Piki.h"
 #include "JSystem/JUtility/JUTNameTab.h"
-#include "nans.h"
 
 namespace Game {
 namespace Pom {
-
-static const int somePomArray[] = { 0, 0, 0 };
-static const char pomMgrName[]  = "246-PomMgr";
 
 /**
  * @note Address: 0x80253E8C

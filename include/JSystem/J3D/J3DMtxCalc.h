@@ -103,7 +103,6 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 
 	// _00 = VTBL
 	// _04 = J3DAnmTransform*
-	u8 _08[4]; // _08
 };
 
 template <typename Calc>

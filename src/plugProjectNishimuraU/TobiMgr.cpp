@@ -3,8 +3,6 @@
 namespace Game {
 namespace Tobi {
 
-static const char tobiMgrName[] = "246-TobiMgr";
-
 /**
  * @note Address: 0x80269448
  * @note Size: 0x50

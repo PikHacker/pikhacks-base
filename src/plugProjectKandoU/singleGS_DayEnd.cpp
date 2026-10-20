@@ -20,10 +20,6 @@
 #include "PikiAI.h"
 #include "Iterator.h"
 #include "utilityU.h"
-#include "nans.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "singleGS_DayEnd";
 
 namespace Game {
 namespace SingleGame {

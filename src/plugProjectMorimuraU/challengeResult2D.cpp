@@ -11,8 +11,6 @@
 #include "Game/gameChallenge2D.h"
 #include "efx2d/efx2dEffect.h"
 
-static const char name[] = "challengeResult2D";
-
 namespace Morimura {
 
 bool TChallengeResult::mForceDemoStart       = false;

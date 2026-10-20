@@ -34,7 +34,6 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	virtual void doSetView(int viewportNumber); // _6C (weak, thunk at _3C)
 	virtual void doViewCalc();                  // _70 (weak, thunk at _40)
 	virtual void doSimulation(f32 timeStep);    // _74 (weak, thunk at _44)
-	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak, thunk at _48)
 
 	virtual void resetMgr(); // _80 (weak, thunk at _54)
 	virtual void clearMgr()  // _84 (weak)
@@ -68,7 +67,6 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 template <typename T>
 MonoObjectMgr<T>::MonoObjectMgr()
 {
-	_18          = 1;
 	mMax         = 0;
 	mActiveCount = 0;
 	mArray       = nullptr;
@@ -185,16 +183,6 @@ void MonoObjectMgr<T>::doSimulation(f32 timeStep) // _74 (weak, thunk at _44)
 	for (int i = 0; i < mMax; i++) {
 		if (mOpenIds[i] == false) {
 			mArray[i].doSimulation(timeStep);
-		}
-	}
-}
-
-template <typename T>
-void MonoObjectMgr<T>::doDirectDraw(Graphics& gfx) // _78 (weak, thunk at _48)
-{
-	for (int i = 0; i < mMax; i++) {
-		if (mOpenIds[i] == false) {
-			mArray[i].doDirectDraw(gfx);
 		}
 	}
 }

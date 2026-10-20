@@ -25,14 +25,8 @@
 #include "PSGame/PikScene.h"
 #include "PSM/Scene.h"
 #include "Splitter.h"
-#include "nans.h"
 
 static int sParentHeapFreeSize;
-
-static const int unusedArray[] = { 0, 0, 0 };
-static const char name[]       = "SingleGS_Zukan";
-
-static int unusedArray2[] = { 1, 2, 3, 0 };
 
 namespace {
 const char* sDirName[4] = { "tutorial", "forest", "yakushima", "last" };
@@ -171,11 +165,6 @@ void Camera::startVibration(int type)
  */
 void Camera::debugDraw(Graphics& gfx)
 {
-	OSReport("radius:%6.3f");
-	OSReport("angle :%6.3f");
-	OSReport("height:%6.3f");
-	OSReport("fovy  :%6.3f");
-	mHorizontalAngle = 30.0f;
 	// just to line stuff up.
 }
 
@@ -551,9 +540,6 @@ void ZukanState::init(SingleGameSection* game, StateArg* arg)
 	gameSystem->mTimeMgr->resetFlag(1);
 }
 
-static const char* const modeNames[9]
-    = { "StartTeki", "StartPellet", "ModeChangeToTeki", "Teki", "ChangeTeki", "ModeChangeToPellet", "Pellet", "ChangePellet", "None" };
-
 /**
  * @note Address: N/A
  * @note Size: 0xE4
@@ -923,10 +909,6 @@ void ZukanState::createEnemy(int id)
  */
 void ZukanState::createItem(int)
 {
-	OSReport("READY:%d Enemy:%d Item:%d");
-	OSReport("enemy:%d item:%d");
-	OSReport("heapA %d");
-	OSReport("heapB %d");
 	// UNUSED FUNCTION
 }
 
@@ -1442,7 +1424,6 @@ void ZukanState::dvdloadA()
 void ZukanState::createTeki(int)
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Objects* scene = static_cast<PSM::Scene_Objects*>(mgr->getChildScene());
 	scene->detachObjMgr();
 
@@ -1477,7 +1458,6 @@ void ZukanState::dvdloadB_common()
 		}
 	}
 	mHeapSize = mMainHeap->getFreeSize();
-	OSReport("\n");
 	OSReport("FreeSizeA :%d \n", mHeapSize);
 	mCurrObjHeap = JKRExpHeap::create(mMainHeap->getFreeSize(), mMainHeap, true);
 	mCurrObjHeap->becomeCurrentHeap();
@@ -1495,9 +1475,7 @@ void ZukanState::dvdloadB_teki()
 {
 	dvdloadB_common();
 	if (mCurrentEnemyIndex == Game::EnemyTypeID::EnemyID_Pelplant) {
-		OSReport("ペレット草なのでペレットをロードします free:%d \n", JKRGetCurrentHeap()->getFreeSize()); // "pellet grass so load pellets"
 		PelletNumber::mgr->setupResources();
-		OSReport("だした free:%d \n", JKRGetCurrentHeap()->getFreeSize()); // "started"
 	}
 	P2ASSERTLINE(2747, !generalEnemyMgr);
 	generalEnemyMgr = new GeneralEnemyMgr;
@@ -1518,7 +1496,7 @@ void ZukanState::dvdloadB_teki()
 		Vector3f posOffset;
 		posOffset.set(posParms->mParms.mAppearPosX(), posParms->mParms.mAppearPosY(), posParms->mParms.mAppearPosZ());
 
-		OSReport("敵をアロック %d匹　free:%d \n", count, JKRGetCurrentHeap()->getFreeSize());
+		OSReport("free:%d \n", count, JKRGetCurrentHeap()->getFreeSize());
 		bool makeSpectralids = false;
 		TekiStat::Info* info = playData->mTekiStatMgr.getTekiInfo(mCurrentEnemyIndex);
 		if (info && info->mKilledTekiCount > 16) {
@@ -1897,7 +1875,6 @@ void ZukanState::clearHeaps()
 		clearHeapB_common();
 	}
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 	delete PSSystem::SingletonBase<PSM::ObjMgr>::sInstance;
 	PSSystem::SingletonBase<PSM::ObjMgr>::sInstance = nullptr;

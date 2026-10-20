@@ -23,7 +23,6 @@
 #include "Game/PikiMgr.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
-#include "nans.h"
 
 namespace Game {
 namespace BlackMan {
@@ -36,9 +35,6 @@ enum JointID {
 	lFoot = 2,
 	rFoot = 3,
 };
-
-static const int unusedArray[]     = { 0, 0, 0 };
-static const char unusedBlackMan[] = "blackMan";
 
 /**
  * @note Address: 0x803A5DB0
@@ -246,7 +242,6 @@ void Obj::onInit(CreatureInitArg* arg)
 	}
 
 	mTargetColor = Color4(0xb5, 0xc0, 0xae, 0xff); // Transparent Color
-	mUnusedColor = Color4(0xff, 0x20, 0x16, 0xff);
 	mFadeColor   = Color4(0x30, 0x3f, 0x57, 0x00);
 	mActiveColor = mTargetColor;
 
@@ -389,7 +384,6 @@ void Obj::doUpdate()
 		if (mTyre && mTyre->isEvent(0, EB_HardConstrained) && mWraithFallTimer < 0.0f) {
 			if (gameSystem && !gameSystem->isZukanMode() && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSSystem::validateSceneMgr(mgr);
 				mgr->checkScene();
 				PSSystem::SeqBase* seqBase = PSSystem::getSeqData(mgr, 0);
 				P2ASSERTLINE(489, seqBase);
@@ -421,23 +415,6 @@ void Obj::doUpdate()
 	if (mIsFallStart && mWraithFallTimer < -1.0f && mTyre) {
 		mTyre->scaleUpShadow();
 	}
-}
-
-/**
- * @note Address: 0x803A730C
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x803A7310
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**
@@ -1677,14 +1654,9 @@ void Obj::moveRestart()
 	} else if (!isFinalFloor() && !mHasStartedChaseBgm && !mIsMoviePlaying && gameSystem->mSection
 	           && gameSystem->mSection->getCaveID() == 'y_04') {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::validateSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seqBase = PSSystem::getSeqData(mgr, 1);
-#if defined(VERSION_JP)
-		P2ASSERTLINE(2216, seqBase);
-#else
 		P2ASSERTLINE(2221, seqBase);
-#endif
 		seqBase->startSeq();
 		mHasStartedChaseBgm = true;
 	}
@@ -1969,13 +1941,11 @@ void Obj::appearFanfare()
 	mNeedAppearBgm = false;
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
-	PSSystem::Scene* scene = mgr->getChildScene();
+	PSSystem::Scene* scene  = mgr->getChildScene();
 
 	if (PSSystem::checkChildScene(scene)) {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::validateSceneMgr(mgr);
-		PSSystem::Scene* scene = mgr->getChildScene();
+		PSSystem::Scene* scene  = mgr->getChildScene();
 		PSSystem::checkChildScene(scene)->startMainSeq();
 	}
 }

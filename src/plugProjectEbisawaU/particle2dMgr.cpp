@@ -7,24 +7,9 @@
 #include "P2Macros.h"
 #include "System.h"
 #include "TParticle2dMgr.h"
-#include "nans.h"
 
 TParticle2dMgr* particle2dMgr;
 TParticle2dMgr* TParticle2dMgr::_instance;
-
-static void strippedFunc_1()
-{
-	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* name, ...)
-{
-	OSReport("particle2dMgr");
-}
 
 /**
  * @note Address: 0x803B9064
@@ -89,10 +74,8 @@ TParticle2dMgr::TParticle2dMgr()
  */
 void TParticle2dMgr::createHeap(u32 p1)
 {
-	sys->heapStatusStart("TParticle2dMgr::createHeap", nullptr);
 	P2ASSERTLINE(73, mSolidHeap == nullptr);
 	mSolidHeap = JKRSolidHeap::create(p1, JKRHeap::sCurrentHeap, true);
-	sys->heapStatusEnd("TParticle2dMgr::createHeap");
 }
 
 /**
@@ -101,15 +84,8 @@ void TParticle2dMgr::createHeap(u32 p1)
  */
 void TParticle2dMgr::createMgr(char* path, u32 u1, u32 u2, u32 u3)
 {
-
 	JUT_ASSERTLINE(83, mSolidHeap, "effect heap not allocated !\n");
 
-	// don't even ASK me about these.
-	int b, a;
-	a = u1;
-	b = u2;
-
-	sys->heapStatusStart("TParticle2dMgr::createMgr", nullptr);
 	JKRHeap* backup = JKRGetCurrentHeap();
 	mSolidHeap->becomeCurrentHeap();
 	const void* file = JKRDvdToMainRam(path, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
@@ -118,11 +94,10 @@ void TParticle2dMgr::createMgr(char* path, u32 u1, u32 u2, u32 u3)
 	backup->becomeCurrentHeap();
 
 	mResourceManager = new (mSolidHeap, 0) JPAResourceManager(file, mSolidHeap);
-	mActiveEmitter   = new (mSolidHeap, 0) JPAEmitterManager(a, b, mSolidHeap, 8, 2);
+	mActiveEmitter   = new (mSolidHeap, 0) JPAEmitterManager(u1, u2, mSolidHeap, 8, 2);
 
 	mActiveEmitter->entryResourceManager(mResourceManager, 0);
 	mSolidHeap->adjustSize();
-	sys->heapStatusEnd("TParticle2dMgr::createMgr");
 }
 
 /**
@@ -292,10 +267,6 @@ void TParticle2dMgr::killGroup(u8 p1)
 	mActiveEmitter->forceDeleteGroupEmitter((int)p1);
 }
 
-static void strippedFunc_2()
-{
-	OSReport("IP2_dummy");
-}
 /**
  * @note Address: N/A
  * @note Size: 0x4

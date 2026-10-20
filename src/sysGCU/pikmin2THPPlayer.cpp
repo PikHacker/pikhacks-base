@@ -156,11 +156,8 @@ void THPPlayer::loadResource(const THPPlayerLoadResourceArg& loadArg)
 	mCaptionMgr->reset();
 	mHeap->freeAll();
 	mHeap->becomeCurrentHeap();
-	sys->heapStatusStart("THPPlayer::loadResource", nullptr);
-	sys->heapStatusStart("THPPlayer_Resource", nullptr);
 
 	if (loadArg.mCaptionFileName[0] != '\0') {
-		sys->heapStatusStart("THPPlayr_caption", nullptr);
 		void* handle = JKRDvdRipper::loadToMainRAM(loadArg.mCaptionFileName, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0,
 		                                           nullptr, nullptr);
 #if defined(VERSION_PAL) || defined(VERSION_US_DEMO1)
@@ -172,12 +169,9 @@ void THPPlayer::loadResource(const THPPlayerLoadResourceArg& loadArg)
 		RamStream stream(handle, -1);
 		stream.setMode(STREAM_MODE_TEXT, 1);
 		mCaptionMgr->read(stream);
-
-		sys->heapStatusEnd("THPPlayr_caption");
 	}
 
 	if (loadArg.mThpFileName != nullptr) {
-		sys->heapStatusStart("THPPlayerOpen", nullptr);
 		if (!THPPlayerOpen(loadArg.mThpFileName, FALSE)) {
 #if defined(VERSION_PAL) || defined(VERSION_US_DEMO1)
 			JUT_PANICLINE(331, "Fail to open the thp file\n[%s]\n", loadArg.mThpFileName);
@@ -186,17 +180,9 @@ void THPPlayer::loadResource(const THPPlayerLoadResourceArg& loadArg)
 #endif
 		}
 
-		sys->heapStatusEnd("THPPlayerOpen");
 	}
 
-	sys->heapStatusEnd("THPPlayer_Resource");
-
-	sys->heapStatusStart("THPPlayer_prepare", nullptr);
 	prepare();
-	sys->heapStatusEnd("THPPlayer_prepare");
-
-	sys->heapStatusEnd("THPPlayer::loadResource");
-
 	prevHeap->becomeCurrentHeap();
 	pause();
 }
@@ -213,8 +199,6 @@ void THPPlayer::prepare()
 	THPPlayerGetVideoInfo(&mVideoInfo);
 	THPPlayerGetAudioInfo(&mAudioInfo);
 
-	sys->heapStatusStart("THPPlayer_work", nullptr);
-
 	data = new (0x20) u8[THPPlayerCalcNeedMemory()];
 	if (!data) {
 #if defined(VERSION_PAL) || defined(VERSION_US_DEMO1)
@@ -224,8 +208,6 @@ void THPPlayer::prepare()
 #endif
 	}
 	THPPlayerSetBuffer(data);
-
-	sys->heapStatusEnd("THPPlayer_work");
 
 	if (mAudioInfo.mSndNumTracks > 1 && sys->mPlayData->mSoundMode == CommonSaveData::Mgr::SM_SurroundSound) {
 		audioTrack = 1;

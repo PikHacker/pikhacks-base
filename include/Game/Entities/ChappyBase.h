@@ -37,14 +37,12 @@ struct Obj : public EnemyBase {
 
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                // _30
-	virtual void doDirectDraw(Graphics& gfx);                      // _50
 	virtual void collisionCallback(CollEvent& event);              // _EC
 	virtual void getShadowParam(ShadowParam& settings);            // _134
 	virtual ~Obj() { }                                             // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                            // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
 	virtual void doUpdate();                                       // _1CC
-	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
 	virtual void changeMaterial() = 0;                             // _200
 	virtual Vector3f getOffsetForMapCollision();                   // _224
 	virtual void initMouthSlots();                                 // _22C
@@ -221,7 +219,6 @@ struct StateAttack : public StateCautionBase {
 	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
 	virtual void exec(EnemyBase* enemy);                     // _0C
 	virtual void cleanup(EnemyBase* enemy);                  // _10
-	virtual void doDirectDraw(EnemyBase*, Graphics&);        // _20
 
 	void transitState(EnemyBase*);
 

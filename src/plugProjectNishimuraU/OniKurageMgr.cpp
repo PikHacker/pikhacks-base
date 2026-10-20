@@ -3,8 +3,6 @@
 namespace Game {
 namespace OniKurage {
 
-static const char oniKurageMgrName[] = "246-OniKurageMgr";
-
 /**
  * @note Address: 0x802D3998
  * @note Size: 0x50

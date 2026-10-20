@@ -534,7 +534,6 @@ struct J2DAnmTransformFull : public J2DAnmTransform {
 
 	// _00     = VTBL
 	// _00-_1C = J2DAnmTransform
-	u8 _1C[6];                        // _1C, unknown
 	u16 _22;                          // _22
 	J3DAnmTransformFullTable* mTable; // _24
 };
@@ -557,7 +556,6 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 
 	// _00     = VTBL
 	// _00-_1C = J2DAnmTransform
-	u8 _1C[6];                           // _1C, unknown
 	u16 _22;                             // _22
 	int mRotationScale;                  // _24
 	J3DAnmTransformKeyTable* mInfoTable; // _28

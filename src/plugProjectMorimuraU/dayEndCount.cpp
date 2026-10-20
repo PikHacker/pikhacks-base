@@ -3,8 +3,6 @@
 #include "PSSystem/PSSystemIF.h"
 #include "SoundID.h"
 
-static const char name[] = "dayEndCount";
-
 namespace Morimura {
 
 u32 deTagName[COUNTDOWN_NUMBERS] = { 'cd00', 'cd01', 'cd02', 'cd03', 'cd04', 'cd05', 'cd06', 'cd07', 'cd08', 'cd09', 'cd10' };

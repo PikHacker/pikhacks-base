@@ -9,10 +9,6 @@
 #include "SysShape/MtxObject.h"
 #include "SysShape/MotionListener.h"
 #include "JSystem/J3D/J3DAnmLoader.h"
-#include "nans.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "sysShape";
 
 namespace SysShape {
 
@@ -46,7 +42,6 @@ void Animator::startAnim(int animID, MotionListener* listener)
 {
 	mAnimInfo = mAnimMgr->getAnimByID(animID);
 	if (mAnimInfo == nullptr) {
-		mAnimMgr->dump();
 		JUT_PANICLINE(220, "go to hell !\n");
 	}
 
@@ -485,9 +480,6 @@ AnimMgr* AnimMgr::load(char* path, J3DModelData* modelData, JKRFileLoader* fileL
  */
 void AnimMgr::dump()
 {
-	for (int i = 0; i < mCount; i++) {
-		getAnimByID(i)->mKeyEvent.getChildCount();
-	}
 }
 
 /**

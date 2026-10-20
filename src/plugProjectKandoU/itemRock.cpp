@@ -7,8 +7,6 @@
 namespace Game {
 namespace ItemRock {
 
-static const char unusedName[] = "itemRock";
-
 Mgr* mgr;
 
 /**
@@ -323,19 +321,14 @@ void Item::startLoopEffect()
 	efx::Arg fxArg(mPosition);
 	switch (mSize) {
 	case SIZE_Max:
-		isAlive(); // probably debug
 		mEfxKouhaiMax->create(&fxArg);
 		break;
 	case SIZE_Medium:
-		isAlive(); // probably debug
 		mEfxKouhaiMedium->create(&fxArg);
 		break;
 	case SIZE_Small:
-		isAlive(); // probably debug
 		mEfxKouhaiSmall->create(&fxArg);
 		break;
-	default:
-		isAlive(); // probably debug
 	}
 }
 
@@ -609,8 +602,6 @@ void Item::createRock(int visibleSizeCount)
 
 	mMaxHealth = mHealthLimits[SIZE_Max];
 	mHealth    = mMaxHealth;
-
-	for (int i = 0; i < visibleSizeCount + 1; i++) { }
 }
 
 /**

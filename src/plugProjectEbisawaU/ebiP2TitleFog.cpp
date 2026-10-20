@@ -1,7 +1,6 @@
 #include "ebi/title/TTitle.h"
 #include "Dolphin/gx.h"
 #include "System.h"
-#include "nans.h"
 
 namespace ebi {
 namespace title {

@@ -230,7 +230,6 @@ struct CellIteratorArg {
 	int mUseCustomRadius;              // _14, Useless flag
 	CellPyramid* mCellMgr;             // _18
 	bool mOptimise;                    // _1C, if true, use "is within cell", if false, calculate overlapping bounding spheres
-	u8 mUnused;                        // _1D, set to 0 and unused
 };
 
 #define CI_LOOP(it) for (it.first(); !it.isDone(); it.next())

@@ -1,7 +1,5 @@
 #include "Game/gameGenerator.h"
 
-static const char name[] = "genPellet";
-
 /**
  * @note Address: 0x8020278C
  * @note Size: 0x9C
@@ -177,7 +175,6 @@ Creature* GenPellet::generate(Generator* gen)
  */
 void GenPellet::getDebugInfo(char* str)
 {
-	sprintf(str, "mgr%d:%d", mPelType, mGenParm->mIndex);
 }
 
 /**

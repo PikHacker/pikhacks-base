@@ -45,7 +45,6 @@ struct CollPart : public CNode {
 	virtual void doSetView(u32) { }              // _24 (weak)
 	virtual void doViewCalc() { }                // _28 (weak)
 	virtual void doSimulation(f32 rate) { }      // _2C (weak)
-	virtual void doDirectDraw(Graphics& gfx) { } // _30 (weak)
 	////////////// END VTABLE
 
 	void init(SysShape::MtxObject*);
@@ -99,7 +98,6 @@ struct CollPart : public CNode {
 	Vector3f mPosition;          // _4C
 	u8 mPartType;                // _58, using define list - 0=Sphere, 1=Tube, 2=TubeTree
 	SysShape::MtxObject* mModel; // _5C
-	u32 mUnusedVal;              // _60
 };
 
 struct CollPartMgr : public MonoObjectMgr<CollPart> {

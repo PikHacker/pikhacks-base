@@ -45,12 +45,7 @@ J3DMaterialFactory_v21::J3DMaterialFactory_v21(const J3DMaterialBlock_v21& matbl
  */
 u16 J3DMaterialFactory_v21::countUniqueMaterials()
 {
-	// Man if ONLY there were an easier way to do this!
-	u16 count;
-
-	for (count = 0; count < mMaterialNum; count++) { }
-
-	return count;
+	return mMaterialNum;
 }
 
 /**

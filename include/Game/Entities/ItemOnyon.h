@@ -73,7 +73,6 @@ struct Onyon : public BaseItem {
 	/////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                     // _30
 	virtual void onKill(CreatureKillArg* settings);                     // _34
-	virtual void doDirectDraw(Graphics& gfx);                           // _50
 	virtual f32 getFaceDir() { return mFaceDir; }                       // _64 (weak)
 	virtual bool sound_culling();                                       // _104
 	virtual void on_movie_end(bool shouldResetAnims);                   // _114
@@ -192,7 +191,6 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	virtual void doSetView(int viewportNumber) { TO_ITEMMGR(mNodeObjectMgr)->doSetView(viewportNumber); } // _10 (weak)
 	virtual void doViewCalc() { TO_ITEMMGR(mNodeObjectMgr)->doViewCalc(); }                               // _14 (weak)
 	virtual void doSimulation(f32 constraint) { TO_ITEMMGR(mNodeObjectMgr)->doSimulation(constraint); }   // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { TO_ITEMMGR(mNodeObjectMgr)->doDirectDraw(gfx); }           // _1C (weak)
 	virtual ~Mgr();                                                                                       // _A0
 	virtual void initDependency();                                                                        // _38
 	virtual void setupSoundViewerAndBas();                                                                // _44

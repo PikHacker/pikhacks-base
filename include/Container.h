@@ -13,7 +13,7 @@ struct GenericContainer : public CNode {
 
 template <typename T>
 struct Container : public GenericContainer {
-	inline Container() { _18 = 0; }
+	inline Container() { }
 
 	/////////////////// VTABLE
 
@@ -36,8 +36,6 @@ struct Container : public GenericContainer {
 		return 0;
 	}
 	/////////////////// END VTABLE
-
-	u8 _18; // _18
 };
 
 template <typename T>
@@ -50,7 +48,6 @@ template <typename T>
 struct ArrayContainer : public Container<T> {
 	inline ArrayContainer()
 	{
-		_18      = 1;
 		mLimit   = 0;
 		mCount   = 0;
 		mObjects = nullptr;

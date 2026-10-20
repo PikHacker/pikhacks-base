@@ -151,7 +151,6 @@ struct JASChannelUpdater {
 	f32 mDolby;               // _10
 	s16 mFIR8FilterParams[8]; // _14
 	s16 mIIRFilterParams[4];  // _24
-	u8 _2C[8];                // _2C - unknown
 	s16 _34;                  // _34 - unknown
 	u16 mMixConfigs[6];       // _36
 	u8 mDelaySamples[6];      // _42 - unknown

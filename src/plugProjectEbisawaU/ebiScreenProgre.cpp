@@ -6,8 +6,6 @@
 #include "System.h"
 #include "SoundID.h"
 
-static const char className[] = "ebiScreenProgre";
-
 namespace ebi {
 
 /**
@@ -16,12 +14,10 @@ namespace ebi {
  */
 void TScreenProgre::loadResource()
 {
-	sys->heapStatusStart("TScreenProgre::loadResource", nullptr);
 	char path[PATH_MAX];
 	og::newScreen::makeLanguageResName(path, "progre.szs");
 	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(37, arc);
-	sys->heapStatusEnd("TScreenProgre::loadResource");
 	setArchive(arc);
 }
 
@@ -31,7 +27,6 @@ void TScreenProgre::loadResource()
  */
 void TScreenProgre::setArchive(JKRArchive* arc)
 {
-	sys->heapStatusStart("TScreenProgre::setArchive", nullptr);
 	mScreenObj = new P2DScreen::Mgr_tuning;
 	mScreenObj->set("progre.blo", 0x1100000, arc);
 	E2DPane_setTreeCallBackMessage(mScreenObj, mScreenObj);
@@ -73,8 +68,6 @@ void TScreenProgre::setArchive(JKRArchive* arc)
 	mCounterFadeout.setValue((u32)0);
 	mCursor1.setPanes(mPane_il00, mPane_il01);
 	mCursor2.setPanes(mPane_ir00, mPane_ir01);
-
-	sys->heapStatusEnd("TScreenProgre::setArchive");
 }
 
 /**

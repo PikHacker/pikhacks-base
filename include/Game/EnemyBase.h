@@ -197,7 +197,6 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void doAnimationCullingOn();                                                                         // _1E0
 	virtual void doAnimationStick();                                                                             // _1E4
 	virtual void doSimulationCarcass(f32);                                                                       // _1E8
-	virtual void doDebugDraw(Graphics& gfx);                                                                     // _1EC
 	virtual void doSimpleDraw(Viewport* vp) { }                                                                  // _1F0 (weak)
 	virtual void doSimulationGround(f32 simSpeed);                                                               // _1F4
 	virtual void doSimulationFlying(f32 simSpeed);                                                               // _1F8
@@ -657,7 +656,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	BitFlagArray<u32, 2> mEventBuffer;          // _1E8
 	u8 mSfxEmotion;                             // _1F0, the 'emotion' used for bg music
 	u8 mCreatureID;                             // _1F1
-	u8 mUnused1F2;                              // _1F2, set to 0xFF by ctor/birth function, never used
+	u8 mEnemyID;                                // _1F2, PIKHACKER TODO
 	bool mInPiklopedia;                         // _1F3
 	int mStuckPikminCount;                      // _1F4
 	f32 mScaleModifier;                         // _1F8

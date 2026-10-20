@@ -1483,8 +1483,6 @@ config.libs = [
             Object(Matching, "plugProjectOgawaU/ogCounterRV.cpp"),
             Object(Matching, "plugProjectOgawaU/ogSE.cpp"),
             Object(Matching, "plugProjectOgawaU/ogCounterDay.cpp"),
-            Object(Matching, "plugProjectOgawaU/testScene.cpp"),
-            Object(Matching, "plugProjectOgawaU/testObj.cpp"),
             Object(Matching, "plugProjectOgawaU/ogSceneGround.cpp"),
             Object(Matching, "plugProjectOgawaU/ogObjGround.cpp"),
             Object(Matching, "plugProjectOgawaU/ogCopyPane.cpp"),
@@ -1883,7 +1881,6 @@ config.libs = [
         "mw_version": "GC/2.6",
         "host": True,
         "objects": [
-            Object(Matching, "utilityU/menu.cpp"),
             Object(Matching, "utilityU/PSMainSide_Director.cpp"),
             Object(Matching, "utilityU/PSMainSide_Factory.cpp"),
             Object(Matching, "utilityU/PSMainSide_ObjSound.cpp"),

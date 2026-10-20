@@ -27,7 +27,6 @@ struct BloGroup {
 	void animation();
 
 	P2DScreen::Mgr_tuning** mScreens; // _00
-	u32* mUnusedIdList;               // _04
 	u16 mScreenNumMax;                // _08
 	u16 mScreenNumCurrent;            // _0A, number of ptrs in _00
 };

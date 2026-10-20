@@ -20,7 +20,6 @@
 #include "System.h"
 #include "SoundID.h"
 #include "Radar.h"
-#include "nans.h"
 
 namespace Game {
 
@@ -31,7 +30,6 @@ Color4 Piki::pikiColorsCursor[PikiColorCount + 1]
     = { Color4(0, 50, 255, 255),    Color4(255, 30, 0, 255),  Color4(255, 210, 0, 255), Color4(120, 0, 250, 255),
         Color4(255, 230, 255, 255), Color4(255, 140, 0, 255), Color4(255, 255, 255, 0) };
 
-static const int unusedPikiArray[] = { 0, 0, 0 };
 } // namespace Game
 
 namespace Game {
@@ -51,14 +49,10 @@ Piki::Piki()
 	mNavi         = nullptr;
 	mCurrentState = nullptr;
 
-	sys->heapStatusStart("TPkEffect", nullptr);
 	mEffectsObj     = new efx::TPkEffect;
 	mEffectsContext = new efx::Context;
-	sys->heapStatusEnd("TPkEffect");
 
-	sys->heapStatusStart("PSPiki", nullptr);
 	mSoundObj = new PSM::Piki(this);
-	sys->heapStatusEnd("PSPiki");
 }
 
 /**
@@ -173,8 +167,6 @@ void Piki::onInit(CreatureInitArg* initArg)
 	JUT_ASSERTLINE(692, mLeafStemJoint, "happajnt3 not found!\n");
 	JUT_ASSERTLINE(695, mHappaJoint1, "happajnt1 not found!\n");
 
-	debugShapeDL("piki onInit");
-	pikiMgr->debugShapeDL("** PIKI ONINIT**");
 	mDopeTime = 0.0f;
 	mIsDoped  = -1;
 	setDopeEffect(false);
@@ -283,22 +275,18 @@ void Piki::getLODSphere(Sys::Sphere& sphere)
  */
 void Piki::update()
 {
-	sys->mTimers->_start("pu-1", true);
 	mSoundObj->exec();
 	updateGasInvincible();
 	updateLook();
 	updateLookCreature();
-	sys->mTimers->_start("pu-4", true);
 
 	if (!isMovieActor() || isMovieExtra()) {
 		mFsm->exec(this);
 	}
 
 	if (isAlive()) {
-		sys->mTimers->_stop("pu-4");
 		mEffectsObj->update();
 		mEffectsContext->mPosition = mLeafStemOffset;
-		sys->mTimers->_stop("pu-1");
 
 		if (isAlive() && mWaterBox) {
 			int stateID  = getStateID();
@@ -341,7 +329,6 @@ void Piki::on_movie_begin(bool)
 void Piki::on_movie_end(bool shouldResetAnims)
 {
 	if (shouldResetAnims) {
-		getCreatureID();
 		startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 	}
 }
@@ -1210,15 +1197,6 @@ void Piki::doColorChange()
 }
 
 /**
- * @note Address: 0x8014A38C
- * @note Size: 0x2C
- */
-void Piki::doDebugDL()
-{
-	for (u16 i = 0; i < mModel->mJ3dModel->getModelData()->getShapeNum(); i++) { }
-}
-
-/**
  * @note Address: 0x8014A3B8
  * @note Size: 0xF8
  */
@@ -1251,14 +1229,6 @@ void Piki::doAnimation()
 {
 	FakePiki::doAnimation();
 	updateDope();
-}
-
-/**
- * @note Address: 0x8014A594
- * @note Size: 0x4
- */
-void Piki::doDirectDraw(Graphics&)
-{
 }
 
 /**

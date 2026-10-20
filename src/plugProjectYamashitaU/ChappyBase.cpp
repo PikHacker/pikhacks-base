@@ -79,23 +79,6 @@ void Obj::doUpdate()
 }
 
 /**
- * @note Address: 0x8012ABA8
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x8012ABAC
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
-
-/**
  * @note Address: 0x8012ABCC
  * @note Size: 0xC8
  */

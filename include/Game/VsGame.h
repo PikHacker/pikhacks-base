@@ -466,7 +466,6 @@ struct LoadState : public State {
 	Controller* mController;                      // _14
 	VsGameSection* mSection;                      // _18
 	bool mIsLoadStarted;                          // _1C
-	u32 mUnusedVal;                               // _20
 	int mGameStartType;                           // _24
 	bool mNeedClearHeap;                          // _28
 	Delegate<Game::VsGame::LoadState>* mDelegate; // _2C

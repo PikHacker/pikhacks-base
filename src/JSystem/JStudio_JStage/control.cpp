@@ -95,38 +95,6 @@ TCreateObject::~TCreateObject()
 {
 }
 
-// not thrilled with this solution for weak function ordering but It's A Solution
-static void fakeFunc(JStudio::TObject** newObject, JStudio::stb::data::TParse_TBlock_object const& data)
-{
-	*newObject = nullptr;
-	JStage::TEObject type;
-	CreateObjectFunction function;
-	switch (data.getType()) {
-	case 'JFOG':
-		type     = JStage::TEO_Fog;
-		function = &createObject_JSG_<TAdaptor_fog, JStage::TFog>;
-		break;
-	case 'JLIT':
-		type     = JStage::TEO_Light;
-		function = &createObject_JSG_<TAdaptor_light, JStage::TLight>;
-		break;
-	case 'JABL':
-		type     = JStage::TEO_AmbientLight;
-		function = &createObject_JSG_<TAdaptor_ambientLight, JStage::TAmbientLight>;
-		break;
-	case 'JCMR':
-		type     = JStage::TEO_Camera;
-		function = &createObject_JSG_<TAdaptor_camera, JStage::TCamera>;
-		break;
-	case 'JACT':
-		type     = JStage::TEO_Actor;
-		function = &createObject_JSG_<TAdaptor_actor, JStage::TActor>;
-		break;
-	default:
-		return;
-	}
-}
-
 /**
  * @note Address: 0x80014794
  * @note Size: 0x194

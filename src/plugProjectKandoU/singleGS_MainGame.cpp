@@ -25,7 +25,6 @@
 #include "PSSystem/PSMainSide_Scene.h"
 #include "TParticle2dMgr.h"
 #include "kh/khPayDept.h"
-#include "nans.h"
 #include "utilityU.h"
 #include "Game/NaviState.h"
 
@@ -33,9 +32,6 @@
 #define LOUIE_START_Y   (-80.0f)
 #define LOUIE_START_Z   (4350.0f)
 #define LOUIE_START_DIR (7.6969025f) // in radians (even though this is above tau lol). it's like 81 degrees.
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "SingleGS_Game";
 
 namespace Game {
 namespace SingleGame {
@@ -91,8 +87,6 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 		game->mWeatherEfx->create(nullptr);
 	}
 	game->setupMainMapGames();
-	pikiMgr->debugShapeDL("BGS::GAME START");
-	moviePlayer->getActiveGameCamera();
 
 	switch (startType) {
 	case MapEnter_CaveNavisDown: {
@@ -179,7 +173,6 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 #endif
 	}
 
-	sys->heapStatusDump(true);
 	gameSystem->mTimeMgr->resetFlag(TIMEFLAG_Stopped);
 	if (startType != MapEnter_CaveExtinction) {
 		// Check if any pikmin types are extinct, if they are, the post-extinction cutscene is needed

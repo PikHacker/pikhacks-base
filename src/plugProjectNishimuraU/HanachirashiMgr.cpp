@@ -5,8 +5,6 @@
 namespace Game {
 namespace Hanachirashi {
 
-static const char marMgrName[] = "246-HanachirashiMgr";
-
 namespace {
 static const char* cMatAnimBtkTexName = "/enemy/data/Hanachirashi/hanachirashi_model.btk";
 static const char* cMatAnimBrkTexName = "/enemy/data/Hanachirashi/hanachirashi_model.brk";

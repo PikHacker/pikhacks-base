@@ -2,19 +2,12 @@
 #include "kh/khFinalFloor.h"
 #include "kh/khUtil.h"
 #include "PSSystem/PSSystemIF.h"
-#include "nans.h"
 #include "SoundID.h"
 #include "utilityU.h"
 #include "efx2d/efx2dEffect.h"
 #include "Game/GameSystem.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 #include "Screen/Game2DMgr.h"
-
-static const u32 padding[] = { 0, 0, 0 };
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
 
 namespace kh {
 namespace Screen {

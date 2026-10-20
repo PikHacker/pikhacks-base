@@ -4,12 +4,8 @@
 #include "Game/Navi.h"
 #include "Platform.h"
 #include "Radar.h"
-#include "nans.h"
 #include "utilityU.h"
 #include "SoundID.h"
-
-static const int padding[]    = { 0, 0, 0 };
-static const char className[] = "itemCave";
 
 namespace Game {
 namespace ItemCave {
@@ -351,33 +347,6 @@ bool Item::complete()
 	int otaNum = getCaveOtakaraNum();
 	int otaMax = getCaveOtakaraMax();
 	return (otaNum >= otaMax);
-}
-
-/**
- * @note Address: 0x801EB078
- * @note Size: 0x1F0
- */
-void Item::doDirectDraw(Graphics& gfx)
-{
-	gfx.initPrimDraw(nullptr);
-	Matrixf mtx;
-	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
-	Vector3f trans = mtx.getTranslation();
-	trans.y += 10.0f;
-	mtx.setTranslation(trans);
-	GXSetLineWidth(40, GX_TO_ZERO);
-	gfx.drawAxis(50.0f, &mtx);
-	PerspPrintfInfo info;
-	gfx.initPerspPrintf(gfx.mCurrentViewport);
-	info.mColorA.set(10, 200, 10, 255);
-	info.mColorB.set(0, 200, 0, 255);
-	info.mScale  = 1.0f;
-	Vector3f pos = getPosition();
-	pos.y += 60.0f;
-
-	u32 otaNum = getCaveOtakaraNum();
-	u32 otaMax = getCaveOtakaraMax();
-	gfx.perspPrintf(info, pos, "%s %d/%d", mCaveID.getStr(), otaNum, otaMax);
 }
 
 /**

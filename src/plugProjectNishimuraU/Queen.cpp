@@ -9,7 +9,6 @@
 #include "Game/Navi.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 namespace Game {
 namespace Queen {
@@ -134,23 +133,6 @@ void Obj::doAnimationCullingOff()
 	if (isAlive()) {
 		mMatLoopAnimator->animate(30.0f);
 	}
-}
-
-/**
- * @note Address: 0x8028993C
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x80289940
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

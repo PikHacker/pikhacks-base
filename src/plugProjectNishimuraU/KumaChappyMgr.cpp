@@ -3,8 +3,6 @@
 namespace Game {
 namespace KumaChappy {
 
-static const char kumaChappyMgrName[] = "246-KumaChappyMgr";
-
 /**
  * @note Address: 0x802992B4
  * @note Size: 0x50

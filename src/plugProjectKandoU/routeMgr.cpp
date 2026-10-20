@@ -16,8 +16,6 @@
 
 namespace Game {
 
-static const char unusedName[] = "routeMgr";
-
 /**
  * @note Address: 0x80172520
  * @note Size: 0x14

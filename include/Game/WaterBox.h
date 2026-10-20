@@ -45,7 +45,6 @@ struct WaterBox {
 	virtual void doSetView(int viewportNumber) { }                          // _30 (weak)
 	virtual void doViewCalc() { }                                           // _34 (weak)
 	virtual void doSimulation(f32) { }                                      // _38 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }                            // _3C (weak)
 	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*, f32) { } // _40 (weak)
 	virtual void calcMatrix() { }                                           // _44 (weak)
 

@@ -3,12 +3,8 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "Viewport.h"
 #include "Camera.h"
-#include "nans.h"
 
 namespace Game {
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "246-ShadowMgr";
 
 ShadowMgr* shadowMgr;
 
@@ -128,7 +124,6 @@ ShadowMgr::ShadowMgr(int count)
 	mEnabled             = true;
 	mDoCheckCylinderType = 1;
 	mCylinderID          = 0;
-	mUnused0             = 0;
 	mName                = "ShadowMgr";
 }
 
@@ -274,7 +269,6 @@ void ShadowMgr::draw(Graphics&)
  */
 void ShadowMgr::draw(Graphics& gfx, int idx)
 {
-	sys->mTimers->_start("shadow", true);
 	if (mEnabled && getViewport(idx)->viewable()) {
 		Rectf box = getViewport(idx)->mBounds2;
 		getActiveCylinder()->setShadowRect(box);
@@ -304,8 +298,6 @@ void ShadowMgr::draw(Graphics& gfx, int idx)
 
 		getActiveCylinder()->drawFinish();
 	}
-
-	sys->mTimers->_stop("shadow");
 }
 
 /**
@@ -730,7 +722,6 @@ void ShadowMgr::write(Stream& output)
 	output.writeShort((u16)mEnabled);
 	output.writeShort((u16)mDoCheckCylinderType);
 	output.writeInt(mCylinderID);
-	output.writeInt(mUnused0);
 	mColor.write(output);
 	mParms->write(output);
 }
@@ -744,7 +735,7 @@ void ShadowMgr::read(Stream& input)
 	mEnabled             = input.readShort();
 	mDoCheckCylinderType = input.readShort();
 	mCylinderID          = input.readInt();
-	mUnused0             = input.readInt();
+	input.readInt(); // removed unused value, keep data aligned
 	mColor.read(input);
 	mParms->read(input);
 }

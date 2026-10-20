@@ -90,7 +90,6 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                             // _30
 	virtual void onKill(CreatureKillArg* settings);                             // _34
-	virtual void doDirectDraw(Graphics& gfx);                                   // _50
 	virtual void getShadowParam(ShadowParam& settings);                         // _134
 	virtual ~Obj() { }                                                          // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);              // _1C4
@@ -98,7 +97,6 @@ struct Obj : public EnemyBase {
 	virtual void doUpdateCommon();                                              // _1D0
 	virtual void doAnimationUpdateAnimator();                                   // _1D8
 	virtual void doAnimationCullingOff();                                       // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
 	virtual void changeMaterial();                                              // _200
 	virtual void getThrowupItemPosition(Vector3f* position);                    // _268
 	virtual void getThrowupItemVelocity(Vector3f* velocity);                    // _26C

@@ -7,12 +7,9 @@
 #include "og/Screen/ogScreen.h"
 #include "trig.h"
 #include "System.h"
-#include "nans.h"
 
 namespace og {
 namespace newScreen {
-
-static const char objCaveUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 /**
  * @note Address: 0x8031C008

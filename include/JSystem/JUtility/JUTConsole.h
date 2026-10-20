@@ -115,7 +115,6 @@ struct JUTConsole : public JKRDisposer {
 	u32 mLineLength;                        // _20
 	int mMaxLines;                          // _24
 	u8* mBuf;                               // _28
-	bool mUnusedFlag;                       // _2C
 	int mCurrentLineIndex;                  // _30
 	int mStartLineIndex;                    // _34
 	int mCurrentLineIndex_;                 // _38

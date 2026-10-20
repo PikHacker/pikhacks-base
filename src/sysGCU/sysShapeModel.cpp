@@ -1,7 +1,6 @@
 #include "SysShape/Model.h"
 #include "Graphics.h"
 #include "Viewport.h"
-#include "nans.h"
 
 namespace SysShape {
 
@@ -275,9 +274,8 @@ Joint::Joint()
  */
 void Model::initJointsRec(int id, Joint* jnt)
 {
-	// CONST MEMES MY BEHATED
-	Joint* const joint = &mJoints[id];
-	joint->mParent     = jnt;
+	Joint* joint   = &mJoints[id];
+	joint->mParent = jnt;
 
 	J3DJoint* const jnt2 = joint->mJ3d->getChild();
 	J3DJoint* const jnt3 = joint->mJ3d->getYounger();

@@ -53,10 +53,6 @@ struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	{
 		mMgr->doSimulation(constraint);
 	}
-	virtual void doDirectDraw(Graphics& gfx) // _5C (weak)
-	{
-		mMgr->doDirectDraw(gfx);
-	}
 	virtual void doSimpleDraw(Viewport* viewport) // _60 (weak)
 	{
 		mMgr->doSimpleDraw(viewport);
@@ -112,7 +108,6 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	virtual void doSetView(int viewportNumber); // _10
 	virtual void doViewCalc();                  // _14
 	virtual void doSimulation(f32 rate);        // _18
-	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	virtual void doSimpleDraw(Viewport*);       // _20
 	// vtable 2 (CNode, _04, _40-_4C)
 	// _40 = dtor thunk, _44 = getChildCount
@@ -139,11 +134,6 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	// unused/inlined:
 	EnemyBase* birth(char*, EnemyBirthArg&);
 	char getEnemyMember(int enemyID, int flags);
-
-	void setParmsDebugNameAndID();
-	void resetParmsDebugNameAndID();
-	void setParmsDebugSoundInfo();
-	void resetParmsDebugSoundInfo();
 
 	// _00		= (GenericObjectMgr) VTABLE
 	// _04-_1C	= CNode

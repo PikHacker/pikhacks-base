@@ -121,7 +121,6 @@ bool ObjSpecialItem::doStart(::Screen::StartSceneArg const*)
 	mFadeTimer2 = 0.0f;
 	if (mDisp->mDoPlayBGM) {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::validateSceneMgr(mgr);
 		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(PSSystem::checkChildScene(mgr->getChildScene()));
 		scene->startMainSeq();
 	}

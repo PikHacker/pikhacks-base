@@ -19,13 +19,8 @@
 #include "Game/MoviePlayer.h"
 #include "Game/GameSystem.h"
 #include "Game/AIConstants.h"
-#include "nans.h"
 
 namespace Game {
-
-static const int unusedInteractPikiArray[] = { 0, 0, 0 };
-
-static const char interactPikiName[] = "interactPiki";
 
 /**
  * @note Address: 0x80192C84
@@ -136,15 +131,6 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				playData->setBootContainer(piki->getKind());
 			}
 
-		} else if (pikiKind == Bulbmin) {
-			if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) { // broken demo likely
-				playData->setDemoFlag(DEMO_Discover_Bulbmin);
-				MoviePlayArg bulbminArg("X13_exp_leafchappy", nullptr, nullptr, 0);
-				bulbminArg.setTarget(piki);
-				moviePlayer->mTargetObject = piki;
-				moviePlayer->play(bulbminArg);
-			}
-
 		} else {
 			return false;
 		}
@@ -163,8 +149,6 @@ bool InteractFue::actPiki(Game::Piki* piki)
 	int actionID = piki->mBrain->mActionId;
 	PikiState* currState;
 	Navi* navi = static_cast<Navi*>(mCreature);
-
-	piki->getStateID(); // nice going dumbass
 
 	currState = piki->mCurrentState;
 

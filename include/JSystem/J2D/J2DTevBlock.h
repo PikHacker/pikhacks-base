@@ -208,7 +208,6 @@ struct J2DTevBlock2 : public J2DTevBlock {
 	J2DGXColorS10 mColors[4];               // _12
 	u8 mStageNum;                           // _32
 	J2DTevStage mStages[2];                 // _33
-	u8 __;                                  // ???
 	JUtility::TColor mKColors[4];           // _44
 	u8 mKColorSels[2];                      // _54
 	u8 mKAlphaSels[2];                      // _56
@@ -288,7 +287,6 @@ struct J2DTevBlock4 : J2DTevBlock {
 	J2DGXColorS10 mColors[4];               // _1E
 	u8 mStageNum;                           // _3E
 	J2DTevStage mStages[4];                 // _3F
-	u8 __;                                  // ???
 	JUtility::TColor mKColors[4];           // _60
 	u8 mKColorSels[4];                      // _70
 	u8 mKAlphaSels[4];                      // _74
@@ -368,7 +366,6 @@ struct J2DTevBlock8 : J2DTevBlock {
 	J2DGXColorS10 mColors[4];               // _36
 	u8 mStageNum;                           // _56
 	J2DTevStage mStages[8];                 // _57
-	u8 __;                                  // ???
 	JUtility::TColor mKColors[4];           // _98
 	u8 mKColorSels[8];                      // _A8
 	u8 mKAlphaSels[8];                      // _B0
@@ -449,7 +446,6 @@ struct J2DTevBlock16 : J2DTevBlock {
 	J2DGXColorS10 mColors[4];               // _56
 	u8 mStageNum;                           // _76
 	J2DTevStage mStages[16];                // _77
-	u8 __;                                  // ???
 	JUtility::TColor mKColors[4];           // _F8
 	u8 mKColorSels[16];                     // _108
 	u8 mKAlphaSels[16];                     // _118

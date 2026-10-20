@@ -1,11 +1,8 @@
 #include "og/newScreen/SMenu.h"
 #include "LoadResource.h"
-#include "nans.h"
 
 namespace og {
 namespace newScreen {
-
-static const int someSMenuMapArray[] = { 0, 0, 0 };
 
 /**
  * @note Address: 0x80312BFC
@@ -129,8 +126,6 @@ void SMenuMap::doSetBackupScene(::Screen::SetSceneArg& sceneArg)
 {
 	sceneArg.mDoCreateBackup = false;
 }
-
-static const char DONOTDOTHAT[] = "だめです"; // 'do not do that' lmao
 
 } // namespace newScreen
 } // namespace og

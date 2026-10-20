@@ -11,8 +11,6 @@
 
 namespace Game {
 
-static const char unusedGenEnemyName[] = "genEnemy";
-
 /**
  * @note Address: 0x80124778
  * @note Size: 0x3C

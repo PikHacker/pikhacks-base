@@ -2,7 +2,6 @@
 #include "Game/Entities/ItemPlant.h"
 #include "PSM/EventBase.h"
 #include "efx/efxObject.h"
-#include "nans.h"
 
 namespace Game {
 namespace PelletFruit {
@@ -89,13 +88,11 @@ Mgr::Mgr()
  */
 void Mgr::setupResources()
 {
-	sys->heapStatusStart("PelletFruit", nullptr);
 	alloc(PELLET_FRUIT_MAXCOUNT);
 	load();
 	mModelData[0]->newSharedDisplayList(0x40000);
 	useModelMgr(PELLET_FRUIT_MAXMODEL, 0x80000);
 	mCollPartMgr.alloc(PELLET_FRUIT_MAXCOLLPART);
-	sys->heapStatusEnd("PelletFruit");
 }
 
 /**

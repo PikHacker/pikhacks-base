@@ -14,15 +14,6 @@ void EnemyFSMState::transit(EnemyBase* obj, int id, StateArg* arg)
 }
 
 /**
- * @note Address: 0x8013073C
- * @note Size: 0x5C
- */
-void EnemyStateMachine::doDirectDraw(EnemyBase* obj, Graphics& gfx)
-{
-	getCurrState(obj)->doDirectDraw(obj, gfx);
-}
-
-/**
  * @note Address: 0x80130798
  * @note Size: 0x80
  */

@@ -114,9 +114,6 @@ struct Stages {
 
 	CourseInfo mCourseInfo; // _00
 	u16 mCourseCount;       // _100
-	u32 _104;               // _104
-	u16 _108;               // _108
-	u8 _10A;                // _10A
 };
 
 extern Stages* stageList;

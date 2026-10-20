@@ -33,10 +33,6 @@ Mgr::Mgr()
  */
 void Mgr::loadResource()
 {
-	sys->heapStatusStart("EnemyStone::Mgr::loadResource", nullptr);
-
-	sys->heapStatusStart("EnemyStone::Mgr::stoneModel", nullptr);
-
 	mModelData = new J3DModelData*[ENEMY_STONE_MODEL_NUM];
 
 	LoadResource::ArgAramOnly argAram("/enemy/common/enemyCommon.szs");
@@ -54,19 +50,11 @@ void Mgr::loadResource()
 		mModelData[i]->simpleCalcMaterial(0, *(Mtx*)(&j3dDefaultMtx));
 		mModelData[i]->makeSharedDL();
 	}
-	sys->heapStatusEnd("EnemyStone::Mgr::stoneModel");
-
-	sys->heapStatusStart("EnemyStone::Mgr::DrawInfo_buffer", nullptr);
-
 	DrawInfo* infoArray = new DrawInfo[ENEMY_STONE_DRAWINFO_NUM];
 
 	for (int i = 0; i < (u32)ENEMY_STONE_DRAWINFO_NUM; i++) {
 		mDrawInfo.add(&infoArray[i]);
 	}
-
-	sys->heapStatusEnd("EnemyStone::Mgr::DrawInfo_buffer");
-
-	sys->heapStatusEnd("EnemyStone::Mgr::loadResource");
 }
 
 /**

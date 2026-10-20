@@ -9,7 +9,6 @@
 #include "Game/GameSystem.h"
 #include "Game/gameStages.h"
 #include "JSystem/JParticle/JPAMath.h"
-#include "nans.h"
 
 namespace Game {
 namespace P2JST {

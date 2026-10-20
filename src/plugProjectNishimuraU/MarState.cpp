@@ -6,8 +6,6 @@
 namespace Game {
 namespace Mar {
 
-static const char unusedMarStateName[] = "246-MarState";
-
 /**
  * @note Address: 0x80282614
  * @note Size: 0x42C

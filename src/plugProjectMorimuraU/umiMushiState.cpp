@@ -5,7 +5,6 @@
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
-#include "nans.h"
 
 namespace Game {
 namespace UmiMushi {
@@ -516,10 +515,6 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	if (enemy->mCurAnim->mIsPlaying) {
 		switch (enemy->mCurAnim->mType) {
-		case KEYEVENT_2:
-			// probably commented out code - required to match though.
-			break;
-
 		case KEYEVENT_3:
 			mIsTongueActive = true;
 			break;

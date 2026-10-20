@@ -7,9 +7,6 @@
 #include "JSystem/JAudio/JALCalc.h"
 #include "PSSystem/PSSystemIF.h"
 #include "PSM/CreaturePrm.h"
-#include "nans.h"
-
-static const u32 padding[] = { 0, 0, 0 };
 
 namespace PSM {
 

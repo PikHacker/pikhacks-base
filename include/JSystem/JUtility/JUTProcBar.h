@@ -120,7 +120,6 @@ public:
 	CTime mWholeLoop;     // _50
 	CTime mUsers[8];      // _64
 	int mCostFrame;       // _104
-	u32 mUnused;          // _108
 	bool mVisible;        // _10C
 	int _110;             // _110
 	CParamSet mParams;    // _114

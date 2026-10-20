@@ -20,7 +20,6 @@ struct VSFifo {
 	GXFifoObj* mFifo; // _04
 	void* mBase;      // _08
 	u32 mSize;        // _0C
-	u8 _10[0xC];      // _10, unknown
 };
 
 #endif

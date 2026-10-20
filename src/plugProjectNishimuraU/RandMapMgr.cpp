@@ -89,10 +89,8 @@ void RandMapMgr::create()
 	x *= 8;
 	y *= 8;
 
-	sys->heapStatusStart("Radar Map Texture", nullptr);
 	mRadarMapTexture                          = new JUTTexture(x, y, GX_TF_I4);
 	mRadarMapTexture->mTexInfo->mTransparency = Transparency_2;
-	sys->heapStatusEnd("Radar Map Texture");
 }
 
 /**

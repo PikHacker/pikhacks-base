@@ -6,8 +6,6 @@
 #include "SoundID.h"
 #include "Dolphin/rand.h"
 
-static const char name[] = "ebiScreenTitleMenu";
-
 namespace ebi {
 namespace Screen {
 
@@ -17,8 +15,6 @@ namespace Screen {
  */
 void TTitleMenu::doSetArchive(JKRArchive* arc)
 {
-	sys->heapStatusStart("TTitleMenu::setArchive", nullptr);
-
 	mMainScreen = new P2DScreen::Mgr_tuning;
 	mMainScreen->set("title_menu_6.blo", 0x1100000, arc);
 
@@ -136,8 +132,6 @@ void TTitleMenu::doSetArchive(JKRArchive* arc)
 		mObjIcon2[i].mAnimB  = &mAnims5[i];
 		mObjIcon2[i].mStatus = 0;
 	}
-
-	sys->heapStatusEnd("TTitleMenu::setArchive");
 }
 
 /**

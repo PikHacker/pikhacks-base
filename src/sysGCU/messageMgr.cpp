@@ -1,13 +1,10 @@
 #include "P2JME/P2JME.h"
 #include "System.h"
-#include "nans.h"
 #include "P2JME/TReference.h"
 #include "JSystem/JMessage/TResource.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JMessage/TParse.h"
-
-static const u32 padding[3] = { 0, 0, 0 };
 
 P2JME::Mgr* gP2JMEMgr;
 
@@ -79,27 +76,16 @@ Mgr::Mgr(JKRExpHeap* heap)
 #endif
 	gP2JMEMgr = this;
 
-	sys->heapStatusStart("MessageMgr", nullptr);
-
 	mMaxTextures = new int[1];
 	mImageLists  = new JUTTexture**[1];
 
-	// dumb.
-	for (int i = 0; i < 1; i++) {
-		mMaxTextures[i] = 0;
-		mImageLists[i]  = new JUTTexture*;
-		mImageLists[i]  = nullptr;
-	}
+	mMaxTextures[0] = 0;
+	mImageLists[0]  = new JUTTexture*;
+	mImageLists[0]  = nullptr;
 
-	sys->heapStatusStart("font res", nullptr);
 	setupFont("pikmin2main.bfn", heap);
-	sys->heapStatusEnd("font res");
 
-	sys->heapStatusStart("tex res", nullptr);
 	setupTex();
-	sys->heapStatusEnd("tex res");
-
-	sys->heapStatusEnd("MessageMgr");
 
 	JKRHeap* heap2 = JKRGetCurrentHeap();
 #if defined(VERSION_PAL)
@@ -209,8 +195,6 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 #else
 		P2ASSERTLINE(368, fontarc);
 #endif
-		sys->heapStatusStart("cacheFont", nullptr);
-
 		ResFONT* file = static_cast<ResFONT*>(fontarc->getResource(path));
 #if defined(VERSION_PAL)
 		P2ASSERTLINE(367, file);
@@ -224,8 +208,6 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 #else
 		P2ASSERTLINE(374, mFont);
 #endif
-
-		sys->heapStatusEnd("cacheFont");
 
 #if defined(VERSION_PAL)
 		P2ASSERTLINE(374, mFont->mIsValid);
@@ -247,13 +229,9 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 		P2ASSERTLINE(407, fontarc);
 #endif
 
-		sys->heapStatusStart("resFont", nullptr);
-
 		ResFONT* file = static_cast<ResFONT*>(fontarc->getResource(path));
 
 		mFont = new JUTResFont(file, JKRGetCurrentHeap());
-
-		sys->heapStatusEnd("resFont");
 	}
 }
 
@@ -327,23 +305,19 @@ JUTTexture* Mgr::getImage(ImageGroup::EID group, int id)
  */
 void Mgr::setupMessageResource(JKRArchive* arc, char const* path)
 {
-	sys->heapStatusStart("bmg", nullptr);
 	const void* file = arc->getResource(path);
 #if defined(VERSION_PAL)
 	P2ASSERTLINE(470, file);
 #else
 	P2ASSERTLINE(474, file);
 #endif
-	sys->heapStatusEnd("bmg");
 
-	sys->heapStatusStart("メッセージのパース", nullptr); // "Message Parsing"
 	JMessage::TParse parse(mResContainer);
 #if defined(VERSION_PAL)
 	P2ASSERTLINE(480, parse.parse(file, 0));
 #else
 	P2ASSERTLINE(484, parse.parse(file, 0));
 #endif
-	sys->heapStatusEnd("メッセージのパース"); // "Message Parsing"
 }
 
 /**
@@ -359,7 +333,6 @@ bool Mgr::setupColor(JKRArchive* arc, char const* path)
 	P2ASSERTLINE(501, file);
 #endif
 
-	sys->heapStatusStart("メッセージカラーのパース", nullptr); // "Message Parsing"
 	JMessage::TParse_color parse(mResContainer);
 	bool success = parse.parse(file, 0x20);
 #if defined(VERSION_PAL)
@@ -367,7 +340,6 @@ bool Mgr::setupColor(JKRArchive* arc, char const* path)
 #else
 	P2ASSERTLINE(510, success);
 #endif
-	sys->heapStatusEnd("メッセージカラーのパース"); // "Message Parsing"
 	return success;
 }
 

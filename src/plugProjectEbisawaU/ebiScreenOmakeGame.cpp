@@ -2,8 +2,6 @@
 #include "ebi/E2DGraph.h"
 #include "PSSystem/PSSystemIF.h"
 
-static const char name[] = "ebiScreenOmakeGame";
-
 namespace ebi {
 namespace Screen {
 
@@ -23,10 +21,8 @@ TOmakeGame::TOmakeGame()
  */
 void TOmakeGame::doSetArchive(JKRArchive* arc)
 {
-	sys->heapStatusStart("Screen_newScreen_of_TOmakeGame", nullptr);
 	mScreenObj = new P2DScreen::Mgr_tuning;
 	mScreenObj->set("omake_game.blo", 0x1100000, arc);
-	sys->heapStatusEnd("Screen_newScreen_of_TOmakeGame");
 
 	E2DScreen_searchAssert(mScreenObj, 'DATA')->hide();
 
@@ -45,9 +41,7 @@ void TOmakeGame::doSetArchive(JKRArchive* arc)
 	mPaneDescription  = E2DScreen_searchAssert(mScreenObj, 'Tset');
 	mPaneDescriptionS = E2DScreen_searchAssert(mScreenObj, 'Tset_s');
 
-	sys->heapStatusStart("Screen_setCallBackMessage_of_TOmakeGame", nullptr);
 	E2DPane_setTreeCallBackMessage(mScreenObj, mScreenObj);
-	sys->heapStatusEnd("Screen_setCallBackMessage_of_TOmakeGame");
 
 	mScreenObj->addCallBackPane(mScreenObj, &mAnimationEnter);
 	mScreenObj->addCallBackPane(mScreenObj, &mAnimationExit);

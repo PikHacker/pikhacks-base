@@ -26,7 +26,6 @@ struct EnemyStateMachine {
 	virtual void start(EnemyBase*, int, StateArg*);        // _0C
 	virtual void exec(EnemyBase* enemy);                   // _10
 	virtual void transit(EnemyBase*, int, StateArg*);      // _14
-	virtual void doDirectDraw(EnemyBase*, Graphics&);      // _18
 	virtual EnemyFSMState* getCurrState(EnemyBase*);       // _1C
 	virtual void setCurrState(EnemyBase*, EnemyFSMState*); // _20
 
@@ -79,7 +78,6 @@ struct EnemyFSMState {
 	virtual void resume(EnemyBase* enemy) { }                                    // _14 (weak)
 	virtual void restart(EnemyBase* enemy) { }                                   // _18 (weak)
 	virtual void transit(EnemyBase* enemy, int nextStateID, StateArg* settings); // _1C
-	virtual void doDirectDraw(EnemyBase* enemy, Graphics& gfx) { }               // _20 (weak)
 
 	// _00 = VTBL
 	int mStateID;                     // _04

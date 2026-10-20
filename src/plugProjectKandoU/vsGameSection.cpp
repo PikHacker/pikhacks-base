@@ -29,13 +29,9 @@
 #include "Radar.h"
 #include "utilityU.h"
 #include "VsOtakaraName.h"
-#include "nans.h"
 
 namespace Game {
 namespace VsGame {
-
-static const char someVsArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-static const char vsName[]      = "VsGameSection";
 
 /**
  * @note Address: 0x801C0DF8
@@ -178,7 +174,6 @@ void VsGameSection::onInit()
 	}
 
 	gameSystem->mIsInCave = true;
-	mUnusedFlag           = false;
 	mHole                 = nullptr;
 	mPokoCount            = 0;
 	mIsMenuRunning        = false;

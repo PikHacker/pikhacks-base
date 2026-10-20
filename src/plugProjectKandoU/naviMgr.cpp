@@ -22,7 +22,6 @@ NaviMgr::NaviMgr()
 	mName      = "naviMgr";
 	mNaviParms = new NaviParms;
 	clearDeadCount();
-	mBackupPSMMgr = nullptr;
 	mPSMMgr       = nullptr;
 }
 
@@ -35,10 +34,6 @@ NaviMgr::~NaviMgr()
 	animMgr = nullptr;
 	naviMgr = nullptr;
 
-	if (mBackupPSMMgr) {
-		delete mBackupPSMMgr;
-		mBackupPSMMgr = nullptr;
-	}
 	if (mPSMMgr) {
 		delete mPSMMgr;
 		mPSMMgr = nullptr;
@@ -72,11 +67,6 @@ void NaviMgr::createPSMDirectorUpdator()
 void NaviMgr::resetMgr()
 {
 	MonoObjectMgr::resetMgr();
-
-	if (mBackupPSMMgr) {
-		delete mBackupPSMMgr;
-		mBackupPSMMgr = nullptr;
-	}
 
 	if (mPSMMgr) {
 		delete mPSMMgr;
@@ -189,13 +179,9 @@ void NaviMgr::loadResources()
  */
 void NaviMgr::load()
 {
-	P2DEBUG("Before mount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 	JKRArchive* texts = JKRMountArchive("/user/Kando/piki/texts.szs", JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Tail);
-	P2DEBUG("After mount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 
-	sys->heapStatusStart("NaviMgr::Archive", nullptr);
 	JKRArchive* arc = JKRMountArchive("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
-	sys->heapStatusEnd("NaviMgr::Archive");
 
 	J3DModelData* model = J3DModelLoaderDataBase::load(arc->getResource("orima_model/orima1.bmd"),
 	                                                   J3DMLF_Material_PE_FogOff | J3DMLF_UsePostTexMtx | J3DMLF_UseImmediateMtx);
@@ -222,9 +208,7 @@ void NaviMgr::load()
 	mMarkerAnims[0].attachResource(arc->getResource("cursor/arrow_orima.brk"), mCursorModelData);
 	mMarkerAnims[1].attachResource(arc->getResource("cursor/arrow_luji.brk"), mCursorModelData);
 
-	P2DEBUG("Before unmount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 	texts->unmount();
-	P2DEBUG("After unmount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 }
 
 /**

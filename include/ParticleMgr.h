@@ -68,7 +68,6 @@ struct ParticleMgr : public CNode {
 
 	Game::GameLightMgr* mLightMgr;              // _18
 	NodeObjectMgr<ModelEffect> mModelEffectMgr; // _1C
-	u8 _58[8];                                  // _58
 	ModelEffectDataRoot mModelEffectDataRoot;   // _60
 	int mReferencedViewportCount;               // _80
 	Viewport* mViewports[4];                    // _84
@@ -77,7 +76,6 @@ struct ParticleMgr : public CNode {
 	JPAResourceManager* mResourceManager;       // _9C
 	JKRHeap* mHeap;                             // _A0
 	JKRHeap* mModelEffectHeap;                  // _A4
-	int mUnusedVal;                             // _A8
 
 	static volatile bool disableCulling;
 	static f32 mClipRadiusS; // = 10.0f;

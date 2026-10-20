@@ -5,8 +5,6 @@
 namespace Game {
 namespace Mar {
 
-static const char marMgrName[] = "246-MarMgr";
-
 namespace {
 static const char* cMatAnimBtkTexName = "/enemy/data/Mar/fuusen_model.btk";
 static const char* cMatAnimBrkTexName = "/enemy/data/Mar/fuusen_model.brk";

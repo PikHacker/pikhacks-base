@@ -40,7 +40,6 @@ void JFWDisplay::ctor_subroutine(bool doEnableAlpha)
 	mCurrentTick      = OSGetTick();
 	mTickDifference   = 0;
 	mCurrentXfbIndex  = 0;
-	_3A               = 0;
 	mDrawDoneMethod   = JFWDRAW_Unk0;
 	clearEfb_init();
 	JUTProcBar::create();

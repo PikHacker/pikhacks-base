@@ -3,8 +3,6 @@
 namespace Game {
 namespace Ujib {
 
-static const char ujibMgrName[] = "246-UjibMgr";
-
 /**
  * @note Address: 0x8025979C
  * @note Size: 0x50

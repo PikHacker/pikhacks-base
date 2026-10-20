@@ -254,13 +254,11 @@ struct J3DTevBlock4 : public J3DTevBlock {
 	J3DTevOrder mOrders[4];                 // _10
 	u8 mStageNum;                           // _20
 	J3DTevStage mStages[4];                 // _21
-	u8 _41;                                 // _41
 	J3DGXColorS10 mColors[4];               // _42
 	J3DGXColor mKColors[4];                 // _62
 	u8 mKColorSels[4];                      // _72
 	u8 mKAlphaSels[4];                      // _76
 	J3DTevSwapModeTable mSwapModeTables[4]; // _7A
-	u8 _7E[2];                              // _7E
 	J3DIndTevStage mIndStages[4];           // _80
 	u32 mRegOffset;                         // _90
 };
@@ -331,13 +329,11 @@ struct J3DTevBlock16 : public J3DTevBlock {
 	J3DTevOrder mOrders[16];                // _18
 	u8 mStageNum;                           // _58
 	J3DTevStage mStages[16];                // _59
-	u8 _D9;                                 // _D9
 	J3DGXColorS10 mColors[4];               // _DA
 	J3DGXColor mKColors[4];                 // _FA
 	u8 mKColorSels[0x10];                   // _10A
 	u8 mKAlphaSels[0x10];                   // _11A
 	J3DTevSwapModeTable mSwapModeTables[4]; // _12A
-	u8 _12E[2];                             // _12E
 	J3DIndTevStage mIndStages[16];          // _130
 	u32 mRegOffset;                         // _170
 };

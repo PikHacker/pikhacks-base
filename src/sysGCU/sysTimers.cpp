@@ -22,7 +22,6 @@ SysTimers::SysTimers()
 		inf->mName = "noname";
 	}
 
-	mUnused = 0.0f;
 	mName   = "sysTimers";
 }
 

@@ -180,7 +180,6 @@ struct Creature : public CellObject {
 	virtual void doSetView(int viewportNumber);                     // _44
 	virtual void doViewCalc();                                      // _48
 	virtual void doSimulation(f32 rate) { }                         // _4C (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }                    // _50 (weak)
 	virtual f32 getBodyRadius();                                    // _54
 	virtual f32 getCellRadius();                                    // _58
 	virtual void initPosition(Vector3f& position);                  // _5C

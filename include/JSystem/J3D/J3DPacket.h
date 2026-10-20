@@ -92,7 +92,6 @@ struct J3DDrawPacket : public J3DPacket {
 	// _00     = VTBL
 	// _00-_10 = J3DPacket
 	u32 mFlags;                      // _10
-	u8 _14[0xC];                     // _14, unknown
 	J3DDisplayListObj* mDisplayList; // _20
 	J3DTexMtxObj* mTexMtxObj;        // _24
 };

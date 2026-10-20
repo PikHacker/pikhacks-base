@@ -15,13 +15,9 @@
 #include "Game/SingleGame.h"
 #include "kh/khCaveResult.h"
 #include "Controller.h"
-#include "nans.h"
 
 namespace Game {
 namespace SingleGame {
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "SingleGS_CaveResult";
 
 /**
  * @note Address: 0x8021AC20
@@ -206,7 +202,6 @@ void CaveResultState::cleanup(SingleGameSection* section)
 	PSMGetSceneMgrCheck()->deleteCurrentScene();
 
 	playData->mCaveCropMemory->clear();
-	_14                     = 0;
 	mSection->mXfbTexture2d = nullptr;
 	mMainHeap->freeAll();
 	mMainHeap->destroy();

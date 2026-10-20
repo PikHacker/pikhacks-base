@@ -3,7 +3,7 @@
 #include "JSystem/J3D/J3DTexMtx.h"
 #include "Game/MapMgr.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
-#include "nans.h"
+
 namespace Game {
 namespace PelletOtakara {
 
@@ -257,11 +257,9 @@ Mgr::Mgr()
  */
 void Mgr::setupResources()
 {
-	sys->heapStatusStart("Otakara", nullptr);
 	alloc(PELLET_OTAKARA_MAXCOUNT);
 	load_texArc("otakara_texts.szs");
 	mCollPartMgr.alloc(PELLET_OTAKARA_MAXCOLLPART);
-	sys->heapStatusEnd("Otakara");
 }
 
 /**

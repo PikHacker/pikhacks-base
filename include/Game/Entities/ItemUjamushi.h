@@ -198,7 +198,6 @@ struct Uja : public TFlock {
 	void update(BoidParms&);
 
 	inline void doAnimation() { }
-	inline void doDirectDraw(Graphics& gfx) { }
 	inline void doEntry() { }
 	inline void doSetView(int viewportNumber) { }
 	inline void doSimulation(f32) { }
@@ -224,8 +223,6 @@ struct Uja : public TFlock {
 	u8 mState;                       // _AC
 	u8 _AD;                          // _AD
 	u8 _AE;                          // _AE
-	u8 _AF;                          // _AF, unknown/padding
-	u32 _B0;                         // _B0, unknown
 	f32 mHeightOffset;               // _B4
 	f32 mPitch;                      // _B8
 	int mBufferSlotCount;            // _BC

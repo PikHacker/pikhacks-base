@@ -42,7 +42,6 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                            // _30
 	virtual void onKill(CreatureKillArg* settings);                            // _34
-	virtual void doDirectDraw(Graphics& gfx);                                  // _50
 	virtual void collisionCallback(CollEvent& event);                          // _EC
 	virtual void getShadowParam(ShadowParam& settings);                        // _134
 	virtual bool needShadow();                                                 // _138
@@ -51,7 +50,6 @@ struct Obj : public EnemyBase {
 	virtual void doUpdate();                                                   // _1CC
 	virtual void doUpdateCommon();                                             // _1D0
 	virtual void doAnimationCullingOff();                                      // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
 	virtual void getThrowupItemPosition(Vector3f* position);                   // _268
 	virtual void getThrowupItemVelocity(Vector3f* velocity);                   // _26C
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278

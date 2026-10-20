@@ -35,7 +35,6 @@ struct BaseHIOSection : public Section {
 
 	// Member offsets below are for US/JP/PAL - for US_DEMO1, add 0x1C.
 	HIORootNode* mRootNode;       // _3C
-	u8 _40[4];                    // _40
 	Controller* mDebugController; // _44, uses port 4, not actually used for anything
 };
 

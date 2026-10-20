@@ -6,8 +6,6 @@
 namespace Game {
 namespace Queen {
 
-static const char queenMgrName[] = "246-QueenMgr";
-
 namespace {
 static const char* cMatAnimBtkTexName = "/enemy/data/Queen/queenchappy_model.btk";
 } // namespace

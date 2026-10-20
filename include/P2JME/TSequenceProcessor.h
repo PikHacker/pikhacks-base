@@ -51,8 +51,6 @@ struct TSequenceProcessor : public JMessage::TSequenceProcessor {
 	Controller* mController1;    // _54
 	Controller* mController2;    // _58
 	int mCharactersWritten;      // _5C, increments for each character written, when 0 the start sound will play
-	u32 mUnused0;                // _60
-	u32 mUnused1;                // _64
 	BitFlag<u32> mFlags;         // _68
 	u8 mFastSeType;              // _6C, when 1 or 2, the ship voice uses the "fast" setting
 };

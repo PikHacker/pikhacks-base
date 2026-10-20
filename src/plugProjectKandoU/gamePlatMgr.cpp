@@ -130,8 +130,6 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 	info.mWallTriangle  = nullptr;
 	info.mOtherTriangle = nullptr;
 
-	sys->mTimers->_start("plat-obb", true);
-
 	Sys::OBBTree* triDivider = mPlatform->getTriDivider();
 	if (mGlobalPlatform && MapMgr::mTraceMoveOptLevel >= 3) {
 		mGlobalPlatform->getTriDivider()->traceMove_global(info, step);
@@ -141,7 +139,6 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 		triDivider->traceMove(mtx, invMtx, info, step);
 	}
 
-	sys->mTimers->_stop("plat-obb");
 
 	if (info.mMovingCreature) {
 		if (info.mFloorTriangle) {
@@ -513,14 +510,6 @@ void PlatMgr::resetOnCount()
 	{
 		(*iter)->mOnCount = 0;
 	}
-}
-
-/**
- * @note Address: 0x801C666C
- * @note Size: 0x4
- */
-void PlatMgr::doDirectDraw(Graphics&)
-{
 }
 
 } // namespace Game

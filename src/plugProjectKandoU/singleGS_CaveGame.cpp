@@ -27,10 +27,6 @@
 #include "PSM/Scene.h"
 #include "PSSystem/PSMainSide_Scene.h"
 #include "Game/Entities/ItemPikihead.h"
-#include "nans.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "SingleGS_Game";
 
 namespace Game {
 namespace SingleGame {
@@ -47,7 +43,6 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	mDrawSave    = false;
 	game->setupCaveGames();
 	game->mIsExitingMap = false;
-	sys->heapStatusDump(true);
 	gameSystem->mTimeMgr->setFlag(TIMEFLAG_Stopped);
 	gameSystem->setFlag(GAMESYS_IsGameWorldActive);
 	static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInCave = true;
@@ -110,8 +105,7 @@ void CaveState::gameStart(SingleGameSection* game)
 	mgr->doStartMainSeq();
 	if (Radar::mgr && !Radar::Mgr::getNumOtakaraItems()) {
 		PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-		PSSystem::validateSceneMgr(mgr);
-		PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
+		PSM::Scene_Cave* scene   = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
 		PSSystem::checkGameScene(scene);
 		scene->stopPollutionSe();
 	}
@@ -406,68 +400,33 @@ void CaveState::onMovieCommand(SingleGameSection* game, int command)
 
 		PelletCropMemory* mem = playData->getCaveCropMemory();
 
-		KindCounter& counter = mem->mOtakara;
-		for (int i = 0; i < counter.getNumKinds(); i++) {
-			if (counter(i)) {
-				lost += counter(i);
-			}
-		}
-		KindCounter& counter2 = mem->mItem;
-		for (int i = 0; i < counter2.getNumKinds(); i++) {
-			if (counter2(i)) {
-				lost += counter2(i);
-			}
-		}
-
-		f32 zero = 0.0f;
-		f32 calc = randFloat() * zero + 1.0f;
-		if (calc < 0.0f) {
-			calc = 0.0f;
-		} else if (calc > 1.0f) {
-			calc = 1.0f;
-		}
-
 		game->mDoTrackCarcass = true;
-		calc                  = (f32)lost * calc;
 		BasePelletMgr* pelmgr;
 
-		if (calc > 0.0f) {
-			pelmgr               = PelletOtakara::mgr;
-			KindCounter& counter = mem->mOtakara;
-			for (int i = 0; i < counter.getNumKinds(); i++) {
-				int j = 0;
-				for (int k = 0; k < counter(i); k++) {
-					pelmgr->getPelletConfig(i);
-					if (randFloat() <= calc / (f32)lost) {
-						pelmgr->getPelletConfig(i);
-						playData->losePellet(pelmgr, i);
-						(game->mOtakaraCounter(i)) += 1;
-						j++;
-						calc -= 1.0f;
-					}
-					lost--;
-				}
-				counter(i) -= j;
+		pelmgr               = PelletOtakara::mgr;
+		KindCounter& counter = mem->mOtakara;
+		for (int i = 0; i < counter.getNumKinds(); i++) {
+			int j = 0;
+			for (int k = 0; k < counter(i); k++) {
+				playData->losePellet(pelmgr, i);
+				(game->mOtakaraCounter(i)) += 1;
+				j++;
 			}
-
-			pelmgr                = PelletItem::mgr;
-			KindCounter& counter3 = mem->mItem;
-			for (int i = 0; i < counter3.getNumKinds(); i++) {
-				int j = 0;
-				for (int k = 0; k < counter3(i); k++) {
-					pelmgr->getPelletConfig(i);
-					if (randFloat() <= calc / (f32)lost) {
-						pelmgr->getPelletConfig(i);
-						(game->mItemCounter(i)) += 1;
-						playData->losePellet(pelmgr, i);
-						j++;
-						calc -= 1.0f;
-					}
-					lost--;
-				}
-				(counter3(i)) -= j;
-			}
+			counter(i) -= j;
 		}
+
+		pelmgr                = PelletItem::mgr;
+		KindCounter& counter3 = mem->mItem;
+		for (int i = 0; i < counter3.getNumKinds(); i++) {
+			int j = 0;
+			for (int k = 0; k < counter3(i); k++) {
+				playData->losePellet(pelmgr, i);
+				(game->mItemCounter(i)) += 1;
+				j++;
+			}
+			counter3(i) -= j;
+		}
+
 		break;
 	}
 }
@@ -524,10 +483,6 @@ void CaveState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, 
 			id = 0;
 		}
 		playData->mCaveSaveData.mActiveNaviID = id;
-
-		if (!navi) {
-			for (int i = 25; i > 0; i--) { }
-		}
 
 		for (int i = 0; i < 2; i++) {
 			Navi* navi = naviMgr->getAt(i);

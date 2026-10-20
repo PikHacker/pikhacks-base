@@ -6,8 +6,6 @@
 namespace Game {
 namespace BigTreasure {
 
-static const char bigTreasureMgrName[] = "246-BigTreasureMgr";
-
 namespace {
 static const char cMatAnimBtkTexName[] = "/enemy/data/BigTreasure/oootakara_model.btk";
 static const char cMatAnimBrkTexName[] = "/enemy/data/BigTreasure/oootakara_model.brk";

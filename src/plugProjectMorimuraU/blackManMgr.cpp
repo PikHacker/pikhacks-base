@@ -6,8 +6,6 @@
 namespace Game {
 namespace BlackMan {
 
-static const char blackManMgrName[] = "blackManMgr";
-
 /**
  * @note Address: 0x803A53C8
  * @note Size: 0x50

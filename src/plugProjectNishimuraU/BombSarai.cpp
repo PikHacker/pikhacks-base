@@ -5,8 +5,6 @@
 #include "Game/MapMgr.h"
 #include "Dolphin/rand.h"
 
-static const char bombSaraiName[] = "246-BombSarai";
-
 namespace Game {
 
 /**
@@ -70,23 +68,6 @@ void BombSarai::Obj::doUpdate()
 	if (isAlive() && isFlying()) {
 		getJAIObject()->startSound(PSSE_EN_BOMBSARAI_AIR, 0);
 	}
-}
-
-/**
- * @note Address: 0x802B2A94
- * @note Size: 0x4
- */
-void BombSarai::Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802B2A98
- * @note Size: 0x20
- */
-void BombSarai::Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

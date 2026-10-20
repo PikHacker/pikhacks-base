@@ -3,8 +3,6 @@
 namespace Game {
 namespace Miulin {
 
-static const char miulinMgrName[] = "miulinMgr";
-
 /**
  * @note Address: 0x80363F58
  * @note Size: 0x50

@@ -60,7 +60,6 @@ struct CarryInfoParam {
 	    : mUseType(CINFOTYPE_Table)
 	    , mPosition(Vector3f::zero)
 	    , mYOffsetMax(50.0f)
-	    , mUnused(0)
 	    , mColor(CINFOCOLOR_DownFloor)
 	    , mCurrentWeight(0)
 	    , mMaxWeight(0)
@@ -73,7 +72,6 @@ struct CarryInfoParam {
 	u32 mUseType;         // _00, 1 means color by scale, 0 means color by coded table
 	Vector3f mPosition;   // _04
 	f32 mYOffsetMax;      // _10
-	u8 mUnused;           // _14
 	u8 mColor;            // _15
 	u16 mCurrentWeight;   // _16
 	u16 mMaxWeight;       // _18

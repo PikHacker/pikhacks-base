@@ -10,8 +10,6 @@
 namespace ebi {
 namespace Screen {
 
-static const char className[] = "ebiScreenMemoryCard";
-
 /**
  * @note Address: N/A
  * @note Size: 0x4C
@@ -37,7 +35,6 @@ TResourceObserver::~TResourceObserver()
 void TMemoryCard::loadResource(JKRHeap* heap)
 {
 	TResourceObserver* resource = new (heap, 0) TResourceObserver(this);
-	sys->heapStatusStart("TScreenMemoryCard::loadResource", nullptr);
 
 	char buf[264];
 	og::newScreen::makeLanguageResName(buf, "memory_card.szs");
@@ -46,7 +43,6 @@ void TMemoryCard::loadResource(JKRHeap* heap)
 
 	P2ASSERTLINE(54, arc);
 
-	sys->heapStatusEnd("TScreenMemoryCard::loadResource");
 	setArchive(arc);
 }
 
@@ -56,8 +52,6 @@ void TMemoryCard::loadResource(JKRHeap* heap)
  */
 void TMemoryCard::setArchive(JKRArchive* arc)
 {
-	sys->heapStatusStart("TScreenMemoryCard::setArchive", nullptr);
-
 	mScreenMain = new P2DScreen::Mgr_tuning;
 	mScreenMain->set("memory_card.blo", 0x1100000, arc);
 
@@ -108,8 +102,6 @@ void TMemoryCard::setArchive(JKRArchive* arc)
 
 	mCursor1.setPanes(mPane_il00, mPane_il01);
 	mCursor2.setPanes(mPane_ir00, mPane_ir01);
-
-	sys->heapStatusEnd("TScreenMemoryCard::setArchive");
 }
 
 /**

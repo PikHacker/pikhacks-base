@@ -6,8 +6,6 @@
 
 namespace PikiAI {
 
-static const char breakRockName[] = "actBreakWall";
-
 /**
  * @note Address: 0x801E36A0
  * @note Size: 0xF8

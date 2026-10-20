@@ -1207,7 +1207,6 @@ void PSPlayerChangeToOrimer()
 PSSystem::DirectedBgm* PSGetDirectedMainBgm()
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
 	mgr->checkScene();
 	PSSystem::Scene* scene = mgr->mScenes->mChild;
 	if (!scene) {

@@ -15,10 +15,6 @@
 #include "TParticle2dMgr.h"
 #include "Game/Navi.h"
 #include "System.h"
-#include "nans.h"
-
-static const char vsGSTitleUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-static const char vsGSTitleName[]        = "vsGS_Title";
 
 namespace {
 char* cMaps[4] = { "caveinfo.txt", "caveinfo_metal.txt", "caveinfo_conc.txt", "caveinfo_tsuchi.txt" };
@@ -35,7 +31,6 @@ TitleState::TitleState()
 {
 	mPlayer1Controller = new Controller(JUTGamePad::PORT_0);
 	mDelegate          = new Delegate<Game::VsGame::TitleState>(this, &dvdload);
-	mPlayer2Controller = new Controller(JUTGamePad::PORT_1);
 }
 
 /**
@@ -79,8 +74,6 @@ void TitleState::init(VsGameSection* section, StateArg* arg)
 	section->mChallengeStageData = nullptr;
 	section->mVsStageData        = nullptr;
 }
-
-static const char unusedVsTitleString[] = "コンクリート"; // 'concrete'
 
 /**
  * @note Address: 0x80228554

@@ -17,7 +17,6 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	virtual void doSetView(int viewportNumber);    // _3C
 	virtual void doViewCalc();                     // _40
 	virtual void doSimulation(f32 constraint);     // _44
-	virtual void doDirectDraw(Graphics& graphics); // _48
 
 	// _00		= VTBL
 	// _00-_1C	= Container
@@ -75,17 +74,6 @@ void ObjectMgr<T>::doSimulation(f32 constraint)
 	iter.first();
 	while (!iter.isDone()) {
 		(*iter)->doSimulation(constraint);
-		iter.next();
-	}
-}
-
-template <typename T>
-void ObjectMgr<T>::doDirectDraw(Graphics& gfx)
-{
-	Iterator<T> iter(this);
-	iter.first();
-	while (!iter.isDone()) {
-		(*iter)->doDirectDraw(gfx);
 		iter.next();
 	}
 }

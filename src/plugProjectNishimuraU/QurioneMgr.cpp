@@ -3,8 +3,6 @@
 namespace Game {
 namespace Qurione {
 
-static const char qurioneMgrName[] = "246-QurioneMgr";
-
 /**
  * @note Address: 0x8025FA8C
  * @note Size: 0x94

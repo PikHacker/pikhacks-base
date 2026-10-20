@@ -4,8 +4,6 @@
 
 namespace Game {
 
-static const char className[] = "generatorCache";
-
 GeneratorCache* generatorCache;
 
 /**

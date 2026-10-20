@@ -14,10 +14,7 @@
 #include "PSM/DirectorMgr.h"
 #include "PSSystem/PSMainSide_Scene.h"
 #include "PSAutoBgm/MeloArr.h"
-#include "nans.h"
 #include "PSMath.h"
-
-static const u32 padding[] = { 0, 0, 0 };
 
 namespace PSM {
 
@@ -53,13 +50,7 @@ struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
 	PersEnvInfo mInfo; // _4C
 };
 
-// FUN FACT: the Env_Pollutin ctor refuses to behave unless it has an empty default thing it inherits from
-// this is completely fabricated - no clue what it was called or what it was, but it seems Hard Required
-struct FakePollutinParent {
-	~FakePollutinParent() { }
-};
-
-struct Env_Pollutin : public FakePollutinParent, public PSGame::EnvSe_AutoPan {
+struct Env_Pollutin : public PSGame::EnvSe_AutoPan {
 	Env_Pollutin(u32 soundID, f32 pan = 0.0f, f32 dolby = 1.0f)
 	    : EnvSe_AutoPan(soundID, pan, dolby, 1.0f, 0.0018554f, 0.0008554f)
 	    , mVolumeModifier(1.0f)

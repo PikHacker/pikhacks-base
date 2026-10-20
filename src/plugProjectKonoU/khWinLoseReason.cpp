@@ -7,11 +7,6 @@
 #include "PSSystem/PSMainSide_Scene.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace kh {
 namespace Screen {
 
@@ -188,7 +183,6 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		PSStart2DStream(streamID);
 		PSMuteSE_on2D();
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::validateSceneMgr(mgr);
 		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 		scene->stopAllSound(2);
 	}

@@ -55,7 +55,6 @@ struct Item : public CFSMItem {
 	// vtable 1 (Creature)
 	virtual void onInit(CreatureInitArg* settings);       // _30
 	virtual void doSimulation(f32 rate);                  // _4C
-	virtual void doDirectDraw(Graphics& gfx);             // _50
 	virtual void onStartCapture();                        // _94
 	virtual void onUpdateCapture(Matrixf& mtx);           // _98
 	virtual void onEndCapture();                          // _9C

@@ -65,12 +65,3 @@ void J2DBloSaver::CTextureNameConnect::clear()
 	}
 	mElements = nullptr;
 }
-
-// this is a work-around for the insane amount of stripped functions in this file
-// ONE of them almost certainly spawned a J2DTevStage array to generate the weak ctor here
-// but this will do for now. feel free to remove it later if someone reconstructs
-// the blo saver functions -HP
-static void fakeFunc()
-{
-	J2DTevStage stages[16];
-}

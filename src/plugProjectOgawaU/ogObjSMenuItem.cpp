@@ -6,11 +6,6 @@
 #include "Game/gamePlayData.h"
 #include "trig.h"
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
-
 namespace Game {
 namespace Equip {
 int EquipItemList[12] = {
@@ -195,9 +190,6 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 					itemNameTBox->setMsgID('6130_00'); // "Incomplete"
 					itemNameTBox->setAlpha(128);       // grey out label
 
-				} else {
-					char buf[12];
-					og::Screen::TagToName(itemNameTag, buf); // debug
 				}
 			}
 

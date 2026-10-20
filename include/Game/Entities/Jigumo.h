@@ -117,8 +117,6 @@ struct Parms : public EnemyParmsBase {
 		mIsWalkPauseActive     = true;
 		mIsStuckPikiDragActive = true;
 		mIsGradualTurnActive   = true;
-		_8FC                   = 0;
-		_8FD                   = 1;
 		mIsPressKill           = false;
 		mFaceNormalMin         = 0.75f;
 		mTurnWeight            = 20.0f;
@@ -172,7 +170,6 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
-	virtual void doDirectDraw(Graphics& gfx);               // _50
 	virtual void inWaterCallback(WaterBox* wb);             // _84
 	virtual void outWaterCallback();                        // _88
 	virtual bool isLivingThing();                           // _D4
@@ -184,7 +181,6 @@ struct Obj : public EnemyBase {
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void doUpdate();                                // _1CC
 	virtual void doAnimationCullingOff();                   // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                // _1EC
 	virtual void doSimulationGround(f32);                   // _1F4
 	virtual Vector3f getOffsetForMapCollision();            // _224
 	virtual void setParameters();                           // _228
@@ -267,7 +263,6 @@ struct Obj : public EnemyBase {
 	f32 mPauseTriggerTime;             // _33C, time to pause when carrying back piki (random between 0 and 35 frames)
 	bool mDoPauseAnim;                 // _340, alternates pausing and moving when carrying back piki
 	f32 mCarryAngleSpeed;              // _344
-	u8 _348[0x4];                      // _348, unknown
 	int mWalkBounceTimer;              // _34C
 	Vector3f mPrevReturnCheckPosition; // _350, stores every 60 frames to help check if we're stuck
 	int mReturnTimer;                  // _35C, checks every 60 frames if we're stuck
@@ -442,7 +437,6 @@ struct StateMiss : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u8 mUnused; // _10
 };
 
 struct StateReturn : public State {

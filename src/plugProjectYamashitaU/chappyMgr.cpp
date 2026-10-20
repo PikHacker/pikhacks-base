@@ -4,8 +4,6 @@
 namespace Game {
 namespace Chappy {
 
-static const char chappyMgrName[] = "chappyMgr";
-
 namespace {
 static const char* cChappyChangeTexName0 = "/enemy/data/Chappy/moyou_565.1.bti";
 static const char* cChappyChangeTexName1 = "/enemy/data/Chappy/swallow_565.1.bti";

@@ -13,7 +13,6 @@ struct Obj : public KumaChappy::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void doDirectDraw(Graphics& gfx);           // _50
 	virtual void getShadowParam(ShadowParam& settings); // _134
 	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual void doUpdate();                            // _1CC

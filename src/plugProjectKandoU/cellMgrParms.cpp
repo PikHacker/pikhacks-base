@@ -6,15 +6,6 @@ CellMgrParms* CellMgrParms::mInstance;
 
 /**
  * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* format, ...)
-{
-	OSReport(format, "CellMgrParms");
-}
-
-/**
- * @note Address: N/A
  * @note Size: 0x15C
  */
 CellMgrParms::CellMgrParms()

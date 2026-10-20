@@ -91,7 +91,6 @@ struct Weed : public TFlock {
 	inline void doSetView(int viewportNumber) { }
 	inline void doViewCalc() { }
 	inline void doSimulation(f32 constraint) { }
-	inline void doDirectDraw(Graphics& gfx) { }
 
 	// _00-_44 = TFlock
 	Vector3f mScale;    // _44

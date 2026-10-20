@@ -8,8 +8,6 @@
 
 namespace efx {
 
-static const char efxModelObjectsName[] = "efxModelObjects";
-
 void OnyonSpot::initAnimators(Sys::MatTexAnimation* texanim, Sys::MatTevRegAnimation* tevanim)
 {
 	mModel->enableMaterialAnim(0);

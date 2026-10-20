@@ -1,7 +1,6 @@
 #include "Light.h"
 #include "Graphics.h"
 #include "Viewport.h"
-#include "nans.h"
 
 /**
  * @note Address: 0x8042B46C
@@ -212,17 +211,5 @@ void LightMgr::set(Matrixf& mtx)
 	FOREACH_NODE(LightObj, mLightObjChain.mChild, light)
 	{
 		light->set(mtx);
-	}
-}
-
-/**
- * @note Address: 0x8042BC84
- * @note Size: 0x5C
- */
-void LightMgr::drawDebugInfo(Graphics& gfx)
-{
-	FOREACH_NODE(LightObj, mLightObjChain.mChild, light)
-	{
-		light->drawPos(gfx);
 	}
 }

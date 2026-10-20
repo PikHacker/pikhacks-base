@@ -133,23 +133,6 @@ void Obj::changeMaterial()
 }
 
 /**
- * @note Address: 0x802FC854
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics& gfx)
-{
-}
-
-/**
- * @note Address: 0x802FC858
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
-
-/**
  * @note Address: 0x802FC878
  * @note Size: 0x4C
  */

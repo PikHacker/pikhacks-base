@@ -10,15 +10,6 @@
 namespace Game {
 namespace ItemHoney {
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Printf(char* format)
-{
-	OSReport(format, "itemHoney");
-}
-
 Mgr* mgr;
 
 /**
@@ -520,14 +511,6 @@ bool Item::interactAbsorb(InteractAbsorb& interaction)
 }
 
 /**
- * @note Address: 0x801D3C48
- * @note Size: 0x4
- */
-void Item::doDirectDraw(Graphics& gfx)
-{
-}
-
-/**
  * @note Address: 0x801D3C4C
  * @note Size: 0x6C
  */
@@ -621,7 +604,6 @@ void Mgr::onCreateModel(SysShape::Model* model)
  */
 void Mgr::onLoadResources()
 {
-	sys->heapStatusStart("itemHoney", nullptr);
 	loadArchive("arc.szs");
 	loadBmd("mitu.bmd", 0, J3DMODEL_CreateNewDL);
 	(*mModelData)->newSharedDisplayList(0x40000);
@@ -629,7 +611,6 @@ void Mgr::onLoadResources()
 	loadAnimMgr(arc, "honeyAnimMgr.txt");
 	closeTextArc(arc);
 	createMgr(24, 0x80000);
-	sys->heapStatusEnd("itemHoney");
 }
 
 /**

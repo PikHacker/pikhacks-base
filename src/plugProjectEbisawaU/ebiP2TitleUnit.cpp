@@ -1,10 +1,7 @@
 #include "ebi/title/TTitle.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "JSystem/J3D/J3DAnmLoader.h"
-#include "nans.h"
 
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "ebiP2TitleUnit";
 
 namespace ebi {
 namespace title {

@@ -277,7 +277,6 @@ struct MoviePlayer : public JKRDisposer {
 	u8 mIsPaused;                                                  // _88
 	Vector3f mCameraPosition;                                      // _8C
 	f32 mCameraAngle;                                              // _98
-	u8 _09C[4];                                                    // _9C
 	f32 mFadeTimer;                                                // _A0
 	bool mCanFinish;                                               // _A4
 	Vector3f* mOffset;                                             // _A8
@@ -300,7 +299,6 @@ struct MoviePlayer : public JKRDisposer {
 	Navi* mAltNavi;                                                // _19C
 	PlayCamera* mAltCamera;                                        // _1A0
 	Delegate<MoviePlayer>* mDelegate3;                             // _1A4
-	u8 _1A8[0x8];                                                  // _1A8, unknown
 	JKRHeap* mMovieHeap;                                           // _1B0
 	u32 mMovieHeapFreeSize;                                        // _1B4
 	int mMessageEndCount;                                          // _1B8

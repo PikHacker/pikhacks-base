@@ -144,22 +144,6 @@ void Obj::doUpdate()
 }
 
 /**
- * @note Address: 0x8034A7F4
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x8034A7F8
- * @note Size: 0x4
- */
-void Obj::doDebugDraw(Graphics&)
-{
-}
-
-/**
  * @note Address: 0x8034A7FC
  * @note Size: 0x2C
  */

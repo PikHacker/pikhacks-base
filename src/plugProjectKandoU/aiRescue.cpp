@@ -5,8 +5,6 @@
 #include "Game/routeMgr.h"
 #include "Game/AIConstants.h"
 
-static const char className[] = "actRescue";
-
 namespace PikiAI {
 /**
  * @note Address: 0x80238EB0
@@ -245,14 +243,6 @@ void ActRescue::onKeyEvent(SysShape::KeyEvent const& event)
  * @note Size: 0x4
  */
 void ActRescue::emotion_success()
-{
-}
-
-/**
- * @note Address: 0x80239890
- * @note Size: 0x4
- */
-void ActRescue::doDirectDraw(Graphics&)
 {
 }
 

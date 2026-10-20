@@ -5,15 +5,11 @@
 #include "System.h"
 #include "types.h"
 #include "Game/SingleGame.h"
-#include "nans.h"
 #include "PSGame/PikScene.h"
 #include "PSSystem/PSGame.h"
 #include "PSM/Scene.h"
 #include "TParticle2dMgr.h"
 #include "Game/GameSystem.h"
-
-static const u32 unused[3] = { 0, 0, 0 };
-static const char name[]   = "SingleGS_Game";
 
 namespace Game {
 namespace SingleGame {
@@ -26,7 +22,6 @@ FileState::FileState()
     : State(SGS_File)
 {
 	mMainController  = new Controller(JUTGamePad::PORT_0);
-	mDebugController = new Controller(JUTGamePad::PORT_2);
 	mBackupHeap      = nullptr;
 	mMainHeap        = nullptr;
 }
@@ -222,7 +217,6 @@ void FileState::draw(SingleGameSection* game, Graphics& gfx)
 void FileState::cleanup(SingleGameSection* game)
 {
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(sceneMgr);
 	sceneMgr->deleteCurrentScene();
 	mFSMgr->forceQuit();
 	mMainHeap->freeAll();

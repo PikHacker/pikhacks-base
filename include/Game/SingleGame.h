@@ -144,21 +144,17 @@ struct CaveResultState : public State {
 	// _00-_10 = State
 	u16 mGameState;                           //_10, what to do following the result state
 	u16 mStatus;                              //_12
-	unknown _14;                              //_14
 	f32 mStartTimer;                          //_18
 	Controller* mController;                  //_1C
 	Result::TNode mResultNodes;               //_20
 	ResultTexMgr::Mgr* mResultTextures;       //_70
 	JKRHeap* mResultTexHeap;                  //_74
-	u8 _78[4];                                // _78
 	Delegate<CaveResultState>* mLoadCallback; // _7C
 	DvdThreadCommand mDvdThread;              // _80
 	SingleGameSection* mSection;              // _EC
 	JKRHeap* mMainHeap;                       // _F0
 	JKRHeap* mBackupHeap;                     // _F4
 	u8 mIsCaveComplete;                       // _F8
-	u32 : 0;
-	u8 _FC[4]; // _FC
 };
 
 /**
@@ -322,7 +318,6 @@ struct FileState : public State {
 	bool mIsNotInitialized;             // _24
 	u32 _28;                            // _28, unknown
 	ebi::FileSelect::TMgr* mFSMgr;      // _2C
-	u8 _30[4];                          // _30
 	Controller* mDebugController;       // _34
 };
 
@@ -427,8 +422,6 @@ struct LoadState : public State {
 	u32 _10;             // _10, unknown
 	bool mHasDrawn;      // _14
 	bool mHasLoadBegun;  // _15
-	u8 _16[0x2];         // _16, probably padding
-	u8 _18[0xC];         // _18, unknown
 	u16 mGameLoadType;   // _24, see MapEnterType enum
 	bool mIsInitialized; // _26
 	bool mIsCaveLoad;    // _27
@@ -471,10 +464,8 @@ struct MainResultState : public State {
 	u8 _1C;                                         // _1C
 	int mCounter;                                   // _20
 	ResultTexMgr::Mgr mResultTex;                   // _24
-	u8 _64[4];                                      // _64
 	Result::TNode mResultNode;                      // _68
 	kh::Screen::IncP* mIncP;                        // _B8
-	u8 _BC[4];                                      // _BC
 	JKRHeap* mMainHeap;                             // _C0
 	TObjectNode<GenericObjectMgr>* mPelletMgr;      // _C4
 	Delegate<MainResultState>* mLoadDelegate;       // _C8
@@ -634,7 +625,6 @@ struct ZukanState : public State {
 	Rectf mWindowBounds;                        // _B4
 	Vector2f mCameraAspect;                     // _C4
 	JUTTexture* mTexture2;                      // _CC
-	u8 _D0[4];                                  // _D0
 	JKRExpHeap* mParentHeap;                    // _D4
 	JKRHeap* mMainHeap;                         // _D8
 	JKRExpHeap* mCurrObjHeap;                   // _DC

@@ -89,10 +89,8 @@ struct CPlate : public Container<Creature> {
 	Vector3f mBasePositionOffset;                // _D8
 	Vector3f mVelocity;                          // _E4
 	f32 mAngle;                                  // _F0
-	Vector3f mUnused;                            // _F4
 	u8 mShrinkTimer;                             // _100
 	int mHappaStageCounts[PikiGrowthStageCount]; // _104, indexed by happakind?
-	u8 _110;                                     // _110
 	u8 mIsPositionUnset;                         // _111
 };
 } // namespace Game

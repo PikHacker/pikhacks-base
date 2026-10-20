@@ -123,7 +123,6 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual int getDownfloorMass() { return 0; }                                       // _1BC (weak)
 	virtual bool isPikmin() { return true; }                                           // _1C0 (weak)
 	virtual void doColorChange() { }                                                   // _1C4 (weak)
-	virtual void doDebugDL() { }                                                       // _1C8 (weak)
 	virtual void update() { }                                                          // _1CC (weak)
 	virtual void move(f32);                                                            // _1D0
 	virtual bool useMoveRotation() { return !isFPFlag(FPFLAGS_MoveRotationDisabled); } // _1D4 (weak)
@@ -285,8 +284,6 @@ struct FakePikiParms : public CreatureParms {
 		    , mRunPlaybackFrameCountMax(this, 'fp07', "RUN 再生フレーム数(max)", 60.0f, 0.0f, 300.0f) // 'RUN playback frame count (max)'
 		    , mEscapePlaybackFrameCountMin(this, 'fp08', "ESCAPE 再生フレーム数(min)", 60.0f, 0.0f,
 			                               300.0f) // 'ESCAPE playback frame count (min)'
-		    , mEscapePlaybackFrameCountMax(this, 'fp09', "ESCAPE 再生フレーム数(max)", 90.0f, 0.0f,
-			                               300.0f) // 'ESCAPE playback frame count (max)'
 		{
 		}
 
@@ -300,7 +297,6 @@ struct FakePikiParms : public CreatureParms {
 		Parm<f32> mRunPlaybackFrameCountMin;    // _1D8
 		Parm<f32> mRunPlaybackFrameCountMax;    // _200
 		Parm<f32> mEscapePlaybackFrameCountMin; // _228
-		Parm<f32> mEscapePlaybackFrameCountMax; // _250
 		                                        // _278 = IParameters ptr
 	};
 

@@ -97,13 +97,8 @@ void EnemyMgrBase::doAnimation()
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->mDrawFlag & 1) || enemy->isMovieActor())) {
-			sys->mTimers->_start("e-upd", true);
 			enemy->update();
-			sys->mTimers->_stop("e-upd");
-
-			sys->mTimers->_start("e-doa", true);
 			enemy->doAnimation();
-			sys->mTimers->_stop("e-doa");
 		}
 	}
 }
@@ -163,20 +158,6 @@ void EnemyMgrBase::doSimulation(f32 arg)
 			enemy->doSimulationCarcass(arg);
 		} else if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->mDrawFlag & 1) || enemy->isMovieActor())) {
 			enemy->doSimulation(arg);
-		}
-	}
-}
-
-/**
- * @note Address: 0x8012F290
- * @note Size: 0xC4
- */
-void EnemyMgrBase::doDirectDraw(Graphics& graphics)
-{
-	for (int i = 0; i < mObjLimit; i++) {
-		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->mDrawFlag & 1) || enemy->isMovieActor())) {
-			enemy->doDirectDraw(graphics);
 		}
 	}
 }
@@ -616,13 +597,8 @@ void EnemyMgrBase::doAnimationAlwaysMovieActor()
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_Alive)) {
-			sys->mTimers->_start("e-upd", true);
 			enemy->update();
-			sys->mTimers->_stop("e-upd");
-
-			sys->mTimers->_start("e-doa", true);
 			enemy->doAnimation();
-			sys->mTimers->_stop("e-doa");
 		}
 	}
 }
@@ -655,17 +631,4 @@ void EnemyMgrBase::doSimulationAlwaysMovieActor(f32 arg)
 	}
 }
 
-/**
- * @note Address: 0x80130678
- * @note Size: 0x8C
- */
-void EnemyMgrBase::doDirectDrawAlwaysMovieActor(Graphics& graphics)
-{
-	for (int i = 0; i < mObjLimit; i++) {
-		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_Alive)) {
-			enemy->doDirectDraw(graphics);
-		}
-	}
-}
 } // namespace Game

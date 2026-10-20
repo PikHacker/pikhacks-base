@@ -3,10 +3,6 @@
 #include "string.h"
 #include "P2Macros.h"
 
-static void _Print(char* format, ...)
-{
-	OSReport(format, __FILE__);
-}
 LoadResource::Mgr* gLoadResourceMgr;
 
 namespace LoadResource {

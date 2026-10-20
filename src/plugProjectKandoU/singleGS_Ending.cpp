@@ -8,10 +8,6 @@
 #include "PSSystem/PSGame.h"
 #include "kh/khFinalResult.h"
 #include "TParticle2dMgr.h"
-#include "nans.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "SingleGS_Ending";
 
 namespace Game {
 namespace SingleGame {

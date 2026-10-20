@@ -11,8 +11,6 @@
 
 namespace PikiAI {
 
-static const char aiBridgeName[] = "actBridge";
-
 /**
  * @note Address: 0x80212288
  * @note Size: 0xFC

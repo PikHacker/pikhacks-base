@@ -15,7 +15,6 @@ CellIteratorArg::CellIteratorArg()
 
 	mCellMgr = cellMgr;
 
-	mUnused   = 0;
 	mOptimise = false;
 }
 
@@ -29,7 +28,6 @@ CellIteratorArg::CellIteratorArg(Sys::Sphere& sphere)
 	mCondition       = nullptr;
 	mUseCustomRadius = 0;
 	mCellMgr         = Game::cellMgr;
-	mUnused          = 0;
 	mOptimise        = false;
 }
 

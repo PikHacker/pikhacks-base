@@ -1,9 +1,5 @@
-#include "nans.h"
 #include "sysMath.h"
 #include "Light.h"
-
-// Fix rodata mismatch with null bytes
-static const char _RODATA_FIX[0xC] = { '\0' };
 
 namespace TreasureLight {
 /**
@@ -107,6 +103,5 @@ void Mgr::setCommonProc()
  */
 void Mgr::drawDebugInfo(Graphics& gfx)
 {
-	LightMgr::drawDebugInfo(gfx);
 }
 } // namespace TreasureLight

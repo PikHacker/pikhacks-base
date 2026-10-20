@@ -8,15 +8,11 @@
 #include "Game/Navi.h"
 #include "Game/MoviePlayer.h"
 #include "efx/efxEnemyGeneral.h"
-#include "nans.h"
 #include "Radar.h"
 #include "SoundID.h"
 
 namespace Game {
 namespace ItemPikihead {
-
-static const int unusedArray[] = { 0, 0, 0 };
-static const char unusedName[] = "itemPikihead";
 
 Mgr* mgr;
 

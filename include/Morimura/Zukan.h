@@ -51,9 +51,7 @@ struct TCallbackScrollMsg : public og::Screen::CallBack_Message {
 	// _00     = VTBL
 	// _00-_48 = og::Screen::CallBack_Message
 	f32 mScrollTimer;                           // _48
-	u8 _4C[0x4];                                // _4C, unknown
 	P2JME::IllustratedBook::TControl* mControl; // _50
-	u8 _54[0x4];                                // _54, unknown
 };
 
 struct DispMemberZukanBase : public og::Screen::DispMemberBase {

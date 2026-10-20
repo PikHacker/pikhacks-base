@@ -242,14 +242,12 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	bool mEnableYaji;                     // _74, are LR panes displayed?
 	Vector2f mYajiLpos;                   // _78, position for L button pane
 	Vector2f mYajiRpos;                   // _80, position for R button pane
-	f32 mUnused88;                        // _88, set to 0 and never used
 	u8 mAlpha;                            // _8C
 	Screen::ArrowAlphaBlink* mArrowBlink; // _90
 	J2DPictureEx* mPanePeffect1;          // _94
 	J2DPictureEx* mPanePeffect2;          // _98
 	P2DScreen::Mgr* mScreenMain;          // _9C, manager screen for current menu pane (map/item/pause)
 	J2DPane* mPaneNsize;                  // _A0
-	f32 mUnusedA4;                        // _A4, set to 1.0 and never used
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -309,7 +307,6 @@ struct ObjSMenuCont : public ObjSMenuBase {
 	og::Screen::DispMemberSMenuCont* mDisp; // _A8
 	P2DScreen::Mgr_tuning* mScreenCont;     // _AC
 	og::Screen::AnimGroup* mAnimGroup;      // _B0
-	u8 _B4[0x8];                            // _B4, unknown
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -356,7 +353,6 @@ struct ObjSMenuItem : public ObjSMenuBase {
 	J2DPane* mSpicySprayPane;               // _C0, Nspray1
 	J2DPane* mBitterSpraySubPane;           // _C4, Nspray0
 	J2DPane* mSpicySpraySubPane;            // _C8, Nspray1
-	u8 _CC[0x8];                            // _CC, unknown
 
 	static struct StaticValues {
 		inline StaticValues()

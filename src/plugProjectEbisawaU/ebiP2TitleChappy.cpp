@@ -6,13 +6,9 @@
 #include "Dolphin/rand.h"
 #include "trig.h"
 #include "Controller.h"
-#include "nans.h"
 
 namespace ebi {
 namespace title {
-
-static const int unusedTitleChappyArray[] = { 0, 0, 0 };
-static const char ebiP2TitleChappyName[]  = "ebiP2TitleChappy";
 
 /**
  * @note Address: 0x803E85D8

@@ -96,7 +96,6 @@ struct VertexTable : public ArrayContainer<Vector3f> {
 	inline Vector3f& getVertexAt(int i) { return mObjects[i]; }
 
 	BoundBox mBoundBox; // _28
-	u8 _40[0x10];       // _40
 };
 } // namespace Sys
 

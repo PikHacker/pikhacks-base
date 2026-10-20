@@ -34,7 +34,6 @@ struct MemoryCardMgrCommand : public MemoryCardMgrCommandBase {
 		s8 byteView;
 		void* dataView;
 	} mData;      // _08, this is genuinely dumb but necessary?
-	u8 _0B[0x14]; // _0C, unknown
 };
 
 struct MemoryCardMgr {

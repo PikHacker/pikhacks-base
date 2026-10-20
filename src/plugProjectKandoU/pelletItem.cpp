@@ -92,11 +92,9 @@ Mgr::Mgr()
  */
 void Mgr::setupResources()
 {
-	sys->heapStatusStart("Equipment", nullptr);
 	alloc(PELLET_ITEM_MAXCOUNT);
 	load_texArc("item_texts.szs");
 	mCollPartMgr.alloc(PELLET_ITEM_MAXCOLLPART);
-	sys->heapStatusEnd("Equipment");
 }
 
 /**

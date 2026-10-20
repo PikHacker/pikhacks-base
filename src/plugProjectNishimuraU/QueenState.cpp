@@ -3,7 +3,6 @@
 #include "Game/EnemyFunc.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
-#include "nans.h"
 
 namespace Game {
 namespace Queen {

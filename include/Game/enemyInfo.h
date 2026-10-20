@@ -181,7 +181,6 @@ struct EnemyNumInfo {
 	u8 getEnemyNum(int enemyID, bool doCheckOriginal);
 	u8 getEnemyNumData(int enemyID);
 
-	u8 _00[4];                  // _00
 	EnemyTypeID* mEnemyNumList; // _04
 };
 

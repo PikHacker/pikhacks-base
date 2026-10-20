@@ -56,7 +56,6 @@ struct ModelEffect {
 	virtual bool useCylinderLOD();               // _24 (weak)
 	virtual void getLODCylinder(Sys::Cylinder&); // _28 (weak)
 	virtual void doSimulation(f32) { }           // _2C (weak)
-	virtual void doDirectDraw(Graphics& gfx) { } // _30 (weak)
 
 	// _00 VTBL
 	SysShape::Model* mModel;    // _04

@@ -6,14 +6,10 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JUtility/JUTProcBar.h"
-#include "nans.h"
 #include "P2Macros.h"
 #include "System.h"
 
 namespace Game {
-
-static const int unusedBaseHIOArray[] = { 0, 0, 0 };
-static const char unusedBaseHIOName[] = "baseHIOSection";
 
 /**
  * @note Address: 0x80164BF0
@@ -28,7 +24,6 @@ BaseHIOSection::BaseHIOSection(JKRHeap* heap)
 	u32 totalFreeSize = JKRHeap::sCurrentHeap->getTotalFreeSize();
 
 	JUT_ASSERTLINE(314, freeSize == totalFreeSize, "fragmentation occurred : after sound\n");
-	mDebugController = new Controller(Controller::PORT_3);
 }
 
 /**
@@ -43,9 +38,6 @@ BaseHIOSection::~BaseHIOSection()
 	}
 
 	mRootNode = nullptr;
-
-	delete mDebugController;
-	mDebugController = nullptr;
 }
 
 /**

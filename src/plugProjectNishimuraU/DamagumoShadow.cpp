@@ -3,8 +3,6 @@
 namespace Game {
 namespace Damagumo {
 
-static const char damagumoShadowName[] = "246-DamagumoShadow";
-
 /**
  * @note Address: 0x802AAD94
  * @note Size: 0x20C

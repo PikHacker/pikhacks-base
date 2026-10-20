@@ -51,7 +51,6 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                                                // _30
 	virtual void doSimulation(f32);                                                                // _4C
-	virtual void doDirectDraw(Graphics& gfx);                                                      // _50
 	virtual void inWaterCallback(WaterBox* wb);                                                    // _84
 	virtual void outWaterCallback();                                                               // _88
 	virtual void collisionCallback(CollEvent& event);                                              // _EC
@@ -61,7 +60,6 @@ struct Obj : public EnemyBase {
 	virtual void birth(Vector3f&, f32);                                                            // _1C0
 	virtual void doUpdate();                                                                       // _1CC
 	virtual void doAnimationCullingOff();                                                          // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                                                       // _1EC
 	virtual void setParameters();                                                                  // _228
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Tyre; }       // _258 (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                                             // _260
@@ -164,8 +162,6 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_830                    = 0;
-		_831                    = 0;
 		mDoUseGlobalJointMgr    = true;
 		mOnPelletAirTime        = 10;
 		mStaticRotation         = 0.0f;
@@ -185,8 +181,6 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms mProperParms;    // _7F8
-	u8 _830;                     // _830, unused
-	u8 _831;                     // _831, unused
 	u8 mDoUseGlobalJointMgr;     // _832
 	u8 mOnPelletAirTime;         // _833
 	f32 mStaticRotation;         // _834

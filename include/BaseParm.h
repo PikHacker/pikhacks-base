@@ -118,7 +118,6 @@ struct Parm : public BaseParm {
 	virtual void read(Stream& stream);
 
 	T mValue; // _18
-	T _1C;    // _1C, unused in the entire game!
 	T mMin;   // _20
 	T mMax;   // _24
 };

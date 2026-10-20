@@ -474,8 +474,6 @@ struct Graphics {
 	 * @brief Calculates the J3D view.
 	 */
 	virtual void doJ3DViewCalc() { } // _20 (weak)
-
-	u8 _270[0x2E]; // _270
 };
 
 #endif

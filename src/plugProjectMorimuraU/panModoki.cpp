@@ -11,7 +11,6 @@
 #include "Game/pathfinder.h"
 #include "Dolphin/rand.h"
 #include "efx/efxEnemy.h"
-#include "nans.h"
 
 namespace Game {
 
@@ -132,7 +131,6 @@ Obj::Obj()
     , mEfxSmoke(nullptr)
     , mCarrySizeDiff(20.0f)
     , mShadowSize(15.0f)
-    , mUnusedVal(5.0f)
     , mBounceEffectSize(0.6f)
     , mAppearEffectSize(1.0f)
     , mNest(nullptr)
@@ -255,23 +253,6 @@ void Obj::updateCaptureMatrix()
 		matTr.makeTR(Vector3f::zero, rot);
 		pellet->updateCapture(matTr);
 	}
-}
-
-/**
- * @note Address: 0x803502D0
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x803502D4
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& graphics)
-{
-	EnemyBase::doDebugDraw(graphics);
 }
 
 /**
@@ -1535,7 +1516,6 @@ Obj::Obj()
 {
 	mCarrySizeDiff    = 40.0f;
 	mShadowSize       = 30.0f;
-	mUnusedVal        = 12.0f;
 	mBounceEffectSize = 0.9f;
 	mAppearEffectSize = 1.6f;
 }

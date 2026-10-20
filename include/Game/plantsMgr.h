@@ -49,7 +49,6 @@ struct Obj : public EnemyBase {
 	virtual void birth(Vector3f&, f32);                                  // _1C0
 	virtual void update();                                               // _1C8
 	virtual void doAnimationCullingOff();                                // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                             // _1EC
 	virtual void setParameters();                                        // _228
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;              // _258
 	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor); // _28C

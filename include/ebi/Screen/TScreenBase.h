@@ -33,7 +33,6 @@ struct ArgOpenOmake : public ArgOpen {
 	u8 mIsDebtComplete;      // _04
 	u8 mIsAllTreasures;      // _05
 	bool mIsLouieDarkSecret; // _06
-	int mUnusedVal;          // _08 related to e-reader screen?
 };
 
 struct ArgOpenTitleMenu : public ArgOpen {

@@ -84,9 +84,6 @@ BgmTrackMap BgmTrackMapFile::readTrackMap(const char* path)
 	return map;
 }
 
-static const char* unused  = "P2Assert";
-static const char* unused2 = "not find info\n";
-
 /**
  * @note Address: 0x804720F4
  * @note Size: 0x294

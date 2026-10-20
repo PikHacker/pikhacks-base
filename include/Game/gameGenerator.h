@@ -24,11 +24,7 @@ struct Generator : public CNode {
 	Generator();
 	Generator(int);
 
-	virtual ~Generator();                       // _08
-	virtual void doAnimation();                 // _10
-	virtual void doEntry();                     // _14
-	virtual void doSetView(int viewportNumber); // _18
-	virtual void doViewCalc();                  // _1C
+	virtual ~Generator(); // _08
 
 	static void initialiseSystem();
 	void generate();
@@ -81,7 +77,6 @@ struct Generator : public CNode {
 	char mGenObjName[32];      // _20 /* shift-jis name given in generator files */
 	ID32 mNameId;              // _40
 	ID32 mVersion;             // _4C
-	u8 _58[4];                 // _58
 	u16 mReservedNum;          // _5C
 	Generator* mPrevGenerator; // _60
 	Generator* mNextGenerator; // _64
@@ -90,10 +85,7 @@ struct Generator : public CNode {
 	int mDaysTillResurrection; // _70
 	u32 mDeathCount;           // _74
 	u32 mDayNum;               // _78
-	u32 mUnusedVal;            // _7C, set to 0 in a few places, never used
-	u8 _80[4];                 // _80
 	int mDayLimit;             // _84
-	u8 _88[12];                // _88
 	Vector3f mPosition;        // _94
 	Vector3f mOffset;          // _A0
 	u8 mIsInactive;            // _AC, if true, the object wont spawn or need its assets loaded
@@ -108,11 +100,6 @@ struct Generator : public CNode {
 
 struct GeneratorMgr : public CNode {
 	GeneratorMgr();
-
-	virtual void doAnimation();                 // _10
-	virtual void doEntry();                     // _14
-	virtual void doSetView(int viewportNumber); // _18
-	virtual void doViewCalc();                  // _1C
 
 	void addMgr(GeneratorMgr*);
 	void generate();
@@ -132,14 +119,10 @@ struct GeneratorMgr : public CNode {
 	GeneratorMgr* mParentMgr; // _20
 	Vector3f mCursorPosition; // _24
 	Generator* mGenerator;    // _30
-	ID32 mAltVersionID;       // _34, set to 'v0.1' and never used
 	ID32 mVersionID;          // _40
 	int mGeneratorCount;      // _4C
-	ID32 mUnusedID;           // _50, entirely never touched
 	Vector3f mStartPos;       // _5C
 	f32 mStartDir;            // _68, v0.1 adds the start direction
-	u8 mUnusedFlag;           // _6C, set to true for nonloop/loop, not used
-	u8 mUnusedFlag2;          // _6D
 
 	static IDelegate1<Vector3f&>* cursorCallback;
 };
@@ -176,11 +159,10 @@ struct GenBase : public Parameters {
 
 	// _00 - _0C: Parameters
 	// _0C: vtable
-	u32 mTypeID;             // _10
-	u32 mRawID;              // _14
-	char* mLabelData;        // _18
-	char* mObjTypeName;      // _1C
-	SysShape::Model* mModel; // _20
+	u32 mTypeID;        // _10
+	u32 mRawID;         // _14
+	char* mLabelData;   // _18
+	char* mObjTypeName; // _1C
 };
 
 struct EnemyGeneratorBase : public CNode {
@@ -423,7 +405,6 @@ struct GenObjectFactoryFactory {
 	int mCount;                   // _00
 	int mLimit;                   // _04
 	GenObjectFactory* mFactories; // _08
-	u8 _0C[4];                    // _0C
 };
 
 struct GenObjectNavi : public GenObject {

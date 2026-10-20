@@ -1,15 +1,12 @@
 #include "Game/IllustratedBook.h"
 #include "Game/GameSystem.h"
 #include "Game/SingleGame.h"
-#include "nans.h"
 
 namespace Game {
 namespace IllustratedBook {
 
 Game::SingleGame::ZukanState* Parms::sZukanState;
 Camera* Parms::sCamera;
-
-static const int unusedIllustratedBookArray[] = { 0, 0, 0 };
 
 /**
  * @note Address: 0x80130B9C
@@ -325,10 +322,6 @@ void Parms::loadFile(JKRArchive* archive)
 	stream.setMode(STREAM_MODE_TEXT, 1);
 	read(stream);
 }
-
-// these are from Parms::loadFile(const char* fileName), which is stripped:
-static const char unusedLoadFileStr1[] = "load error.[%s]\n";
-static const char unusedLoadFileStr2[] = "no fileName";
 
 } // namespace IllustratedBook
 } // namespace Game

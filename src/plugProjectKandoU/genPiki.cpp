@@ -3,7 +3,6 @@
 #include "Game/gameStat.h"
 #include "Game/PikiMgr.h"
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 /**
  * @note Address: 0x801AC3C0
@@ -76,8 +75,6 @@ Creature* GenObjectPiki::generate(Generator* gen)
 
 	return nullptr;
 }
-
-static const char unusedGenPikiArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 /**
  * @note Address: 0x801AC830

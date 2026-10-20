@@ -5,7 +5,6 @@
 #include "efx/efxEnemyBoss.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
-#include "nans.h"
 
 namespace Game {
 namespace MiniHoudai {
@@ -268,15 +267,6 @@ void MiniHoudaiShotGunNode::effectDrawOn()
  * @note Size: 0x30
  */
 void MiniHoudaiShotGunNode::effectDrawOff()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x4
- */
-void MiniHoudaiShotGunNode::doDebugDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -655,15 +645,6 @@ void MiniHoudaiShotGunMgr::effectDrawOff()
 	{
 		node->mEfxShell->startDemoDrawOff();
 	}
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x4
- */
-void MiniHoudaiShotGunMgr::doDebugDraw(Graphics&)
-{
-	// UNUSED FUNCTION
 }
 
 } // namespace MiniHoudai

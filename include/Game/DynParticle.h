@@ -40,7 +40,6 @@ struct DynParticle {
 	virtual void doSetView(u32) { }              // _14 (weak)
 	virtual void doViewCalc() { }                // _18 (weak)
 	virtual void doSimulation(f32) { }           // _1C (weak)
-	virtual void doDirectDraw(Graphics& gfx) { } // _20 (weak)
 };
 
 struct DynParticleMgr : public MonoObjectMgr<DynParticle> {

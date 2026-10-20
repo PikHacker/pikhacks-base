@@ -16,10 +16,6 @@
 #include "PSSystem/PSSystemIF.h"
 #include "ParticleMgr.h"
 #include "utilityU.h"
-#include "nans.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "moviePlayer";
 
 namespace Game {
 
@@ -164,15 +160,10 @@ int MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 		mAltNavi   = mTargetNavi;
 		mAltCamera = mActingCamera;
 		cameraMgr->controllerLock(CAMNAVI_Both);
-		config->dump();
 		mCurrentConfig = config;
 		mNaviID        = arg.mNaviID;
 		P2ASSERTLINE(594, config);
 
-		char path1[512];
-		char path2[512];
-		sprintf(path1, "/user/Mukki/movie/%s/demo.stb", config->mMovieNameBuffer2);
-		sprintf(path2, "/user/Mukki/movie/%s/demo.szs", config->mMovieNameBuffer2);
 		mIsPaused              = gameSystem->setPause(true, "moviePl:play", 3);
 		mOffset                = nullptr;
 		bool test              = false;
@@ -410,9 +401,7 @@ void MoviePlayer::setContext(MovieContext* context, MovieConfig* config, MoviePl
  */
 void MoviePlayer::loadResource()
 {
-	char path1[PATH_MAX];
 	char path2[PATH_MAX];
-	sprintf(path1, "/user/Mukki/movie/%s/demo.stb", mCurrentConfig->mMovieNameBuffer2);
 	sprintf(path2, "/user/Mukki/movie/%s/demo.szs", mCurrentConfig->mMovieNameBuffer2);
 	sys->startChangeCurrentHeap(mMovieHeap);
 
@@ -436,9 +425,6 @@ void MoviePlayer::loadResource()
 	mStudioControl->setFactory(mStudioFactory);
 	mStudioControl->mSecondsPerFrame = 0.03333333507180214;
 
-	sys->heapStatusStart("movieResource", nullptr);
-
-	sys->heapStatusStart("arc", nullptr);
 	LoadResource::Arg arg(path2);
 	arg.mHeap                = JKRGetCurrentHeap();
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
@@ -448,11 +434,8 @@ void MoviePlayer::loadResource()
 		mArchive = nullptr;
 	}
 	DCStoreRange(mMovieHeap, mMovieHeapFreeSize);
-	sys->heapStatusEnd("arc");
 
-	sys->heapStatusStart("message", nullptr);
 	mTextControl->init();
-	sys->heapStatusEnd("message");
 
 	mEfxManager = nullptr;
 	if (mArchive) {
@@ -463,23 +446,16 @@ void MoviePlayer::loadResource()
 		}
 	}
 
-	sys->heapStatusStart("stb", nullptr);
 	if (mArchive) {
 		mStbFile = mArchive->getResource("demo.stb");
-		JUT_ASSERTLINE(954, mStbFile, "まぢかｗ\n"); // "Seriously?"
+		JUT_ASSERTLINE(954, mStbFile, "no demo.stb\n");
 	} else {
-		JUT_PANICLINE(957, "demo.szs がないとだめだよｗ\n"); // "It's no good without it lol\n"
+		JUT_PANICLINE(957, "no demo.szs\n");
 	}
 	JUT_ASSERTLINE(960, mStbFile, "resource open failed!\n");
-	sys->heapStatusEnd("stb");
 
-	sys->heapStatusStart("JStudio::TParse", nullptr);
 	parse(true);
-	sys->heapStatusEnd("JStudio::TParse");
-
-	sys->heapStatusEnd("movieResource");
 	sys->endChangeCurrentHeap();
-	sys->heapStatusDump(false);
 }
 
 /**
@@ -511,8 +487,6 @@ bool MoviePlayer::parse(bool flag)
 bool MoviePlayer::update(Controller* input1, Controller* input2)
 {
 	switch (mDemoState) {
-	case 7: // entirely unused state?
-		break;
 	case DEMOSTATE_Inactive:
 		return false;
 
@@ -784,12 +758,6 @@ void MoviePlayer::setCamera(Camera* cam)
 	arg.mBgmID      = mStreamID;
 
 	mDemoPSM->init((Vec*)cam->getSoundPositionPtr(), (Vec*)cam->getSoundPositionPtr(), cam->getSoundMatrixPtr()->mMatrix.mtxView, arg);
-
-	cam->getViewMatrix(false);
-	cam->getViewMatrix(false)->print("viewmat");
-	cam->getSoundPositionPtr();
-	cam->getSoundPositionPtr();
-	cam->getSoundPositionPtr();
 	mDemoPSM->onDemoTop();
 }
 
@@ -924,20 +892,6 @@ void MoviePlayer::skip()
 			delete it.operator->();
 		}
 	}
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x404
- */
-void MoviePlayer::draw2d()
-{
-	// here for rodata
-	OSReport("<suspend>");
-	OSReport("frame %4d", 0);
-	OSReport("use  %.1fK");
-	OSReport("heap %.1fK");
-	// UNUSED FUNCTION
 }
 
 } // namespace Game

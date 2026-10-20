@@ -10,8 +10,6 @@
 #include "P2Macros.h"
 #include "types.h"
 
-static const char caveInfoName[] = "caveInfo";
-
 namespace Game {
 namespace Cave {
 /**
@@ -484,7 +482,7 @@ void FloorInfo::read(Stream& input)
  * @note Size: 0xD0
  */
 CaveInfo::CaveInfo()
-    : CNode(const_cast<char*>(caveInfoName))
+    : CNode("caveInfo")
     , mParms()
     , mFloorInfo()
 {

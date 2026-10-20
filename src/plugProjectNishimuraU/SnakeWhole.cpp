@@ -14,8 +14,6 @@
 namespace Game {
 namespace SnakeWhole {
 
-static const char unusedSnakeWholeName[] = "246-SnakeWhole";
-
 /**
  * @note Address: 0x802CE798
  * @note Size: 0x16C
@@ -102,23 +100,6 @@ void Obj::doAnimationCullingOff()
 	EnemyBase::doAnimationCullingOff();
 	doAnimationShadowSystem();
 	finishAnimationJointCallBack();
-}
-
-/**
- * @note Address: 0x802CEAC8
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802CEACC
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

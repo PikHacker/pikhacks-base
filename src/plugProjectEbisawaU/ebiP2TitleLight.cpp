@@ -1,6 +1,5 @@
 #include "ebi/title/TTitle.h"
 #include "stream.h"
-#include "nans.h"
 
 namespace ebi {
 namespace title {

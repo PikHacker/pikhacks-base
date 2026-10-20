@@ -6,8 +6,6 @@
 namespace Game {
 namespace Kabuto {
 
-static const char unusedKabutoName[] = "246-KabutoState";
-
 /**
  * @note Address: 0x802E1834
  * @note Size: 0x480

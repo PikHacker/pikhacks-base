@@ -21,18 +21,6 @@ namespace Game {
 struct THPPlayer;
 }
 
-namespace TitleDummy {
-struct Section {
-	Section(JKRHeap*);
-
-	virtual ~Section();
-	void init();
-	void loadResource();
-	bool doUpdate();
-	void doDraw(Graphics& gfx);
-};
-} // namespace TitleDummy
-
 struct HIORootNode : public Game::HIORootNode {
 	HIORootNode(Section* sect, const char* name)
 	    : Game::HIORootNode(sect)
@@ -113,7 +101,6 @@ struct Section : public Game::BaseHIOSection {
 	JKRArchive* mHiScoreTex;                   // _2F40
 	bool mDoCheckShortCut;                     // _2F44
 	int mLanguageID;                           // _2F48
-	u8 _2F4C[32];                              // _2F4C, unknown (PAL: _30D4)
 #if defined(VERSION_PAL)                       //
 	u32 mDebugKeyIndex;                        // _30F4
 	bool mShowBuildInfo;                       // _30F8

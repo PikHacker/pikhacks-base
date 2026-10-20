@@ -3,8 +3,6 @@
 namespace Game {
 namespace ElecBug {
 
-static const char elecBugMgrName[] = "246-ElecBugMgr";
-
 /**
  * @note Address: 0x8027A89C
  * @note Size: 0x50

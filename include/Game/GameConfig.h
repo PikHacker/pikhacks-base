@@ -37,7 +37,6 @@ struct GameConfig {
 		    , mE3version(this, "E3version")
 		    , mMukki_cherry(this, "mukki_cherry")
 		    , mMarioClubDevelop(this, "marioClubDevelop")
-		    , mHeapStatusPrint(this, "heapStatusPrint")
 		    , mHeapFreeSize(this, "heapFreeSize")
 		    , mBaseGameNewCheck(this, "baseGameNewCheck")
 		    , mKFesVersion(this, "KFesVersion")
@@ -80,7 +79,6 @@ struct GameConfig {
 		PrimTagParm<int> mE3version;            // _1BC
 		PrimTagParm<int> mMukki_cherry;         // _1CC
 		PrimTagParm<int> mMarioClubDevelop;     // _1DC
-		PrimTagParm<int> mHeapStatusPrint;      // _1EC
 		PrimTagParm<int> mHeapFreeSize;         // _1FC
 		PrimTagParm<int> mBaseGameNewCheck;     // _20C
 		PrimTagParm<int> mKFesVersion;          // _21C

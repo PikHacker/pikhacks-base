@@ -9,10 +9,6 @@
 #include "PSGame/PikScene.h"
 #include "TParticle2dMgr.h"
 #include "JSystem/J2D/J2DPrint.h"
-#include "nans.h"
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "SingleGS_Game";
 
 static int sParentHeapFreeSize;
 static int sParentHeapFreeSize_Last;

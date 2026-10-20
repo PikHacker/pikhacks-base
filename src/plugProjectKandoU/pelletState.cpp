@@ -17,12 +17,8 @@
 #include "efx/efxObject.h"
 #include "efx/efxEnemyGeneral.h"
 #include "Radar.h"
-#include "nans.h"
 
 namespace Game {
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "pelletState";
 
 /**
  * @note Address: 0x801A4310
@@ -385,14 +381,6 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 					}
 					moviePlayer->play(moviearg);
 					doPlay = true;
-				} else {
-					// A completely unused cutscene, in theory this would play if you carried a corpse or number pellet to the ship
-					// but even if you did, this cutscene doesnt exist in the files, so nothing happens
-					BaseGameSection* section = gameSystem->mSection;
-					MoviePlayArg moviearg("suck_ufo", const_cast<char*>(section->getCurrentCourseInfo()->mName),
-					                      section->mMovieFinishCallback, 0);
-					moviePlayer->play(moviearg);
-					doPlay = true;
 				}
 			}
 		} else if (onyon && onyon->mOnyonType == ONYON_TYPE_POD) {
@@ -467,12 +455,6 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 			pelt->movie_begin(false);
 		} else {
 			pelt2 = pelt;
-			// unused debug prints probably
-			pelt->getCreatureName();
-			pelt->getCreatureID();
-			if (pelt->mPelletView) {
-				pelt->mPelletView->viewGetShape();
-			}
 		}
 		if (!draw2d) {
 			gameSystem->mSection->setDraw2DCreature(pelt2);
@@ -480,18 +462,6 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 		pelt->movie_begin(false);
 	}
 	return doPlay;
-}
-
-static const char creatureName[] = "Creature";
-
-static void weirdFixFunc(f32* p1, f32* p2, f32* p3, f32* p4, f32* p5, f32* p6)
-{
-	*p1 = 90.0f;
-	*p2 = 60.0f;
-	*p3 = -325.9493f;
-	*p4 = 325.9493f;
-	*p5 = 8.0f;
-	*p6 = TAU;
 }
 
 /**
@@ -579,22 +549,11 @@ void PelletGoalState::exec(Pellet* pelt)
 	InteractSuckDone suckDone(pelt, 0);
 	mOnyon->stimulate(suckDone);
 
-	// stripped debug stuff
-	if (Radar::mgr) {
-		Radar::Mgr::getNumOtakaraItems();
-		Radar::Mgr::getNumOtakaraItems();
-		bool check = pelt->getKind() == PelletType::Treasure;
-		if (!check) {
-			pelt->getKind();
-		}
-	}
-
 	// check if all treasures in the area have been collected, to make the music/ background sfx change
 	if (!gameSystem->isVersusMode() && (pelt->getKind() == PelletType::Treasure || pelt->getKind() == PelletType::Upgrade)
 	    && Radar::Mgr::getNumOtakaraItems() <= 1) {
 		if (gameSystem->mIsInCave) {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSSystem::validateSceneMgr(mgr);
 			PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
 			PSSystem::checkGameScene(scene);
 			scene->stopPollutionSe();
@@ -602,7 +561,6 @@ void PelletGoalState::exec(Pellet* pelt)
 			if (gameSystem->isChallengeMode()) {
 				if (strcmp(pelt->mConfig->mParams.mName.mData, "key")) {
 					PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-					PSSystem::validateSceneMgr(mgr);
 					PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 					PSSystem::checkGameScene(scene);
 					if (scene->isCave()) {
@@ -612,7 +570,6 @@ void PelletGoalState::exec(Pellet* pelt)
 			}
 		} else {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSSystem::validateSceneMgr(mgr);
 			PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
 			PSSystem::checkGameScene(scene);
 			scene->setPollutUp();
@@ -758,11 +715,6 @@ void PelletScaleAppearState::exec(Pellet* pelt)
 		if (mTime < _1C + _20) {
 			scale = ((mTime - _1C) / _20);
 		} else {
-			// carry-over from PelletAppearState, does nothing here
-			if (!mEfxMade) {
-				mEfxMade = true;
-			}
-
 			mAngle       = roundAng(mMagnitude * frameTime + mAngle);
 			f32 rad      = 0.1f * mGoalScale;
 			f32 sinTheta = sinf(mAngle);

@@ -156,7 +156,6 @@ struct Action {
 	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit) { }        // _24 (weak)
 	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event) { } // _28 (weak)
 	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event) { }      // _2C (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }                              // _30 (weak)
 	virtual void wallCallback(Vector3f& pos) { }                              // _34 (weak)
 
 	/// @brief Gets information about the action (usually name)
@@ -404,8 +403,6 @@ struct ActBreakGate : public Action, virtual SysShape::MotionListener {
 	ActGotoPos* mGotoPos;               // _1C
 	ActFollowVectorField* mFollowField; // _20
 	bool mResetStateAfter;              // _24
-	u8 _25[0x3];                        // _25, unknown/probably padding
-	u8 _28[0xC];                        // _28, unknown
 	                                    // _34 = MotionListener
 };
 
@@ -439,7 +436,6 @@ struct ActBreakRock : public Action, public virtual SysShape::MotionListener {
 	ActStickAttack* mStickAttack;       // _18
 	ActGotoPos* mGotoPos;               // _1C
 	ActFollowVectorField* mFollowField; // _20
-	u8 _24[0xC];                        // _24, unknown
 	                                    // _30 = MotionListener
 };
 
@@ -788,7 +784,6 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 	u16 mOldDistanceType;          // _2C
 	u16 mDistanceCounter;          // _2E
 	u8 mHasReleasedSlot;           // _30
-	u8 mUnusedVal;                 // _31
 	int mSlotID;                   // _34
 	u8 mTouchingNaviCooldownTimer; // _38
 	Game::Footmark* mFootmark;     // _3C
@@ -971,9 +966,6 @@ struct PathMoveArg : public ActionArg {
 	inline PathMoveArg(Game::Pellet* pellet, Vector3f& p2, s16 p3, u32 p4)
 	    : ActionArg()
 	    , mPellet(pellet)
-	    , _08(p2)
-	    , _14(p3)
-	    , _18(p4)
 	{
 	}
 
@@ -981,9 +973,6 @@ struct PathMoveArg : public ActionArg {
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
-	Vector3f _08;          // _08, unused??
-	s16 _14;               // _14, unused??
-	int _18;               // _18, unused??
 };
 
 struct ActPathMove : public Action {
@@ -1036,8 +1025,6 @@ struct ActPathMove : public Action {
 	Vector3f mGoalPosition;             // _24
 	Game::Pellet* mPellet;              // _30
 	Game::Onyon* mOnyon;                // _34
-	f32 mUnusedSlotId;                  // _38, unused??
-	u8 mUnusedPathFlag;                 // _3C, unused??
 	u8 mVsWayPointCounter;              // _3D, something to do with vs mode
 	int mPathFindCounter;               // _40, how many frames have we been pathfinding for?
 	Game::PathNode* mStartNode;         // _44
@@ -1082,7 +1069,6 @@ struct ActRescue : public Action, virtual SysShape::MotionListener {
 	virtual void emotion_success();                                           // _14
 	virtual u32 getNextAIType() { return 1; }                                 // _20 (weak)
 	virtual void collisionCallback(Game::Piki* piki, Game::CollEvent& event); // _28
-	virtual void doDirectDraw(Graphics& gfx);                                 // _30
 	virtual void onKeyEvent(const SysShape::KeyEvent& event);                 // _3C (weak)
 
 	void initApproach();
@@ -1229,7 +1215,6 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 	virtual void emotion_success();                                        // _14
 	virtual u32 getNextAIType() { return 1; }                              // _20 (weak)
 	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
-	virtual void doDirectDraw(Graphics& gfx);                              // _30
 	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	void makeTarget();
@@ -1249,19 +1234,10 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 	bool mIsLeafChappy;               // _14
 	bool mToEmote;                    // _15
 	Game::Footmark* mTargetFootprint; // _18
-	s32 mUnused0;                     // _1C
 	f32 mParentFollowTimer;           // _20
 	f32 mMoveSpeed;                   // _24
 	u32 mFollowState;                 // _28 TekiFollowState
-
-	// Everything from here onwards was probably used for testing new functionality
-	// But scrapped because it couldn't be done in time
-	Vector3f mUnusedZeroVector; // _2C
-	f32 mUnused1;               // _38
-	f32 mUnused2;               // _3C
-	f32 mUnused3;               // _40
-	f32 mUnusedDotProduct;      // _44
-	                            // _48 = MotionListener
+	                                  // _48 = MotionListener
 };
 
 struct ActTransportArg : public ActionArg {
@@ -1270,8 +1246,6 @@ struct ActTransportArg : public ActionArg {
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
 	Game::Onyon* mGoal;    // _08
-	Vector3f mUnusedPos;   // _0C
-	s16 mUnusedSlotVal;    // _18, slot maybe?
 };
 
 struct ActTransport : public Action, virtual SysShape::MotionListener {

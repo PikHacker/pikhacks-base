@@ -41,7 +41,6 @@ struct AnimBaseBase {
 	f32 mArea;            // _30
 	f32 mLength;          // _34
 	bool mIsRepeating;    // _38
-	bool mUnusedFlag;     // _39
 	char* mResourcePath;  // _3C
 };
 

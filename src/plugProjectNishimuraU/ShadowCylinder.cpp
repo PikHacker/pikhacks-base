@@ -2,11 +2,8 @@
 #include "Game/GameSystem.h"
 #include "System.h"
 #include "trig.h"
-#include "nans.h"
 #include "JSystem/JUtility/JUTTexture.h"
 
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "246-ShadowCylinder";
 namespace Game {
 
 // clang-format off
@@ -379,8 +376,6 @@ void CylinderBase::drawCylinderList(int)
  */
 ShadowCylinder2::ShadowCylinder2(Game::ShadowParms* parm, Color4* color)
 {
-	sys->heapStatusStart("Shadow Texture", nullptr);
-
 	u16 y    = sys->getRenderModeObj()->efbHeight;
 	u16 x    = sys->getRenderModeObj()->fbWidth;
 	int size = GXGetTexBufferSize(x / 2, y / 2, GX_CTF_R8, GX_FALSE, 0);
@@ -397,7 +392,6 @@ ShadowCylinder2::ShadowCylinder2(Game::ShadowParms* parm, Color4* color)
 	mParms  = parm;
 	mColor  = color;
 	mTexIdx = 0;
-	sys->heapStatusEnd("Shadow Texture");
 }
 
 /**

@@ -912,20 +912,6 @@ bool JKRExpHeap::dump_sort()
 	return result;
 }
 
-// these didn't get deadstripped, workaround to generate it
-void genData()
-{
-	JUTWarningConsole_f("+---------------JKRExpHeap\n");
-	JUTWarningConsole_f("|         Align Group  size    ( prev , next )\n");
-	JUTWarningConsole_f("| ---- FreeFirst\n");
-	JUTWarningConsole_f("| %08x  ");
-	JUTWarningConsole_f("%2x  %3d  %6x  (%08x %08x)\n");
-	JUTWarningConsole_f("| ---- FreeLast\n");
-	JUTWarningConsole_f("| ---- UsedFirst\n");
-	JUTWarningConsole_f("| ---- UsedLast\n");
-	JUTWarningConsole_f("+---------------End\n");
-}
-
 /**
  * @note Address: 0x80021754
  * @note Size: 0x20

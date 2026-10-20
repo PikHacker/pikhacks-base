@@ -102,7 +102,6 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doSetView(int viewportNumber); // _6C (weak)
 	virtual void doViewCalc();                  // _70 (weak)
 	virtual void doSimulation(f32 rate);        // _74 (weak)
-	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual char* getMgrName()                  // _80 (weak)
 	{
 		return "ペレットマネージャ"; // pellet manager
@@ -163,11 +162,9 @@ struct PelletInitArg : public CreatureInitArg {
 		mPelletType           = PelletType::Invalid;
 		mPelView              = nullptr;
 		mDontCheckCollected   = 0;
-		mUnusedFlag           = true;
 		mAdjustWeightForSquad = 0;
 		mMaxCarriers          = -1;
 		mMinCarriers          = -1;
-		mUnusedFlag2          = false;
 		mFromEnemy            = 0;
 	}
 
@@ -176,7 +173,6 @@ struct PelletInitArg : public CreatureInitArg {
 		return "PelletInitArg";
 	}
 
-	bool mUnusedFlag;         // _04, always true, never used
 	char* mTextIdentifier;    // _08
 	int mPelletColor;         // _0C, for number pellets
 	int mPelletIndex;         // _10
@@ -186,7 +182,6 @@ struct PelletInitArg : public CreatureInitArg {
 	PelletView* mPelView;     // _18
 	u8 mDoSkipCreateModel;    // _1C, true for corpses, or breadbug drops since those were already loaded
 	u8 mAdjustWeightForSquad; // _1D, should Item decrease weight for piki squads that are less than minimum carry weight
-	u8 mUnusedFlag2;          // _1E, always false, never used
 	u8 mFromEnemy;            // _1F
 	int mMinCarriers;         // _20
 	int mMaxCarriers;         // _24
@@ -244,7 +239,6 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void doSetView(int viewportNumber);               // _44
 	virtual void doViewCalc();                                // _48
 	virtual void doSimulation(f32 rate);                      // _4C
-	virtual void doDirectDraw(Graphics& gfx);                 // _50
 	virtual void setVelocity(Vector3f& vel);                  // _68
 	virtual Vector3f getVelocity();                           // _6C
 	virtual void onSetPosition(Vector3f& dest)                // _70 (weak)
@@ -453,10 +447,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	PelletConfig* mConfig;            // _35C
 	int mMaxCollParticle;             // _360
 	u8 mDynamicType;                  // _364, 2 = never, 1 = lod, 0 = always
-	u8 _365[0x33];                    // _365 - unknown
 	CarryInfoList* mCarryInfoList;    // _398
 	u8 mIsDynamic;                    // _39C - unknown
-	u8 _39D[0xF];                     // _39D - unknown
 	Vector3f mPelletPosition;         // _3AC
 	f32 mFaceDir;                     // _3B8
 	u8 mWallTimer;                    // _3BC
@@ -530,8 +522,6 @@ struct PelletState : public FSMState<Pellet> {
 	virtual bool isBuried() { return false; }   // _20 (weak)
 	virtual bool appeared() { return true; }    // _24 (weak)
 	virtual bool isPickable() { return false; } // _28 (weak)
-
-	u8 _0C[0x4]; // _0C
 };
 
 struct PelletAppearState : public PelletState {

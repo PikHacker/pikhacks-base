@@ -72,7 +72,6 @@ struct JKRHeap : public JKRDisposer {
 		u32 mUsedSize;       // _00
 		u32 mCheckCode;      // _04, plausibly TLocation when combined with _00
 		u32 mBuf;            // _08
-		u8 _0C[0x4];         // _0C
 		TArgument mArgument; // _10
 		TLocation mLocation; // _1C
 	};
@@ -291,7 +290,6 @@ struct JKRExpHeap : public JKRHeap {
 	u8 mCurrentAllocMode;     // _6C
 	u8 mCurrentGroupID;       // _6D
 	u8 _6E;                   // _6E
-	u8 _70[8];                // _70
 	CMemBlock* mHead;         // _78, free list
 	CMemBlock* mTail;         // _7C, free list
 	CMemBlock* mHeadUsedList; // _80

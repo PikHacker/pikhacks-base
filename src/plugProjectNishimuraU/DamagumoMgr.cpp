@@ -6,8 +6,6 @@
 namespace Game {
 namespace Damagumo {
 
-static const char damagumoMgrName[] = "246-DamagumoMgr";
-
 namespace {
 static const char* cMatAnimBtkTexName = "/enemy/data/Damagumo/damagumo_model.btk";
 static const char* cMatAnimBrkTexName = "/enemy/data/Damagumo/damagumo_model.brk";

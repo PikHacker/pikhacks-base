@@ -331,7 +331,6 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	Pikmin::TMgr mPikminMgr;                 // _154
 	Kogane::TMgr mKoganeMgr;                 // _AE4
 	Chappy::TMgr mChappyMgr;                 // _CF4
-	u8 _F54;                                 // _F54, unused
 	int mState;                              // _F58, see enumState enum
 	int mLevelSetting;                       // _F5C, see levelSetting enum
 	EUTCounter mCounterCommon;               // _F60

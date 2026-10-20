@@ -22,7 +22,6 @@ struct WipeBase : public CNode {
 	f32 mTimer;     // _18
 	f32 mSpeed;     // _1C
 	bool mIsActive; // _20
-	u8 mUnused;     // _21, seems to not be used for anything
 };
 
 /**

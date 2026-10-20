@@ -51,8 +51,7 @@ struct TSaveMenu : public TScreenBase {
 
 	inline void getMenuMinMax(int& index1, int& index2) const
 	{
-		// this stupid pointless cast is necessary for match (it wont reload the value otherwise)
-		int state = *(int*)&mMesgState;
+		int state = mMesgState;
 		if (state == MESSAGE_SaveOption) {
 			index1 = 0;
 			index2 = 1;

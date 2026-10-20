@@ -65,7 +65,6 @@ JUTConsole* JUTConsole::create(uint bufferSize, void* memory, u32 objectSize)
  */
 JUTConsole::JUTConsole(uint bufferSize, uint maxLines, bool unused)
 {
-	mUnusedFlag = unused;
 	mLineLength = bufferSize;
 	mMaxLines   = maxLines;
 

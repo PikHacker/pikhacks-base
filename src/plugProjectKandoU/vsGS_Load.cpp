@@ -4,8 +4,6 @@
 #include "Game/gameStat.h"
 #include "Screen/Game2DMgr.h"
 #include "Radar.h"
-#include "nans.h"
-#include "types.h"
 #include "Game/SingleGame.h"
 #include "TParticle2dMgr.h"
 #include "PSSystem/PSSystemIF.h"
@@ -19,7 +17,6 @@ namespace VsGame {
  */
 LoadState::LoadState()
     : State(VGS_Load)
-    , mUnusedVal(0)
     , mGameStartType(0)
     , mNeedClearHeap(0)
 {
@@ -42,7 +39,6 @@ void LoadState::init(Game::VsGameSection* section, StateArg* args)
 	Game::GameStat::clear();
 
 	LoadArg* loadArg = static_cast<LoadArg*>(args);
-	mUnusedVal       = loadArg->_00;
 	mGameStartType   = loadArg->mGameLoadType;
 	mNeedClearHeap   = loadArg->mNeedClearHeap;
 
@@ -73,9 +69,7 @@ void LoadState::exec(VsGameSection* section)
 {
 	if (!mIsLoadStarted) {
 		if (mNeedClearHeap) {
-			sys->heapStatusDump(true);
 			section->clearHeap();
-			sys->heapStatusDump(true);
 		}
 		og::Screen::DispMemberFloor floor;
 		floor.mSublevel = section->getCurrFloor() + 1;

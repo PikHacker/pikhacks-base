@@ -6,8 +6,6 @@
 namespace Game {
 namespace Houdai {
 
-static const char houdaiMgrName[] = "246-HoudaiMgr";
-
 namespace {
 static const char* cMatAnimBtkTexName = "/enemy/data/Houdai/houdai_model.btk";
 static const char* cMatAnimBrkTexName = "/enemy/data/Houdai/houdai_model.brk";

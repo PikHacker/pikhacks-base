@@ -42,14 +42,12 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                      // _30
 	virtual void onKill(CreatureKillArg* settings);                      // _34
-	virtual void doDirectDraw(Graphics& gfx);                            // _50
 	virtual bool isUnderground() { return mIsUnderground; }              // _D0 (weak)
 	virtual void getShadowParam(ShadowParam& settings);                  // _134
 	virtual ~Obj() { }                                                   // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);       // _1C4
 	virtual void doUpdate();                                             // _1CC
 	virtual void doAnimationStick();                                     // _1E4
-	virtual void doDebugDraw(Graphics& gfx);                             // _1EC
 	virtual bool dropCallBack(Creature* source);                         // _288
 	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor); // _28C
 	virtual void doStartStoneState();                                    // _2A4

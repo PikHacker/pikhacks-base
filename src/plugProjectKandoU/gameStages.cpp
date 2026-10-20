@@ -357,11 +357,6 @@ int CourseInfo::getCaveNum()
 Stages::Stages()
 {
 	mCourseInfo.clearRelations();
-
-	_108 = 0;
-	_104 = 0;
-	_10A = 0;
-
 	loadFromFile(this, "user/Abe/stages.txt", nullptr, false);
 }
 

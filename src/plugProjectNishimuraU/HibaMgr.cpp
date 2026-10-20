@@ -3,8 +3,6 @@
 namespace Game {
 namespace Hiba {
 
-static const char hibaMgrName[] = "246-HibaMgr";
-
 /**
  * @note Address: 0x8026B8BC
  * @note Size: 0x64

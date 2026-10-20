@@ -3,8 +3,6 @@
 namespace Game {
 namespace Fuefuki {
 
-static const char fuefukiMgrName[] = "246-FuefukiMgr";
-
 /**
  * @note Address: 0x8029BC38
  * @note Size: 0x50

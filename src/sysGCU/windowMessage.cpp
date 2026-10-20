@@ -4,12 +4,9 @@
 #include "Game/MoviePlayer.h"
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSSystemIF.h"
-#include "nans.h"
 
 namespace P2JME {
 namespace Window {
-
-static const u32 padding[3] = { 0, 0, 0 };
 
 /**
  * @note Address: 0x8043F188
@@ -32,14 +29,10 @@ void DrawInfoMgr::init(u32 count)
 	P2ASSERTLINE(158, !mInfoList2.getChildCount());
 	P2ASSERTLINE(159, !mInfoList1.getChildCount());
 
-	sys->heapStatusStart("DrawInfoMgr::init", nullptr);
-
 	DrawInfo* info = new DrawInfo[count];
 	for (int i = 0; i < count; i++) {
 		mInfoList2.add(&info[i]);
 	}
-
-	sys->heapStatusEnd("DrawInfoMgr::init");
 }
 
 /**

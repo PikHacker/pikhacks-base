@@ -16,7 +16,6 @@
 #include "Game/Entities/ItemPlant.h"
 #include "Game/Entities/ItemDengekiGate.h"
 #include "Game/generalEnemyMgr.h"
-#include "nans.h"
 
 #define PIKI_BATTLE_RANGE   (70.0f)
 #define PIKI_RESCUE_RANGE   (140.0f)
@@ -839,13 +838,10 @@ bool Piki::invokeAI(Game::PlatEvent* event)
  */
 bool Piki::invokeAIFree(Game::Piki::InvokeAIFreeArg& arg)
 {
-	sys->mTimers->_start("invokeAI-f", true);
 	if (arg.mDoForceInvoke || mPikiUpdateContext.updatable()) {
 		bool result = checkInvokeAI(arg.mDoSimpleCheck);
-		sys->mTimers->_stop("invokeAI-f");
 		return result;
 	}
-	sys->mTimers->_stop("invokeAI-f");
 	return false;
 }
 
@@ -954,8 +950,6 @@ bool Piki::invokeAI()
 bool Piki::setActTransportArg(PikiAI::ActTransportArg& actTransportArg)
 {
 	actTransportArg.mGoal          = nullptr;
-	actTransportArg.mUnusedPos     = Vector3f(0.0f); // unused
-	actTransportArg.mUnusedSlotVal = -1;             // unused
 	return true;
 }
 

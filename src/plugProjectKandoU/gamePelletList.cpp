@@ -4,8 +4,6 @@
 #include "P2Macros.h"
 #include "System.h"
 
-static const char className[] = "gamePelletList";
-
 namespace Game {
 namespace PelletList {
 

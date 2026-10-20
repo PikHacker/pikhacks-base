@@ -8,15 +8,6 @@
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "VsOtakaraName.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "nans.h"
-
-// Don't be fooled by this files name, it is NOT related to actual treasures, those are pellets/otakara
-// ItemTreasure is specifically for buried treasures, its an invisible object that effectively holds
-// the actual treasure in place until you kill, where the treasure becomes freed
-// Why they handled buried treasures this way is beyond me
-
-static const char UNUSED_1[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-static const char name[]     = "itemTreasure";
 
 namespace Game {
 namespace ItemTreasure {
@@ -258,16 +249,6 @@ void Item::doAI()
 			break;
 		}
 	}
-}
-
-/**
- * @note Address: 0x801F3B6C
- * @note Size: 0x50
- */
-void Item::doDirectDraw(Graphics& gfx)
-{
-	gfx.initPrimDraw(nullptr);
-	gfx.drawSphere(mBoundingSphere.mPosition, mBoundingSphere.mRadius);
 }
 
 /**

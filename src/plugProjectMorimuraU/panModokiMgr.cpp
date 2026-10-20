@@ -3,8 +3,6 @@
 
 namespace Game {
 
-static const char panModokiMgrName[] = "panModokiMgr";
-
 namespace PanModoki {
 
 /**

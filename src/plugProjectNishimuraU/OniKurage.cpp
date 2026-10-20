@@ -7,7 +7,6 @@
 #include "Game/rumble.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 namespace Game {
 namespace OniKurage {
@@ -103,23 +102,6 @@ void Obj::doUpdateCommon()
 {
 	EnemyBase::doUpdateCommon();
 	escapeCheckNavi();
-}
-
-/**
- * @note Address: 0x802D4308
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802D430C
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

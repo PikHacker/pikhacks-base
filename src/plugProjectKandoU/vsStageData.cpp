@@ -1,5 +1,3 @@
-#include "types.h"
-#include "nans.h"
 #include "Game/ChallengeGame.h"
 #include "Game/VsGame.h"
 #include "Game/BaseGameSection.h"

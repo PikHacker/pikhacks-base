@@ -11,8 +11,6 @@
 
 namespace Game {
 
-static const char unusedName[] = "resultTexMgr";
-
 /**
  * @note Address: 0x80227418
  * @note Size: 0x50

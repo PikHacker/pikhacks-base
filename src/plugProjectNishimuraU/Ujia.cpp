@@ -52,22 +52,6 @@ void Obj::doUpdate()
 	mFsm->exec(this);
 }
 
-/**
- * @note Address: 0x80266280
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x80266284
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
 
 /**
  * @note Address: 0x802662A4

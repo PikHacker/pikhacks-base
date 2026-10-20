@@ -10,15 +10,6 @@
 #include "Game/gameStat.h"
 #include "Game/enemyInfo.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* name, ...)
-{
-	OSReport("PlayData");
-}
-
 namespace Game {
 
 PlayData* playData;
@@ -200,7 +191,6 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 
 		if (!(mOtakara(id) & KindCounter::KCF_Earned)) {
 			mOtakara(id) |= KindCounter::KCF_Earned;
-			pellet->getConfigName();
 			return true;
 		}
 
@@ -208,7 +198,6 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 		int id = pellet->getConfigIndex();
 		if (!(mItem(id) & KindCounter::KCF_Earned)) {
 			mItem(id) |= KindCounter::KCF_Earned;
-			pellet->getConfigName();
 			return true;
 		}
 
@@ -216,7 +205,6 @@ bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 		int id = pellet->getConfigIndex();
 		if (!(mCarcass(id) & KindCounter::KCF_Earned)) {
 			mCarcass(id) |= KindCounter::KCF_Earned;
-			pellet->getConfigName();
 			return true;
 		}
 	}
@@ -233,14 +221,8 @@ void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 	// find the collection flag of the treasure with the given manager and index, and mark it as collected
 	if (mgr->getMgrID() == PelletType::Treasure) {
 		mOtakara(id) |= KindCounter::KCF_Earned;
-		mgr->getPelletConfig(id);
-
 	} else if (mgr->getMgrID() == PelletType::Upgrade) {
 		mItem(id) |= KindCounter::KCF_Earned;
-		mgr->getPelletConfig(id);
-
-	} else {
-		mgr->getMgrID();
 	}
 }
 
@@ -254,14 +236,8 @@ void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 	// (mainly for giving up/losing in caves)
 	if (mgr->getMgrID() == PelletType::Treasure) {
 		mOtakara(id) &= ~KindCounter::KCF_Earned;
-		mgr->getPelletConfig(id);
-
 	} else if (mgr->getMgrID() == PelletType::Upgrade) {
 		mItem(id) &= ~KindCounter::KCF_Earned;
-		mgr->getPelletConfig(id);
-
-	} else {
-		mgr->getMgrID();
 	}
 }
 
@@ -380,9 +356,7 @@ void OlimarData::getItem(int item)
 void PlayData::construct()
 {
 	P2ASSERTLINE(690, playData == nullptr);
-	sys->heapStatusStart("playData", nullptr);
 	playData = new PlayData();
-	sys->heapStatusEnd("playData");
 }
 
 /**
@@ -440,9 +414,7 @@ PlayData::PlayData()
 	mFindItemFlags.create(PelletList::Mgr::getCount(PelletList::PLK_Item), nullptr);
 	mFindItemFlags.reset();
 
-	sys->heapStatusStart("generatorCache", nullptr);
 	generatorCache = new GeneratorCache;
-	sys->heapStatusEnd("generatorCache");
 	reset();
 }
 

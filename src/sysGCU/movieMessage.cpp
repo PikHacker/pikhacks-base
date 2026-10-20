@@ -1,4 +1,3 @@
-#include "nans.h"
 #include "P2JME/Movie.h"
 #include "P2JME/P2JME.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
@@ -7,9 +6,6 @@
 #include "Game/MoviePlayer.h"
 #include "Game/gamePlayData.h"
 #include "Game/GameSystem.h"
-
-static const int unusedArray[] = { 0, 0, 0 };
-static const char name[]       = "movieMessage";
 
 namespace P2JME {
 namespace Movie {
@@ -440,12 +436,10 @@ TControl::TControl()
  */
 bool TControl::onInit()
 {
-	sys->heapStatusStart("P2JME::Movie::TControl::onInit", nullptr);
 	if (gP2JMEMgr) {
 		setFont(gP2JMEMgr->mFont);
 		setRubyFont(gP2JMEMgr->mFont);
 	}
-	sys->heapStatusStart("PMT_onInit_arc", nullptr);
 
 	JKRArchive* arc = JKRMountArchive("new_screen/cmn/message_window.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	if (arc) {
@@ -458,8 +452,6 @@ bool TControl::onInit()
 		mPaneMgDemo = demo;
 		mTextRenderProc->setTextBoxInfo(mPaneMgDemo);
 	}
-
-	sys->heapStatusStart("podIcon", nullptr);
 
 	char* path;
 	if (Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
@@ -475,12 +467,7 @@ bool TControl::onInit()
 		JUT_PANICLINE(658, "%s is not found.\n", path);
 	}
 
-	sys->heapStatusEnd("podIcon");
-	sys->heapStatusEnd("PMT_onInit_arc");
-	sys->heapStatusStart("PMT_onInit_initRenderingProcessor", nullptr);
 	initRenderingProcessor(1024); // max 1024 characters can be animated at once
-	sys->heapStatusEnd("PMT_onInit_initRenderingProcessor");
-	sys->heapStatusEnd("P2JME::Movie::TControl::onInit");
 	return 1;
 }
 

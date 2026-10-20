@@ -395,7 +395,6 @@ TScrollList::TScrollList(char* name)
 	mMaxSelYOffset          = 0.0f;
 	mSelectionYOffset       = 0.0f;
 	mCursorSelectionYOffset = 0.0f;
-	_B0                     = false;
 	mRightOffset            = 0;
 }
 

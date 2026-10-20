@@ -18,7 +18,6 @@ JUTProcBar::JUTProcBar()
 {
 	mVisible        = true;
 	mHeapBarVisible = true;
-	mUnused         = 0;
 
 	int screenHeight = JUTVideo::getManager()->getEfbHeight();
 
@@ -364,8 +363,6 @@ void JUTProcBar::drawProcessBar()
 				            (segmentIndex % 5) != 0 ? JUtility::TColor(100, 100, 255, 255) : JUtility::TColor(180, 255, 255, 255), 12);
 			}
 		}
-
-		mUnused = 0;
 	}
 }
 

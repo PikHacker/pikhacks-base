@@ -295,7 +295,6 @@ struct PikiDrownState : public PikiState {
 	// _00-_10 = PikiState
 	u16 mSubState;          // _10
 	u16 mSizumuAnimDelay;   // _12
-	u16 mUnusedVal;         // _14
 	u16 mMoveState;         // _16
 	f32 _18;                // _18
 	bool mIsEscaped;        // _1C
@@ -358,10 +357,7 @@ struct PikiEmotionState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0xC];       // _10, unknown
-	u8 mUnusedVal;     // _1C
 	u8 mRepeatCounter; // _1D
-	u8 _1E[0x6];       // _1E, unknown
 	u16 mEmotionType;  // _24
 	s16 mAnimIdx;      // _26
 };
@@ -418,37 +414,6 @@ struct FlickStateArg : public StateArg {
 	f32 mSpeed; // _04
 };
 
-struct PikiFlickState : public PikiState, virtual SysShape::MotionListener {
-	enum StateID {
-		FLICK_Start = 0,
-		FLICK_InAir = 1,
-		FLICK_Land  = 2,
-		FLICK_Stand = 3,
-	};
-
-	inline PikiFlickState()
-	    : PikiState(PIKISTATE_Flick, "FLICK")
-	{
-	}
-
-	virtual void init(Piki*, StateArg*);                      // _08
-	virtual void exec(Piki*);                                 // _0C
-	virtual void cleanup(Piki*);                              // _10
-	virtual bool callable() { return false; }                 // _44 (weak)
-	virtual void onFlute(Piki*, Navi*);                       // _6C
-	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _74 (weak)
-
-	// _00     = VTBL
-	// _00-_10 = PikiState
-	u16 mState;          // _14
-	f32 mKnockDownTimer; // _18
-	f32 mKnockBackAngle; // _1C
-	f32 mFaceDirOffset;  // _20
-	f32 mKnockBackSpeed; // _24
-	Piki* mPiki;         // _28
-	bool mIsWhistled;    // _2C
-};
-
 struct PikiFlyingState : public PikiState {
 	inline PikiFlyingState()
 	    : PikiState(PIKISTATE_Flying, "FLYING")
@@ -469,9 +434,6 @@ struct PikiFlyingState : public PikiState {
 	// _00-_10 = PikiState
 	f32 mSlowFallWaitTimer;      // _10
 	u8 mIsFlowerPiki;            // _14
-	u8 mUnusedVal;               // _15
-	u8 _16[0x2];                 // _16, unknown/padding
-	u8 _18[0x4];                 // _18, unknown
 	Vector3f mVelocityDirection; // _1C
 	f32 mDirectionalSpeed;       // _28
 	f32 mHalfDirectionalSpeed;   // _2C

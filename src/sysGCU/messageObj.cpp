@@ -65,23 +65,19 @@ bool TControl::setRubyFont(JUTFont* font)
  */
 bool TControl::init()
 {
-	sys->heapStatusStart("JMessage実装クラス", nullptr);
 	createReference();
 	createResourceContainer();
 	createSequenceProcessor();
 	createRenderingProcessor();
-	sys->heapStatusEnd("JMessage実装クラス");
 
 	mReference->mResource = mResContainer;
 	mBaseProcSeq          = mSequenceProc;
 	mBaseProcRender       = mTextRenderProc;
 
-	sys->heapStatusStart("個別初期化", nullptr); // "Individual Initialization"
 	bool ret = false;
 	if (onInit()) {
 		ret = true;
 	}
-	sys->heapStatusEnd("個別初期化");
 	return ret;
 }
 

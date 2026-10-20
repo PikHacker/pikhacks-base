@@ -120,7 +120,6 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	Vector2f mPaneBounds;             // _58
 	u32 mBasePosition;                // _60 /* Use J2DBasePosition constants. */
 	u8 mPaneAlpha;                    // _64
-	u8 _65[7];                        // _65 /* Hopefully this doesn't mess with size. */
 	J2DPictureEx* mPic1;              // _6C
 	J2DPane* mPic2;                   // _70
 	J2DPane* mPic3;                   // _74
@@ -451,7 +450,6 @@ struct AnimText_Screen : public CallBack_Screen {
 	J2DTextBox* mMsgBodyPane;               // _40
 	J2DTextBox* mMsgBackPane;               // _44 // just a guess
 	bool mNeedOpenText;                     // _48, never enabled?
-	u32 mUnused1;                           // _4C
 	u64 mTag;                               // _50
 	f32 mBlinkTimer;                        // _58
 	f32 mBlinkFactor;                       // _5C
@@ -476,7 +474,6 @@ struct AnimText_Screen : public CallBack_Screen {
 	JUtility::TColor mTitleBodyBlack;       // _A8
 	JUtility::TColor mTitleBgWhite;         // _AC
 	JUtility::TColor mTitleBgBlack;         // _B0
-	u8 mUnused2[4];                         // _B4
 };
 
 extern const char* SujiTex32[11];

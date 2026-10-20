@@ -66,23 +66,6 @@ void Obj::setFSM(FSM* fsm)
 }
 
 /**
- * @note Address: 0x80272E0C
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x80272E10
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
-
-/**
  * @note Address: 0x80272E30
  * @note Size: 0x140
  */

@@ -14,8 +14,6 @@
 namespace Game {
 namespace ItemPlant {
 
-static const char unusedName[] = "itemPlant";
-
 /// @brief Global ItemPlant mgr instance.
 Mgr* mgr;
 
@@ -666,27 +664,6 @@ bool Item::interactFarmHaero(InteractFarmHaero& haero)
 }
 
 /**
- * Displays debug information above plant. Debug information to display is current state machine state ID.
- *
- * @param gfx Graphics handler.
- *
- * @note Address: 0x801DD970
- * @note Size: 0x120
- */
-void Item::doDirectDraw(Graphics& gfx)
-{
-	PerspPrintfInfo printInfo;
-	gfx.initPerspPrintf(gfx.mCurrentViewport);
-	printInfo.mColorA = Color4(200, 0, 0, 255);
-	printInfo.mColorB = Color4(200, 200, 200, 255);
-	printInfo.mScale  = 1.5f;
-
-	Vector3f pos = getPosition();
-	pos.y += 110.0f;
-	gfx.perspPrintf(printInfo, pos, "%d", getStateID());
-}
-
-/**
  * Adds damage. If damage hits threshold to drop a berry, reset damage and drop one berry.
  * Also drops all enemies stuck to plant (namely whiskerpillars) on damage application.
  *
@@ -1076,30 +1053,6 @@ void Plant::updateBoundSphere()
 }
 
 /**
- * Displays debug information above plant. Debug information to display is the ratio used in updating ProcAnimator,
- * which combines stuck Pikmin count and number of berries. Also displays angle-updating values of ProcAnimator.
- *
- * Address:	801DE5B4
- * Size:	0001E0
- */
-void Plant::doDirectDraw(Graphics& gfx)
-{
-	PerspPrintfInfo printInfo;
-	gfx.initPerspPrintf(gfx.mCurrentViewport);
-	printInfo.mColorA = Color4(200, 0, 0, 255);
-	printInfo.mColorB = Color4(200, 200, 200, 255);
-	printInfo.mScale  = 1.5f;
-
-	Vector3f pos = getPosition();
-	pos.y += 110.0f;
-
-	f32 ratios = ((f32)mStuckCount / 10.0f) + ((f32)getFruitsNum() / 20.0f);
-	gfx.perspPrintf(printInfo, pos, "m %.1f (%d/%d)", ratios, getFruitsNum(), mStuckCount);
-	pos.y += 30.0f;
-	gfx.perspPrintf(printInfo, pos, "%.1f %.1f", mProcAnimator._24, mProcAnimator._28);
-}
-
-/**
  * Initializes actual Plant class. Sets to alive, resets growth timer, damage, face direction and sticker count.
  * Starts as small size. Sets up model and collision tube tree. Sets up blend animations, initially from random
  * growth stage to wither. Also sets up the ProcAnimator and berries, and starts in Normal (default) state.
@@ -1165,7 +1118,6 @@ void Plant::onInit(CreatureInitArg* initArg)
 	mAnimSpeed = 30.0f;
 
 	mGrowTimer     = 10.0f;
-	_254           = 0;
 	mBlendStepTime = 0.0f;
 
 	mBlendAnimator.setModelCalc(mModel, 0);

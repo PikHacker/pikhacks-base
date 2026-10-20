@@ -1,7 +1,5 @@
 #include "Morimura/GameOver.h"
 
-static const char name[] = "gameOver2D";
-
 namespace Morimura {
 
 /**

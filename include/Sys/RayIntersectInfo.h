@@ -19,7 +19,6 @@ struct RayIntersectInfo {
 	f32 mDistance;                   // _40
 	u8 _44[4];                       // _44
 	f32 mNormalY;                    // _48
-	u32 _4C;                         // _4C, unknown
 };
 } // namespace Sys
 

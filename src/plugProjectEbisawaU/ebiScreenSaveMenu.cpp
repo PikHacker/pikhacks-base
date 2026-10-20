@@ -5,8 +5,6 @@
 #include "ebi/E2DGraph.h"
 #include "Controller.h"
 
-static const char name[] = "ebiScreenSaveMenu";
-
 namespace ebi {
 namespace Screen {
 
@@ -195,14 +193,10 @@ void TSaveMenu::doDraw()
  */
 void TSaveMenu::loadResource()
 {
-	sys->heapStatusStart("TScreenSaveMenu::loadResource", nullptr);
-
 	char buf[PATH_MAX];
 	og::newScreen::makeLanguageResName(buf, "info_window.szs");
 	JKRArchive* arc = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(226, arc);
-	sys->heapStatusEnd("TScreenSaveMenu::loadResource");
-
 	setArchive(arc);
 }
 

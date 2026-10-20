@@ -9,7 +9,6 @@
 #include "Game/rumble.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "PS.h"
-#include "nans.h"
 #include "Dolphin/rand.h"
 
 namespace Game {
@@ -139,23 +138,6 @@ void Obj::doAnimationCullingOff()
 	doAnimationShadowSystem();
 	updateMaterialAnimation();
 	finishAnimationIKSystem();
-}
-
-/**
- * @note Address: 0x802C8350
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802C8354
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

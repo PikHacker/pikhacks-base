@@ -20,7 +20,6 @@ struct RenderModeInfo {
 struct Graphics;
 struct OSContext;
 struct _GXRenderModeObj;
-struct HeapStatus;
 
 struct HeapInfo : public Node, public JKRDisposer {
 
@@ -40,26 +39,8 @@ struct HeapInfo : public Node, public JKRDisposer {
 	// _00-_24 = Node
 	// _20     = VTBL (Node)
 	// _24-_3C = JKRDisposer
-	u32 mUnused0;           // _3C
-	int mUnused1;           // _40
-	u32 mUnused2;           // _44
 	HeapInfo* mCurrentNode; // _48
 	HeapInfo* mParent;      // _4C
-};
-
-struct HeapStatus {
-	HeapStatus();
-
-	void start(char*, JKRHeap*);
-	void end(char*);
-	void setCurrentHeapInfoParent();
-	void searchHeapInfo(char*);
-	void searchHeapInfo(HeapInfo*);
-	void dump(bool);
-	void dumpNode();
-
-	HeapInfo mHeapInfo; // _00
-	u8 _50;             // _50, unknown
 };
 
 namespace Game {
@@ -116,9 +97,6 @@ struct System : public OSMutex {
 
 	struct GXVerifyArg {
 		GXVerifyArg();
-
-		u32 mUnused00; // _00
-		u8 mUnused04;  // _04
 	};
 
 	System();
@@ -161,12 +139,6 @@ struct System : public OSMutex {
 	void endRender();
 	static ERenderMode setRenderMode(ERenderMode);
 	void changeRenderMode(ERenderMode);
-	// Possibilities: HeapStatus*, bool, ???
-	u32 heapStatusStart(char*, JKRHeap*);
-	void heapStatusEnd(char*);
-	void heapStatusDump(bool);
-	void heapStatusIndividual();
-	void heapStatusNormal();
 	void resetOn(bool doResetToMenu);
 	void resetPermissionOn();
 	bool isResetActive();
@@ -192,7 +164,6 @@ struct System : public OSMutex {
 	void dvdLoadFile(DvdThreadCommand*, char*, JKRHeap*);
 	void dvdLoadSync(DvdThreadCommand*, DvdThread::ESyncBlockFlag);
 	void dvdLoadSyncAll(DvdThread::ESyncBlockFlag);
-	void heapStatusDumpNode();
 	void resetOff();
 #if defined(VERSION_JP)
 	bool forceFinishSection();
@@ -246,20 +217,14 @@ struct System : public OSMutex {
 	struct ResetManager* mResetMgr;       // _44
 	struct DvdStatus* mDvdStatus;         // _48
 	struct JFWDisplay* mDisplay;          // _4C
-	HeapStatus* mHeapStatus;              // _50
 	f32 mDeltaTime;                       // _54
 	struct JKRTask* mTask;                // _58
 	Game::MemoryCard::Mgr* mCardMgr;      // _5C
 	Game::CommonSaveData::Mgr* mPlayData; // _60
 	f32 mFrameRate;                       // _64
 	DvdThreadCommand mThreadCommand;      // _68
-#if defined(VERSION_PAL)
-	// PAL outsources language/region stuff to Game::CommonSaveData::Mgr
-	static BitFlag<u32> mFlags;
-#else
 	LanguageID mRegion;  // _D4
 	BitFlag<u32> mFlags; // _D8
-#endif
 	struct JUTRomFont* mRomFont; // _DC (PAL: _D4)
 };
 

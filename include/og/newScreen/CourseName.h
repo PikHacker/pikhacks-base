@@ -78,7 +78,6 @@ struct ObjCourseName : public ::Screen::ObjBase {
 	f32 mAlpha;                              // _48
 	f32 mTimer;                              // _4C, timer?
 	u8 mState;                               // _50
-	u8 _51[3];                               // padding? it breaks if i dont have this?
 	JUtility::TColor mColor;                 // _54
 	u8 mDoEnd;                               // _58
 	f32 mBackgroundAlpha;                    // _5C

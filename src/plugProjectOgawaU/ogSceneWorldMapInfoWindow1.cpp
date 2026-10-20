@@ -1,5 +1,4 @@
 #include "og/newScreen/WorldMapInfoWindow.h"
-#include "nans.h"
 
 namespace og {
 namespace newScreen {

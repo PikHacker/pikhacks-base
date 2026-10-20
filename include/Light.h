@@ -111,7 +111,6 @@ struct LightMgr : public CNode {
 	virtual void update() { }              // _10 (weak)
 	virtual void set(Graphics&);           // _14
 	virtual void set(Matrixf&);            // _18
-	virtual void drawDebugInfo(Graphics&); // _1C
 
 	// _00 VTBL
 	AmbientLightObj mAmbientLight; // _18

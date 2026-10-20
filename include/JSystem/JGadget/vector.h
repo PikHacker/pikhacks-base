@@ -60,9 +60,6 @@ struct TVector {
 
 		// it's assumed the pointer is to something already in the vector, or pointing to the end
 
-		// TODO: what is this macro from and where else do these exist?
-		// JUT_DEBUG_ASSERT((mBegin<=pItFirst_)&&(pItFirst_<=mEnd), 0x1be);
-
 		if (count == 0) {
 			return position;
 		}
@@ -269,8 +266,6 @@ void** TVPVBase::Insert_raw(void** pItFirst, u32 count)
 	// returns: pointer to location for new items
 
 	void** const pItFirst_ = pItFirst;
-
-	// JUT_DEBUG_ASSERT((mBegin<=pItFirst_)&&(pItFirst_<=mEnd), 0x1be);
 
 	// it's assumed the pointer is to something already in the vector, or pointing to the end
 

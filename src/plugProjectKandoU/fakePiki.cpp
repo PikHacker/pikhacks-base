@@ -11,14 +11,10 @@
 #include "JSystem/JMath.h"
 #include "Dolphin/rand.h"
 #include "trig.h"
-#include "nans.h"
 
 f32 efx::TCursor::kAngleSpeed = PI / 60.0f;
 
 namespace Game {
-
-static const u32 fakePikiUnusedArray[] = { 0, 0, 0 };
-static const char fakePikiName[]       = "fakePiki";
 
 f32 FakePiki::sCurrNeckTheta = 0.0f;
 f32 FakePiki::sCurrNeckPhi   = 0.0f;
@@ -589,7 +585,6 @@ void FakePiki::moveVelocity()
 	}
 
 	Vector3f accel = (oldVelocity + mSimPosition) - mVelocity;
-	accel.length(); // remnant from some commented out code block with a comparison, probably, or debug info
 
 	mVelocity = mVelocity + accel * (sys->mDeltaTime / 0.1f);
 	mVelocity = mVelocity + newVelocity;
@@ -659,17 +654,6 @@ void FakePiki::move(f32 rate)
 				// make room visited
 				mapMgr->mRouteMgr->openRoom(info.mRoomIndex);
 				room->mIsVisited = true;
-			}
-
-			// NB: ignore this block, it's just forcing instructions to spawn
-			// there's probably some debug code that went here for navis in 2P mode but idk what - HP
-			if (isNavi() && gameSystem->isMultiplayerMode()) {
-				mRoomIndex = mRoomIndex;
-				if (gameSystem->isStoryMode()) {
-					if (mRoomIndex) {
-						static_cast<Navi*>(this)->mController1 = static_cast<Navi*>(this)->mController1;
-					}
-				}
 			}
 		}
 
@@ -804,13 +788,11 @@ void FakePiki::doEntry()
  */
 void FakePiki::doAnimation()
 {
-	sys->mTimers->_start("doa1", true);
 	AILODParm lodParm;
 	lodParm.mFar   = 0.01f;
 	lodParm.mClose = 0.009f;
 	updateCell();
 	updateLOD(lodParm);
-	sys->mTimers->_stop("doa1");
 
 	f32 frameLen = sys->mDeltaTime;
 	if (isMovieMotion()) {
@@ -827,10 +809,6 @@ void FakePiki::doAnimation()
 		mAnimator.mBoundAnimator.animate(animRate);
 	}
 	if (isPiki() && mLod.isFlag(AILOD_IsMid | AILOD_IsFar) >= 1) { // why
-		if (!mModel) {
-			P2DEBUG(getCreatureID());
-			JUT_PANICLINE(1694, "zama--------n\n");
-		}
 		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(0)->setMtxCalc(nullptr);
 		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(4)->setMtxCalc(nullptr);
 	} else {
@@ -870,10 +848,8 @@ void FakePiki::doAnimation()
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->getJ3DModel()->mPosMtx);
 	sCurrNeckTheta = mNeckTheta;
 	sCurrNeckPhi   = mNeckPhi;
-	sys->mTimers->_start("calc-coll", true);
 	mModel->getJ3DModel()->calc();
 	mCollTree->update();
-	sys->mTimers->_stop("calc-coll");
 	if (mDoAnimCallback != nullptr) {
 		mDoAnimCallback->invoke();
 	}
@@ -1048,23 +1024,7 @@ void FakePiki::updateStomach()
 	if (dist > rad) {
 		mPosition = stomach->mPosition + sep * rad;
 		mVelocity = mVelocity - sep * (1.1f * mVelocity.dot(sep));
-
-		// whatever originally used this is stripped/commented out lol
-		Vector3f sep2;
-		sep2.x = mPosition.x - mTargetCollObj->mPosition.x;
-		sep2.y = mPosition.y - mTargetCollObj->mPosition.y;
-		sep2.z = mPosition.z - mTargetCollObj->mPosition.z;
-		sep2.length();
 	}
-}
-
-/**
- * @note Address: 0x8013F4D0
- * @note Size: 0x8
- */
-bool FakePiki::debugShapeDL(char*)
-{
-	return true;
 }
 
 } // namespace Game

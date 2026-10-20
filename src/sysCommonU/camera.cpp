@@ -1,12 +1,10 @@
 #include "Camera.h"
-#include "types.h"
 #include "Vector3.h"
 #include "Sys/Sphere.h"
 #include "Sys/Cylinder.h"
 #include "System.h"
 #include "trig.h"
 #include "Quat.h"
-#include "nans.h"
 
 /**
  * @note Address: N/A

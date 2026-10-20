@@ -17,10 +17,6 @@
 #include "Game/Entities/ItemRock.h"
 #include "Game/Entities/ItemHoney.h"
 #include "Radar.h"
-#include "nans.h"
-
-static const int padding[]    = { 0, 0, 0 };
-static const char className[] = "naviDemoCheck";
 
 namespace Game {
 // Trigger Sizes for Onion Detection

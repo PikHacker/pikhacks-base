@@ -9,7 +9,6 @@ struct JUTExternalFB {
 
 	GXRenderModeObj* mRenderModeObj; // _00
 	u32 mSize;                       // _04
-	u8 _08[4];                       // _08
 	u16 _0C;                         // _0C
 	u16 mGamma;                      // _0E, treat as GXGamma
 	bool _10;                        // _10

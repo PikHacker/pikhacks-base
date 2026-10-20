@@ -17,8 +17,6 @@ TSequenceProcessor::TSequenceProcessor(const JMessage::TReference* ref, JMessage
     , mController1(nullptr)
     , mController2(nullptr)
     , mCharactersWritten(0)
-    , mUnused0(0)
-    , mUnused1(0)
 {
 	mFlags.clear();
 
@@ -35,8 +33,6 @@ void TSequenceProcessor::do_begin(const void* arg0, const char* arg1)
 	mPageFinishWaitDuration = 0.11f;
 	mPageFinishWaitTimer    = mPageFinishWaitDuration;
 	mCharactersWritten      = 0;
-	mUnused0                = 0;
-	mUnused1                = 0;
 	mFastSeType             = false;
 }
 

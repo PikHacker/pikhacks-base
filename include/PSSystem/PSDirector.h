@@ -64,7 +64,6 @@ struct DirectorBase : public JADHioNode {
 	OSMutex mMutex1;        // _0C
 	OSMutex mMutex2;        // _24
 	bool mIsBegin;          // _3C
-	u8 _3D[0x3];            // _3D - padding?
 	bool mEnabled;          // _40 (only enabled for interactive music)
 	u8 mTrackNum;           // _41
 	u8* mTrackFlagList;     // _44

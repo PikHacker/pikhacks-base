@@ -170,7 +170,6 @@ struct ItemGateMgr : public BaseItemMgr {
 	virtual void doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); } // _10 (weak)
 	virtual void doViewCalc() { mNodeObjectMgr.doViewCalc(); }                               // _14 (weak)
 	virtual void doSimulation(f32 rate) { mNodeObjectMgr.doSimulation(rate); }               // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
 	virtual void initDependency();                                                           // _38
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*);                    // _5C
 	virtual void generatorWrite(Stream&, GenItemParm*);                                      // _60

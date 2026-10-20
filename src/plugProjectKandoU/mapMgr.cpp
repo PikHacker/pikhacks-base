@@ -9,14 +9,6 @@
 #include "Game/GameLight.h"
 #include "Game/Farm.h"
 #include "Game/seaMgr.h"
-#include "nans.h"
-
-static const int padding[] = { 0, 0, 0 };
-
-static void _Print(char* format, ...)
-{
-	OSReport("mapMgr");
-}
 
 namespace Game {
 
@@ -282,25 +274,15 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
  */
 void ShapeMapMgr::load(LoadArg& arg)
 {
-	sys->heapStatusStart("mapMgr", nullptr);
-
-	sys->heapStatusStart("map arc", nullptr);
-
 	char path[512];
 	sprintf(path, "%s/arc.szs", arg.mFolder);
 	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	if (!arc) {
-		// what was this even here for.
-		int count = 0;
-		for (int i = 0; i < 96; i++, count++) { }
-		for (int i = count; i < 100; i++) { }
 		sprintf(path, "%s/arc.arc", arg.mFolder);
 		arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	}
 	P2ASSERTLINE(720, arc);
-	sys->heapStatusEnd("map arc");
 
-	sys->heapStatusStart("map model", nullptr);
 	void* file = JKRFileLoader::getGlbResource("model.bmd", nullptr);
 	P2ASSERTBOOLLINE(729, file && arg.mFolder);
 	J3DModelData* model = J3DModelLoaderDataBase::load(file, J3DMLF_Material_PE_FogOff | J3DMLF_UseSingleSharedDL);
@@ -312,7 +294,6 @@ void ShapeMapMgr::load(LoadArg& arg)
 	mMapModel->getJ3DModel()->calcMaterial();
 	mMapModel->getJ3DModel()->makeDL();
 	mMapModel->getJ3DModel()->lock();
-	sys->heapStatusEnd("map model");
 
 	Farm::farmMgr = new Farm::FarmMgr(2);
 	char farmPath[512];
@@ -372,18 +353,14 @@ void ShapeMapMgr::load(LoadArg& arg)
 
 		void* file = JKRFileLoader::getGlbResource("grid.bin", texts);
 		P2ASSERTLINE(887, file);
-		sys->heapStatusStart("map collision", nullptr);
 		RamStream stream(file, -1);
 		mMapCollision.read(stream);
-		sys->heapStatusEnd("map collision");
 
 		void* file2 = JKRFileLoader::getGlbResource("waterbox.txt", texts);
 		if (file2) {
-			sys->heapStatusStart("waterbox", nullptr);
 			RamStream stream(file2, -1);
 			stream.setMode(STREAM_MODE_TEXT, 1);
 			mSeaMgr->read(stream);
-			sys->heapStatusEnd("waterbox");
 		}
 
 		void* file3 = JKRFileLoader::getGlbResource("mapcode.bin", texts);
@@ -397,20 +374,16 @@ void ShapeMapMgr::load(LoadArg& arg)
 	} else {
 		void* file
 		    = JKRDvdToMainRam(arg.mCollisionPath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
-		sys->heapStatusStart("map collision", nullptr);
 		RamStream stream(file, -1);
 		mMapCollision.read(stream);
-		sys->heapStatusEnd("map collision");
 		delete[] file;
 
 		if (arg.mWaterboxPath) {
 			void* file
 			    = JKRDvdToMainRam(arg.mWaterboxPath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
-			sys->heapStatusStart("waterbox", nullptr);
 			RamStream stream(file, -1);
 			stream.setMode(STREAM_MODE_TEXT, 1);
 			mSeaMgr->read(stream);
-			sys->heapStatusEnd("waterbox");
 			delete[] file;
 		}
 
@@ -427,18 +400,14 @@ void ShapeMapMgr::load(LoadArg& arg)
 
 	if (arg.mRoutePath) {
 		void* file = JKRDvdToMainRam(arg.mRoutePath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
-		sys->heapStatusStart("routeInfo", nullptr);
 		RamStream stream(file, -1);
 		stream.setMode(STREAM_MODE_TEXT, 1);
 		if (!mRouteMgr) {
 			mRouteMgr = new GameRouteMgr;
 		}
 		mRouteMgr->read(stream);
-		sys->heapStatusEnd("routeInfo");
 		delete[] file;
 	}
-
-	sys->heapStatusEnd("mapMgr");
 }
 
 /**
@@ -591,7 +560,6 @@ void ShapeMapMgr::doViewCalc()
  */
 void ShapeMapMgr::doEntry()
 {
-	sys->mTimers->_start("ENT-MAP", true);
 	if (gameSystem != nullptr) {
 		if (mSeaMgr != nullptr) {
 			mSeaMgr->doEntry();
@@ -602,7 +570,6 @@ void ShapeMapMgr::doEntry()
 	} else {
 		mMapModel->getJ3DModel()->entry();
 	}
-	sys->mTimers->_stop("ENT-MAP");
 }
 
 /**
@@ -655,9 +622,5 @@ bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 	info.mIntersectPosition = closestIntersectionPoint;
 	return intersectionFound;
 }
-
-static const char unusedString1[] = "loop av. %.1f";
-static const char unusedString2[] = "%d %d %d<%d>";
-static const char unusedString3[] = "tris av. %.1f";
 
 } // namespace Game

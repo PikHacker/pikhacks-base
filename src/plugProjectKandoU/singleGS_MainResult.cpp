@@ -13,7 +13,6 @@
 #include "Screen/Game2DMgr.h"
 #include "TParticle2dMgr.h"
 #include "utilityU.h"
-#include "nans.h"
 
 static JKRHeap* theTekiHeap;
 

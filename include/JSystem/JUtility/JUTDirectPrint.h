@@ -35,7 +35,6 @@ struct JUTDirectPrint {
 	u16 mFBHeight;               // _06, height of frame buffer in pixels?
 	u16 mStride;                 // _08, width of buffer in ???
 	uint mFBSize;                // _0C
-	u8 _10[0x4];                 // _10, unknown
 	u16* mFrameMemory;           // _14
 	JUtility::TColor mCharColor; // _18
 	u16 mCharColor_Y;            // _1C, 1C-2C = color in YCbCr

@@ -13,12 +13,8 @@
 #include "Sys/TriangleTable.h"
 #include "Sys/RayIntersectInfo.h"
 #include "VsOtakaraName.h"
-#include "nans.h"
 
 namespace Game {
-
-static const int unusedArray[] = { 0, 0, 0 };
-static const char unusedName[] = "gameMapParts";
 
 int RoomMapMgr::numRoomCulled            = 0;
 bool RoomMapMgr::mUseCylinderViewCulling = false;
@@ -126,7 +122,6 @@ void Door::read(Stream& stream)
 MapUnit::MapUnit()
 {
 	mModelData    = nullptr;
-	mUnusedIdx    = -1;
 	mHasCollision = false;
 	mCellSize.y   = 0;
 	mCellSize.x   = 0;
@@ -802,14 +797,6 @@ void MapRoom::doSimulation(f32)
 }
 
 /**
- * @note Address: 0x801B7AFC
- * @note Size: 0x4
- */
-void MapRoom::doDirectDraw(Graphics&)
-{
-}
-
-/**
  * @note Address: 0x801B7B00
  * @note Size: 0x1E8
  */
@@ -901,17 +888,6 @@ void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 	mFloorInfo                 = floorInfo;
 	mSublevel                  = floorNum;
 
-	// probably printed debug info
-	floorInfo->getTekiMax();
-	floorInfo->getTekiInfoNum();
-	floorInfo->getTekiWeightSum();
-	floorInfo->getItemMax();
-	floorInfo->getItemInfoNum();
-	floorInfo->getItemWeightSum();
-	floorInfo->getGateMax();
-	floorInfo->getGateInfoNum();
-	floorInfo->getGateWeightSum();
-
 	// get map unit file
 	char unitFileName[512];
 	sprintf(unitFileName, "user/Mukki/mapunits/units/%s", floorInfo->mParms.mCaveUnitFile.mValue);
@@ -971,25 +947,19 @@ void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 	PelletBirthBuffer::clear();
 
 	// make map.
-	sys->heapStatusStart("246-CreateRandomMap", nullptr);
 	bool isFinalFloor = mCaveInfo->isFinalFloor(floorNum);
 	nishimuraCreateRandomMap(interfaces, interfaceCount, floorInfo, isFinalFloor, edit);
-	sys->heapStatusEnd("246-CreateRandomMap");
 
 	delete[] unitFile;
 
 	// set models and collision
-	sys->heapStatusStart("Model and Collision", nullptr);
 	completeUnitData();
-	sys->heapStatusEnd("Model and Collision");
 
 	mRouteMgr = new EditorRouteMgr();
 
 	// place rooms
-	sys->heapStatusStart("246-PlaceRooms", nullptr);
 	nishimuraPlaceRooms();
 	mRouteMgr->makeInvertLinks();
-	sys->heapStatusEnd("246-PlaceRooms");
 
 	mCount = 0;
 
@@ -1263,7 +1233,6 @@ Sys::TriIndexList* RoomMapMgr::traceMove(MoveInfo& moveInfo, f32 rate)
 
 		moveInfo.mFloorTriangle = &mTriangle;
 		moveInfo.mFloorNormal   = Vector3f(0.0f, 1.0f, 0.0f);
-		moveInfo.mUnusedNormal  = Vector3f(0.0f, 1.0f, 0.0f);
 
 		moveInfo.mBaseSpherePos = bottomSpherePos;
 
@@ -1367,18 +1336,15 @@ void MapRoom::createGlobalCollision()
 void RoomMapMgr::createGlobalCollision()
 {
 	if (BaseHIOParms::sMapRoomFinal == 0) {
-		P2DEBUG("Before: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 		Iterator<MapRoom> iter(&mRoomMgr);
 		CI_LOOP(iter)
 		{
 			MapRoom* room    = *iter;
 			room->mCollision = room->mUnit->mCollision.clone(room->mRoomSpaceMtx);
 		}
-		P2DEBUG("After: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 		return;
 	}
 
-	P2DEBUG("Before: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 	Sys::VertexTable* vertTable  = new Sys::VertexTable();
 	Sys::TriangleTable* triTable = new Sys::TriangleTable();
 	BoundBox box;
@@ -1457,8 +1423,6 @@ void RoomMapMgr::createGlobalCollision()
 		countZ = altZ;
 	}
 	static_cast<Sys::GridDivider*>(mMapCollision->mDivider)->create(box, countX, countZ, vertTable, triTable);
-
-	P2DEBUG("After: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 }
 
 /**
@@ -1571,8 +1535,6 @@ Sys::TriIndexList* RoomMapMgr::traceMove_original(MoveInfo& info, f32 step)
 						vecArray[count] = triNorm;
 						floatArray[count]
 						    = moveSphere->mRadius - (moveSphere->mPosition.dot(tri->mTrianglePlane.mNormal) - tri->mTrianglePlane.mOffset);
-						info.mUnused3      = true;
-						info.mUnusedNormal = triNorm;
 						count++;
 					}
 				}
@@ -2138,8 +2100,6 @@ void RoomMapMgr::doAnimation()
  */
 void RoomMapMgr::doEntry()
 {
-	sys->mTimers->_start("ENT-MAP", true);
-
 	if (gameSystem) {
 		BaseGameSection* section = gameSystem->getSection();
 		if (mSeaMgr) {
@@ -2155,8 +2115,6 @@ void RoomMapMgr::doEntry()
 
 		section->setDrawBuffer(DB_NormalLayer);
 	}
-
-	sys->mTimers->_stop("ENT-MAP");
 }
 
 /**
@@ -2199,17 +2157,4 @@ void RoomMapMgr::doSimulation(f32)
 {
 }
 
-/**
- * @note Address: 0x801BE478
- * @note Size: 0x210
- */
-void RoomMapMgr::doDirectDraw(Graphics& gfx)
-{
-	gfx.initPrimDraw(nullptr);
-	Iterator<MapRoom> iter(&mRoomMgr);
-	CI_LOOP(iter)
-	{
-		(*iter)->doDirectDraw(gfx);
-	}
-}
 } // namespace Game

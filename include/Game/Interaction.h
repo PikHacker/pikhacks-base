@@ -470,9 +470,6 @@ struct InteractSuikomi_Test : public Interaction {
 	inline InteractSuikomi_Test(Creature* parent, Vector3f* direction, CollPart* collpart, CollPart* stomachCollpart)
 	    : Interaction(parent)
 	{
-		mUnused08.x      = direction->x;
-		mUnused08.y      = direction->y;
-		mUnused08.z      = direction->z;
 		mCollpart        = collpart;
 		mStomachCollpart = stomachCollpart;
 	}
@@ -481,7 +478,6 @@ struct InteractSuikomi_Test : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature* (EnemyBase*)
-	Vector3f mUnused08;         // _08, direction
 	CollPart* mCollpart;        // _14
 	CollPart* mStomachCollpart; // _18
 };

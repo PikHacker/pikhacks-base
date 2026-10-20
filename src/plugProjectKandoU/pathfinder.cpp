@@ -30,7 +30,6 @@ Pathfinder::Pathfinder()
  */
 void Pathfinder::create(int contextCount, Game::RouteMgr* routeMgr)
 {
-	sys->heapStatusStart("pathfinder", nullptr);
 	mClientCount       = 0;
 	mAStarContextCount = contextCount;
 	mAStarContexts     = new AStarContext[contextCount];
@@ -38,7 +37,6 @@ void Pathfinder::create(int contextCount, Game::RouteMgr* routeMgr)
 		mAStarContexts[i].init(routeMgr, 0);
 	}
 	mCounter = 1;
-	sys->heapStatusEnd("pathfinder");
 }
 
 /**
@@ -47,8 +45,6 @@ void Pathfinder::create(int contextCount, Game::RouteMgr* routeMgr)
  */
 void Pathfinder::update()
 {
-	sys->mTimers->_start("path", true);
-
 	int counts = 0;
 	for (int i = 0; i < mAStarContextCount; i++) {
 		if (mAStarContexts[i].checkContext()) {
@@ -63,8 +59,6 @@ void Pathfinder::update()
 			}
 		}
 	}
-
-	sys->mTimers->_stop("path");
 }
 
 /**

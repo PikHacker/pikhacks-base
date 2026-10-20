@@ -33,27 +33,6 @@
 #include "og/ogLib2D.h"
 #include "utilityU.h"
 #include "PikiAI.h"
-#include "nans.h"
-
-namespace og {
-namespace Screen {
-
-int UfoMenuResult[4] = { 1, 2, 3, 0 };
-
-/**
- * @note Address: N/A
- * @note Size: 0xCC
- */
-void setBlendPane(J2DBlendInfo, J2DScreen*, u64*)
-{
-	// UNUSED FUNCTION
-}
-
-} // namespace Screen
-} // namespace og
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "baseGameSection";
 
 static Delegate1<Game::BaseGameSection, Game::CameraArg*>* cameraMgrCallback;
 static JKRExpHeap* theExpHeap;
@@ -94,7 +73,6 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
 	mXfbBoundsY         = 0;
 	mXfbBounds2dY       = 0;
 	mXfbBounds2dX       = 0;
-	mUnusedVal          = 0;
 	mBlackFader         = new BlackFader;
 	mWipeInFader        = new WipeInFader;
 	mWipeOutFader       = new WipeOutFader;
@@ -143,9 +121,8 @@ void BaseGameSection::restoreFBTexture()
  */
 BaseGameSection::~BaseGameSection()
 {
-	theExpHeap = nullptr;
-	PSSystem::SceneMgr* sceneMgr;
-	PSSystem::validateSceneMgr(sceneMgr = PSSystem::getSceneMgr());
+	theExpHeap                   = nullptr;
+	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
 	sceneMgr->deleteCurrentScene();
 	TParticle2dMgr::deleteInstance();
 	particleMgr->deleteInstance_TPkEffectMgr();
@@ -227,11 +204,6 @@ void BaseGameSection::init()
 	mXfbFlags       = 0;
 	mMoney          = 0;
 	mDraw2DCreature = nullptr;
-	System::FragmentationChecker initFrag("BGS::init", false);
-	{
-		System::FragmentationChecker heapFrag("heapStatus", false);
-		sys->heapStatusStart("baseGameSection::init", nullptr);
-	}
 
 	sys->enableCPULockDetector(480);
 	Delegate<BaseGameSection> delegate(this, dvdloadGameSystem);
@@ -257,7 +229,6 @@ void BaseGameSection::init()
 	sys->setFrameRate(2);
 	System::assert_fragmentation("BaseGameSection::MoviePlayer");
 	initJ3D();
-	mUnusedFlag = true;
 	mapMgr      = nullptr;
 	System::assert_fragmentation("BaseGameSection::InitJ3D");
 	System::assert_fragmentation("BaseGameSection::Before 2D");
@@ -269,7 +240,6 @@ void BaseGameSection::init()
 	mXfbBoundsY = 0;
 	mXfbBoundsX = 0;
 	onInit();
-	sys->heapStatusEnd("baseGameSection::init");
 	mTreasureGetState = 0;
 }
 
@@ -297,14 +267,8 @@ bool BaseGameSection::doUpdate()
 		updateBlendCamera();
 	}
 	mapMgr->update();
-	sys->mTimers->_start("doAnim", true);
 	doAnimation();
-	sys->mTimers->_stop("doAnim");
-	sys->mTimers->_start("ENT", true);
-	sys->mTimers->_start("ENT-A", true);
 	doEntry();
-	sys->mTimers->_stop("ENT-A");
-	sys->mTimers->_start("ENT-B", true);
 
 	if (rumbleMgr) {
 		rumbleMgr->update();
@@ -333,31 +297,22 @@ bool BaseGameSection::doUpdate()
 		platMgr->resetOnCount();
 	}
 
-	sys->mTimers->_stop("ENT-B");
-	sys->mTimers->_stop("ENT");
-	sys->mTimers->_start("doSim", true);
-
 	if (!gameSystem->paused()) {
 		f32 frameRate = sys->getFrameRate(1.0f);
-		sys->mTimers->_start("coll", true);
 		if (!(gameSystem->isFlag(GAMESYS_DisableCollision))) {
 			sys->getTime();
 			cellMgr->resolveCollision();
 			CellPyramid::sSpeedUpResolveColl = true;
 		}
-		sys->mTimers->_stop("coll");
 		doSimulation(frameRate);
 	}
 
-	sys->mTimers->_stop("doSim");
-	sys->mTimers->_start("particle", true);
 	if (!gameSystem->mIsFrozen && !gameSystem->paused() && particleMgr) {
 		particleMgr->update();
 	}
 	if (particle2dMgr) {
 		particle2dMgr->update();
 	}
-	sys->mTimers->_stop("particle");
 	onUpdate();
 	if (moviePlayer && !gameSystem->mIsMoviePause) {
 		if (gameSystem->isMultiplayerMode()) {
@@ -391,9 +346,7 @@ void BaseGameSection::doDraw(Graphics& gfx)
 		cameraMgr->update();
 	}
 
-	sys->mTimers->_start("_draw3D_", true);
 	draw3D(gfx);
-	sys->mTimers->_stop("_draw3D_");
 	if (moviePlayer && !gameSystem->mIsMoviePause) {
 		moviePlayer->drawLoading(gfx);
 	}
@@ -606,7 +559,6 @@ void BaseGameSection::initGenerators()
 
 		limitGeneratorMgr              = new GeneratorMgr;
 		limitGeneratorMgr->mName       = "Generator(Limit)";
-		limitGeneratorMgr->mUnusedFlag = true;
 		addGenNode(limitGeneratorMgr);
 
 		plantsGeneratorMgr        = new GeneratorMgr;
@@ -725,7 +677,6 @@ void BaseGameSection::initGenerators()
 					nonloopTxt.setMode(STREAM_MODE_TEXT, 1);
 
 					GeneratorMgr* currentNonloopMgr = new GeneratorMgr;
-					currentNonloopMgr->mUnusedFlag  = true;
 
 					currentNonloopMgr->read(nonloopTxt, false);
 					currentNonloopMgr->setDayLimit(currentGen->mDayLimit);
@@ -777,7 +728,6 @@ void BaseGameSection::initGenerators()
 						loopTxt.setMode(STREAM_MODE_TEXT, 1);
 
 						GeneratorMgr* currentLoopMgr = new GeneratorMgr;
-						currentLoopMgr->mUnusedFlag  = true;
 
 						currentLoopMgr->read(loopTxt, false);
 						u32 dayLimit = currentGen->mDayLimit - 30;
@@ -1297,8 +1247,7 @@ void BaseGameSection::prepareHoleIn(Vector3f& surroundPos, bool killPikihead)
 				DeathMgr::inc(DeathCounter::COD_All);
 				if (gameSystem->isChallengeMode()) {
 					GameMessageVsPikminDead deadPikmin;
-					// REALLY????? WHAT FILE ARE WE IN???
-					gameSystem->mSection->sendMessage(deadPikmin);
+					sendMessage(deadPikmin);
 				}
 			}
 		}
@@ -1315,7 +1264,6 @@ void BaseGameSection::prepareHoleIn(Vector3f& surroundPos, bool killPikihead)
 				}
 				piki->endStick();
 				piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
-				piki->getCreatureID();
 				piki->mNavi   = aliveOrima;
 				f32 randAngle = randFloat() * TAU;
 
@@ -1363,8 +1311,7 @@ void BaseGameSection::prepareFountainOn(Vector3f& surroundPos)
 			DeathMgr::inc(DeathCounter::COD_All);
 			if (gameSystem->isChallengeMode()) {
 				GameMessageVsPikminDead deadPikmin;
-				// OH MY FUCKING GOD NOT AGAIN
-				gameSystem->mSection->sendMessage(deadPikmin);
+				sendMessage(deadPikmin);
 			}
 		}
 	}
@@ -1380,7 +1327,6 @@ void BaseGameSection::prepareFountainOn(Vector3f& surroundPos)
 		} else {
 			piki->endStick();
 			piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
-			piki->getCreatureID();
 
 			PikiAI::ActFormationInitArg arg(aliveOrima, false);
 
@@ -1461,9 +1407,7 @@ void BaseGameSection::draw_Ogawa2D(Graphics& gfx)
 {
 	gfx.mPerspGraph.setPort();
 	particle2dMgr->draw(true, 0);
-	sys->mTimers->_start("2ddraw", true);
 	Screen::gGame2DMgr->draw(gfx);
-	sys->mTimers->_stop("2ddraw");
 	gfx.mPerspGraph.setPort();
 	particle2dMgr->draw(false, 0);
 }
@@ -1500,8 +1444,6 @@ void BaseGameSection::draw2D(Graphics& gfx)
 	print.initiate();
 	print.setCharColor(JUtility::TColor(158, 219, 255, 255));
 	print.setGradColor(JUtility::TColor(56, 159, 247, 255));
-	JKRHeap::sCurrentHeap->getFreeSize();
-	// print was likely showing how much head space was left
 }
 
 /**
@@ -1510,8 +1452,6 @@ void BaseGameSection::draw2D(Graphics& gfx)
  */
 void BaseGameSection::setupViewportMatrix(Graphics&)
 {
-	JUT_PANICLINE(0, "DON'T USE THIS !\n");
-	JUT_PANICLINE(0, "使ってないかも\n");
 	// UNUSED FUNCTION
 }
 
@@ -1647,20 +1587,10 @@ void BaseGameSection::doAnimation()
 		testPathfinder->update();
 	}
 
-	sys->mTimers->_start("gameSys-da", true);
 	gameSystem->doAnimation();
-	sys->mTimers->_stop("gameSys-da");
 
 	if (particleMgr && !gameSystem->mIsFrozen) {
 		particleMgr->doAnimation();
-	}
-
-	if (!gameSystem->isZukanMode() && generatorMgr) {
-		generatorMgr->doAnimation();
-		onceGeneratorMgr->doAnimation();
-		limitGeneratorMgr->doAnimation();
-		plantsGeneratorMgr->doAnimation();
-		dayGeneratorMgr->doAnimation();
 	}
 
 	if (!gameSystem->isZukanMode()) {
@@ -1684,15 +1614,11 @@ void BaseGameSection::changeGeneratorCursor(Vector3f& vec)
 void BaseGameSection::doEntry()
 {
 	setDrawBuffer(DB_NormalLayer);
-	sys->mTimers->_start("ENT-GSYS", true);
 	gameSystem->doEntry();
-	sys->mTimers->_stop("ENT-GSYS");
-	sys->mTimers->_start("ENT-REST", true);
 	if (particleMgr) {
 		setDrawBuffer(DB_NormalFogOffLayer);
 		particleMgr->doEntry();
 	}
-	sys->mTimers->_stop("ENT-REST");
 }
 
 /**
@@ -1708,13 +1634,6 @@ void BaseGameSection::doSetView(int viewportNumber)
 	if (particleMgr) {
 		particleMgr->doSetView(viewportNumber);
 	}
-	if (!gameSystem->isZukanMode() && generatorMgr) {
-		generatorMgr->doSetView(viewportNumber);
-		onceGeneratorMgr->doSetView(viewportNumber);
-		limitGeneratorMgr->doSetView(viewportNumber);
-		plantsGeneratorMgr->doSetView(viewportNumber);
-		dayGeneratorMgr->doSetView(viewportNumber);
-	}
 }
 
 /**
@@ -1726,13 +1645,6 @@ void BaseGameSection::doViewCalc()
 	gameSystem->doViewCalc();
 	if (particleMgr) {
 		particleMgr->doViewCalc();
-	}
-	if (!gameSystem->isZukanMode() && generatorMgr) {
-		generatorMgr->doViewCalc();
-		onceGeneratorMgr->doViewCalc();
-		limitGeneratorMgr->doViewCalc();
-		plantsGeneratorMgr->doViewCalc();
-		dayGeneratorMgr->doViewCalc();
 	}
 }
 
@@ -1921,7 +1833,6 @@ void BaseGameSection::clearHeap()
 {
 	TexCaster::Mgr::deleteInstance();
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
 	mgr->deleteCurrentScene();
 	GXWaitDrawDone();
 	itemMgr->clearGlobalPointers();
@@ -1954,7 +1865,6 @@ void BaseGameSection::clearHeap()
 	gameSystem->detachObjectMgr(generalEnemyMgr);
 	gameSystem->detachObjectMgr(mapMgr);
 	gameSystem->detachObjectMgr(itemMgr);
-	gameSystem->detachObjectMgr(mapMgr); // remove mapMgr twice for some reason
 	mapMgr = nullptr;
 	onClearHeap();
 	mapMgr       = nullptr;
@@ -2065,19 +1975,13 @@ void BaseGameSection::setupFixMemory()
  */
 void BaseGameSection::setupFixMemory_dvdload()
 {
-	sys->heapStatusStart("setupFixMemory", nullptr);
-
 	ResTIMG* file = static_cast<ResTIMG*>(JKRDvdRipper::loadToMainRAM("user/Kando/mizu.bti", nullptr, Switch_0, 0, nullptr,
 	                                                                  JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr));
 	mMizuTexture  = new JUTTexture(file);
-	sys->heapStatusStart("fbTexture", nullptr);
 
 	mXfbImage = new JUTTexture((System::getRenderModeWidth() >> 1) & 0x7FFF, (System::getRenderModeHeight() >> 1) & 0x7FFF, GX_TF_RGB565);
 	gameSystem->mXfbTexture = mXfbImage;
 
-	sys->heapStatusEnd("fbTexture");
-
-	sys->heapStatusStart("particle", nullptr);
 	ParticleMgr::globalInstance();
 	particleMgr->createHeap(PARTICLE_MGR_HEAP_SIZE);
 	particleMgr->createMgr("user/Ebisawa/effect/game.jpc", 2000, 300, 0x80);
@@ -2100,11 +2004,9 @@ void BaseGameSection::setupFixMemory_dvdload()
 	particleMgr->endEntryModelEffect();
 	particleMgr->Instance_TPkEffectMgr();
 
-	sys->heapStatusEnd("particle");
 	collisionUpdateMgr = new UpdateMgr;
 	collisionUpdateMgr->create(3);
 
-	sys->heapStatusStart("navi-piki", nullptr);
 	naviMgr = new NaviMgr;
 	gameSystem->addObjectMgr(naviMgr);
 	naviMgr->loadResources();
@@ -2115,14 +2017,12 @@ void BaseGameSection::setupFixMemory_dvdload()
 	addGenNode(pikiMgr);
 	addGenNode(naviMgr);
 	pikiMgr->loadResources(mPlayerMode);
-	sys->heapStatusEnd("navi-piki");
 
 	pelletMgr = new PelletMgr;
 	pelletMgr->createManagers(nullptr);
 	gameSystem->addObjectMgr(pelletMgr);
 
 	createScreenRootNode();
-	sys->heapStatusEnd("setupFixMemory");
 }
 
 } // namespace Game
@@ -2183,7 +2083,6 @@ void BaseGameSection::setupFloatMemory()
 	mBackupHeap = mTheExpHeap->becomeCurrentHeap();
 	onStartHeap();
 
-	sys->heapStatusStart("setupFloatMemory", nullptr);
 	naviMgr->loadResources_float();
 	lifeGaugeMgr = new LifeGaugeMgr;
 	lifeGaugeMgr->loadResource();
@@ -2227,7 +2126,6 @@ void BaseGameSection::setupFloatMemory()
 	if (gameSystem->mIsInCave) {
 		incave = true;
 	}
-	sys->heapStatusStart("itemMgr", nullptr);
 	itemMgr = new ItemMgr;
 	if (isDevelopSection()) {
 		itemMgr->createManagers(3);
@@ -2238,11 +2136,8 @@ void BaseGameSection::setupFloatMemory()
 	}
 	gameSystem->addObjectMgr(itemMgr);
 	addGenNode(itemMgr);
-	sys->heapStatusEnd("itemMgr");
 
-	sys->heapStatusStart("Pikmin-PikiClass", nullptr);
 	pikiMgr->alloc(MAX_PIKI_COUNT);
-	sys->heapStatusEnd("Pikmin-PikiClass");
 
 	generalEnemyMgr = new GeneralEnemyMgr;
 	gameSystem->addObjectMgr(generalEnemyMgr);
@@ -2269,9 +2164,7 @@ void BaseGameSection::setupFloatMemory()
 			info->disablePelplant();
 		}
 		mapMgr = new RoomMapMgr(info);
-		sys->heapStatusStart("mapMgr", nullptr);
 		static_cast<RoomMapMgr*>(mapMgr)->createRandomMap(getCurrFloor(), mapunit);
-		sys->heapStatusEnd("mapMgr");
 		gameSystem->addObjectMgr(mapMgr);
 
 		if (gameSystem->isVersusMode()) {
@@ -2297,25 +2190,18 @@ void BaseGameSection::setupFloatMemory()
 			sendMessage(mesg7);
 		}
 
-		sys->heapStatusStart("CellMgr", nullptr);
-
 		BoundBox2d bounds(12800000.0f, 12800000.0f, -12800000.0f, -12800000.0f);
 		mapMgr->getBoundBox2d(bounds);
-		sys->heapStatusStart("PlatCellMgr", nullptr);
 		platCellMgr = new CellPyramid;
 		platCellMgr->create(bounds, 128.0f);
-		sys->heapStatusEnd("PlatCellMgr");
 
 		BoundBox2d bounds2(12800000.0f, 12800000.0f, -12800000.0f, -12800000.0f);
 		mapMgr->getBoundBox2d(bounds2);
-		sys->heapStatusStart("MapRoomCellMgr", nullptr);
 		mapRoomCellMgr = new CellPyramid;
 		mapRoomCellMgr->create(bounds2, 170.0f);
-		sys->heapStatusEnd("MapRoomCellMgr");
 
 		static_cast<RoomMapMgr*>(mapMgr)->entryToMapRoomCellMgr();
 		static_cast<RoomMapMgr*>(mapMgr)->createGlobalCollision();
-		sys->heapStatusEnd("CellMgr");
 
 		generalEnemyMgr->allocateEnemys(mPlayerMode, -1);
 		generalEnemyMgr->setupSoundViewerAndBas();
@@ -2341,19 +2227,15 @@ void BaseGameSection::setupFloatMemory()
 		mapMgr->mRouteMgr->refreshWater();
 	}
 
-	sys->heapStatusStart("CellMgr", nullptr);
 	cellMgr = new CellPyramid;
 	BoundBox2d bounds(12800000.0f, 12800000.0f, -12800000.0f, -12800000.0f);
 	mapMgr->getBoundBox2d(bounds);
 	JKRGetCurrentHeap()->getFreeSize();
 	cellMgr->create(bounds, 108.0f);
 	if (!cave) {
-		sys->heapStatusStart("PlatCellMgr", nullptr);
 		platCellMgr = new CellPyramid;
 		platCellMgr->create(bounds, 128.0f);
-		sys->heapStatusEnd("PlatCellMgr");
 	}
-	sys->heapStatusEnd("CellMgr");
 
 	if (cave) {
 		static_cast<RoomMapMgr*>(mapMgr)->placeObjects();
@@ -2375,7 +2257,6 @@ void BaseGameSection::setupFloatMemory()
 	cameraMgr->setCameraAngle(angle, CAMNAVI_Both);
 
 	cameraMgr->controllerUnLock(CAMNAVI_Both);
-	sys->heapStatusEnd("setupFloatMemory");
 
 	pikiMgr->setupSoundViewerAndBas();
 	naviMgr->setupSoundViewerAndBas();
@@ -2387,7 +2268,6 @@ void BaseGameSection::setupFloatMemory()
 	if (Farm::farmMgr) {
 		Farm::farmMgr->setupSound();
 	}
-	OSReport("<float> Done\n"); // anyone else who changes this to f32 gets 40 years in the dungeon
 }
 
 /**
@@ -2396,13 +2276,6 @@ void BaseGameSection::setupFloatMemory()
  */
 void BaseGameSection::setDrawBuffer(int index)
 {
-#if defined(VERSION_PAL)
-	P2ASSERTBOUNDSLINE(5298, 0, index, 10);
-#elif defined(VERSION_JP)
-	P2ASSERTBOUNDSLINE(5290, 0, index, 10);
-#else
-	P2ASSERTBOUNDSLINE(5295, 0, index, 10);
-#endif
 	j3dSys.mDrawBuffer[0] = mOpaqueDrawBuffer->get(index)->mBuffer;
 	j3dSys.mDrawBuffer[1] = mTransparentDrawBuffer->get(index)->mBuffer;
 }

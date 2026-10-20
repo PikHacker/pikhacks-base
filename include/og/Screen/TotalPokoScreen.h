@@ -29,7 +29,6 @@ struct TotalPokoScreen : public P2DScreen::Mgr_tuning {
 	bool mIsOpen;                           // _154
 	CallBack_CounterRV* mCallBackCounterRV; // _158
 	J2DPane* mPane;                         // _15C
-	f32 mUnusedVal;                         // _160
 	Vector2f mStandardPos;                  // _164
 	Vector2f mCurrPos;                      // _16C
 	f32 mTimer;                             // _174

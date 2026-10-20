@@ -24,15 +24,6 @@ namespace Game {
 namespace P2JST {
 
 /**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-// void P2JST::_Print(char*, ...)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/**
  * @note Address: 0x80430954
  * @note Size: 0xA0
  */
@@ -83,7 +74,6 @@ void ObjectSystem::reset()
 			static_cast<ObjectActor*>(obj)->reset();
 			break;
 		default:
-			obj->JSGFGetType(); // debug probably
 			break;
 		case JStage::TEO_AmbientLight:
 		case JStage::TEO_Light:
@@ -246,7 +236,6 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
 		JGadget::TList_pointer<JStage::TObject*>::iterator iterEnd   = mObjListPointer.end();
 		while (iterStart != iterEnd) {
 			JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
-			obj->JSGGetName(); // debug probably
 
 			++iterStart;
 		}
@@ -309,5 +298,3 @@ void ObjectSystem::JSGSetData(u32 d1, void const* d2, u32 d3)
 
 } // namespace P2JST
 } // namespace Game
-
-#include "nans.h"

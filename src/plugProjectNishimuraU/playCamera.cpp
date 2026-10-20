@@ -3,7 +3,6 @@
 #include "Game/Stickers.h"
 #include "Game/MapMgr.h"
 #include "PSSystem/PSSystemIF.h"
-#include "nans.h"
 
 namespace Game {
 

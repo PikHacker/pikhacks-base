@@ -17,8 +17,6 @@
 namespace og {
 namespace Screen {
 
-static const char otakaraSensorName[] = "ogOtakaraSensor";
-
 /**
  * @note Address: 0x8032D8E8
  * @note Size: 0x140
@@ -239,7 +237,6 @@ void OtakaraSensor::updateInit()
 				mNoiseLevel             = 0.0f;
 				mIsPoweringOff          = true;
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSSystem::validateSceneMgr(mgr);
 				PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 				PSSystem::checkGameScene(scene);
 				if (scene->isCave()) {

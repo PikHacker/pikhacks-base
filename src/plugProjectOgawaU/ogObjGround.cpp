@@ -8,12 +8,9 @@
 #include "og/Screen/BloGroup.h"
 #include "trig.h"
 #include "System.h"
-#include "nans.h"
 
 namespace og {
 namespace newScreen {
-
-static const char unusedObjGroundArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 /**
  * @note Address: 0x8030DEB8

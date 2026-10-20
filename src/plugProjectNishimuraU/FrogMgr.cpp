@@ -3,8 +3,6 @@
 namespace Game {
 namespace Frog {
 
-static const char frogMgrName[] = "246-FrogMgr";
-
 /**
  * @note Address: 0x80258120
  * @note Size: 0x50

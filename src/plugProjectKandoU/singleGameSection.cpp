@@ -30,12 +30,8 @@
 #include "Game/Entities/PelletItem.h"
 #include "Game/Entities/PelletCarcass.h"
 #include "PikiAI.h"
-#include "nans.h"
 
 namespace Game {
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "SingleGameSection";
 
 /**
  * @note Address: 0x80152074
@@ -285,7 +281,6 @@ void SingleGameSection::onInit()
 	mIsExitingMap = false;
 	clearCaveMenus();
 
-	mUnusedFlag       = false;
 	mLoadGameCallback = new Delegate<SingleGameSection>(this, setupFloatMemory);
 
 	mFsm = new SingleGame::FSM;
@@ -711,7 +706,6 @@ void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 	if (!mIsExitingMap && !(mOpenMenuFlags & 1)) {
 		mCaveIndex = id;
 		og::Screen::DispMemberAnaDemo disp;
-		disp.mUnusedValue    = 0;
 		disp.mCaveOtakaraNum = cave->getCaveOtakaraNum();
 		disp.mCaveOtakaraMax = cave->getCaveOtakaraMax();
 		disp.mPayedDebt      = playData->isStoryFlag(STORY_DebtPaid);
@@ -1049,11 +1043,6 @@ void SingleGameSection::setDispMemberSMenu(og::Screen::DispMemberSMenuAll& disp)
 		disp.mIsDay1 = true;
 	}
 
-	// what even is this
-	disp.mSMenuMap.mDataMap.mNapsackDetectorFlags
-	    = OlimarData::getDetectorFlags(playData->mOlimarData[0].hasItem(OlimarData::ODII_PrototypeDetector),
-	                                   playData->mOlimarData[0].hasItem(OlimarData::ODII_FiveManNapsack));
-
 	// Map screen data
 	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[og::Screen::MAPPIKI_Red]    = playData->mPikiContainer.getColorSum(Red);
 	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[og::Screen::MAPPIKI_Yellow] = playData->mPikiContainer.getColorSum(Yellow);
@@ -1131,17 +1120,6 @@ Radar::Mgr::RadarSearchResult SingleGameSection::calcOtakaraLevel(f32& treasureD
 		Vector3f playerPosition = navi->getPosition();
 		Vector3f treasurePosition;
 		treasureSearchResult = Radar::mgr->calcNearestTreasure(playerPosition, 900.0f, treasurePosition, treasureDistance);
-
-		if (treasureSearchResult == Radar::Mgr::CLOSEST_TREASURE_FOUND) {
-			// If the distance is within the range (0 - 900.0f)
-			if (!(1.0f - (treasureDistance / 900.0f) < 0.0f)) {
-				return treasureSearchResult; // Return 2
-			} else {
-				P2DEBUG("stuff");
-			}
-		} else if (treasureSearchResult == Radar::Mgr::TREASURE_FOUND) {
-			rand();
-		}
 	}
 
 	return treasureSearchResult;

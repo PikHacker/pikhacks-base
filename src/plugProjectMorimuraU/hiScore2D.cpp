@@ -7,8 +7,6 @@
 #include "Dolphin/rand.h"
 #include "trig.h"
 
-static const char name[] = "hiScore2D";
-
 namespace Morimura {
 
 bool THiScore::mForceClear         = false;
@@ -300,7 +298,6 @@ void THiScore::doCreate(JKRArchive* arc)
 		P2ASSERTLINE(384, mSelIconCorners[3]);
 	}
 
-	_B0               = 1;
 	mCurrMinActiveRow = 0;
 	mCurrActiveRowSel = 2; // selection will be the minimum currently visible + 2
 	mCurrMaxActiveRow = mNumActiveRows - 1;

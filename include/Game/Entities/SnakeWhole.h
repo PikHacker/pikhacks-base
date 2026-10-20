@@ -71,7 +71,6 @@ struct Obj : public EnemyBase {
 
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                            // _30
-	virtual void doDirectDraw(Graphics& gfx);                                  // _50
 	virtual void inWaterCallback(WaterBox* wb) { }                             // _84 (weak)
 	virtual void outWaterCallback() { }                                        // _88 (weak)
 	virtual bool isUnderground() { return mIsUnderground; }                    // _D0 (weak)
@@ -82,7 +81,6 @@ struct Obj : public EnemyBase {
 	virtual void doUpdateCommon();                                             // _1D0
 	virtual void doAnimationUpdateAnimator();                                  // _1D8
 	virtual void doAnimationCullingOff();                                      // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
 	virtual Vector3f* getFitEffectPos();                                       // _208
 	virtual void initMouthSlots();                                             // _22C
 	virtual void createEfxHamon();                                             // _250

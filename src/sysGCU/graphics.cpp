@@ -6,7 +6,6 @@
 #include "JSystem/J2D/J2DPrint.h"
 #include "IDelegate.h"
 #include "trig.h"
-#include "nans.h"
 
 int gScissorOffset;
 char* Graphics::lastTokenName;

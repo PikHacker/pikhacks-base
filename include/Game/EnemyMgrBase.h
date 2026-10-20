@@ -82,7 +82,6 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void doSetView(int viewportNumber); // _10
 	virtual void doViewCalc();                  // _14
 	virtual void doSimulation(f32 rate);        // _18
-	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
 	// GenericContainer thunks _40-_58
 	virtual void* getObject(void* index) { return get(index); } // _5C (weak)
@@ -145,7 +144,6 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	void doAnimationAlwaysMovieActor();
 	void doEntryAlwaysMovieActor();
 	void doSimulationAlwaysMovieActor(f32);
-	void doDirectDrawAlwaysMovieActor(Graphics&);
 	void kill(EnemyBase*);
 
 	inline EnemyBase* getEnemyByID(EnemyTypeID::EEnemyTypeID id)
@@ -192,10 +190,6 @@ struct EnemyMgrBaseAlwaysMovieActor : public EnemyMgrBase {
 	virtual void doSimulation(f32 constraint) // _18 (weak)
 	{
 		EnemyMgrBase::doSimulationAlwaysMovieActor(constraint);
-	}
-	virtual void doDirectDraw(Graphics& gfx) // _1C (weak)
-	{
-		EnemyMgrBase::doDirectDrawAlwaysMovieActor(gfx);
 	}
 	virtual ~EnemyMgrBaseAlwaysMovieActor() { } // _58 (weak)
 

@@ -6,7 +6,6 @@
 #include "Game/MapMgr.h"
 #include "efx/efxEnemy.h"
 #include "PS.h"
-#include "nans.h"
 
 namespace Game {
 namespace OniKurage {

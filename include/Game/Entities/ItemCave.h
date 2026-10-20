@@ -90,7 +90,6 @@ struct Item : public FSMItem<Item, FSM, State> {
 	Item();
 
 	virtual void onInit(CreatureInitArg*);             // _30
-	virtual void doDirectDraw(Graphics&);              // _50
 	virtual bool sound_culling();                      // _104
 	virtual char* getCreatureName() { return "Cave"; } // _1A8 (weak)
 	virtual f32 getFaceDir() { return mFaceDir; }      // _64 (weak)

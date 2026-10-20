@@ -10,8 +10,6 @@
 
 namespace PikiAI {
 
-static const char unusedName[] = "actTransport";
-
 /**
  * @note Address: 0x801A1914
  * @note Size: 0x64
@@ -55,8 +53,6 @@ void ActTransport::init(ActionArg* settings)
 
 	mPellet = arg->mPellet;
 	mGoal   = arg->mGoal;
-	_1C     = arg->mUnusedPos;
-	_28     = arg->mUnusedSlotVal;
 
 	mParent->startMotion(Game::IPikiAnims::WAIT, Game::IPikiAnims::WAIT, nullptr, nullptr);
 	mParent->mTargetVelocity = Vector3f(0.0f);
@@ -96,7 +92,6 @@ void ActTransport::emotion_fail()
 int ActTransport::exec()
 {
 	if (mPellet && !mPellet->isAlive()) {
-		P2DEBUG("dead pellet: %d", mParent->getCreatureID());
 		return ACTEXEC_Success;
 	}
 
@@ -160,7 +155,6 @@ int ActTransport::exec()
 		}
 		if (isStickLeader()) {
 			if (!mIsMoving) {
-				P2DEBUG("%s %d", static_cast<Game::Creature*>(mPellet)->getCreatureName(), mPellet->getCreatureID());
 				PathMoveArg pathMoveArg(mPellet, _1C, _28, 0);
 				mPathMove->init(&pathMoveArg);
 				mIsMoving = true;
@@ -208,7 +202,6 @@ void ActTransport::cleanup()
 	Game::GameStat::workPikis.dec(mParent);
 	mParent->endStick();
 	Vector3f position = mParent->getPosition();
-	P2DEBUG("ActTransport stopped at {%d, %d, %d}!", position.x, position.y, position.z);
 }
 
 /**

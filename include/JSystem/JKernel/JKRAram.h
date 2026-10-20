@@ -190,7 +190,6 @@ struct JKRAMCommand : public ARQRequest {
 	u32 mSource;                      // _48
 	u32 mDestination;                 // _4C
 	JKRAramBlock* mAramBlock;         // _50
-	u8 _54[4];                        // _54
 	Callback mCallback;               // _58
 	OSMessageQueue* _5C;              // _5C
 	s32 _60;                          // _60

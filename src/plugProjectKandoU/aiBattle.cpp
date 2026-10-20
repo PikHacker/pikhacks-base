@@ -12,10 +12,6 @@
 
 namespace PikiAI {
 
-#if MATCHING
-static const char unusedAiBattleName[] = "aiBattle";
-#endif
-
 /**
  * @note Address: 0x8022ECB4
  * @note Size: 0xB8

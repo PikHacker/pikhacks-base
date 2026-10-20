@@ -19,7 +19,6 @@ struct GenericObject {
 	virtual void doSetView(int viewportNumber) = 0; // _10
 	virtual void doViewCalc()                  = 0; // _14
 	virtual void doSimulation(f32 rate)        = 0; // _18
-	virtual void doDirectDraw(Graphics& gfx)   = 0; // _1C
 };
 
 /**
@@ -35,7 +34,6 @@ struct GenericObjectMgr {
 	virtual void doSetView(int viewportNumber) = 0; // _10
 	virtual void doViewCalc()                  = 0; // _14
 	virtual void doSimulation(f32 rate)        = 0; // _18
-	virtual void doDirectDraw(Graphics& gfx)   = 0; // _1C
 	virtual void doSimpleDraw(Viewport*) { }        // _20 (weak)
 	virtual void loadResources() { }                // _24 (weak)
 	virtual void resetMgr() { }                     // _28 (weak)

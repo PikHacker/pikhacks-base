@@ -3,8 +3,6 @@
 namespace Game {
 namespace GasHiba {
 
-static const char gasHibaMgrName[] = "246-GasHibaMgr";
-
 /**
  * @note Address: 0x8026CC80
  * @note Size: 0x64

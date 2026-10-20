@@ -64,7 +64,6 @@ struct PlatInstance : public CellObject {
 	virtual void doSetView(int viewportNumber) { }            // _38 (weak)
 	virtual void doViewCalc() { }                             // _3C (weak)
 	virtual void doSimulation(f32) { }                        // _40 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }              // _44 (weak)
 	virtual char* getTypeName() { return "platinstance"; }    // _24 (weak)
 	virtual u16 getObjType() { return OBJTYPE_End; }          // _28 (weak)
 	virtual bool collisionUpdatable() { return false; }       // _14 (weak)
@@ -113,7 +112,6 @@ struct PlatInstanceAttacher {
 struct PlatMgr : public NodeObjectMgr<PlatInstance> {
 	PlatMgr();
 
-	virtual void doDirectDraw(Graphics& gfx);                 // _78 (weak)
 	virtual bool findRayIntersection(Sys::RayIntersectInfo&); // _80
 
 	PlatInstance* addInstance(PlatAddInstanceArg&);

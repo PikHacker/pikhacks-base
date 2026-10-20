@@ -1,6 +1,5 @@
 #include "PikiAI.h"
 #include "Game/Navi.h"
-#include "nans.h"
 
 namespace PikiAI {
 /**

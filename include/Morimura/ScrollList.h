@@ -175,7 +175,6 @@ struct TScrollList : public TTestBase {
 	f32 mMaxSelYOffset;          // _A4, Y position of bottom of list
 	f32 mSelectionYOffset;       // _A8, Y position of the selected row
 	f32 mCursorSelectionYOffset; // _AC, Y position of detection for what is currently selected (mSelectionYOffset with an offset)
-	u8 _B0;                      // _B0, enabled for hiScore2D, but doesn't do anything?
 
 	static int mRightOffset;
 	static bool mForceResetParm;

@@ -1,5 +1,4 @@
 #include "ebi/title/TTitle.h"
-#include "nans.h"
 
 namespace ebi {
 namespace title {

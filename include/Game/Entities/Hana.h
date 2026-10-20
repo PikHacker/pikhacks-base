@@ -16,7 +16,6 @@ struct Obj : public ChappyBase::Obj {
 
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                                          // _30
-	virtual void doDirectDraw(Graphics& gfx);                                                // _50
 	virtual void getShadowParam(ShadowParam& settings);                                      // _134
 	virtual ~Obj() { }                                                                       // _1BC (weak)
 	virtual void initMouthSlots();                                                           // _22C

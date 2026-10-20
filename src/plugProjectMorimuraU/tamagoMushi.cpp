@@ -9,7 +9,6 @@
 
 namespace Game {
 namespace TamagoMushi {
-static const char unusedName[] = "tamagoMushi";
 
 /**
  * @note Address: 0x8036EBA8
@@ -133,23 +132,6 @@ void Obj::doAnimationCullingOff()
 	}
 
 	mCollTree->update();
-}
-
-/**
- * @note Address: 0x8036F238
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x8036F23C
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

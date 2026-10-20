@@ -551,14 +551,6 @@ void StateAttack::cleanup(EnemyBase* enemy)
 }
 
 /**
- * @note Address: 0x801184F4
- * @note Size: 0x4
- */
-void StateAttack::doDirectDraw(EnemyBase* enemy, Graphics&)
-{
-}
-
-/**
  * @note Address: 0x801184F8
  * @note Size: 0x54
  */

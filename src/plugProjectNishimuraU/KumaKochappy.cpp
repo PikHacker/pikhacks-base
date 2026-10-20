@@ -62,23 +62,6 @@ void KumaKochappy::Obj::doUpdate()
 }
 
 /**
- * @note Address: 0x802E7294
- * @note Size: 0x4
- */
-void KumaKochappy::Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802E7298
- * @note Size: 0x20
- */
-void KumaKochappy::Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
-}
-
-/**
  * @note Address: 0x802E72B8
  * @note Size: 0x4C
  */

@@ -8,7 +8,6 @@
 #include "P2Macros.h"
 #include "RootMenuSection.h"
 #include "Title.h"
-#include "nans.h"
 
 // NOTE: Fabricated struct name.
 namespace {

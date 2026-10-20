@@ -114,10 +114,8 @@ struct J3DSys {
 	DrawMode mDrawMode;             // _050
 	u32 mMaterialMode;              // _054
 	J3DTexture* mTexture;           // _058
-	u8 _5C[4];                      // _05C, unknown
 	u32 mTexCacheRegionNum;         // _060
 	GXTexRegion mTexCacheRegion[8]; // _064
-	u8 _E4[0x20];                   // _0E4, unknown
 	Mtx* mModelDrawMtx;             // _104
 	Mtx* mModelNormMtx;             // _108
 	void* mVtxPos;                  // _10C

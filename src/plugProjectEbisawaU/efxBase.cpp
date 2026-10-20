@@ -1398,11 +1398,4 @@ void TSyncGroup6<T>::endDemoDrawOn()
 	}
 }
 
-static void fakematch()
-{
-	// fake but this dtor needs to spawn before the actual virtual functions
-	TOneEmitterChasePos* e = nullptr;
-	delete e;
-}
-
 } // namespace efx

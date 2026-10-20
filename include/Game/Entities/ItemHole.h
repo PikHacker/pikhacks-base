@@ -44,8 +44,7 @@ struct Item : public CFSMItem {
 	Item(int objTypeID);
 
 	// vtable 1
-	virtual void doDirectDraw(Graphics& gfx);       // _50
-	virtual void onInit(CreatureInitArg* settings); // _30, needs to be below doDirectDraw to put itemHole vtable in correct spot
+	virtual void onInit(CreatureInitArg* settings); // _30
 	virtual f32 getFaceDir() { return mFaceDir; }   // _64 (weak)
 	virtual bool sound_culling();                   // _104
 	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
@@ -112,7 +111,6 @@ struct State : CItemState {
 
 	// _00     = VTBL
 	// _00-_0C = CItemState
-	u8 _0C[4]; // _0C
 };
 
 /**

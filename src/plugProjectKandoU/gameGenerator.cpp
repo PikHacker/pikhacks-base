@@ -6,21 +6,9 @@
 #include "Game/GameSystem.h"
 #include "Game/TimeMgr.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "nans.h"
 #include "Parameters.h"
 
 u32 GeneratorCurrentVersion = 'v0.3';
-
-static const int unusedArray[] = { 0, 0, 0 };
-
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* name, ...)
-{
-	OSReport("generator");
-}
 
 namespace Game {
 GenObjectFactoryFactory* GenObjectFactory::factory;
@@ -43,7 +31,6 @@ GenBase::GenBase(u32 typeID, char* labelData, char* objTypeName)
 	mLabelData   = labelData;
 	mObjTypeName = objTypeName;
 	mRawID       = '____';
-	mModel       = nullptr;
 }
 
 /**
@@ -175,7 +162,6 @@ Generator::Generator()
 	mNextGenerator = 0;
 	mPrevGenerator = 0;
 	mCreature      = nullptr;
-	mUnusedVal     = 0;
 	clearRelations();
 	mIsInactive           = TRUE;
 	mDayLimit             = -1;
@@ -286,9 +272,6 @@ void Generator::saveCreature(Stream& output)
 			conversion |= CREATURE_SAVE_FLAG_POSITION;
 		}
 
-		mCreature->getTypeName();
-		mCreature->getCreatureName();
-		mCreature->getCreatureID();
 		mCreature->save(output, conversion);
 		return;
 	}
@@ -305,17 +288,14 @@ void Generator::saveCreature(Stream& output)
 void Generator::generate()
 {
 	if (isExpired()) {
-		mUnusedVal = 0;
 		mCreature  = nullptr;
 		return;
 	}
 
 	if (ramMode == RM_Disc) {
-		mUnusedVal  = 0;
 		mDeathCount = 0;
 		mDayNum     = gameSystem->mTimeMgr->mDayCount;
 	} else if (!isReservedFlag(Reserved_doTrackDeath)) {
-		mUnusedVal = 0;
 		return;
 	}
 
@@ -514,17 +494,14 @@ GeneratorMgr::GeneratorMgr()
 	mParentMgr      = nullptr;
 	mChildMgr       = nullptr;
 	mNextMgr        = nullptr;
-	mUnusedFlag2    = 0;
 	mStartPos       = Vector3f(0.0f);
 	mStartDir       = 0.0f;
 	mGeneratorCount = 0;
 	mGenerator      = nullptr;
-	mAltVersionID.setID('v0.1');
 	mVersionID.setID('v0.0');
 	if (!GenObjectFactory::factory) {
 		GenObjectFactory::factory = new GenObjectFactoryFactory;
 	}
-	mUnusedFlag = 0;
 	mName       = "GeneratorMgr";
 }
 
@@ -692,156 +669,6 @@ void GeneratorMgr::write(Stream& output)
 
 	output.textWriteTab(output.mTabCount);
 	output.textWriteText("\t# %d generators\r\n");
-}
-
-/**
- * @note Address: 0x801ABF08
- * @note Size: 0xD8
- */
-void Generator::doAnimation()
-{
-	GenObject* obj = mObject;
-	if (mObject && mObject->mModel) {
-		Matrixf mat;
-		Vector3f pos = mPosition + mOffset;
-		mObject->generatorMakeMatrix(mat, pos);
-
-		PSMTXCopy(mat.mMatrix.mtxView, mObject->mModel->mJ3dModel->mPosMtx);
-		mObject->mModel->mJ3dModel->calc();
-	}
-
-	if (mNextGenerator) {
-		mNextGenerator->doAnimation();
-	}
-}
-
-/**
- * @note Address: 0x801ABFE0
- * @note Size: 0x70
- */
-void Generator::doEntry()
-{
-	if (mObject && mObject->mModel) {
-		mObject->mModel->mJ3dModel->entry();
-	}
-
-	if (mNextGenerator) {
-		mNextGenerator->doEntry();
-	}
-}
-
-/**
- * @note Address: 0x801AC050
- * @note Size: 0x70
- */
-void Generator::doSetView(int viewportNumber)
-{
-	if (mObject && mObject->mModel) {
-		mObject->mModel->setCurrentViewNo(viewportNumber);
-	}
-
-	if (mNextGenerator) {
-		mNextGenerator->doSetView(viewportNumber);
-	}
-}
-
-/**
- * @note Address: 0x801AC0C0
- * @note Size: 0x60
- */
-void Generator::doViewCalc()
-{
-	if (mObject && mObject->mModel) {
-		mObject->mModel->viewCalc();
-	}
-
-	if (mNextGenerator) {
-		mNextGenerator->doViewCalc();
-	}
-}
-
-/**
- * doAnimation__Q24Game12GeneratorMgrFv
- *
- * @note Address: 0x801AC120
- * @note Size: 0x7C
- */
-void GeneratorMgr::doAnimation()
-{
-	if (mGenerator) {
-		mGenerator->doAnimation();
-	}
-
-	if (mChildMgr) {
-		mChildMgr->doAnimation();
-	}
-
-	if (getNext()) {
-		getNext()->doAnimation();
-	}
-}
-
-/**
- * doAnimation__Q24Game12GeneratorMgrFv
- *
- * @note Address: 0x801AC19C
- * @note Size: 0x7C
- */
-void GeneratorMgr::doEntry()
-{
-	if (mGenerator) {
-		mGenerator->doEntry();
-	}
-
-	if (mChildMgr) {
-		mChildMgr->doEntry();
-	}
-
-	if (getNext()) {
-		getNext()->doEntry();
-	}
-}
-
-/**
- * doSetView__Q24Game12GeneratorMgrFi
- *
- * @note Address: 0x801AC218
- * @note Size: 0x90
- */
-void GeneratorMgr::doSetView(int viewportNumber)
-{
-	if (mGenerator) {
-		mGenerator->doSetView(viewportNumber);
-	}
-
-	if (mChildMgr) {
-		mChildMgr->doSetView(viewportNumber);
-	}
-
-	if (getNext()) {
-		getNext()->doSetView(viewportNumber);
-	}
-}
-
-/**
- * doViewCalc__Q24Game12GeneratorMgrFv
- *
- * @note Address: 0x801AC2A8
- * @note Size: 0x7C
- */
-void GeneratorMgr::doViewCalc()
-{
-	if (mGenerator) {
-		mGenerator->doViewCalc();
-	}
-
-	if (mChildMgr) {
-		mChildMgr->doViewCalc();
-	}
-
-	if (getNext()) {
-		getNext()->doViewCalc();
-	}
 }
 
 } // namespace Game

@@ -40,10 +40,8 @@ bool MenuSection::runChildSection()
 	mCurrentSection = (Section*)setChildSection(expHeap);
 
 	if (mCurrentSection) {
-		sys->heapStatusStart("ChildSection::init", nullptr);
 		mCurrentSection->init();
 
-		sys->heapStatusEnd("ChildSection::init");
 		sys->mDeltaTime = sys->mFrameRate / 60.0f;
 		mCurrentSection->run();
 		mCurrentSection->exit();

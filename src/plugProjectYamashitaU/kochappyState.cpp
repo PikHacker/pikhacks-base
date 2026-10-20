@@ -3,7 +3,6 @@
 #include "Game/EnemyFunc.h"
 #include "Game/gamePlayData.h"
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 namespace Game {
 namespace KochappyBase {

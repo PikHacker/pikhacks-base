@@ -6,8 +6,6 @@
 namespace Game {
 namespace BigFoot {
 
-static const char bigfootMgrName[] = "246-BigFootMgr";
-
 namespace {
 static const char* cMatAnimBrkTexName = "/enemy/data/BigFoot/ooashi_model.brk";
 } // namespace

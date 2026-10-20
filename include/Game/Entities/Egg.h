@@ -38,7 +38,6 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                      // _30
 	virtual void doSimulation(f32);                                      // _4C
-	virtual void doDirectDraw(Graphics& gfx);                            // _50
 	virtual void onStartCapture();                                       // _94
 	virtual void onEndCapture();                                         // _9C
 	virtual void bounceCallback(Sys::Triangle* tri);                     // _E8
@@ -50,7 +49,6 @@ struct Obj : public EnemyBase {
 	virtual void setInitialSetting(EnemyInitialParamBase*) { }           // _1C4 (weak)
 	virtual void doUpdate();                                             // _1CC
 	virtual void doAnimationCullingOff();                                // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                             // _1EC
 	virtual void setParameters();                                        // _228
 	virtual bool isLivingThing() { return (mCaptureMatrix == nullptr); } // _D4 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                   // _258 (weak)

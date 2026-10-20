@@ -21,13 +21,9 @@
 #include "Controller.h"
 #include "PikiAI.h"
 #include "Radar.h"
-#include "nans.h"
 
 namespace Game {
 namespace VsGame {
-
-static const char unusedVsGSGameArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-static const char vsGSGameName[]        = "vsGS_Game";
 
 /**
  * @note Address: 0x802292A4
@@ -143,16 +139,6 @@ void GameState::do_init(VsGameSection* section)
 bool GameState::goingToCave(VsGameSection* section)
 {
 	return isFlag(VSGS_EnteringCave);
-}
-
-/**
- * This fake function is here to generate the vtables in the correct order
- * - I cannot see a way for them to generate correctly without something here to
- * spawn DispMemberChallenge2P 'before' (after) DispWinLose, so this will have to suffice. - HP
- */
-static void fakeFuncVsGsGame()
-{
-	og::Screen::DispMemberChallenge2P disp;
 }
 
 /**
@@ -817,10 +803,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 	} else if (config->is("s03_orimadown")) {
 		naviMgr->informOrimaDead(unused2);
 		Screen::gGame2DMgr->close_GameOver();
-		if (gameSystem->isVersusMode()) {
-			JUT_PANICLINE(1279, "cannot happen !\n");
-
-		} else {
+		if (!gameSystem->isVersusMode()) {
 			GameStat::alivePikis.clear();
 			PSMCancelToPauseOffMainBgm();
 			ResultArg arg;

@@ -4,8 +4,6 @@
 #include "System.h"
 #include "PSSystem/PSSystemIF.h"
 
-static const char className[] = "ebiScreenOmake";
-
 namespace ebi {
 namespace Screen {
 
@@ -28,10 +26,8 @@ TOmake::TOmake()
  */
 void TOmake::doSetArchive(JKRArchive* arc)
 {
-	sys->heapStatusStart("Screen_newScreen_of_TOmake", nullptr);
 	mScreenMain = new P2DScreen::Mgr_tuning;
 	mScreenMain->set("omake.blo", 0x1100000, arc);
-	sys->heapStatusEnd("Screen_newScreen_of_TOmake");
 
 	mPaneWindow  = E2DScreen_searchAssert(mScreenMain, 'Nwin0');
 	mPaneTitle   = E2DScreen_searchAssert(mScreenMain, 'Ntitl0');
@@ -57,9 +53,7 @@ void TOmake::doSetArchive(JKRArchive* arc)
 
 	E2DScreen_searchAssert(mScreenMain, 'DATA')->hide();
 
-	sys->heapStatusStart("Screen_setCallBackMessage_of_TOmake", nullptr);
 	E2DPane_setTreeCallBackMessage(mScreenMain, mScreenMain);
-	sys->heapStatusEnd("Screen_setCallBackMessage_of_TOmake");
 
 	mScreenMain->addCallBackPane(mScreenMain, &mAnims1);
 	mScreenMain->addCallBackPane(mScreenMain, &mAnims2);

@@ -67,7 +67,6 @@ struct MessageWindowScreen : P2DScreen::Mgr_tuning {
 	WindowPane* mWindowPane; // _148
 	AbtnPane* mAButton;      // _14C
 	AbtnPane* mArrowPane;    // _150
-	u8 _154[0x4];            // _154, unknown
 };
 
 struct PodIconScreen : P2DScreen::Mgr_tuning {

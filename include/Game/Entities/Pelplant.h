@@ -169,7 +169,6 @@ struct Obj : public EnemyBase {
 	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
 	virtual void doAnimation();                                    // _03C
 	virtual void doSimulation(f32);                                // _04C
-	virtual void doDirectDraw(Graphics& gfx);                      // _050
 	virtual bool isLivingThing()                                   // _0D4 (weak)
 	{
 		return isPelFlag(PELPLANTFLAG_Full);
@@ -182,7 +181,6 @@ struct Obj : public EnemyBase {
 
 	virtual void doUpdate();                           // _1CC
 	virtual void doAnimationUpdateAnimator();          // _1D8
-	virtual void doDebugDraw(Graphics& gfx);           // _1EC
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Pelplant;

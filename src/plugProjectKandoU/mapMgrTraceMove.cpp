@@ -2,7 +2,6 @@
 #include "Sys/TriangleTable.h"
 #include "Sys/Cylinder.h"
 #include "Game/TDispTriangle.h"
-#include "nans.h"
 
 namespace Game {
 
@@ -53,15 +52,6 @@ Sys::TriIndexList* MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f
 	return traceMove_test1203_cylinder(coll, info, p1);
 }
 
-// /**
-//  * @note Address: N/A
-//  * @note Size: 0x30C
-//  */
-// void MapMgr::traceMove_test1030_1(MapCollision&, Game::MoveInfo&, f32)
-// {
-// 	// UNUSED FUNCTION
-// }
-
 /**
  * @note Address: 0x802051C0
  * @note Size: 0x3BC
@@ -72,11 +62,6 @@ Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game:
 	Vector3f* velocity      = info.mVelocity; 
 
 	Sys::VertexTable* vertTable = coll.mDivider->mVertexTable;
-
-	// some debug printing
-	if (MapMgr::traceMoveDebug) {
-		P2DEBUG(getMinY(moveSphere->mPosition));
-	}
 
 	Vector3f startPos = moveSphere->mPosition;
 

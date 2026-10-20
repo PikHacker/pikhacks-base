@@ -36,7 +36,6 @@
 #include "Radar.h"
 #include "VsOtakaraName.h"
 #include "JSystem/J3D/J3DModelLoader.h"
-#include "nans.h"
 
 namespace {
 struct NotOff : public Game::WPCondition {
@@ -88,9 +87,6 @@ PelletMgr* pelletMgr;
 bool PelletMgr::mDebug          = false;
 bool PelletMgr::disableDynamics = false;
 bool Pellet::sFromTekiEnable    = true;
-
-static const u32 padding[]    = { 0, 0, 0 };
-static const char className[] = "pelletMgr";
 
 /**
  * @note Address: 0x801658EC
@@ -410,14 +406,6 @@ bool InteractSuck::actPellet(Pellet* pellet)
 	pellet->mPelletSM->transit(pellet, PELSTATE_GoalWait, &pelletGoalArg);
 	pellet->finishDisplayCarryInfo();
 	return true;
-}
-
-/**
- * @note Address: 0x8016667C
- * @note Size: 0x4
- */
-void Pellet::doDirectDraw(Graphics&)
-{
 }
 
 /**
@@ -986,7 +974,6 @@ void Pellet::getCarryInfoParam(CarryInfoParam& infoParam)
 	infoParam.mUseType    = CINFOTYPE_Table;
 	infoParam.mPosition   = mRigid.mConfigs[0].mPosition;
 	infoParam.mYOffsetMax = 30.0f + mConfig->mParams.mHeight.mData;
-	infoParam.mUnused     = 1;
 	infoParam.mIsTopFirst = TRUE;
 	infoParam.mMaxWeight  = getTotalCarryPikmins();
 	int minVal;
@@ -1253,7 +1240,6 @@ void Pellet::update()
 		if ((gameSystem->isStoryMode()) && !(moviePlayer->isFlag(MVP_IsActive)) && (!isPicked())
 		    && (getKind() == PelletType::Treasure || getKind() == PelletType::Upgrade)) {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSSystem::validateSceneMgr(mgr);
 
 			PSM::Scene_Game* currScene = (PSM::Scene_Game*)mgr->getChildScene();
 			PSSystem::checkGameScene(currScene);
@@ -3386,14 +3372,6 @@ void PelletMgr::doSimulation(f32 constraint)
 	{
 		(*iter)->doSimulation(constraint);
 	}
-}
-
-/**
- * @note Address: 0x8016E9BC
- * @note Size: 0x4
- */
-void PelletMgr::doDirectDraw(Graphics&)
-{
 }
 
 /**

@@ -1,6 +1,5 @@
 #include "Game/MoviePlayer.h"
 #include "Game/P2JST/ObjectSystem.h"
-#include "nans.h"
 
 /**
  * @note Address: 0x80454D30

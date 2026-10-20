@@ -113,8 +113,6 @@ struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {
 	f32 mSpeed;           // _24, speed at which alpha blends between alpha0 and alpha1
 	bool mIsTowardAlpha0; // _28, is amount of alpha0 increasing in blend?
 	u8 _29;               // _29
-	u8 _2A;               // _2A, unknown
-	u8 _2B;               // _2B, unknown
 	u8 mAlpha0;           // _2C, blends between alpha0 and alpha1
 	u8 mAlpha1;           // _2D
 };

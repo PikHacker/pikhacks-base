@@ -4,14 +4,9 @@
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 namespace Game {
 namespace BigTreasure {
-
-static const int someBigTreasureStateArray[3] = { 0, 0, 0 };
-
-static const char debugBigTreasureStateName[] = "246-BigTreasureState";
 
 /**
  * @note Address: 0x802D72CC

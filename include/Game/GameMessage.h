@@ -90,7 +90,6 @@ struct GameMessageVsGetDoping : public GameMessage {
 struct GameMessageVsGetOtakara : public GameMessage {
 	inline GameMessageVsGetOtakara(u32 playerID)
 	    : mPlayerID(playerID)
-	    , mUnused08(1)
 	{
 	}
 
@@ -98,7 +97,6 @@ struct GameMessageVsGetOtakara : public GameMessage {
 
 	// _00 = VTBL
 	u32 mPlayerID; // _04
-	int mUnused08; // _08
 };
 
 struct GameMessageVsGotCard : public GameMessage {

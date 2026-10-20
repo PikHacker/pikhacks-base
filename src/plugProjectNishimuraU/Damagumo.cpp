@@ -10,7 +10,6 @@
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
-#include "nans.h"
 
 namespace Game {
 namespace Damagumo {
@@ -143,23 +142,6 @@ void Obj::doAnimationCullingOff()
 	doAnimationShadowSystem();
 	updateMaterialAnimation();
 	finishAnimationIKSystem();
-}
-
-/**
- * @note Address: 0x802A5BE0
- * @note Size: 0x4
- */
-void Obj::doDirectDraw(Graphics&)
-{
-}
-
-/**
- * @note Address: 0x802A5BE4
- * @note Size: 0x20
- */
-void Obj::doDebugDraw(Graphics& gfx)
-{
-	EnemyBase::doDebugDraw(gfx);
 }
 
 /**

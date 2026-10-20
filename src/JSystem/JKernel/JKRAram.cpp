@@ -350,8 +350,6 @@ u8* JKRAram::aramToMainRam(JKRAramBlock* block, u8* buf, u32 address, u32 offset
 	return aramToMainRam(offset + block->mAddress, buf, address, expandSwitch, maxExpandSize, heap, id, pSize);
 }
 
-static const char unusedBADSYNCstr[] = "---------------- BAD SYNC. you'd set callback, but now call sync.\n";
-
 /**
  * @note Address: 0x80018334
  * @note Size: 0x168

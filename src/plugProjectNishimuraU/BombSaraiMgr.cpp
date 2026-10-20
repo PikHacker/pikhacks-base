@@ -3,8 +3,6 @@
 namespace Game {
 namespace BombSarai {
 
-static const char bombSaraiMgrName[] = "246-BombSaraiMgr";
-
 /**
  * @note Address: 0x802B21A4
  * @note Size: 0x50

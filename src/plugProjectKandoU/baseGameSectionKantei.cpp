@@ -8,22 +8,13 @@
 #include "P2JME/P2JME.h"
 #include "Controller.h"
 #include "Sys/DrawBuffers.h"
-#include "nans.h"
 
 namespace Game {
 
 struct OtakaraArray {
 	int mConfigIndex;
 	f32 mRadiusModifier;
-} asArrayOtakara[] = {
-#if defined(VERSION_JP)
-	{ 5, 0.80f },   { 6, 0.80f },   { 7, 0.80f },   { 18, 0.90f },  { 19, 0.90f },  { 27, 0.90f },  { 43, 0.95f },
-	{ 55, 0.90f },  { 76, 1.40f },  { 98, 1.40f },  { 100, 1.40f }, { 103, 1.50f }, { 104, 1.50f }, { 110, 1.50f },
-	{ 126, 2.00f }, { 129, 1.50f }, { 156, 1.40f }, { 172, 1.40f }, { 173, 1.40f }, { 185, 1.50f }, { -1, 1.00f }
-#else
-	{ -1, 1.0f }
-#endif
-};
+} asArrayOtakara[] = { { -1, 1.0f } };
 
 /**
  * @note Address: 0x8023B534
@@ -42,16 +33,6 @@ void BaseGameSection::drawOtakaraWindow(Graphics& gfx)
  */
 void BaseGameSection::setDraw2DCreature(Creature* creature)
 {
-	if (creature) {
-		if (mDraw2DCreature) {
-			mDraw2DCreature->getCreatureName();
-			mDraw2DCreature->getCreatureID();
-
-			creature->getCreatureName();
-			creature->getCreatureID();
-		}
-	}
-
 	mDraw2DCreature = creature;
 }
 
@@ -183,7 +164,6 @@ void BaseGameSection::ZoomCamera::init(f32 initialDistance, f32 targetDistance, 
 	mTargetFrontAngle = angle;
 
 	mTargetDistance = initialDistance;
-	mUnusedDist     = initialDistance;
 	mTargetDistance *= 0.75f;
 	mLookAtPosition = pos;
 	makeLookAt();
@@ -294,7 +274,6 @@ void BaseGameSection::do_drawOtakaraWindow(Graphics& gfx)
 		if (mDraw2DCreatureScale >= 1.0f) {
 			mDraw2DCreatureScale = 1.0f;
 			mTreasureGetState    = 2;
-			mUnused2DCreatureVal = 6.0f;
 		}
 		break;
 	case 2:

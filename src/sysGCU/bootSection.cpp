@@ -23,11 +23,8 @@
 #include "ebi/Progre.h"
 #include "trig.h"
 
-static u32 unused[4] = { 1, 2, 3, 0 }; // has to be generated before nans
-#include "nans.h"
 #include "Game/Piki.h"
 
-static const u32 padding[]        = { 0, 0, 0 };
 u32 TinyPikminMgr::sTinyPikminNum = 10;
 J2DPicture* TinyPikminMgr::sPikminTex[5];
 BootSection* sBootSection;
@@ -473,7 +470,6 @@ BootSection::BootSection(JKRHeap* heap)
 	JUTProcBar::sManager->setVisibleHeapBar(false);
 
 	mController = new Controller(JUTGamePad::PORT_0);
-	/*mController2 =*/new Controller(JUTGamePad::PORT_1);
 
 	sys->createRomFont(JKRGetCurrentHeap());
 	gPikmin2AramMgr->setLoadPermission(true);
@@ -567,26 +563,16 @@ void BootSection::loadBootResource()
 void BootSection::load2DResource()
 {
 	mDisplayHeap->becomeCurrentHeap();
-	sys->heapStatusStart("og::Screen::Manager2D::create", nullptr);
 	og::Lib2D::create();
-	sys->heapStatusEnd("og::Screen::Manager2D::create");
 
-	sys->heapStatusStart("ebiScreen", nullptr);
-	sys->heapStatusStart("TParticle2dMgr", nullptr);
-	TParticle2dMgr::globalInstance();
+		TParticle2dMgr::globalInstance();
 	particle2dMgr->createHeap(TITLESCREEN_PARTICLE_HEAP_SIZE);
 	particle2dMgr->createMgr("user/Ebisawa/effect/eff2d_game2d.jpc", 2000, 0x80, 0x80);
-	sys->heapStatusEnd("TParticle2dMgr");
 
-	sys->heapStatusStart("ebi::TScreenProgre", nullptr);
 	mProgressiveScreen              = new ebi::TScreenProgre;
 	mProgressiveScreen->mController = mController;
-	sys->heapStatusEnd("ebi::TScreenProgre");
 
-	sys->heapStatusStart("ebi::TScreenProgre::loadResource", nullptr);
 	mProgressiveScreen->loadResource();
-	sys->heapStatusEnd("ebi::TScreenProgre::loadResource");
-	sys->heapStatusEnd("ebiScreen");
 }
 
 /**
@@ -958,7 +944,6 @@ void BootSection::updateLoadResourceFirst()
 		}
 #if defined(VERSION_US_DEMO) || defined(VERSION_PAL) || defined(VERSION_JP)
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::validateSceneMgr(mgr);
 		PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
 #if defined(VERSION_PAL)
 		P2ASSERTLINE(1748, scene);
@@ -982,7 +967,6 @@ void BootSection::updateLoadMemoryCard()
 	sys->mCardMgr->update();
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::validateSceneMgr(mgr);
 	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
 #if defined(VERSION_PAL)
 	P2ASSERTLINE(1773, scene);
@@ -1148,7 +1132,6 @@ void BootSection::run()
 	::Section::run();
 	gPikmin2AramMgr->setLoadPermission(false);
 	runWait(&waitLoadResource);
-	sys->heapStatusDump(true);
 	mIsMainActive = false;
 }
 

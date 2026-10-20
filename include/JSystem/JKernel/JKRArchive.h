@@ -39,7 +39,6 @@ struct JKRArchive : public JKRFileLoader {
 		u16 mHash;              // _00
 		u16 mLength;            // _02
 		char mString[PATH_MAX]; // _04
-		u8 _104[4];             // _104, unknown
 	};
 
 	struct SDIFileEntry {
@@ -92,7 +91,6 @@ struct JKRArchive : public JKRFileLoader {
 		u32 mStrTableOffset;  // _14
 		u16 mNextFreeFileID;  // _18
 		bool mIsSyncIDs;      // _1A
-		u8 _1B[5];            // _1B, unknown
 	};
 
 	// NB: Fabricated name

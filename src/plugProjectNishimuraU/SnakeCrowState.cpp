@@ -9,7 +9,6 @@
 #include "efx/efxEnemyBoss.h"
 #include "Iterator.h"
 #include "Dolphin/rand.h"
-#include "nans.h"
 
 namespace Game {
 namespace SnakeCrow {

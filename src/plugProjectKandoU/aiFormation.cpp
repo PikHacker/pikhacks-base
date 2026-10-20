@@ -16,14 +16,10 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/arith.h"
 #include "P2Macros.h"
 #include "Iterator.h"
-#include "nans.h"
 
 static bool newVer = true;
 
 namespace PikiAI {
-
-static const int someFormationArray[3] = { 0, 0, 0 };
-static const char formationName[]      = "actFormation";
 
 /**
  * @note Address: 0x8019CD70
@@ -104,7 +100,6 @@ void ActFormation::init(ActionArg* initArg)
 	mParent->startMotion(Game::IPikiAnims::RUN2, Game::IPikiAnims::RUN2, nullptr, nullptr);
 
 	mHasReleasedSlot   = false;
-	mUnusedVal         = 0;
 	mSortState         = 0;
 	mAnimationTimer    = 0;
 	mTripCheckMoveDist = 0.0f;
@@ -288,7 +283,6 @@ int PikiAI::ActFormation::exec()
 	if (!mInitArg.mIsDemoFollow && !Game::gameSystem->isMultiplayerMode() && mNavi && !mNavi->mController1
 	    && mNavi->getStateID() == Game::NSID_Follow) {
 		mNextAIType = ACT_Formation;
-		mParent->getCreatureID();
 		return ACTEXEC_Fail;
 	}
 

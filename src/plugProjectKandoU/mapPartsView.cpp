@@ -17,25 +17,11 @@ PartsView::PartsView()
 	mMapUnit = nullptr;
 	mModel   = nullptr;
 
-	_60 = 8; // NONE of these are used for anything, like come on
-	_5C = 8;
-	_58 = 0;
-	_50 = 0.0f;
-	_54 = 0.0f;
-
 	mAStarContext.init(&mRouteMgr, 0x80);
 	mPathFinder.setContext(&mAStarContext);
 	mUnitKind = 1;
 	mFlags.clear();
 	mBaseGen = new Cave::BaseGen();
-}
-
-/**
- * @note Address: 0x8023247C
- * @note Size: 0x4
- */
-void PartsView::doDirectDraw(Graphics&)
-{
 }
 
 /**

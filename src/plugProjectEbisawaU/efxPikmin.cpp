@@ -68,11 +68,6 @@ bool TPkNageBlur::create(Arg* arg)
 	return TSync::create(arg);
 }
 
-static void fakeFuncEfxPikmin(TParticleCallBack_Yodare* callback)
-{
-	callback->_00 = 1.0f;
-}
-
 /**
  * @note Address: 0x803B67A0
  * @note Size: 0x1E0

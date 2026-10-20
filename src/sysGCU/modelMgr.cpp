@@ -5,15 +5,6 @@
 #include "SysShape/ModelMgr.h"
 #include "System.h"
 
-/**
- * @note Address: N/A
- * @note Size: 0xE4
- */
-static void _Print(char* name, ...)
-{
-	OSReport("modelMgr");
-}
-
 namespace SysShape {
 
 /**
@@ -89,7 +80,6 @@ Model* ModelMgr::createModel(int modelIndex, int heapIndex)
 	if (solidHeap) {
 		solidHeap->freeAll();
 	} else {
-		for (int i = 0; i < mHeapLimit; i++) { }
 		JUT_PANICLINE(173, "solidHeap null!\n");
 	}
 	SysShape::Model* model = new SysShape::Model(mModelData[modelIndex], mModelFlags, mViewNum);

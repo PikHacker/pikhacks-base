@@ -3,8 +3,6 @@
 #include "Morimura/Zukan.h"
 #include "PSSystem/PSSystemIF.h"
 
-static const char name[] = "ebiScreenOmakeCardE";
-
 namespace ebi {
 namespace Screen {
 
@@ -26,10 +24,8 @@ TOmakeCardE::TOmakeCardE()
  */
 void TOmakeCardE::doSetArchive(JKRArchive* arc)
 {
-	sys->heapStatusStart("Screen_newScreen_of_TOmakeCardE", nullptr);
 	mScreenObj = new P2DScreen::Mgr_tuning;
 	mScreenObj->set("omake_tunagu.blo", 0x1100000, arc);
-	sys->heapStatusEnd("Screen_newScreen_of_TOmakeCardE");
 
 	mPaneArrowUp   = E2DScreen_searchAssert(mScreenObj, 'yaji01');
 	mPaneArrowDown = E2DScreen_searchAssert(mScreenObj, 'yaji02');
@@ -40,9 +36,7 @@ void TOmakeCardE::doSetArchive(JKRArchive* arc)
 	pane->setMsgID(0);
 	E2DScreen_searchAssert(mScreenObj, 'Tset_s')->setMsgID(0);
 
-	sys->heapStatusStart("Screen_setCallBackMessage_of_TOmakeCardE", nullptr);
 	E2DPane_setTreeCallBackMessage(mScreenObj, mScreenObj);
-	sys->heapStatusEnd("Screen_setCallBackMessage_of_TOmakeCardE");
 	pane->setMsgID(tag);
 
 	mMesgScroll                       = new Morimura::TCallbackScrollMsg;

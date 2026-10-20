@@ -99,19 +99,6 @@ class Object:
         set_default("shift_jis", config.shift_jis)
         set_default("src_dir", config.src_dir)
 
-        # Validate progress categories
-        def check_category(category: str):
-            if not any(category == c.id for c in config.progress_categories):
-                sys.exit(
-                    f"Progress category '{category}' missing from config.progress_categories"
-                )
-
-        progress_category = obj.options["progress_category"]
-        if isinstance(progress_category, list):
-            for category in progress_category:
-                check_category(category)
-        elif progress_category is not None:
-            check_category(progress_category)
 
         # Resolve paths
         build_dir = config.out_path()
@@ -206,27 +193,6 @@ class ProjectConfig:
         self.context_defines: List[
             str
         ] = []  # Macros to define at the top of context files
-
-        # Progress output and report.json config
-        self.progress = True  # Enable report.json generation and CLI progress output
-        self.progress_modules: bool = True  # Include combined "modules" category
-        self.progress_each_module: bool = (
-            False  # Include individual modules, disable for large numbers of modules
-        )
-        self.progress_categories: List[ProgressCategory] = []  # Additional categories
-        self.print_progress_categories: Union[bool, List[str]] = (
-            True  # Print additional progress categories in the CLI progress output
-        )
-        self.progress_report_args: Optional[List[str]] = (
-            None  # Flags to `objdiff-cli report generate`
-        )
-
-        # Progress fancy printing
-        self.progress_use_fancy: bool = False
-        self.progress_code_fancy_frac: int = 0
-        self.progress_code_fancy_item: str = ""
-        self.progress_data_fancy_frac: int = 0
-        self.progress_data_fancy_item: str = ""
 
     def validate(self) -> None:
         required_attrs = [
@@ -479,7 +445,6 @@ def generate_build_ninja(
     if config.linker_version is None:
         sys.exit("ProjectConfig.linker_version missing")
     n.variable("mw_version", Path(config.linker_version))
-    n.variable("objdiff_report_args", make_flags_str(config.progress_report_args))
     n.newline()
 
     ###
@@ -1330,118 +1295,6 @@ def generate_build_ninja(
         n.newline()
 
         ###
-        # Calculate progress
-        ###
-        n.comment("Calculate progress")
-        n.rule(
-            name="progress",
-            command=f"$python {configure_script} $configure_args progress",
-            description="PROGRESS",
-        )
-        n.build(
-            outputs="progress",
-            rule="progress",
-            implicit=[
-                ok_path,
-                configure_script,
-                python_lib,
-                report_path,
-            ],
-            order_only="post-build",
-        )
-
-        ###
-        # Generate progress report
-        ###
-        n.comment("Generate progress report")
-        n.rule(
-            name="report",
-            command=f"{objdiff} report generate $objdiff_report_args -o $out",
-            description="REPORT",
-        )
-        n.build(
-            outputs=report_path,
-            rule="report",
-            implicit=[objdiff, "objdiff.json", "all_source"],
-            order_only="post-build",
-        )
-
-        n.comment("Phony edge that will always be considered dirty by ninja.")
-        n.comment(
-            "This can be used as an implicit to a target that should always be rerun, ignoring file modified times."
-        )
-        n.build(
-            outputs="always",
-            rule="phony",
-        )
-        n.newline()
-
-        ###
-        # Regression test progress reports
-        ###
-        report_baseline_path = build_path / "baseline.json"
-        report_changes_path = build_path / "report_changes.json"
-        changes_fmt = config.tools_dir / "changes_fmt.py"
-        regressions_md = build_path / "regressions.md"
-        n.comment(
-            "Create a baseline progress report for later match regression testing"
-        )
-        n.build(
-            outputs=report_baseline_path,
-            rule="report",
-            implicit=[objdiff, "all_source", "always"],
-            order_only="post-build",
-        )
-        n.build(
-            outputs="baseline",
-            rule="phony",
-            inputs=report_baseline_path,
-        )
-        n.comment("Check for any match regressions against the baseline")
-        n.comment("Will fail if no baseline has been created")
-        n.rule(
-            name="report_changes",
-            command=f"{objdiff} report changes --format json-pretty {report_baseline_path} $in -o $out",
-            description="CHANGES",
-        )
-        n.build(
-            outputs=report_changes_path,
-            rule="report_changes",
-            inputs=report_path,
-            implicit=[objdiff, "always"],
-        )
-        n.rule(
-            name="changes_fmt",
-            command=f"$python {changes_fmt} $args $in",
-            description="CHANGESFMT",
-        )
-        n.build(
-            outputs="changes",
-            rule="changes_fmt",
-            inputs=report_changes_path,
-            implicit=changes_fmt,
-        )
-        n.build(
-            outputs="changes_all",
-            rule="changes_fmt",
-            inputs=report_changes_path,
-            implicit=changes_fmt,
-            variables={"args": "--all"},
-        )
-        n.rule(
-            name="changes_md",
-            command=f"$python {changes_fmt} $in -o $out",
-            description="CHANGESFMT $out",
-        )
-        n.build(
-            outputs=regressions_md,
-            rule="changes_md",
-            inputs=report_changes_path,
-            implicit=changes_fmt,
-        )
-        n.newline()
-
-        ###
         # Helper tools
         ###
         # TODO: make these rules work for RELs too
@@ -1535,8 +1388,6 @@ def generate_build_ninja(
     if build_config:
         if config.non_matching:
             n.default(link_outputs)
-        elif config.progress:
-            n.default("progress")
         else:
             n.default(ok_path)
     else:
@@ -1709,11 +1560,7 @@ def generate_objdiff_config(
                         "build_ctx": True,
                     }
                 )
-        category_opt: Union[List[str], str] = obj.options["progress_category"]
-        if isinstance(category_opt, list):
-            progress_categories.extend(category_opt)
-        elif category_opt is not None:
-            progress_categories.append(category_opt)
+
         unit_config["metadata"].update(
             {
                 "complete": obj.completed if src_exists else None,
@@ -1758,8 +1605,6 @@ def generate_objdiff_config(
         if config.progress_each_module:
             for module in build_config["modules"]:
                 add_category(module["name"], module["name"])
-    for category in config.progress_categories:
-        add_category(category.id, category.name)
 
     def cleandict(d):
         if isinstance(d, dict):

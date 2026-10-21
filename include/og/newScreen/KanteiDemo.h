@@ -113,7 +113,7 @@ struct ObjKantei : public ::Screen::ObjBase {
 	int mTotalPokosCaveOld;                             // _A8
 	og::Screen::StickAnimMgr* mStickAnim;               // _AC
 	u32 _B0;                                            // _B0, completely unused?
-	efx2d::T2DOtakantei* mEfx;                          // _B4
+	efx2d::TForever5* mEfx;                             // _B4
 	J2DPane* mPaneName;                                 // _B8
 	og::Screen::ScaleMgr* mScaleMgr;                    // _BC
 	f32 mNameScale;                                     // _C0

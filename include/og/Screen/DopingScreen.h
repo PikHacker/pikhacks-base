@@ -21,23 +21,23 @@ struct DopingCheck {
 	void startGetEff_Up();   // Spicy  'get' effect
 	void startGetEff_Down(); // Bitter 'get' effect
 
-	J2DPane* mSpicyPane;              // _00
-	J2DPane* mBitterPane;             // _04
-	f32 mNaviLifeRatio;               // _08
-	int mFollowPiki;                  // _0C
-	int mNextThrowPiki;               // _10
-	u32 mSpicySprayCount;             // _14
-	u32 mBitterSprayCount;            // _18
-	u8 mActiveNaviID;                 // _1C
-	u32* mNewSpicyCount;              // _20, unknown
-	u32* mNewBitterCount;             // _24, unknown
-	u32 mOldSpicyCount;               // _28, unknown
-	u32 mOldBitterCount;              // _2C, unknown
-	efx2d::T2DExtractUp* mExtractEfx; // _30, unknown
-	ScaleMgr* mSpicyScaleMgr;         // _34
-	ScaleMgr* mBitterScaleMgr;        // _38
-	f32 mXOffset;                     // _3C
-	u8 mIsUpdateCount;                // _40
+	J2DPane* mSpicyPane;          // _00
+	J2DPane* mBitterPane;         // _04
+	f32 mNaviLifeRatio;           // _08
+	int mFollowPiki;              // _0C
+	int mNextThrowPiki;           // _10
+	u32 mSpicySprayCount;         // _14
+	u32 mBitterSprayCount;        // _18
+	u8 mActiveNaviID;             // _1C
+	u32* mNewSpicyCount;          // _20, unknown
+	u32* mNewBitterCount;         // _24, unknown
+	u32 mOldSpicyCount;           // _28, unknown
+	u32 mOldBitterCount;          // _2C, unknown
+	efx2d::TSimple1* mExtractEfx; // _30
+	ScaleMgr* mSpicyScaleMgr;     // _34
+	ScaleMgr* mBitterScaleMgr;    // _38
+	f32 mXOffset;                 // _3C
+	u8 mIsUpdateCount;            // _40
 };
 
 struct DopingScreen : public P2DScreen::Mgr_tuning {

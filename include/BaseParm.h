@@ -17,9 +17,8 @@ struct BaseParm {
 	 *
 	 * @param parameters Pointer to the Parameters object.
 	 * @param id The ID of the parameter.
-	 * @param name The name of the parameter.
 	 */
-	BaseParm(Parameters* parameters, u32 id, char* name);
+	BaseParm(Parameters* parameters, u32 id);
 
 	/**
 	 * @brief Gets the size of the parameter.
@@ -44,7 +43,6 @@ struct BaseParm {
 
 	ID32 mId;        // _04
 	BaseParm* mNext; // _10
-	char* mName;     // _14
 };
 
 /**
@@ -67,11 +65,9 @@ struct Parm : public BaseParm {
 	 * @param min The minimum value of the parameter.
 	 * @param max The maximum value of the parameter.
 	 */
-	inline Parm(Parameters* parameters, u32 id, char* comment, T value, T min, T max)
-	    : BaseParm(parameters, id, comment)
+	inline Parm(Parameters* parameters, u32 id, T value, T min, T max)
+	    : BaseParm(parameters, id)
 	    , mValue(value)
-	    , mMin(min)
-	    , mMax(max)
 	{
 	}
 
@@ -118,8 +114,6 @@ struct Parm : public BaseParm {
 	virtual void read(Stream& stream);
 
 	T mValue; // _18
-	T mMin;   // _20
-	T mMax;   // _24
 };
 
 /**
@@ -136,9 +130,8 @@ struct ParmString : public BaseParm {
 	 * @param name The name of the parameter.
 	 * @param length The length of the string.
 	 * @param id The ID of the parameter.
-	 * @param comment A comment for the parameter.
 	 */
-	ParmString(Parameters* parameters, char* name, int length, u32 id, char* comment);
+	ParmString(Parameters* parameters, char* name, int length, u32 id);
 
 	/**
 	 * @brief Gets the size of the parameter.
@@ -182,7 +175,7 @@ struct ParmEnum : public BaseParm {
 	 * @param value The initial value of the parameter.
 	 * @param comment A comment for the parameter.
 	 */
-	ParmEnum(Parameters* parameters, char** enumValues, u32 id, int enumElemSize, s32 value, char* comment);
+	ParmEnum(Parameters* parameters, u32 id, int enumElemSize, s32 value);
 
 	/**
 	 * @brief Gets the size of the parameter.

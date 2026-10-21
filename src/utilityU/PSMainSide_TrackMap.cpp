@@ -24,7 +24,7 @@ BgmTrackMapFile::BgmTrackMapFile(bool doUseTrackList)
  * @note Address: 0x80471978
  * @note Size: 0x77C
  */
-BgmTrackMap BgmTrackMapFile::readTrackMap(const char* path)
+BgmTrackMap& BgmTrackMapFile::readTrackMap(const char* path)
 {
 	JUT_ASSERTLINE(119, mFile, "not loaded\n");
 

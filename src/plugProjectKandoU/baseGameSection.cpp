@@ -229,7 +229,7 @@ void BaseGameSection::init()
 	sys->setFrameRate(2);
 	System::assert_fragmentation("BaseGameSection::MoviePlayer");
 	initJ3D();
-	mapMgr      = nullptr;
+	mapMgr = nullptr;
 	System::assert_fragmentation("BaseGameSection::InitJ3D");
 	System::assert_fragmentation("BaseGameSection::Before 2D");
 
@@ -557,8 +557,8 @@ void BaseGameSection::initGenerators()
 		onceGeneratorMgr->mName = "Generator(Init)";
 		addGenNode(onceGeneratorMgr);
 
-		limitGeneratorMgr              = new GeneratorMgr;
-		limitGeneratorMgr->mName       = "Generator(Limit)";
+		limitGeneratorMgr        = new GeneratorMgr;
+		limitGeneratorMgr->mName = "Generator(Limit)";
 		addGenNode(limitGeneratorMgr);
 
 		plantsGeneratorMgr        = new GeneratorMgr;
@@ -1370,33 +1370,31 @@ void BaseGameSection::draw3D(Graphics& gfx)
  */
 void BaseGameSection::drawParticle(Graphics& gfx, int viewport)
 {
-	if (BaseHIOParms::sDrawParticle) {
-		Viewport* port = gfx.getViewport(viewport);
-		if (!port || !port->viewable()) {
-			return;
-		}
-
-		port->setProjection();
-		port->setViewport();
-		if (!gameSystem->isMultiplayerMode() && mPrevNaviIdx != NAVIID_Multiplayer) {
-			mLightMgr->mFogMgr->off(gfx);
-			particleMgr->draw(port, 0);
-			mLightMgr->mFogMgr->set(gfx);
-		}
-		if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
-			for (u8 i = 3; i <= 5; i++) {
-				particleMgr->draw(port, i);
-			}
-		}
-		particleMgr->draw(port, 1);
-		mLightMgr->mFogMgr->off(gfx);
-		if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
-			for (u8 i = 6; i <= 8; i++) {
-				particleMgr->draw(port, i);
-			}
-		}
-		particleMgr->draw(port, 2);
+	Viewport* port = gfx.getViewport(viewport);
+	if (!port || !port->viewable()) {
+		return;
 	}
+
+	port->setProjection();
+	port->setViewport();
+	if (!gameSystem->isMultiplayerMode() && mPrevNaviIdx != NAVIID_Multiplayer) {
+		mLightMgr->mFogMgr->off(gfx);
+		particleMgr->draw(port, 0);
+		mLightMgr->mFogMgr->set(gfx);
+	}
+	if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
+		for (u8 i = 3; i <= 5; i++) {
+			particleMgr->draw(port, i);
+		}
+	}
+	particleMgr->draw(port, 1);
+	mLightMgr->mFogMgr->off(gfx);
+	if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
+		for (u8 i = 6; i <= 8; i++) {
+			particleMgr->draw(port, i);
+		}
+	}
+	particleMgr->draw(port, 2);
 }
 
 /**

@@ -106,7 +106,7 @@ struct BarrelParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Barrel::Parms")
-		    , mHealth(this, 'p000', "ライフ", 100.0f, 1.0f, 60000.0f) // 'life'
+		    , mHealth(this, 'p000',  100.0f, 1.0f, 60000.0f) // 'life'
 		{
 		}
 

@@ -12,10 +12,6 @@
  * --Header for Cloaking Burrownit (Armor)--
  */
 
-namespace efx {
-struct TYoroiAttack;
-} // namespace efx
-
 namespace Game {
 namespace ItemBridge {
 struct Item;
@@ -75,16 +71,16 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                          // _2BC
-	bool mNeedsBridgeSearch;            // _2C0
-	int mNextState;                     // _2C4
-	f32 mAttackLoopTime;                // _2C8
-	MouthSlots mMouthSlots;             // _2CC
-	efx::TYoroiAttack* mEfxYoroiAttack; // _2D4
-	ItemBridge::Item* mBridge;          // _2D8
-	f32 mBridgePositionOffset;          // _2DC
-	f32 mBridgeWidth;                   // _2E0
-	                                    // _2E4 = PelletView
+	FSM* mFsm;                       // _2BC
+	bool mNeedsBridgeSearch;         // _2C0
+	int mNextState;                  // _2C4
+	f32 mAttackLoopTime;             // _2C8
+	MouthSlots mMouthSlots;          // _2CC
+	efx::TChaseMtx* mEfxYoroiAttack; // _2D4
+	ItemBridge::Item* mBridge;       // _2D8
+	f32 mBridgePositionOffset;       // _2DC
+	f32 mBridgeWidth;                // _2E0
+	                                 // _2E4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -107,9 +103,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPoisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f)   // 'white pikmin'
-		    , mAttackLoopTimer(this, 'fp11', "攻撃ループ時間", 0.0f, 0.0f, 10.0f) // 'attack loop time'
-		    , mBridgeDamage(this, 'fp12', "橋食いパワー", 100.0f, 0.0f, 100.0f)   // 'bridge eating power'
+		    , mPoisonDamage(this, 'fp01', 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mAttackLoopTimer(this, 'fp11', 0.0f, 0.0f, 10.0f)   // 'attack loop time'
+		    , mBridgeDamage(this, 'fp12', 100.0f, 0.0f, 100.0f)   // 'bridge eating power'
 		{
 		}
 

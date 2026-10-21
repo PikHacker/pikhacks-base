@@ -12,7 +12,7 @@ struct TAllocator {
 
 	void* AllocateRaw(size_t rawSize) { return operator new(rawSize); }
 
-	void deallocate(T* p, u32) { DeallocateRaw(p); }
+	void deallocate(T* p, u32) { delete p; }
 
 	void DeallocateRaw(void* p) { delete (p); }
 

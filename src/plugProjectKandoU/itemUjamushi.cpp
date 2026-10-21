@@ -19,21 +19,21 @@ Mgr* mgr;
  */
 BoidParms::BoidParms()
     : Parameters(nullptr, "BoidParms")
-    , mCohesion(this, 'p000', "Cohension", 0.27f, 0.0f, 10.0f)
-    , mAlignment(this, 'p001', "Alignment", 0.15f, 0.0f, 10.0f)
-    , mSeparation(this, 'p002', "Separation", 1.0f, 0.0f, 10.0f)
-    , mBounds(this, 'p003', "Bounds", 1.0f, 0.0f, 10.0f)
-    , mTarget(this, 'p004', "Target", 0.0f, 0.0f, 10.0f)
-    , mRandom(this, 'p005', "Random", 1.5f, 0.0f, 10.0f)
-    , mGoHome(this, 'p006', "Gohome", 0.0f, 0.0f, 10.0f)
-    , mPiki(this, 'p008', "Piki", 0.2f, 0.0f, 10.0f)
-    , mNavi(this, 'p009', "Navi", 0.1f, 0.0f, 10.0f)
-    , mCollision(this, 'p010', "Collision", 10.0f, 0.0f, 10.0f)
-    , mMaxSpeed(this, 'p011', "MaxSpeed", 30.0f, 1.0f, 200.0f)
-    , mFov(this, 'p012', "Fov", 30.0f, 0.0f, 180.0f)
-    , mDistance(this, 'p013', "Distance", 50.0f, 0.0f, 1000.0f)
-    , mRotationPerSecond(this, 'p014', "Rotation/s", 180.0f, 0.0f, 1080.0f)
-    , mRandomAngle(this, 'p007', "RandomAngle", 16.0f, 0.0f, 180.0f)
+    , mCohesion(this, 'p000', 0.27f, 0.0f, 10.0f)
+    , mAlignment(this, 'p001', 0.15f, 0.0f, 10.0f)
+    , mSeparation(this, 'p002', 1.0f, 0.0f, 10.0f)
+    , mBounds(this, 'p003', 1.0f, 0.0f, 10.0f)
+    , mTarget(this, 'p004', 0.0f, 0.0f, 10.0f)
+    , mRandom(this, 'p005', 1.5f, 0.0f, 10.0f)
+    , mGoHome(this, 'p006', 0.0f, 0.0f, 10.0f)
+    , mPiki(this, 'p008', 0.2f, 0.0f, 10.0f)
+    , mNavi(this, 'p009', 0.1f, 0.0f, 10.0f)
+    , mCollision(this, 'p010', 10.0f, 0.0f, 10.0f)
+    , mMaxSpeed(this, 'p011', 30.0f, 1.0f, 200.0f)
+    , mFov(this, 'p012', 30.0f, 0.0f, 180.0f)
+    , mDistance(this, 'p013', 50.0f, 0.0f, 1000.0f)
+    , mRotationPerSecond(this, 'p014', 180.0f, 0.0f, 1080.0f)
+    , mRandomAngle(this, 'p007', 16.0f, 0.0f, 180.0f)
 {
 }
 
@@ -132,10 +132,10 @@ void BoidParameter::read(Stream& input)
  */
 UjaParms::UjaParms()
     : Parameters(nullptr, "UjaParms")
-    , mDisplayScale(this, 'u001', "表示スケール", 0.3f, 0.1f, 1.0f)     // 'display scale'
-    , mMysteryMultiply(this, 'u002', "謎 Multiply", 1.0f, 0.0f, 200.0f) // 'mystery multiply' (lmao)
-    , mLife(this, 'u003', "ライフ", 0.0f, 0.0f, 600.0f)                 // 'life'
-    , mMotionSpeed(this, 'u004', "モーション速度", 0.5f, 0.0f, 10.0f)   // 'motion speed'
+    , mDisplayScale(this, 'u001', 0.3f, 0.1f, 1.0f)      // 'display scale'
+    , mMysteryMultiply(this, 'u002', 1.0f, 0.0f, 200.0f) // 'mystery multiply' (lmao)
+    , mLife(this, 'u003', 0.0f, 0.0f, 600.0f)            // 'life'
+    , mMotionSpeed(this, 'u004', 0.5f, 0.0f, 10.0f)      // 'motion speed'
 {
 }
 
@@ -1078,28 +1078,6 @@ void Mgr::onLoadResources()
 Item* Mgr::birth()
 {
 	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: 0x80209DF8
- * @note Size: 0xC
- */
-char* Mgr::getCaveName(int)
-{
-	return "ujamushi";
-}
-
-/**
- * @note Address: 0x80209E04
- * @note Size: 0x54
- */
-int Mgr::getCaveID(char* name)
-{
-	if (strncmp("ujamushi", name, strlen("ujamushi")) != 0) {
-		return -1;
-	}
-
-	return 0;
 }
 
 /**

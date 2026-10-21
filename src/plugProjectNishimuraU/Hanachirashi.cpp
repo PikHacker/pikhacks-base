@@ -622,10 +622,10 @@ bool Obj::windTarget()
  */
 void Obj::createEffect()
 {
-	mEfxDead   = new efx::TFusenDead;
-	mEfxAirhit = new efx::TFusenhAirhit(&mAttackPosition, &mFaceDir);
-	mEfxAir    = new efx::TFusenhAir;
-	mEfxSui    = new efx::TFusenSui;
+	mEfxDead   = new efx::TChaseMtx2(nullptr, PID_FusenDead_1, PID_FusenDead_2);
+	mEfxAirhit = new efx::TChasePosYRot2(&mAttackPosition, &mFaceDir, PID_FusenAirHit_Hana_1, PID_FusenAirHit_Hana_2);
+	mEfxAir    = new efx::TChaseMtx3(nullptr, PID_FusenAir_Hana_1, PID_FusenAir_Hana_2, PID_FusenAir_Hana_3);
+	mEfxSui    = new efx::TChaseMtx(PID_FusenSui, nullptr);
 }
 
 /**
@@ -666,7 +666,7 @@ void Obj::createSuckEffect()
  */
 void Obj::startWindEffect()
 {
-	mAttackPosition = getAttackPosition(); 
+	mAttackPosition = getAttackPosition();
 	mEfxSui->fade();
 	mEfxAir->create(nullptr);
 	mEfxAirhit->create(nullptr);

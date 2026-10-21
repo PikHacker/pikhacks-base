@@ -1449,40 +1449,6 @@ def generate_objdiff_config(
         "progress_categories": [],
     }
 
-    # decomp.me compiler name mapping
-    COMPILER_MAP = {
-        "GC/1.0": "mwcc_233_144",
-        "GC/1.1": "mwcc_233_159",
-        "GC/1.1p1": "mwcc_233_159p1",
-        "GC/1.2.5": "mwcc_233_163",
-        "GC/1.2.5e": "mwcc_233_163e",
-        "GC/1.2.5n": "mwcc_233_163n",
-        "GC/1.3": "mwcc_242_53",
-        "GC/1.3.2": "mwcc_242_81",
-        "GC/1.3.2r": "mwcc_242_81r",
-        "GC/2.0": "mwcc_247_92",
-        "GC/2.0p1": "mwcc_247_92p1",
-        "GC/2.5": "mwcc_247_105",
-        "GC/2.6": "mwcc_247_107",
-        "GC/2.7": "mwcc_247_108",
-        "GC/3.0a3": "mwcc_41_51213",
-        "GC/3.0a3.2": "mwcc_41_60126",
-        "GC/3.0a3.3": "mwcc_41_60209",
-        "GC/3.0a3.4": "mwcc_42_60308",
-        "GC/3.0a5": "mwcc_42_60422",
-        "GC/3.0a5.2": "mwcc_41_60831",
-        "GC/3.0": "mwcc_41_60831",
-        "Wii/1.0RC1": "mwcc_42_140",
-        "Wii/0x4201_127": "mwcc_42_142",
-        "Wii/1.0a": "mwcc_42_142",
-        "Wii/1.0": "mwcc_43_145",
-        "Wii/1.1": "mwcc_43_151",
-        "Wii/1.3": "mwcc_43_172",
-        "Wii/1.5": "mwcc_43_188",
-        "Wii/1.6": "mwcc_43_202",
-        "Wii/1.7": "mwcc_43_213",
-    }
-
     def add_unit(
         build_obj: BuildConfigUnit, module_name: str, progress_categories: List[str]
     ) -> None:
@@ -1541,25 +1507,6 @@ def generate_objdiff_config(
                     reverse_fn_order = True
                 elif value == "nodeferred":
                     reverse_fn_order = False
-
-        compiler_version = COMPILER_MAP.get(obj.options["mw_version"])
-        if compiler_version is None:
-            print(f"Missing scratch compiler mapping for {obj.options['mw_version']}")
-        else:
-            cflags_str = make_flags_str(all_cflags)
-            unit_config["scratch"] = {
-                "platform": "gc_wii",
-                "compiler": compiler_version,
-                "c_flags": cflags_str,
-                "preset_id": obj.options["scratch_preset_id"],
-            }
-            if src_exists:
-                unit_config["scratch"].update(
-                    {
-                        "ctx_path": obj.ctx_path,
-                        "build_ctx": True,
-                    }
-                )
 
         unit_config["metadata"].update(
             {

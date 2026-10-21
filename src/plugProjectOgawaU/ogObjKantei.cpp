@@ -189,8 +189,8 @@ void ObjKantei::doCreate(JKRArchive* arc)
 
 	mEfx = nullptr;
 	if (mDisp->mPelletMessageID) {
-		efx2d::T2DOtakantei* efx = new efx2d::T2DOtakantei;
-		mEfx                     = efx;
+		efx2d::TForever5* efx = new efx2d::TForever5(PID_OtaKantei_1, PID_OtaKantei_2, PID_OtaKantei_3, PID_OtaKantei_4, PID_OtaKantei_5);
+		mEfx                  = efx;
 		Vector2f argVec(304.0f, 194.0f);
 		efx2d::Arg arg = argVec;
 		mEfx->setGroup(2);
@@ -476,7 +476,7 @@ bool ObjKantei::doStart(::Screen::StartSceneArg const*)
 	mFadeLevel2 = 0.0f;
 	if (mDisp->mDoPlayBGM) {
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		PSM::Scene_Game* scene  = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 		PSSystem::checkChildScene(scene)->startMainSeq();
 	}
 	return true;

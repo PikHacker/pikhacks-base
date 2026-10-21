@@ -8,53 +8,52 @@ struct PikiParms : public FakePikiParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "Piki::Parms")
-		    , mWalkSpeed(this, 'p000', "歩く速度", 84.0f, 0.0f, 500.0f)                        // 'walking speed'
-		    , mRunSpeed(this, 'p001', "走る速度", 120.0f, 0.0f, 500.0f)                        // 'running speed'
-		    , mFlowerRunSpeed(this, 'p054', "花ピキスピード", 170.0f, 0.0f, 500.0f)            // 'flower pikmin speed'
-		    , mBudRunSpeed(this, 'p065', "つぼみスピード", 140.0f, 0.0f, 500.0f)               // 'bud speed'
-		    , mPressedScale(this, 'p038', "ピキ表示スケール", 1.0f, 0.1f, 10.0f)               // 'piki display scale'
-		    , mBlueAttackDamage(this, 'p004', "青 攻撃力", 10.f, 0.0f, 1000.0f)                // 'blue attack power'
-		    , mRedAttackDamage(this, 'p012', "赤 攻撃力", 15.0f, 0.0f, 1000.0f)                // 'red attack power'
-		    , mYellowAttackDamage(this, 'p013', "黄 攻撃力", 10.0f, 0.0f, 1000.0f)             // 'yellow attack power'
-		    , mPurpleAttackDamage(this, 'P003', "黒　攻撃力", 10.0f, 1.0f, 30.0f)              // 'black attack power'
-		    , mWhiteAttackDamage(this, 'P004', "白　攻撃力", 1.0f, 1.0f, 30.0f)                // 'white attack power'
-		    , mScale(this, 'p007', "ノーマルピキのスケール", 0.8f, 0.0f, 2.0f)                 // 'normal piki scale'
-		    , mWhiteScale(this, 'p008', "のっぽピキのスケール", 1.5f, 0.0f, 2.0f)              // 'tall piki scale'
-		    , mPurpleScale(this, 'p009', "ふとっちょピキのスケール", 1.2f, 0.0f, 2.0f)         // 'fatty piki scale'
-		    , mWalkAnimSpeed(this, 'p018', "WALK 開始スピード", 35.0f, 0.0f, 500.0f)           // 'WALK start speed'
-		    , mWhiteDistance(this, 'p029', "white 距離", 600.0f, 0.0f, 10000.0f)               // 'white distance'
-		    , mGrayDistance(this, 'p030', "gray 距離", 1000.0f, 0.0f, 10000.0f)                // 'gray distance'
-		    , mLostChildTime(this, 'p031', "迷子時間", 10.0f, 0.0f, 1000.0f)                   // 'lost child time'
-		    , mEnemySearchRange(this, 'p041', "敵のサーチエリア", 60.0f, 1.0f, 1000.0f) // 'enemy search area'
-		    , mPelletSearchRange(this, 'p042', "Pelletのサーチエリア", 30.0f, 1.0f, 1000.0f)     // 'pellet search area'
-		    , mNectarRockSearchRange(this, 'P010', "農耕岩のサーチエリア", 30.0f, 1.0f, 1000.0f) // 'agricultural rock search area' (lmao)
-		    , mGateSearchRange(this, 'P011', "農耕岩のサーチエリア", 40.0f, 1.0f,
-			                   1000.0f) // 'agricultural rock search area' (should refer to gates)
-		    , mBridgeSearchRange(this, 'P012', "橋のサーチエリア", 100.0f, 1.0f, 1000.0f)              // 'bridge search area'
-		    , mClogSearchRange(this, 'P013', "壊す岩のサーチエリア", 30.0f, 1.0f, 1000.0f)             // 'breaking rock search area'
-		    , mBuriedTreasureSearchRange(this, 'P014', "掘り出し物サーチエリア", 30.0f, 1.0f, 1000.0f) // 'bargain search area' (lmao??)
-		    , mSpiderWortSearchRange(this, 'P015', "農耕植物のサーチエリア", 30.0f, 1.0f, 1000.0f)     // 'agricultural plant search area'
-		    , mFlowerPikiGravity(this, 'p048', "花ピキ重力率", 0.01f, 0.0f, 1.0f)                      // 'flower piki gravity rate'
-		    , mBuriedSeedWaitTime(this, 'p049', "taneupTime（秒）", 1.0f, 0.0f, 300.0f)                // 'taneupTime (seconds)' (seed?)
-		    , mUnpluckableTime(this, 'p050', "hatugaTime（秒）", 1.0f, 0.0f, 300.0f)                   // 'hatugaTime (seconds)' (bud?)
-		    , mGrowUpToFlowerTime(this, 'p051', "growupTime（秒）", 4.0f, 0.0f, 300.0f)                // 'growupTime (seconds)'
-		    , mWitherFromFlowerTime(this, 'p052', "kareTime（秒）", 4.0f, 0.0f, 300.0f)    // 'kareTime (seconds)' (he? boyfriend?)
-		    , mWitheredHideTime(this, 'p053', "rebirthTime（秒）", 1.0f, 0.0f, 300.0f)     // 'rebirthTime (seconds)'
-		    , mPanicMaxTime(this, 'p055', "火に包まれて死ぬまでの時間", 3.0f, 0.0f, 30.0f) // 'time until death in fire'
-		    , mWhiteRunSpeedMultiplier(this, 'P001', "白スピード倍率", 2.0f, 1.0f, 3.0f)    // 'white speed multiplier'
-		    , mPurpleRunSpeedMultiplier(this, 'P002', "黒スピード倍率", 0.6f, 0.1f, 3.0f)   // 'black speed multiplier'
-		    , mPurpleCarryPower(this, 'P005', "黒　運搬能力", 0.5f, 0.0f, 5.0f)             // 'black carrying capacity'
-		    , mWhiteCarryPower(this, 'P006', "白　運搬能力", 1.5f, 0.0f, 5.0f)              // 'white carrying capacity'
-		    , mBudCarrySpeedBonus(this, 'P020', "つぼみ|運搬ボーナス", 0.5f, 0.0f, 2.0f)    // 'bud | carrying bonus'
-		    , mFlowerCarrySpeedBonus(this, 'P021', "はな|運搬ボーナス", 1.0f, 0.0f, 2.0f)   // 'flower | carrying bonus'
-		    , mCarryMaxFactor(this, 'P018', "運搬 MAX FACTOR", 0.7f, 0.0f, 2.0f)            // 'carrying MAX FACTOR'
-		    , mCarryMinFactor(this, 'P019', "運搬 MAX FACTOR", 0.35f, 0.0f, 2.0f)           // 'carrying MAX FACTOR' (mistake?)
-		    , mDopeMaxDuration(this, 'P007', "ドーピング持続時間", 30.0f, 0.0f, 200.0f)     // 'doping duration'
-		    , mDopeAttackDamage(this, 'P008', "ドーピングピキ 攻撃", 25.0f, 0.0f, 100.0f)   // 'doping piki attack'
-		    , mDopeRunSpeed(this, 'P009', "ドーピングピキ スピード", 190.0f, 0.0f, 220.0f)  // 'doping piki speed'
-		    , mKurageKillTime(this, 'P016', "クラゲ消化時間", 16.0f, 0.0f, 120.0f)          // 'jellyfish digestion time'
-		    , mPoundAOERange(this, 'P017', "ドシン半径", 60.0f, 0.0f, 1000.0f)              // 'doshin radius' (pound radius?)
-		    , mPoundDamage(this, 'P022', "黒ヒップアタックダメージ", 100.0f, 0.0f, 1000.0f) // 'black hip attack damage'
+		    , mWalkSpeed(this, 'p000', 84.0f, 0.0f, 500.0f)                  // 'walking speed'
+		    , mRunSpeed(this, 'p001', 120.0f, 0.0f, 500.0f)                  // 'running speed'
+		    , mFlowerRunSpeed(this, 'p054', 170.0f, 0.0f, 500.0f)            // 'flower pikmin speed'
+		    , mBudRunSpeed(this, 'p065', 140.0f, 0.0f, 500.0f)               // 'bud speed'
+		    , mPressedScale(this, 'p038', 1.0f, 0.1f, 10.0f)                 // 'piki display scale'
+		    , mBlueAttackDamage(this, 'p004', 10.0f, 0.0f, 1000.0f)          // 'blue attack power'
+		    , mRedAttackDamage(this, 'p012', 15.0f, 0.0f, 1000.0f)           // 'red attack power'
+		    , mYellowAttackDamage(this, 'p013', 10.0f, 0.0f, 1000.0f)        // 'yellow attack power'
+		    , mPurpleAttackDamage(this, 'P003', 10.0f, 1.0f, 30.0f)          // 'black attack power'
+		    , mWhiteAttackDamage(this, 'P004', 1.0f, 1.0f, 30.0f)            // 'white attack power'
+		    , mScale(this, 'p007', 0.8f, 0.0f, 2.0f)                         // 'normal piki scale'
+		    , mWhiteScale(this, 'p008', 1.5f, 0.0f, 2.0f)                    // 'tall piki scale'
+		    , mPurpleScale(this, 'p009', 1.2f, 0.0f, 2.0f)                   // 'fatty piki scale'
+		    , mWalkAnimSpeed(this, 'p018', 35.0f, 0.0f, 500.0f)              // 'WALK start speed'
+		    , mWhiteDistance(this, 'p029', 600.0f, 0.0f, 10000.0f)           // 'white distance'
+		    , mGrayDistance(this, 'p030', 1000.0f, 0.0f, 10000.0f)           // 'gray distance'
+		    , mLostChildTime(this, 'p031', 10.0f, 0.0f, 1000.0f)             // 'lost child time'
+		    , mEnemySearchRange(this, 'p041', 60.0f, 1.0f, 1000.0f)          // 'enemy search area'
+		    , mPelletSearchRange(this, 'p042', 30.0f, 1.0f, 1000.0f)         // 'pellet search area'
+		    , mNectarRockSearchRange(this, 'P010', 30.0f, 1.0f, 1000.0f)     // 'agricultural rock search area' (lmao)
+		    , mGateSearchRange(this, 'P011', 40.0f, 1.0f, 1000.0f)           // 'agricultural rock search area' (should refer to gates)
+		    , mBridgeSearchRange(this, 'P012', 100.0f, 1.0f, 1000.0f)        // 'bridge search area'
+		    , mClogSearchRange(this, 'P013', 30.0f, 1.0f, 1000.0f)           // 'breaking rock search area'
+		    , mBuriedTreasureSearchRange(this, 'P014', 30.0f, 1.0f, 1000.0f) // 'bargain search area' (lmao??)
+		    , mSpiderWortSearchRange(this, 'P015', 30.0f, 1.0f, 1000.0f)     // 'agricultural plant search area'
+		    , mFlowerPikiGravity(this, 'p048', 0.01f, 0.0f, 1.0f)            // 'flower piki gravity rate'
+		    , mBuriedSeedWaitTime(this, 'p049', 1.0f, 0.0f, 300.0f)          // 'taneupTime (seconds)' (seed?)
+		    , mUnpluckableTime(this, 'p050', 1.0f, 0.0f, 300.0f)             // 'hatugaTime (seconds)' (bud?)
+		    , mGrowUpToFlowerTime(this, 'p051', 4.0f, 0.0f, 300.0f)          // 'growupTime (seconds)'
+		    , mWitherFromFlowerTime(this, 'p052', 4.0f, 0.0f, 300.0f)        // 'kareTime (seconds)' (he? boyfriend?)
+		    , mWitheredHideTime(this, 'p053', 1.0f, 0.0f, 300.0f)            // 'rebirthTime (seconds)'
+		    , mPanicMaxTime(this, 'p055', 3.0f, 0.0f, 30.0f)                 // 'time until death in fire'
+		    , mWhiteRunSpeedMultiplier(this, 'P001', 2.0f, 1.0f, 3.0f)       // 'white speed multiplier'
+		    , mPurpleRunSpeedMultiplier(this, 'P002', 0.6f, 0.1f, 3.0f)      // 'black speed multiplier'
+		    , mPurpleCarryPower(this, 'P005', 0.5f, 0.0f, 5.0f)              // 'black carrying capacity'
+		    , mWhiteCarryPower(this, 'P006', 1.5f, 0.0f, 5.0f)               // 'white carrying capacity'
+		    , mBudCarrySpeedBonus(this, 'P020', 0.5f, 0.0f, 2.0f)            // 'bud | carrying bonus'
+		    , mFlowerCarrySpeedBonus(this, 'P021', 1.0f, 0.0f, 2.0f)         // 'flower | carrying bonus'
+		    , mCarryMaxFactor(this, 'P018', 0.7f, 0.0f, 2.0f)                // 'carrying MAX FACTOR'
+		    , mCarryMinFactor(this, 'P019', 0.35f, 0.0f, 2.0f)               // 'carrying MAX FACTOR' (mistake?)
+		    , mDopeMaxDuration(this, 'P007', 30.0f, 0.0f, 200.0f)            // 'doping duration'
+		    , mDopeAttackDamage(this, 'P008', 25.0f, 0.0f, 100.0f)           // 'doping piki attack'
+		    , mDopeRunSpeed(this, 'P009', 190.0f, 0.0f, 220.0f)              // 'doping piki speed'
+		    , mKurageKillTime(this, 'P016', 16.0f, 0.0f, 120.0f)             // 'jellyfish digestion time'
+		    , mPoundAOERange(this, 'P017', 60.0f, 0.0f, 1000.0f)             // 'doshin radius' (pound radius?)
+		    , mPoundDamage(this, 'P022', 100.0f, 0.0f, 1000.0f)              // 'black hip attack damage'
 		{
 		}
 

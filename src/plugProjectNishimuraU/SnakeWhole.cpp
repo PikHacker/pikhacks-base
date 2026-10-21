@@ -772,7 +772,7 @@ void Obj::setBossAppearBGM()
  */
 void Obj::createEffect()
 {
-	mEfxDead = new efx::TCphebiDead;
+	mEfxDead = new efx::TChaseMtx4(nullptr, PID_CphebiDead_1, PID_CphebiDead_2, PID_CphebiDead_3, PID_CphebiDead_4);
 }
 
 /**
@@ -796,15 +796,15 @@ void Obj::createAppearEffect(int effectID)
 	efx::Arg fxArg(mPosition);
 	switch (effectID) {
 	case 0:
-		efx::THebiAphd_appear1 appear1;
+		efx::THebiAphd_base appear1(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 40);
 		appear1.create(&fxArg);
 		break;
 	case 1:
-		efx::THebiAphd_appear2_first appear2;
+		efx::THebiAphd_base appear2(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 65);
 		appear2.create(&fxArg);
 		break;
 	case 2:
-		efx::THebiAphd_appear2_late appear3;
+		efx::THebiAphd_base appear3(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 35);
 		appear3.create(&fxArg);
 		break;
 	}
@@ -827,7 +827,7 @@ void Obj::createDeadFinishEffect()
 {
 	Vector3f fxPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(fxPos);
-	efx::TCphebiDeadHane deadFX;
+	efx::TSimple1 deadFX(PID_CphebiDeadHane);
 	deadFX.create(&fxArg);
 }
 

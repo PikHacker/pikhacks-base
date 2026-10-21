@@ -7,10 +7,10 @@
 
 struct _CellParms {
 	inline _CellParms(Parameters* parameters)
-	    : mUseBuffer(parameters, 'p000', "バッファを使う", false, false, true)    // 'use a buffer'
-	    , mMagicNumber(parameters, 'p001', "マジックナンバー", true, false, true) // 'magic number'
-	    , mHalfG(parameters, 'p002', "G-Half", false, false, true)
-	    , mUpdateMgr(parameters, 'p003', "UpdateMgr", false, false, true)
+	    : mUseBuffer(parameters, 'p000', false, false, true)  // 'use a buffer'
+	    , mMagicNumber(parameters, 'p001', true, false, true) // 'magic number'
+	    , mHalfG(parameters, 'p002', false, false, true)
+	    , mUpdateMgr(parameters, 'p003', false, false, true)
 	{
 	}
 

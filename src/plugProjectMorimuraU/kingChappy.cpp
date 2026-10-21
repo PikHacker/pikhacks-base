@@ -188,14 +188,14 @@ Obj::Obj()
 	setFSM(new FSM);
 	curK = nullptr;
 
-	mEfxYodare     = new efx::TKchYodare(nullptr);
+	mEfxYodare     = new efx::TKchYodareBaseChaseMtx(nullptr, PID_KchYodareBase_2);
 	mEfxDiveSand   = new efx::TKchDiveSand(&mPosition, &mFaceDir);
 	mEfxDiveWater  = new efx::TKchDiveWat(&mPosition, &mFaceDir);
 	mEfxCryAB      = new efx::TKchCryAB(&mPosition);
 	mEfxCryInd     = new efx::TKchCryInd;
 	mEfxSmoke      = new efx::TKchSmokeHana;
-	mEfxAttack     = new efx::TKchAttackYodare(nullptr);
-	mEfxDeadYodare = new efx::TKchDeadYodare(nullptr);
+	mEfxAttack     = new efx::TKchYodareBaseChaseMtx(nullptr, PID_KchYodareBase_1);
+	mEfxDeadYodare = new efx::TKchYodareBaseChaseMtx(nullptr, PID_KchYodareBase_Dead);
 	mEfxDeadHana   = new efx::TKchDeadHana;
 
 	mRightEyeRippleEfx = new efx::TEnemyHamonChasePos(&mRightEyePosition);

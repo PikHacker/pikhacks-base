@@ -35,7 +35,7 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mSearchRumbleSpeed(this, 'fp01', "サーチゴロゴロ速度", 150.0f, 0.0f, 1000.0f) // 'search rumble speed'
+		    , mSearchRumbleSpeed(this, 'fp01', 150.0f, 0.0f, 1000.0f) // 'search rumble speed'
 		{
 		}
 
@@ -108,8 +108,8 @@ struct Obj : public EnemyBase {
 	f32 mFallSpeed;                      // _2CC
 	f32 mFallOffset;                     // _2D0, amount to offset Y by when appearing
 	f32 mScaleUpRate;                    // _2D4, amount to scale up every frame for falling rocks
-	efx::TRockRun* mEfxRun;              // _2D8
-	efx::TRockGrRun* mEfxGroundRun;      // _2DC
+	efx::TChasePos* mEfxRun;             // _2D8
+	efx::TChasePos* mEfxGroundRun;       // _2DC
 	efx::TRockWRun* mEfxWaterRun;        // _2E0
 	EnemyTypeID::EEnemyTypeID mRockType; // _2E4, 19/EnemyID_Rock or 74/EnemyID_Stone
 	                                     // _2E8 = PelletView

@@ -404,13 +404,13 @@ void SingleGameSection::onSetupFloatMemory()
 
 		switch (mCurrentCourseInfo->mCourseIndex) {
 		case 0: // Falling snow in Valley of Repose
-			mWeatherEfx = new efx::TTutorialSnow;
+			mWeatherEfx = new efx::TChasePos(PID_TutorialSnow, nullptr);
 			break;
 		case 1: // Falling flowers in Awakening Wood
-			mWeatherEfx = new efx::TForestSakura;
+			mWeatherEfx = new efx::TChasePos(PID_ForestSakura, nullptr);
 			break;
 		case 3: // Falling leaves in Wistful Wild
-			mWeatherEfx = new efx::TLastMomiji;
+			mWeatherEfx = new efx::TChasePos(PID_LastMomiji, nullptr);
 			break;
 		default: // Nothing in Perplexing Pool
 			mWeatherEfx = nullptr;

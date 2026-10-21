@@ -9,9 +9,8 @@
  * @note Address: 0x80413658
  * @note Size: 0xAC
  */
-BaseParm::BaseParm(Parameters* parameters, u32 rawID, char* name)
+BaseParm::BaseParm(Parameters* parameters, u32 rawID)
     : mId()
-    , mName(name)
 {
 	BaseParm* parm1;
 	BaseParm* parm2 = nullptr;
@@ -33,20 +32,6 @@ BaseParm::BaseParm(Parameters* parameters, u32 rawID, char* name)
  */
 void Parameters::write(Stream& stream)
 {
-	stream.textBeginGroup(mName);
-
-	for (BaseParm* parm = mParmsHead; parm; parm = parm->mNext) {
-		stream.writePadding(STREAM_MODE_TEXT);
-		parm->mId.write(stream);
-		stream.writeInt(parm->size());
-		parm->write(stream);
-		stream.textWriteText("\t# %s\r\n", parm->mName);
-	}
-	stream.writePadding(STREAM_MODE_TEXT);
-	ID32::eof.write(stream);
-	stream.textWriteText("\r\n");
-
-	stream.textEndGroup();
 }
 
 /**
@@ -178,8 +163,8 @@ void Parm<f32>::write(Stream& stream)
  * @note Address: 0x80413AB8
  * @note Size: 0x1B0
  */
-ParmString::ParmString(Parameters* parameters, char* value, int length, u32 rawID, char* comment)
-    : BaseParm(parameters, rawID, comment)
+ParmString::ParmString(Parameters* parameters, char* value, int length, u32 rawID)
+    : BaseParm(parameters, rawID)
     , mLength(length)
 {
 	char* buffer = new char[mLength + 1];
@@ -216,12 +201,11 @@ void ParmString::read(Stream& stream)
  * @note Address: 0x80413CC4
  * @note Size: 0xB8
  */
-ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, u32 value, int length, s32 rawID, char* comment)
-    : BaseParm(parameters, rawID, comment)
+ParmEnum::ParmEnum(Parameters* parameters, u32 value, int length, s32 rawID)
+    : BaseParm(parameters, rawID)
 {
 	mValue        = value;
 	mEnumElemSize = length;
-	mEnumValues   = enumValues;
 }
 
 /**

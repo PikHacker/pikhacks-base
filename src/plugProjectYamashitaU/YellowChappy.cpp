@@ -48,7 +48,7 @@ void Obj::doUpdateCommon()
 			Matrixf* mat = joint->getWorldMatrix();
 			P2ASSERTLINE(126, mat != nullptr);
 
-			efx::TKechappyOff offEffect(mat);
+			efx::TSimpleMtx1 offEffect(mat, PID_KechappyOff);
 			offEffect.create(nullptr);
 
 			mHasHair = false;

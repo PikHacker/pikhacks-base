@@ -286,322 +286,6 @@ int Piki::graspSituation_Fast(Game::Creature** outTarget)
 }
 
 /**
- * @note Address: 0x801B1360
- * @note Size: 0x1A04
- */
-int Piki::graspSituation(Game::Creature** outTarget)
-{
-	// NOTE: this whole function is effectively unused, as only graspSituation_fast is used in the final game
-	// its missing some checks compared to the used function, such as Navis
-
-	if (moviePlayer && moviePlayer->mDemoState != DEMOSTATE_Inactive) {
-		*outTarget = nullptr;
-		return PikiAI::ACT_NULL;
-	}
-
-	f32 minDist      = 100.0f;
-	Creature* target = nullptr;
-	int action       = PikiAI::ACT_NULL;
-
-	// check if we can fight a piki.
-	if (gameSystem->isVersusMode()) {
-		Piki* targetPiki = nullptr;
-		f32 minPikiDist  = PIKI_BATTLE_RANGE;
-		Iterator<Piki> iter(pikiMgr);
-		CI_LOOP(iter)
-		{
-			Piki* piki = *iter;
-			if (piki->isAlive() && piki->canVsBattle() && !piki->getVsBattlePiki() && piki->getKind() != getKind()) {
-				f32 sphereDist = piki->calcSphereDistance(this);
-				if (sphereDist < minPikiDist) {
-					targetPiki  = piki;
-					minPikiDist = sphereDist;
-				}
-			}
-		}
-
-		if (targetPiki && minPikiDist < 100.0f) {
-			*outTarget = targetPiki;
-			return PikiAI::ACT_Battle;
-		}
-	}
-
-	// check if we can rescue a piki.
-	if (getKind() == Blue) {
-		Piki* targetPiki = nullptr;
-		f32 minPikiDist  = PIKI_RESCUE_RANGE;
-		Iterator<Piki> iter(pikiMgr);
-		CI_LOOP(iter)
-		{
-			Piki* piki = *iter;
-			if (piki->isAlive() && piki->getStateID() == PIKISTATE_Drown) {
-				f32 sphereDist = piki->calcSphereDistance(this);
-				if (sphereDist < minPikiDist) {
-					targetPiki  = piki;
-					minPikiDist = sphereDist;
-				}
-			}
-		}
-
-		if (targetPiki && minPikiDist < 100.0f) {
-			minDist = minPikiDist;
-			target  = targetPiki;
-			action  = PikiAI::ACT_Rescue;
-		}
-	}
-
-	// check for pellets to grab
-	Pellet* targetPellet = nullptr;
-	f32 minPelDist       = pikiMgr->mParms->mPikiParms.mPelletSearchRange();
-
-	PelletIterator pelIter;
-	CI_LOOP(pelIter)
-	{
-		Pellet* pellet = *pelIter;
-		if (pellet->isAlive() && !pellet->mCaptureMatrix && pellet->getFreeStickSlot() != -1 && !isZikatu()) {
-			bool isGrabbable = true;
-			if (pellet->getKind() == PelletType::Upgrade && gameSystem->isStoryMode()) {
-				int configIdx = pellet->getConfigIndex();
-				if (!playData->isFindItemDemoFlag(configIdx)) {
-					isGrabbable = false;
-				}
-			}
-
-			if ((!gameSystem->isVersusMode() || pellet->getBedamaColor() != getKind()) && !pellet->discoverDisabled() && isGrabbable) {
-				f32 sphereDist = pellet->calcSphereDistance(this);
-				if (sphereDist < minPelDist) {
-					targetPellet = pellet;
-					minPelDist   = sphereDist;
-				}
-			}
-		}
-	}
-
-	if (targetPellet && minPelDist < minDist) {
-		minDist = minPelDist;
-		target  = targetPellet;
-		action  = PikiAI::ACT_Transport;
-	}
-
-	// check for gates to attack (NB: no poison check?)
-	if (itemGateMgr) {
-		ItemGate* targetGate = nullptr;
-		f32 minGateDist      = pikiMgr->mParms->mPikiParms.mGateSearchRange();
-		Iterator<ItemGate> gateIter(&itemGateMgr->mNodeObjectMgr);
-		CI_LOOP(gateIter)
-		{
-			ItemGate* gate = *gateIter;
-			if (gate->isAlive()) {
-				f32 workDist = gate->getWorkDistance(mBoundingSphere);
-				if (workDist < minGateDist) {
-					targetGate  = gate;
-					minGateDist = workDist;
-				}
-			}
-		}
-
-		if (targetGate && minGateDist < minDist) {
-			minDist = minGateDist;
-			target  = targetGate;
-			action  = PikiAI::ACT_BreakGate;
-		}
-	}
-
-	// check for electric gates to attack
-	if (ItemDengekiGate::mgr) {
-		ItemGate* targetGate = nullptr;
-		f32 minGateDist      = pikiMgr->mParms->mPikiParms.mGateSearchRange();
-		Iterator<ItemGate> gateIter(ItemDengekiGate::mgr);
-		CI_LOOP(gateIter)
-		{
-			ItemGate* gate = *gateIter;
-			if (gate->isAlive()) {
-				f32 workDist = gate->getWorkDistance(mBoundingSphere);
-				if (workDist < minGateDist) {
-					targetGate  = gate;
-					minGateDist = workDist;
-				}
-			}
-		}
-
-		if (targetGate && minGateDist < minDist) {
-			minDist = minGateDist;
-			target  = targetGate;
-			action  = PikiAI::ACT_BreakGate;
-		}
-	}
-
-	// check for bridges to build
-	if (ItemBridge::mgr) {
-		ItemBridge::Item* targetBridge = nullptr;
-		f32 minBridgeDist              = pikiMgr->mParms->mPikiParms.mBridgeSearchRange();
-		Iterator<BaseItem> bridgeIter(ItemBridge::mgr);
-		CI_LOOP(bridgeIter)
-		{
-			ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(*bridgeIter);
-			if (bridge->isAlive() && bridge->workable(mPosition)) {
-				f32 workDist = bridge->getWorkDistance(mBoundingSphere);
-				if (workDist < minBridgeDist) {
-					targetBridge  = bridge;
-					minBridgeDist = workDist;
-				}
-			}
-		}
-
-		if (targetBridge && minBridgeDist < minDist) {
-			minDist = minBridgeDist;
-			target  = targetBridge;
-			action  = PikiAI::ACT_Bridge;
-		}
-	}
-
-	// check for mold to attack
-	if (ItemRock::mgr) {
-		ItemRock::Item* targetRock = nullptr;
-		f32 minRockDist            = pikiMgr->mParms->mPikiParms.mNectarRockSearchRange();
-		Iterator<BaseItem> rockIter(ItemRock::mgr);
-		CI_LOOP(rockIter)
-		{
-			ItemRock::Item* rock = static_cast<ItemRock::Item*>(*rockIter);
-			if (rock->isAlive()) {
-				f32 workDist = rock->getWorkDistance(mBoundingSphere);
-				if (workDist < minRockDist) {
-					targetRock  = rock;
-					minRockDist = workDist;
-				}
-			}
-		}
-
-		if (targetRock && minRockDist < minDist) {
-			minDist = minRockDist;
-			target  = targetRock;
-			action  = PikiAI::ACT_BreakRock;
-		}
-	}
-
-	// check for geysers to break
-	if (ItemBigFountain::mgr) {
-		ItemBigFountain::Item* targetGeyser = nullptr;
-		f32 minGeyserDist                   = pikiMgr->mParms->mPikiParms.mNectarRockSearchRange();
-		Iterator<BaseItem> geyserIter(ItemBigFountain::mgr);
-		CI_LOOP(geyserIter)
-		{
-			ItemBigFountain::Item* geyser = static_cast<ItemBigFountain::Item*>(*geyserIter);
-			if (geyser->isAlive()) {
-				f32 workDist = geyser->getWorkDistance(mBoundingSphere);
-				if (workDist < minGeyserDist) {
-					targetGeyser  = geyser;
-					minGeyserDist = workDist;
-				}
-			}
-		}
-
-		if (targetGeyser && minGeyserDist < minDist) {
-			minDist = minGeyserDist;
-			target  = targetGeyser;
-			action  = PikiAI::ACT_BreakRock;
-		}
-	}
-
-	// check for clogs to break
-	if (ItemBarrel::mgr) {
-		ItemBarrel::Item* targetClog = nullptr;
-		f32 minClogDist              = pikiMgr->mParms->mPikiParms.mClogSearchRange();
-		Iterator<BaseItem> clogIter(ItemBarrel::mgr);
-		CI_LOOP(clogIter)
-		{
-			ItemBarrel::Item* clog = static_cast<ItemBarrel::Item*>(*clogIter);
-			if (clog->isAlive()) {
-				f32 workDist = clog->getWorkDistance(mBoundingSphere);
-				if (workDist < minClogDist) {
-					targetClog  = clog;
-					minClogDist = workDist;
-				}
-			}
-		}
-
-		if (targetClog && minClogDist < minDist) {
-			minDist = minClogDist;
-			target  = targetClog;
-			action  = PikiAI::ACT_BreakRock;
-		}
-	}
-
-	// check for buried treasures to dig
-	if (ItemTreasure::mgr) {
-		ItemTreasure::Item* targetTreasure = nullptr;
-		f32 minTreasureDist                = pikiMgr->mParms->mPikiParms.mBuriedTreasureSearchRange();
-		Iterator<BaseItem> treasureIter(ItemTreasure::mgr);
-		CI_LOOP(treasureIter)
-		{
-			ItemTreasure::Item* treasure = static_cast<ItemTreasure::Item*>(*treasureIter);
-			if (treasure->isAlive() && (getKind() == White || treasure->isVisible())) {
-				f32 workDist = treasure->getWorkDistance(mBoundingSphere);
-				if (workDist < minTreasureDist) {
-					targetTreasure  = treasure;
-					minTreasureDist = workDist;
-				}
-			}
-		}
-
-		if (targetTreasure && minTreasureDist < minDist) {
-			minDist = minTreasureDist;
-			target  = targetTreasure;
-			action  = PikiAI::ACT_BreakRock;
-		}
-	}
-
-	// check for spiderworts to harvest berries from
-	if (ItemPlant::mgr) {
-		ItemPlant::Item* targetPlant = nullptr;
-		f32 minPlantDist             = pikiMgr->mParms->mPikiParms.mSpiderWortSearchRange();
-		Iterator<BaseItem> plantIter(ItemPlant::mgr);
-		CI_LOOP(plantIter)
-		{
-			ItemPlant::Plant* plant = static_cast<ItemPlant::Plant*>(*plantIter);
-			if (plant->isAlive()) {
-				Vector3f plantPos = plant->getPosition();
-				f32 dist          = plantPos.distance(mBoundingSphere.mPosition);
-				if (dist < minPlantDist) {
-					targetPlant  = plant;
-					minPlantDist = dist;
-				}
-			}
-		}
-
-		if (targetPlant && minPlantDist < minDist) {
-			minDist = minPlantDist;
-			target  = targetPlant;
-			action  = PikiAI::ACT_Crop;
-		}
-	}
-
-	// check if we have an enemy to fight
-	EnemyBase* targetTeki = nullptr;
-	f32 minTekiDist       = pikiMgr->mParms->mPikiParms.mEnemySearchRange();
-	GeneralMgrIterator<EnemyBase> tekiIter(generalEnemyMgr);
-	CI_LOOP(tekiIter)
-	{
-		EnemyBase* enemy = tekiIter.getObject();
-		if (enemy->isAlive() && !enemy->isFlying() && enemy->isLivingThing()) {
-			f32 sphereDist = enemy->calcSphereDistance(this);
-			if (sphereDist < minTekiDist) {
-				targetTeki  = enemy;
-				minTekiDist = sphereDist;
-			}
-		}
-	}
-
-	if (targetTeki && minTekiDist < minDist) {
-		target = targetTeki;
-		action = PikiAI::ACT_Attack;
-	}
-
-	*outTarget = target;
-	return action;
-}
-
-/**
  * @note Address: 0x801B2DB0
  * @note Size: 0x7D4
  */
@@ -682,10 +366,6 @@ bool Piki::invokeAI(Game::CollEvent* event, bool isNaviSwarming)
 			attackArg.mCreature = creature;
 			attackArg.mCollPart = part;
 			return mBrain->start(PikiAI::ACT_Attack, &attackArg);
-		}
-
-		if (static_cast<EnemyBase*>(creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb) {
-			creature->isAlive(); // hm.
 		}
 	} break;
 
@@ -814,7 +494,7 @@ bool Piki::invokeAI(Game::PlatEvent* event)
 			ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(item);
 			if (bridge->isAlive() && bridge->workable(mPosition)) {
 				PikiAI::ActBridgeArg bridgeArg;
-				bridgeArg.mBridge = static_cast<ItemBridge::Item*>(item); // sure.
+				bridgeArg.mBridge = bridge;
 				return mBrain->start(PikiAI::ACT_Bridge, &bridgeArg);
 			}
 		}
@@ -853,12 +533,7 @@ bool Piki::checkInvokeAI(bool isSimpleCheck)
 {
 	Game::Creature* target = nullptr;
 	int action;
-	// sGraspSituationOptimise is always true, so graspSituation goes unused
-	if (sGraspSituationOptimise) {
-		action = graspSituation_Fast(&target);
-	} else {
-		action = graspSituation(&target);
-	}
+	action = graspSituation_Fast(&target);
 
 	// exit without actually starting the new state, just return that a new action is found
 	if (isSimpleCheck) {
@@ -949,7 +624,7 @@ bool Piki::invokeAI()
  */
 bool Piki::setActTransportArg(PikiAI::ActTransportArg& actTransportArg)
 {
-	actTransportArg.mGoal          = nullptr;
+	actTransportArg.mGoal = nullptr;
 	return true;
 }
 

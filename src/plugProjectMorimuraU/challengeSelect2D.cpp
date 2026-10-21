@@ -391,7 +391,7 @@ void TChallengePanel::addAlpha()
 				J2DPane* pane = mPane1;
 				Vector2f pos(pane->mGlobalMtx[0][3], pane->mGlobalMtx[1][3]);
 				efx2d::Arg arg(pos);
-				efx2d::T2DChangesmoke efx;
+				efx2d::TSimple1 efx(PID_Changesmoke);
 				efx.create(&arg);
 			}
 		}
@@ -1381,7 +1381,7 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	mRulesScreen->addAnim("challenge_rule_window_04.btk");
 	mRulesScreen->addAnim("challenge_rule_window_05.btk");
 
-	mEfxDive        = new efx2d::T2DChalDive;
+	mEfxDive        = new efx2d::TForever;
 	JKRHeap* backup = JKRGetCurrentHeap();
 	mDisp->mDebugExpHeap->becomeCurrentHeap();
 
@@ -1917,7 +1917,7 @@ bool TChallengeSelect::doUpdate()
 				J2DPane* pane = mPanelList[mCurrentSelection]->mPane2;
 				Vector2f pos(pane->mGlobalMtx[0][3], pane->mGlobalMtx[1][3]);
 				efx2d::Arg arg(pos);
-				efx2d::T2DChalDiveEnd efx;
+				efx2d::TSimple1 efx(PID_ChalDiveEnd);
 				efx.create(&arg);
 			}
 			mIsInDemo = false;

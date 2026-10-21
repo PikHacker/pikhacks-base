@@ -664,28 +664,28 @@ void Obj::setBossAppearBGM()
 void Obj::createEffect()
 {
 	for (int i = 0; i < 4; i++) {
-		mFootFX[i]  = new efx::TDamaFoot;
-		mFootWFX[i] = new efx::TDamaFootw;
+		mFootFX[i]  = new efx::TChasePos2(nullptr, PID_DamaFoot_1, PID_DamaFoot_2);
+		mFootWFX[i] = new efx::TChasePos(nullptr, PID_DamaFootW);
 
 		for (int j = 0; j < 3; j++) {
-			mHahenFX[i][j]     = new efx::TDamaHahen;
-			mDeadElecAFX[i][j] = new efx::TDamaDeadElecA;
+			mHahenFX[i][j]     = new efx::TChasePosPos(PID_DamaHahen);
+			mDeadElecAFX[i][j] = new efx::TChasePosPos(PID_DamaDeadElecA);
 		}
 
 		for (int j = 0; j < 2; j++) {
-			mDeadElecBFX[i][j]  = new efx::TDamaDeadElecB;
-			mDeadHahenAFX[i][j] = new efx::TDamaDeadHahenA;
+			mDeadElecBFX[i][j]  = new efx::TChasePos(PID_DamaDeadElecB);
+			mDeadHahenAFX[i][j] = new efx::TChasePosPos(PID_DamaDeadHahenA);
 		}
 
-		mDeadHahenBFX[i] = new efx::TDamaDeadHahenB;
+		mDeadHahenBFX[i] = new efx::TChasePosPos(PID_DamaDeadHahenB);
 	}
 
 	for (int i = 0; i < 3; i++) {
-		mSmokeFX[i] = new efx::TDamaSmoke;
+		mSmokeFX[i] = new efx::TChasePos(nullptr, PID_DamaSmoke);
 	}
 
-	mDeadHahenC1FX = new efx::TDamaDeadHahenC1;
-	mDeadHahenC2FX = new efx::TDamaDeadHahenC2;
+	mDeadHahenC1FX = new efx::TChaseMtx(PID_DamaDeadHahenC1, nullptr);
+	mDeadHahenC2FX = new efx::TChaseMtx(PID_DamaDeadHahenC2, nullptr);
 }
 
 /**
@@ -727,15 +727,14 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 		effectPos.y = *wbox->getSeaHeightPtr();
 
 		efx::Arg fxArg(effectPos);
-		efx::TDamaWalkw waterWalk;
+		efx::TSimple3 waterWalk(PID_DamaWalkW_1, PID_DamaWalkW_2, PID_DamaWalkW_3);
 
 		waterWalk.create(&fxArg);
 		PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_XL, (Vec*)&mJointPositions[footIdx][3]);
 
 	} else {
 		efx::Arg fxArg(effectPos);
-		efx::TDamaWalk walk;
-
+		efx::TSimple2 walk(PID_DamaWalk_1, PID_DamaWalk_2);
 		walk.create(&fxArg);
 	}
 
@@ -822,7 +821,7 @@ void Obj::startDeadEffect()
 	for (int i = 0; i < 4; i++) {
 		for (int j = 1; j < 3; j++) {
 			efx::Arg fxArg(mJointPositions[i][j]);
-			efx::TDamaDeadBomb deadBombFX;
+			efx::TSimple1 deadBombFX(PID_DamaDeadBomb);
 			deadBombFX.create(&fxArg);
 		}
 

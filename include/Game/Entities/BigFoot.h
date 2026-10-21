@@ -120,34 +120,34 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                                  // _2BC
-	f32 mStateTimer;                            // _2C0
-	StateID mNextState;                         // _2C4
-	Vector3f mTargetPosition;                   // _2C8
-	f32 mShadowScale;                           // _2D4
-	f32 mFlickWalkTimeMax;                      // _2D8
-	bool mUpdateMaterialAnim;                   // _2DC
-	bool mIsSmoking;                            // _2DD
-	bool mIsEnraged;                            // _2DE, next walk cycle will be fast
-	IKSystemMgr* mIkSystemMgr;                  // _2E0
-	IKSystemParms* mIkSystemParms;              // _2E4
-	BigFootGroundCallBack* mGroundCallBack;     // _2E8
-	BigFootShadowMgr* mShadowMgr;               // _2EC
-	Vector3f mJointPositions[4][4];             // _2F0
-	efx::TOdamaFoot* mFootFX[4];                // _3B0, stepping on ground
-	efx::TDamaFootw* mFootWFX[4];               // _3C0, stepping in water
-	efx::TDamaSmoke* mSmokeFX[3];               // _3D0, smoke
-	efx::TOdamaHahen* mHahenFX[4][3];           // _3DC, shards
-	efx::TDamaDeadElecA* mDeadElecAFX[4][3];    // _40C, death electricity A
-	efx::TDamaDeadElecB* mDeadElecBFX[4][2];    // _43C, death electricity B
-	efx::TOdamaDeadHahenA* mDeadHahenAFX[4][2]; // _45C, death shards A
-	efx::TOdamaDeadHahenB* mDeadHahenBFX[4];    // _47C, death shards B
-	efx::TOdamaDeadHahenC1* mDeadHahenC1FX;     // _48C, death shards C1
-	efx::TOdamaDeadHahenC2* mDeadHahenC2FX;     // _490, death shards C2
-	efx::TOdamaFur1* mBodyHairFX;               // _494
-	efx::TOdamaFur2* mLegHairFX[4];             // _498
-	Sys::MatLoopAnimator* mMatLoopAnimator;     // _4A8
-	                                            // _4AC = PelletView
+	FSM* mFsm;                              // _2BC
+	f32 mStateTimer;                        // _2C0
+	StateID mNextState;                     // _2C4
+	Vector3f mTargetPosition;               // _2C8
+	f32 mShadowScale;                       // _2D4
+	f32 mFlickWalkTimeMax;                  // _2D8
+	bool mUpdateMaterialAnim;               // _2DC
+	bool mIsSmoking;                        // _2DD
+	bool mIsEnraged;                        // _2DE, next walk cycle will be fast
+	IKSystemMgr* mIkSystemMgr;              // _2E0
+	IKSystemParms* mIkSystemParms;          // _2E4
+	BigFootGroundCallBack* mGroundCallBack; // _2E8
+	BigFootShadowMgr* mShadowMgr;           // _2EC
+	Vector3f mJointPositions[4][4];         // _2F0
+	efx::TChasePos2* mFootFX[4];            // _3B0, stepping on ground
+	efx::TChasePos* mFootWFX[4];            // _3C0, stepping in water
+	efx::TChasePos* mSmokeFX[3];            // _3D0, smoke
+	efx::TChasePosPos* mHahenFX[4][3];      // _3DC, shards
+	efx::TChasePosPos* mDeadElecAFX[4][3];  // _40C, death electricity A
+	efx::TChasePos* mDeadElecBFX[4][2];     // _43C, death electricity B
+	efx::TChasePosPos* mDeadHahenAFX[4][2]; // _45C, death shards A
+	efx::TChasePosPos* mDeadHahenBFX[4];    // _47C, death shards B
+	efx::TChaseMtx* mDeadHahenC1FX;         // _48C, death shards C1
+	efx::TChaseMtx* mDeadHahenC2FX;         // _490, death shards C2
+	efx::TOdamaFur1* mBodyHairFX;           // _494
+	efx::TOdamaFur2* mLegHairFX[4];         // _498
+	Sys::MatLoopAnimator* mMatLoopAnimator; // _4A8
+	                                        // _4AC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -180,25 +180,21 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mBaseCoefficient(this, 'fp01', "ベース係数", 3.0f, 0.0f, 10.0f)        // 'base factor'
-		    , mRaiseSlowdownFactor(this, 'fp02', "上げ減速係数", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor'
-		    , mDownwardAccelFactor(this, 'fp03', "下げ加速係数", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor'
-		    , mMinDecelFactor(this, 'fp04', "最低減加速係数", -2.5f, -10.0f,
-			                  10.0f) // 'minimum deceleration acceleration factor'
-		    , mMaxDecelFactor(this, 'fp05', "最高減加速係数", 10.0f, -10.0f,
-			                  10.0f)                                                           // 'maximum deceleration acceleration factor'
-		    , mLegSwing(this, 'fp06', "足の振り上げ", 120.0f, 0.0f, 200.0f)                    // 'leg swing'
-		    , mEnragedBaseCoefficient(this, 'fp11', "ベース係数(s)", 3.0f, 0.0f, 10.0f)        // 'base factor(s)'
-		    , mEnragedRaiseSlowdownFactor(this, 'fp12', "上げ減速係数(s)", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor(s)'
-		    , mEnragedDownwardAccelFactor(this, 'fp13', "下げ加速係数(s)", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor(s)'
-		    , mEnragedMinDecelFactor(this, 'fp14', "最低減加速係数(s)", -2.0f, -10.0f,
-			                         10.0f) // 'minimum deceleration acceleration factor(s)'
-		    , mEnragedMaxDecelFactor(this, 'fp15', "最高減加速係数(s)", 10.0f, -10.0f,
-			                         10.0f)                                            // 'maximum deceleration acceleration factor(s)'
-		    , mEnragedLegSwing(this, 'fp16', "足の振り上げ(s)", 120.0f, 0.0f, 200.0f)  // 'leg swing(s)'
-		    , mMovementOffset(this, 'fp17', "移動オフセット(s)", 50.0f, 0.0f, 200.0f)  // 'movement offset(s)'
-		    , mNormalTravelTime(this, 'fp20', "通常移動時間", 10.0f, 0.0f, 100.0f)     // 'normal travel time'
-		    , mPostShakeTravelTime(this, 'fp21', "振払後移動時間", 3.0f, 0.0f, 100.0f) // 'post-shakeoff travel time'
+		    , mBaseCoefficient(this, 'fp01', 3.0f, 0.0f, 10.0f)             // 'base factor'
+		    , mRaiseSlowdownFactor(this, 'fp02', -0.2f, -5.0f, 5.0f)        // 'raising deceleration factor'
+		    , mDownwardAccelFactor(this, 'fp03', 0.5f, -5.0f, 5.0f)         // 'downward acceleration factor'
+		    , mMinDecelFactor(this, 'fp04', -2.5f, -10.0f, 10.0f)           // 'minimum deceleration acceleration factor'
+		    , mMaxDecelFactor(this, 'fp05', 10.0f, -10.0f, 10.0f)           // 'maximum deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', 120.0f, 0.0f, 200.0f)                 // 'leg swing'
+		    , mEnragedBaseCoefficient(this, 'fp11', 3.0f, 0.0f, 10.0f)      // 'base factor(s)'
+		    , mEnragedRaiseSlowdownFactor(this, 'fp12', -0.2f, -5.0f, 5.0f) // 'raising deceleration factor(s)'
+		    , mEnragedDownwardAccelFactor(this, 'fp13', 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor(s)'
+		    , mEnragedMinDecelFactor(this, 'fp14', -2.0f, -10.0f, 10.0f)    // 'minimum deceleration acceleration factor(s)'
+		    , mEnragedMaxDecelFactor(this, 'fp15', 10.0f, -10.0f, 10.0f)    // 'maximum deceleration acceleration factor(s)'
+		    , mEnragedLegSwing(this, 'fp16', 120.0f, 0.0f, 200.0f)          // 'leg swing(s)'
+		    , mMovementOffset(this, 'fp17', 50.0f, 0.0f, 200.0f)            // 'movement offset(s)'
+		    , mNormalTravelTime(this, 'fp20', 10.0f, 0.0f, 100.0f)          // 'normal travel time'
+		    , mPostShakeTravelTime(this, 'fp21', 3.0f, 0.0f, 100.0f)        // 'post-shakeoff travel time'
 		{
 		}
 

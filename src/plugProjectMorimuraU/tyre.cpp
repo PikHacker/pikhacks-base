@@ -118,8 +118,8 @@ Obj::Obj()
 	mWaterBoxTyre        = nullptr;
 	mAnimator            = new ProperAnimator;
 	setFSM(new FSM);
-	mEfxSmoke1 = new efx::TKageTyresmoke(&mPosition, &mFaceDir);
-	mEfxSmoke2 = new efx::TKageTyresmoke(&mPosition, &mFaceDir);
+	mEfxSmoke1 = new efx::TChasePosYRot(&mPosition, &mFaceDir, PID_KageTyreSmoke);
+	mEfxSmoke2 = new efx::TChasePosYRot(&mPosition, &mFaceDir, PID_KageTyreSmoke);
 	mEfxHamon  = new efx::TEnemyHamonChasePos(&mEfxPosition);
 	mShadowMgr = new TyreShadowMgr(this);
 }
@@ -627,7 +627,7 @@ void Obj::flick()
 void Obj::deadEffect()
 {
 	efx::Arg arg(mModel->mJoints[mTyreRearJointIndex].getWorldMatrix()->getColumn(3));
-	efx::TKageTyredead efx;
+	efx::TSimple3 efx(PID_KageTyreDead_1, PID_KageTyreDead_2, PID_KageTyreDead_3);
 	efx.create(&arg);
 
 	arg.mPosition = (mModel->mJoints[mTyreFrontJointIndex].getWorldMatrix()->getColumn(3));
@@ -687,7 +687,7 @@ void Obj::landEffect(Vector3f& pos)
 		efx::TKchApWat efx;
 		efx.create(&arg);
 	} else {
-		efx::TKageRecov effect;
+		efx::TSimple2 effect(PID_KageRecov_1, PID_KageRecov_2);
 		efx::Arg arg(pos);
 		effect.create(&arg);
 	}

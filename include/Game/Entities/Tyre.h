@@ -19,8 +19,8 @@
  */
 
 namespace efx {
-struct TKageTyresmoke;
 struct TEnemyHamonChasePos;
+struct TChasePosYRot;
 } // namespace efx
 
 namespace Game {
@@ -112,8 +112,8 @@ struct Obj : public EnemyBase {
 	u8 mIsMoving;                        // _321
 	u8 mLandedOnPellet;                  // _322
 	Vector3f mEfxPosition;               // _324
-	efx::TKageTyresmoke* mEfxSmoke1;     // _330
-	efx::TKageTyresmoke* mEfxSmoke2;     // _334
+	efx::TChasePosYRot* mEfxSmoke1;      // _330
+	efx::TChasePosYRot* mEfxSmoke2;      // _334
 	TyreShadowMgr* mShadowMgr;           // _338
 	efx::TEnemyHamonChasePos* mEfxHamon; // _33C
 	WaterBox* mWaterBoxTyre;             // _340, EnemyBase already has an mWaterBox
@@ -153,7 +153,7 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mTyreRotationSpeed(this, 'fp01', "回転スピード", 0.5f, 0.0f, 100.0f) // rotation speed
+		    , mTyreRotationSpeed(this, 'fp01', 0.5f, 0.0f, 100.0f) // rotation speed
 		{
 		}
 

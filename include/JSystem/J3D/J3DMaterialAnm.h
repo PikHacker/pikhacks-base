@@ -54,8 +54,7 @@ struct J3DTexNoAnm {
 	{
 	}
 
-	// incredible useless u16 cast needed for match
-	virtual void calc(u16* data) const { getAnmTexPattern()->getTexNo(*(u16*)&mIndex, data); } // _08 (weak)
+	virtual void calc(u16* data) const { getAnmTexPattern()->getTexNo(mIndex, data); } // _08 (weak)
 
 	void operator=(J3DTexNoAnm const& other)
 	{

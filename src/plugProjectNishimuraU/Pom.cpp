@@ -369,8 +369,7 @@ void Obj::createShotEffect()
 	pos.y -= 60.0f;
 
 	efx::Arg arg(pos);
-	efx::TOnyonLay laySeed;
-
+	efx::TSimple2 laySeed(PID_OnyonLay_1, PID_OnyonLay_2);
 	laySeed.create(&arg);
 }
 
@@ -381,7 +380,7 @@ void Obj::createShotEffect()
 void Obj::createPomDeadEffect()
 {
 	efx::Arg arg(mPosition);
-	efx::TPonDead deadFX;
+	efx::TSimple1 deadFX(PID_PonDead);
 
 	deadFX.create(&arg);
 }

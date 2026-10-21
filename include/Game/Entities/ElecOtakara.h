@@ -31,8 +31,8 @@ struct Obj : public OtakaraBase::Obj {
 
 	// _00 		= VTBL
 	// _00-_2F4 = OtakaraBase::Obj
-	efx::TOtaChargeelec* mEfxChargeElec; // _2F4
-	                                     // _2F8 = PelletView
+	efx::TChaseMtxT2* mEfxChargeElec; // _2F4
+	                                  // _2F8 = PelletView
 };
 
 struct Mgr : public OtakaraBase::Mgr {

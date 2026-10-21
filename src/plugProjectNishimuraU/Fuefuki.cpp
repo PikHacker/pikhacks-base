@@ -510,7 +510,7 @@ void Obj::createEffect()
 {
 	mEfxWhistle = new efx::TCursor(PID_Cursor_NULL);
 	mEfxWhistle->init(3, 10);
-	mEfxOnpa = new efx::TFuebugOnpa;
+	mEfxOnpa = new efx::TChasePos(PID_FueBugOnpa);
 }
 
 /**

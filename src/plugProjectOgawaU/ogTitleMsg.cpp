@@ -234,7 +234,7 @@ TitleMsgDrop::TitleMsgDrop(J2DScreen* screen, J2DPane* pane, char* str)
     : TitleMsg(screen, pane, str)
 {
 	for (int i = 0; i < mStringLength; i++) {
-		mEffects[i] = new efx2d::T2DCvnameCave;
+		mEffects[i] = new efx2d::TForever3(PID_2DCvnameCave_1, PID_2DCvnameCave_2, PID_2DCvnameCave_3);
 	}
 }
 
@@ -334,7 +334,7 @@ TitleMsgWave::TitleMsgWave(J2DScreen* screen, J2DPane* pane, char* str)
 	}
 
 	for (u32 i = 0; i < mStringLength; i++) {
-		mEffects[i]   = new efx2d::T2DCvnameChal;
+		mEffects[i]   = new efx2d::TForever(PID_2DCvnameChal);
 		mDropFlags[i] = false;
 		mTimers[i]    = 0.0f;
 	}
@@ -439,7 +439,7 @@ TitleMsgClash::TitleMsgClash(J2DScreen* screen, J2DPane* pane, char* str)
 	mCurrScale = 50.0f;
 
 	for (u32 i = 0; i < mStringLength; i++) {
-		mEffects[i]   = new efx2d::T2DCvnameVs;
+		mEffects[i]   = new efx2d::TForever2(PID_2DCvnameVs_1, PID_2DCvnameVs_2);
 		mDropFlags[i] = false;
 		mTimers[i]    = time;
 	}

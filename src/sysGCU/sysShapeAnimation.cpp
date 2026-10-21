@@ -63,7 +63,6 @@ void AnimMgr::load(Stream& s, J3DModelData* md, JKRFileLoader* fl, char* folderN
 			animData = JKRFileLoader::getGlbResource(c->mName, fl);
 		}
 
-		JUT_ASSERTLINE(119, animData, "nanda~~~~?\n");
 		JUT_ASSERTLINE(64, animData, "animData null!\n");
 
 		c->mAnm  = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(animData);
@@ -121,17 +120,6 @@ void AnimMgr::connectBasArc(char* a2, char* a3, JKRFileLoader* a4)
 		if (basFile) {
 			c->mBasFile = (JAIAnimeSoundData*)basFile;
 		}
-	}
-}
-
-/**
- * @note Address: 0x8043E15C
- * @note Size: 0x54
- */
-void AnimMgr::registerSoundViewer(PSGame::SoundCreatureMgr* scm)
-{
-	for (AnimInfo* c = (AnimInfo*)mAnimInfo.mChild; c; c = (AnimInfo*)c->mNext) {
-		scm->registerAnime(c->mAnm, c->mName);
 	}
 }
 

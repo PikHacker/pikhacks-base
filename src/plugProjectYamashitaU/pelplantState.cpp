@@ -293,26 +293,26 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 
 	switch (mNextState) {
 	case PELPLANT_WaitMiddle:
-		efx::TPplGrow1 grow1;
+		efx::TSimple2 grow1(PID_PplGrow1_1, PID_PplGrow1_2);
 		grow1.create(&effectArg);
 		enemy->startMotion(mAnimIdx, nullptr);
 		return;
 	case PELPLANT_WaitFull:
 		switch (OBJ(enemy)->mSize) {
 		case PELLET_NUMBER_ONE:
-			efx::TPplGrow2 grow2;
+			efx::TSimple3 grow2(PID_PplGrow2_1, PID_PplGrow2_2, PID_PplGrow2_3);
 			grow2.create(&effectArg);
 			break;
 		case PELLET_NUMBER_FIVE:
-			efx::TPpl5Grow2 grow5;
+			efx::TSimple3 grow5(PID_PplGrow2_1, PID_PplGrow2_2, PID_Ppl5Grow2);
 			grow5.create(&effectArg);
 			break;
 		case PELLET_NUMBER_TEN:
-			efx::TPpl10Grow2 grow10;
+			efx::TSimple3 grow10(PID_PplGrow2_1, PID_PplGrow2_2, PID_Ppl10Grow2);
 			grow10.create(&effectArg);
 			break;
 		case PELLET_NUMBER_TWENTY:
-			efx::TPpl20Grow2 grow20;
+			efx::TSimple3 grow20(PID_PplGrow2_1, PID_PplGrow2_2, PID_Ppl20Grow2);
 			grow20.create(&effectArg);
 			break;
 		}

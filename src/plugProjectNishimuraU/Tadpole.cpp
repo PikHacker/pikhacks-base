@@ -161,7 +161,7 @@ void Obj::createLeapEffect()
 		}
 	} else {
 		efx::Arg arg(this);
-		efx::TPkDiveB pkDiveB;
+		efx::TSimple1 pkDiveB(PID_EnemyDive_2);
 
 		pkDiveB.create(&arg);
 	}

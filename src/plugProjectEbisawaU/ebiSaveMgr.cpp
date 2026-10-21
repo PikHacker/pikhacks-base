@@ -582,7 +582,6 @@ void FSMState_CardError::do_exec(TMgr* mgr)
 		break;
 	default:
 		JUT_PANICLINE(621, "想定外です。ありえねー"); // "Unexpected. Impossible"
-		JUT_PANICLINE(622, "P2Assert");
 		break;
 	}
 }

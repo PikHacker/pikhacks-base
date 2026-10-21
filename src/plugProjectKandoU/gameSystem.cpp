@@ -447,8 +447,8 @@ TObjectNode<GenericObjectMgr>* GameSystem::detachObjectMgr_reuse(GenericObjectMg
  */
 OptimiseController::OptimiseController()
     : Parameters(nullptr, "Dynamics")
-    , mPikminNeck(this, 'c000', "ピクミン首", true, false, true)                          // 'pikmin neck'
-    , mCollisionBufferEnabled(this, 'c001', "コリジョンバッファ有効", false, false, true) // 'collision buffer enabled'
+    , mPikminNeck(this, 'c000', true, false, true)              // 'pikmin neck'
+    , mCollisionBufferEnabled(this, 'c001', false, false, true) // 'collision buffer enabled'
 {
 }
 

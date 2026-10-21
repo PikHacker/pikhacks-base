@@ -185,10 +185,10 @@ struct Obj : public EnemyBase {
 	Color4 mFadeColor;                      // _38C
 	efx::TKageMove* mEfxMove;               // _390
 	efx::TKageRun* mEfxRun;                 // _394
-	efx::TKageTyreup* mEfxTyreup;           // _398
+	efx::TChasePosYRot* mEfxTyreup;         // _398
 	efx::TKageDead1* mEfxDead;              // _39C
-	efx::TKageFlick* mEfxFrontFlick;        // _3A0
-	efx::TKageFlick* mEfxBackFlick;         // _3A4
+	efx::TChasePos* mEfxFrontFlick;         // _3A0
+	efx::TChasePos* mEfxBackFlick;          // _3A4
 	u8 mHasStartedChaseBgm;                 // _3A8
 	u8 mIsFallStart;                        // _3A9
 	u8 mNeedAppearBgm;                      // _3AA
@@ -230,23 +230,19 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    // Pod?
-		    , mPodMoveSpeed(this, 'fp01', "ポッド移動速度", 10.0f, 0.0f, 100.0f)
-		    // Running away (escape)
-		    , mEscapeSpeed(this, 'fp02', "逃げ速度", 10.0f, 0.0f, 1000.0f)
-		    , mEscapeRotationSpeed(this, 'fp03', "逃げ回転速度率", 0.1f, 0.0f, 1.0f)
-		    , mMaxEscapeRotationStep(this, 'fp04', "逃げ回転最大速度", 10.0f, 0.0f, 360.0f)
-		    // Normal movement
-		    , mTravelSpeed(this, 'fp05', "2段階速度", 200.0f, 10.0f, 500.0f)
-		    , mRotationSpeed(this, 'fp06', "2段階回転速度率", 0.1f, 0.0f, 1.0f)
-		    , mMaxRotationStep(this, 'fp07', "2段階回転最大速度", 10.0f, 0.0f, 360.0f)
-		    // Walking speed
-		    , mWalkingSpeed(this, 'fp11', "歩き速度", 10.0f, 0.0f, 100.0f)
-		    , mTimerToTwoStep(this, 'ip01', "2段階へのタイマー", 300, 0, 3000)
-		    , mDosinStopTimerLength(this, 'ip03', "ドシン停止タイマー", 200, 0, 600)
-		    , mFreezeTimerLength(this, 'ip04', "逃げ停止タイマー", 200, 0, 600)
-		    , mContinuousEscapeTimerLength(this, 'ip05', "連続逃げタイマー", 200, 0, 600)
-		    , mStandStillTimerLength(this, 'ip06', "つかれ停止タイマー", 200, 0, 600)
+		    , mPodMoveSpeed(this, 'fp01', 10.0f, 0.0f, 100.0f)
+		    , mEscapeSpeed(this, 'fp02', 10.0f, 0.0f, 1000.0f)
+		    , mEscapeRotationSpeed(this, 'fp03', 0.1f, 0.0f, 1.0f)
+		    , mMaxEscapeRotationStep(this, 'fp04', 10.0f, 0.0f, 360.0f)
+		    , mTravelSpeed(this, 'fp05', 200.0f, 10.0f, 500.0f)
+		    , mRotationSpeed(this, 'fp06', 0.1f, 0.0f, 1.0f)
+		    , mMaxRotationStep(this, 'fp07', 10.0f, 0.0f, 360.0f)
+		    , mWalkingSpeed(this, 'fp11', 10.0f, 0.0f, 100.0f)
+		    , mTimerToTwoStep(this, 'ip01', 300, 0, 3000)
+		    , mDosinStopTimerLength(this, 'ip03', 200, 0, 600)
+		    , mFreezeTimerLength(this, 'ip04', 200, 0, 600)
+		    , mContinuousEscapeTimerLength(this, 'ip05', 200, 0, 600)
+		    , mStandStillTimerLength(this, 'ip06', 200, 0, 600)
 		{
 		}
 

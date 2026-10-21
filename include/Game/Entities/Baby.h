@@ -13,7 +13,7 @@
  */
 
 namespace efx {
-struct TBabyBorn;
+struct TChasePos;
 } // namespace efx
 
 namespace Game {
@@ -64,7 +64,7 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                    // _2BC
 	MouthSlots mMouthSlots;       // _2C0
 	Vector3f mTargetPos;          // _2C8
-	efx::TBabyBorn* mEfxBabyBorn; // _2D4
+	efx::TChasePos* mEfxBabyBorn; // _2D4
 	                              // _2D8 = PelletView
 };
 
@@ -88,8 +88,8 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPoisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , mNectarChance(this, 'fp11', "蜜出し確率", 0.2f, 0.0f, 1.0f)       // 'probability of getting out honey'
+		    , mPoisonDamage(this, 'fp01', 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mNectarChance(this, 'fp11', 0.2f, 0.0f, 1.0f)       // 'probability of getting out honey'
 		{
 		}
 

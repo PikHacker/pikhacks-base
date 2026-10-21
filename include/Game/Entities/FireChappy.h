@@ -66,9 +66,9 @@ struct Obj : public ChappyBase::Obj {
 	// _00-_2E4	= ChappyBase::Obj
 	bool mOnFire;                         // _2E4
 	efx::TYakiBody* mEfxBody;             // _2E8
-	efx::TYakiFlick* mEfxFlick;           // _2EC
-	efx::TYakiDeadsmoke* mEfxDeadsmoke;   // _2F0
-	efx::TYakiSteam* mEfxSteam;           // _2F4
+	efx::TChaseMtx* mEfxFlick;            // _2EC
+	efx::TChaseMtxT* mEfxDeadsmoke;       // _2F0
+	efx::TChaseMtx* mEfxSteam;            // _2F4
 	f32 mAnimationFireTimer;              // _2F8
 	Sys::MatLoopAnimator* mLoopAnimators; // _2FC, array of 2 animators
 	                                      // _300 = PelletView

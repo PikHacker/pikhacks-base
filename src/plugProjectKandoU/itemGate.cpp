@@ -82,7 +82,7 @@ void ItemGate::onInit(CreatureInitArg* arg)
 	if (mIsElectric) {
 		mMatAnimator = new Sys::MatLoopAnimator;
 		mMatAnimator->start(&ItemDengekiGate::mgr->mMatAnimation);
-		mEgateEfxA  = new efx::TEgateA;
+		mEgateEfxA  = new efx::TChaseMtx(PID_EgateA, nullptr);
 		mEgateEfxBC = new efx::TEgateBC;
 	} else {
 		mMatAnimator = new Sys::MatLoopAnimator;
@@ -270,10 +270,10 @@ void ItemGate::startDownMotion()
 	mAnimator.startAnim(mSegmentsDown + 3, this);
 	mAnimSpeed = 30.0f;
 	if (mColor == 0) {
-		efx::TGate1Down gateDown(&mBaseTrMatrix);
+		efx::TSimpleMtx2 gateDown(&mBaseTrMatrix, PID_Gate1Down_1, PID_Gate1Down_2);
 		gateDown.create(nullptr);
 	} else {
-		efx::TGate2Down gateDown(&mBaseTrMatrix);
+		efx::TSimpleMtx2 gateDown(&mBaseTrMatrix, PID_Gate2Down_1, PID_Gate2Down_2);
 		gateDown.create(nullptr);
 	}
 	mMabiki.mBuffer += 200;
@@ -438,7 +438,7 @@ void ItemGate::getLifeGaugeParam(Game::LifeGaugeParam& param)
 ItemGateMgr::ItemGateMgr()
     : BaseItemMgr(1)
 {
-	mItemName = "Gate";
+	mItemName            = "Gate";
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
 	loadArchive("gate-arc.szs");
@@ -461,7 +461,7 @@ ItemGateMgr::ItemGateMgr()
  */
 void ItemGateMgr::setupGate(Game::ItemGate* gate)
 {
-	gate->mModel = new SysShape::Model(mModelData[0], 0, 2);
+	gate->mModel             = new SysShape::Model(mModelData[0], 0, 2);
 	gate->mAnimator.mAnimMgr = mAnimMgr;
 	gate->mAnimator.startAnim(0, nullptr);
 }
@@ -480,8 +480,8 @@ void ItemGateMgr::setupPlatform(Game::ItemGate* gate)
 	platArgCentre.mPlatform   = mCentrePlatform;
 	platArgCentre.mMatrix     = moveJointMatrix;
 	gate->mCentrePlatInstance = platMgr->addInstance(platArgCentre);
-	Matrixf* fixJointMatrix = gate->mModel->getJoint("fix")->getWorldMatrix();
-	ID32 sideID             = 'none';
+	Matrixf* fixJointMatrix   = gate->mModel->getJoint("fix")->getWorldMatrix();
+	ID32 sideID               = 'none';
 	PlatAddInstanceArg platArgSide;
 	platArgSide.mItem             = gate;
 	platArgSide.mId               = sideID;
@@ -786,7 +786,7 @@ void GateDownState::onKeyEvent(Game::ItemGate* gate, const SysShape::KeyEvent& k
  */
 ItemDengekiGate::Mgr::Mgr()
 {
-	mItemName = "電撃ゲート"; // electric shock gate
+	mItemName            = "電撃ゲート"; // electric shock gate
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
 	loadArchive("e-gate-arc.szs");
@@ -810,8 +810,8 @@ ItemDengekiGate::Mgr::Mgr()
 
 void ItemDengekiGate::Mgr::setupGate(Game::ItemGate* gate)
 {
-	gate->mIsElectric = true;
-	gate->mModel = new SysShape::Model(mModelData[0], 0, 2);
+	gate->mIsElectric        = true;
+	gate->mModel             = new SysShape::Model(mModelData[0], 0, 2);
 	gate->mAnimator.mAnimMgr = mAnimMgr;
 	gate->mAnimator.startAnim(0, nullptr);
 }
@@ -830,8 +830,8 @@ void ItemDengekiGate::Mgr::setupPlatform(Game::ItemGate* gate)
 	platArgCentre.mPlatform   = mCentrePlatform;
 	platArgCentre.mMatrix     = moveJointMatrix;
 	gate->mCentrePlatInstance = platMgr->addInstance(platArgCentre);
-	Matrixf* fixJointMatrix = gate->mModel->getJoint("pole")->getWorldMatrix();
-	ID32 sideID             = 'side';
+	Matrixf* fixJointMatrix   = gate->mModel->getJoint("pole")->getWorldMatrix();
+	ID32 sideID               = 'side';
 	PlatAddInstanceArg platArgSide;
 	platArgSide.mItem             = gate;
 	platArgSide.mId               = sideID;
@@ -890,27 +890,6 @@ BaseItem* ItemDengekiGate::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, Gam
 	gate->mFaceDir = roundAng(rot.y);
 	gate->setPosition(pos, false);
 	return gate;
-}
-
-/**
- * @note Address: 0x801CA36C
- * @note Size: 0x14
- */
-char* ItemDengekiGate::Mgr::getCaveName(int outsideCave)
-{
-	if (outsideCave == 0) {
-		return "e-gate";
-	}
-	return nullptr;
-}
-
-/**
- * @note Address: 0x801CA380
- * @note Size: 0x4C
- */
-int ItemDengekiGate::Mgr::getCaveID(char* cave)
-{
-	return -(strncmp("e-gate", cave, strlen("e-gate")) != 0);
 }
 
 } // namespace Game

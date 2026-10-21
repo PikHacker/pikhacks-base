@@ -94,12 +94,12 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mCarrySpeed(this, 'fp01', "運搬速度", 100.0f, 0.0f, 300.0f)      // 'transport speed'
-		    , mReturnSpeed(this, 'fp02', "戻り速度", 100.0f, 0.0f, 300.0f)     // 'return speed'
-		    , mMinScale(this, 'fp03', "スケール最小", 1.0f, 0.0f, 3.0f)        // 'scale minimum'
-		    , mMaxScale(this, 'fp04', "スケール最大", 1.2f, 0.0f, 3.0f)        // 'scale maximum'
-		    , mPoisonDamage(this, 'fp05', "白ピクミン", 300.0f, 0.0f, 1000.0f) // 'white pikmin'
-		    , mHidingTime(this, 'ip01', "隠れている時間", 30, 0, 120)          // 'hiding time'
+		    , mCarrySpeed(this, 'fp01', 100.0f, 0.0f, 300.0f)    // 'transport speed'
+		    , mReturnSpeed(this, 'fp02', 100.0f, 0.0f, 300.0f)   // 'return speed'
+		    , mMinScale(this, 'fp03', 1.0f, 0.0f, 3.0f)          // 'scale minimum'
+		    , mMaxScale(this, 'fp04', 1.2f, 0.0f, 3.0f)          // 'scale maximum'
+		    , mPoisonDamage(this, 'fp05', 300.0f, 0.0f, 1000.0f) // 'white pikmin'
+		    , mHidingTime(this, 'ip01', 30, 0, 120)              // 'hiding time'
 		{
 		}
 

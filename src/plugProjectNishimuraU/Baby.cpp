@@ -288,7 +288,7 @@ void Obj::createHoney()
  */
 void Obj::createEffect()
 {
-	mEfxBabyBorn = new efx::TBabyBorn(&mPosition);
+	mEfxBabyBorn = new efx::TChasePos(&mPosition, PID_BabyBorn);
 }
 
 /**

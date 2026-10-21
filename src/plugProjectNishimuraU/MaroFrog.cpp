@@ -39,7 +39,7 @@ void Obj::attackNaviPosition()
  */
 void Obj::createEffect()
 {
-	mEfxPota = new efx::TFrogPota;
+	mEfxPota = new efx::TChasePos(PID_FrogPota);
 }
 
 } // namespace MaroFrog

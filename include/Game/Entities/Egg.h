@@ -101,11 +101,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mSingleNectarChance(this, 'fp01', "蜜レート", 1.0f, 0.0f, 1.0f)       // 'nectar rate'
-		    , mDoubleNectarChance(this, 'fp02', "蜜x2レート", 1.0f, 0.0f, 1.0f)     // 'nectar x2 rate'
-		    , mMititesChance(this, 'fp03', "タマゴムシx10レート", 1.0f, 0.0f, 1.0f) // 'mitite x10 rate'
-		    , mSpicyChance(this, 'fp04', "赤ドーピングレート", 1.0f, 0.0f, 1.0f)    // 'red doping rate'
-		    , mBitterChance(this, 'fp05', "黒ドーピングレート", 1.0f, 0.0f, 1.0f)   // 'black doping rate'
+		    , mSingleNectarChance(this, 'fp01', 1.0f, 0.0f, 1.0f) // 'nectar rate'
+		    , mDoubleNectarChance(this, 'fp02', 1.0f, 0.0f, 1.0f) // 'nectar x2 rate'
+		    , mMititesChance(this, 'fp03', 1.0f, 0.0f, 1.0f)      // 'mitite x10 rate'
+		    , mSpicyChance(this, 'fp04', 1.0f, 0.0f, 1.0f)        // 'red doping rate'
+		    , mBitterChance(this, 'fp05', 1.0f, 0.0f, 1.0f)       // 'black doping rate'
 		{
 		}
 

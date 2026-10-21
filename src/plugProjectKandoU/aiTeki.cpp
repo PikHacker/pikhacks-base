@@ -53,10 +53,6 @@ int ActTeki::exec()
 	if (!mFollowingTeki->isAlive()) {
 		if (mIsLeafChappy) {
 			mIsLeafChappy = false;
-
-			if (!Game::BaseHIOParms::sTekiChappyFlag) {
-				Game::GameStat::alivePikis.inc(mParent);
-			}
 		}
 
 		if (mParent->getStateID() != Game::PIKISTATE_Panic) {

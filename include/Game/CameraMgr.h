@@ -131,67 +131,67 @@ struct CameraData {
 struct CameraParms : public Parameters {
 	CameraParms()
 	    : Parameters(nullptr, "CameraParms")
-	    , mNearLowDist(this, 'cnld', "Near(Low)距離", 600.0f, 10.0f, 5000.0f)          // 'near(low) distance'
-	    , mNearLowAngle(this, 'cnla', "Near(Low)アングル", 20.0f, 0.0f, 90.0f)         // 'near(low) angle'
-	    , mNearLowFOV(this, 'cnlf', "Near(Low)ＦＯＶ", 10.0f, 1.0f, 60.0f)             // 'near(low) fov'
-	    , mNearLowOffset(this, 'cnlo', "Near(Low)オフセット", 25.0f, 10.0f, 500.0f)    // 'near(low) offset'
-	    , mNearLowWeight(this, 'cnlw', "Near(Low)ウェイト", 1000.0f, 10.0f, 5000.0f)   // 'near(low) weight'
-	    , mNearLowDetached(this, 'nldt', "Near(Low)Detached", 17.5f, 0.0f, 1000.0f)    // 'near(low) detached'
-	    , mNearLowNear(this, 'nlnc', "Near(Low)Near", 1.0f, 1.0f, 12800.0f)            // 'near(low) near'
-	    , mNearLowFar(this, 'nlfc', "Near(Low)Far", 12800.0f, 1.0f, 12800.0f)          // 'near(low) far'
-	    , mMidLowDist(this, 'cmld', "Mid(Low)距離", 600.0f, 10.0f, 5000.0f)            // 'mid(low) distance'
-	    , mMidLowAngle(this, 'cmla', "Mid(Low)アングル", 21.0f, 0.0f, 90.0f)           // 'mid(low) angle'
-	    , mMidLowFOV(this, 'cmlf', "Mid(Low)ＦＯＶ", 23.0f, 1.0f, 60.0f)               // 'mid(low) fov'
-	    , mMidLowOffset(this, 'cmlo', "Mid(Low)オフセット", 38.0f, 10.0f, 500.0f)      // 'mid(low) offset'
-	    , mMidLowWeight(this, 'cmlw', "Mid(Low)ウェイト", 500.0f, 10.0f, 5000.0f)      // 'mid(low) weight'
-	    , mMidLowDetached(this, 'mldt', "Mid(Low)Detached", 55.0f, 0.0f, 1000.0f)      // 'mid(low) detached'
-	    , mMidLowNear(this, 'mlnc', "Mid(Low)Near", 1.0f, 1.0f, 12800.0f)              // 'mid(low) near'
-	    , mMidLowFar(this, 'mlfc', "Mid(Low)Far", 12800.0f, 1.0f, 12800.0f)            // 'mid(low) far'
-	    , mFarLowDist(this, 'cfld', "Far(Low)距離", 900.0f, 10.0f, 5000.0f)            // 'far(low) distance'
-	    , mFarLowAngle(this, 'cfla', "Far(Low)アングル", 25.0f, 0.0f, 90.0f)           // 'far(low) angle'
-	    , mFarLowFOV(this, 'cflf', "Far(Low)ＦＯＶ", 26.0f, 1.0f, 60.0f)               // 'far(low) fov'
-	    , mFarLowOffset(this, 'cflo', "Far(Low)オフセット", 33.0f, 10.0f, 500.0f)      // 'far(low) offset'
-	    , mFarLowWeight(this, 'cflw', "Far(Low)ウェイト", 400.0f, 10.0f, 5000.0f)      // 'far(low) weight'
-	    , mFarLowDetached(this, 'fldt', "Far(Low)Detached", 130.0f, 0.0f, 1000.0f)     // 'far(low) detached'
-	    , mFarLowNear(this, 'flnc', "Far(Low)Near", 1.0f, 1.0f, 12800.0f)              // 'far(low) near'
-	    , mFarLowFar(this, 'flfc', "Far(Low)Far", 12800.0f, 1.0f, 12800.0f)            // 'far(low) far'
-	    , mNearHighDist(this, 'cnhd', "Near(High)距離", 900.0f, 10.0f, 5000.0f)        // 'near(high) distance'
-	    , mNearHighAngle(this, 'cnha', "Near(High)アングル", 60.0f, 0.0f, 90.0f)       // 'near(high) angle'
-	    , mNearHighFOV(this, 'cnhf', "Near(High)ＦＯＶ", 10.0f, 1.0f, 60.0f)           // 'near(high) fov'
-	    , mNearHighOffset(this, 'cnho', "Near(High)オフセット", 40.0f, 10.0f, 500.0f)  // 'near(high) offset'
-	    , mNearHighWeight(this, 'cnhw', "Near(High)ウェイト", 1000.0f, 10.0f, 5000.0f) // 'near(high) weight'
-	    , mNearHighDetached(this, 'nhdt', "Near(High)Detached", 27.5f, 0.0f, 1000.0f)  // 'near(high) detached'
-	    , mNearHighNear(this, 'nhnc', "Near(High)Near", 1.0f, 1.0f, 12800.0f)          // 'near(high) near'
-	    , mNearHighFar(this, 'nhfc', "Near(High)Far", 12800.0f, 1.0f, 12800.0f)        // 'near(high) far'
-	    , mMidHighDist(this, 'cmhd', "Mid(High)距離", 900.0f, 10.0f, 5000.0f)          // 'mid(high) distance'
-	    , mMidHighAngle(this, 'cmha', "Mid(High)アングル", 60.0f, 0.0f, 90.0f)         // 'mid(high) angle'
-	    , mMidHighFOV(this, 'cmhf', "Mid(High)ＦＯＶ", 20.0f, 1.0f, 60.0f)             // 'mid(high) fov'
-	    , mMidHighOffset(this, 'cmho', "Mid(High)オフセット", 70.0f, 10.0f, 500.0f)    // 'mid(high) offset'
-	    , mMidHighWeight(this, 'cmhw', "Mid(High)ウェイト", 500.0f, 10.0f, 5000.0f)    // 'mid(high) weight'
-	    , mMidHighDetached(this, 'mhdt', "Mid(High)Detached", 75.0f, 0.0f, 1000.0f)    // 'mid(high) detached'
-	    , mMidHighNear(this, 'mhnc', "Mid(High)Near", 1.0f, 1.0f, 12800.0f)            // 'mid(high) near'
-	    , mMidHighFar(this, 'mhfc', "Mid(High)Far", 12800.0f, 1.0f, 12800.0f)          // 'mid(high) far'
-	    , mFarHighDist(this, 'cfhd', "Far(High)距離", 1200.0f, 10.0f, 5000.0f)         // 'far(high) distance'
-	    , mFarHighAngle(this, 'cfha', "Far(High)アングル", 60.0f, 0.0f, 90.0f)         // 'far(high) angle'
-	    , mFarHighFOV(this, 'cfhf', "Far(High)ＦＯＶ", 30.0f, 1.0f, 60.0f)             // 'far(high) fov'
-	    , mFarHighOffset(this, 'cfho', "Far(High)オフセット", 100.0f, 10.0f, 500.0f)   // 'far(high) offset'
-	    , mFarHighWeight(this, 'cfhw', "Far(High)ウェイト", 200.0f, 10.0f, 5000.0f)    // 'far(high) weight'
-	    , mFarHighDetached(this, 'fhdt', "Far(High)Detached", 165.0f, 0.0f, 1000.0f)   // 'far(high) detached'
-	    , mFarHighNear(this, 'fhnc', "Far(High)Near", 1.0f, 1.0f, 12800.0f)            // 'far(high) near'
-	    , mFarHighFar(this, 'fhfc', "Far(High)Far", 12800.0f, 1.0f, 12800.0f)          // 'far(high) far'
-	    , mZoomDist(this, 'zmdt', "ZOOM 距離", 250.0f, 10.0f, 5000.0f)                 // 'ZOOM distance'
-	    , mZoomAngle(this, 'zman', "ZOOM アングル", 12.0f, 0.0f, 90.0f)                // 'ZOOM angle'
-	    , mZoomFOV(this, 'zmfv', "ZOOM ＦＯＶ", 35.0f, 1.0f, 60.0f)                    // 'ZOOM fov'
-	    , mCollRadius(this, 'clcr', "コリジョン半径", 300.0f, 0.0f, 500.0f)            // 'collision radius'
-	    , mCollInterpSpeed(this, 'clms', "コリジョン補間速度", 0.005f, 0.001f, 1.0f)   // 'collision interpolation speed'
-	    , mCollCorrHeight(this, 'clmh', "コリジョン補正高", 5.0f, 0.0f, 100.0f)        // 'collision correction height'
-	    , mNoCollHeight(this, 'clnh', "コリジョン無し高", 25.0f, 0.0f, 500.0f)         // 'no collision height'
-	    , mSettingChangeSpeed(this, 'cpmd', "設定変更速度", 0.1f, 0.0f, 1.0f)          // 'setting change speed'
-	    , mRotSpeed(this, 'cmmt', "回転速度", 0.2f, 0.0f, 1.0f)                        // 'rotation speed'
-	    , mRotFollowTime(this, 'cmft', "回転追従時間", 0.6f, 0.0f, 3.0f)               // 'rotation follow time'
-	    , mRotAccel(this, 'cmta', "回転加速度", 0.005f, 0.0f, 1.0f)                    // 'rotation acceleration'
-	    , mMaxRotSpeed(this, 'cmtm', "回転最高速度", 0.9f, 0.0f, 5.0f)                 // 'max rotation speed'
-	    , mRotDampRate(this, 'cmtb', "回転減衰率", 0.85f, 0.0f, 1.0f)                  // 'rotation damping rate'
+	    , mNearLowDist(this, 'cnld', 600.0f, 10.0f, 5000.0f)     // 'near(low) distance'
+	    , mNearLowAngle(this, 'cnla', 20.0f, 0.0f, 90.0f)        // 'near(low) angle'
+	    , mNearLowFOV(this, 'cnlf', 10.0f, 1.0f, 60.0f)          // 'near(low) fov'
+	    , mNearLowOffset(this, 'cnlo', 25.0f, 10.0f, 500.0f)     // 'near(low) offset'
+	    , mNearLowWeight(this, 'cnlw', 1000.0f, 10.0f, 5000.0f)  // 'near(low) weight'
+	    , mNearLowDetached(this, 'nldt', 17.5f, 0.0f, 1000.0f)   // 'near(low) detached'
+	    , mNearLowNear(this, 'nlnc', 1.0f, 1.0f, 12800.0f)       // 'near(low) near'
+	    , mNearLowFar(this, 'nlfc', 12800.0f, 1.0f, 12800.0f)    // 'near(low) far'
+	    , mMidLowDist(this, 'cmld', 600.0f, 10.0f, 5000.0f)      // 'mid(low) distance'
+	    , mMidLowAngle(this, 'cmla', 21.0f, 0.0f, 90.0f)         // 'mid(low) angle'
+	    , mMidLowFOV(this, 'cmlf', 23.0f, 1.0f, 60.0f)           // 'mid(low) fov'
+	    , mMidLowOffset(this, 'cmlo', 38.0f, 10.0f, 500.0f)      // 'mid(low) offset'
+	    , mMidLowWeight(this, 'cmlw', 500.0f, 10.0f, 5000.0f)    // 'mid(low) weight'
+	    , mMidLowDetached(this, 'mldt', 55.0f, 0.0f, 1000.0f)    // 'mid(low) detached'
+	    , mMidLowNear(this, 'mlnc', 1.0f, 1.0f, 12800.0f)        // 'mid(low) near'
+	    , mMidLowFar(this, 'mlfc', 12800.0f, 1.0f, 12800.0f)     // 'mid(low) far'
+	    , mFarLowDist(this, 'cfld', 900.0f, 10.0f, 5000.0f)      // 'far(low) distance'
+	    , mFarLowAngle(this, 'cfla', 25.0f, 0.0f, 90.0f)         // 'far(low) angle'
+	    , mFarLowFOV(this, 'cflf', 26.0f, 1.0f, 60.0f)           // 'far(low) fov'
+	    , mFarLowOffset(this, 'cflo', 33.0f, 10.0f, 500.0f)      // 'far(low) offset'
+	    , mFarLowWeight(this, 'cflw', 400.0f, 10.0f, 5000.0f)    // 'far(low) weight'
+	    , mFarLowDetached(this, 'fldt', 130.0f, 0.0f, 1000.0f)   // 'far(low) detached'
+	    , mFarLowNear(this, 'flnc', 1.0f, 1.0f, 12800.0f)        // 'far(low) near'
+	    , mFarLowFar(this, 'flfc', 12800.0f, 1.0f, 12800.0f)     // 'far(low) far'
+	    , mNearHighDist(this, 'cnhd', 900.0f, 10.0f, 5000.0f)    // 'near(high) distance'
+	    , mNearHighAngle(this, 'cnha', 60.0f, 0.0f, 90.0f)       // 'near(high) angle'
+	    , mNearHighFOV(this, 'cnhf', 10.0f, 1.0f, 60.0f)         // 'near(high) fov'
+	    , mNearHighOffset(this, 'cnho', 40.0f, 10.0f, 500.0f)    // 'near(high) offset'
+	    , mNearHighWeight(this, 'cnhw', 1000.0f, 10.0f, 5000.0f) // 'near(high) weight'
+	    , mNearHighDetached(this, 'nhdt', 27.5f, 0.0f, 1000.0f)  // 'near(high) detached'
+	    , mNearHighNear(this, 'nhnc', 1.0f, 1.0f, 12800.0f)      // 'near(high) near'
+	    , mNearHighFar(this, 'nhfc', 12800.0f, 1.0f, 12800.0f)   // 'near(high) far'
+	    , mMidHighDist(this, 'cmhd', 900.0f, 10.0f, 5000.0f)     // 'mid(high) distance'
+	    , mMidHighAngle(this, 'cmha', 60.0f, 0.0f, 90.0f)        // 'mid(high) angle'
+	    , mMidHighFOV(this, 'cmhf', 20.0f, 1.0f, 60.0f)          // 'mid(high) fov'
+	    , mMidHighOffset(this, 'cmho', 70.0f, 10.0f, 500.0f)     // 'mid(high) offset'
+	    , mMidHighWeight(this, 'cmhw', 500.0f, 10.0f, 5000.0f)   // 'mid(high) weight'
+	    , mMidHighDetached(this, 'mhdt', 75.0f, 0.0f, 1000.0f)   // 'mid(high) detached'
+	    , mMidHighNear(this, 'mhnc', 1.0f, 1.0f, 12800.0f)       // 'mid(high) near'
+	    , mMidHighFar(this, 'mhfc', 12800.0f, 1.0f, 12800.0f)    // 'mid(high) far'
+	    , mFarHighDist(this, 'cfhd', 1200.0f, 10.0f, 5000.0f)    // 'far(high) distance'
+	    , mFarHighAngle(this, 'cfha', 60.0f, 0.0f, 90.0f)        // 'far(high) angle'
+	    , mFarHighFOV(this, 'cfhf', 30.0f, 1.0f, 60.0f)          // 'far(high) fov'
+	    , mFarHighOffset(this, 'cfho', 100.0f, 10.0f, 500.0f)    // 'far(high) offset'
+	    , mFarHighWeight(this, 'cfhw', 200.0f, 10.0f, 5000.0f)   // 'far(high) weight'
+	    , mFarHighDetached(this, 'fhdt', 165.0f, 0.0f, 1000.0f)  // 'far(high) detached'
+	    , mFarHighNear(this, 'fhnc', 1.0f, 1.0f, 12800.0f)       // 'far(high) near'
+	    , mFarHighFar(this, 'fhfc', 12800.0f, 1.0f, 12800.0f)    // 'far(high) far'
+	    , mZoomDist(this, 'zmdt', 250.0f, 10.0f, 5000.0f)        // 'ZOOM distance'
+	    , mZoomAngle(this, 'zman', 12.0f, 0.0f, 90.0f)           // 'ZOOM angle'
+	    , mZoomFOV(this, 'zmfv', 35.0f, 1.0f, 60.0f)             // 'ZOOM fov'
+	    , mCollRadius(this, 'clcr', 300.0f, 0.0f, 500.0f)        // 'collision radius'
+	    , mCollInterpSpeed(this, 'clms', 0.005f, 0.001f, 1.0f)   // 'collision interpolation speed'
+	    , mCollCorrHeight(this, 'clmh', 5.0f, 0.0f, 100.0f)      // 'collision correction height'
+	    , mNoCollHeight(this, 'clnh', 25.0f, 0.0f, 500.0f)       // 'no collision height'
+	    , mSettingChangeSpeed(this, 'cpmd', 0.1f, 0.0f, 1.0f)    // 'setting change speed'
+	    , mRotSpeed(this, 'cmmt', 0.2f, 0.0f, 1.0f)              // 'rotation speed'
+	    , mRotFollowTime(this, 'cmft', 0.6f, 0.0f, 3.0f)         // 'rotation follow time'
+	    , mRotAccel(this, 'cmta', 0.005f, 0.0f, 1.0f)            // 'rotation acceleration'
+	    , mMaxRotSpeed(this, 'cmtm', 0.9f, 0.0f, 5.0f)           // 'max rotation speed'
+	    , mRotDampRate(this, 'cmtb', 0.85f, 0.0f, 1.0f)          // 'rotation damping rate'
 	{
 	}
 
@@ -264,25 +264,25 @@ struct CameraParms : public Parameters {
 struct VibrationParms : public Parameters {
 	VibrationParms()
 	    : Parameters(nullptr, "VibrationParms")
-	    , mElevationLightVib(this, 'celv', "ELEVATION_LIGHT(vib)", 1.0f, 0.0f, 10.0f)
-	    , mElevationMiddleVib(this, 'cemv', "ELEVATION_MIDDLE(vib)", 3.0f, 0.0f, 10.0f)
-	    , mElevationHardVib(this, 'cehv', "ELEVATION_HARD(vib)", 5.0f, 0.0f, 10.0f)
-	    , mElevationSlowSpeed(this, 'cess', "ELEVATION_SLOW(speed)", 15.0f, 0.0f, 100.0f)
-	    , mElevationMiddleSpeed(this, 'cems', "ELEVATION_MIDDLE(speed)", 25.0f, 0.0f, 100.0f)
-	    , mElevationFastSpeed(this, 'cefs', "ELEVATION_FAST(speed)", 35.0f, 0.0f, 100.0f)
-	    , mElevationShortTime(this, 'cest', "ELEVATION_SHORT(time)", 0.3f, 0.0f, 5.0f)
-	    , mElevationMiddleTime(this, 'cemt', "ELEVATION_MIDDLE(time)", 0.75f, 0.0f, 5.0f)
-	    , mElevationLongTime(this, 'celt', "ELEVATION_LONG(time)", 1.5f, 0.0f, 5.0f)
-	    , mElevationHardVib2(this, 'ceqv', "ELEVATION_HARD(Vib)", 20.0f, 0.0f, 50.0f)
-	    , mElevationHardSpeed(this, 'ceqs', "ELEVATION_HARD(Speed)", 35.0f, 0.0f, 100.0f)
-	    , mElevationHardTime(this, 'ceqt', "ELEVATION_HARD(Time)", 0.25f, 0.0f, 5.0f)
-	    , mZoomShortVib(this, 'czsv', "ZOOM_SHORT(Vib)", 25.0f, 0.0f, 100.0f)
-	    , mZoomShortSpeed(this, 'czss', "ZOOM_SHORT(Speed)", 35.0f, 0.0f, 50.0f)
-	    , mZoomShortTime(this, 'czst', "ZOOM_SHORT(Time)", 0.75f, 0.0f, 5.0f)
-	    , mAzimuthShortVib(this, 'casv', "AZIMUTH_SHORT(Vib)", 0.06f, 0.0f, 1.0f)
-	    , mAzimuthShortSpeed(this, 'cass', "AZIMUTH_SHORT(Speed)", 40.0f, 0.0f, 50.0f)
-	    , mAzimuthShortTime(this, 'cast', "AZIMUTH_SHORT(Time)", 0.75f, 0.0f, 5.0f)
-	    , mVibMaxDistance(this, 'cmdm', "Vib Max Distance", 750.0f, 0.0f, 1000.0f)
+	    , mElevationLightVib(this, 'celv', 1.0f, 0.0f, 10.0f)
+	    , mElevationMiddleVib(this, 'cemv', 3.0f, 0.0f, 10.0f)
+	    , mElevationHardVib(this, 'cehv', 5.0f, 0.0f, 10.0f)
+	    , mElevationSlowSpeed(this, 'cess', 15.0f, 0.0f, 100.0f)
+	    , mElevationMiddleSpeed(this, 'cems', 25.0f, 0.0f, 100.0f)
+	    , mElevationFastSpeed(this, 'cefs', 35.0f, 0.0f, 100.0f)
+	    , mElevationShortTime(this, 'cest', 0.3f, 0.0f, 5.0f)
+	    , mElevationMiddleTime(this, 'cemt', 0.75f, 0.0f, 5.0f)
+	    , mElevationLongTime(this, 'celt', 1.5f, 0.0f, 5.0f)
+	    , mElevationHardVib2(this, 'ceqv', 20.0f, 0.0f, 50.0f)
+	    , mElevationHardSpeed(this, 'ceqs', 35.0f, 0.0f, 100.0f)
+	    , mElevationHardTime(this, 'ceqt', 0.25f, 0.0f, 5.0f)
+	    , mZoomShortVib(this, 'czsv', 25.0f, 0.0f, 100.0f)
+	    , mZoomShortSpeed(this, 'czss', 35.0f, 0.0f, 50.0f)
+	    , mZoomShortTime(this, 'czst', 0.75f, 0.0f, 5.0f)
+	    , mAzimuthShortVib(this, 'casv', 0.06f, 0.0f, 1.0f)
+	    , mAzimuthShortSpeed(this, 'cass', 40.0f, 0.0f, 50.0f)
+	    , mAzimuthShortTime(this, 'cast', 0.75f, 0.0f, 5.0f)
+	    , mVibMaxDistance(this, 'cmdm', 750.0f, 0.0f, 1000.0f)
 	{
 	}
 

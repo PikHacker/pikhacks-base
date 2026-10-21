@@ -18,18 +18,18 @@ struct TUnit;
 
 struct TParam : public TParamBase {
 	TParam()
-	    : mScale(this, 'b000', "スケール", 2.0f, 0.0f, 10.0f)
-	    , mCullRadius(this, 'b001', "カリング半径", 50.0f, 0.0f, 500.0f)
-	    , mCollRadius(this, 'b002', "コリジョン半径", 50.0f, 0.0f, 500.0f)
-	    , mPikiReactRadius(this, 'b003', "ピクミン反応半径", 150.0f, 0.0f, 500.0f)
-	    , mWalkRandomAngle(this, 'kg00', "歩行ランダム角度", 60.0f, 0.0f, 90.0f)
-	    , mWalkSpeed(this, 'kg01', "歩行速度", 10.0f, 0.0f, 100.0f)
-	    , mTurnRate(this, 'kg15', "旋回性能", 0.1f, 0.0f, 1.0f)
-	    , mMinWaitTime(this, 'kg10', "待ち時間最小(秒)", 1.0f, 0.0f, 10.0f)
-	    , mMaxWaitTime(this, 'kg11', "待ち時間最大(秒)", 1.5f, 0.0f, 10.0f)
-	    , mMinMoveTime(this, 'kg12', "移動時間最小(秒)", 0.3f, 0.0f, 10.0f)
-	    , mMaxMoveTime(this, 'kg13', "移動時間最大(秒)", 1.0f, 0.0f, 10.0f)
-	    , mControlStateTime(this, 'kg14', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f)
+	    : mScale(this, 'b000', 2.0f, 0.0f, 10.0f)
+	    , mCullRadius(this, 'b001', 50.0f, 0.0f, 500.0f)
+	    , mCollRadius(this, 'b002', 50.0f, 0.0f, 500.0f)
+	    , mPikiReactRadius(this, 'b003', 150.0f, 0.0f, 500.0f)
+	    , mWalkRandomAngle(this, 'kg00', 60.0f, 0.0f, 90.0f)
+	    , mWalkSpeed(this, 'kg01', 10.0f, 0.0f, 100.0f)
+	    , mTurnRate(this, 'kg15', 0.1f, 0.0f, 1.0f)
+	    , mMinWaitTime(this, 'kg10', 1.0f, 0.0f, 10.0f)
+	    , mMaxWaitTime(this, 'kg11', 1.5f, 0.0f, 10.0f)
+	    , mMinMoveTime(this, 'kg12', 0.3f, 0.0f, 10.0f)
+	    , mMaxMoveTime(this, 'kg13', 1.0f, 0.0f, 10.0f)
+	    , mControlStateTime(this, 'kg14', 5.0f, 0.0f, 60.0f)
 	{
 	}
 

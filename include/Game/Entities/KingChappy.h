@@ -48,30 +48,30 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mRequiredTurningAngleDeg(this, 'fp01', "要旋回角度(deg)", 20.0f, 0.0f, 180.0f)     // 'required turning angle (deg)'
-		    , mDistanceToSpawn(this, 'fp02', "出現までの距離", 150.0f, 0.0f, 300.0f)             // 'distance to spawn'
-		    , mRoarEffectiveAngleDeg(this, 'fp03', "雄たけび有効角度(deg)", 45.0f, 0.0f, 180.0f) // 'roar effective angle (deg)'
-		    , mRoarEffectiveRange(this, 'fp04', "雄たけび有効範囲", 100.0f, 0.0f, 300.0f)        // 'roar effective range'
-		    , mBombDamage(this, 'fp05', "爆弾ダメージ", 200.0f, 0.0f, 600.0f)                    // 'bomb damage'
-		    , mInvisibleRange(this, 'fp06', "見えない範囲", 70.0f, 0.0f, 200.0f)                 // 'invisible range'
-		    , mTurningEndAngle(this, 'fp07', "旋回終了角度", 10.0f, 0.0f, 180.0f)                // 'turning end angle'
-		    , mTramplingRange(this, 'fp08', "踏み潰し範囲", 45.0f, 0.0f, 200.0f)                 // 'trampling range'
-		    , mAppearanceShakeOffRange(this, 'fp09', "出現振り払い範囲", 100.0f, 0.0f, 200.0f)   // 'appearance shake-off range'
-		    , mAppearanceShakeOffPower(this, 'fp10', "出現振り払い力", 200.0f, 0.0f, 400.0f)     // 'appearance shake-off power'
-		    , mWalkingAnimeSpeed(this, 'fp11', "歩きアニメスピード", 1.0f, 0.0f, 3.0f)           // 'walking anime speed'
-		    , mDeathRate(this, 'fp12', "死雄たけび率", 0.0f, 0.0f, 1.0f)                         // 'death rate'
-		    , mFlickShoutRate(this, 'fp13', "フリック雄たけび率", 0.5f, 0.0f, 1.0f)              // 'flick shout rate'
-		    , mWhitePikmin(this, 'fp14', "白ピクミン", 300.0f, 0.0f, 1000.0f)                    // 'white pikmin'
-		    , mBigScale(this, 'fp15', "bigスケール", 1.0f, 1.0f, 2.0f)                           // 'big scale'
-		    , mBigLife(this, 'fp16', "bigライフ", 100.0f, 0.0f, 9999.0f)                         // 'big life'
-		    , mBigSpeed(this, 'fp17', "big速度", 80.0f, 0.0f, 1000.0f)                           // 'big speed'
-		    , mBigRotationSpeedRate(this, 'fp18', "big回転速度率", 0.1f, 0.0f, 1.0f)             // 'big rotation speed rate'
-		    , mBigRotationMaxSpeed(this, 'fp19', "big回転最大速度", 10.0f, 0.0f, 360.0f)         // 'big rotation maximum speed'
-		    , mBigAttackAngle(this, 'fp20', "big攻撃可能角度", 15.0f, 0.0f, 180.0f)              // 'big attack angle'
-		    , mBigAttackHitRange(this, 'fp21', "big攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)        // 'big attack hit range'
-		    , mPeriodOfIncubation(this, 'ip01', "潜伏までの期間", 500, 0, 2000)                  // 'period of incubation'
-		    , mTimeToAppearance(this, 'ip02', "出現までの期間", 200, 0, 1000)                    // 'time to appearance'
-		    , mBombDamageTime(this, 'ip03', "爆弾ダメージ時間", 10, 0, 200)                      // 'bomb damage time'
+		    , mRequiredTurningAngleDeg(this, 'fp01', 20.0f, 0.0f, 180.0f)  // 'required turning angle (deg)'
+		    , mDistanceToSpawn(this, 'fp02', 150.0f, 0.0f, 300.0f)         // 'distance to spawn'
+		    , mRoarEffectiveAngleDeg(this, 'fp03', 45.0f, 0.0f, 180.0f)    // 'roar effective angle (deg)'
+		    , mRoarEffectiveRange(this, 'fp04', 100.0f, 0.0f, 300.0f)      // 'roar effective range'
+		    , mBombDamage(this, 'fp05', 200.0f, 0.0f, 600.0f)              // 'bomb damage'
+		    , mInvisibleRange(this, 'fp06', 70.0f, 0.0f, 200.0f)           // 'invisible range'
+		    , mTurningEndAngle(this, 'fp07', 10.0f, 0.0f, 180.0f)          // 'turning end angle'
+		    , mTramplingRange(this, 'fp08', 45.0f, 0.0f, 200.0f)           // 'trampling range'
+		    , mAppearanceShakeOffRange(this, 'fp09', 100.0f, 0.0f, 200.0f) // 'appearance shake-off range'
+		    , mAppearanceShakeOffPower(this, 'fp10', 200.0f, 0.0f, 400.0f) // 'appearance shake-off power'
+		    , mWalkingAnimeSpeed(this, 'fp11', 1.0f, 0.0f, 3.0f)           // 'walking anime speed'
+		    , mDeathRate(this, 'fp12', 0.0f, 0.0f, 1.0f)                   // 'death rate'
+		    , mFlickShoutRate(this, 'fp13', 0.5f, 0.0f, 1.0f)              // 'flick shout rate'
+		    , mWhitePikmin(this, 'fp14', 300.0f, 0.0f, 1000.0f)            // 'white pikmin'
+		    , mBigScale(this, 'fp15', 1.0f, 1.0f, 2.0f)                    // 'big scale'
+		    , mBigLife(this, 'fp16', 100.0f, 0.0f, 9999.0f)                // 'big life'
+		    , mBigSpeed(this, 'fp17', 80.0f, 0.0f, 1000.0f)                // 'big speed'
+		    , mBigRotationSpeedRate(this, 'fp18', 0.1f, 0.0f, 1.0f)        // 'big rotation speed rate'
+		    , mBigRotationMaxSpeed(this, 'fp19', 10.0f, 0.0f, 360.0f)      // 'big rotation maximum speed'
+		    , mBigAttackAngle(this, 'fp20', 15.0f, 0.0f, 180.0f)           // 'big attack angle'
+		    , mBigAttackHitRange(this, 'fp21', 70.0f, 0.0f, 1000.0f)       // 'big attack hit range'
+		    , mPeriodOfIncubation(this, 'ip01', 500, 0, 2000)              // 'period of incubation'
+		    , mTimeToAppearance(this, 'ip02', 200, 0, 1000)                // 'time to appearance'
+		    , mBombDamageTime(this, 'ip03', 10, 0, 200)                    // 'bomb damage time'
 		{
 		}
 
@@ -293,14 +293,14 @@ struct Obj : public EnemyBase {
 	WaterBox* mCurrentWaterBox;                   // _340, no one told morimura theres an enemybase level waterbox
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;           // _344
 	FSM* mFsm;                                    // _34C
-	efx::TKchYodare* mEfxYodare;                  // _350
+	efx::TKchYodareBaseChaseMtx* mEfxYodare;      // _350
 	efx::TKchDiveSand* mEfxDiveSand;              // _354
 	efx::TKchDiveWat* mEfxDiveWater;              // _358
 	efx::TKchCryAB* mEfxCryAB;                    // _35C
 	efx::TKchCryInd* mEfxCryInd;                  // _360
 	efx::TKchSmokeHana* mEfxSmoke;                // _364
-	efx::TKchAttackYodare* mEfxAttack;            // _368
-	efx::TKchDeadYodare* mEfxDeadYodare;          // _36C
+	efx::TKchYodareBaseChaseMtx* mEfxAttack;      // _368
+	efx::TKchYodareBaseChaseMtx* mEfxDeadYodare;  // _36C
 	efx::TKchDeadHana* mEfxDeadHana;              // _370
 	efx::TEnemyHamonChasePos* mRightEyeRippleEfx; // _374
 	efx::TEnemyHamonChasePos* mLeftEyeRippleEfx;  // _378

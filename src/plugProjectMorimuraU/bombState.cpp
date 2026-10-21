@@ -119,8 +119,8 @@ void StateBomb::exec(EnemyBase* enemy)
 			EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 			efx::ArgEnemyType fxArg(effectPos, id, 1.0f);
 			efx::TBombrock bombEffect;
-			efx::TBombrockABCD* abcdPtr = &bombEffect.mEfxBombABCD;
-			efx::TBombrockEFGH* efghPtr = &bombEffect.mEfxBombEFGH;
+			efx::TSimple4* abcdPtr = &bombEffect.mEfxBombABCD;
+			efx::TSimple4* efghPtr = &bombEffect.mEfxBombEFGH;
 
 			if (abcdPtr->create(&fxArg)) {
 				efghPtr->create(&fxArg);

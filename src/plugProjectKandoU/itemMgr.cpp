@@ -110,10 +110,8 @@ void BaseItem::entryShape()
 	if (mLod.isFlag(AILOD_IsVisible)) {
 		mModel->show();
 	} else {
-		if (BaseHIOParms::sEntryOpt) {
-			if (!gameSystem->isMultiplayerMode()) {
-				return;
-			}
+		if (!gameSystem->isMultiplayerMode()) {
+			return;
 		}
 		mModel->hide();
 	}

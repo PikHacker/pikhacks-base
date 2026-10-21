@@ -535,7 +535,7 @@ bool THdamaHit2W::create(efx::Arg* arg)
 		for (int i = 0; i < 3; i++) {
 			mEmitters[i]->setGlobalRMatrix(mtx.mMatrix.mtxView);
 		}
-		THdamaShootA effect;
+		TSimple1 effect(PID_HDamaShootA);
 		effect.create(argd);
 		return true;
 	}

@@ -114,7 +114,7 @@ void Obj::createItem()
  */
 void Obj::createEffect()
 {
-	mBodyEffect = new efx::TOoganeKira;
+	mBodyEffect = new efx::TChaseMtx(PID_OoganeKira, nullptr);
 }
 
 /**

@@ -654,8 +654,8 @@ void Obj::forceFinishShotGun()
  */
 void Obj::createEffect()
 {
-	mEfxCharge    = new efx::TChibiCharge;
-	mEfxDeadLight = new efx::TChibiDeadLight;
+	mEfxCharge    = new efx::TChaseMtx(PID_ChibiCharge, nullptr);
+	mEfxDeadLight = new efx::TChaseMtx(PID_ChibiDeadLight, nullptr);
 }
 
 /**
@@ -681,7 +681,7 @@ void Obj::createSmokeSmallEffect(bool useSebire1Joint)
 		mat = mModel->getJoint("sebire2")->getWorldMatrix();
 	}
 
-	efx::TChibiSmokeS smokeSmall(mat);
+	efx::TSimpleMtx1 smokeSmall(mat, PID_ChibiSmokeS);
 	smokeSmall.create(nullptr);
 }
 
@@ -691,9 +691,9 @@ void Obj::createSmokeSmallEffect(bool useSebire1Joint)
  */
 void Obj::createSmokeLargeEffect()
 {
-	efx::TChibiSmokeL smokeLarge1(mModel->getJoint("sebire1")->getWorldMatrix());
+	efx::TSimpleMtx1 smokeLarge1(mModel->getJoint("sebire1")->getWorldMatrix(), PID_ChibiSmokeL);
 	smokeLarge1.create(nullptr);
-	efx::TChibiSmokeL smokeLarge2(mModel->getJoint("sebire2")->getWorldMatrix());
+	efx::TSimpleMtx1 smokeLarge2(mModel->getJoint("sebire2")->getWorldMatrix(), PID_ChibiSmokeL);
 	smokeLarge2.create(nullptr);
 }
 
@@ -740,16 +740,16 @@ void Obj::createDeadLightEffect()
 void Obj::createDeadBombEmitEffect()
 {
 	Matrixf* kutiMtx = mModel->getJoint("kuti")->getWorldMatrix();
-	efx::TChibiShoot shootFX(kutiMtx);
+	efx::TSimpleMtx3 shootFX(kutiMtx, PID_ChibiShoot_1, PID_ChibiShoot_2, PID_ChibiShoot_3);
 	shootFX.create(nullptr);
 
-	efx::TChibiDeadMouth mouthFX(kutiMtx);
+	efx::TSimpleMtx1 mouthFX(kutiMtx, PID_ChibiDeadMouth);
 	mouthFX.create(nullptr);
 
-	efx::TChibiDeadSe deadSe1(mModel->getJoint("sebire1")->getWorldMatrix());
+	efx::TSimpleMtx2 deadSe1(mModel->getJoint("sebire1")->getWorldMatrix(), PID_ChibiDeadSe_1, PID_ChibiDeadSe_2);
 	deadSe1.create(nullptr);
 
-	efx::TChibiDeadSe deadSe2(mModel->getJoint("sebire2")->getWorldMatrix());
+	efx::TSimpleMtx2 deadSe2(mModel->getJoint("sebire2")->getWorldMatrix(), PID_ChibiDeadSe_1, PID_ChibiDeadSe_2);
 	deadSe2.create(nullptr);
 }
 

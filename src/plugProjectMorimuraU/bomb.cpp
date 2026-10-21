@@ -116,7 +116,7 @@ Obj::Obj()
 	mEfxLight            = nullptr;
 	mAnimator            = new ProperAnimator;
 	setFSM(new FSM);
-	mEfxLight = new efx::TBombrockLight;
+	mEfxLight = new efx::TChaseMtxT(PID_BombrockLight);
 }
 
 /**

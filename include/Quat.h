@@ -29,7 +29,7 @@ struct Quat {
 	 * @brief Copy constructor.
 	 * @param other The quaternion to copy from.
 	 */
-	Quat(Quat& other);
+	//Quat(Quat& other);
 
 	/**
 	 * @brief Constructor that initializes the quaternion with a scalar and a vector.
@@ -127,6 +127,13 @@ struct Quat {
 	void fromMatrixf(Matrixf& out);
 
 	inline const f32 dot(Quat& q1) const { return (w * q1.w) + ((v.z * q1.v.z) + ((v.x * q1.v.x) + (v.y * q1.v.y))); }
+
+	inline Quat& operator=(const Quat& other)
+	{
+		v = other.v;
+		w = other.w;
+		return *this;
+	}
 
 	/**
 	 * @brief Multiplies the quaternion by a scalar.

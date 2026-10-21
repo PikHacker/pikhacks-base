@@ -118,7 +118,7 @@ struct FountainParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Fountain::Parms")
-		    , mHealth(this, 'p000', "ライフ", 1000.0f, 1.0f, 60000.0f) // 'life'
+		    , mHealth(this, 'p000', 1000.0f, 1.0f, 60000.0f) // 'life'
 		{
 		}
 
@@ -144,10 +144,10 @@ struct FountainParms : public CreatureParms {
 struct Item : public WorkItem<Item, FSM, State> {
 	Item();
 
-	virtual void constructor();               // _2C
-	virtual void onInit(CreatureInitArg*);    // _30
-	virtual void doSimulation(f32);           // _4C
-	virtual f32 getFaceDir()                  // _64 (weak)
+	virtual void constructor();            // _2C
+	virtual void onInit(CreatureInitArg*); // _30
+	virtual void doSimulation(f32);        // _4C
+	virtual f32 getFaceDir()               // _64 (weak)
 	{
 		return mFaceDir;
 	}
@@ -169,21 +169,16 @@ struct Item : public WorkItem<Item, FSM, State> {
 	void killAllEffect();
 	bool canRide();
 
-	inline void resetModelMass()
-	{
-		// Dumb, but best I can do since mModelScale needs to be Vec
-		mModel->mJ3dModel->mModelScale.x = mModel->mJ3dModel->mModelScale.y = mModel->mJ3dModel->mModelScale.z = 1.0f;
-		mMass                                                                                                  = 0.0f;
-	}
+	inline void resetModelMass() { mMass = 0.0f; }
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	f32 mFaceDir;                   // _1EC
-	f32 mBuryDepth;                 // _1F0, amount currently underground
-	efx::TGeyserAct* mEfxGeyserAct; // _1F4
-	efx::TGeyserSet* mEfxGeyserSet; // _1F8
-	PlatInstance* mPlatInstance;    // _1FC, unknown
-	f32 mHealth;                    // _200, 'health' to dig up in Challenge Mode
+	f32 mFaceDir;                  // _1EC
+	f32 mBuryDepth;                // _1F0, amount currently underground
+	efx::TForever3* mEfxGeyserAct; // _1F4
+	efx::TForever2* mEfxGeyserSet; // _1F8
+	PlatInstance* mPlatInstance;   // _1FC, unknown
+	f32 mHealth;                   // _200, 'health' to dig up in Challenge Mode
 };
 
 struct Mgr : public TNodeItemMgr {

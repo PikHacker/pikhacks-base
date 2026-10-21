@@ -63,24 +63,9 @@ Creature* GenObjectNavi::generate(Generator* gen)
  */
 Creature* GenObjectNavi::birth(GenArg* arg)
 {
-	getLatestVersion();
-
 	Navi* newNavi = naviMgr->birth();
 	if (newNavi) {
 		newNavi->init(nullptr);
-
-		newNavi->mAnimator.mSelfAnimator.getCalc();
-		newNavi->mAnimator.mBoundAnimator.getCalc();
-
-		// fabricated inline that has a futile loop in it?
-		newNavi->setCalcs();
-
-		SysShape::Model* tempModel = newNavi->mModel;
-
-		// fabricated inlined futile loops??
-		newNavi->mModel->loopTimer();
-		tempModel->loopTimer();
-
 		newNavi->setPosition(arg->mPosition, false);
 		newNavi->mFaceDir = TORADIANS(mRotation.mValue);
 	}

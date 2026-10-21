@@ -242,39 +242,27 @@ void Onyon::setType(int type)
 
 	} else if (mOnyonType == ONYON_TYPE_SHIP) {
 		jnt             = mModel->getJoint("start1");
-		mUfoSpot        = new ::efx::TUfoSpot(jnt->getWorldMatrix()->mMatrix.mtxView);
-		mUfoPodOpenSuck = new ::efx::TUfoPodOpenSuck(jnt->getWorldMatrix());
-		mUfoSpotAct01   = new ::efx::TUfoSpotact_ver01(jnt->getWorldMatrix()->mMatrix.mtxView);
+		mUfoSpot        = new ::efx::TChaseMtx2(jnt->getWorldMatrix()->mMatrix.mtxView, PID_UfoSpot_1, PID_UfoSpot_2);
+		mUfoPodOpenSuck = new ::efx::TChaseMtx(PID_UfoPodOpenSuck, jnt->getWorldMatrix());
+		mUfoSpotAct01   = new ::efx::TChaseMtx2(jnt->getWorldMatrix()->mMatrix.mtxView, PID_UfoSpotAct_1, PID_UfoSpotAct_2);
 
 		jnt         = mModel->getJoint("pmotion3");
-		mUfoPodOpen = new ::efx::TUfoPodOpen(jnt->getWorldMatrix()->mMatrix.mtxView);
+		mUfoPodOpen = new ::efx::TChaseMtx2(jnt->getWorldMatrix()->mMatrix.mtxView, PID_UfoPodOpen_1, PID_UfoPodOpen_2);
 
 		jnt = mModel->getJoint("in1");
-#if defined(VERSION_JP)
-		P2ASSERTLINE(772, jnt);
-#else
 		P2ASSERTLINE(782, jnt);
-#endif
-		mUfoGasIn = new ::efx::TUfoGasIn(jnt->getWorldMatrix());
+		mUfoGasIn = new ::efx::TChaseMtx(PID_UfoGasIn, jnt->getWorldMatrix());
 		jnt       = mModel->getJoint("out");
-#if defined(VERSION_JP)
-		P2ASSERTLINE(774, jnt);
-#else
 		P2ASSERTLINE(784, jnt);
-#endif
-		mUfoGasOut = new ::efx::TUfoGasOut(jnt->getWorldMatrix());
+		mUfoGasOut = new ::efx::TChaseMtx(PID_UfoGasOut, jnt->getWorldMatrix());
 
 	} else if (mOnyonType == ONYON_TYPE_POD) {
 		jnt = mModel->getJoint("pot_ctr");
-#if defined(VERSION_JP)
-		P2ASSERTLINE(778, jnt);
-#else
 		P2ASSERTLINE(788, jnt);
-#endif
-		mPodOpenA = new ::efx::TPodOpenA;
-		mPodOpenB = new ::efx::TPodOpenB(jnt->getWorldMatrix());
-		mPodSpot  = new ::efx::TPodSpot(&mPosition, &mFaceDir);
-		mPodKira  = new ::efx::TPodKira(jnt->getWorldMatrix());
+		mPodOpenA = new ::efx::TForever(PID_PodOpenA);
+		mPodOpenB = new ::efx::TChaseMtx(PID_PodOpenB, jnt->getWorldMatrix());
+		mPodSpot  = new ::efx::TChasePosYRot2(&mPosition, &mFaceDir, PID_PodSpot_1, PID_PodSpot_2);
+		mPodKira  = new ::efx::TChaseMtx(PID_PodKira, jnt->getWorldMatrix());
 
 		mPodKira->create(nullptr);
 		mPodOpenB->create(nullptr);
@@ -319,7 +307,7 @@ bool InteractSuckArrive::actOnyon(Onyon* item)
 	if (item->mOnyonType == ONYON_TYPE_SHIP) {
 		SysShape::Joint* jnt = item->mModel->getJoint("pmotion3");
 		if (jnt) {
-			efx::TUfoPodSuck efx(jnt->getWorldMatrix());
+			efx::TSimpleMtx1 efx(jnt->getWorldMatrix(), PID_UfoPodSuck);
 			efx.create(nullptr);
 		}
 
@@ -413,7 +401,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		item->mAnimator.startAnim(2, item);
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
 
-		efx::TPodGepu podFX;
+		efx::TSimple2 podFX(PID_PodGepu_1, PID_PodGepu_2);
 		Vector3f position = item->getPosition();
 		efx::Arg arg(position);
 		podFX.create(&arg);
@@ -437,7 +425,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
 		item->mSuckTimer     = 0.0f;
 		SysShape::Joint* jnt = item->mModel->getJoint("pmotion3");
-		efx::TUfoPodGepu ufoFX(jnt->getWorldMatrix());
+		efx::TSimpleMtx2 ufoFX(jnt->getWorldMatrix(), PID_UfoPodGeku_1, PID_UfoPodGeku_2);
 		ufoFX.create(nullptr);
 
 		if (moviePlayer && moviePlayer->mDemoState == DEMOSTATE_Inactive) {
@@ -456,7 +444,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	if (item->mOnyonType <= ONYON_TYPE_YELLOW) {
 		SysShape::Joint* jnt = item->mModel->getJoint("body_1");
 		if (jnt) {
-			::efx::TOnyonEatAB onyonFX(jnt->getWorldMatrix());
+			::efx::TSimpleMtx2 onyonFX(jnt->getWorldMatrix(), PID_OnyonEatAB_1, PID_OnyonEatAB_2);
 			onyonFX.create(nullptr);
 		}
 	}
@@ -954,8 +942,8 @@ void Onyon::do_doAnimation()
 				sound->specializePerspCalc(persp);
 
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-				scene                  = (static_cast<PSM::SceneBase*>(scene)->isGameScene()) ? scene : nullptr;
+				PSM::Scene_Game* scene  = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+				scene                   = (static_cast<PSM::SceneBase*>(scene)->isGameScene()) ? scene : nullptr;
 
 				if (scene) {
 					if (scene->_4C < 390) {
@@ -1230,7 +1218,7 @@ void Onyon::doEmit(Creature* seed, bool isSetAngle)
 	startSound(PSSE_PK_SE_ONY_SEED_EJECT);
 	Vector3f onyonpos = mPosition;
 	onyonpos.y += 110.0f;
-	efx::TOnyonLay layFX;
+	efx::TSimple2 layFX(PID_OnyonLay_1, PID_OnyonLay_2);
 	efx::Arg arg(mPosition);
 
 	layFX.create(&arg);
@@ -1438,13 +1426,13 @@ void Onyon::setSpotEffectActive(bool flag)
 void Onyon::efxSuikomi()
 {
 	if (mOnyonType <= ONYON_TYPE_YELLOW) {
-		efx::TOnyonEatC onyonFX(&mBaseTrMatrix);
+		efx::TSimpleMtx1 onyonFX(&mBaseTrMatrix, PID_OnyonEatC);
 		onyonFX.create(nullptr);
 		startSound(PSSE_EV_HOME_PELLET_BACUUM);
 
 	} else if (mOnyonType == ONYON_TYPE_POD) {
 		startSound(PSSE_EV_ROCKET_VACUUM);
-		efx::TPodSuck efx;
+		efx::TSimple2 efx(PID_PodSuck_1, PID_PodSuck_2);
 		::efx::Arg arg(mPosition);
 		efx.create(&arg);
 
@@ -1465,7 +1453,7 @@ void Onyon::efxPafuPafu()
 		int id                 = randInt(3);
 		SysShape::Joint* joint = mModel->getJoint(jntnames[id]);
 		if (joint && mLod.isFlag(AILOD_IsVisible)) {
-			efx::TOnyonPuffPuff puffFX(joint->getWorldMatrix());
+			efx::TSimpleMtx1 puffFX(joint->getWorldMatrix(), PID_OnyonPuffPuff);
 			puffFX.create(nullptr);
 
 			PSM::SeSound* sound = static_cast<PSM::SeSound*>(mSoundObj->startSound(PSSE_EV_ONYON_GAS, 0));
@@ -1490,7 +1478,7 @@ void Onyon::efxPafuKira()
 		Vector3f position;
 		mtx->getTranslation(position);
 
-		efx::TOnyonPuffKira puffSparkleFX;
+		efx::TSimple1 puffSparkleFX(PID_OnyonPuffKira);
 		efx::Arg arg(position);
 		puffSparkleFX.create(&arg);
 	}

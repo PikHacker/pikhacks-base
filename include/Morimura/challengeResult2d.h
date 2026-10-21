@@ -173,7 +173,7 @@ struct TChallengeResult : public TTestBase {
 	TChallengeResultCounter* mResultCounters[4];   // _17C
 	TClearTexture* mClearTexture[5];               // _18C
 	TOffsetMsgSet* mMesgOffs;                      // _1A0
-	efx2d::T2DCavecompLoop* mEfxCompLoop;          // _1A4
+	efx2d::TForever* mEfxCompLoop;                 // _1A4
 	u32 mScoreTotal;                               // _1A8
 	u32 mPokoCount;                                // _1AC
 	u32 mTimeBonus;                                // _1B0

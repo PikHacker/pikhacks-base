@@ -134,39 +134,6 @@ void Creature::updateLOD(Game::AILODParm& parm)
  */
 void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 {
-	if (AILOD::drawInfo) {
-		PerspPrintfInfo info;
-		gfx.initPerspPrintf(gfx.mCurrentViewport);
-		const char* nearnessLabels[] = { "near", "mid", "far" };
-
-		int nearness = mLod.isFlag(AILOD_IsMid | AILOD_IsFar);
-		switch (nearness) {
-		case AILOD_NULL:
-			info.mColorA.set(0, 10, 255, 255);
-			info.mColorB.set(200, 200, 200, 255);
-			break;
-		case AILOD_IsMid:
-			info.mColorA.set(200, 200, 0, 255);
-			info.mColorB.set(200, 200, 200, 255);
-			break;
-		case AILOD_IsFar:
-			info.mColorA.set(255, 10, 0, 255);
-			info.mColorB.set(200, 200, 200, 255);
-			break;
-		}
-
-		gfx.perspPrintf(info, position, "[%s%s %s %s]", (mLod.isFlag(AILOD_IsVisVP0)) ? "v" : "x",
-		                (mLod.isFlag(AILOD_IsVisVP1)) ? "v" : "x", (mLod.isFlag(AILOD_PikiInCell)) ? "p" : "_", nearnessLabels[nearness]);
-
-		Camera* camera0 = sys->mGfx->getViewport(PLAYER1_VIEWPORT)->mCamera;
-		Vector3f sizeOnScreenTextPosition;
-		sizeOnScreenTextPosition = position;
-		sizeOnScreenTextPosition.y += 15.0f;
-
-		Sys::Sphere lodSphere;
-		getLODSphere(lodSphere);
-		gfx.perspPrintf(info, sizeOnScreenTextPosition, "<%f>", camera0->calcScreenSize(lodSphere));
-	}
 }
 
 } // namespace Game

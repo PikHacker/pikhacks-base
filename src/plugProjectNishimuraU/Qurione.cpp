@@ -310,7 +310,7 @@ void Obj::addQurioneScale()
  */
 void Obj::subQurioneScale()
 {
-	mQurioneScale -= 0.05; // yes this is a double for some reason
+	mQurioneScale -= 0.05f;
 	if (mQurioneScale < 0.0f) {
 		mQurioneScale = 0.0f;
 	}
@@ -323,8 +323,8 @@ void Obj::subQurioneScale()
 void Obj::createEffect()
 {
 	mEfxGlow      = new efx::TQuriGlow;
-	mEfxAppear    = new efx::TQuriApp;
-	mEfxDisappear = new efx::TQuriDisap;
+	mEfxAppear    = new efx::TChaseMtxT(PID_QuriApp);
+	mEfxDisappear = new efx::TChaseMtxT(PID_QuriDisap);
 }
 
 /**
@@ -347,7 +347,7 @@ void Obj::createHitEffect()
 {
 	Vector3f fxPos = mModel->getJoint("body_jnt2")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(fxPos);
-	efx::TQuriHit hitFX;
+	efx::TSimple2 hitFX(PID_QuriHit_1, PID_QuriHit_2);
 
 	hitFX.create(&fxArg);
 }

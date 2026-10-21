@@ -106,14 +106,14 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mMinAppearTime(this, 'fp01', "出現時間(Min)", 15.0f, 0.0f, 100.0f) // 'appearance time (Min)'
-		    , mMaxAppearTime(this, 'fp02', "出現時間(Max)", 30.0f, 0.0f, 100.0f) // 'appearance time (Max)'
-		    , mMinTravelTime(this, 'fp10', "移動時間(Min)", 0.5f, 0.0f, 10.0f)   // 'travel time (Min)'
-		    , mMaxTravelTime(this, 'fp11', "移動時間(Max)", 2.0f, 0.0f, 10.0f)   // 'travel time (Max)'
-		    , mMinStopTime(this, 'fp20', "停止時間(Min)", 0.5f, 0.0f, 10.0f)     // 'stop time (Min)'
-		    , mMaxStopTime(this, 'fp21', "停止時間(Max)", 2.0f, 0.0f, 10.0f)     // 'stop time (Max)'
-		    , mTurnAngle(this, 'fp30', "向き変え角度", 45.0f, 0.0f, 90.0f)       // 'turning angle'
-		    , mScale(this, 'fp40', "スケール", 0.8f, 0.0f, 5.0f)                 // 'scale'
+		    , mMinAppearTime(this, 'fp01', 15.0f, 0.0f, 100.0f) // 'appearance time (Min)'
+		    , mMaxAppearTime(this, 'fp02', 30.0f, 0.0f, 100.0f) // 'appearance time (Max)'
+		    , mMinTravelTime(this, 'fp10', 0.5f, 0.0f, 10.0f)   // 'travel time (Min)'
+		    , mMaxTravelTime(this, 'fp11', 2.0f, 0.0f, 10.0f)   // 'travel time (Max)'
+		    , mMinStopTime(this, 'fp20', 0.5f, 0.0f, 10.0f)     // 'stop time (Min)'
+		    , mMaxStopTime(this, 'fp21', 2.0f, 0.0f, 10.0f)     // 'stop time (Max)'
+		    , mTurnAngle(this, 'fp30', 45.0f, 0.0f, 90.0f)      // 'turning angle'
+		    , mScale(this, 'fp40', 0.8f, 0.0f, 5.0f)            // 'scale'
 		{
 		}
 

@@ -20,13 +20,13 @@ struct J2DGXColorS10 : public GXColorS10 {
 		a = _a;
 	}
 
-	J2DGXColorS10(J2DGXColorS10& other)
-	{
-		r = other.r;
-		g = other.g;
-		b = other.b;
-		a = other.a;
-	}
+	// J2DGXColorS10(J2DGXColorS10& other)
+	// {
+	// 	r = other.r;
+	// 	g = other.g;
+	// 	b = other.b;
+	// 	a = other.a;
+	// }
 
 	J2DGXColorS10(const u64& other)
 	{
@@ -59,7 +59,11 @@ struct J2DGXColorS10 : public GXColorS10 {
 		a = (s16)other.a;
 	}
 
-	inline void operator=(const J2DGXColorS10& other) { (GXColorS10)* this = (GXColorS10)other; }
+	inline J2DGXColorS10& operator=(const J2DGXColorS10& other)
+	{
+		(GXColorS10)* this = (GXColorS10)other;
+		return *this;
+	}
 
 	inline void set(u16 _r, u16 _g, u16 _b, u16 _a)
 	{

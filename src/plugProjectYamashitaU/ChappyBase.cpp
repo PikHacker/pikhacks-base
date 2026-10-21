@@ -373,7 +373,7 @@ int Obj::eatAttackPikmin()
  */
 void Obj::createEffect()
 {
-	mEfxHanacho = new efx::THanachoN;
+	mEfxHanacho = new efx::TChaseMtx(PID_HanachoN, nullptr);
 }
 
 /**
@@ -397,7 +397,7 @@ void Obj::setupEffect()
  */
 void Obj::startSleepEffect()
 {
-	static_cast<efx::THanachoN*>(mEfxHanacho)->create(nullptr);
+	mEfxHanacho->create(nullptr);
 }
 
 /**
@@ -406,7 +406,7 @@ void Obj::startSleepEffect()
  */
 void Obj::finishSleepEffect()
 {
-	static_cast<efx::THanachoN*>(mEfxHanacho)->fade();
+	mEfxHanacho->fade();
 }
 
 } // namespace ChappyBase

@@ -692,7 +692,7 @@ void Piki::setSpeed(f32 multiplier, Vector3f& vec, f32 max)
 bool Piki::isPikmin()
 {
 	// wild bulbmin are not Pikmin
-	if (BaseHIOParms::sTekiChappyFlag && isFPFlag(FPFLAGS_IsWildBulbmin)) {
+	if (isFPFlag(FPFLAGS_IsWildBulbmin)) {
 		return false;
 	}
 

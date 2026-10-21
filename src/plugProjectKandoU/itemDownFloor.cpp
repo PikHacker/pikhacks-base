@@ -197,15 +197,15 @@ void Item::startDamageMotion()
 	if (water) {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1WOn water1On(&mBaseTrMatrix);
+			efx::TSimpleMtx1 water1On(&mBaseTrMatrix, PID_DownF1WOn);
 			water1On.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2WOn water2On(&mBaseTrMatrix);
+			efx::TSimpleMtx1 water2On(&mBaseTrMatrix, PID_DownF2WOn);
 			water2On.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TDownf3WOn water3On(&mBaseTrMatrix);
+			efx::TSimpleMtx1 water3On(&mBaseTrMatrix, PID_DownF3WOn);
 			water3On.create(nullptr);
 			break;
 		}
@@ -213,15 +213,15 @@ void Item::startDamageMotion()
 	} else {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1On land1On(&mBaseTrMatrix);
+			efx::TSimpleMtx1 land1On(&mBaseTrMatrix, PID_DownF1On);
 			land1On.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2On land2On(&mBaseTrMatrix);
+			efx::TSimpleMtx1 land2On(&mBaseTrMatrix, PID_DownF2On);
 			land2On.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TPbagOn land3On(&mBaseTrMatrix);
+			efx::TSimpleMtx2 land3On(&mBaseTrMatrix, PID_PbagOn_1, PID_PbagOn_2);
 			land3On.create(nullptr);
 			break;
 		}
@@ -250,15 +250,15 @@ void Item::startDownMotion()
 	if (water) {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1WUpdown water1Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 water1Updown(&mBaseTrMatrix, PID_DownF1WUpdown);
 			water1Updown.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2WUpdown water2Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 water2Updown(&mBaseTrMatrix, PID_DownF2WUpdown);
 			water2Updown.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TDownf3WUpdown water3Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 water3Updown(&mBaseTrMatrix, PID_DownF3WUpdown);
 			water3Updown.create(nullptr);
 			break;
 		}
@@ -266,15 +266,15 @@ void Item::startDownMotion()
 	} else {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1Updown land1Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 land1Updown(&mBaseTrMatrix, PID_DownF1Updown);
 			land1Updown.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2Updown land2Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 land2Updown(&mBaseTrMatrix, PID_DownF2Updown);
 			land2Updown.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TPbagDown land3Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx3 land3Updown(&mBaseTrMatrix, PID_PbagDown_1, PID_PbagDown_2, PID_PbagDown_3);
 			land3Updown.create(nullptr);
 			break;
 		}
@@ -298,15 +298,15 @@ void Item::startUpMotion()
 	if (water) {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1WUpdown water1Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 water1Updown(&mBaseTrMatrix, PID_DownF1WUpdown);
 			water1Updown.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2WUpdown water2Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 water2Updown(&mBaseTrMatrix, PID_DownF2WUpdown);
 			water2Updown.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TDownf3WUpdown water3Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 water3Updown(&mBaseTrMatrix, PID_DownF3WUpdown);
 			water3Updown.create(nullptr);
 			break;
 		}
@@ -314,15 +314,15 @@ void Item::startUpMotion()
 	} else {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1Updown land1Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 land1Updown(&mBaseTrMatrix, PID_DownF1Updown);
 			land1Updown.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2Updown land2Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 land2Updown(&mBaseTrMatrix, PID_DownF2Updown);
 			land2Updown.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TDownf3Updown land3Updown(&mBaseTrMatrix);
+			efx::TSimpleMtx1 land3Updown(&mBaseTrMatrix, PID_DownF3Updown);
 			land3Updown.create(nullptr);
 			break;
 		}
@@ -472,7 +472,7 @@ void Item::getCarryInfoParam(CarryInfoParam& param)
  */
 Mgr::Mgr()
 {
-	mItemName = "DownFloor";
+	mItemName            = "DownFloor";
 	mObjectPathComponent = "user/Kando/objects/downfloor";
 	setModelSize(3);
 
@@ -557,46 +557,6 @@ BaseItem* Mgr::birth()
 	Item* downFloor = new Item;
 	entry(downFloor);
 	return downFloor;
-}
-
-/**
- * @note Address: 0x801F6800
- * @note Size: 0x3C
- */
-char* Mgr::getCaveName(int type)
-{
-	if (type == DFMODEL_SmallBlock) {
-		return "DownFloor";
-	} else if (type == DFMODEL_LargeBlock) {
-		return "DownFloor2";
-	} else if (type == DFMODEL_PaperBag) {
-		return "DownFloor3";
-	}
-
-	return nullptr;
-}
-
-/**
- * @note Address: 0x801F683C
- * @note Size: 0xB0
- */
-int Mgr::getCaveID(char* name)
-{
-	int id;
-
-	if (strncmp("DownFloor", name, strlen("DownFloor")) == 0) {
-		return DFMODEL_SmallBlock;
-	}
-
-	if (strncmp("DownFloor2", name, strlen("DownFloor2")) == 0) {
-		return DFMODEL_LargeBlock;
-	}
-
-	if (strncmp("DownFloor3", name, strlen("DownFloor3")) != 0) {
-		return -1;
-	}
-
-	return DFMODEL_PaperBag;
 }
 
 /**

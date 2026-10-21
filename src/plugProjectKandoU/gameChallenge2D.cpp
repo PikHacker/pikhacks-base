@@ -65,7 +65,6 @@ Vs2D_TitleInfo::Info::Info()
  */
 Vs2D_TitleInfo::Info* Vs2D_TitleInfo::operator()(int infoIndex)
 {
-	JUT_ASSERTLINE(52, infoIndex >= 0 && infoIndex < mInfoCount, "ZANNEN\n");
 	P2ASSERTBOUNDSLINE(54, 0, infoIndex, mInfoCount);
 	return &pInfoArray[infoIndex];
 }

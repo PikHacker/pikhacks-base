@@ -237,7 +237,7 @@ void OtakaraSensor::updateInit()
 				mNoiseLevel             = 0.0f;
 				mIsPoweringOff          = true;
 				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+				PSM::Scene_Game* scene  = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 				PSSystem::checkGameScene(scene);
 				if (scene->isCave()) {
 					static_cast<PSM::Scene_Cave*>(scene)->startPollutUpSe();
@@ -346,7 +346,7 @@ void OtakaraSensor::calcAppear()
 			if (mSensorGetTimer <= 0.0f) {
 				mScaleMgr->up(0.7f, 40.0f, 0.5f, 0.0f);
 				mAppearTimer = 3.0f;
-				efx2d::T2DSensorGet efx;
+				efx2d::TSimple3 efx(PID_SensorGet_1, PID_SensorGet_2, PID_SensorGet_3);
 				JGeometry::TVec3f pos1 = mPane1->getGlbVtx(GLBVTX_BtmLeft);
 				JGeometry::TVec3f pos2 = mPane1->getGlbVtx(GLBVTX_TopRight);
 				Vector2f argVec((pos1.x + pos2.x) / 2 + mAppearEfxOffset.x, (pos1.y + pos2.y) / 2 + mAppearEfxOffset.y);
@@ -364,7 +364,7 @@ void OtakaraSensor::calcAppear()
  */
 void OtakaraSensor::startGraySensor()
 {
-	efx2d::T2DSensorComp efx;
+	efx2d::TSimple2 efx(PID_SensorComp_1, PID_SensorComp_2);
 	JGeometry::TVec3f pos1 = mPane1->getGlbVtx(GLBVTX_BtmLeft);
 	JGeometry::TVec3f pos2 = mPane1->getGlbVtx(GLBVTX_TopRight);
 	Vector2f argVec((pos1.x + pos2.x) / 2 + mCompleteEfxOffset.x, (pos1.y + pos2.y) / 2 + mCompleteEfxOffset.y);
@@ -455,7 +455,7 @@ void OtakaraSensor::calcReaction()
 				PSStartTreasureLaderSE(mCurrReactionLevel);
 				if (mAppearTimer <= 0.0f) {
 					mScaleMgr->up(mCurrReactionLevel * 0.1f, 30.0f, 0.8f, 0.0f);
-					efx2d::T2DSensorAct efx;
+					efx2d::TSimple2 efx(PID_SensorAct_1, PID_SensorAct_2);
 					JGeometry::TVec3f pos1 = mPane1->getGlbVtx(GLBVTX_BtmLeft);
 					JGeometry::TVec3f pos2 = mPane1->getGlbVtx(GLBVTX_TopRight);
 					Vector2f argVec((pos1.x + pos2.x) / 2 + mCompleteEfxOffset.x, (pos1.y + pos2.y) / 2 + mCompleteEfxOffset.y);

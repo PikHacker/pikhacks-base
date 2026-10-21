@@ -998,7 +998,12 @@ void THiScore::changeTextTevBlock(int id)
 		color0.b = b0;
 		color0.a = a0;
 		textbox->getMaterial()->getTevBlock()->setTevColor(0, color0);
-		textbox->getMaterial()->getTevBlock()->setTevColor(1, J2DGXColorS10(r1, g1, b1, a1));
+		J2DGXColorS10 color1;
+		color1.r = r1;
+		color1.g = g1;
+		color1.b = b1;
+		color1.a = a1;
+		textbox->getMaterial()->getTevBlock()->setTevColor(1, color1);
 
 		changeColorBlock(mColorBlock[0], startBox->getMaterial()->getColorBlock());
 		return;

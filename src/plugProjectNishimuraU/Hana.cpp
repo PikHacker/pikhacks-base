@@ -121,7 +121,7 @@ void Obj::flickAttackBomb()
 	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
 	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 	                            parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
-	efx::THanaMiss efx(mModel->getJoint("kuti2")->getWorldMatrix());
+	efx::TSimpleMtx2 efx(mModel->getJoint("kuti2")->getWorldMatrix(), PID_HanaMiss_1, PID_HanaMiss_2);
 	efx.create(nullptr);
 
 	Vector3f pos = mPosition;

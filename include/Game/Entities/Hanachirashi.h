@@ -118,10 +118,10 @@ struct Obj : public EnemyBase {
 	f32 mWindScaleTimer;                 // _30C
 	bool mIsWindAttackActive;            // _310
 	f32 mPitchRatio;                     // _314
-	efx::TFusenDead* mEfxDead;           // _318
-	efx::TFusenhAirhit* mEfxAirhit;      // _31C
-	efx::TFusenhAir* mEfxAir;            // _320
-	efx::TFusenSui* mEfxSui;             // _324
+	efx::TChaseMtx2* mEfxDead;           // _318
+	efx::TChasePosYRot2* mEfxAirhit;     // _31C
+	efx::TChaseMtx3* mEfxAir;            // _320
+	efx::TChaseMtx* mEfxSui;             // _324
 	Sys::MatLoopAnimator* mMatAnimators; // _328, array of two animators
 	                                     // _330 = PelletView
 };
@@ -150,14 +150,14 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mStandardFlightHeight(this, 'fp01', "基準飛行高さ", 90.0f, 0.0f, 150.0f) // 'standard flight height'
-		    , mRiseFactor(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)                 // 'rise factor'
-		    , mAirWaitTime(this, 'fp03', "空中ウェイト時間", 3.0f, 0.0f, 10.0f)        // 'air wait time'
-		    , mGroundWaitTime(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f)     // 'ground wait time'
-		    , mShakeOffTime(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)           // 'shake off time'
-		    , mFallingMinimumPikiNum(this, 'ip01', "落下最低ピキ数", 10, 1, 50)        // 'falling minimum number piki'
-		    , mVerticalSwingSpeed(this, 'fp05', "上下の揺れ速度", 2.5f, 0.0f, 10.0f)   // 'vertical swing speed'
-		    , mVerticalSwingWidth(this, 'fp06', "上下の揺れ幅", 5.0f, 0.0f, 10.0f)     // 'vertical swing width'
+		    , mStandardFlightHeight(this, 'fp01', 90.0f, 0.0f, 150.0f) // 'standard flight height'
+		    , mRiseFactor(this, 'fp02', 1.0f, 0.0f, 10.0f)             // 'rise factor'
+		    , mAirWaitTime(this, 'fp03', 3.0f, 0.0f, 10.0f)            // 'air wait time'
+		    , mGroundWaitTime(this, 'fp10', 3.0f, 0.0f, 10.0f)         // 'ground wait time'
+		    , mShakeOffTime(this, 'fp04', 3.0f, 0.0f, 10.0f)           // 'shake off time'
+		    , mFallingMinimumPikiNum(this, 'ip01', 10, 1, 50)          // 'falling minimum number piki'
+		    , mVerticalSwingSpeed(this, 'fp05', 2.5f, 0.0f, 10.0f)     // 'vertical swing speed'
+		    , mVerticalSwingWidth(this, 'fp06', 5.0f, 0.0f, 10.0f)     // 'vertical swing width'
 		{
 		}
 

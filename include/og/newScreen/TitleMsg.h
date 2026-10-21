@@ -7,9 +7,9 @@
 #include "Vector2.h"
 
 namespace efx2d {
-struct T2DCvnameVs;
-struct T2DCvnameCave;
-struct T2DCvnameChal;
+struct TForever;
+struct TForever2;
+struct TForever3;
 } // namespace efx2d
 
 namespace og {
@@ -84,9 +84,9 @@ struct TitleMsgClash : public TitleMsg {
 
 	// _00      = VTBL
 	// _00-_7E4 = TitleMsg
-	f32 mScaleMod;                     // _7E4
-	f32 mCurrScale;                    // _7E8
-	efx2d::T2DCvnameVs* mEffects[128]; // _7EC
+	f32 mScaleMod;                   // _7E4
+	f32 mCurrScale;                  // _7E8
+	efx2d::TForever2* mEffects[128]; // _7EC
 };
 
 struct TitleMsgDrop : public TitleMsg {
@@ -114,8 +114,8 @@ struct TitleMsgDrop : public TitleMsg {
 
 	// _00      = VTBL
 	// _00-_7E4 = TitleMsg
-	Motion mMotions[128];                // _7E4
-	efx2d::T2DCvnameCave* mEffects[128]; // _11E4
+	Motion mMotions[128];            // _7E4
+	efx2d::TForever3* mEffects[128]; // _11E4
 };
 
 struct TitleMsgWave : public TitleMsg {
@@ -135,7 +135,7 @@ struct TitleMsgWave : public TitleMsg {
 	f32 mScaleup2;                         // _9EC
 	f32 mScaleup3;                         // _9F0
 	f32 mScaleup4;                         // _9F4
-	efx2d::T2DCvnameChal* mEffects[128];   // _9F8
+	efx2d::TForever* mEffects[128];        // _9F8
 };
 } // namespace newScreen
 } // namespace og

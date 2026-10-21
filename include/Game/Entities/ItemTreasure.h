@@ -107,10 +107,10 @@ struct TreasureParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Plant::Parms")
-		    , mLife0(this, 'p000', "ライフ(0)", 250.0f, 1.0f, 60000.0f)  // 'life (0)'
-		    , mLife1(this, 'p001', "ライフ(1)", 750.0f, 1.0f, 60000.0f)  // 'life (1)'
-		    , mLife2(this, 'p002', "ライフ(2)", 1200.0f, 1.0f, 60000.0f) // 'life (2)'
-		    , mLife3(this, 'p003', "ライフ(3)", 1500.0f, 1.0f, 60000.0f) // 'life (3)'
+		    , mLife0(this, 'p000', 250.0f, 1.0f, 60000.0f)  // 'life (0)'
+		    , mLife1(this, 'p001', 750.0f, 1.0f, 60000.0f)  // 'life (1)'
+		    , mLife2(this, 'p002', 1200.0f, 1.0f, 60000.0f) // 'life (2)'
+		    , mLife3(this, 'p003', 1500.0f, 1.0f, 60000.0f) // 'life (3)'
 		{
 		}
 
@@ -134,7 +134,7 @@ struct Mgr : public TNodeItemMgr {
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
 	virtual BaseItem* doNew() { return new Item; }                        // _A0 (weak)
 	virtual u32 generatorGetID() { return 'trsr'; }                       // _58 (weak)
-	virtual BaseItem* birth(); // _BC
+	virtual BaseItem* birth();                                            // _BC
 
 	// _00      = VTBL
 	// _00-_88  = TNodeItemMgr

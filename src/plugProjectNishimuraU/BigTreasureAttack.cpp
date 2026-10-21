@@ -253,7 +253,7 @@ BigTreasureWaterAttack::BigTreasureWaterAttack(Obj* obj, BigTreasureAttackParame
 	mAttackData = data;
 	mVelocity.setZero();
 	mPosition.setZero();
-	mEfxWaterBomb = new efx::TOootaWbomb(&mPosition);
+	mEfxWaterBomb = new efx::TChasePos4(&mPosition, PID_OoOtaWbomb_1, PID_OoOtaWbomb_2, PID_OoOtaWbomb_3, PID_OoOtaWbomb_4);
 }
 
 /**
@@ -345,7 +345,7 @@ void BigTreasureWaterAttack::finish()
 	mEfxWaterBomb->fade();
 
 	efx::Arg fxArg(mPosition);
-	efx::TOootaWbHit hitFX;
+	efx::TSimple4 hitFX(PID_OoOtaWbHit_1, PID_OoOtaWbHit_2, PID_OoOtaWbHit_3, PID_OoOtaWbHit_4);
 	hitFX.create(&fxArg);
 	PSStartSoundVec(PSSE_EN_BIGTAKARA_W_GROUND, (Vec*)&mPosition);
 }
@@ -363,9 +363,9 @@ BigTreasureElecAttack::BigTreasureElecAttack(Obj* obj, BigTreasureAttackParamete
 	mVelocity.setZero();
 	mPosition.setZero();
 	mConnectedNode = nullptr;
-	mEfxElec       = new efx::TOootaElec;
-	mEfxElecParts  = new efx::TOootaElecparts(&mPosition);
-	mEfxPhouden    = new efx::TOootaPhouden(&mPosition);
+	mEfxElec       = new efx::TChasePosPosLocalZScale3(nullptr, nullptr, 300.0f, PID_OoOtaElec_1, PID_OoOtaElec_2, PID_OoOtaElec_3);
+	mEfxElecParts  = new efx::TChasePos(PID_OoOtaElecParts, &mPosition);
+	mEfxPhouden    = new efx::TChasePos2(&mPosition, PID_OoOtaPHouden_1, PID_OoOtaPHouden_2);
 }
 
 /**
@@ -513,7 +513,7 @@ void BigTreasureElecAttack::finish()
 
 	if (mIsVisibleNode) {
 		efx::Arg fxArg(mPosition);
-		efx::TOootaPdead deadFX;
+		efx::TSimple1 deadFX(PID_OoOtaPDead);
 		deadFX.create(&fxArg);
 	}
 
@@ -564,14 +564,14 @@ BigTreasureAttackMgr::BigTreasureAttackMgr(Obj* obj)
 	mEfxFire = new efx::TOootaFire;
 
 	for (int i = 0; i < 4; i++) {
-		mEfxGas[i] = new efx::TOootaGas(&mGasEmitPosition, &mGasAttackAngles[i]);
+		mEfxGas[i] = new efx::TChasePosYRot2(&mGasEmitPosition, &mGasAttackAngles[i], PID_OoOtaGas_1, PID_OoOtaGas_2);
 		for (int j = 0; j < 3; j++) {
-			mEfxElecLeg[i][j] = new efx::TOootaElecLeg;
+			mEfxElecLeg[i][j] = new efx::TChasePosPosLocalZScale(PID_OoOtaElecLeg, 100.0f);
 		}
 	}
 
-	mEfxElecAttack1    = new efx::TOootaElecAttack1;
-	mEfxElecAttack2    = new efx::TOootaElecAttack2;
+	mEfxElecAttack1    = new efx::TChasePos(PID_OoOtaElecAttack1, nullptr);
+	mEfxElecAttack2    = new efx::TChasePos2(nullptr, PID_OoOtaElecAttack2_1, PID_OoOtaElecAttack2_2);
 	mShadowRootNode    = new JointShadowRootNode(mObj);
 	mAttackShadowNodes = new AttackShadowNode*[16];
 
@@ -1040,7 +1040,7 @@ void BigTreasureAttackMgr::startNewWaterList()
 		return;
 	}
 
-	efx::TOootaWbShot waterShot(mObj->mModel->getJoint("otakara_water_eff")->getWorldMatrix());
+	efx::TSimpleMtx2 waterShot(mObj->mModel->getJoint("otakara_water_eff")->getWorldMatrix(), PID_OoOtaWbShot_1, PID_OoOtaWbShot_2);
 	waterShot.create(nullptr);
 
 	Vector3f emitPos = mWaterEmitPosition;

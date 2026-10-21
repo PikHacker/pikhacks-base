@@ -99,24 +99,24 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                        // _2BC
-	StateID mNextState;               // _2C0
-	f32 mStateTimer;                  // _2C4
-	f32 mMovePitchTimer;              // _2C8
-	f32 mFallTimer;                   // _2CC
-	Vector3f mTargetPosition;         // _2D0
-	bool mIsSucking;                  // _2DC
-	int mSuckedPiki;                  // _2E0
-	MouthSlots mMouthSlots;           // _2E4
-	Navi* mSuckedNavis[2];            // _2EC
-	efx::TKurageEye* mEfxEyeL;        // _2F4
-	efx::TKurageEye* mEfxEyeR;        // _2F8
-	efx::TKurageHire* mEfxHire;       // _2FC
-	efx::TKurageKira* mEfxKira;       // _300
-	efx::TKurageSui* mEfxSui;         // _304
-	efx::TKurageGepu* mEfxGepu;       // _308
-	efx::TKurageDeadrun* mEfxDeadrun; // _30C
-	                                  // _310 = PelletView
+	FSM* mFsm;                    // _2BC
+	StateID mNextState;           // _2C0
+	f32 mStateTimer;              // _2C4
+	f32 mMovePitchTimer;          // _2C8
+	f32 mFallTimer;               // _2CC
+	Vector3f mTargetPosition;     // _2D0
+	bool mIsSucking;              // _2DC
+	int mSuckedPiki;              // _2E0
+	MouthSlots mMouthSlots;       // _2E4
+	Navi* mSuckedNavis[2];        // _2EC
+	efx::TChaseMtx* mEfxEyeL;     // _2F4
+	efx::TChaseMtx* mEfxEyeR;     // _2F8
+	efx::TKurageHire* mEfxHire;   // _2FC
+	efx::TChasePos* mEfxKira;     // _300
+	efx::TKurageSui* mEfxSui;     // _304
+	efx::TChasePos* mEfxGepu;     // _308
+	efx::TChaseMtxT* mEfxDeadrun; // _30C
+	                              // _310 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -144,14 +144,14 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFlightHeight(this, 'fp01', "飛行高さ", 90.0f, 0.0f, 150.0f)     // 'flight height'
-		    , mRiseFactor(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)         // 'rise factor'
-		    , mGroundTime(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f) // 'ground wait time'
-		    , mSuckTime(this, 'fp11', "吸い込み時間", 5.0f, 0.0f, 10.0f)       // 'suction time'
-		    , mSuckChance(this, 'fp12', "吸い込み確率", 0.025f, 0.0f, 1.0f)    // 'suction probability'
-		    , mShakeTime(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)      // 'shake off time'
-		    , mMinFallPiki(this, 'ip01', "落下最低ピキ数", 10, 1, 50)          // 'falling minimum piki number'
-		    , mMaxSuckPiki(this, 'ip11', "吸い込みピキ数", 10, 1, 100)         // 'sucking piki number'
+		    , mFlightHeight(this, 'fp01', 90.0f, 0.0f, 150.0f) // 'flight height'
+		    , mRiseFactor(this, 'fp02', 1.0f, 0.0f, 10.0f)     // 'rise factor'
+		    , mGroundTime(this, 'fp10', 3.0f, 0.0f, 10.0f)     // 'ground wait time'
+		    , mSuckTime(this, 'fp11', 5.0f, 0.0f, 10.0f)       // 'suction time'
+		    , mSuckChance(this, 'fp12', 0.025f, 0.0f, 1.0f)    // 'suction probability'
+		    , mShakeTime(this, 'fp04', 3.0f, 0.0f, 10.0f)      // 'shake off time'
+		    , mMinFallPiki(this, 'ip01', 10, 1, 50)            // 'falling minimum piki number'
+		    , mMaxSuckPiki(this, 'ip11', 10, 1, 100)           // 'sucking piki number'
 		{
 		}
 

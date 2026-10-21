@@ -23,23 +23,23 @@ struct TTitleParameters : public Parameters {
 	TTitleParameters()
 	    // shoutouts to Scruffys video: https://youtu.be/Z11RFTE_vow
 	    : Parameters(nullptr, "TTitleParameters")
-	    , mBoundsMinX(this, 'tp04', "可視範囲X最小", -400.0f, -2000.0f, 2000.0f)
-	    , mBoundsMaxX(this, 'tp05', "可視範囲X最大", 400.0f, -2000.0f, 2000.0f)
-	    , mBoundsMinY(this, 'tp06', "可視範囲Y最小", -250.0f, -2000.0f, 2000.0f)
-	    , mBoundsMaxY(this, 'tp07', "可視範囲Y最大", 340.0f, -2000.0f, 2000.0f)
-	    , mPikiScatterOriginX(this, 'tp08', "ピクミン解散中心座標X", 0.0f, -640.0f, 640.0f)
-	    , mPikiScatterOriginY(this, 'tp09', "ピクミン解散中心座標Y", 0.0f, -480.0f, 480.0f)
-	    , mMinPikminScatterRadius(this, 'tp10', "ピクミン解散半径最小", 500.0f, 0.0f, 1000.0f)
-	    , mMaxPikminScatterRadius(this, 'tp11', "ピクミン解散半径最大(オブジェクト配置限界半径)", 600.0f, 0.0f, 1000.0f)
-	    , mWindProbability(this, 'tp13', "風あたり範囲の乱数", 30.0f, 0.0f, 100.0f)
-	    , mPlantMoveDuration(this, 'tp50', "BG風状態時間(秒)", 8.0f, 0.0f, 100.0f)
-	    , mBoidDurationDisperse(this, 'tp15', "BOID1状態時間(秒)", 3.0f, 0.0f, 60.0f)
-	    , mBoidDurationRegroup(this, 'tp16', "BOID2状態時間(秒)", 3.0f, 0.0f, 60.0f)
-	    , mBoidDurationSwirl(this, 'tp17', "BOID3状態時間(秒)", 10.0f, 0.0f, 60.0f)
-	    , mWindMoveDuration(this, 'tp19', "風状態時間(秒)", 3.0f, 0.0f, 60.0f)
-	    , mEnemyStayDuration(this, 'tp20', "敵状態時間(秒)", 10.0f, 0.0f, 60.0f)
-	    , mPressStartDelay(this, 'tp21', "PressStart開始時間(秒)", 2.0f, 0.0f, 60.0f)
-	    , mCanOpenMenuDelay(this, 'tp22', "キー受けつけ開始時間(秒)", 3.5f, 0.0f, 60.0f)
+	    , mBoundsMinX(this, 'tp04', -400.0f, -2000.0f, 2000.0f)
+	    , mBoundsMaxX(this, 'tp05', 400.0f, -2000.0f, 2000.0f)
+	    , mBoundsMinY(this, 'tp06', -250.0f, -2000.0f, 2000.0f)
+	    , mBoundsMaxY(this, 'tp07', 340.0f, -2000.0f, 2000.0f)
+	    , mPikiScatterOriginX(this, 'tp08', 0.0f, -640.0f, 640.0f)
+	    , mPikiScatterOriginY(this, 'tp09', 0.0f, -480.0f, 480.0f)
+	    , mMinPikminScatterRadius(this, 'tp10', 500.0f, 0.0f, 1000.0f)
+	    , mMaxPikminScatterRadius(this, 'tp11', 600.0f, 0.0f, 1000.0f)
+	    , mWindProbability(this, 'tp13', 30.0f, 0.0f, 100.0f)
+	    , mPlantMoveDuration(this, 'tp50', 8.0f, 0.0f, 100.0f)
+	    , mBoidDurationDisperse(this, 'tp15', 3.0f, 0.0f, 60.0f)
+	    , mBoidDurationRegroup(this, 'tp16', 3.0f, 0.0f, 60.0f)
+	    , mBoidDurationSwirl(this, 'tp17', 10.0f, 0.0f, 60.0f)
+	    , mWindMoveDuration(this, 'tp19', 3.0f, 0.0f, 60.0f)
+	    , mEnemyStayDuration(this, 'tp20', 10.0f, 0.0f, 60.0f)
+	    , mPressStartDelay(this, 'tp21', 2.0f, 0.0f, 60.0f)
+	    , mCanOpenMenuDelay(this, 'tp22', 3.5f, 0.0f, 60.0f)
 	{
 	}
 
@@ -67,8 +67,8 @@ struct TTitleCameraMgr : public LookAtCamera {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "TTitleCameraParameters")
-		    , mYOffset(this, 'cam1', "カメラ距離ロゴ", 15.0f, -1000.0f, 10000.0f) // "camera distance logo"
-		    , mFOVY(this, 'cam4', "Fovy", 35.0f, 1.0f, 180.0f)
+		    , mYOffset(this, 'cam1', 15.0f, -1000.0f, 10000.0f) // "camera distance logo"
+		    , mFOVY(this, 'cam4', 35.0f, 1.0f, 180.0f)
 		{
 		}
 
@@ -93,13 +93,13 @@ struct TTitleFogMgr : public FogMgr {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "TTitleFogParameters")
-		    , mIsFogActive(this, 'fg10', "フォグ有効無効", true, false, true)
-		    , mStartDist(this, 'fg00', "start z", 100.0f, 0.0f, 1024.0f)
-		    , mEndDist(this, 'fg01', "end z", 2000.0f, 0.0f, 12800.0f)
-		    , mColR(this, 'fg02', "色　R", 255, 0, 255)
-		    , mColG(this, 'fg03', "色　G", 255, 0, 255)
-		    , mColB(this, 'fg04', "色　B", 255, 0, 255)
-		    , mColA(this, 'fg05', "色　A", 255, 0, 255)
+		    , mIsFogActive(this, 'fg10', true, false, true)
+		    , mStartDist(this, 'fg00', 100.0f, 0.0f, 1024.0f)
+		    , mEndDist(this, 'fg01', 2000.0f, 0.0f, 12800.0f)
+		    , mColR(this, 'fg02', 255, 0, 255)
+		    , mColG(this, 'fg03', 255, 0, 255)
+		    , mColB(this, 'fg04', 255, 0, 255)
+		    , mColA(this, 'fg05', 255, 0, 255)
 		{
 		}
 
@@ -129,10 +129,10 @@ struct TTitleLightSetting {
 	struct TAmbParms : public Parameters {
 		inline TAmbParms()
 		    : Parameters(nullptr, "TAmbParms")
-		    , mRed(this, 'tl00', "アンビエント色R", 0, 0, 255)
-		    , mGreen(this, 'tl01', "アンビエント色G", 0, 0, 255)
-		    , mBlue(this, 'tl02', "アンビエント色B", 0, 0, 255)
-		    , mAlpha(this, 'tl03', "アンビエント色A", 0, 0, 255)
+		    , mRed(this, 'tl00', 0, 0, 255)
+		    , mGreen(this, 'tl01', 0, 0, 255)
+		    , mBlue(this, 'tl02', 0, 0, 255)
+		    , mAlpha(this, 'tl03', 0, 0, 255)
 		{
 		}
 
@@ -145,19 +145,19 @@ struct TTitleLightSetting {
 	struct TMainParms : public Parameters {
 		TMainParms()
 		    : Parameters(nullptr, "TMainParms")
-		    , mLightColR(this, 'tl04', "ライト色R", 255, 0, 255)
-		    , mLightColG(this, 'tl05', "ライト色G", 255, 0, 255)
-		    , mLightColB(this, 'tl06', "ライト色B", 255, 0, 255)
-		    , mLightColA(this, 'tl07', "ライト色A", 255, 0, 255)
-		    , mPosX(this, 'tl50', "位置X", 0.0f, -10000.0f, 10000.0f)
-		    , mPosY(this, 'tl51', "位置Y", 1000.0f, -10000.0f, 50000.0f)
-		    , mPosZ(this, 'tl52', "位置Z", 0.0f, -10000.0f, 10000.0f)
-		    , mRotX(this, 'tl53', "向きX", 0.0f, -1.0f, 1.0f)
-		    , mRotY(this, 'tl54', "向きY", -1.0f, -1.0f, 1.0f)
-		    , mRotZ(this, 'tl55', "向きZ", 0.0f, -1.0f, 1.0f)
-		    , mLightRange(this, 'tl56', "距離減衰-距離", 10000.0f, 1.0f, 50000.0f)
-		    , mLightBrightness(this, 'tl57', "距離減衰-明るさ", 1.0f, 0.0f, 1.0f)
-		    , mCutoffAngle(this, 'tl58', "カットオフ角度", 25.0f, 1.0f, 180.0f)
+		    , mLightColR(this, 'tl04', 255, 0, 255)
+		    , mLightColG(this, 'tl05', 255, 0, 255)
+		    , mLightColB(this, 'tl06', 255, 0, 255)
+		    , mLightColA(this, 'tl07', 255, 0, 255)
+		    , mPosX(this, 'tl50', 0.0f, -10000.0f, 10000.0f)
+		    , mPosY(this, 'tl51', 1000.0f, -10000.0f, 50000.0f)
+		    , mPosZ(this, 'tl52', 0.0f, -10000.0f, 10000.0f)
+		    , mRotX(this, 'tl53', 0.0f, -1.0f, 1.0f)
+		    , mRotY(this, 'tl54', -1.0f, -1.0f, 1.0f)
+		    , mRotZ(this, 'tl55', 0.0f, -1.0f, 1.0f)
+		    , mLightRange(this, 'tl56', 10000.0f, 1.0f, 50000.0f)
+		    , mLightBrightness(this, 'tl57', 1.0f, 0.0f, 1.0f)
+		    , mCutoffAngle(this, 'tl58', 25.0f, 1.0f, 180.0f)
 		{
 		}
 
@@ -179,14 +179,14 @@ struct TTitleLightSetting {
 	struct TSpecParms : public Parameters {
 		TSpecParms()
 		    : Parameters(nullptr, "TSpecParms")
-		    , mLightColR(this, 'sp04', "ライト色R", 255, 0, 255)
-		    , mLightColG(this, 'sp05', "ライト色G", 255, 0, 255)
-		    , mLightColB(this, 'sp06', "ライト色B", 255, 0, 255)
-		    , mLightColA(this, 'sp07', "ライト色A", 255, 0, 255)
-		    , mRotX(this, 'sp53', "向きX", 0.0f, -1.0f, 1.0f)
-		    , mRotY(this, 'sp54', "向きY", -1.0f, -1.0f, 1.0f)
-		    , mRotZ(this, 'sp55', "向きZ", 0.0f, -1.0f, 1.0f)
-		    , mGlossAmount(this, 'sp56', "光沢", 64.0f, 0.0f, 512.0f) // Luster?
+		    , mLightColR(this, 'sp04', 255, 0, 255)
+		    , mLightColG(this, 'sp05', 255, 0, 255)
+		    , mLightColB(this, 'sp06', 255, 0, 255)
+		    , mLightColA(this, 'sp07', 255, 0, 255)
+		    , mRotX(this, 'sp53', 0.0f, -1.0f, 1.0f)
+		    , mRotY(this, 'sp54', -1.0f, -1.0f, 1.0f)
+		    , mRotZ(this, 'sp55', 0.0f, -1.0f, 1.0f)
+		    , mGlossAmount(this, 'sp56', 64.0f, 0.0f, 512.0f)
 		{
 		}
 

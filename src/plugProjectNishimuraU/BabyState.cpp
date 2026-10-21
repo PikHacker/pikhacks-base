@@ -65,7 +65,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	Vector3f position = baby->getPosition();
 
 	efx::Arg fxArg(position);
-	efx::TBabyBecha bechaEffect;
+	efx::TSimple1 bechaEffect(PID_BabyBecha);
 
 	bechaEffect.create(&fxArg);
 }

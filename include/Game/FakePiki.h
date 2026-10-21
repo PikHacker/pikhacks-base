@@ -273,17 +273,15 @@ struct FakePikiParms : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "FakePiki::Parms")
-		    , mStepStartSpeed(this, 'fp01', "ASIBUMI 開始スピード", 5.0f, 0.0f, 500.0f)                 // 'ASIBUMI start speed' (stepping?)
-		    , mWalkStartSpeed(this, 'fp02', "WALK 開始スピード", 8.0f, 0.0f, 500.0f)                    // 'WALK start speed'
-		    , mRunStartSpeed(this, 'fp03', "RUN 開始スピード", 20.0f, 0.0f, 500.0f)                     // 'RUN start speed'
-		    , mEscapeStartSpeed(this, 'fp04', "ESCAPE 開始スピード", 95.0f, 0.0f, 500.0f)               // 'ESCAPE start speed'
-		    , mWalkPlaybackFrameCountMin(this, 'fp04', "WALK 再生フレーム数(min)", 60.0f, 0.0f, 300.0f) // 'WALK playback frame count (min)'
-		    , mWalkPlaybackFrameCountMax(this, 'fp05', "WALK 再生フレーム数(max)", 90.0f, 0.0f,
-			                             300.0f)                                                      // 'WALK  playback frame count (max)'
-		    , mRunPlaybackFrameCountMin(this, 'fp06', "RUN 再生フレーム数(min)", 40.0f, 0.0f, 300.0f) // 'RUN playback frame count (min)'
-		    , mRunPlaybackFrameCountMax(this, 'fp07', "RUN 再生フレーム数(max)", 60.0f, 0.0f, 300.0f) // 'RUN playback frame count (max)'
-		    , mEscapePlaybackFrameCountMin(this, 'fp08', "ESCAPE 再生フレーム数(min)", 60.0f, 0.0f,
-			                               300.0f) // 'ESCAPE playback frame count (min)'
+		    , mStepStartSpeed(this, 'fp01', 5.0f, 0.0f, 500.0f)               // 'ASIBUMI start speed' (stepping?)
+		    , mWalkStartSpeed(this, 'fp02', 8.0f, 0.0f, 500.0f)               // 'WALK start speed'
+		    , mRunStartSpeed(this, 'fp03', 20.0f, 0.0f, 500.0f)               // 'RUN start speed'
+		    , mEscapeStartSpeed(this, 'fp04', 95.0f, 0.0f, 500.0f)            // 'ESCAPE start speed'
+		    , mWalkPlaybackFrameCountMin(this, 'fp04', 60.0f, 0.0f, 300.0f)   // 'WALK playback frame count (min)'
+		    , mWalkPlaybackFrameCountMax(this, 'fp05', 90.0f, 0.0f, 300.0f)   // 'WALK  playback frame count (max)'
+		    , mRunPlaybackFrameCountMin(this, 'fp06', 40.0f, 0.0f, 300.0f)    // 'RUN playback frame count (min)'
+		    , mRunPlaybackFrameCountMax(this, 'fp07', 60.0f, 0.0f, 300.0f)    // 'RUN playback frame count (max)'
+		    , mEscapePlaybackFrameCountMin(this, 'fp08', 60.0f, 0.0f, 300.0f) // 'ESCAPE playback frame count (min)'
 		{
 		}
 

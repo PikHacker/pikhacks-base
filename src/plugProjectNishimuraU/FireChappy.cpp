@@ -274,10 +274,10 @@ void Obj::updateEfxLod()
 void Obj::createEffect()
 {
 	mEfxBody      = new efx::TYakiBody;
-	mEfxHanacho   = new efx::THanachoY;
-	mEfxFlick     = new efx::TYakiFlick;
-	mEfxDeadsmoke = new efx::TYakiDeadsmoke;
-	mEfxSteam     = new efx::TYakiSteam;
+	mEfxHanacho   = new efx::TChaseMtx(PID_HanachoY, nullptr);
+	mEfxFlick     = new efx::TChaseMtx(PID_YakiFlick, nullptr);
+	mEfxDeadsmoke = new efx::TChaseMtxT(PID_YakiDeadSmoke);
+	mEfxSteam     = new efx::TChaseMtx(PID_YakiSteam, nullptr);
 }
 
 /**

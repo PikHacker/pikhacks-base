@@ -1208,11 +1208,11 @@ void Plant::startMotion(int motionState)
 
 		// trigger correct growth efx based on stage size
 		if (mGrowState == PLANTGROW_Small) { // small -> medium
-			efx::TTsuyuGrow1 grow1(&mBaseTrMatrix);
+			efx::TSimpleMtx2 grow1(&mBaseTrMatrix, PID_TsuyuGrow1_1, PID_TsuyuGrow1_2);
 			grow1.create(nullptr);
 
 		} else if (mGrowState == PLANTGROW_Medium) { // medium -> large
-			efx::TTsuyuGrow2 grow2(&mBaseTrMatrix);
+			efx::TSimpleMtx2 grow2(&mBaseTrMatrix, PID_TsuyuGrow2_1, PID_TsuyuGrow2_2);
 			grow2.create(nullptr);
 		}
 		break;
@@ -1409,11 +1409,11 @@ bool Plant::interactEat(InteractEat& eat)
 			efx::Arg fxArg(fruitPos);
 			if (fruit->mPelletColor == PELCOLOR_SPICY) {
 				eat.mBerryColor = PELCOLOR_SPICY;
-				efx::TFruitsDownR downSpicy;
+				efx::TSimple2 downSpicy(PID_FruitsDownR_1, PID_FruitsDownR_2);
 				downSpicy.create(&fxArg);
 			} else {
 				eat.mBerryColor = PELCOLOR_BITTER;
-				efx::TFruitsDownP downBitter;
+				efx::TSimple2 downBitter(PID_FruitsDownP_1, PID_FruitsDownP_2);
 				downBitter.create(&fxArg);
 			}
 			fruit->mSoundMgr->startSound(PSSE_EV_FRUIT_POP, 0);

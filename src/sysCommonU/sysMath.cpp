@@ -477,17 +477,17 @@ void Quat::set(RPY&)
 	// UNUSED FUNCTION
 }
 
-/**
- * @note Address: 0x80412760
- * @note Size: 0x24
- */
-Quat::Quat(Quat& quat)
-{
-	w   = quat.w;
-	v.x = quat.v.x;
-	v.y = quat.v.y;
-	v.z = quat.v.z;
-}
+// /**
+//  * @note Address: 0x80412760
+//  * @note Size: 0x24
+//  */
+// Quat::Quat(Quat& quat)
+// {
+// 	w   = quat.w;
+// 	v.x = quat.v.x;
+// 	v.y = quat.v.y;
+// 	v.z = quat.v.z;
+// }
 
 /**
  * @note Address: 0x80412784

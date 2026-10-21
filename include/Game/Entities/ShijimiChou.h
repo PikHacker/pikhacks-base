@@ -213,14 +213,14 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mMaxFlyTime(this, 'fp01', "飛行期間", 300.0f, 0.0f, 1000.0f)                    // 'flight duration'
-		    , mMaxFlyTimePlant(this, 'fp08', "プランツからの飛行期間", 100.0f, 0.0f, 1000.0f) // 'flight duration from plants'
-		    , mNectarRate(this, 'fp02', "蜜レート", 1.0f, 0.0f, 1.0f)                         // 'honey rate'
-		    , mFlightHeight(this, 'fp03', "飛行高さ", 100.0f, 0.0f, 200.0f)                   // 'flight height'
-		    , mPitchRate(this, 'fp04', "飛行レート", 0.05f, 0.0f, 1.0f)                       // 'flight rate'
-		    , mPitchAmpRate(this, 'fp05', "飛行高低", 1.0f, 0.0f, 10.0f)                      // 'flight altitude'
-		    , mRedSpawnChance(this, 'fp06', "赤蝶率", 0.1f, 0.0f, 1.0f)                       // 'red butterfly rate
-		    , mPurpleSpawnChance(this, 'fp07', "黒蝶率", 0.1f, 0.0f, 1.0f)                    // 'black butterfly rate'
+		    , mMaxFlyTime(this, 'fp01', 300.0f, 0.0f, 1000.0f)      // 'flight duration'
+		    , mMaxFlyTimePlant(this, 'fp08', 100.0f, 0.0f, 1000.0f) // 'flight duration from plants'
+		    , mNectarRate(this, 'fp02', 1.0f, 0.0f, 1.0f)           // 'honey rate'
+		    , mFlightHeight(this, 'fp03', 100.0f, 0.0f, 200.0f)     // 'flight height'
+		    , mPitchRate(this, 'fp04', 0.05f, 0.0f, 1.0f)           // 'flight rate'
+		    , mPitchAmpRate(this, 'fp05', 1.0f, 0.0f, 10.0f)        // 'flight altitude'
+		    , mRedSpawnChance(this, 'fp06', 0.1f, 0.0f, 1.0f)       // 'red butterfly rate
+		    , mPurpleSpawnChance(this, 'fp07', 0.1f, 0.0f, 1.0f)    // 'black butterfly rate'
 		{
 		}
 
@@ -237,8 +237,6 @@ struct Parms : public EnemyParmsBase {
 	Parms()
 	{
 		mFlyType              = 0;
-		mDoUpdateAnimation    = false;
-		mDoManualFlight       = false;
 		mGroupCount           = SHIJIMICHOU_GROUP_COUNT;
 		mCanFall              = true;
 		mUseParmFlyType       = false;
@@ -263,8 +261,6 @@ struct Parms : public EnemyParmsBase {
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms mProperParms;  // _7F8
 	u8 mFlyType;               // _948
-	bool mDoUpdateAnimation;   // _949
-	bool mDoManualFlight;      // _94A, use custom flight code (true) or EnemyFunc::walkToTarget (false)
 	u8 mGroupCount;            // _94B
 	bool mCanFall;             // _94C, do fall behavior
 	bool mUseParmFlyType;      // _94D, ignore obj fly type and use parm type instead

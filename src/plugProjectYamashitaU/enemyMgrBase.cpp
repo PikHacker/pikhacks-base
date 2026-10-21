@@ -281,8 +281,6 @@ bool EnemyMgrBase::isValidEnemyTypeID()
  */
 void EnemyMgrBase::setupSoundViewerAndBas()
 {
-	PSGame::SoundCreatureMgr soundMgr;
-
 	if (isValidEnemyTypeID() && (mAnimMgr != nullptr)) {
 		char* resName   = EnemyInfoFunc::getEnemyResName(getEnemyTypeID(), 0xFFFF);
 		char* enemyName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
@@ -290,7 +288,6 @@ void EnemyMgrBase::setupSoundViewerAndBas()
 		JKRFileLoader* fileLoader = PSSystem::getLoaderInstance();
 
 		mAnimMgr->connectBasArc(resName, enemyName, fileLoader);
-		mAnimMgr->registerSoundViewer(&soundMgr);
 	}
 }
 

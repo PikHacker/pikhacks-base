@@ -96,8 +96,8 @@ struct Obj : public EnemyBase {
 	Vector3f mSpawnPositions[2];    // _2D4, see SpawnIndex enum
 	Egg::Obj* mEgg;                 // _2EC
 	efx::TQuriGlow* mEfxGlow;       // _2F0
-	efx::TQuriApp* mEfxAppear;      // _2F4
-	efx::TQuriDisap* mEfxDisappear; // _2F8
+	efx::TChaseMtxT* mEfxAppear;    // _2F4
+	efx::TChaseMtxT* mEfxDisappear; // _2F8
 	                                // _2FC = PelletView
 };
 
@@ -125,11 +125,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFlightHeight(this, 'fp01', "飛行高さ", 60.0f, 0.0f, 150.0f)  // 'flight height'
-		    , mPitchRate(this, 'fp02', "上下の揺れ速度", 2.5f, 0.0f, 10.0f) // 'vertical swing speed'
-		    , mPitchAmp(this, 'fp03', "上下の揺れ幅", 20.0f, 0.0f, 50.0f)   // 'vertical swing width'
-		    , mDeathRate(this, 'fp04', "死亡速度", 100.0f, 0.0f, 1000.0f)   // 'death rate'
-		    , mDeathTime(this, 'fp05', "死亡時間", 1.0f, 0.0f, 10.0f)       // 'death time'
+		    , mFlightHeight(this, 'fp01', 60.0f, 0.0f, 150.0f) // 'flight height'
+		    , mPitchRate(this, 'fp02', 2.5f, 0.0f, 10.0f)      // 'vertical swing speed'
+		    , mPitchAmp(this, 'fp03', 20.0f, 0.0f, 50.0f)      // 'vertical swing width'
+		    , mDeathRate(this, 'fp04', 100.0f, 0.0f, 1000.0f)  // 'death rate'
+		    , mDeathTime(this, 'fp05', 1.0f, 0.0f, 10.0f)      // 'death time'
 		{
 		}
 

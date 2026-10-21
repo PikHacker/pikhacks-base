@@ -703,9 +703,9 @@ void Obj::setBossAppearBGM()
  */
 void Obj::createEffect()
 {
-	mEfxRotate = new efx::THebiRot;
-	mEfxWait   = new efx::THebiWait;
-	mEfxDead   = new efx::THebiDead;
+	mEfxRotate = new efx::TForever(PID_HebiROT);
+	mEfxWait   = new efx::TForever(PID_HebiWAIT);
+	mEfxDead   = new efx::TChaseMtxT4(nullptr, PID_HebiDead_1, PID_HebiDead_2, PID_HebiDead_3, PID_HebiDead_4);
 }
 
 /**
@@ -727,15 +727,15 @@ void Obj::createAppearEffect(int effectID)
 	efx::Arg fxArg(mPosition);
 	switch (effectID) {
 	case 0:
-		efx::THebiAphd_appear1 appear1;
+		efx::THebiAphd_base appear1(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 40);
 		appear1.create(&fxArg);
 		break;
 	case 1:
-		efx::THebiAphd_appear2_first appear2;
+		efx::THebiAphd_base appear2(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 65);
 		appear2.create(&fxArg);
 		break;
 	case 2:
-		efx::THebiAphd_appear2_late appear3;
+		efx::THebiAphd_base appear3(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 35);
 		appear3.create(&fxArg);
 		break;
 	}
@@ -796,7 +796,7 @@ void Obj::createDeadFinishEffect()
 {
 	Vector3f fxPos = mModel->getJoint("kutijnt1")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(fxPos);
-	efx::THebiDeadHane_ver01 deadFX;
+	efx::TSimple1 deadFX(PID_HebiDeadHane);
 	deadFX.create(&fxArg);
 }
 

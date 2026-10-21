@@ -270,7 +270,7 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 	mSaveMgr->doLoadMenuResource();
 	mSaveMgr->setControllers(getGamePad());
 	mSaveMgr->mSaveType = 1;
-	mEfxComp            = new efx2d::T2DCavecompLoop;
+	mEfxComp            = new efx2d::TForever(PID_Cavecomp_Loop);
 
 	if (disp->mHeap) {
 		oldHeap->becomeCurrentHeap();
@@ -901,7 +901,7 @@ void ObjCaveResult::updateAnimation()
 
 			efx2d::Arg arg(Vector2f(getPaneCenterX(mScreenComplete->search('NALL')) + msVal.mCompEfxOffsetX,
 			                        getPaneCenterY(mScreenComplete->search('NALL')) + msVal.mCompEfxOffsetY));
-			efx2d::T2DCavecomp efx;
+			efx2d::TSimple2 efx(PID_Cavecomp_1, PID_Cavecomp_2);
 			efx.create(&arg);
 
 			setFlag(CAVERESFLAG_MakeEfx);
@@ -1058,7 +1058,7 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool isOdd)
 	f32 efxY = pos.y - 10.0f;
 	f32 efxX = pos.x;
 	for (int i = 0; i < 5; i++) {
-		efx2d::T2DChangesmoke efx;
+		efx2d::TSimple1 efx(PID_Changesmoke);
 		Vector2f pos(efxX + xoffs[i], efxY);
 		efx2d::Arg arg(pos);
 		efx.create(&arg);

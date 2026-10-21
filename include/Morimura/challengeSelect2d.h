@@ -178,7 +178,7 @@ struct TChallengeSelect : public TTestBase {
 	J2DPane* mPaneLevelName[2];                 // _E0
 	J2DPane* mPaneSelect;                       // _E8
 	TOffsetMsgSet* mOffsMesg;                   // _EC
-	efx2d::T2DChalDive* mEfxDive;               // _F0
+	efx2d::TForever* mEfxDive;                  // _F0
 	int _F4;                                    // _F4
 	int _F8;                                    // _F8
 	int mCurrentSelection;                      // _FC

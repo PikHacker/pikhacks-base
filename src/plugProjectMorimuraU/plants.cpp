@@ -231,7 +231,7 @@ void Watage::Obj::touched()
 {
 	Plants::Obj::touched();
 
-	efx::TWatage watageEFX;
+	efx::TSimple1 watageEFX(PID_Watage);
 	efx::Arg arg(mPosition);
 
 	watageEFX.create(&arg);

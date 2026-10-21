@@ -1769,10 +1769,8 @@ void EnemyBase::doEntryLiving()
 		show();
 		changeMaterial();
 	} else {
-		if (BaseHIOParms::sEntryOpt) {
-			if (!gameSystem->isMultiplayerMode())
-				return;
-		}
+		if (!gameSystem->isMultiplayerMode())
+			return;
 
 		hide();
 	}

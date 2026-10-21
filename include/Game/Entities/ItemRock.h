@@ -93,17 +93,17 @@ struct RockParms : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "Plant::Parms")
-		    , mHealthMax(this, 'p000', "ライフ(0)", 1500.0f, 1.0f, 60000.0f)        // 'life (0)'
-		    , mHealthMedium(this, 'p001', "ライフ(1)", 1200.0f, 1.0f, 60000.0f)     // 'life (1)'
-		    , mHealthSmall(this, 'p002', "ライフ(2)", 750.0f, 1.0f, 60000.0f)       // 'life (2)'
-		    , mHealthHidden(this, 'p003', "ライフ(3)", 250.0f, 1.0f, 60000.0f)      // 'life (3)'
-		    , mGrowTimeMax(this, 'p004', "再生時間(0) [分]", 1.0f, 0.0f, 150.0f)    // 'play time (0) [minutes]'
-		    , mGrowTimeMedium(this, 'p005', "再生時間(1) [分]", 1.0f, 0.0f, 150.0f) // 'play time (1) [minutes]'
-		    , mGrowTimeSmall(this, 'p006', "再生時間(2) [分]", 1.0f, 0.0f, 150.0f)  // 'play time (2) [minutes]'
-		    , mGrowTimeHidden(this, 'p007', "再生時間(3) [分]", 1.0f, 0.0f, 150.0f) // 'play time (3) [minutes]'
-		    , mWorkRadiusMax(this, 'p008', "仕事半径(0)", 35.0f, 0.0f, 150.0f)      // 'work radius (0)'
-		    , mWorkRadiusMedium(this, 'p009', "仕事半径(0)", 20.0f, 0.0f, 150.0f)   // 'work radius (0)' (should be (1))
-		    , mWorkRadiusSmall(this, 'p010', "仕事半径(0)", 10.0f, 0.0f, 150.0f)    // 'work radius (0)' (should be (2))
+		    , mHealthMax(this, 'p000', 1500.0f, 1.0f, 60000.0f)    // 'life (0)'
+		    , mHealthMedium(this, 'p001', 1200.0f, 1.0f, 60000.0f) // 'life (1)'
+		    , mHealthSmall(this, 'p002', 750.0f, 1.0f, 60000.0f)   // 'life (2)'
+		    , mHealthHidden(this, 'p003', 250.0f, 1.0f, 60000.0f)  // 'life (3)'
+		    , mGrowTimeMax(this, 'p004', 1.0f, 0.0f, 150.0f)       // 'play time (0) [minutes]'
+		    , mGrowTimeMedium(this, 'p005', 1.0f, 0.0f, 150.0f)    // 'play time (1) [minutes]'
+		    , mGrowTimeSmall(this, 'p006', 1.0f, 0.0f, 150.0f)     // 'play time (2) [minutes]'
+		    , mGrowTimeHidden(this, 'p007', 1.0f, 0.0f, 150.0f)    // 'play time (3) [minutes]'
+		    , mWorkRadiusMax(this, 'p008', 35.0f, 0.0f, 150.0f)    // 'work radius (0)'
+		    , mWorkRadiusMedium(this, 'p009', 20.0f, 0.0f, 150.0f) // 'work radius (0)' (should be (1))
+		    , mWorkRadiusSmall(this, 'p010', 10.0f, 0.0f, 150.0f)  // 'work radius (0)' (should be (2))
 		{
 		}
 
@@ -174,21 +174,21 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	Farm::Obstacle* mObstacle;       // _1EC
-	efx::TKouhai1* mEfxKouhaiSmall;  // _1F0
-	efx::TKouhai2* mEfxKouhaiMedium; // _1F4
-	efx::TKouhai3* mEfxKouhaiMax;    // _1F8
-	u8 mMakeEffectDelay;             // _1FC
-	f32 mHealth;                     // _200, current health (resets each time size changes)
-	f32 mMaxHealth;                  // _204, health at max size
-	f32* mHealthLimits;              // _208
-	f32* mGrowTimes;                 // _20C
-	f32* mWorkRadii;                 // _210, work radii for visible sizes (0, 1, 2)
-	f32 mSizeTimer;                  // _214, how long have we been at current size
-	f32 mDamageBuffer;               // _218, stores damage dealt while changing sizes (then applied when in normal state)
-	int mSize;                       // _21C, 0 = max, 1 = medium, 2 = small, 3 = hidden
-	int mSizeCount;                  // _220, number of visible sizes - also size to disappear at
-	u32 _224;                        // _224, unknown
+	Farm::Obstacle* mObstacle;        // _1EC
+	efx::TForever2* mEfxKouhaiSmall;  // _1F0
+	efx::TForever2* mEfxKouhaiMedium; // _1F4
+	efx::TForever2* mEfxKouhaiMax;    // _1F8
+	u8 mMakeEffectDelay;              // _1FC
+	f32 mHealth;                      // _200, current health (resets each time size changes)
+	f32 mMaxHealth;                   // _204, health at max size
+	f32* mHealthLimits;               // _208
+	f32* mGrowTimes;                  // _20C
+	f32* mWorkRadii;                  // _210, work radii for visible sizes (0, 1, 2)
+	f32 mSizeTimer;                   // _214, how long have we been at current size
+	f32 mDamageBuffer;                // _218, stores damage dealt while changing sizes (then applied when in normal state)
+	int mSize;                        // _21C, 0 = max, 1 = medium, 2 = small, 3 = hidden
+	int mSizeCount;                   // _220, number of visible sizes - also size to disappear at
+	u32 _224;                         // _224, unknown
 };
 
 struct Mgr : public TNodeItemMgr {

@@ -173,33 +173,6 @@ static void kando_panic_f(bool r3, const char* file, int line, const char* forma
 void preUserCallback(u16, OSContext*, u32, u32)
 {
 	sys->disableCPULockDetector();
-
-	u32 track;
-	// the inputs needed to open the crash log
-	u16 inputs[11] = { Controller::PRESS_A,
-	                   Controller::PRESS_B,
-	                   Controller::PRESS_X,
-	                   Controller::PRESS_R,
-	                   Controller::PRESS_L,
-	                   Controller::PRESS_DPAD_LEFT,
-	                   Controller::PRESS_DPAD_DOWN,
-	                   Controller::PRESS_DPAD_UP,
-	                   Controller::PRESS_DPAD_RIGHT,
-	                   Controller::PRESS_Z,
-	                   0 };
-
-	int i = 0;
-	// wait until all required inputs are in before passing, disable this if you want instant crash log
-	while (inputs[i]) {
-		u32 input;
-		JUTException::waitTime(100);
-		JUTException::sErrorManager->readPad(&input, nullptr);
-		// if current input is correct, go to next input, otherwise reset back to 0
-		if (input) {
-			i = ((inputs[i] == input) ? i + 1 : 0);
-		}
-	}
-
 	sUseABXCommand = true;
 	if (JUTException::sConsole) {
 		JUTException::sConsole->startPrint(3, "--- Game debug information ---\n");

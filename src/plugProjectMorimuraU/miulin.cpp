@@ -474,7 +474,7 @@ void Obj::attackEffect(Vector3f& effectPos)
 
 	pos += effectPos;
 
-	efx::TMiuAttack fxAttack;
+	efx::TSimple2 fxAttack(PID_MiuAttack_1, PID_MiuAttack_2);
 	efx::Arg fxArg(pos);
 
 	fxAttack.create(&fxArg);

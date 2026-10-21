@@ -10,36 +10,6 @@
 namespace efx {
 
 /**
- * @note Address: N/A
- * @note Size: 0x4
- */
-void TParticleCallBack_Yodare::init(JPABaseEmitter*, JPABaseParticle*)
-{
-	_00   = 0.0f;
-	mName = "ArgType";
-	_08   = 1.0f;
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x124
- */
-void TParticleCallBack_Yodare::execute(JPABaseEmitter*, JPABaseParticle*)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x78
- */
-void TTestYodareGen::create(Arg*)
-{
-	// UNUSED FUNCTION
-}
-
-/**
  * @note Address: 0x803B66B0
  * @note Size: 0xF0
  */
@@ -435,7 +405,7 @@ void createSimpleGedoku(Vector3f& pos)
 void createSimpleBlackDrop(Vector3f& pos)
 {
 	Arg arg(pos);
-	TPkBlackDrop efx;
+	TSimple3 efx(PID_PkBlackDrop_1, PID_PkBlackDrop_2, PID_PkBlackDrop_3);
 	efx.create(&arg);
 }
 
@@ -446,7 +416,7 @@ void createSimpleBlackDrop(Vector3f& pos)
 void createSimpleGate1Attack(Vector3f& pos)
 {
 	Arg arg(pos);
-	TGate1Attack efx;
+	TSimple2 efx(PID_Gate1Attack_1, PID_Gate1Attack_2);
 	efx.create(&arg);
 }
 
@@ -457,7 +427,7 @@ void createSimpleGate1Attack(Vector3f& pos)
 void createSimplePkAp(Vector3f& pos)
 {
 	Arg arg(pos);
-	TPkAp efx;
+	TSimple2 efx(PID_PkAp_1, PID_PkAp_2);
 	efx.create(&arg);
 }
 
@@ -518,7 +488,7 @@ void createSimpleInattack(Vector3f& pos)
 void createSimpleInstick(Vector3f& pos)
 {
 	Arg arg(pos);
-	TPkInstick efx;
+	TSimple1 efx(PID_PkInStick);
 	efx.create(&arg);
 }
 
@@ -529,7 +499,7 @@ void createSimpleInstick(Vector3f& pos)
 void createSimpleGate2Attack(Vector3f& pos)
 {
 	Arg arg(pos);
-	TGate2Attack efx;
+	TSimple2 efx(PID_Gate2Attack_1, PID_Gate2Attack_2);
 	efx.create(&arg);
 }
 
@@ -540,7 +510,7 @@ void createSimpleGate2Attack(Vector3f& pos)
 void createSimpleBridgeAttack(Vector3f& pos)
 {
 	Arg arg(pos);
-	TBridgeAttack efx;
+	TSimple1 efx(PID_BridgeAttack);
 	efx.create(&arg);
 }
 
@@ -560,7 +530,7 @@ void createSimpleWalksmoke(Vector3f& pos)
  */
 void createSimpleGlow2(Vector3f& pos)
 {
-	TPkGlow2 efx;
+	TSimple2 efx(PID_PkGlow2_1, PID_PkGlow2_2);
 	Arg arg(pos);
 	efx.create(&arg);
 }
@@ -571,7 +541,7 @@ void createSimpleGlow2(Vector3f& pos)
  */
 void createSimpleStoneAttack(Vector3f& pos)
 {
-	TStoneAttack efx;
+	TSimple1 efx(PID_StoneAttack);
 	Arg arg(pos);
 	efx.create(&arg);
 }
@@ -1186,51 +1156,6 @@ void TPkEffectTane::killGlow1_()
  */
 void TFueactCircle::executeAfter(JPABaseEmitter*)
 {
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x104
- */
-TTestYodareGen::~TTestYodareGen()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x48
- */
-void TTestYodareGen::forceKill()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x48
- */
-void TTestYodareGen::fade()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x84
- */
-TTestYodareHit::~TTestYodareHit()
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x60
- */
-TParticleCallBack_Yodare::~TParticleCallBack_Yodare()
-{
-	// UNUSED FUNCTION
 }
 
 } // namespace efx

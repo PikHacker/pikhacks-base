@@ -135,7 +135,7 @@ struct RumbleMgr : public CNode {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "RumbleParms")
-		    , mMaxDistance(this, 'rrdm', "Max Distance", 750.0f, 0.0f, 1000.0f)
+		    , mMaxDistance(this, 'rrdm', 750.0f, 0.0f, 1000.0f)
 		{
 		}
 

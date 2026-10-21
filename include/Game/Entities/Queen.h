@@ -116,18 +116,18 @@ struct Obj : public EnemyBase {
 	StateID mNextState;                     // _2D4
 	QueenShadowMgr* mShadowMgr;             // _2D8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2DC
-	efx::TQueenLay* mEfxLay;                // _2E0
-	efx::TQueenRollCR* mEfxRollCR;          // _2E4
-	efx::TQueenRollCL* mEfxRollCL;          // _2E8
-	efx::TQueenRoll* mEfxRoll;              // _2EC
-	efx::TQueenCrashR* mEfxCrashR;          // _2F0
-	efx::TQueenCrashL* mEfxCrashL;          // _2F4
-	efx::TQueenCrashRock* mEfxCrashRock;    // _2F8
-	efx::TQueenDamage* mEfxDamage;          // _2FC
-	efx::TQueenFlick* mEfxFlick;            // _300
-	efx::TQueenDead* mEfxDead;              // _304
-	efx::TQueenWakeup* mEfxWakeup;          // _308
-	efx::TQueenHanacho* mEfxHanacho;        // _30C
+	efx::TChaseMtx* mEfxLay;                // _2E0
+	efx::TChasePosYRot3* mEfxRollCR;        // _2E4
+	efx::TChasePosYRot3* mEfxRollCL;        // _2E8
+	efx::TChasePosYRot2* mEfxRoll;          // _2EC
+	efx::TChasePosYRot* mEfxCrashR;         // _2F0
+	efx::TChasePosYRot* mEfxCrashL;         // _2F4
+	efx::TChasePosYRot* mEfxCrashRock;      // _2F8
+	efx::TChasePosYRot* mEfxDamage;         // _2FC
+	efx::TChasePosYRot2* mEfxFlick;         // _300
+	efx::TChaseMtx4* mEfxDead;              // _304
+	efx::TChasePosYRot* mEfxWakeup;         // _308
+	efx::TChaseMtx* mEfxHanacho;            // _30C
 	                                        // _310 = PelletView
 };
 
@@ -161,11 +161,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "QueenParms")
-		    , mRollingTime(this, 'fp01', "ローリング時間", 10.0f, 0.0f, 100.0f)   // 'rolling time'
-		    , mBirthInterval(this, 'fp02', "出産間隔 ( sec )", 0.0f, 0.0f, 10.0f) // 'birth interval ( sec )'
-		    , mHoBHealth(this, 'fp11', "Forest 1 Life", 2500.0f, 0.0f, 10000.0f)  // (Hole of Beasts Life)
-		    , mMaxBirths(this, 'ip01', "出産数 ( Max )", 50, 0, 50)               // 'number of births ( Max )'
-		    , mMinBirths(this, 'ip02', "出産数 ( Min )", 25, 0, 50)               // 'number of births ( Min )'
+		    , mRollingTime(this, 'fp01', 10.0f, 0.0f, 100.0f)   // 'rolling time'
+		    , mBirthInterval(this, 'fp02', 0.0f, 0.0f, 10.0f)   // 'birth interval ( sec )'
+		    , mHoBHealth(this, 'fp11', 2500.0f, 0.0f, 10000.0f) // (Hole of Beasts Life)
+		    , mMaxBirths(this, 'ip01', 50, 0, 50)               // 'number of births ( Max )'
+		    , mMinBirths(this, 'ip02', 25, 0, 50)               // 'number of births ( Min )'
 		{
 		}
 

@@ -167,10 +167,10 @@ bool ObjReadyGo::updateAnimation()
 			efx2d::Arg arg = vec;
 
 			if (disp->mGameType == DispReadyGo::TYPE_2PBattle) {
-				efx2d::T2DGoBatl efx;
+				efx2d::TSimple3 efx(PID_GoBatl_1, PID_GoBatl_2, PID_GoBatl_3);
 				efx.create(&arg);
 			} else {
-				efx2d::T2DGoChal efx;
+				efx2d::TSimple2 efx(PID_GoChal_1, PID_GoChal_2);
 				efx.create(&arg);
 			}
 		}

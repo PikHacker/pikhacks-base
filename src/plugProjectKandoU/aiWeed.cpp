@@ -35,17 +35,9 @@ ActWeed::ActWeed(Game::Piki* parent)
  */
 void ActWeed::init(ActionArg* arg)
 {
-	bool isWeedArg = false;
-	if (arg) {
-		bool strCheck = strcmp("ActWeedArg", arg->getName()) == 0;
-		if (strCheck) {
-			isWeedArg = true;
-		}
-	}
-	P2ASSERTLINE(120, isWeedArg);
-	ActWeedArg* weedArg = static_cast<ActWeedArg*>(arg);
 	JUT_ASSERTLINE(124, arg, "no actweedarg");
-	mWeed = weedArg->mWeed;
+	ActWeedArg* weedArg = static_cast<ActWeedArg*>(arg);
+	mWeed               = weedArg->mWeed;
 	JUT_ASSERTLINE(127, mWeed, "ActWeed:no target");
 	mFlockMgr = static_cast<Game::BaseItem*>(mWeed)->getFlockMgr();
 	JUT_ASSERTLINE(130, mFlockMgr, "no flockmgr");
@@ -212,15 +204,6 @@ ActFlockAttack::ActFlockAttack(Game::Piki* parent)
  */
 void ActFlockAttack::init(ActionArg* arg)
 {
-	bool isFlockArg = false;
-	if (arg) {
-		bool strCheck = strcmp("FlockAttackActionArg", arg->getName()) == 0;
-		if (strCheck) {
-			isFlockArg = true;
-		}
-	}
-
-	P2ASSERTLINE(276, isFlockArg);
 	FlockAttackActionArg* flockArg = static_cast<FlockAttackActionArg*>(arg);
 
 	mTarget     = nullptr;
@@ -277,14 +260,14 @@ int ActFlockAttack::exec()
 			if (mWeedType == Game::ItemWeed::WEEDTYPE_Stone) {
 				mParent->startSound(mTarget, PSSE_PK_SE_HIT_STONE, true);
 				if (mParent->doped()) { // doped attack
-					efx::TPkAttackDP dp;
+					efx::TSimple1 dp(PID_PkAttackDP);
 					Vector3f offset = mParent->mLeafStemOffset;
 					efx::Arg arg;
 					arg.mPosition = offset;
 					dp.create(&arg);
 
 				} else { // regular attack
-					efx::PikiDamage pd;
+					efx::TSimple1 pd(PID_PikiDamage);
 					Vector3f offset = mParent->mLeafStemOffset;
 					efx::Arg arg;
 					arg.mPosition = offset;
@@ -295,7 +278,7 @@ int ActFlockAttack::exec()
 			} else {
 				efx::Arg arg;
 				arg.mPosition = interaction.mFlockPosition;
-				efx::TWeedPull wp;
+				efx::TSimple3 wp(PID_WeedPull, PID_PkAp_1, PID_PkAp_2);
 				wp.create(&arg);
 				mParent->startSound(mTarget, PSSE_PK_SE_PULL_GRASS, true);
 			}

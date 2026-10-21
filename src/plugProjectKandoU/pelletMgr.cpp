@@ -379,10 +379,10 @@ bool InteractEat::actPellet(Pellet* pellet)
 		efx::Arg arg(position2);
 
 		if (pellet->mPelletColor == 0) {
-			efx::TFruitsDownR spicy;
+			efx::TSimple2 spicy(PID_FruitsDownR_1, PID_FruitsDownR_2);
 			spicy.create(&arg);
 		} else {
-			efx::TFruitsDownP bitter;
+			efx::TSimple2 bitter(PID_FruitsDownP_1, PID_FruitsDownP_2);
 			bitter.create(&arg);
 		}
 
@@ -1643,7 +1643,7 @@ void Pellet::doEntry()
 			if (mLod.isFlag(AILOD_IsVisible)) {
 				mModel->show();
 				changeMaterial();
-			} else if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
+			} else if (!gameSystem->isMultiplayerMode()) {
 				return;
 			} else {
 				mModel->hide();
@@ -1681,7 +1681,7 @@ void Pellet::theEntry()
 	if (mModel) {
 		if (mLod.isFlag(AILOD_IsVisible)) {
 			mModel->show();
-		} else if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
+		} else if (!gameSystem->isMultiplayerMode()) {
 			return;
 		} else {
 			mModel->hide();

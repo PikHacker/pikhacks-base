@@ -50,10 +50,6 @@ f32 sBoss_DistMax     = 4000.0f;
 void THPDinamicsProc::setSetting(THPDemoDinamics* dyn)
 {
 	mDemoInfo = dyn;
-	P2ASSERTLINE(125, dyn);
-	P2ASSERTBOUNDSLINE2(126, 0.0f, dyn->_04, 1.0f);
-	P2ASSERTBOUNDSLINE2(127, 0.0f, dyn->_08, 1.0f);
-	P2ASSERTLINE(128, dyn->mBaseVolumeModifier > 0.0f);
 }
 
 /**

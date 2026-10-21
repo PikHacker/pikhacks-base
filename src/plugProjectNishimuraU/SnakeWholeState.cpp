@@ -454,7 +454,7 @@ void StateDisappear::exec(EnemyBase* enemy)
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_4) {
 			Vector3f position = snagret->getPosition();
 			efx::Arg fxArg(position);
-			efx::THebiAphd_dive diveFx;
+			efx::THebiAphd_base diveFx(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 30);
 			diveFx.create(&fxArg);
 
 			cameraMgr->startVibration(VIBTYPE_LightFastShort, position, CAMNAVI_Both);

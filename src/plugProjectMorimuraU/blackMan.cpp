@@ -304,9 +304,9 @@ Obj::Obj()
 	mEfxMove       = new efx::TKageMove(&mChestJointPosition, &mFaceDir);
 	mEfxRun        = new efx::TKageRun(&mChestJointPosition, &mFaceDir);
 	mEfxDead       = new efx::TKageDead1;
-	mEfxTyreup     = new efx::TKageTyreup(&mLandPosition, &mFaceDir);
-	mEfxFrontFlick = new efx::TKageFlick(&mHandPositions[0]);
-	mEfxBackFlick  = new efx::TKageFlick(&mHandPositions[1]);
+	mEfxTyreup     = new efx::TChasePosYRot(&mLandPosition, &mFaceDir, PID_KageTyreUp);
+	mEfxFrontFlick = new efx::TChasePos(&mHandPositions[0], PID_KageFlick);
+	mEfxBackFlick  = new efx::TChasePos(&mHandPositions[1], PID_KageFlick);
 }
 
 /**
@@ -1854,7 +1854,7 @@ void Obj::tyreDownEffect()
 void Obj::bendEffect()
 {
 	if (mTyre) {
-		efx::TKageBend1 bendFX(mModel->getJoint("head")->getWorldMatrix());
+		efx::TSimpleMtx2 bendFX(mModel->getJoint("head")->getWorldMatrix(), PID_KageBend_1, PID_KageBend_2);
 		bendFX.create(nullptr);
 	}
 }

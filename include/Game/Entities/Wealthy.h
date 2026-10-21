@@ -32,7 +32,7 @@ struct Obj : public Kogane::Obj {
 
 	// _00 		= VTBL
 	// _00-_2DC	= Kogane::Obj
-	efx::TOoganeKira* mBodyEffect; // _2DC, body effect
+	efx::TChaseMtx* mBodyEffect; // _2DC, body effect
 };
 
 struct Mgr : public Kogane::Mgr {

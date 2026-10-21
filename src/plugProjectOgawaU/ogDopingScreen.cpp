@@ -249,7 +249,7 @@ DopingCheck::DopingCheck()
 	mOldSpicyCount  = *mNewSpicyCount;
 	mOldBitterCount = *mNewBitterCount;
 
-	mExtractEfx     = new efx2d::T2DExtractUp;
+	mExtractEfx     = new efx2d::TSimple1(PID_ExtractUp);
 	mIsUpdateCount  = true;
 	mSpicyScaleMgr  = nullptr;
 	mBitterScaleMgr = nullptr;
@@ -352,7 +352,7 @@ void DopingCheck::startGetEff(J2DPane* pane)
 	pos.x += mXOffset;
 
 	efx2d::Arg arg(pos);
-	efx2d::T2DSprayset efx;
+	efx2d::TSimple2 efx(PID_SpraySet_1, PID_SpraySet_2);
 	efx.create(&arg);
 }
 

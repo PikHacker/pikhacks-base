@@ -232,7 +232,7 @@ void Obj::attackPikmin()
 						swallow.mIsStabbed = TRUE;
 						if (piki->stimulate(swallow)) {
 							efx::Arg fxArg(pikiPos);
-							efx::TYoroiAttackhit attackFX;
+							efx::TSimple1 attackFX(PID_YoroiAttackHit);
 							attackFX.create(&fxArg);
 							break;
 						}
@@ -518,7 +518,7 @@ void Obj::breakTargetBridge()
  */
 void Obj::createEffect()
 {
-	mEfxYoroiAttack = new efx::TYoroiAttack;
+	mEfxYoroiAttack = new efx::TChaseMtx(PID_YoroiAttack, nullptr);
 }
 
 /**
@@ -547,7 +547,7 @@ void Obj::createAppearEffect()
 {
 	Matrixf* mat = mModel->getJoint("yoroimushi")->getWorldMatrix();
 
-	efx::TYoroiAp appearFX(mat);
+	efx::TSimpleMtx2 appearFX(mat, PID_YoroiAp_1, PID_YoroiAp_2);
 	appearFX.create(nullptr);
 }
 
@@ -559,7 +559,7 @@ void Obj::createDisAppearEffect()
 {
 	Matrixf* mat = mModel->getJoint("yoroimushi")->getWorldMatrix();
 
-	efx::TYoroiHd disappearFX(mat);
+	efx::TSimpleMtx2 disappearFX(mat, PID_YoroiHd_1, PID_YoroiHd_2);
 	disappearFX.create(nullptr);
 }
 
@@ -572,7 +572,7 @@ void Obj::createBridgeEffect()
 	Matrixf* mat = mModel->getJoint("kamujnt")->getWorldMatrix();
 	Vector3f pos = mat->getColumn(3);
 	efx::Arg fxArg(pos);
-	efx::TYoroiEat eatFX;
+	efx::TSimple1 eatFX(PID_YoroiEat);
 
 	eatFX.create(&fxArg);
 }

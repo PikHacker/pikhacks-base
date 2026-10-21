@@ -43,10 +43,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mRollingMoveSpeed(this, 'fp01', "ローリング移動速度", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
-		    , mRollingTurnAccel(this, 'fp02', "ローリング回転速度率", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
-		    , mRollingTurnSpeed(this, 'fp03', "ローリング回転最大速度", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
-		    , mFlipTime(this, 'fp10', "ひっくり返り時間", 7.5f, 0.0f, 30.0f)                 // 'flip time'
+		    , mRollingMoveSpeed(this, 'fp01', 200.0f, 0.0f, 500.0f) // 'rolling movement speed'
+		    , mRollingTurnAccel(this, 'fp02', 0.1f, 0.0f, 1.0f)     // 'rolling rotation speed rate'
+		    , mRollingTurnSpeed(this, 'fp03', 10.0f, 0.0f, 360.0f)  // 'rolling rotation maximum speed'
+		    , mFlipTime(this, 'fp10', 7.5f, 0.0f, 30.0f)            // 'flip time'
 		{
 		}
 
@@ -174,9 +174,9 @@ struct Obj : public EnemyBase {
 	Vector3f mRollingVelocity;              // _2DC
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // _2E8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2F0
-	efx::TDangoWallBreak* mEfxWallBreak;    // _2F4
-	efx::TDangoAttack2* mEfxAttack2;        // _2F8, arm flick effect
-	efx::TDangoRun* mEfxRun;                // _2FC
+	efx::TChaseMtx* mEfxWallBreak;          // _2F4
+	efx::TChaseMtx* mEfxAttack2;            // _2F8, arm flick effect
+	efx::TChasePos2* mEfxRun;               // _2FC
 	                                        // _308 = PelletView
 };
 

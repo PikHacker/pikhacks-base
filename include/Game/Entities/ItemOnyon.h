@@ -32,18 +32,9 @@ namespace efx {
 struct Container;
 struct ContainerAct;
 struct TForever2;
-struct TPodOpenA;
-struct TPodOpenB;
 struct TChasePosYRot2;
-struct TPodKira;
 struct TChaseMtx2;
-struct TUfoPodOpenSuck;
-struct TUfoGasIn;
-struct TUfoGasOut;
-struct TPodSpot;
-struct TUfoSpot;
-struct TUfoPodOpen;
-struct TUfoSpotact_ver01;
+struct TForever;
 } // namespace efx
 
 namespace Game {
@@ -142,41 +133,41 @@ struct Onyon : public BaseItem {
 
 	// _00 		= VTBL
 	// _00-_1D8	= BaseItem
-	u32 mPikisToWithdraw;                    // _1D8, red/blue/yellow pikmin queued to exit the onion
-	f32 mReleasePikisTimer;                  // _1DC
-	bool mIsReleasingPikis;                  // _1E0
-	u32 mWhitesToWithdraw;                   // _1E4, white pikmin queued to exit the ship
-	u32 mPurplesToWithdraw;                  // _1E8, purple pikmin queued to exit the ship
-	::efx::Container* mContainer;            // _1EC
-	::efx::ContainerAct* mContainerAct;      // _1F0
-	ModelEffect* mSpotbeamModel;             // _1F4
-	::efx::TPodOpenA* mPodOpenA;             // _1F8
-	::efx::TPodOpenB* mPodOpenB;             // _1FC
-	::efx::TPodSpot* mPodSpot;               // _200
-	::efx::TPodKira* mPodKira;               // _204
-	::efx::TUfoSpot* mUfoSpot;               // _208
-	::efx::TUfoSpotact_ver01* mUfoSpotAct01; // _20C
-	::efx::TUfoPodOpen* mUfoPodOpen;         // _210
-	::efx::TUfoPodOpenSuck* mUfoPodOpenSuck; // _214
-	::efx::TUfoGasIn* mUfoGasIn;             // _218
-	::efx::TUfoGasOut* mUfoGasOut;           // _21C
-	f32 mSpotGrowTimer;                      // _220
-	u8 mSpotState;                           // _224
-	f32 mFaceDir;                            // _228
-	u16 mToBirth;                            // _22C, used to track how many pikmin need to be spawned
-	u16 mOnyonType;                          // _22E
-	u16 mPikminType;                         // _230
-	Sys::MatLoopAnimator* mMatAnim1;         // _234, for the pistons
-	Sys::MatBaseAnimator* mMatAnim2;         // _238, for the glowing lights
-	WayPoint* mGoalWayPoint;                 // _23C
-	u8 mSuckState;                           // _240
-	f32 mSuckTimer;                          // _244
-	SysShape::Joint* mPikiInJoint;           // _248, what pikmin target when entering the ship
-	SysShape::Joint* mPikiOutJoint;          // _24C, what pikmin appear from when exiting the ship
-	int mPMotionCount;                       // _250, number of pMotions to use, always 3 (for the ship) normally
-	SysShape::Animator* mPMotionList;        // _254, list of pAnim objects
-	f32* mPMotionSpeeds;                     // _258
-	f32 mPropera;                            // _25C, controls speed of one of the ships pMotions
+	u32 mPikisToWithdraw;               // _1D8, red/blue/yellow pikmin queued to exit the onion
+	f32 mReleasePikisTimer;             // _1DC
+	bool mIsReleasingPikis;             // _1E0
+	u32 mWhitesToWithdraw;              // _1E4, white pikmin queued to exit the ship
+	u32 mPurplesToWithdraw;             // _1E8, purple pikmin queued to exit the ship
+	::efx::Container* mContainer;       // _1EC
+	::efx::ContainerAct* mContainerAct; // _1F0
+	ModelEffect* mSpotbeamModel;        // _1F4
+	::efx::TForever* mPodOpenA;         // _1F8
+	::efx::TChaseMtx* mPodOpenB;        // _1FC
+	::efx::TChasePosYRot2* mPodSpot;    // _200
+	::efx::TChaseMtx* mPodKira;         // _204
+	::efx::TChaseMtx2* mUfoSpot;        // _208
+	::efx::TChaseMtx2* mUfoSpotAct01;   // _20C
+	::efx::TChaseMtx2* mUfoPodOpen;     // _210
+	::efx::TChaseMtx* mUfoPodOpenSuck;  // _214
+	::efx::TChaseMtx* mUfoGasIn;        // _218
+	::efx::TChaseMtx* mUfoGasOut;       // _21C
+	f32 mSpotGrowTimer;                 // _220
+	u8 mSpotState;                      // _224
+	f32 mFaceDir;                       // _228
+	u16 mToBirth;                       // _22C, used to track how many pikmin need to be spawned
+	u16 mOnyonType;                     // _22E
+	u16 mPikminType;                    // _230
+	Sys::MatLoopAnimator* mMatAnim1;    // _234, for the pistons
+	Sys::MatBaseAnimator* mMatAnim2;    // _238, for the glowing lights
+	WayPoint* mGoalWayPoint;            // _23C
+	u8 mSuckState;                      // _240
+	f32 mSuckTimer;                     // _244
+	SysShape::Joint* mPikiInJoint;      // _248, what pikmin target when entering the ship
+	SysShape::Joint* mPikiOutJoint;     // _24C, what pikmin appear from when exiting the ship
+	int mPMotionCount;                  // _250, number of pMotions to use, always 3 (for the ship) normally
+	SysShape::Animator* mPMotionList;   // _254, list of pAnim objects
+	f32* mPMotionSpeeds;                // _258
+	f32 mPropera;                       // _25C, controls speed of one of the ships pMotions
 };
 
 namespace ItemOnyon {

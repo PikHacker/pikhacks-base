@@ -326,7 +326,7 @@ BombSarai::StateID BombSarai::Obj::getNextStateOnHeight()
  */
 void BombSarai::Obj::createEffect()
 {
-	mEfxSupli = new efx::TBsaraiSupli();
+	mEfxSupli = new efx::TChaseMtx(PID_BSaraiSupli, nullptr);
 }
 
 /**
@@ -374,7 +374,7 @@ void BombSarai::Obj::createBalloonEffect(int balloon)
 		Vector3f pos;
 		worldMat->getTranslation(pos);
 
-		efx::TBsaraiDead deadFX;
+		efx::TSimple2 deadFX(PID_BSaraiDead_1, PID_BSaraiDead_2);
 		efx::Arg fxArg(pos);
 
 		deadFX.create(&fxArg);

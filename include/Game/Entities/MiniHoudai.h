@@ -112,19 +112,19 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2B8	= EnemyBase
-	FSM* mFsm;                           // _2BC
-	WalkSmokeEffect::Mgr mWalkSmokeMgr;  // _2C0
-	f32 mHealthGaugeTimer;               // _2C8
-	f32 mAttackWaitTimer;                // _2CC
-	f32 mUpdateTimer;                    // _2D0
-	StateID mNextState;                  // _2D4
-	Vector3f mTargetPosition;            // _2D8
-	Vector3f mWalkTargetPosition;        // _2E4, next point to walk to, either waypoint or home position
-	WayPoint* mNearestWaypoint;          // _2F0
-	WayPoint* mOldNearestWaypoint;       // _2F4
-	MiniHoudaiShotGunMgr* mShotgunMgr;   // _2F8
-	efx::TChibiCharge* mEfxCharge;       // _300
-	efx::TChibiDeadLight* mEfxDeadLight; // _304
+	FSM* mFsm;                          // _2BC
+	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2C0
+	f32 mHealthGaugeTimer;              // _2C8
+	f32 mAttackWaitTimer;               // _2CC
+	f32 mUpdateTimer;                   // _2D0
+	StateID mNextState;                 // _2D4
+	Vector3f mTargetPosition;           // _2D8
+	Vector3f mWalkTargetPosition;       // _2E4, next point to walk to, either waypoint or home position
+	WayPoint* mNearestWaypoint;         // _2F0
+	WayPoint* mOldNearestWaypoint;      // _2F4
+	MiniHoudaiShotGunMgr* mShotgunMgr;  // _2F8
+	efx::TChaseMtx* mEfxCharge;         // _300
+	efx::TChaseMtx* mEfxDeadLight;      // _304
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -149,10 +149,8 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mHealthGaugeTimer(this, 'fp11', "死亡 ～ ゲージ出現", 30.0f, 1.0f,
-			                    500.0f) // 'death ~ appearance of gauge' (Time from death -> health gauge)
-		    , mRespawnRate(this, 'fp12', "ゲージ出現 ～ 復活", 10.0f, 1.0f,
-			               500.0f) // 'appearance of gauge ~ resurrection' (Time from health gauge -> alive)
+		    , mHealthGaugeTimer(this, 'fp11', 30.0f, 1.0f, 500.0f) // 'death ~ appearance of gauge' (Time from death -> health gauge)
+		    , mRespawnRate(this, 'fp12', 10.0f, 1.0f, 500.0f)      // 'appearance of gauge ~ resurrection' (Time from health gauge -> alive)
 		{
 		}
 
@@ -211,11 +209,11 @@ struct MiniHoudaiShotGunNode : public CNode {
 
 	// _00		= VTBL
 	// _00-_18 	= CNode
-	u8 _18;                      // _18
-	Obj* mOwner;                 // _1C
-	efx::TChibiShell* mEfxShell; // _20
-	Vector3f mPosition;          // _24
-	Vector3f mVelocity;          // _30
+	u8 _18;                    // _18
+	Obj* mOwner;               // _1C
+	efx::TChasePos* mEfxShell; // _20
+	Vector3f mPosition;        // _24
+	Vector3f mVelocity;        // _30
 };
 
 struct MiniHoudaiShotGunMgr {

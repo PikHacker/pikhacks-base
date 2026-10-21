@@ -109,7 +109,7 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mBridgeDamage(this, 'fp01', "橋食いパワー", 25.0f, 0.0f, 100.0f) // 'bridge eating power'
+		    , mBridgeDamage(this, 'fp01', 25.0f, 0.0f, 100.0f) // 'bridge eating power'
 		{
 		}
 

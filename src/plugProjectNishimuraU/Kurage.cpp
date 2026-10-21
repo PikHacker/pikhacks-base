@@ -515,12 +515,12 @@ bool Obj::suckPikmin(f32 offset)
  */
 void Obj::createEffect()
 {
-	mEfxEyeL    = new efx::TNewkurageEye;
-	mEfxEyeR    = new efx::TNewkurageEye;
+	mEfxEyeL    = new efx::TChaseMtx(PID_NewKurageEye, nullptr);
+	mEfxEyeR    = new efx::TChaseMtx(PID_NewKurageEye, nullptr);
 	mEfxHire    = new efx::TNewkurageHire;
-	mEfxKira    = new efx::TNewkurageKira(&mPosition);
+	mEfxKira    = new efx::TChasePos(PID_NewKurageKira, &mPosition);
 	mEfxSui     = new efx::TNewkurageSui;
-	mEfxDeadrun = new efx::TNewkurageDeadrun;
+	mEfxDeadrun = new efx::TChaseMtxT(PID_NewKurageDeadRun);
 }
 
 /**
@@ -617,7 +617,7 @@ void Obj::createBodyBombEffect()
 	Vector3f pos;
 	worldMat->getTranslation(pos);
 
-	efx::TNewkurageBomb bombFX;
+	efx::TSimple2 bombFX(PID_NewKurageBomb_1, PID_NewKurageBomb_2);
 	efx::Arg fxArg(pos);
 	bombFX.create(&fxArg);
 }

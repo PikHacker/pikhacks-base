@@ -10,18 +10,18 @@ DynamicsParms* DynamicsParms::mInstance;
  */
 DynamicsParms::DynamicsParms()
     : Parameters(nullptr, "Dynamics")
-    , mNewFriction(this, 'd009', "新フリクション", true, false, true) // 'new friction'
-    , mStaParm(this, 'd011', "Sta-Parm", 140.0f, 0.0f, 5000.0f)
-    , mStatic(this, 'd010', "Static", 10.0f, 0.0f, 5000.0f)
-    , mMicroCollision(this, 'd000', "micro collision", 0.015f, 0.0f, 10.0f)
-    , mFrictionDuringResolve(this, 'd001', "Resolve時の摩擦", false, false, true) // 'friction during Resolve'
-    , mElasticity(this, 'd002', "elasticity", 0.3f, 0.0f, 1.0f)
-    , mFriction(this, 'd003', "摩擦", true, false, true)                          // 'friction'
-    , mFrictionTangentVelocity(this, 'd004', "摩擦:tanvel", true, false, true)    // 'friction:tanvel' - tangent velocity?
-    , mFixedFriction(this, 'd005', "固定摩擦", true, false, true)                 // 'fixed friction'
-    , mFixedFrictionValue(this, 'd006', "固定摩擦値", 100.0f, 0.0f, 10000.0f)     // 'fixed friction value'
-    , mNoRotationEffect(this, 'd007', "回転影響なしにする", true, false, true)    // 'no rotation effect'
-    , mRotatingMomentDamp(this, 'd008', "回転モーメント Damp", 0.05f, 0.0f, 1.0f) // 'rotating moment Damp'
+    , mNewFriction(this, 'd009', true, false, true) // 'new friction'
+    , mStaParm(this, 'd011', 140.0f, 0.0f, 5000.0f)
+    , mStatic(this, 'd010', 10.0f, 0.0f, 5000.0f)
+    , mMicroCollision(this, 'd000', 0.015f, 0.0f, 10.0f)
+    , mFrictionDuringResolve(this, 'd001', false, false, true) // 'friction during Resolve'
+    , mElasticity(this, 'd002', 0.3f, 0.0f, 1.0f)
+    , mFriction(this, 'd003', true, false, true)                // 'friction'
+    , mFrictionTangentVelocity(this, 'd004', true, false, true) // 'friction:tanvel' - tangent velocity?
+    , mFixedFriction(this, 'd005', true, false, true)           // 'fixed friction'
+    , mFixedFrictionValue(this, 'd006', 100.0f, 0.0f, 10000.0f) // 'fixed friction value'
+    , mNoRotationEffect(this, 'd007', true, false, true)        // 'no rotation effect'
+    , mRotatingMomentDamp(this, 'd008', 0.05f, 0.0f, 1.0f)      // 'rotating moment Damp'
 {
 	mInstance = this;
 }

@@ -33,10 +33,10 @@ void Object::do_update()
 			Vector3f fruitPos = getPosition();
 			efx::Arg fxArg(fruitPos);
 			if (mPelletColor == PELCOLOR_SPICY) {
-				efx::TFruitsDownR downSpicy;
+				efx::TSimple2 downSpicy(PID_FruitsDownR_1, PID_FruitsDownR_2);
 				downSpicy.create(&fxArg);
 			} else {
-				efx::TFruitsDownP downBitter;
+				efx::TSimple2 downBitter(PID_FruitsDownP_1, PID_FruitsDownP_2);
 				downBitter.create(&fxArg);
 			}
 

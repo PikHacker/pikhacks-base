@@ -26,15 +26,7 @@ ActBreakRock::ActBreakRock(Game::Piki* parent)
  */
 void ActBreakRock::init(ActionArg* actionArg)
 {
-	bool isCorrectArg = false;
-	if (actionArg) {
-		bool strCheck = strcmp("ActBreakRockArg", actionArg->getName()) == 0;
-		if (strCheck) {
-			isCorrectArg = true;
-		}
-	}
-
-	P2ASSERTLINE(80, isCorrectArg);
+	P2ASSERTLINE(80, actionArg);
 
 	Game::GameStat::workPikis.inc(mParent);
 

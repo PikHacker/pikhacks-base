@@ -29,22 +29,22 @@ struct TParam : public TParamBase {
 	 * @note Size: 0x418
 	 */
 	TParam()
-	    : mIntScale(this, 'pk00', "海外版スケール", 2.4f, 0.0f, 10.0f)                      // 'overseas version scale'
-	    , mJpnScale(this, 'pk99', "日本語版スケール", 2.6f, 0.0f, 10.0f)                    // 'Japanese version scale'
-	    , mCollRadius(this, 'pk01', "コリジョン半径", 5.0f, 0.0f, 100.0f)                   // 'collision radius'
-	    , mStopDist(this, 'pk02', "停止距離", 20.0f, 0.0f, 100.0f)                          // 'stopping distance'
-	    , mConvDist(this, 'pk03', "収束距離", 50.0f, 0.0f, 100.0f)                          // 'convergence distance'
-	    , mShadowX(this, 'pk05', "影ずらしX", 5.0f, 0.0f, 100.0f)                           // 'shadow offset X'
-	    , mShadowZ(this, 'pk06', "影ずらしZ", 5.0f, 0.0f, 100.0f)                           // 'shadow offset Z'
-	    , mAnimSpeedWalk(this, 'pk07', "アニメスピード歩く（速度比例）", 0.5f, 0.0f, 10.0f) // 'anime speed walking (speed proportional)'
-	    , mAnimSpeedStyle(this, 'pk08', "アニメスピード風", 0.5f, 0.0f, 10.0f)              // 'anime speed wind'
-	    , mAnimMaxWaitTime(this, 'pk10', "アニメスピードWAIT最大", 0.5f, 0.0f, 10.0f)       // 'anime speed WAIT max'
-	    , mAnimMinWaitTime(this, 'pk09', "アニメスピードWAIT最小", 0.0f, 0.0f, 10.0f)       // 'anime speed WAIT min'
-	    , mKogane(this, 'pk12', "コガネ好き好き係数", 5.0f, -10.0f, 10.0f)                  // 'kogane attraction factor'
-	    , mChappyRun(this, 'pk13', "チャッピーから逃げる係数", -5.0f, -10.0f, 10.0f)        // 'chappy repulsion factor'
-	    , mChaseGiveUp(this, 'pk14', "追いかけあきらめ半径", 400.0f, 0.0f, 500.0f)          // 'chasing radius'
-	    , mWindTimer(this, 'pk11', "風タイマー(秒)", 6.0f, 0.0f, 10.0f)                     // 'wind timer (sec)'
-	    , mDistSpeedFactor(this, 'pk04', "距離比例速度係数", 0.2f, 0.0f, 1.0f)              // 'distance proportional speed factor'
+	    : mIntScale(this, 'pk00', 2.4f, 0.0f, 10.0f)        // 'overseas version scale'
+	    , mJpnScale(this, 'pk99', 2.6f, 0.0f, 10.0f)        // 'Japanese version scale'
+	    , mCollRadius(this, 'pk01', 5.0f, 0.0f, 100.0f)     // 'collision radius'
+	    , mStopDist(this, 'pk02', 20.0f, 0.0f, 100.0f)      // 'stopping distance'
+	    , mConvDist(this, 'pk03', 50.0f, 0.0f, 100.0f)      // 'convergence distance'
+	    , mShadowX(this, 'pk05', 5.0f, 0.0f, 100.0f)        // 'shadow offset X'
+	    , mShadowZ(this, 'pk06', 5.0f, 0.0f, 100.0f)        // 'shadow offset Z'
+	    , mAnimSpeedWalk(this, 'pk07', 0.5f, 0.0f, 10.0f)   // 'anime speed walking (speed proportional)'
+	    , mAnimSpeedStyle(this, 'pk08', 0.5f, 0.0f, 10.0f)  // 'anime speed wind'
+	    , mAnimMaxWaitTime(this, 'pk10', 0.5f, 0.0f, 10.0f) // 'anime speed WAIT max'
+	    , mAnimMinWaitTime(this, 'pk09', 0.0f, 0.0f, 10.0f) // 'anime speed WAIT min'
+	    , mKogane(this, 'pk12', 5.0f, -10.0f, 10.0f)        // 'kogane attraction factor'
+	    , mChappyRun(this, 'pk13', -5.0f, -10.0f, 10.0f)    // 'chappy repulsion factor'
+	    , mChaseGiveUp(this, 'pk14', 400.0f, 0.0f, 500.0f)  // 'chasing radius'
+	    , mWindTimer(this, 'pk11', 6.0f, 0.0f, 10.0f)       // 'wind timer (sec)'
+	    , mDistSpeedFactor(this, 'pk04', 0.2f, 0.0f, 1.0f)  // 'distance proportional speed factor'
 	{
 	}
 
@@ -99,14 +99,14 @@ struct TAnimator {
 struct TBoidParam : public Parameters {
 	TBoidParam()
 	    : Parameters(nullptr, "TTitleStateParameters")
-	    , mTurnMag(this, 'tsp0', "向き変えベクトルの大きさ", 0.2f, 0.0f, 10.0f)        // 'turn vector magnitude'
-	    , mMaxTurnVec(this, 'tsp1', "向き変えベクトル最大", 0.4f, 0.0f, 10.0f)         // 'turn vector maximum'
-	    , mMaxWalkSpeed(this, 'tsp2', "最大歩く速度", 2.0f, 0.0f, 10.0f)               // 'max walking speed'
-	    , mBoidColl(this, 'tsp5', "BOID衝突回避係数", 800.0f, 0.0f, 10000.0f)          // 'BOID collision avoidance factor'
-	    , mBoidSpeedMatch(this, 'tsp6', "BOID速度合わせ係数", 4.5f, 0.0f, 100.0f)      // 'BOID speed adjust factor'
-	    , mBoidCenter(this, 'tsp7', "BOID中心集合係数", 0.005f, 0.0f, 10.0f)           // 'BOID center set factor'
-	    , mBoidNeighbor(this, 'tsp8', "BOID個体の近所サーチ半径", 30.0f, 0.0f, 500.0f) // 'BOID neighbour search radius'
-	    , mGroupCenter(this, 'tsp9', "群の中心と個体の目的地の割合", 0.0f, 0.0f, 1.0f) // 'group center to individual dest ratio'
+	    , mTurnMag(this, 'tsp0', 0.2f, 0.0f, 10.0f)         // 'turn vector magnitude'
+	    , mMaxTurnVec(this, 'tsp1', 0.4f, 0.0f, 10.0f)      // 'turn vector maximum'
+	    , mMaxWalkSpeed(this, 'tsp2', 2.0f, 0.0f, 10.0f)    // 'max walking speed'
+	    , mBoidColl(this, 'tsp5', 800.0f, 0.0f, 10000.0f)   // 'BOID collision avoidance factor'
+	    , mBoidSpeedMatch(this, 'tsp6', 4.5f, 0.0f, 100.0f) // 'BOID speed adjust factor'
+	    , mBoidCenter(this, 'tsp7', 0.005f, 0.0f, 10.0f)    // 'BOID center set factor'
+	    , mBoidNeighbor(this, 'tsp8', 30.0f, 0.0f, 500.0f)  // 'BOID neighbour search radius'
+	    , mGroupCenter(this, 'tsp9', 0.0f, 0.0f, 1.0f)      // 'group center to individual dest ratio'
 	{
 	}
 

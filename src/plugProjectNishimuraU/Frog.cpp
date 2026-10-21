@@ -377,7 +377,7 @@ void Obj::pressOnGround()
 	if (mWaterBox) {
 		fxPos.y = *mWaterBox->getSeaHeightPtr();
 		efx::Arg fxArg(fxPos);
-		efx::TFrogDive diveFX;
+		efx::TSimple4 diveFX(PID_FrogDive_1, PID_FrogDive_2, PID_FrogDive_3, PID_FrogDive_4);
 
 		diveFX.create(&fxArg);
 
@@ -386,7 +386,7 @@ void Obj::pressOnGround()
 		fxPos.y = mPosition.y;
 
 		efx::Arg fxArg(fxPos);
-		efx::TFrogLanddrop dropFX;
+		efx::TSimple2 dropFX(PID_FrogLandDrop_1, PID_FrogLandDrop_2);
 
 		dropFX.create(&fxArg);
 
@@ -409,7 +409,7 @@ void Obj::pressOnGround()
  */
 void Obj::createEffect()
 {
-	mEfxPota = new efx::TFrogPota;
+	mEfxPota = new efx::TChasePos(PID_FrogPota);
 }
 
 /**

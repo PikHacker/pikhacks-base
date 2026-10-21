@@ -887,9 +887,9 @@ void Obj::setBossAppearBGM()
  */
 void Obj::createEffect()
 {
-	mEfxWallBreak = new efx::TDangoWallBreak;
-	mEfxAttack2   = new efx::TDangoAttack2;
-	mEfxRun       = new efx::TDangoRun;
+	mEfxWallBreak = new efx::TChaseMtx(PID_DangoWallBreak, nullptr);
+	mEfxAttack2   = new efx::TChaseMtx(PID_DangoAttack2, nullptr);
+	mEfxRun       = new efx::TChasePos2(nullptr, PID_DangoRun_1, PID_DangoRun_2);
 }
 
 /**
@@ -910,7 +910,7 @@ void Obj::setupEffect()
 void Obj::createDeadSmokeEffect()
 {
 	Matrixf* mat = mModel->getJoint("stomach")->getWorldMatrix();
-	efx::TDangoDeadSmoke smokeEff(mat);
+	efx::TSimpleMtx1 smokeEff(mat, PID_DangoDeadSmoke);
 	smokeEff.create(nullptr);
 }
 
@@ -921,7 +921,7 @@ void Obj::createDeadSmokeEffect()
 void Obj::createDeadBombEffect()
 {
 	Matrixf* mat = mModel->getJoint("stomach")->getWorldMatrix();
-	efx::TDangoDead deadEff(mat);
+	efx::TSimpleMtx2 deadEff(mat, PID_DangoDead_1, PID_DangoDead_2);
 	deadEff.create(nullptr);
 }
 
@@ -964,7 +964,7 @@ void Obj::createFlickAttackEffect()
 void Obj::createBodyDamageEffect()
 {
 	Matrixf* mat = mModel->getJoint("stomach")->getWorldMatrix();
-	efx::TDangoDamage dmgEff(mat);
+	efx::TSimpleMtx1 dmgEff(mat, PID_DangoDamage);
 	dmgEff.create(nullptr);
 }
 
@@ -1057,7 +1057,7 @@ void Obj::createMoveHandEffect()
  */
 void Obj::createAppearSmokeEffect()
 {
-	efx::TDangoFly fly;
+	efx::TSimple3 fly(PID_DangoFly_1, PID_DangoFly_2, PID_DangoFly_3);
 	efx::Arg arg(mPosition);
 	fly.create(&arg);
 }

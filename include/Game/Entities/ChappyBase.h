@@ -19,10 +19,6 @@
  * YellowChappy = Hairy Bulborb
  */
 
-namespace efx {
-struct THanachoN;
-} // namespace efx
-
 namespace Game {
 namespace ChappyBase {
 struct FSM : public EnemyStateMachine {
@@ -118,9 +114,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "ChappyParms")
-		    , mFootRange(this, 'fp01', "足元範囲", 50.0f, 0.0f, 100.0f)             // 'foot range'
-		    , mPoisonDamage(this, 'fp02', "白ピクミン毒", 300.0f, 0.0f, 1000.0f)    // 'white pikmin poison'
-		    , mBulborbWakeRadius(this, 'fp03', "目覚め距離", 400.0f, 0.0f, 1000.0f) // 'awake distance'
+		    , mFootRange(this, 'fp01', 50.0f, 0.0f, 100.0f)           // 'foot range'
+		    , mPoisonDamage(this, 'fp02', 300.0f, 0.0f, 1000.0f)      // 'white pikmin poison'
+		    , mBulborbWakeRadius(this, 'fp03', 400.0f, 0.0f, 1000.0f) // 'awake distance'
 		{
 		}
 

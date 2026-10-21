@@ -95,7 +95,7 @@ void DeadState::init(Item* item, StateArg* stateArg)
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_WORK_FINISH, 0);
 	item->startSound(PSSE_EN_ROCK_BREAK);
 
-	efx::TBarrelDead deadFX;
+	efx::TSimple3 deadFX(PID_BarrelDead_1, PID_BarrelDead_2, PID_BarrelDead_3);
 	Vector3f pos = item->getPosition();
 	efx::Arg fxArg(pos);
 

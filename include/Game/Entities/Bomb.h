@@ -91,16 +91,16 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 mHasEscapedCapture;          // _2BC
-	u8 mDoSkipRender;               // _2BD
-	int mAnimStartDelayTimer;       // _2C0
-	int mBitterHitCount;            // _2C4
-	u8 mHasMadeLightEfx;            // _2C8
-	u8 mDoReduceVelocity;           // _2C9
-	EnemyBase* mCarrier;            // _2CC, enemy carrying the bomb (dweevil, dirigibug)
-	FSM* mFsm;                      // _2D0
-	efx::TBombrockLight* mEfxLight; // _2D4
-	                                // _2D8 = PelletView
+	u8 mHasEscapedCapture;      // _2BC
+	u8 mDoSkipRender;           // _2BD
+	int mAnimStartDelayTimer;   // _2C0
+	int mBitterHitCount;        // _2C4
+	u8 mHasMadeLightEfx;        // _2C8
+	u8 mDoReduceVelocity;       // _2C9
+	EnemyBase* mCarrier;        // _2CC, enemy carrying the bomb (dweevil, dirigibug)
+	FSM* mFsm;                  // _2D0
+	efx::TChaseMtxT* mEfxLight; // _2D4
+	                            // _2D8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -132,10 +132,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mDamageToEnemies(this, 'fp01', "敵へのダメージ", 250.0f, 0.0f, 2000.0f) // 'damage to enemies'
-		    , mBlastRangeHeight(this, 'fp02', "爆風範囲高さ+-", 50.0f, 0.0f, 50.0f)   // 'blast range height +-'
-		    , mDamageLimit(this, 'ip01', "ダメージリミット", 2, 1, 10)                // 'damage limit'
-		    , mTriggerLimit(this, 'ip02', "誘爆リミット", 50, 0, 100)                 // 'induction limit'
+		    , mDamageToEnemies(this, 'fp01', 250.0f, 0.0f, 2000.0f) // 'damage to enemies'
+		    , mBlastRangeHeight(this, 'fp02', 50.0f, 0.0f, 50.0f)   // 'blast range height +-'
+		    , mDamageLimit(this, 'ip01', 2, 1, 10)                  // 'damage limit'
+		    , mTriggerLimit(this, 'ip02', 50, 0, 100)               // 'induction limit'
 		{
 		}
 

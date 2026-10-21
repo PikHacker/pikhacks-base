@@ -320,7 +320,7 @@ void Obj::createBubbleEffect()
 	if (mWaterBox) {
 		if (getSubmergedDepth() > 10.0f) {
 			efx::Arg fxArg(this);
-			efx::TJgmBubble bubbleFX;
+			efx::TSimple1 bubbleFX(PID_JgmBUBBLE);
 			bubbleFX.create(&fxArg);
 		}
 	}

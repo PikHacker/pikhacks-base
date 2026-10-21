@@ -83,15 +83,15 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                    // _2BC
-	f32 mPitchRatio;              // _2C0
-	f32 mStateTimer;              // _2C4, recycled for each state
-	f32 mBombCarryTimer;          // _2C8
-	Vector3f mTargetPosition;     // _2CC
-	Bomb::Obj* mHeldBomb;         // _2D8
-	StateID mNextState;           // _2DC
-	efx::TBsaraiSupli* mEfxSupli; // _2E0
-	                              // _2E4 = PelletView
+	FSM* mFsm;                 // _2BC
+	f32 mPitchRatio;           // _2C0
+	f32 mStateTimer;           // _2C4, recycled for each state
+	f32 mBombCarryTimer;       // _2C8
+	Vector3f mTargetPosition;  // _2CC
+	Bomb::Obj* mHeldBomb;      // _2D8
+	StateID mNextState;        // _2DC
+	efx::TChaseMtx* mEfxSupli; // _2E0
+	                           // _2E4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -119,15 +119,15 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFlightHeight(this, 'fp01', "飛行高さ", 90.0f, 0.0f, 150.0f)      // 'flight height'
-		    , mTransitHeight(this, 'fp03', "状態遷移高さ", 50.0f, 0.0f, 300.0f) // 'state transition height'
-		    , mPitchRate(this, 'fp10', "上下の揺れ速度", 2.5f, 0.0f, 10.0f)     // 'vertical swing speed'
-		    , mPitchAmp(this, 'fp11', "上下の揺れ幅", 20.0f, 0.0f, 50.0f)       // 'width of vertical swing'
-		    , mFreeRiseFactor(this, 'fp21', "上昇係数(0)", 1.5f, 0.0f, 5.0f)    // 'climbing factor (0)'
-		    , mLadenRiseFactor(this, 'fp22', "上昇係数(5)", 1.0f, 0.0f, 5.0f)   // 'climbing factor (5)'
-		    , mFreeFlickChance(this, 'fp31', "振払確率(1)", 0.1f, 0.0f, 1.0f)   // 'payoff probability (1)'
-		    , mLadenFlickChance(this, 'fp32', "振払確率(5)", 0.7f, 0.0f, 1.0f)  // 'payoff probability (5)'
-		    , mStruggleTime(this, 'fp40', "もがき時間", 3.0f, 0.0f, 10.0f)      // 'struggling time'
+		    , mFlightHeight(this, 'fp01', 90.0f, 0.0f, 150.0f)  // 'flight height'
+		    , mTransitHeight(this, 'fp03', 50.0f, 0.0f, 300.0f) // 'state transition height'
+		    , mPitchRate(this, 'fp10', 2.5f, 0.0f, 10.0f)       // 'vertical swing speed'
+		    , mPitchAmp(this, 'fp11', 20.0f, 0.0f, 50.0f)       // 'width of vertical swing'
+		    , mFreeRiseFactor(this, 'fp21', 1.5f, 0.0f, 5.0f)   // 'climbing factor (0)'
+		    , mLadenRiseFactor(this, 'fp22', 1.0f, 0.0f, 5.0f)  // 'climbing factor (5)'
+		    , mFreeFlickChance(this, 'fp31', 0.1f, 0.0f, 1.0f)  // 'payoff probability (1)'
+		    , mLadenFlickChance(this, 'fp32', 0.7f, 0.0f, 1.0f) // 'payoff probability (5)'
+		    , mStruggleTime(this, 'fp40', 3.0f, 0.0f, 10.0f)    // 'struggling time'
 		{
 		}
 

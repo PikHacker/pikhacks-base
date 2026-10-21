@@ -776,7 +776,7 @@ TChallengeResult::TChallengeResult()
 	_168._08.x = -115.0f;
 	_168._08.y = 30.0f;
 
-	mEfxCompLoop = new efx2d::T2DCavecompLoop;
+	mEfxCompLoop = new efx2d::TForever(PID_Cavecomp_Loop);
 }
 
 /**
@@ -1658,7 +1658,7 @@ void TChallengeResult::updateDemo()
 					Vector2f pos;
 					mClearTexture[id]->getEffectPosition(pos);
 					efx2d::Arg arg(pos);
-					efx2d::T2DChangesmoke efx;
+					efx2d::TSimple1 efx(PID_Changesmoke);
 					efx.create(&arg);
 					if (mClearTexture[3]->_00 == 0) {
 						Vector2f test;
@@ -1708,7 +1708,7 @@ void TChallengeResult::updateDemo()
 						Vector2f pos;
 						mClearTexture[id]->getEffectPosition(pos);
 						efx2d::Arg arg(pos);
-						efx2d::T2DChangesmoke efx;
+						efx2d::TSimple1 efx(PID_Changesmoke);
 						efx.create(&arg);
 						mOnyonMovePane[i]->start();
 					}
@@ -1749,7 +1749,7 @@ void TChallengeResult::changeAnimDemo()
 			mResultDemoScreen->mScreenObj->search('Nribon');
 
 			efx2d::Arg arg2(Vector2f(140.0f, 100.0f));
-			efx2d::T2DCavecomp efx;
+			efx2d::TSimple2 efx(PID_Cavecomp_1, PID_Cavecomp_2);
 			efx.create(&arg2);
 		} else {
 			PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_COURSECLEAR, 0);
@@ -1782,7 +1782,7 @@ void TChallengeResult::changeAnimDemo()
 
 				// raining confetti particles
 				efx2d::Arg arg2(Vector2f(140.0f, 100.0f));
-				efx2d::T2DCavecomp efx;
+				efx2d::TSimple2 efx(PID_Cavecomp_1, PID_Cavecomp_2);
 				efx.create(&arg2);
 			} else {
 				PSSystem::spSysIF->playSystemSe(PSSE_CHALLENGE_COURSECLEAR, 0);

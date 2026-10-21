@@ -160,7 +160,7 @@ struct Obj : public EnemyBase {
 	Vector3f mAttackPositions[5];    // _2E8, indexed by mAttackAnimIdx
 	SnakeJointMgr* mSnakeJointMgr;   // _324
 	SnakeWholeShadowMgr* mShadowMgr; // _328
-	efx::TCphebiDead* mEfxDead;      // _32C
+	efx::TChaseMtx4* mEfxDead;       // _32C
 	                                 // _330 = PelletView
 };
 
@@ -191,10 +191,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFastAppearChance(this, 'fp01', "通常出現率", 0.8f, 0.0f, 1.0f)   // 'normal appearance rate'
-		    , mWaitTime(this, 'fp11', "潜る迄の時間", 2.0f, 0.0f, 10.0f)        // 'time to dive'
-		    , mUndergroundTime(this, 'fp12', "地中での時間", 1.0f, 0.0f, 10.0f) // 'time in the ground'
-		    , mPoisonDamage(this, 'fp21', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mFastAppearChance(this, 'fp01', 0.8f, 0.0f, 1.0f)   // 'normal appearance rate'
+		    , mWaitTime(this, 'fp11', 2.0f, 0.0f, 10.0f)          // 'time to dive'
+		    , mUndergroundTime(this, 'fp12', 1.0f, 0.0f, 10.0f)   // 'time in the ground'
+		    , mPoisonDamage(this, 'fp21', 300.0f, 0.0f, 10000.0f) // 'white pikmin'
 		{
 		}
 

@@ -593,7 +593,7 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Vector3f position = kurage->getPosition();
 	efx::Arg fxArg(position);
-	efx::TNewkurageFlick flickFx;
+	efx::TSimple1 flickFx(PID_NewKurageFlick);
 	flickFx.create(&fxArg);
 }
 
@@ -653,7 +653,7 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Vector3f position = kurage->getPosition();
 	efx::Arg fxArg(position);
-	efx::TNewkurageFlick flickFx;
+	efx::TSimple1 flickFx(PID_NewKurageFlick);
 	flickFx.create(&fxArg);
 }
 

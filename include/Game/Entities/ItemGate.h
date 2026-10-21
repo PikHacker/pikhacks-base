@@ -151,7 +151,7 @@ struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 	int mMaxSegments;                   // _210
 	f32 mFaceDir;                       // _214
 	bool mIsElectric;                   // _218
-	efx::TEgateA* mEgateEfxA;           // _21C
+	efx::TChaseMtx* mEgateEfxA;         // _21C
 	efx::TEgateBC* mEgateEfxBC;         // _220
 	Plane mPlanes[4];                   // _224
 	Vector3f mGateDirection;            // _264
@@ -175,9 +175,9 @@ struct ItemGateMgr : public BaseItemMgr {
 	virtual void generatorWrite(Stream&, GenItemParm*);                                      // _60
 	virtual void generatorRead(Stream&, GenItemParm*, u32);                                  // _64
 	virtual GenItemParm* generatorNewItemParm();                                             // _70
-	virtual char* getCaveName(int);                                                          // _74
-	virtual int getCaveID(char*);                                                            // _78
 
+	char* getCaveName(int);
+	int getCaveID(char*);
 	void setupGate(ItemGate*);
 	void setupPlatform(ItemGate*);
 	BaseItem* birth();

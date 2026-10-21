@@ -138,36 +138,36 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                                  // _2BC
-	f32 mStateTimer;                            // _2C0, how long MAL has been in wait or walk state
-	f32 mStateDuration;                         // _2C4, how long each phase lasts - 1.5-3s for wait, 3.5-7s for walk
-	f32 mShotGunBurstTimer;                     // _2C8, how long shotgun has been blasting for (this burst)
-	f32 mShotGunSearchTimer;                    // _2CC, how long to keep shotgun on with no targets left in range
-	StateID mNextState;                         // _2D0
-	Vector3f mTargetPosition;                   // _2D4
-	Vector3f mShotGunTargetPosition;            // _2E0
-	bool mIsSmoking;                            // _2EC, is below critical health
-	u8 mShotGunState;                           // _2ED
-	bool mTargetNearest;                        // _2EE, if false, target nearest navi's nearest piki (i.e. party)
-	bool mIsAttackMusicLooping;                 // _2EF
-	IKSystemMgr* mIkSystemMgr;                  // _2F0
-	IKSystemParms* mIkSystemParms;              // _2F4
-	HoudaiGroundCallBack* mGroundCallBack;      // _2F8
-	HoudaiShadowMgr* mShadowMgr;                // _2FC
-	HoudaiShotGunMgr* mShotGunMgr;              // _300
-	Vector3f mJointPositions[4][4];             // _304
-	efx::TDamaSmoke* mSmokeFX[2];               // _3C4
-	efx::THdamaHahen* mHahenFX[3];              // _3CC
-	efx::TDamaDeadElecA* mDeadElecAFX[3];       // _3D8
-	efx::THdamaOnHahen1* mAppearHahenFX;        // _3E4
-	efx::THdamaOnHahen2* mAppearHahenFootFX[4]; // _3E8
-	efx::THdamaOnSteam1* mOnSteam1FX;           // _3F8
-	efx::THdamaSteamBd* mSteamBodyFX;           // _3FC
-	efx::THdamaSteam* mSteamFX[3];              // _400
-	efx::THdamaSteamSt* mChimneyFX[3];          // _40C
-	efx::THdamaDeadbomb* mDeadBombFX;           // _418
-	efx::THdamaDeadSteam* mDeadSteamFX;         // _41C
-	                                            // _420 = PelletView
+	FSM* mFsm;                                // _2BC
+	f32 mStateTimer;                          // _2C0, how long MAL has been in wait or walk state
+	f32 mStateDuration;                       // _2C4, how long each phase lasts - 1.5-3s for wait, 3.5-7s for walk
+	f32 mShotGunBurstTimer;                   // _2C8, how long shotgun has been blasting for (this burst)
+	f32 mShotGunSearchTimer;                  // _2CC, how long to keep shotgun on with no targets left in range
+	StateID mNextState;                       // _2D0
+	Vector3f mTargetPosition;                 // _2D4
+	Vector3f mShotGunTargetPosition;          // _2E0
+	bool mIsSmoking;                          // _2EC, is below critical health
+	u8 mShotGunState;                         // _2ED
+	bool mTargetNearest;                      // _2EE, if false, target nearest navi's nearest piki (i.e. party)
+	bool mIsAttackMusicLooping;               // _2EF
+	IKSystemMgr* mIkSystemMgr;                // _2F0
+	IKSystemParms* mIkSystemParms;            // _2F4
+	HoudaiGroundCallBack* mGroundCallBack;    // _2F8
+	HoudaiShadowMgr* mShadowMgr;              // _2FC
+	HoudaiShotGunMgr* mShotGunMgr;            // _300
+	Vector3f mJointPositions[4][4];           // _304
+	efx::TChasePos* mSmokeFX[2];              // _3C4
+	efx::TChasePosPos* mHahenFX[3];           // _3CC
+	efx::TChasePosPos* mDeadElecAFX[3];       // _3D8
+	efx::TChaseMtx* mAppearHahenFX;           // _3E4
+	efx::TChasePosPos* mAppearHahenFootFX[4]; // _3E8
+	efx::TChaseMtxT* mOnSteam1FX;             // _3F8
+	efx::TChaseMtxT* mSteamBodyFX;            // _3FC
+	efx::TChaseMtx* mSteamFX[3];              // _400
+	efx::TChaseMtx* mChimneyFX[3];            // _40C
+	efx::TChaseMtx4* mDeadBombFX;             // _418
+	efx::TChaseMtx2* mDeadSteamFX;            // _41C
+	                                          // _420 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -197,17 +197,17 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mBaseFactor(this, 'fp01', "ベース係数", 5.0f, 0.0f, 10.0f)                 // 'base factor'
-		    , mRaiseDecelFactor(this, 'fp02', "上げ減速係数", -0.4f, -5.0f, 5.0f)        // 'raising deceleration factor'
-		    , mDownwardAccelFactor(this, 'fp03', "下げ加速係数", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
-		    , mMinDecelAccelFactor(this, 'fp04', "最低減加速係数", -3.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
-		    , mMaxDecelAccelFactor(this, 'fp05', "最高減加速係数", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
-		    , mLegSwing(this, 'fp06', "足の振り上げ", 90.0f, 0.0f, 200.0f)               // 'leg swing'
-		    , mMaxShootingOn(this, 'fp10', "射撃On:Max", 2.0f, 0.0f, 10.0f)              // 'shooting on:max'
-		    , mMinShootingOn(this, 'fp11', "射撃On:Min", 1.0f, 0.0f, 10.0f)              // 'shooting on:min'
-		    , mMaxShootingOff(this, 'fp12', "射撃Off:Max", 1.0f, 0.0f, 10.0f)            // 'shooting off:max'
-		    , mMinShootingOff(this, 'fp13', "射撃Off:Min", 0.5f, 0.0f, 10.0f)            // 'shooting off:min'
-		    , mLastToTerritory(this, 'fp20', "Last 2 Territory", 380.0f, 0.0f, 500.0f)   // 'Last 2 Territory'
+		    , mBaseFactor(this, 'fp01', 5.0f, 0.0f, 10.0f)             // 'base factor'
+		    , mRaiseDecelFactor(this, 'fp02', -0.4f, -5.0f, 5.0f)      // 'raising deceleration factor'
+		    , mDownwardAccelFactor(this, 'fp03', 0.5f, -5.0f, 5.0f)    // 'downward acceleration factor'
+		    , mMinDecelAccelFactor(this, 'fp04', -3.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
+		    , mMaxDecelAccelFactor(this, 'fp05', 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', 90.0f, 0.0f, 200.0f)             // 'leg swing'
+		    , mMaxShootingOn(this, 'fp10', 2.0f, 0.0f, 10.0f)          // 'shooting on:max'
+		    , mMinShootingOn(this, 'fp11', 1.0f, 0.0f, 10.0f)          // 'shooting on:min'
+		    , mMaxShootingOff(this, 'fp12', 1.0f, 0.0f, 10.0f)         // 'shooting off:max'
+		    , mMinShootingOff(this, 'fp13', 0.5f, 0.0f, 10.0f)         // 'shooting off:min'
+		    , mLastToTerritory(this, 'fp20', 380.0f, 0.0f, 500.0f)     // 'Last 2 Territory'
 		{
 		}
 

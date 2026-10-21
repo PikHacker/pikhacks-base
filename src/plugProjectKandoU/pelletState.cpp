@@ -554,14 +554,14 @@ void PelletGoalState::exec(Pellet* pelt)
 	    && Radar::Mgr::getNumOtakaraItems() <= 1) {
 		if (gameSystem->mIsInCave) {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
+			PSM::Scene_Cave* scene  = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
 			PSSystem::checkGameScene(scene);
 			scene->stopPollutionSe();
 			// when the key is collected in challenge mode, change the music and background sfx
 			if (gameSystem->isChallengeMode()) {
 				if (strcmp(pelt->mConfig->mParams.mName.mData, "key")) {
 					PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-					PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+					PSM::Scene_Game* scene  = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 					PSSystem::checkGameScene(scene);
 					if (scene->isCave()) {
 						static_cast<PSM::Scene_Cave*>(scene)->startPollutUpSe();
@@ -569,7 +569,7 @@ void PelletGoalState::exec(Pellet* pelt)
 				}
 			}
 		} else {
-			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+			PSSystem::SceneMgr* mgr  = PSSystem::getSceneMgr();
 			PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
 			PSSystem::checkGameScene(scene);
 			scene->setPollutUp();
@@ -648,7 +648,7 @@ void PelletAppearState::exec(Pellet* pelt)
 			if (!mEfxMade) {
 				Vector3f translation;
 				pelt->mBaseTrMatrix.getColumn(3, translation);
-				efx::TTsuyuGrowon growOnFX;
+				efx::TSimple1 growOnFX(PID_TsuyuGrowOn);
 				efx::Arg arg(translation);
 				growOnFX.create(&arg);
 				pelt->mSoundMgr->startSound(PSSE_EV_TSUYUKUSA_FRUIT, 0);

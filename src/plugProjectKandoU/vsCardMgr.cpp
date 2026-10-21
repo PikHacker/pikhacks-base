@@ -303,7 +303,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 			if (piki->getKind() == (1 - user) && piki->isAlive() && piki->getHappa() != Flower) {
 				piki->changeHappa(Flower);
 				Vector3f vec = piki->mLeafStemOffset;
-				efx::TPkGlow2 particle;
+				efx::TSimple2 particle(PID_PkGlow2_1, PID_PkGlow2_2);
 				efx::Arg arg = vec;
 				particle.create(&arg);
 				piki->startSound(PSSE_PK_FLOWER_VOICE, true);

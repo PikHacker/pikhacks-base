@@ -872,7 +872,7 @@ void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 
 					if (!mInitArg.mDoNewEntriesEfx) {
 						efx2d::Arg arg(Vector2f(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y));
-						efx2d::T2DChangesmoke efx;
+						efx2d::TSimple1 efx(PID_Changesmoke);
 						efx.create(&arg);
 					}
 				}
@@ -883,7 +883,7 @@ void WorldMap::update(Game::WorldMap::UpdateArg& arg)
 
 					if (!mInitArg.mDoNewEntriesEfx) {
 						efx2d::Arg arg(Vector2f(getPaneCenterX(target) + msVal._50[1].x, getPaneCenterY(target) + msVal._50[1].y));
-						efx2d::T2DChangesmoke efx;
+						efx2d::TSimple1 efx(PID_Changesmoke);
 						efx.create(&arg);
 					}
 				}
@@ -1648,7 +1648,7 @@ void WorldMap::effectFirstTime()
 				for (int j = 0; j < 5; j++) {
 					f32 x = (pos1.x * (4 - j) + pos2.x * j) * 0.25f;
 					efx2d::Arg arg(Vector2f(x, y));
-					efx2d::T2DChangesmoke efx;
+					efx2d::TSimple1 efx(PID_Changesmoke);
 					efx.create(&arg);
 				}
 				isNewCave = true;

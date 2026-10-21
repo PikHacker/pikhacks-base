@@ -79,8 +79,8 @@ void Obj::setZukanVisible(bool updateTekiDeathInfo)
  */
 void Obj::createEffect()
 {
-	mEfxRot  = new efx::TKkabutoRot(&mPosition);
-	mEfxWait = new efx::TKkabutoWait(&mPosition);
+	mEfxRot  = new efx::TChasePos(PID_KKabutoRot, &mPosition);
+	mEfxWait = new efx::TChasePos(PID_KKabutoWait, &mPosition);
 }
 
 /**

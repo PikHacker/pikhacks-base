@@ -264,9 +264,9 @@ struct Parms : EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mSmallToMedGrowth(this, 'fp01', "成長(小→中）", 120.0f, 0.0f, 300.0f) // growth (small to medium)
-		    , mMedToLargeGrowth(this, 'fp02', "成長(中→大）", 120.0f, 0.0f, 300.0f) // growth (medium to large)
-		    , mColorChangeTime(this, 'fp03', "カラー変更時間", 1.5f, 0.0f, 5.0f)    // color change time
+		    , mSmallToMedGrowth(this, 'fp01', 120.0f, 0.0f, 300.0f) // growth (small to medium)
+		    , mMedToLargeGrowth(this, 'fp02', 120.0f, 0.0f, 300.0f) // growth (medium to large)
+		    , mColorChangeTime(this, 'fp03', 1.5f, 0.0f, 5.0f)      // color change time
 		{
 		}
 		Parm<f32> mSmallToMedGrowth; // _804, fp01

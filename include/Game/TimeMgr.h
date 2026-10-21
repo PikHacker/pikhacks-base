@@ -27,18 +27,18 @@ struct TimeMgrParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "TimeMgrParms")
-		    , mDayStartTime(this, 'fp00', "ゲーム開始時刻", 7.0f, 0.0f, 24.0f)           // 'game start time'
-		    , mDayEndTime(this, 'fp01', "ゲーム終了時刻", 19.0f, 0.0f, 24.0f)            // 'game end time'
-		    , mDayLengthSeconds(this, 'fp02', "1日の時間<秒）", 1560.f, 0.0f, 3600.0f)   // '1 day <second)' = 26 minutes
-		    , mMorningStartTime(this, 'fp03', "朝開始時刻", 5.25f, 0.0f, 24.0f)          // 'morning start time'
-		    , mMidMorningTime(this, 'fp04', "朝中間時刻", 7.0f, 0.0f, 24.0f)             // 'mid-morning time'
-		    , mMorningEndTime(this, 'fp05', "朝終了時刻", 8.0f, 0.0f, 24.0f)             // 'morning end time'
-		    , mEveningStartTime(this, 'fp06', "夕方開始時刻", 15.0f, 0.0f, 24.0f)        // 'evening start time'
-		    , mMidEveningStartTime(this, 'fp07', "夕方中間開始時刻", 15.5f, 0.0f, 24.0f) // 'mid-evening start time'
-		    , mMidEveningEndTime(this, 'fp11', "夕方中間終了時刻", 18.5f, 0.0f, 24.0f)   // 'mid-evening end time'
-		    , mEveningEndTime(this, 'fp08', "夕方終了時刻", 19.0f, 0.0f, 24.0f)          // 'evening end time'
-		    , mSundownAlertTime(this, 'fp09', "夜警告時刻", 18.0f, 0.0f, 24.0f)          // 'night warning time'
-		    , mCountdownTime(this, 'fp10', "カウントダウン", 18.5f, 0.0f, 24.0f)         // 'countdown'
+		    , mDayStartTime(this, 'fp00', 7.0f, 0.0f, 24.0f)         // 'game start time'
+		    , mDayEndTime(this, 'fp01', 19.0f, 0.0f, 24.0f)          // 'game end time'
+		    , mDayLengthSeconds(this, 'fp02', 1560.f, 0.0f, 3600.0f) // '1 day <second)' = 26 minutes
+		    , mMorningStartTime(this, 'fp03', 5.25f, 0.0f, 24.0f)    // 'morning start time'
+		    , mMidMorningTime(this, 'fp04', 7.0f, 0.0f, 24.0f)       // 'mid-morning time'
+		    , mMorningEndTime(this, 'fp05', 8.0f, 0.0f, 24.0f)       // 'morning end time'
+		    , mEveningStartTime(this, 'fp06', 15.0f, 0.0f, 24.0f)    // 'evening start time'
+		    , mMidEveningStartTime(this, 'fp07', 15.5f, 0.0f, 24.0f) // 'mid-evening start time'
+		    , mMidEveningEndTime(this, 'fp11', 18.5f, 0.0f, 24.0f)   // 'mid-evening end time'
+		    , mEveningEndTime(this, 'fp08', 19.0f, 0.0f, 24.0f)      // 'evening end time'
+		    , mSundownAlertTime(this, 'fp09', 18.0f, 0.0f, 24.0f)    // 'night warning time'
+		    , mCountdownTime(this, 'fp10', 18.5f, 0.0f, 24.0f)       // 'countdown'
 		{
 		}
 

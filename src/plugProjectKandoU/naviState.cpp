@@ -1275,7 +1275,7 @@ void NaviPunchState::hitCallback(CollPart* collpart)
 			fxPos += rHand->mPosition;
 
 			efx::Arg fxArg(fxPos);
-			efx::TOrimapunch fxPunch;
+			efx::TSimple1 fxPunch(PID_OrimaPunch);
 			fxPunch.create(&fxArg);
 
 			if (isRocketFist) {
@@ -1713,9 +1713,9 @@ void NaviNukuAdjustState::init(Navi* navi, StateArg* stateArg)
 
 	NaviNukuAdjustStateArg* arg = static_cast<NaviNukuAdjustStateArg*>(stateArg);
 
-	mAngleToItem    = arg->mAngleToItem;
-	mPikiHead       = arg->mPikihead;
-	mIsFollowing    = arg->mIsFollowing;
+	mAngleToItem = arg->mAngleToItem;
+	mPikiHead    = arg->mPikihead;
+	mIsFollowing = arg->mIsFollowing;
 
 	Vector3f diff;
 	diff         = arg->mPikihead->getPosition() - navi->getPosition();

@@ -201,14 +201,14 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 			recv(msg);
 
 			if (mParent->doped()) {
-				efx::TPkAttackDP dp;
+				efx::TSimple1 dp(PID_PkAttackDP);
 				Vector3f offset = mParent->mLeafStemOffset;
 				efx::Arg fxArg;
 				fxArg.mPosition = offset;
 				dp.create(&fxArg);
 
 			} else {
-				efx::PikiDamage pd;
+				efx::TSimple1 pd(PID_PikiDamage);
 				Vector3f offset = mParent->mLeafStemOffset;
 				efx::Arg fxArg;
 				fxArg.mPosition = offset;

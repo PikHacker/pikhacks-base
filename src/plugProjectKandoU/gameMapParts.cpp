@@ -722,7 +722,7 @@ void MapRoom::doEntry()
 
 			mModel->show();
 		} else {
-			if (BaseHIOParms::sEntryOptMapRoom && !gameSystem->isMultiplayerMode()) {
+			if (!gameSystem->isMultiplayerMode()) {
 				return;
 			}
 
@@ -1335,16 +1335,6 @@ void MapRoom::createGlobalCollision()
  */
 void RoomMapMgr::createGlobalCollision()
 {
-	if (BaseHIOParms::sMapRoomFinal == 0) {
-		Iterator<MapRoom> iter(&mRoomMgr);
-		CI_LOOP(iter)
-		{
-			MapRoom* room    = *iter;
-			room->mCollision = room->mUnit->mCollision.clone(room->mRoomSpaceMtx);
-		}
-		return;
-	}
-
 	Sys::VertexTable* vertTable  = new Sys::VertexTable();
 	Sys::TriangleTable* triTable = new Sys::TriangleTable();
 	BoundBox box;

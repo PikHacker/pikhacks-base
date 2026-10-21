@@ -52,7 +52,7 @@ void StateWait::exec(EnemyBase* enemy)
 		EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 		efx::ArgEnemyType type(fxPos, id, 1.0f);
 
-		efx::TEggdown eggdown;
+		efx::TSimple1 eggdown(PID_EggDown);
 		eggdown.create(&type);
 
 		efx::TEnemyBomb enemybomb;

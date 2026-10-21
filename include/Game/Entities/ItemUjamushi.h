@@ -323,8 +323,6 @@ struct Mgr : public NodeItemMgr<Item> {
 	virtual void generatorRead(Stream&, GenItemParm*, u32);                               // _64
 	virtual u32 generatorLocalVersion() { return '0000'; }                                // _68 (weak)
 	virtual GenItemParm* generatorNewItemParm();                                          // _70
-	virtual char* getCaveName(int);                                                       // _B8
-	virtual int getCaveID(char*);                                                         // _BC
 
 	// unused/inlined:
 	Item* birth();

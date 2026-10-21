@@ -83,20 +83,20 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mNormalFlightHeight(this, 'fp01', "通常飛行高さ", 100.0f, 0.0f, 300.0f)   // 'normal flight height'
-		    , mGrabFlightHeight(this, 'fp02', "掴み飛行高さ", 80.0f, 0.0f, 300.0f)      // 'grab flight height'
-		    , mStateTransitionHeight(this, 'fp03', "状態遷移高さ", 50.0f, 0.0f, 300.0f) // 'state transition height'
-		    , mNormalMovementSpeed(this, 'fp04', "通常移動速度", 100.0f, 0.0f, 300.0f)  // 'normal movement speed'
-		    , mGrabMovementSpeed(this, 'fp05', "掴み移動速度", 75.0f, 0.0f, 300.0f)     // 'grab movement speed'
-		    , mWaitTime(this, 'fp06', "ウェイト時間", 3.0f, 0.0f, 10.0f)                // 'wait time'
-		    , mClimbingFactor0(this, 'fp11', "上昇係数(0)", 1.5f, 0.0f, 5.0f)           // 'climbing factor (0)'
-		    , mClimbingFactor5(this, 'fp12', "上昇係数(5)", 1.0f, 0.0f, 5.0f)           // 'climbing factor (5)'
-		    , mPayoffProbability1(this, 'fp21', "振払確率(1)", 0.1f, 0.0f, 1.0f)        // 'payoff probability (1)'
-		    , mPayoffProbability5(this, 'fp22', "振払確率(5)", 0.7f, 0.0f, 1.0f)        // 'payoff probability (5)'
-		    , mStrugglingTime(this, 'fp23', "もがき時間", 3.0f, 0.0f, 10.0f)            // 'struggling time'
-		    , mHuntDescentFactor(this, 'fp31', "ハント下降係数", 0.3f, 0.0f, 1.0f)      // 'hunt descent factor'
-		    , mPostHuntDecayRate(this, 'fp32', "ハント後減衰率", 0.95f, 0.0f, 1.0f)     // 'post-hunt decay rate'
-		    , mFallMeckSpeed(this, 'fp41', "Fall Meck 速度", 200.0f, 0.0f, 1000.0f)     // 'Fall Meck speed'
+		    , mNormalFlightHeight(this, 'fp01', 100.0f, 0.0f, 300.0f)   // 'normal flight height'
+		    , mGrabFlightHeight(this, 'fp02', 80.0f, 0.0f, 300.0f)      // 'grab flight height'
+		    , mStateTransitionHeight(this, 'fp03', 50.0f, 0.0f, 300.0f) // 'state transition height'
+		    , mNormalMovementSpeed(this, 'fp04', 100.0f, 0.0f, 300.0f)  // 'normal movement speed'
+		    , mGrabMovementSpeed(this, 'fp05', 75.0f, 0.0f, 300.0f)     // 'grab movement speed'
+		    , mWaitTime(this, 'fp06', 3.0f, 0.0f, 10.0f)                // 'wait time'
+		    , mClimbingFactor0(this, 'fp11', 1.5f, 0.0f, 5.0f)          // 'climbing factor (0)'
+		    , mClimbingFactor5(this, 'fp12', 1.0f, 0.0f, 5.0f)          // 'climbing factor (5)'
+		    , mPayoffProbability1(this, 'fp21', 0.1f, 0.0f, 1.0f)       // 'payoff probability (1)'
+		    , mPayoffProbability5(this, 'fp22', 0.7f, 0.0f, 1.0f)       // 'payoff probability (5)'
+		    , mStrugglingTime(this, 'fp23', 3.0f, 0.0f, 10.0f)          // 'struggling time'
+		    , mHuntDescentFactor(this, 'fp31', 0.3f, 0.0f, 1.0f)        // 'hunt descent factor'
+		    , mPostHuntDecayRate(this, 'fp32', 0.95f, 0.0f, 1.0f)       // 'post-hunt decay rate'
+		    , mFallMeckSpeed(this, 'fp41', 200.0f, 0.0f, 1000.0f)       // 'Fall Meck speed'
 		{
 		}
 

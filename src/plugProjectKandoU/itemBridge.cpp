@@ -644,7 +644,7 @@ bool Item::interactAttack(InteractAttack& attack)
 		Matrixf currMat;
 		currMat.makeTR(currStagePos, currRot);
 
-		efx::TBridgeSet currSetFX(&currMat);
+		efx::TSimpleMtx1 currSetFX(&currMat, PID_BridgeSet);
 		currSetFX.create(nullptr);
 		mMabiki.mBuffer += 140;
 
@@ -653,7 +653,7 @@ bool Item::interactAttack(InteractAttack& attack)
 		Matrixf nextMat;
 		nextMat.makeTR(nextStagePos, nextRot);
 
-		efx::TBridgeSet nextSetFX(&nextMat);
+		efx::TSimpleMtx1 nextSetFX(&nextMat, PID_BridgeSet);
 		nextSetFX.create(nullptr);
 		mMabiki.mBuffer += 60;
 
@@ -889,26 +889,14 @@ void Mgr::createBridgeInfo(int type)
 		sprintf(name, "room%02d", i);
 		s16 jointIdx           = model->getJointName()->getIndex(name);
 		info->mJointIndices[i] = jointIdx;
-		if (jointIdx == -1) { // get joint names and panic
-			for (int j = 0; j < model->getJointNum(); j++) {
-				model->getJointName()->getName(j);
-			}
-
-			JUT_PANICLINE(1163, "hame-dokkuri vs nakamoto-kouji\n"); // 'i'm so excited vs nakamoto-construction' (??)
+		if (jointIdx == -1) {
+			JUT_PANICLINE(1163, "joint missing\n");
 		}
 	}
 
 	s16 finalJointIdx = model->getJointName()->getIndex("final");
 	if (finalJointIdx != -1) {
 		info->mFinalJointIdx = finalJointIdx;
-
-	} else { // panic
-		info->mFinalJointIdx = -1;
-		for (int i = 0; i < model->getJointNum(); i++) {
-			model->getJointName()->getName(i);
-		}
-
-		JUT_PANICLINE(1180, "hame-dokkuri\n"); // 'i'm so excited' (??)
 	}
 }
 

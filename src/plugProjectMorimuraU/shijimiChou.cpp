@@ -198,15 +198,7 @@ void Obj::doAnimationCullingOff()
 
 	if (isCullingOff()) {
 		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
-
-		if (C_PARMS->mDoUpdateAnimation && getCurrAnimIndex() == 2 && getStateID() != SHIJIMICHOU_Rest) {
-			J3DModel* model = mModel->getJ3DModel();
-			C_MGR->fetch(model, getMotionFrame());
-
-		} else {
-			mModel->mJ3dModel->calc();
-		}
-
+		mModel->mJ3dModel->calc();
 	} else {
 		mModel->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = nullptr;
 	}
@@ -269,7 +261,7 @@ void Obj::doSimulation(f32 simSpeed)
 
 		mEfxDown->create(&fxChou);
 
-		efx::TChouHit hitFX;
+		efx::TSimple1 hitFX(PID_ChouHit);
 		efx::Arg fxArg(mPosition);
 		hitFX.create(&fxArg);
 
@@ -412,8 +404,7 @@ void Obj::startCarcassMotion()
 void Obj::getShadowParam(ShadowParam& param)
 {
 	param.mPosition = mPosition;
-	if (!C_PARMS->mDoUpdateAnimation || mUpdateContext.updatable() || mGroupLeader == this) {
-		P2ASSERTLINE(601, mapMgr);
+	if (mapMgr && (mUpdateContext.updatable() || mGroupLeader == this)) {
 
 		mMapMinY = mapMgr->getMinY(param.mPosition);
 	}
@@ -518,41 +509,7 @@ void Obj::fly()
 	}
 
 	f32 moveSpeed = C_GENERALPARMS.mMoveSpeed();
-	if (!C_PARMS->mDoManualFlight) {
-		EnemyFunc::walkToTarget(this, mGoalPosition, moveSpeed, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
-	} else {
-		f32 rotAccel = C_GENERALPARMS.mTurnSpeed();
-		f32 rotSpeed = C_GENERALPARMS.mMaxTurnAngle();
-
-		mYawRate += C_PARMS->mYawRate;
-		if (mYawRate > 360.0f) {
-			mYawRate -= 360.0f;
-		}
-
-		f32 sinVal        = (f32)sin(mYawRate);
-		f32 scaledSin     = C_PARMS->mRotateFaceDirFactor * sinVal;
-		f32 faceDirOffset = TORADIANS(scaledSin);
-		mFaceDir          = mTargetFaceDir;
-		turnToTarget(mGoalPosition, rotAccel, rotSpeed);
-
-		f32 angle = mFaceDir + faceDirOffset;
-		Vector3f velocity;
-		velocity.x = moveSpeed * sinf(angle);
-		velocity.y = getTargetVelocity().y;
-		velocity.z = moveSpeed * cosf(angle);
-
-		mTargetFaceDir = mFaceDir;
-		if (absF(faceDirOffset) > rotSpeed) {
-			if (faceDirOffset > 0.0f) {
-				faceDirOffset = rotSpeed;
-			} else {
-				faceDirOffset = -rotSpeed;
-			}
-		}
-		updateFaceDir(mFaceDir + roundAng(faceDirOffset));
-
-		mTargetVelocity = velocity;
-	}
+	EnemyFunc::walkToTarget(this, mGoalPosition, moveSpeed, C_GENERALPARMS.mTurnSpeed(), C_GENERALPARMS.mMaxTurnAngle());
 
 	mPosition.y += 0.01f * (mGoalPosition.y - mPosition.y);
 }

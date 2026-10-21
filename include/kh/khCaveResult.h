@@ -110,7 +110,7 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	J2DAnmTextureSRTKey* mAnimTexSRT;                          // _5C
 	J2DAnmTevRegKey* mAnimTevReg;                              // _60
 	f32 mAnimTimers[6];                                        // _64
-	efx2d::T2DCavecompLoop* mEfxComp;                          // _7C
+	efx2d::TForever* mEfxComp;                                 // _7C
 	og::Screen::StickAnimMgr* mStickAnim;                      // _80
 	og::Screen::ScaleMgr* mScaleMgr;                           // _84
 	khUtilFadePane* mFadePane1;                                // _88

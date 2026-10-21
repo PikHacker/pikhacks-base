@@ -115,31 +115,31 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                                 // _2BC
-	f32 mStateTimer;                           // _2C0, how long BLL has been in wait or walk state
-	f32 mStateDuration;                        // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
-	int mNextState;                            // _2C8
-	Vector3f mTargetPosition;                  // _2CC
-	f32 mShadowScale;                          // _2D8
-	u8 mDoPlayDeadMatAnim;                     // _2DC
-	bool mIsSmoking;                           // _2DD
-	IKSystemMgr* mIkSystemMgr;                 // _2E0
-	IKSystemParms* mIkSystemParms;             // _2E4
-	DamagumoGroundCallBack* mGroundCallBack;   // _2E8
-	DamagumoShadowMgr* mShadowMgr;             // _2EC
-	Vector3f mJointPositions[4][4];            // _2F0, guess based on BigFoot struct
-	efx::TDamaFoot* mFootFX[4];                // _3B0
-	efx::TDamaFootw* mFootWFX[4];              // _3C0
-	efx::TDamaSmoke* mSmokeFX[3];              // _3D0
-	efx::TDamaHahen* mHahenFX[4][3];           // _3DC, guess based on BigFoot struct
-	efx::TDamaDeadElecA* mDeadElecAFX[4][3];   // _40C, guess based on BigFoot struct
-	efx::TDamaDeadElecB* mDeadElecBFX[4][2];   // _43C, guess based on BigFoot struct
-	efx::TDamaDeadHahenA* mDeadHahenAFX[4][2]; // _45C, guess based on BigFoot struct
-	efx::TDamaDeadHahenB* mDeadHahenBFX[4];    // _47C
-	efx::TDamaDeadHahenC1* mDeadHahenC1FX;     // _48C
-	efx::TDamaDeadHahenC2* mDeadHahenC2FX;     // _490
-	Sys::MatLoopAnimator* mMatLoopAnimator;    // _494, array of 2 MatLoopAnimators: 0 = tex, 1 = tev reg
-	                                           // _498 = PelletView
+	FSM* mFsm;                               // _2BC
+	f32 mStateTimer;                         // _2C0, how long BLL has been in wait or walk state
+	f32 mStateDuration;                      // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
+	int mNextState;                          // _2C8
+	Vector3f mTargetPosition;                // _2CC
+	f32 mShadowScale;                        // _2D8
+	u8 mDoPlayDeadMatAnim;                   // _2DC
+	bool mIsSmoking;                         // _2DD
+	IKSystemMgr* mIkSystemMgr;               // _2E0
+	IKSystemParms* mIkSystemParms;           // _2E4
+	DamagumoGroundCallBack* mGroundCallBack; // _2E8
+	DamagumoShadowMgr* mShadowMgr;           // _2EC
+	Vector3f mJointPositions[4][4];          // _2F0, guess based on BigFoot struct
+	efx::TChasePos2* mFootFX[4];             // _3B0
+	efx::TChasePos* mFootWFX[4];             // _3C0
+	efx::TChasePos* mSmokeFX[3];             // _3D0
+	efx::TChasePosPos* mHahenFX[4][3];       // _3DC, guess based on BigFoot struct
+	efx::TChasePosPos* mDeadElecAFX[4][3];   // _40C, guess based on BigFoot struct
+	efx::TChasePos* mDeadElecBFX[4][2];      // _43C, guess based on BigFoot struct
+	efx::TChasePosPos* mDeadHahenAFX[4][2];  // _45C, guess based on BigFoot struct
+	efx::TChasePosPos* mDeadHahenBFX[4];     // _47C
+	efx::TChaseMtx* mDeadHahenC1FX;          // _48C
+	efx::TChaseMtx* mDeadHahenC2FX;          // _490
+	Sys::MatLoopAnimator* mMatLoopAnimator;  // _494, array of 2 MatLoopAnimators: 0 = tex, 1 = tev reg
+	                                         // _498 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -173,12 +173,12 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mBaseFactor(this, 'fp01', "ベース係数", 3.0f, 0.0f, 10.0f)                 // 'base factor'
-		    , mRaiseDecelFactor(this, 'fp02', "上げ減速係数", -0.2f, -5.0f, 5.0f)        // 'raising deceleration factor'
-		    , mDownwardAccelFactor(this, 'fp03', "下げ加速係数", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
-		    , mMinDecelAccelFactor(this, 'fp04', "最低減加速係数", -2.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
-		    , mMaxDecelAccelFactor(this, 'fp05', "最高減加速係数", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
-		    , mLegSwing(this, 'fp06', "足の振り上げ", 120.0f, 0.0f, 200.0f)              // 'leg swing'
+		    , mBaseFactor(this, 'fp01', 3.0f, 0.0f, 10.0f)             // 'base factor'
+		    , mRaiseDecelFactor(this, 'fp02', -0.2f, -5.0f, 5.0f)      // 'raising deceleration factor'
+		    , mDownwardAccelFactor(this, 'fp03', 0.5f, -5.0f, 5.0f)    // 'downward acceleration factor'
+		    , mMinDecelAccelFactor(this, 'fp04', -2.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
+		    , mMaxDecelAccelFactor(this, 'fp05', 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', 120.0f, 0.0f, 200.0f)            // 'leg swing'
 		{
 		}
 

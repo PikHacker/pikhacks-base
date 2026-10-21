@@ -31,59 +31,6 @@ f32 TZukanBase::mRandShowRate;
 // these represent the highest index (index that the hoard shows you in-game) of each set's treasures
 // for example the first set is ids 1 through 7
 int TItemZukan::mCategoryArray[TREASUREHOARD_CATEGORY_NUM] = {
-#if defined(VERSION_JP)
-	// treasure id of final category member
-	7,   // Succulent Series
-	16,  // Nature's Candy Series
-	22,  // Xenoflora Series
-	27,  // Gourmet Series
-	42,  // Sweet Tooth Series
-	50,  // Paleontology Series
-	56,  // Ancient Secrets Series
-	62,  // Cook's Arsenal Series
-	70,  // Tortured Artist Series
-	77,  // Modern Amenities Series
-	84,  // Frigid Series
-	92,  // Hyper-technology Series
-	101, // Industrial Set
-	107, // Husband's Tears Series
-	118, // Space Love Series
-	124, // Crystallized Emotion Series
-	144, // Dream Series
-	154, // Blast from the Past Series
-	160, // Mystical Energy Series
-	166, // Massive Receptacle Series
-	180, // Mystery Disc Series
-	183, // Odd Logo Series
-	196, // Explorer's Friend Series
-	201, // Titan Dweevil Series
-#elif defined(VERSION_PAL)
-	// treasure id of final category member
-	7,   // Succulent Series
-	16,  // Nature's Candy Series
-	22,  // Xenoflora Series
-	27,  // Gourmet Series
-	42,  // Sweet Tooth Series
-	51,  // Paleontology Series
-	57,  // Ancient Secrets Series
-	63,  // Cook's Arsenal Series
-	71,  // Tortured Artist Series
-	78,  // Modern Amenities Series
-	85,  // Frigid Series
-	93,  // Hyper-technology Series
-	102, // Industrial Set
-	108, // Husband's Tears Series
-	119, // Space Love Series
-	125, // Crystallized Emotion Series
-	144, // Dream Series
-	154, // Blast from the Past Series
-	158, // Mystical Energy Series
-	172, // Massive Receptacle Series
-	176, // Ancient Ad Series
-	183, // Odd Logo Series
-	196, // Explorer's Friend Series
-	201, // Titan Dweevil Series
-#else
 	// treasure id of final category member
 	7,   // Succulent Series
 	16,  // Nature's Candy Series
@@ -110,7 +57,6 @@ int TItemZukan::mCategoryArray[TREASUREHOARD_CATEGORY_NUM] = {
 	183, // Odd Logo Series
 	196, // Explorer's Friend Series
 	201, // Titan Dweevil Series
-#endif
 };
 
 // this table connects piklopedia order to the actual game enemy id order
@@ -294,20 +240,6 @@ TZukanBase::TZukanBase(char* name)
  */
 TZukanBase::~TZukanBase()
 {
-	if (mDebugHeap) {
-		mDebugHeap->destroy();
-	}
-	mDebugHeap = nullptr;
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x44
- */
-void TZukanBase::setDebugHeapParent(JKRHeap* heap)
-{
-	mDebugHeapParent = heap;
-	P2ASSERTLINE(69, mDebugHeapParent);
 }
 
 /**
@@ -1692,46 +1624,9 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 	DispMemberZukanEnemy* disp = static_cast<DispMemberZukanEnemy*>(getDispMember());
 	if (disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ENEMY)) {
 		mDispEnemy = disp;
-	} else {
-		mIsSection = true;
 	}
 
-	if (mIsSection) {
-		// Create debug heap and setup debug data
-		if (mDebugHeapParent) {
-			mDebugHeap = JKRExpHeap::create(0x100000, mDebugHeapParent, true);
-#if defined(VERSION_JP)
-			P2ASSERTLINE(1966, mDebugHeap);
-#else
-			P2ASSERTLINE(1986, mDebugHeap);
-#endif
-			mDispEnemy                = new (mDebugHeap, 0) DispMemberZukanEnemy;
-			mDispEnemy->mDebugExpHeap = mDebugHeap;
-			mIsSection                = true;
-
-			mDebugUnlockedList = new bool[ENEMY_ZUKAN_COUNT];
-			for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
-				mDebugUnlockedList[i] = false;
-				if (randFloat() < mRandShowRate) {
-					mDebugUnlockedList[i] = true;
-				}
-			}
-			// resetDebugShow();
-			mDispEnemy->mPrevSelection = new (mDebugHeap, 0) u32;
-			rand();
-			*mDispEnemy->mPrevSelection       = 0;
-			mDispEnemy->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
-			getOwner()->setDispMember(mDispEnemy);
-		} else {
-#if defined(VERSION_JP)
-			JUT_PANICLINE(1992, "set DebugHeapParent. mail to morimun.\n");
-#else
-			JUT_PANICLINE(2012, "set DebugHeapParent. mail to morimun.\n");
-#endif
-		}
-	} else {
-		mDispEnemy->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
-	}
+	mDispEnemy->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
 
 	// Setup icon data for all bosses
 	mDoEnableBigIcon = true;
@@ -1755,10 +1650,6 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 		mIsBigIconList[Zukan_KingChappy]  = true;
 	}
 
-	if (mIsSection && !mZukanShortenTest) {
-		mIsPreDebt = false;
-	}
-
 	if (Game::playData && Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		mIsPreDebt = false;
 	}
@@ -1766,55 +1657,27 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 	_234 = -1;
 
 	if (mIsPreDebt) {
-		if (mIsSection) {
-			rand();
-			int max   = getIdMax();
-			int test  = randInt(50) + 1;
-			int test2 = 85 - randInt(10);
-			for (int i = 0; i < max; i++) {
-				if (i < test || i > test2) {
-					mMaxPane++;
-				}
+		for (int i = 0; i < getIdMax(); i++) {
+			if (isListShow(i)) {
+				mMaxPane++;
 			}
-			int max2 = mMaxPane;
-			if (max2 == 0) {
-				mCanScroll = false;
-			} else {
-				mViewablePanelIDList = new int[max2];
-			}
-			int k = 0;
-			for (int i = 0; i < max; i++) {
-				if (i < test || i > test2) {
-					mViewablePanelIDList[k] = i;
-					if (_234 < 0 && mIsBigIconList[i]) {
-						_234 = k;
-					}
-					k++;
-				}
-			}
+		}
+
+		int max2 = mMaxPane;
+		if (max2 == 0) {
+			mCanScroll = false;
 		} else {
-			for (int i = 0; i < getIdMax(); i++) {
-				if (isListShow(i)) {
-					mMaxPane++;
-				}
-			}
+			mViewablePanelIDList = new int[max2];
+		}
 
-			int max2 = mMaxPane;
-			if (max2 == 0) {
-				mCanScroll = false;
-			} else {
-				mViewablePanelIDList = new int[max2];
-			}
-
-			int k = 0;
-			for (int i = 0; i < getIdMax(); i++) {
-				if (isListShow(i)) {
-					mViewablePanelIDList[k] = i;
-					if (_234 < 0 && mIsBigIconList[i]) {
-						_234 = k;
-					}
-					k++;
+		int k = 0;
+		for (int i = 0; i < getIdMax(); i++) {
+			if (isListShow(i)) {
+				mViewablePanelIDList[k] = i;
+				if (_234 < 0 && mIsBigIconList[i]) {
+					_234 = k;
 				}
+				k++;
 			}
 		}
 	}
@@ -1886,10 +1749,6 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 
 	mSelIndexCounter = setScaleUpCounter(mSujiScreen->mScreenObj, 'Ptekino1', &mDisplayIndex, 3, mArchive);
 	if (mIsPreDebt) {
-		// hide the current index display before paying the debt
-		if (!mIsSection) {
-			mSelIndexCounter->getMotherPane()->hide();
-		}
 		if (mZukanCategoryTest) {
 			mSelIndexCounter->getMotherPane()->show();
 		}
@@ -2214,9 +2073,6 @@ bool TEnemyZukan::isListShow(int index)
 	if (mShowAllObjects)
 		return true;
 
-	if (mIsSection)
-		return mDebugUnlockedList[index];
-
 	if (Game::playData) {
 		TEnemyZukanIndex& data     = TEnemyZukanIndex::getIndexInfo(index);
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data.mEnemyID);
@@ -2442,7 +2298,6 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 		} else {
 			setShortenIndex(i, index, true);
 		}
-
 	}
 
 	_243 = false;
@@ -2878,10 +2733,6 @@ void TEnemyZukan::openConfirmWindow()
  */
 u32 TEnemyZukan::getPrice(int index)
 {
-	if (mShowAllObjects || mIsSection) {
-		return randFloat() * 1000.0f + 1.0f;
-	}
-
 	if (Game::playData) {
 		TEnemyZukanIndex& data     = TEnemyZukanIndex::getIndexInfo(index);
 		int id                     = data.mEnemyID;
@@ -2905,10 +2756,6 @@ u32 TEnemyZukan::getPrice(int index)
  */
 u32 TEnemyZukan::getDefeatNum(int index)
 {
-	if (mShowAllObjects || mIsSection) {
-		return randFloat() * 100000.0f + 1;
-	}
-
 	if (Game::playData) {
 		TEnemyZukanIndex& data     = TEnemyZukanIndex::getIndexInfo(index);
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data.mEnemyID);
@@ -2928,10 +2775,6 @@ u32 TEnemyZukan::getDefeatNum(int index)
  */
 u32 TEnemyZukan::getKilledNum(int index)
 {
-	if (mShowAllObjects || mIsSection) {
-		return randFloat() * 100000.0f + 1.0f;
-	}
-
 	if (Game::playData) {
 		TEnemyZukanIndex& data     = TEnemyZukanIndex::getIndexInfo(index);
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data.mEnemyID);
@@ -3113,7 +2956,7 @@ bool TItemZukan::doUpdate()
 					for (int i = 0; i < 5; i++) {
 						efx2d::Arg arg(pos);
 						arg.x += i * 30.0f;
-						efx2d::T2DChangesmoke efx;
+						efx2d::TSimple1 efx(PID_Changesmoke);
 
 						efx.create(&arg);
 					}
@@ -3419,52 +3262,9 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	DispMemberZukanItem* disp = static_cast<DispMemberZukanItem*>(getDispMember());
 	if (disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ITEM)) {
 		mDispItem = disp;
-	} else {
-		mIsSection = true;
 	}
 
-	if (mIsSection) {
-		if (mDebugHeapParent) {
-			mDebugHeap = JKRExpHeap::create(0x100000, mDebugHeapParent, true);
-#if defined(VERSION_PAL) || defined(VERSION_US_DEMO1)
-			P2ASSERTLINE(4157, mDebugHeap);
-#elif defined(VERSION_JP)
-			P2ASSERTLINE(4116, mDebugHeap);
-#else
-			P2ASSERTLINE(4150, mDebugHeap);
-#endif
-			mDispItem                = new (mDebugHeap, 0) DispMemberZukanItem;
-			mDispItem->mDebugExpHeap = mDebugHeap;
-			mIsSection               = true;
-			mDebugUnlockedList       = new bool[getIdMax()];
-			for (int i = 0; i < getIdMax(); i++) {
-				mDebugUnlockedList[i] = false;
-				if (randFloat() < mRandShowRate) {
-					mDebugUnlockedList[i] = true;
-				}
-			}
-			mDispItem->mPrevSelection = new (mDebugHeap, 0) u32;
-			rand();
-			getIdMax();
-			*mDispItem->mPrevSelection       = 0;
-			mDispItem->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
-			getOwner()->setDispMember(mDispItem);
-		} else {
-#if defined(VERSION_PAL) || defined(VERSION_US_DEMO1)
-			JUT_PANICLINE(4181, "set DebugHeapParent. mail to morimun.\n");
-#elif defined(VERSION_JP)
-			JUT_PANICLINE(4140, "set DebugHeapParent. mail to morimun.\n");
-#else
-			JUT_PANICLINE(4174, "set DebugHeapParent. mail to morimun.\n");
-#endif
-		}
-	} else {
-		mDispItem->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
-	}
-
-	if (mIsSection && !mZukanShortenTest) {
-		mIsPreDebt = false;
-	}
+	mDispItem->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
 
 	if (Game::playData && Game::playData->isStoryFlag(Game::STORY_DebtPaid)) {
 		mIsPreDebt = false;
@@ -3472,44 +3272,23 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	mCanComplete = true;
 
 	if (mIsPreDebt) {
-		if (mIsSection) {
-			int test = randInt(150);
-			for (int i = 0; i < test; i++) {
-				if (i % 2 == 0) {
-					mMaxPane++;
-				}
+
+		for (int i = 0; i < getIdMax(); i++) {
+			if (isListShow(i)) {
+				mMaxPane++;
 			}
-			int max2 = mMaxPane;
-			if (max2 == 0) {
-				mCanScroll = false;
-			} else {
-				mViewablePanelIDList = new int[max2];
-			}
-			int k = 0;
-			for (int i = 0; i < test; i++) {
-				if (i % 2 == 0) {
-					mViewablePanelIDList[k] = i;
-					k++;
-				}
-			}
+		}
+		int max2 = mMaxPane;
+		if (max2 == 0) {
+			mCanScroll = false;
 		} else {
-			for (int i = 0; i < getIdMax(); i++) {
-				if (isListShow(i)) {
-					mMaxPane++;
-				}
-			}
-			int max2 = mMaxPane;
-			if (max2 == 0) {
-				mCanScroll = false;
-			} else {
-				mViewablePanelIDList = new int[max2];
-			}
-			int k = 0;
-			for (int i = 0; i < getIdMax(); i++) {
-				if (isListShow(i)) {
-					mViewablePanelIDList[k] = i;
-					k++;
-				}
+			mViewablePanelIDList = new int[max2];
+		}
+		int k = 0;
+		for (int i = 0; i < getIdMax(); i++) {
+			if (isListShow(i)) {
+				mViewablePanelIDList[k] = i;
+				k++;
 			}
 		}
 	}
@@ -4053,10 +3832,6 @@ bool TItemZukan::isListShow(int id)
 		return true;
 	}
 
-	if (mIsSection) {
-		return mDebugUnlockedList[id];
-	}
-
 	if (!Game::playData)
 		return true;
 
@@ -4102,15 +3877,13 @@ void TItemZukan::setYWindow()
  */
 u32 TItemZukan::getPrice(int id)
 {
-	if (!mIsSection && Game::playData) {
+	if (Game::playData) {
 		Game::PelletConfig* config = Game::PelletList::Mgr::getConfigFromDictionaryNo(id);
 		if (config && (mShowAllObjects || Game::playData->isPelletZukanVisible(id))) {
 			return config->mParams.mMoney.mData;
 		}
-		return 0;
-	} else {
-		return randFloat() * 1000.0f + 1;
 	}
+	return 0;
 }
 
 /**
@@ -4119,7 +3892,7 @@ u32 TItemZukan::getPrice(int id)
  */
 u32 TItemZukan::getWeight(int id)
 {
-	if (!mIsSection && Game::playData) {
+	if (Game::playData) {
 		Game::PelletConfig* config = Game::PelletList::Mgr::getConfigFromDictionaryNo(id);
 		if (config && (mShowAllObjects || Game::playData->isPelletZukanVisible(id))) {
 			// doomsday apparatus check
@@ -4129,10 +3902,8 @@ u32 TItemZukan::getWeight(int id)
 			}
 			return ret;
 		}
-		return 0;
-	} else {
-		return randFloat() * 1000.0f;
 	}
+	return 0;
 }
 
 /**

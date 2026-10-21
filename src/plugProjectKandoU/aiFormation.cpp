@@ -441,10 +441,6 @@ int PikiAI::ActFormation::exec()
 		mDistanceType = 3;
 		mParent->setMoveRotation(false);
 
-		if (mHasLostNumbness && dist < 10.0f) {
-			mHasLostNumbness = true; // this has to be true to get... set to true lol
-		}
-
 		f32 factor          = 10.0f / static_cast<Game::PikiParms*>(mParent->mParms)->mCreatureProps.mProps.mAccel.mValue;
 		f32 speed           = mParent->getSpeed(1.0f);
 		f32 halfSpeedFactor = 0.5f * (speed / factor);

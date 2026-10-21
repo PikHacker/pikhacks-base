@@ -387,8 +387,8 @@ void Obj::updateMoveVelocity()
  */
 void Obj::createEffect()
 {
-	mEfxRun       = new efx::TRockRun();
-	mEfxGroundRun = new efx::TRockGrRun();
+	mEfxRun       = new efx::TChasePos(PID_RockRun, nullptr);
+	mEfxGroundRun = new efx::TChasePos(PID_RockGrRun, nullptr);
 	mEfxWaterRun  = new efx::TRockWRun();
 }
 
@@ -499,7 +499,7 @@ void Obj::updateWaterEffectPosition()
 void Obj::createRockDeadEffect()
 {
 	efx::Arg fxArg(mPosition);
-	efx::TRockDead deadFX;
+	efx::TSimple3 deadFX(PID_RockDead_1, PID_RockDead_2, PID_RockDead_3);
 
 	deadFX.create(&fxArg);
 }

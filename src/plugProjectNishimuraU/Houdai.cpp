@@ -866,25 +866,25 @@ void Obj::setBossAppearBGM()
 void Obj::createEffect()
 {
 	for (int i = 0; i < 4; i++) {
-		mAppearHahenFootFX[i] = new efx::THdamaOnHahen2;
+		mAppearHahenFootFX[i] = new efx::TChasePosPos(PID_HDamaOnHahen2);
 	}
 
 	for (int i = 0; i < 3; i++) {
-		mDeadElecAFX[i] = new efx::TDamaDeadElecA;
-		mSteamFX[i]     = new efx::THdamaSteam;
-		mChimneyFX[i]   = new efx::THdamaSteamSt;
-		mHahenFX[i]     = new efx::THdamaHahen;
+		mDeadElecAFX[i] = new efx::TChasePosPos(PID_DamaDeadElecA);
+		mSteamFX[i]     = new efx::TChaseMtx(PID_HDamaSteam, nullptr);
+		mChimneyFX[i]   = new efx::TChaseMtx(PID_HDamaSteamSt, nullptr);
+		mHahenFX[i]     = new efx::TChasePosPos(PID_HDamaHahen);
 	}
 
 	for (int i = 0; i < 2; i++) {
-		mSmokeFX[i] = new efx::TDamaSmoke;
+		mSmokeFX[i] = new efx::TChasePos(nullptr, PID_DamaSmoke);
 	}
 
-	mAppearHahenFX = new efx::THdamaOnHahen1;
-	mOnSteam1FX    = new efx::THdamaOnSteam1;
-	mSteamBodyFX   = new efx::THdamaSteamBd;
-	mDeadBombFX    = new efx::THdamaDeadbomb;
-	mDeadSteamFX   = new efx::THdamaDeadSteam;
+	mAppearHahenFX = new efx::TChaseMtx(PID_HDamaOnHahen1, nullptr);
+	mOnSteam1FX    = new efx::TChaseMtxT(PID_HDamaOnSteam1);
+	mSteamBodyFX   = new efx::TChaseMtxT(PID_HDamaSteamBd);
+	mDeadBombFX    = new efx::TChaseMtx4(nullptr, PID_HDamaDeadBomb_1, PID_HDamaDeadBomb_2, PID_HDamaDeadBomb_3, PID_HDamaDeadBomb_4);
+	mDeadSteamFX   = new efx::TChaseMtx2(nullptr, PID_HDamaDeadSteam_1, PID_HDamaDeadSteam_2);
 }
 
 /**
@@ -937,7 +937,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 			effectPos.y = *wbox->getSeaHeightPtr();
 
 			efx::Arg fxArg(effectPos);
-			efx::TDamaWalkw waterWalk;
+			efx::TSimple2 waterWalk(PID_DamaWalk_1, PID_DamaWalk_2);
 
 			waterWalk.create(&fxArg);
 			PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_L, (Vec*)&mJointPositions[footIdx][3]);
@@ -947,7 +947,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 
 		} else {
 			efx::Arg fxArg(effectPos);
-			efx::TOootaWalk walk;
+			efx::TSimple2 walk(PID_OoOtaWalk_1, PID_OoOtaWalk_2);
 
 			walk.create(&fxArg);
 		}
@@ -1050,7 +1050,7 @@ void Obj::createHoudaiDeadEffect()
 	for (int i = 0; i < 4; i++) {
 		for (int j = 1; j < 3; j++) {
 			efx::Arg fxArg(mJointPositions[i][j]);
-			efx::TDamaDeadBomb deadBombFX;
+			efx::TSimple1 deadBombFX(PID_DamaDeadBomb);
 			deadBombFX.create(&fxArg);
 		}
 	}
@@ -1062,7 +1062,7 @@ void Obj::createHoudaiDeadEffect()
 	mDeadSteamFX->create(nullptr);
 
 	efx::Arg steamArg(this);
-	efx::THdamaDeadSteamT steamFX;
+	efx::TSimple1 steamFX(PID_HDamaDeadSteamT);
 	steamFX.create(&steamArg);
 
 	finishPinchJointEffect();
@@ -1099,12 +1099,12 @@ void Obj::updatePinchLife()
 void Obj::createAppearEffect()
 {
 	efx::Arg fxArg(this);
-	efx::THdamaOnSmoke smokeFX;
+	efx::TSimple2 smokeFX(PID_HDamaOnSmoke_1, PID_HDamaOnSmoke_2);
 	smokeFX.create(&fxArg);
 
 	mOnSteam1FX->create(nullptr);
 
-	efx::THdamaOnSteam2 steamFX;
+	efx::TSimple1 steamFX(PID_HDamaOnSteam2);
 	steamFX.create(&fxArg);
 }
 
@@ -1185,7 +1185,7 @@ void Obj::createShotGunOpenEffect()
 	Vector3f effectPos = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3);
 
 	efx::Arg fxArg(effectPos);
-	efx::THdamaOpen openFX;
+	efx::TSimple1 openFX(PID_HDamaOpen);
 	openFX.create(&fxArg);
 }
 

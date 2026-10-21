@@ -1515,14 +1515,14 @@ void ActStickAttack::createEfx()
 	case STICKATK_Rock:
 		if (mObjType != STICKATK_Rock) {
 			if (mParent->doped()) {
-				efx::TPkAttackDP effect;
+				efx::TSimple1 effect(PID_PkAttackDP);
 				Vector3f offset = mParent->mLeafStemOffset;
 				efx::Arg effectArg;
 				effectArg.mPosition = offset;
 				effect.create(&effectArg);
 
 			} else {
-				efx::PikiDamage effect;
+				efx::TSimple1 effect(PID_PikiDamage);
 				Vector3f offset = mParent->mLeafStemOffset;
 				efx::Arg effectArg;
 				effectArg.mPosition = offset;
@@ -1534,7 +1534,7 @@ void ActStickAttack::createEfx()
 
 	case STICKATK_Bridge: {
 		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
-		if (Game::BaseHIOParms::sMabikiEfx && mCreature->getMabiki()) {
+		if (mCreature->getMabiki()) {
 			Game::Mabiki* mabiki = mCreature->getMabiki();
 			f32 fxChance         = (100 - mabiki->mCounter) / 100.0f;
 			if (randFloat() <= fxChance) {
@@ -1550,7 +1550,7 @@ void ActStickAttack::createEfx()
 
 	case STICKATK_BlackGate: {
 		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
-		if (Game::BaseHIOParms::sMabikiEfx && mCreature->getMabiki()) {
+		if (mCreature->getMabiki()) {
 			Game::Mabiki* mabiki = mCreature->getMabiki();
 			f32 fxChance         = (100 - mabiki->mCounter) / 100.0f;
 			if (randFloat() <= fxChance) {
@@ -1566,7 +1566,7 @@ void ActStickAttack::createEfx()
 
 	case STICKATK_WhiteGate: {
 		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
-		if (Game::BaseHIOParms::sMabikiEfx && mCreature->getMabiki()) {
+		if (mCreature->getMabiki()) {
 			Game::Mabiki* mabiki = mCreature->getMabiki();
 			f32 fxChance         = (100 - mabiki->mCounter) / 100.0f;
 			if (randFloat() <= fxChance) {
@@ -1582,7 +1582,7 @@ void ActStickAttack::createEfx()
 
 	case STICKATK_ElecGate: {
 		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
-		if (Game::BaseHIOParms::sMabikiEfx && mCreature->getMabiki()) {
+		if (mCreature->getMabiki()) {
 			Game::Mabiki* mabiki = mCreature->getMabiki();
 			f32 fxChance         = (100 - mabiki->mCounter) / 100.0f;
 			if (randFloat() <= fxChance) {

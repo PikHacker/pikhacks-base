@@ -98,11 +98,7 @@ void ResetManager::update()
 			}
 		}
 	} else {
-		volatile int input;
-		volatile int* ptr = &input;
-		if (ptr) { // no idea
-			input = JUTGamePad::C3ButtonReset::sResetOccurredPort;
-		}
+		int input = JUTGamePad::C3ButtonReset::sResetOccurredPort;
 
 		if ((JUTGamePad::C3ButtonReset::sResetOccurred || isFlag(RESETFLAG_ResetInputEntered)) && !OSGetResetSwitchState()) {
 			bool check2 = true;

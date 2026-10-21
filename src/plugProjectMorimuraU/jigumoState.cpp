@@ -223,7 +223,7 @@ void StateHide::exec(EnemyBase* enemy)
 		enemy->enableEvent(0, EB_Cullable);
 		enemy->fadeEfxHamon();
 		if (enemy->mWaterBox) {
-			efx::TJgmBubble bubbleFX;
+			efx::TSimple1 bubbleFX(PID_JgmBUBBLE);
 			efx::Arg fxArg(enemy->getPosition());
 			bubbleFX.create(&fxArg);
 		}
@@ -706,9 +706,8 @@ void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSearch::exec(EnemyBase* enemy)
 {
-	int animIdx = enemy->getCurrAnimIndex();
-	FakePiki* target
-	    = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle(), CG_GENERALPARMS(enemy).mSearchDistance());
+	int animIdx      = enemy->getCurrAnimIndex();
+	FakePiki* target = OBJ(enemy)->getNearestPikiOrNavi(CG_GENERALPARMS(enemy).mSearchAngle(), CG_GENERALPARMS(enemy).mSearchDistance());
 	enemy->mTargetCreature = target;
 	if (target) {
 		f32 angleDist = enemy->getAngDist(target);

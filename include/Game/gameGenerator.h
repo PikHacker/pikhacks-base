@@ -307,9 +307,9 @@ struct GenPellet : public GenObject {
 struct GenObjectPiki : public GenObject {
 	GenObjectPiki()
 	    : GenObject('piki', "object type", "PIKMIN をセット")
-	    , mColourParm(this, 'p000', "色", 0, 0, PikiColorCount)
-	    , mAmountParm(this, 'p001', "数", 1, 1, 100)
-	    , mIsWildPikminParm(this, 'p002', "自活(1=yes)", 0, 0, 1)
+	    , mColourParm(this, 'p000', 0, 0, PikiColorCount)
+	    , mAmountParm(this, 'p001', 1, 1, 100)
+	    , mIsWildPikminParm(this, 'p002', 0, 0, 1)
 	{
 	}
 
@@ -409,8 +409,8 @@ struct GenObjectFactoryFactory {
 
 struct GenObjectNavi : public GenObject {
 	GenObjectNavi()
-	    : GenObject('navi', "object type", "NAVI をセット")  // set the NAVI
-	    , mRotation(this, 'p000', "スタート向き", 0, 0, 360) // start direction
+	    : GenObject('navi', "object type", "NAVI をセット") // set the NAVI
+	    , mRotation(this, 'p000', 0, 0, 360)                // start direction
 	{
 	}
 

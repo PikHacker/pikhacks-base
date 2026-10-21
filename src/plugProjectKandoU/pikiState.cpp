@@ -222,8 +222,7 @@ void PikiCarrotState::exec(Piki* piki)
 		if (mTimeRemaining <= 0.0f) {
 			Vector3f position = piki->getPosition();
 			efx::Arg fxArg(position);
-			efx::TPikuDead deadFX;
-
+			efx::TSimple1 deadFX(PID_PikuDead);
 			deadFX.create(&fxArg);
 
 			piki->startSound(PSSE_PK_CARROT_CRUSH, false);
@@ -260,7 +259,7 @@ void PikiCarrotState::cleanup(Piki* piki)
 	piki->setUpdateTrMatrix(true);
 	Vector3f position = piki->getPosition();
 	efx::Arg fxArg(position);
-	efx::TPikuBomb bombFx;
+	efx::TSimple1 bombFx(PID_PikuBomb);
 	bombFx.create(&fxArg);
 
 	piki->startSound(PSSE_PK_CARROT_CRUSH, false);
@@ -281,7 +280,7 @@ void PikiCarrotState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 		mPosition.y -= 8.0f;
 		piki->mSoundObj->startFreePikiSound(PSSE_PK_CARROT_GROUND, 0, 0);
 
-		efx::TPkAp appearFx;
+		efx::TSimple2 appearFx(PID_PkAp_1, PID_PkAp_2);
 		appearFx.create(&fxArg);
 	}
 }
@@ -1262,7 +1261,7 @@ void PikiDenkiDyingState::exec(Piki* piki)
 	mWaitTime -= sys->mDeltaTime;
 
 	if (mWaitTime <= 0.0f) {
-		efx::TPkKanden kandenFx;
+		efx::TSimple3 kandenFx(PID_PkKanden_1, PID_PkKanden_2, PID_PkKanden_3);
 		efx::Arg fxArg;
 		fxArg.mPosition = piki->getPosition(); // why do this differently, smh.
 		kandenFx.create(&fxArg);

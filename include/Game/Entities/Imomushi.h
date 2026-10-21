@@ -129,11 +129,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPlantClimbingSpeed(this, 'fp01', "草登り速度", 2.0f, 0.0f, 10.0f)        // 'plant climbing speed'
-		    , mSeedCirculationSpeed(this, 'fp02', "種周回速度", 0.3f, 0.0f, 10.0f)      // 'seed circulation speed'
-		    , mEatingTime(this, 'fp11', "実食い時間", 10.0f, 0.0f, 100.0f)              // 'eating time'
-		    , mTranslationCorrection(this, 'fp90', "Translate補正", 0.75f, 0.0f, 10.0f) // 'translation correction'
-		    , mRotationCorrection(this, 'fp91', "Rotate補正", 0.05f, 0.0f, 1.0f)        // 'rotation correction'
+		    , mPlantClimbingSpeed(this, 'fp01', 2.0f, 0.0f, 10.0f)     // 'plant climbing speed'
+		    , mSeedCirculationSpeed(this, 'fp02', 0.3f, 0.0f, 10.0f)   // 'seed circulation speed'
+		    , mEatingTime(this, 'fp11', 10.0f, 0.0f, 100.0f)           // 'eating time'
+		    , mTranslationCorrection(this, 'fp90', 0.75f, 0.0f, 10.0f) // 'translation correction'
+		    , mRotationCorrection(this, 'fp91', 0.05f, 0.0f, 1.0f)     // 'rotation correction'
 		{
 		}
 

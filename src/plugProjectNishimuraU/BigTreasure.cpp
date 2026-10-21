@@ -1715,24 +1715,25 @@ void Obj::setBossAppearBGM()
 void Obj::createEffect()
 {
 	for (int i = 0; i < 4; i++) {
-		mFootFX[i]          = new efx::TOootaFoot;
-		mFootWFX[i]         = new efx::TDamaFootw;
-		mTreasureSmokeFX[i] = new efx::TDamaSmoke;
-		mStartTreasureFX[i] = new efx::TOootaStartOta;
+		mFootFX[i]          = new efx::TChasePos2(nullptr, PID_OoOtaFoot_1, PID_OoOtaFoot_2);
+		mFootWFX[i]         = new efx::TChasePos(nullptr, PID_DamaFootW);
+		mTreasureSmokeFX[i] = new efx::TChasePos(nullptr, PID_DamaSmoke);
+		mStartTreasureFX[i] = new efx::TChaseMtxT(PID_OoOtaStartOta);
 		for (int j = 0; j < 3; j++) {
-			mStartLegFX[i][j] = new efx::TOootaStartLeg;
+			mStartLegFX[i][j] = new efx::TChasePosPosLocalYScale(PID_OoOtaStartLeg, 100.0f);
 		}
 
 		for (int j = 0; j < 4; j++) {
-			mDeadLegFX[i][j]   = new efx::TOootaDeadLeg;
-			mChangeLegFX[i][j] = new efx::TOootaChangeLeg;
+			mDeadLegFX[i][j]
+			    = new efx::TChasePosPosLocalYScale3(nullptr, nullptr, 100.0f, PID_OoOtaDeadLeg_1, PID_OoOtaDeadLeg_2, PID_OoOtaDeadLeg_3);
+			mChangeLegFX[i][j] = new efx::TChasePosPosLocalYScale(PID_OoOtaChangeLeg, 100.0f);
 		}
 	}
 
-	mStartBodyFX     = new efx::TOootaStartBody;
-	mDeadBodyFX      = new efx::TOootaDeadBody;
-	mDeadAwaFX       = new efx::TOootaDeadAwa;
-	mChangeBodyFX    = new efx::TOootaChangeBody;
+	mStartBodyFX     = new efx::TChaseMtx(PID_OoOtaStartBody, nullptr);
+	mDeadBodyFX      = new efx::TChaseMtx3(nullptr, PID_OoOtaDeadBody_1, PID_OoOtaDeadBody_2, PID_OoOtaDeadBody_3);
+	mDeadAwaFX       = new efx::TChaseMtx(PID_OoOtaDeadAwa, nullptr);
+	mChangeBodyFX    = new efx::TChaseMtx(PID_OoOtaChangeBody, nullptr);
 	mShineParticleFX = new efx::TOootaParticle;
 }
 
@@ -1791,7 +1792,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 		effectPos.y = *wbox->getSeaHeightPtr();
 
 		efx::Arg fxArg(effectPos);
-		efx::TDamaWalkw waterWalk;
+		efx::TSimple3 waterWalk(PID_DamaWalkW_1, PID_DamaWalkW_2, PID_DamaWalkW_3);
 
 		waterWalk.create(&fxArg);
 		PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_XL, (Vec*)&mJointPositions[footIdx][3]);
@@ -1801,7 +1802,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 
 	} else {
 		efx::Arg fxArg(effectPos);
-		efx::TOootaWalk walk;
+		efx::TSimple2 walk(PID_OoOtaWalk_1, PID_OoOtaWalk_2);
 
 		walk.create(&fxArg);
 	}
@@ -1853,7 +1854,7 @@ void Obj::createDropTreasureEffect(int treasureIdx)
 	Vector3f pelletPos = mTreasures[treasureIdx]->getPosition();
 
 	efx::Arg fxArg(pelletPos);
-	efx::TOootaPartsoff partsOff;
+	efx::TSimple1 partsOff(PID_OoOtaPartsOff);
 
 	partsOff.create(&fxArg);
 
@@ -1875,7 +1876,7 @@ void Obj::createAppearBodyEffect()
 	}
 
 	efx::Arg fxArg(this);
-	efx::TOootaStartSmoke smokeFX;
+	efx::TSimple1 smokeFX(PID_OoOtaStartSmoke);
 
 	smokeFX.create(&fxArg);
 }
@@ -1923,7 +1924,7 @@ void Obj::createDeadBombBodyEffect()
 {
 	Vector3f effectPos = mModel->getJoint("kosi")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(effectPos);
-	efx::TOootaBombBody bombBodyFX;
+	efx::TSimple1 bombBodyFX(PID_OoOtaBombBody);
 	bombBodyFX.create(&fxArg);
 }
 
@@ -2009,7 +2010,7 @@ void Obj::createDeadBombFootEffect()
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 3; j++) {
 			efx::Arg fxArg(mJointPositions[i][j]);
-			efx::TDamaDeadBomb deadBombFX;
+			efx::TSimple1 deadBombFX(PID_DamaDeadBomb);
 			deadBombFX.create(&fxArg);
 		}
 	}

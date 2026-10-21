@@ -320,7 +320,7 @@ void Obj::lifeIncrement()
  */
 void Obj::createRockEmitEffect()
 {
-	efx::TKabutoAttack attackFX(mModel->getJoint("head")->getWorldMatrix());
+	efx::TSimpleMtx1 attackFX(mModel->getJoint("head")->getWorldMatrix(), PID_KabutoAttack);
 	attackFX.create(nullptr);
 }
 } // namespace Kabuto

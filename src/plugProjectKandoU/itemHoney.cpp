@@ -73,19 +73,19 @@ void BounceState::init(CFSMItem* item, StateArg* arg)
 	Item* honey  = static_cast<Item*>(item);
 	switch (honey->mHoneyType) {
 	case HONEY_Y: {
-		efx::THoneydownY effect;
+		efx::TSimple1 effect(PID_HoneyDownY);
 		efx::Arg effectArg(pos);
 		effect.create(&effectArg);
 		break;
 	}
 	case HONEY_R: {
-		efx::THoneydownR effect;
+		efx::TSimple1 effect(PID_HoneyDownR);
 		efx::Arg effectArg(pos);
 		effect.create(&effectArg);
 		break;
 	}
 	case HONEY_B: {
-		efx::THoneydownB effect;
+		efx::TSimple1 effect(PID_HoneyDownB);
 		efx::Arg effectArg(pos);
 		effect.create(&effectArg);
 		break;

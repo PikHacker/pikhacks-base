@@ -28,9 +28,6 @@ void Mgr::doAlloc()
 
 	int updateCount = getMaxObjects() / 5;
 	mUpdateMgr->create(updateCount);
-
-	// this is such a dumb stack of things.
-	mMtxCacheRef = new J3DUMtxCacheRef<J3DUMtxAnmCacheTable>(getCacheTable(getModel(), getTransform()));
 }
 
 /**
@@ -97,9 +94,6 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 void Mgr::doAnimation()
 {
 	EnemyMgrBase::doAnimation();
-	if (mGroupLeader && CG_PARMS(mGroupLeader)->mDoUpdateAnimation) {
-		mUpdateMgr->update();
-	}
 }
 
 /**
@@ -108,10 +102,6 @@ void Mgr::doAnimation()
  */
 void Mgr::fetch(J3DModel* model, f32 p1)
 {
-	if (mMtxCacheRef) {
-		mMtxCacheRef->mCache->mAnimationFrame = 0.5f + p1;
-		mMtxCacheRef->fetch(model);
-	}
 }
 
 /**
@@ -133,8 +123,6 @@ void Mgr::createGroup(Obj* leader, int count)
 	if (leader->mSpawnSource == SHIJIMISOURCE_BeadyLongLegs) {
 		factor = 120.0f;
 	}
-
-	rand();
 
 	birthArg.mPosition.x = factor * sinf(birthArg.mFaceDir) + birthArg.mPosition.x;
 	birthArg.mPosition.z = factor * cosf(birthArg.mFaceDir) + birthArg.mPosition.z;

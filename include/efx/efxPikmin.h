@@ -47,112 +47,6 @@ void createSimpleWalksmoke(Vector3f& pos);
 /////// PIKI EFFECTS ///////
 ////////////////////////////
 
-struct TPkAp : public TSimple2 {
-	inline TPkAp()
-	    : TSimple2(PID_PkAp_1, PID_PkAp_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_10 = TSimple2
-};
-
-struct TPkAttackDP : public TSimple1 {
-	inline TPkAttackDP()
-	    : TSimple1(PID_PkAttackDP)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
-struct TPkBlackDown : public TChasePos {
-	inline TPkBlackDown()
-	    : TChasePos(PID_PkBlackDown)
-	{
-	}
-
-	virtual ~TPkBlackDown() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChasePos
-};
-
-struct TPkBlackDrop : public TSimple3 {
-	inline TPkBlackDrop()
-	    : TSimple3(PID_PkBlackDrop_1, PID_PkBlackDrop_2, PID_PkBlackDrop_3)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_18 = TSimple3
-};
-
-struct TPkDiveB : public TSimple1 {
-	inline TPkDiveB()
-	    : TSimple1(PID_EnemyDive_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
-struct TPkGlow1 : public TChasePos {
-	inline TPkGlow1()
-	    : TChasePos(PID_PkGlow1)
-	{
-	}
-
-	virtual ~TPkGlow1() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChasePos
-};
-
-struct TPkGlow2 : public TSimple2 {
-	inline TPkGlow2()
-	    : TSimple2(PID_PkGlow2_1, PID_PkGlow2_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_10 = TSimple2
-};
-
-struct TPkInstick : public TSimple1 {
-	inline TPkInstick()
-	    : TSimple1(PID_PkInStick)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
-struct TPkKanden : public TSimple3 {
-	inline TPkKanden()
-	    : TSimple3(PID_PkKanden_1, PID_PkKanden_2, PID_PkKanden_3)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_18 = TSimple3
-};
-
-struct TPkMoeA : public TChasePos {
-	inline TPkMoeA()
-	    : TChasePos(PID_PkMoeA)
-	{
-	}
-
-	virtual ~TPkMoeA() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChasePos
-};
-
 struct TPkNageBlur : public TChaseMtx {
 	inline TPkNageBlur()
 	    : TChaseMtx(PID_PkNageBlur_Red, nullptr)
@@ -166,9 +60,6 @@ struct TPkNageBlur : public TChaseMtx {
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
 };
-
-// Needed for dtor
-struct PtrlistContext : public JSUPtrList { };
 
 struct TPkOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	// vtable 1 (TBase)
@@ -204,94 +95,14 @@ struct TPkOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	// _04-_08	= JPAEmitterCallBack
 	JPABaseEmitter* mEmitter; // _08
 	u16 mEffectID;            // _0C
-	PtrlistContext mPtrList;  // _10
+	JSUPtrList mPtrList;      // _10
 };
 
-struct TParticleCallBack_Yodare {
-	~TParticleCallBack_Yodare();
-	void init(JPABaseEmitter*, JPABaseParticle*);
-	void execute(JPABaseEmitter*, JPABaseParticle*);
-
-	f32 _00;     // _00, just to match efxPikmin sdata2 loading
-	char* mName; // _04, just to match efxPikmin sdata2 loading
-	f32 _08;     // _08, just to match efxPikmin sdata2 loading
-};
-
-struct TTestYodareGen {
-	~TTestYodareGen();
-	void create(efx::Arg*);
-	void forceKill();
-	void fade();
-};
-
-struct TTestYodareHit {
-	~TTestYodareHit();
-};
-
-struct PikiDamage : public TSimple1 {
-	PikiDamage()
-	    : TSimple1(PID_PikiDamage)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-0C   = TSimple1
-};
-
-struct TBridgeAttack : public TSimple1 {
-	TBridgeAttack()
-	    : TSimple1(PID_BridgeAttack)
-	{
-	}
-	// _00      = VTBL
-	// _00-_0C  = TSimple1
-};
-
-struct TBridgeSet : public TSimpleMtx1 {
-	TBridgeSet(Matrixf* mtx)
-	    : TSimpleMtx1(mtx, PID_BridgeSet)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_10  = TSimpleMtx1
-};
-
-struct TPikuBomb : public TSimple1 {
-	inline TPikuBomb()
-	    : TSimple1(PID_PikuBomb)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
-struct TPikuDead : public TSimple1 {
-	inline TPikuDead()
-	    : TSimple1(PID_PikuDead)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
-// this struct needs to exist for the dtor to generate properly
-struct TOEContextBase : public JSUPtrLink {
-	TOEContextBase(void* data)
-	    : JSUPtrLink(data)
-	{
-	}
-};
-
-struct TOEContextS : public TOEContextBase {
+struct TOEContextS : public JSUPtrLink {
 	TOEContextS()
-	    : TOEContextBase(this)
+	    : JSUPtrLink(this)
 	{
 	}
-
-	~TOEContextS() { }
 
 	Vector3f mPosition; // _10
 
@@ -386,6 +197,7 @@ struct TPkEffectTane {
 	    , mObjPos(nullptr)
 	    , mHappaJntMtx(nullptr)
 	    , mObjMatrix(nullptr)
+	    , mGlow(PID_PkGlow1)
 	{
 	}
 
@@ -402,7 +214,7 @@ struct TPkEffectTane {
 	Vector3f* mObjPos;     // _08
 	Matrixf* mHappaJntMtx; // _0C
 	Matrixf* mObjMatrix;   // _10
-	TPkGlow1 mGlow;        // _14
+	TChasePos mGlow;       // _14
 	ToeTanekira mOeKira;   // _28
 	ToeKourin mOeKourin;   // _44
 };
@@ -511,6 +323,8 @@ struct TPkEffect {
 	    , mBaseObjMatrix(nullptr)
 	    , mHeight(nullptr)
 	    , mMoeSmokeTimer(0)
+	    , mBlackDown(PID_PkBlackDown)
+	    , mMoeA(PID_PkMoeA)
 	{
 		mFlags.clear();
 		mBackupFlags.clear();
@@ -692,8 +506,8 @@ struct TPkEffect {
 	int mMoeSmokeTimer;         // _24, unknown
 	Vector3f mHamonPosition;    // _28, dive vector?
 	TPkNageBlur mNageBlur;      // _34
-	TPkMoeA mMoeA;              // _48
-	TPkBlackDown mBlackDown;    // _5C
+	TChasePos mMoeA;            // _48
+	TChasePos mBlackDown;       // _5C
 	ToeKourin mOeKourin;        // _70
 	ToeDoping mOeDoping;        // _90
 	ToeNagekira mOeNagekira;    // _AC
@@ -789,30 +603,6 @@ struct TFueactBiriBase : public TSync {
 	Vector3f* mPos; // _14
 };
 
-struct TFueactBiri1 : public TFueactBiriBase {
-	inline TFueactBiri1()
-	    : TFueactBiriBase(PID_FueActBiri_1)
-	{
-	}
-
-	virtual ~TFueactBiri1() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_18  = TFueactBiriBase
-};
-
-struct TFueactBiri2 : public TFueactBiriBase {
-	inline TFueactBiri2()
-	    : TFueactBiriBase(PID_FueActBiri_2)
-	{
-	}
-
-	virtual ~TFueactBiri2() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_18  = TFueactBiriBase
-};
-
 struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAParticleCallBack {
 	inline TFueactCircle()
 	    : mEmitter(nullptr)
@@ -844,6 +634,12 @@ struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAPartic
 };
 
 struct TFueact : public TBase {
+	TFueact()
+	    : mBiri1(PID_FueActBiri_1)
+	    , mBiri2(PID_FueActBiri_2)
+	{
+	}
+
 	virtual bool create(Arg*)
 	{
 		bool ret = false;
@@ -870,9 +666,9 @@ struct TFueact : public TBase {
 	} // _0C (weak)
 
 	// _00      = VTBL
-	TFueactCircle mCircle; // _04
-	TFueactBiri1 mBiri1;   // _1C
-	TFueactBiri2 mBiri2;   // _34
+	TFueactCircle mCircle;  // _04
+	TFueactBiriBase mBiri1; // _1C
+	TFueactBiriBase mBiri2; // _34
 };
 
 struct TOrimaLight : public TChaseMtx2 {
@@ -903,26 +699,6 @@ struct TOrimaLightAct : public TChaseMtx2 {
 	u32 mNaviType; // _2C
 };
 
-struct TOrimadamage : public TChaseMtxT2 {
-	inline TOrimadamage()
-	    : TChaseMtxT2(nullptr, PID_OrimaDamage_1, PID_OrimaDamage_2)
-	{
-	}
-
-	// _00		= VTBL
-	// _00-_2C	= TChaseMtx2
-};
-
-struct TOrimapunch : public TSimple1 {
-	inline TOrimapunch()
-	    : TSimple1(PID_OrimaPunch)
-	{
-	}
-
-	// _00		= VTBL
-	// _00-_0C	= TSimple1
-};
-
 struct TDopingSmoke : public TSimple1 {
 	TDopingSmoke()
 	    : TSimple1(PID_DopingSmoke_2)
@@ -950,6 +726,7 @@ struct TNaviEffect {
 	    , mHeadMtx(nullptr)
 	    , mHeight(0)
 	    , mCursor(0)
+	    , mDamage(nullptr, PID_OrimaDamage_1, PID_OrimaDamage_2)
 	{
 	}
 
@@ -1050,7 +827,7 @@ struct TNaviEffect {
 	TCursor mCursor;          // _AC
 	TOrimaLight mLight;       // _33C
 	TOrimaLightAct mLightAct; // _36C
-	TOrimadamage mDamage;     // _39C
+	TChaseMtxT2 mDamage;      // _39C
 };
 
 } // namespace efx

@@ -73,20 +73,19 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mDamageRate(this, 'fp01', "ダメージレート", 1.0f, 0.0f, 1.0f)           // 'damage rate'
-		    , mTurnStartAngle(this, 'fp02', "旋回開始角度", 60.0f, 0.0f, 180.0f)      // 'turn start angle'
-		    , mTurnEndAngle(this, 'fp03', "旋回終了角度", 10.0f, 0.0f, 180.0f)        // 'turn end angle'
-		    , mMoveSpeed(this, 'fp04', "サーチ移動速度", 10.0f, 0.0f, 100.0f)         // 'search movement speed'
-		    , mRotateSpeed(this, 'fp06', "サーチ回転速度率", 0.1f, 0.0f, 1.0f)        // 'search rotation speed rate'
-		    , mRotateSpeedMax(this, 'fp07', "サーチ回転最大速度", 5.0f, 0.0f, 360.0f) // 'search rotation max speed'
-		    , mPurpleDamageRate(this, 'fp09', "黒ピクミンダメージレート", 0.0f, 0.0f,
-			                    1.0f)                                              // 'black pikmin damage rate'
-		    , mCaveTerritory(this, 'fp10', "地下テリトリー", 200.0f, 0.0f, 500.0f) // 'underground territory'
-		    , mWhiteDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 1000.0f)      // 'white pikmin'
-		    , mBlindHealth(this, 'fp12', "めくらライフ", 1000.0f, 0.0f, 2000.0f)   // 'blind life'
-		    , mBlindWaitTime(this, 'fp13', "めくら待機間隔", 200.0f, 0.0f, 500.0f) // 'blind wait interval'
-		    , mBlindMoveTime(this, 'fp14', "めくら移動間隔", 200.0f, 0.0f, 500.0f) // 'blind movement interval'
-		    , mWaitTimeAfterAttack(this, 'ip01', "攻撃後待機期間", 100, 0, 300)    // 'waiting period after attack'
+		    , mDamageRate(this, 'fp01', 1.0f, 0.0f, 1.0f)        // 'damage rate'
+		    , mTurnStartAngle(this, 'fp02', 60.0f, 0.0f, 180.0f) // 'turn start angle'
+		    , mTurnEndAngle(this, 'fp03', 10.0f, 0.0f, 180.0f)   // 'turn end angle'
+		    , mMoveSpeed(this, 'fp04', 10.0f, 0.0f, 100.0f)      // 'search movement speed'
+		    , mRotateSpeed(this, 'fp06', 0.1f, 0.0f, 1.0f)       // 'search rotation speed rate'
+		    , mRotateSpeedMax(this, 'fp07', 5.0f, 0.0f, 360.0f)  // 'search rotation max speed'
+		    , mPurpleDamageRate(this, 'fp09', 0.0f, 0.0f, 1.0f)  // 'black pikmin damage rate'
+		    , mCaveTerritory(this, 'fp10', 200.0f, 0.0f, 500.0f) // 'underground territory'
+		    , mWhiteDamage(this, 'fp11', 300.0f, 0.0f, 1000.0f)  // 'white pikmin'
+		    , mBlindHealth(this, 'fp12', 1000.0f, 0.0f, 2000.0f) // 'blind life'
+		    , mBlindWaitTime(this, 'fp13', 200.0f, 0.0f, 500.0f) // 'blind wait interval'
+		    , mBlindMoveTime(this, 'fp14', 200.0f, 0.0f, 500.0f) // 'blind movement interval'
+		    , mWaitTimeAfterAttack(this, 'ip01', 100, 0, 300)    // 'waiting period after attack'
 		{
 		}
 
@@ -241,10 +240,10 @@ struct Obj : public EnemyBase {
 	u16 mEyeJointIdx;                        // _360
 	u16 mWeakJointIdx;                       // _362
 	efx::TUmiHamon* mEfxHamon;               // _364
-	efx::TUmiWeakRed* mEfxWeakRed;           // _368
-	efx::TUmiWeakBlue* mEfxWeakBlue;         // _36C
-	efx::TUmiEyeRed* mEfxEyeRed[2];          // _370
-	efx::TUmiEyeBlue* mEfxEyeBlue[2];        // _378
+	efx::TChaseMtx2* mEfxWeakRed;            // _368
+	efx::TChaseMtx2* mEfxWeakBlue;           // _36C
+	efx::TChaseMtx2* mEfxEyeRed[2];          // _370
+	efx::TChaseMtx2* mEfxEyeBlue[2];         // _378
 	efx::TUmiEat* mEfxEat;                   // _380
 	efx::TUmiDeadawa* mEfxBubble;            // _384
 	Matrixf* mEatJointMtx;                   // _388

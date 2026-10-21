@@ -375,7 +375,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Vector3f position = enemy->getPosition();
 	efx::Arg fxArg(position);
-	efx::THebiAphd_dive diveFx;
+	efx::THebiAphd_base diveFx(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 30);
 	diveFx.create(&fxArg);
 
 	enemy->disableEvent(0, EB_Cullable);

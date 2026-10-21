@@ -451,7 +451,7 @@ void Kabuto::StateFixAppear::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Vector3f pos = kabuto->getPosition();
 	efx::Arg fxArg(pos);
-	efx::THebiAphd_kkabuto_appear appearFX;
+	efx::THebiAphd_base appearFX(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 30);
 
 	appearFX.create(&fxArg);
 
@@ -529,7 +529,7 @@ void Kabuto::StateFixHide::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Vector3f pos = kabuto->getPosition();
 	efx::Arg fxArg(pos);
-	efx::THebiAphd_kkabuto_dive diveFX;
+	efx::THebiAphd_base diveFX(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 17);
 
 	diveFX.create(&fxArg);
 

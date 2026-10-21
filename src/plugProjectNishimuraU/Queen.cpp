@@ -618,18 +618,18 @@ void Obj::setMidBossAppearBGM()
  */
 void Obj::createEffect()
 {
-	mEfxLay       = new efx::TQueenLay;
-	mEfxRollCR    = new efx::TQueenRollCR(&mPosition, &mFaceDir);
-	mEfxRollCL    = new efx::TQueenRollCL(&mPosition, &mFaceDir);
-	mEfxRoll      = new efx::TQueenRoll(&mPosition, &mFaceDir);
-	mEfxCrashR    = new efx::TQueenCrashR(&mPosition, &mFaceDir);
-	mEfxCrashL    = new efx::TQueenCrashL(&mPosition, &mFaceDir);
-	mEfxCrashRock = new efx::TQueenCrashRock(&mPosition, &mFaceDir);
-	mEfxDamage    = new efx::TQueenDamage(&mPosition, &mFaceDir);
-	mEfxFlick     = new efx::TQueenFlick(&mPosition, &mFaceDir);
-	mEfxDead      = new efx::TQueenDead;
-	mEfxWakeup    = new efx::TQueenWakeup(&mPosition, &mFaceDir);
-	mEfxHanacho   = new efx::TQueenHanacho;
+	mEfxLay       = new efx::TChaseMtx(PID_QueenLay, nullptr);
+	mEfxRollCR    = new efx::TChasePosYRot3(&mPosition, &mFaceDir, PID_QueenRollCR_1, PID_QueenRollCR_2, PID_QueenRollCR_3);
+	mEfxRollCL    = new efx::TChasePosYRot3(&mPosition, &mFaceDir, PID_QueenRollCL_1, PID_QueenRollCL_2, PID_QueenRollCL_3);
+	mEfxRoll      = new efx::TChasePosYRot2(&mPosition, &mFaceDir, PID_QueenRoll_1, PID_QueenRoll_2);
+	mEfxCrashR    = new efx::TChasePosYRot(&mPosition, &mFaceDir, PID_QueenCrashR);
+	mEfxCrashL    = new efx::TChasePosYRot(&mPosition, &mFaceDir, PID_QueenCrashL);
+	mEfxCrashRock = new efx::TChasePosYRot(&mPosition, &mFaceDir, PID_QueenCrashRock);
+	mEfxDamage    = new efx::TChasePosYRot(&mPosition, &mFaceDir, PID_QueenDamage);
+	mEfxFlick     = new efx::TChasePosYRot2(&mPosition, &mFaceDir, PID_QueenFlick_1, PID_QueenFlick_2);
+	mEfxDead      = new efx::TChaseMtx4(nullptr, PID_QueenDead_1, PID_QueenDead_2, PID_QueenDead_3, PID_QueenDead_4);
+	mEfxWakeup    = new efx::TChasePosYRot(&mPosition, &mFaceDir, PID_QueenWakeup);
+	mEfxHanacho   = new efx::TChaseMtx(PID_QueenHanacho, nullptr);
 }
 
 /**

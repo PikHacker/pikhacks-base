@@ -193,18 +193,11 @@ FloorInfo::FloorInfo()
 	mGateInfo.clearRelations();
 	mCapInfo.clearRelations();
 }
-} // namespace Cave
-} // namespace Game
 
-namespace {
 static char* enum_floor_alpha_types[]
     = { "土", "メタル", "コンクリーツ", "タイル", nullptr, nullptr };  // 'soil', 'metal', 'concrete', 'tile', -, -
 static char* enum_floor_beta_types[] = { "通常", "ボス", "やすらぎ" }; // 'normal', 'boss', 'rest'
 static char* enum_floor_hiddens[]    = { "なし", "あり" };             // 'none', 'available'
-} // namespace
-
-namespace Game {
-namespace Cave {
 
 /**
  * @note Address: 0x801D68C0
@@ -212,25 +205,25 @@ namespace Cave {
  */
 FloorInfo::Parms::Parms()
     : Parameters(nullptr, "FloorInfo")
-    , mFloorIndex1(this, 'f000', "階はじめ", 0, 0, 127)                          // 'first floor'
-    , mFloorIndex2(this, 'f001', "階おわり", 1, 0, 127)                          // 'end of floor'
-    , mTekiMax(this, 'f002', "敵最大数", 0, 0, 128)                              // 'maximum number of enemies'
-    , mItemMax(this, 'f003', "アイテム最大数", 0, 0, 128)                        // 'maximum number of items'
-    , mGateMax(this, 'f004', "ゲート最大数", 0, 0, 32)                           // 'maximum number of gates'
-    , mCapMax(this, 'f014', "キャップ最大数", 0, 0, 128)                         // 'maximum number of caps'
-    , mRoomCount(this, 'f005', "ルーム数", 4, 1, 15)                             // 'number of rooms'
-    , mRouteRatio(this, 'f006', "ルートの割合", 0.0f, 0.0f, 1.0f)                // 'root percentage'
-    , mHasEscapeFountain(this, 'f007', "帰還噴水(1=あり)", 0, 0, 1)              // 'return fountain (1=yes)'
-    , mCaveUnitFile(this, "units.txt", 64, 'f008', "使用ユニット")               // 'unit used'
-    , mLightingFile(this, "light.ini", 64, 'f009', "使用ライト")                 // 'light used'
-    , mVrBox(this, "test", 64, 'f00A', "VRBOX")                                  // 'VRBOX'
-    , mIsHoleClogged(this, 'f010', "階段を壊す岩で隠す(0=オフ 1=オン)", 0, 0, 1) // 'hide stairs with rocks that break (0=off 1=on)'
-    , mFloorAlphaType(this, enum_floor_alpha_types, 0, 6, 'f011', "α属性")       // 'alpha attribute'
-    , mFloorBetaType(this, enum_floor_beta_types, 0, 3, 'f012', "β属性")         // 'beta attribute'
-    , mFloorHidden(this, enum_floor_hiddens, 0, 2, 'f013', "隠し床")             // 'hidden floor'
-    , mVersion(this, 'f015', "Version", 0, 0, 10000)                             // 'Version'
-    , mWaterwraithTimer(this, 'f016', "BlackManTimer", 0.0f, 0.0f, 10000.0f)     // 'BlackManTimer'
-    , mGlitchySeesaw(this, 'f017', "沈む壁", 0, 0, 1)                            // 'sinking wall'
+    , mFloorIndex1(this, 'f000', 0, 0, 127)                 // 'first floor'
+    , mFloorIndex2(this, 'f001', 1, 0, 127)                 // 'end of floor'
+    , mTekiMax(this, 'f002', 0, 0, 128)                     // 'maximum number of enemies'
+    , mItemMax(this, 'f003', 0, 0, 128)                     // 'maximum number of items'
+    , mGateMax(this, 'f004', 0, 0, 32)                      // 'maximum number of gates'
+    , mCapMax(this, 'f014', 0, 0, 128)                      // 'maximum number of caps'
+    , mRoomCount(this, 'f005', 4, 1, 15)                    // 'number of rooms'
+    , mRouteRatio(this, 'f006', 0.0f, 0.0f, 1.0f)           // 'root percentage'
+    , mHasEscapeFountain(this, 'f007', 0, 0, 1)             // 'return fountain (1=yes)'
+    , mCaveUnitFile(this, "units.txt", 64, 'f008')          // 'unit used'
+    , mLightingFile(this, "light.ini", 64, 'f009')          // 'light used'
+    , mVrBox(this, "test", 64, 'f00A')                      // 'VRBOX'
+    , mIsHoleClogged(this, 'f010', 0, 0, 1)                 // 'hide stairs with rocks that break (0=off 1=on)'
+    , mFloorAlphaType(this, 0, 6, 'f011')                   // 'alpha attribute'
+    , mFloorBetaType(this, 0, 3, 'f012')                    // 'beta attribute'
+    , mFloorHidden(this, 0, 2, 'f013')                      // 'hidden floor'
+    , mVersion(this, 'f015', 0, 0, 10000)                   // 'Version'
+    , mWaterwraithTimer(this, 'f016', 0.0f, 0.0f, 10000.0f) // 'BlackManTimer'
+    , mGlitchySeesaw(this, 'f017', 0, 0, 1)                 // 'sinking wall'
 {
 }
 

@@ -330,28 +330,6 @@ Item* Mgr::birth()
 }
 
 /**
- * @note Address: 0x802101F4
- * @note Size: 0x8
- */
-char* Mgr::getCaveName(int)
-{
-	return "weed";
-}
-
-/**
- * @note Address: 0x802101FC
- * @note Size: 0x4C
- */
-int Mgr::getCaveID(char* name)
-{
-	if (strncmp("weed", name, strlen("weed")) != 0) {
-		return -1;
-	}
-
-	return 0;
-}
-
-/**
  * @note Address: 0x80210248
  * @note Size: 0x4
  */

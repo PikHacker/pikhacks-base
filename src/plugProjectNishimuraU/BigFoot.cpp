@@ -759,29 +759,29 @@ void Obj::setBossAppearBGM()
 void Obj::createEffect()
 {
 	for (int i = 0; i < 4; i++) {
-		mFootFX[i]  = new efx::TOdamaFoot;
-		mFootWFX[i] = new efx::TDamaFootw;
+		mFootFX[i]  = new efx::TChasePos2(nullptr, PID_ODamaFoot, PID_DamaFoot_2);
+		mFootWFX[i] = new efx::TChasePos(nullptr, PID_DamaFootW);
 
 		for (int j = 0; j < 3; j++) {
-			mHahenFX[i][j]     = new efx::TOdamaHahen;
-			mDeadElecAFX[i][j] = new efx::TDamaDeadElecA;
+			mHahenFX[i][j]     = new efx::TChasePosPos(PID_ODamaHahen, nullptr, nullptr);
+			mDeadElecAFX[i][j] = new efx::TChasePosPos(PID_DamaDeadElecA);
 		}
 
 		for (int j = 0; j < 2; j++) {
-			mDeadElecBFX[i][j]  = new efx::TDamaDeadElecB;
-			mDeadHahenAFX[i][j] = new efx::TOdamaDeadHahenA;
+			mDeadElecBFX[i][j]  = new efx::TChasePos(PID_DamaDeadElecB);
+			mDeadHahenAFX[i][j] = new efx::TChasePosPos(PID_ODamaDeadHahenA, nullptr, nullptr);
 		}
 
-		mDeadHahenBFX[i] = new efx::TOdamaDeadHahenB;
+		mDeadHahenBFX[i] = new efx::TChasePosPos(PID_ODamaDeadHahenB, nullptr, nullptr);
 		mLegHairFX[i]    = new efx::TOdamaFur2;
 	}
 
 	for (int i = 0; i < 3; i++) {
-		mSmokeFX[i] = new efx::TDamaSmoke;
+		mSmokeFX[i] = new efx::TChasePos(nullptr, PID_DamaSmoke);
 	}
 
-	mDeadHahenC1FX = new efx::TOdamaDeadHahenC1;
-	mDeadHahenC2FX = new efx::TOdamaDeadHahenC2;
+	mDeadHahenC1FX = new efx::TChaseMtx(PID_ODamaDeadHahenC1, nullptr);
+	mDeadHahenC2FX = new efx::TChaseMtx(PID_ODamaDeadHahenC2, nullptr);
 	mBodyHairFX    = new efx::TOdamaFur1;
 }
 
@@ -830,7 +830,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 		effectPos.y = *wbox->getSeaHeightPtr();
 
 		efx::Arg fxArg(effectPos);
-		efx::TDamaWalkw waterWalk;
+		efx::TSimple3 waterWalk(PID_DamaWalkW_1, PID_DamaWalkW_2, PID_DamaWalkW_3);
 
 		waterWalk.create(&fxArg);
 		PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_XL, (Vec*)&mJointPositions[footIdx][3]);
@@ -840,7 +840,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 
 	} else {
 		efx::Arg fxArg(effectPos);
-		efx::TOdamaWalk walk;
+		efx::TSimple2 walk(PID_ODamaWalk_1, PID_ODamaWalk_2);
 
 		walk.create(&fxArg);
 	}
@@ -933,7 +933,7 @@ void Obj::startDeadEffect()
 	for (int i = 0; i < 4; i++) {
 		for (int j = 1; j < 3; j++) {
 			efx::Arg fxArg(mJointPositions[i][j]);
-			efx::TDamaDeadBomb deadBombFX;
+			efx::TSimple1 deadBombFX(PID_DamaDeadBomb);
 			deadBombFX.create(&fxArg);
 		}
 

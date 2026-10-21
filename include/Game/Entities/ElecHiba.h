@@ -123,12 +123,12 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mWaitTime(this, 'fp02', "ウェイト時間", 2.5f, 0.0f, 100.0f) // 'wait time'
-		    , mWarningTime(this, 'fp03', "予兆時間", 2.5f, 0.0f, 100.0f)  // 'warning time'
-		    , mActiveTime(this, 'fp01', "放電時間", 2.5f, 0.0f, 100.0f)   // 'discharge time'
-		    , mStopTime(this, 'fp04', "停止時間", 10.0f, 0.0f, 100.0f)    // 'stop time'
-		    , mLodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)
-		    , mLodMiddle(this, 'fp91', "LOD MIDDLE", 0.05f, 0.0f, 1.0f)
+		    , mWaitTime(this, 'fp02', 2.5f, 0.0f, 100.0f)    // 'wait time'
+		    , mWarningTime(this, 'fp03', 2.5f, 0.0f, 100.0f) // 'warning time'
+		    , mActiveTime(this, 'fp01', 2.5f, 0.0f, 100.0f)  // 'discharge time'
+		    , mStopTime(this, 'fp04', 10.0f, 0.0f, 100.0f)   // 'stop time'
+		    , mLodNear(this, 'fp90', 0.085f, 0.0f, 1.0f)
+		    , mLodMiddle(this, 'fp91', 0.05f, 0.0f, 1.0f)
 		{
 		}
 

@@ -772,7 +772,7 @@ void FakePiki::doEntry()
 		mModel->show();
 
 	} else {
-		if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
+		if (!gameSystem->isMultiplayerMode()) {
 			return;
 		}
 

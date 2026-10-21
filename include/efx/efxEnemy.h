@@ -40,58 +40,15 @@ struct TBabaHe : public TSimple2 {
 	// _00-_0C  = TSimple1
 };
 
-//////////////////////////////////////
-//// BABY (BULBORB LARVA) EFFECTS ////
-//////////////////////////////////////
-
-struct TBabyBecha : public TSimple1 {
-	inline TBabyBecha()
-	    : TSimple1(PID_BabyBecha)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_0C  = TSimple1
-};
-
-struct TBabyBorn : public TChasePos {
-	TBabyBorn(Vector3f* pos)
-	    : TChasePos(pos, PID_BabyBorn)
-	{
-	}
-
-	virtual ~TBabyBorn() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChasePos
-};
-
 ///////////////////////////
 //// BOMB ROCK EFFECTS ////
 ///////////////////////////
-
-struct TBombrockABCD : public TSimple4 {
-	inline TBombrockABCD()
-	    : TSimple4(PID_BombrockABCD_1, PID_BombrockABCD_2, PID_BombrockABCD_3, PID_BombrockABCD_4)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_1C  = TSimple4
-};
-
-struct TBombrockEFGH : public TSimple4 {
-	inline TBombrockEFGH()
-	    : TSimple4(PID_BombrockEFGH_1, PID_BombrockEFGH_2, PID_BombrockEFGH_3, PID_BombrockEFGH_4)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_1C  = TSimple4
-};
-
 struct TBombrock : public TBase {
-	inline TBombrock() { }
+	inline TBombrock()
+	    : mEfxBombABCD(PID_BombrockABCD_1, PID_BombrockABCD_2, PID_BombrockABCD_3, PID_BombrockABCD_4)
+	    , mEfxBombEFGH(PID_BombrockEFGH_1, PID_BombrockEFGH_2, PID_BombrockEFGH_3, PID_BombrockEFGH_4)
+	{
+	}
 
 	virtual bool create(Arg* arg) // _08 (weak)
 	{
@@ -105,95 +62,13 @@ struct TBombrock : public TBase {
 	virtual void fade() { }      // _10 (weak)
 
 	// _00      = VTBL
-	TBombrockABCD mEfxBombABCD; // _04
-	TBombrockEFGH mEfxBombEFGH; // _20
-};
-
-struct TBombrockLight : public TChaseMtxT {
-	inline TBombrockLight()
-	    : TChaseMtxT(PID_BombrockLight)
-	{
-	}
-
-	virtual ~TBombrockLight() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChaseMtxT
-};
-
-/////////////////////////////////////////////////
-//// BOMBSARAI (CAREENING DIRIGIBUG) EFFECTS ////
-/////////////////////////////////////////////////
-
-struct TBsaraiDead : public TSimple2 {
-	inline TBsaraiDead()
-	    : TSimple2(PID_BSaraiDead_1, PID_BSaraiDead_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_10  = TSimple2
-};
-
-struct TBsaraiSupli : public TChaseMtx {
-	inline TBsaraiSupli()
-	    : TChaseMtx(PID_BSaraiSupli, nullptr)
-	{
-	}
-
-	virtual ~TBsaraiSupli() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChaseMtx
+	TSimple4 mEfxBombABCD; // _04
+	TSimple4 mEfxBombEFGH; // _20
 };
 
 ////////////////////////////////////////
 //// CHIBI (GATLING GROINK) EFFECTS ////
 ////////////////////////////////////////
-
-struct TChibiCharge : public TChaseMtx {
-	TChibiCharge()
-	    : TChaseMtx(PID_ChibiCharge, nullptr)
-	{
-	}
-
-	virtual ~TChibiCharge() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChaseMtx
-};
-
-struct TChibiDeadLight : public TChaseMtx {
-	TChibiDeadLight()
-	    : TChaseMtx(PID_ChibiDeadLight, nullptr)
-	{
-	}
-
-	virtual ~TChibiDeadLight() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChaseMtx
-};
-
-struct TChibiDeadMouth : public TSimpleMtx1 {
-	inline TChibiDeadMouth(Matrixf* mat)
-	    : TSimpleMtx1(mat, PID_ChibiDeadMouth)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_10  = TSimpleMtx1
-};
-
-struct TChibiDeadSe : public TSimpleMtx2 {
-	inline TChibiDeadSe(Matrixf* mat)
-	    : TSimpleMtx2(mat, PID_ChibiDeadSe_1, PID_ChibiDeadSe_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_14  = TSimpleMtx2
-};
 
 struct TChibiHit : public TSimple4 {
 	inline TChibiHit()
@@ -205,48 +80,6 @@ struct TChibiHit : public TSimple4 {
 
 	// _00      = VTBL
 	// _00-_1C  = TSimple4
-};
-
-struct TChibiShell : public TChasePos {
-	TChibiShell()
-	    : TChasePos(PID_ChibiShell)
-	{
-	}
-
-	virtual ~TChibiShell() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChasePos
-};
-
-struct TChibiShoot : public TSimpleMtx3 {
-	inline TChibiShoot(Matrixf* mat)
-	    : TSimpleMtx3(mat, PID_ChibiShoot_1, PID_ChibiShoot_2, PID_ChibiShoot_3)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_1C  = TSimpleMtx3
-};
-
-struct TChibiSmokeL : public TSimpleMtx1 {
-	inline TChibiSmokeL(Matrixf* mat)
-	    : TSimpleMtx1(mat, PID_ChibiSmokeL)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_10  = TSimpleMtx1
-};
-
-struct TChibiSmokeS : public TSimpleMtx1 {
-	inline TChibiSmokeS(Matrixf* mat)
-	    : TSimpleMtx1(mat, PID_ChibiSmokeS)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_10  = TSimpleMtx1
 };
 
 ///////////////////////////////////
@@ -264,16 +97,6 @@ struct TChouDown : public TChasePos {
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos
-};
-
-struct TChouHit : public TSimple1 {
-	inline TChouHit()
-	    : TSimple1(PID_ChouHit)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_0C  = TSimple1
 };
 
 ///////////////////////////////////////////
@@ -340,69 +163,9 @@ struct TDenkiHibaMgr : public TBase {
 	Vector3f mTargetCreaturePosition; // _AC
 };
 
-/////////////////////////////////
-//// FROG (WOLLYWOG) EFFECTS ////
-/////////////////////////////////
-
-struct TFrogDive : public TSimple4 {
-	inline TFrogDive()
-	    : TSimple4(PID_FrogDive_1, PID_FrogDive_2, PID_FrogDive_3, PID_FrogDive_4)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_1C  = TSimple4
-};
-
-struct TFrogLanddrop : public TSimple2 {
-	inline TFrogLanddrop()
-	    : TSimple2(PID_FrogLandDrop_1, PID_FrogLandDrop_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_10  = TSimple2
-};
-
-struct TFrogPota : public TChasePos {
-	inline TFrogPota()
-	    : TChasePos(PID_FrogPota)
-	{
-	}
-
-	virtual ~TFrogPota() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChasePos
-};
-
 ////////////////////////////////////////
 //// ELECBUG (ANODE BEETLE) EFFECTS ////
 ////////////////////////////////////////
-
-struct TDnkmsHoudenA : public TChasePos {
-	inline TDnkmsHoudenA()
-	    : TChasePos(PID_DnkmsHoudenA)
-	{
-	}
-
-	virtual ~TDnkmsHoudenA() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChasePos
-};
-
-struct TDnkmsHoudenB : public TChasePos {
-	inline TDnkmsHoudenB()
-	    : TChasePos(PID_DnkmsHoudenB)
-	{
-	}
-
-	virtual ~TDnkmsHoudenB() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChasePos
-};
 
 struct TDnkmsThunderA : public TSync {
 	inline TDnkmsThunderA()
@@ -449,9 +212,9 @@ struct TDnkmsThunderB : public TSync {
 
 struct TDnkmsEffect {
 	TDnkmsEffect()
-	    : mHoudenA1()
-	    , mHoudenA2()
-	    , mHoudenB()
+	    : mHoudenA1(PID_DnkmsHoudenA)
+	    , mHoudenA2(PID_DnkmsHoudenA)
+	    , mHoudenB(PID_DnkmsHoudenB)
 	    , mThunderA()
 	    , mThunderB()
 	{
@@ -508,105 +271,11 @@ struct TDnkmsEffect {
 
 	Vector3f* mPosition;        // _00
 	Vector3f* mPartnerPosition; // _04
-	TDnkmsHoudenA mHoudenA1;    // _08, discharge effect (self)
-	TDnkmsHoudenA mHoudenA2;    // _1C, discharge effect (partner)
-	TDnkmsHoudenB mHoudenB;     // _30, charge effect
+	TChasePos mHoudenA1;        // _08, discharge effect (self)
+	TChasePos mHoudenA2;        // _1C, discharge effect (partner)
+	TChasePos mHoudenB;         // _30, charge effect
 	TDnkmsThunderA mThunderA;   // _44
 	TDnkmsThunderB mThunderB;   // _5C
-};
-
-/////////////////////
-//// EGG EFFECTS ////
-/////////////////////
-
-struct TEggdown : public TSimple1 {
-	TEggdown()
-	    : TSimple1(PID_EggDown)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_0C  = TSimple1
-};
-
-//////////////////////////////////////////
-//// FUEFUKI (ANTENNA BEETLE) EFFECTS ////
-//////////////////////////////////////////
-
-struct TFuebugOnpa : public TChasePos {
-	inline TFuebugOnpa()
-	    : TChasePos(PID_FueBugOnpa)
-	{
-	}
-
-	virtual ~TFuebugOnpa() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChasePos
-};
-
-///////////////////////////////////////
-//// FUSEN (PUFFY BLOWHOG) EFFECTS ////
-///////////////////////////////////////
-
-struct TFusenAir : public TChaseMtx3 {
-	TFusenAir()
-	    : TChaseMtx3(nullptr, PID_FusenAir_Mar_1, PID_FusenAir_Mar_2, PID_FusenAir_Mar_3)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_40  = TChaseMtx3
-};
-
-struct TFusenAirhit : public TChasePosYRot2 {
-	inline TFusenAirhit(Vector3f* pos, f32* faceDir)
-	    : TChasePosYRot2(pos, faceDir, PID_FusenAirHit_Mar_1, PID_FusenAirHit_Mar_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_34  = TChasePosYRot2
-};
-
-struct TFusenDead : public TChaseMtx2 {
-	inline TFusenDead()
-	    : TChaseMtx2(nullptr, PID_FusenDead_1, PID_FusenDead_2)
-	{
-	}
-	// _00      = VTBL
-	// _00-_2C  = TChaseMtx2
-};
-
-struct TFusenhAir : public TChaseMtx3 {
-	inline TFusenhAir()
-	    : TChaseMtx3(nullptr, PID_FusenAir_Hana_1, PID_FusenAir_Hana_2, PID_FusenAir_Hana_3)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_40  = TChaseMtx3
-};
-
-struct TFusenhAirhit : public TChasePosYRot2 {
-	inline TFusenhAirhit(Vector3f* pos, f32* faceDir)
-	    : TChasePosYRot2(pos, faceDir, PID_FusenAirHit_Hana_1, PID_FusenAirHit_Hana_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_34  = TChasePosYRot2
-};
-
-struct TFusenSui : public TChaseMtx {
-	inline TFusenSui()
-	    : TChaseMtx(PID_FusenSui, nullptr)
-	{
-	}
-	virtual ~TFusenSui() { } // _48 (weak)
-
-	// _00      = VTBL
-	// _00-_14  = TChaseMtx
 };
 
 ///////////////////////////////////////////
@@ -645,45 +314,6 @@ struct THibaFire : public TForever4 {
 ///////////////////////////////////////
 //// CHAPPY/HANA (BULBORB) EFFECTS ////
 ///////////////////////////////////////
-
-struct THanachoN : public TChaseMtx {
-	inline THanachoN()
-	    : TChaseMtx(PID_HanachoN, nullptr)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_14  = TChaseMtx
-};
-
-struct THanachoY : public TChaseMtx {
-	inline THanachoY()
-	    : TChaseMtx(PID_HanachoY, nullptr)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_14  = TChaseMtx
-};
-
-struct THanaMiss : public TSimpleMtx2 {
-	THanaMiss(Matrixf* mtx)
-	    : TSimpleMtx2(mtx, PID_HanaMiss_1, PID_HanaMiss_2)
-	{
-	}
-	// _00      = VTBL
-	// _00-_14  = TSimpleMtx2
-};
-
-struct TKechappyOff : public TSimpleMtx1 {
-	TKechappyOff(Matrixf* mat)
-	    : TSimpleMtx1(mat, PID_KechappyOff)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_10  = TSimpleMtx1
-};
 
 struct TKechappyTest : public TChaseMtx3 {
 	TKechappyTest()
@@ -784,58 +414,6 @@ struct TJgmBackW : public TChasePosYRot2 {
 	// _00-_34  = TChasePosYRot2
 };
 
-struct TJgmBubble : public TSimple1 {
-	inline TJgmBubble()
-	    : TSimple1(PID_JgmBUBBLE)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_0C  = TSimple1
-};
-
-///////////////////////////////////////
-//// KABUTO (CANNON LARVA) EFFECTS ////
-///////////////////////////////////////
-
-struct TKabutoAttack : public TSimpleMtx1 {
-	inline TKabutoAttack(Matrixf* mtx)
-	    : TSimpleMtx1(mtx, PID_KabutoAttack)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_10  = TSimpleMtx1
-};
-
-struct TKkabutoRot : public TChasePos {
-	inline TKkabutoRot(Vector3f* position = nullptr)
-	    : TChasePos(PID_KKabutoRot, position)
-	{
-	}
-
-	// vtable 1 (TBase)
-	// vtable 2 (JPAEmitterCallBack + Self)
-	virtual ~TKkabutoRot() { } // _48 (weak)
-
-	// _00		= VTBL
-	// _00-_14  = TChasePos
-};
-
-struct TKkabutoWait : public TChasePos {
-	inline TKkabutoWait(Vector3f* position = nullptr)
-	    : TChasePos(PID_KKabutoWait, position)
-	{
-	}
-
-	// vtable 1 (TBase)
-	// vtable 2 (JPAEmitterCallBack + Self)
-	virtual ~TKkabutoWait() { } // _48 (weak)
-
-	// _00		= VTBL
-	// _00-_14  = TChasePos
-};
-
 ///////////////////////////////////////
 //// KOGANE (FLINT BEETLE) EFFECTS ////
 ///////////////////////////////////////
@@ -864,78 +442,10 @@ struct TKoganeHit : public TSimple2 {
 	// _00-_10 = TSimple2
 };
 
-struct TOoganeKira : public TChaseMtx {
-	inline TOoganeKira()
-	    : TChaseMtx(PID_OoganeKira, nullptr)
-	{
-	}
-
-	virtual ~TOoganeKira() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChaseMtx
-};
-
 ////////////////////////////////////////////
 //// KURAGE (LESSER JELLYFLOAT) EFFECTS ////
 ////////////////////////////////////////////
 // Kurage is actually for OniKurage, NewKurage is for normal Kurage
-
-struct TKurageBomb : public TSimple2 {
-	inline TKurageBomb()
-	    : TSimple2(PID_KurageBomb_1, PID_KurageBomb_2)
-	{
-	}
-
-	// _00		 = VTBL
-	// _00-_10 = TSimple2
-};
-
-struct TKurageDeadrun : public TChaseMtxT {
-	inline TKurageDeadrun()
-	    : TChaseMtxT(PID_KurageDeadRun)
-	{
-	}
-
-	virtual ~TKurageDeadrun() { } // _48 (weak)
-
-	// _00		 = VTBL
-	// _00-_14 = TChaseMtxT
-};
-
-struct TKurageEye : public TChaseMtx {
-	inline TKurageEye()
-	    : TChaseMtx(PID_KurageEye, nullptr)
-	{
-	}
-
-	virtual ~TKurageEye() { } // _48 (weak)
-
-	// _00		 = VTBL
-	// _00-_14 = TChaseMtx
-};
-
-struct TKurageFlick : public TSimple1 {
-	inline TKurageFlick()
-	    : TSimple1(PID_KurageFlick)
-	{
-	}
-
-	// _00		 = VTBL
-	// _00-_0C = TSimple1
-};
-
-struct TKurageGepu : public TChasePos {
-	inline TKurageGepu(Vector3f* pos)
-	    : TChasePos(PID_KurageGepu, pos)
-	{
-	}
-
-	virtual ~TKurageGepu() { } // _48 (weak)
-
-	// _00		 = VTBL
-	// _00-_14 = TChasePos
-};
 
 struct TKurageHire : public TChaseMtx3 {
 	inline TKurageHire()
@@ -947,18 +457,6 @@ struct TKurageHire : public TChaseMtx3 {
 
 	// _00		 = VTBL
 	// _00-_40 = TChaseMtx3
-};
-
-struct TKurageKira : public TChasePos {
-	inline TKurageKira(Vector3f* pos)
-	    : TChasePos(PID_KurageKira, pos)
-	{
-	}
-
-	virtual ~TKurageKira() { } // _48 (weak)
-
-	// _00		 = VTBL
-	// _00-_14 = TChasePos
 };
 
 struct TKurageSui : public TForever2 {
@@ -973,50 +471,6 @@ struct TKurageSui : public TForever2 {
 	// _00-_24 = TForever2
 };
 
-struct TNewkurageBomb : public TSimple2 {
-	inline TNewkurageBomb()
-	    : TSimple2(PID_NewKurageBomb_1, PID_NewKurageBomb_2)
-	{
-	}
-
-	// _00		 = VTBL
-	// _00-_10 = TSimple2
-};
-
-struct TNewkurageDeadrun : public TChaseMtxT {
-	inline TNewkurageDeadrun()
-	    : TChaseMtxT(PID_NewKurageDeadRun)
-	{
-	}
-
-	virtual ~TNewkurageDeadrun() { } // _48 (weak)
-
-	// _00		 = VTBL
-	// _00-_14 = TChaseMtxT
-};
-
-struct TNewkurageEye : public TChaseMtx {
-	inline TNewkurageEye()
-	    : TChaseMtx(PID_NewKurageEye, nullptr)
-	{
-	}
-
-	virtual ~TNewkurageEye() { } // _48 (weak)
-
-	// _00		 = VTBL
-	// _00-_14 = TChaseMtx
-};
-
-struct TNewkurageFlick : public TSimple1 {
-	inline TNewkurageFlick()
-	    : TSimple1(PID_NewKurageFlick)
-	{
-	}
-
-	// _00		 = VTBL
-	// _00-_0C = TSimple1
-};
-
 struct TNewkurageHire : public TChaseMtx3 {
 	inline TNewkurageHire()
 	    : TChaseMtx3(0, PID_NewKurageHire_1, PID_NewKurageHire_2, PID_NewKurageHire_3)
@@ -1027,18 +481,6 @@ struct TNewkurageHire : public TChaseMtx3 {
 
 	// _00		 = VTBL
 	// _00-_40 = TChaseMtx3
-};
-
-struct TNewkurageKira : public TChasePos {
-	inline TNewkurageKira(Vector3f* posPtr)
-	    : TChasePos(PID_NewKurageKira, posPtr)
-	{
-	}
-
-	virtual ~TNewkurageKira() { } // _48 (weak)
-
-	// _00		 = VTBL
-	// _00-_14 = TChasePos
 };
 
 struct TNewkurageSui : public TForever2 {
@@ -1053,102 +495,9 @@ struct TNewkurageSui : public TForever2 {
 	// _00-_24 = TForever2
 };
 
-/////////////////////////////////
-//// MIULIN (MAMUTA) EFFECTS ////
-/////////////////////////////////
-
-struct TMiuAttack : public TSimple2 {
-	inline TMiuAttack()
-	    : TSimple2(PID_MiuAttack_1, PID_MiuAttack_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_10 = TSimple2
-};
-
 ///////////////////////////////////
 //// OTAKARA (DWEEVIL) EFFECTS ////
 ///////////////////////////////////
-
-struct TOtaChargeelec : public TChaseMtxT2 {
-	inline TOtaChargeelec()
-	    : TChaseMtxT2(0, PID_OtaChargeelec_1, PID_OtaChargeelec_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_2C  = TChaseMtxT2
-};
-
-struct TOtaChargefire : public TChaseMtxT2 {
-	inline TOtaChargefire()
-	    : TChaseMtxT2(0, PID_OtaChargefire_1, PID_OtaChargefire_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_2C  = TChaseMtxT2
-};
-
-struct TOtaChargegas : public TChaseMtxT2 {
-	inline TOtaChargegas()
-	    : TChaseMtxT2(0, PID_OtaChargegas_1, PID_OtaChargegas_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_2C  = TChaseMtxT2
-};
-
-struct TOtaChargewat : public TChaseMtxT2 {
-	inline TOtaChargewat()
-	    : TChaseMtxT2(0, PID_OtaChargewat_1, PID_OtaChargewat_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_2C  = TChaseMtxT2
-};
-
-struct TOtaElec : public TSimple3 {
-	inline TOtaElec()
-	    : TSimple3(PID_OtaElec_1, PID_OtaElec_2, PID_OtaElec_3)
-	{
-	}
-	// _00      = VTBL
-	// _00-_18  = TSimple3
-};
-
-struct TOtaFire : public TSimple5 {
-	inline TOtaFire()
-	    : TSimple5(PID_OtaFire_1, PID_OtaFire_2, PID_OtaFire_3, PID_OtaFire_4, PID_OtaFire_5)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_24  = TSimple5
-};
-
-struct TOtaGas : public TSimple2 {
-	inline TOtaGas()
-	    : TSimple2(PID_OtaGas_1, PID_OtaGas_2)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_10  = TSimple2
-};
-
-struct TOtaWat : public TSimple4 {
-	inline TOtaWat()
-	    : TSimple4(PID_OtaWat_1, PID_OtaWat_2, PID_OtaWat_3, PID_OtaWat_4)
-	{
-	}
-
-	// _00      = VTBL
-	// _00-_1C  = TSimple4
-};
 
 struct TOtaPartsoff : public TSimple1 {
 	inline TOtaPartsoff()
@@ -1204,47 +553,9 @@ struct TPanSmoke : public TChasePos {
 	// _00-_14 = TChasePos
 };
 
-////////////////////////////////////
-//// POM (CANDYPOP BUD) EFFECTS ////
-////////////////////////////////////
-
-struct TPonDead : public TSimple1 {
-	inline TPonDead()
-	    : TSimple1(PID_PonDead)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
 /////////////////////////////////////
 //// QURIONE (HONEYWISP) EFFECTS ////
 /////////////////////////////////////
-
-struct TQuriApp : public TChaseMtxT {
-	inline TQuriApp()
-	    : TChaseMtxT(PID_QuriApp)
-	{
-	}
-
-	virtual ~TQuriApp() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChaseMtxT
-};
-
-struct TQuriDisap : public TChaseMtxT {
-	inline TQuriDisap()
-	    : TChaseMtxT(PID_QuriDisap)
-	{
-	}
-
-	virtual ~TQuriDisap() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChaseMtxT
-};
 
 struct TQuriGlow : public TChaseMtxT {
 	inline TQuriGlow()
@@ -1258,16 +569,6 @@ struct TQuriGlow : public TChaseMtxT {
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtxT
-};
-
-struct TQuriHit : public TSimple2 {
-	inline TQuriHit()
-	    : TSimple2(PID_QuriHit_1, PID_QuriHit_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_10 = TQuriHit
 };
 
 ////////////////////////////////////
@@ -1286,26 +587,6 @@ struct TUjinkoAp_Imo : public TSimpleMtx2 {
 	// _00-_10 = TSimple2
 };
 
-struct TUjinkoAp : public TSimpleMtx2 {
-	inline TUjinkoAp(Matrixf* mtx)
-	    : TSimpleMtx2(mtx, PID_UjinkoAp_1, PID_UjinkoAp_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_14 = TSimpleMtx2
-};
-
-struct TUjinkoEat : public TSimple1 {
-	inline TUjinkoEat()
-	    : TSimple1(PID_UjinkoEat)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
 struct TUjinkoHd_Imo : public TSimpleMtx2 {
 	inline TUjinkoHd_Imo(Matrixf* mtx)
 	    : TSimpleMtx2(mtx, PID_UjinkoHd_1, PID_UjinkoHd_2)
@@ -1318,77 +599,13 @@ struct TUjinkoHd_Imo : public TSimpleMtx2 {
 	// _00-_10 = TSimple2
 };
 
-struct TUjinkoHd : public TSimpleMtx2 {
-	inline TUjinkoHd(Matrixf* mtx)
-	    : TSimpleMtx2(mtx, PID_UjinkoHd_1, PID_UjinkoHd_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_10 = TSimple2
-};
-
-struct TUjinkoPkate : public TSimple1 {
-	inline TUjinkoPkate()
-	    : TSimple1(PID_UjinkoPkate)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
 //////////////////////////////////////
 //// FALLING/ROLLING ROCK EFFECTS ////
 //////////////////////////////////////
 
-struct TRockDead : public TSimple3 {
-	inline TRockDead()
-	    : TSimple3(PID_RockDead_1, PID_RockDead_2, PID_RockDead_3)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_18 = TSimple3
-};
-
-struct TRockGrRun : public TChasePos {
-	inline TRockGrRun()
-	    : TChasePos(PID_RockGrRun, nullptr)
-	{
-	}
-
-	virtual ~TRockGrRun() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChasePos
-};
-
-struct TRockRun : public TChasePos {
-	inline TRockRun()
-	    : TChasePos(PID_RockRun, nullptr)
-	{
-	}
-
-	virtual ~TRockRun() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChasePos
-};
-
-struct TRockWRunChasePos : public TChasePos3 {
-	inline TRockWRunChasePos(Vector3f* pos)
-	    : TChasePos3(pos, PID_RockWRunChasePos_1, PID_RockWRunChasePos_2, PID_RockWRunChasePos_3)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_40 = TChasePos3
-};
-
 struct TRockWRun : public TBase {
 	inline TRockWRun()
-	    : mChasePos(&mPosition)
+	    : mChasePos(&mPosition, PID_RockWRunChasePos_1, PID_RockWRunChasePos_2, PID_RockWRunChasePos_3)
 	    , mIsActive(false)
 	{
 	}
@@ -1410,73 +627,10 @@ struct TRockWRun : public TBase {
 	}
 
 	// _00 VTBL
-	TRockWRunChasePos mChasePos; // _04
-	f32 mSeaHeight;              // _44, might be part of TRockWRunChasePos
-	Vector3f mPosition;          // _48
-	bool mIsActive;              // _54
-};
-
-////////////////////////////////////////
-//// PELPLANT (PELLET POSY) EFFECTS ////
-////////////////////////////////////////
-
-struct TPplGrow1 : public TSimple2 {
-	inline TPplGrow1()
-	    : TSimple2(PID_PplGrow1_1, PID_PplGrow1_2)
-	{
-	}
-
-	// _00  = VTABLE
-};
-
-struct TPplGrow2 : public TSimple3 {
-	inline TPplGrow2()
-	    : TSimple3(PID_PplGrow2_1, PID_PplGrow2_2, PID_PplGrow2_3)
-	{
-	}
-
-	// _00  = VTABLE
-};
-
-struct TPpl5Grow2 : public TSimple3 {
-	inline TPpl5Grow2()
-	    : TSimple3(PID_PplGrow2_1, PID_PplGrow2_2, PID_Ppl5Grow2)
-	{
-	}
-
-	// _00  = VTABLE
-};
-
-struct TPpl10Grow2 : public TSimple3 {
-	inline TPpl10Grow2()
-	    : TSimple3(PID_PplGrow2_1, PID_PplGrow2_2, PID_Ppl10Grow2)
-	{
-	}
-
-	// _00  = VTABLE
-};
-
-struct TPpl20Grow2 : public TSimple3 {
-	inline TPpl20Grow2()
-	    : TSimple3(PID_PplGrow2_1, PID_PplGrow2_2, PID_Ppl20Grow2)
-	{
-	}
-
-	// _00  = VTABLE
-};
-
-//////////////////////////////////////
-//// TAMAGOMUSHI (MITITE) EFFECTS ////
-//////////////////////////////////////
-
-struct TTamagoAp : public TSimpleMtx2 {
-	inline TTamagoAp(Matrixf* mtx)
-	    : TSimpleMtx2(mtx, PID_TamagoAp_1, PID_TamagoAp_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_14 = TSimpleMtx2
+	TChasePos3 mChasePos; // _04
+	f32 mSeaHeight;       // _44
+	Vector3f mPosition;   // _48
+	bool mIsActive;       // _54
 };
 
 /////////////////////////////////////////////
@@ -1701,113 +855,6 @@ struct TYakiBody : public TChaseMtx4 {
 
 	// _00     = VTBL
 	// _00-_54 = TChaseMtx4
-};
-
-struct TYakiDeadsmoke : public TChaseMtxT {
-	inline TYakiDeadsmoke()
-	    : TChaseMtxT(PID_YakiDeadSmoke)
-	{
-	}
-
-	virtual ~TYakiDeadsmoke() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChaseMtxT
-};
-
-struct TYakiFlick : public TChaseMtx {
-	inline TYakiFlick()
-	    : TChaseMtx(PID_YakiFlick, nullptr)
-	{
-	}
-
-	virtual ~TYakiFlick() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChaseMtx
-};
-
-struct TYakiSteam : public TChaseMtx {
-	inline TYakiSteam()
-	    : TChaseMtx(PID_YakiSteam, nullptr)
-	{
-	}
-
-	virtual ~TYakiSteam() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChaseMtx
-};
-
-////////////////////////////////////////////
-//// YOROI (CLOAKING BURROWNIT) EFFECTS ////
-////////////////////////////////////////////
-
-struct TYoroiAp : public TSimpleMtx2 {
-	inline TYoroiAp(Matrixf* mat)
-	    : TSimpleMtx2(mat, PID_YoroiAp_1, PID_YoroiAp_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_14 = TSimpleMtx2
-};
-
-struct TYoroiAttack : public TChaseMtx {
-	inline TYoroiAttack()
-	    : TChaseMtx(PID_YoroiAttack, nullptr)
-	{
-	}
-
-	virtual ~TYoroiAttack() { } // _48 (weak)
-
-	// _00     = VTBL
-	// _00-_14 = TChaseMtx
-};
-
-struct TYoroiAttackhit : public TSimple1 {
-	inline TYoroiAttackhit()
-	    : TSimple1(PID_YoroiAttackHit)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
-struct TYoroiEat : public TSimple1 {
-	inline TYoroiEat()
-	    : TSimple1(PID_YoroiEat)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
-};
-
-// burrownit hide/disappear effect
-struct TYoroiHd : public TSimpleMtx2 {
-	inline TYoroiHd(Matrixf* mat)
-	    : TSimpleMtx2(mat, PID_YoroiHd_1, PID_YoroiHd_2)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_14 = TSimpleMtx2
-};
-
-////////////////////////////////////////////
-//// WATAGE (SEEDING DANDELION) EFFECTS ////
-////////////////////////////////////////////
-
-struct TWatage : public TSimple1 {
-	inline TWatage()
-	    : TSimple1(PID_Watage)
-	{
-	}
-
-	// _00     = VTBL
-	// _00-_0C = TSimple1
 };
 
 }; // namespace efx

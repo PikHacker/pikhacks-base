@@ -94,7 +94,7 @@ struct Obj : public EnemyBase {
 	Vector3f mTargetPosition;   // _2DC
 	Footmarks* mFootmarks;      // _2E8
 	efx::TCursor* mEfxWhistle;  // _2EC
-	efx::TFuebugOnpa* mEfxOnpa; // _2F0
+	efx::TChasePos* mEfxOnpa;   // _2F0
 	                            // _2F4 = PelletView
 };
 
@@ -118,15 +118,15 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mMaxGroundTime(this, 'fp01', "出現時間(Max)", 30.0f, 0.0f, 100.0f)                   // 'appearance time (max)'
-		    , mMinGroundTime(this, 'fp02', "出現時間(Min)", 20.0f, 0.0f, 100.0f)                   // 'appearance time (min)'
-		    , mAirborneTime(this, 'fp03', "出現間隔", 3.0f, 0.0f, 100.0f)                          // 'appearance interval'
-		    , mMinWhistleTime(this, 'fp11', "フエ間隔(1)", 0.0f, 0.0f, 5.0f)                       // 'hue interval (1)
-		    , mMaxWhistleTimeNoSquad(this, 'fp12', "フエ間隔(2～:隊列ナシ)", 5.0f, 0.0f, 10.0f)    // 'hue interval (2 ~: no formation)'
-		    , mMaxWhistleTimeWithSquad(this, 'fp13', "フエ間隔(2～:隊列アリ)", 10.0f, 0.0f, 20.0f) // 'hue interval (2 ~: platoon ants)'
-		    , mStruggleTime(this, 'fp21', "もがき時間", 3.0f, 0.0f, 10.0f)                         // 'struggling time'
-		    , mJumpTime(this, 'fp22', "逃げジャンプ時間", 0.0f, 0.0f, 5.0f)                        // 'escape jump time'
-		    , mNormalLandingChance(this, 'fp31', "通常出現率", 0.5f, 0.0f, 1.0f)                   // 'normal appearance rate'
+		    , mMaxGroundTime(this, 'fp01', 30.0f, 0.0f, 100.0f)          // 'appearance time (max)'
+		    , mMinGroundTime(this, 'fp02', 20.0f, 0.0f, 100.0f)          // 'appearance time (min)'
+		    , mAirborneTime(this, 'fp03', 3.0f, 0.0f, 100.0f)            // 'appearance interval'
+		    , mMinWhistleTime(this, 'fp11', 0.0f, 0.0f, 5.0f)            // 'hue interval (1)
+		    , mMaxWhistleTimeNoSquad(this, 'fp12', 5.0f, 0.0f, 10.0f)    // 'hue interval (2 ~: no formation)'
+		    , mMaxWhistleTimeWithSquad(this, 'fp13', 10.0f, 0.0f, 20.0f) // 'hue interval (2 ~: platoon ants)'
+		    , mStruggleTime(this, 'fp21', 3.0f, 0.0f, 10.0f)             // 'struggling time'
+		    , mJumpTime(this, 'fp22', 0.0f, 0.0f, 5.0f)                  // 'escape jump time'
+		    , mNormalLandingChance(this, 'fp31', 0.5f, 0.0f, 1.0f)       // 'normal appearance rate'
 		{
 		}
 

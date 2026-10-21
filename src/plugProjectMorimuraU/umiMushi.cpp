@@ -237,13 +237,13 @@ Obj::Obj()
 
 	mEfxHamon = new efx::TUmiHamon(&mHamonPosition);
 
-	mEfxWeakRed  = new efx::TUmiWeakRed;
-	mEfxWeakBlue = new efx::TUmiWeakBlue;
+	mEfxWeakRed  = new efx::TChaseMtx2(nullptr, PID_UmiWeakRed_1, PID_UmiWeakRed_2);
+	mEfxWeakBlue = new efx::TChaseMtx2(nullptr, PID_UmiWeakBlue_1, PID_UmiWeakBlue_2);
 
-	mEfxEyeRed[0]  = new efx::TUmiEyeRed;
-	mEfxEyeBlue[0] = new efx::TUmiEyeBlue;
-	mEfxEyeRed[1]  = new efx::TUmiEyeRed;
-	mEfxEyeBlue[1] = new efx::TUmiEyeBlue;
+	mEfxEyeRed[0]  = new efx::TChaseMtx2(nullptr, PID_UmiEyeRed_1, PID_UmiEyeRed_2);
+	mEfxEyeBlue[0] = new efx::TChaseMtx2(nullptr, PID_UmiEyeBlue_1, PID_UmiEyeBlue_2);
+	mEfxEyeRed[1]  = new efx::TChaseMtx2(nullptr, PID_UmiEyeRed_1, PID_UmiEyeRed_2);
+	mEfxEyeBlue[1] = new efx::TChaseMtx2(nullptr, PID_UmiEyeBlue_1, PID_UmiEyeBlue_2);
 
 	mEfxEat    = new efx::TUmiEat;
 	mEfxBubble = new efx::TUmiDeadawa;

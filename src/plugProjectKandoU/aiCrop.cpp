@@ -24,14 +24,8 @@ ActCrop::ActCrop(Game::Piki* parent)
  */
 void ActCrop::init(ActionArg* arg)
 {
-	bool isCropArg = false;
-	if (arg) {
-		bool strCheck = strcmp("ActCropArg", arg->getName()) == 0;
-		if (strCheck) {
-			isCropArg = true;
-		}
-	}
-	P2ASSERTLINE(69, isCropArg);
+
+	P2ASSERTLINE(69, arg);
 
 	ActCropArg* cropArg = static_cast<ActCropArg*>(arg);
 

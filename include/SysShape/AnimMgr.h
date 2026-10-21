@@ -3,7 +3,6 @@
 
 #include "CNode.h"
 #include "SysShape/AnimInfo.h"
-#include "PSGame/SoundCreatureMgr.h"
 
 struct JKRFileLoader;
 
@@ -27,7 +26,6 @@ struct AnimMgr : public CNode {
 	void load(Stream&, J3DModelData*, JKRFileLoader*, char*);
 	void read(Stream&);
 	void connectBasArc(char*, char*, JKRFileLoader*);
-	void registerSoundViewer(PSGame::SoundCreatureMgr*);
 
 	static AnimMgr* load(char* path, J3DModelData* modelData, JKRFileLoader* fileLoader);
 	static AnimMgr* load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*);

@@ -528,7 +528,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 			deathMgr->inc(DeathCounter::COD_Battle); // getting sent to hell would get you into valhalla in P2
 		}
 
-		if (hellArg.mIsKillPiki) {
+		if (hellArg.mIsKillPiki && !isNavi()) { // EB softlock fixed
 			kill(nullptr);
 		}
 

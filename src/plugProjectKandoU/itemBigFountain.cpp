@@ -282,8 +282,8 @@ void Item::onInit(CreatureInitArg* initArg)
 	mAnimator.startAnim(0, this);
 
 	mHealth       = mgr->mParms->mFountainParms.mHealth.mValue;
-	mEfxGeyserAct = new efx::TGeyserAct();
-	mEfxGeyserSet = new efx::TGeyserSet();
+	mEfxGeyserAct = new efx::TForever3(PID_GeyserAct_1, PID_GeyserAct_2, PID_GeyserAct_3);
+	mEfxGeyserSet = new efx::TForever2(PID_GeyserSet_1, PID_GeyserSet_2);
 
 	InitArg* fountainArg = static_cast<InitArg*>(initArg);
 	if (fountainArg) {

@@ -425,7 +425,7 @@ void TVsSelectOnyon::draw()
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_2PTOP_ONY_ENTER, 0);
 			Vector2f pos(mCurrentPosition.x - 16.0f, mCurrentPosition.y - 16.0f);
 			efx2d::Arg arg(pos);
-			efx2d::T2DBattleDive efx;
+			efx2d::TSimple3 efx(PID_BattleDive_1, PID_BattleDive_2, PID_BattleDive_3);
 			efx.create(&arg);
 		}
 	}

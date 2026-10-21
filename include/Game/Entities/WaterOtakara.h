@@ -35,7 +35,7 @@ struct Obj : public OtakaraBase::Obj {
 
 	// _00 		= VTBL
 	// _00-_2F4 = OtakaraBase::Obj
-	efx::TOtaChargewat* mEfxChargeWater; // _2F4
+	efx::TChaseMtxT2* mEfxChargeWater; // _2F4
 };
 
 struct Mgr : public OtakaraBase::Mgr {

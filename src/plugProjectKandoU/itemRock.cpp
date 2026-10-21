@@ -233,9 +233,9 @@ void Item::onInit(CreatureInitArg* initArg)
 	mModel->mJ3dModel->makeDL();
 	mModel->mJ3dModel->lock();
 
-	mEfxKouhaiSmall  = new efx::TKouhai1;
-	mEfxKouhaiMedium = new efx::TKouhai2;
-	mEfxKouhaiMax    = new efx::TKouhai3;
+	mEfxKouhaiSmall  = new efx::TForever2(PID_Kouhai1_1, PID_Kouhai1_2);
+	mEfxKouhaiMedium = new efx::TForever2(PID_Kouhai2_1, PID_Kouhai2_2);
+	mEfxKouhaiMax    = new efx::TForever2(PID_Kouhai3_1, PID_Kouhai3_2);
 
 	mAnimSpeed         = 30.0f;
 	mAnimator.mAnimMgr = mgr->mAnimMgr;
@@ -349,7 +349,7 @@ void Item::finishLoopEffect()
  */
 void Item::startFukuEffect(Vector3f& fxPos)
 {
-	efx::TKouhaiFuku fukuFX;
+	efx::TSimple2 fukuFX(PID_KouhaiFuku_1, PID_KouhaiFuku_2);
 	efx::Arg fxArg(fxPos);
 	fukuFX.create(&fxArg);
 

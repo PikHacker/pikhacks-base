@@ -80,7 +80,7 @@ struct BgmTrackMapFile : public ::PSSystem::TextDataBase, public ::PSSystem::Sin
 	virtual ~BgmTrackMapFile() { }    // _08 (weak)
 	virtual bool read(Stream& input); // _0C
 
-	BgmTrackMap readTrackMap(const char*);
+	BgmTrackMap& readTrackMap(const char*);
 
 	// _00     = VTBL 1
 	// _1C     = VTBL 2

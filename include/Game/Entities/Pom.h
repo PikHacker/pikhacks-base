@@ -94,12 +94,12 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mNormalMaxSlots(this, 'ip01', "吸い込みピキ数(pom)", 5, 1, 50)           // 'sucking piki number (pom)'
-		    , mQueenMaxSlots(this, 'ip11', "吸い込みピキ数(pop)", 1, 1, 50)            // 'sucking piki number (pop)'
-		    , mQueenShotMultiplier(this, 'ip13', "吐き出し倍数(pop)", 5, 1, 50)        // 'spitting multiple (pop)'
-		    , mRemainOpenTime(this, 'fp01', "開花時間", 30.0f, 0.0f, 60.0f)            // 'flowering time'
-		    , mColorChangeTime(this, 'fp02', "色換え時間", 1.25f, 0.0f, 60.0f)         // 'color change time'
-		    , mBlackWhiteAppearanceRate(this, 'fp03', "白黒出現率", 0.15f, 0.0f, 1.0f) // 'black and white appearance rate'
+		    , mNormalMaxSlots(this, 'ip01', 5, 1, 50)                    // 'sucking piki number (pom)'
+		    , mQueenMaxSlots(this, 'ip11', 1, 1, 50)                     // 'sucking piki number (pop)'
+		    , mQueenShotMultiplier(this, 'ip13', 5, 1, 50)               // 'spitting multiple (pop)'
+		    , mRemainOpenTime(this, 'fp01', 30.0f, 0.0f, 60.0f)          // 'flowering time'
+		    , mColorChangeTime(this, 'fp02', 1.25f, 0.0f, 60.0f)         // 'color change time'
+		    , mBlackWhiteAppearanceRate(this, 'fp03', 0.15f, 0.0f, 1.0f) // 'black and white appearance rate'
 		{
 		}
 

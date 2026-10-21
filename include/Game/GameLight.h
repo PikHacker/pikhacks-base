@@ -178,7 +178,7 @@ struct GameLightSpotSetting : public CNode {
 	struct MoveParms : public Parameters {
 		inline MoveParms()
 		    : Parameters(nullptr, "MoveParms")
-		    , mDistance(this, 'f000', "光源までの距離", 1000.0f, 0.0f, 30000.0f) // 'distance to light source'
+		    , mDistance(this, 'f000', 1000.0f, 0.0f, 30000.0f) // 'distance to light source'
 		{
 		}
 
@@ -220,9 +220,9 @@ struct GameLightSunSetting : public CNode {
 	struct MoveParms : public Parameters {
 		inline MoveParms()
 		    : Parameters(nullptr, "MoveParms")
-		    , mDistance(this, 'f000', "光源までの距離", 20000.0f, 0.0f, 30000.0f) // 'distance to light source'
-		    , mSunriseAngle(this, 'f001', "日の出角度", 20.0f, 0.0f, 360.0f)      // 'sunrise angle'
-		    , mSunsetAngle(this, 'f002', "日の入角度", 160.0f, 0.0f, 360.0f)      // 'sunset angle'
+		    , mDistance(this, 'f000', 20000.0f, 0.0f, 30000.0f) // 'distance to light source'
+		    , mSunriseAngle(this, 'f001', 20.0f, 0.0f, 360.0f)  // 'sunrise angle'
+		    , mSunsetAngle(this, 'f002', 160.0f, 0.0f, 360.0f)  // 'sunset angle'
 		{
 		}
 

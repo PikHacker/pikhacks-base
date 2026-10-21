@@ -112,7 +112,7 @@ bool MiniHoudaiShotGunNode::update()
 		if (wbox) {
 			effectPos.y = *wbox->getSeaHeightPtr();
 			efx::Arg fxArg(effectPos);
-			efx::THdamaHit3 hitFX;
+			efx::TSimple4 hitFX(PID_HDamaHit3_1, PID_HDamaHit3_2, PID_HDamaHit3_3, PID_HDamaHit3_4);
 			hitFX.create(&fxArg);
 			PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_L, (Vec*)&mPosition);
 
@@ -288,7 +288,7 @@ MiniHoudaiShotGunMgr::MiniHoudaiShotGunMgr(Obj* obj)
 
 	for (int i = 0; i < 6; i++) {
 		MiniHoudaiShotGunNode* node = new MiniHoudaiShotGunNode(mOwner);
-		node->mEfxShell             = new efx::TChibiShell;
+		node->mEfxShell             = new efx::TChasePos(PID_ChibiShell);
 		node->mPosition             = Vector3f::zero;
 		node->mVelocity             = Vector3f::zero;
 		mInactiveNodes->add(node);
@@ -436,7 +436,7 @@ void MiniHoudaiShotGunMgr::emitShotGun()
 
 		mActiveNodes->add(node);
 	}
-	efx::TChibiShoot shootFX(mHeadMtx);
+	efx::TSimpleMtx3 shootFX(mHeadMtx, PID_ChibiShoot_1, PID_ChibiShoot_2, PID_ChibiShoot_3);
 	shootFX.create(nullptr);
 }
 

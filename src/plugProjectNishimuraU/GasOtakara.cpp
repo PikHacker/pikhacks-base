@@ -51,7 +51,7 @@ void Obj::interactCreature(Creature* creature)
  */
 void Obj::createEffect()
 {
-	mEfxChargeGas = new efx::TOtaChargegas;
+	mEfxChargeGas = new efx::TChaseMtxT2(0, PID_OtaChargegas_1, PID_OtaChargegas_2);
 }
 
 /**
@@ -89,8 +89,8 @@ void Obj::finishChargeEffect()
 void Obj::createDisChargeEffect()
 {
 	efx::Arg fxArg(mPosition);
-	efx::TOtaGas dischargeFX;
-	dischargeFX.create(&fxArg);
+	efx::TSimple2 fx(PID_OtaGas_1, PID_OtaGas_2);
+	fx.create(&fxArg);
 }
 
 /**

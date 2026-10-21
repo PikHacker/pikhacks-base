@@ -127,11 +127,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mTakeOffHealthRatio(this, 'fp01', "離陸ライフ", 0.5f, 0.0f, 1.0f)  // 'takeoff life'
-		    , mLandHealthRatio(this, 'fp02', "着陸ライフ", 0.7f, 0.0f, 1.0f)     // 'landing life'
-		    , mFlightHeight(this, 'fp03', "飛行オフセット", 60.0f, 0.0f, 300.0f) // 'flight offset'
-		    , mPoisonDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 10000.0f)  // 'white pikmin'
-		    , mBridgeDamage(this, 'fp12', "橋食いパワー", 75.0f, 0.0f, 100.0f)   // 'bridge eating power'
+		    , mTakeOffHealthRatio(this, 'fp01', 0.5f, 0.0f, 1.0f) // 'takeoff life'
+		    , mLandHealthRatio(this, 'fp02', 0.7f, 0.0f, 1.0f)    // 'landing life'
+		    , mFlightHeight(this, 'fp03', 60.0f, 0.0f, 300.0f)    // 'flight offset'
+		    , mPoisonDamage(this, 'fp11', 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mBridgeDamage(this, 'fp12', 75.0f, 0.0f, 100.0f)    // 'bridge eating power'
 		{
 		}
 

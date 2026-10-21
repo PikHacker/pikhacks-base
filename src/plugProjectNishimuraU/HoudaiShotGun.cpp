@@ -49,7 +49,7 @@ HoudaiShotGunNode::HoudaiShotGunNode(Obj* owner)
  * @note Size: 0xE8
  */
 void HoudaiShotGunNode::create()
-{	                                        // UNUSED/INLINED
+{ // UNUSED/INLINED
 }
 
 /**
@@ -118,17 +118,17 @@ bool HoudaiShotGunNode::update()
 		if (wbox) {
 			effectPos.y = *wbox->getSeaHeightPtr();
 			efx::Arg fxArg(effectPos);
-			efx::THdamaHit3 hitFX;
+			efx::TSimple4 hitFX(PID_HDamaHit3_1, PID_HDamaHit3_2, PID_HDamaHit3_3, PID_HDamaHit3_4);
 			hitFX.create(&fxArg);
 
 		} else if (moveInfo.mFloorTriangle) {
 			if (moveInfo.mMapCode.getAttribute() == (MapCode::Code::Attribute2 + MapCode::Code::Attribute3)) {
 				efx::Arg fxArg(effectPos);
-				efx::THdamaHit2 hitFX;
+				efx::TSimple4 hitFX(PID_HDamaHit2_1, PID_HDamaHit2_2, PID_HDamaHit2_3, PID_HDamaShootA);
 				hitFX.create(&fxArg);
 			} else {
 				efx::Arg fxArg(effectPos);
-				efx::THdamaHit1 hitFX;
+				efx::TSimple5 hitFX(PID_HDamaHit1_1, PID_HDamaHit1_2, PID_HDamaHit1_3, PID_HDamaHit1_4, PID_HDamaShootA);
 				hitFX.create(&fxArg);
 			}
 
@@ -403,7 +403,7 @@ void HoudaiShotGunMgr::emitShotGun()
 
 	mActiveNodes->add(node);
 
-	efx::THdamaShoot shootFX(mGunMtx);
+	efx::TSimpleMtx3 shootFX(mGunMtx, PID_HDamaShoot_1, PID_HDamaShoot_2, PID_HDamaShoot_3);
 	shootFX.create(nullptr);
 }
 

@@ -11,10 +11,10 @@ struct GameLightSettingBase {
 	struct Settings : public Parameters {
 		inline Settings()
 		    : Parameters(nullptr, "ColorParms")
-		    , mRed(this, 'u800', "赤", 127, 0, 255)
-		    , mGreen(this, 'u801', "緑", 127, 0, 255)
-		    , mBlue(this, 'u802', "青", 127, 0, 255)
-		    , mAlpha(this, 'u803', "アルファ", 255, 0, 255)
+		    , mRed(this, 'u800', 127, 0, 255)
+		    , mGreen(this, 'u801', 127, 0, 255)
+		    , mBlue(this, 'u802', 127, 0, 255)
+		    , mAlpha(this, 'u803', 255, 0, 255)
 		{
 		}
 
@@ -58,10 +58,10 @@ struct GameFogSetting {
 	struct Settings : public Parameters {
 		inline Settings()
 		    : Parameters(nullptr, "ColorParms")
-		    , mRed(this, 'u800', "赤", 127, 0, 255)
-		    , mGreen(this, 'u801', "緑", 127, 0, 255)
-		    , mBlue(this, 'u802', "青", 127, 0, 255)
-		    , mAlpha(this, 'u803', "アルファ", 255, 0, 255)
+		    , mRed(this, 'u800', 127, 0, 255)
+		    , mGreen(this, 'u801', 127, 0, 255)
+		    , mBlue(this, 'u802', 127, 0, 255)
+		    , mAlpha(this, 'u803', 255, 0, 255)
 		{
 		}
 
@@ -74,8 +74,8 @@ struct GameFogSetting {
 	struct GameFogParms : public Parameters {
 		inline GameFogParms()
 		    : Parameters(nullptr, "GameFogParms")
-		    , mStartZ(this, 'f000', "開始z値", 1000.0f, 0.0f, 15000.0f)
-		    , mEndZ(this, 'f001', "終了z値", 15000.0f, 0.0f, 15000.0f)
+		    , mStartZ(this, 'f000', 1000.0f, 0.0f, 15000.0f)
+		    , mEndZ(this, 'f001', 15000.0f, 0.0f, 15000.0f)
 		{
 		}
 
@@ -124,10 +124,10 @@ struct GameShadowSetting {
 	struct Settings : public Parameters {
 		inline Settings()
 		    : Parameters(nullptr, "ColorParms")
-		    , mRed(this, 'u800', "赤", 127, 0, 255)
-		    , mGreen(this, 'u801', "緑", 127, 0, 255)
-		    , mBlue(this, 'u802', "青", 127, 0, 255)
-		    , mAlpha(this, 'u803', "アルファ", 255, 0, 255)
+		    , mRed(this, 'u800', 127, 0, 255)
+		    , mGreen(this, 'u801', 127, 0, 255)
+		    , mBlue(this, 'u802', 127, 0, 255)
+		    , mAlpha(this, 'u803', 255, 0, 255)
 		{
 		}
 
@@ -178,7 +178,7 @@ struct GameSpotLightSetting : public GameLightSettingBase {
 	struct SpotParms : public Parameters {
 		inline SpotParms()
 		    : Parameters(nullptr, "SpotParms")
-		    , mCutOff(this, 'f000', "カットオフ", 60.0f, 0.0f, 90.0f)
+		    , mCutOff(this, 'f000', 60.0f, 0.0f, 90.0f)
 		{
 		}
 

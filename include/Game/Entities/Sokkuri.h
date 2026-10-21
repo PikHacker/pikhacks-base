@@ -34,16 +34,16 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mMaxTravelTime(this, 'fp01', "移動時間最大", 1.0f, 0.0f, 10.0f)                   // 'maximum travel time'
-		    , mMinTravelTime(this, 'fp02', "移動時間最小", 0.0f, 0.0f, 10.0f)                   // 'minimum travel time'
-		    , mMaxMoveAngle(this, 'fp03', "移動角度最大", 90.0f, 0.0f, 180.0f)                  // 'maximum moving angle'
-		    , mMinMoveAngle(this, 'fp04', "移動角度最小", 45.0f, 0.0f, 180.0f)                  // 'minimum moving angle'
-		    , mWaitingProbability(this, 'fp11', "待機確率", 0.25f, 0.0f, 1.0f)                  // 'waiting probability'
-		    , mMaxWaitingTime(this, 'fp12', "待機時間最大", 2.0f, 0.0f, 10.0f)                  // 'maximum waiting time'
-		    , mMinWaitingTime(this, 'fp13', "待機時間最小", 1.0f, 0.0f, 10.0f)                  // 'minimum waiting time'
-		    , mUnderwaterMoveSpeed(this, 'fp21', "水中移動速度", 25.0f, 0.0f, 1000.0f)          // 'underwater movement speed'
-		    , mUnderwaterRotationRate(this, 'fp22', "水中回転速度率", 0.05f, 0.0f, 1.0f)        // 'underwater rotation rate'
-		    , mUnderwaterRotationMaxSpeed(this, 'fp23', "水中回転最大速度", 1.0f, 0.0f, 360.0f) // 'underwater rotation maximum speed'
+		    , mMaxTravelTime(this, 'fp01', 1.0f, 0.0f, 10.0f)               // 'maximum travel time'
+		    , mMinTravelTime(this, 'fp02', 0.0f, 0.0f, 10.0f)               // 'minimum travel time'
+		    , mMaxMoveAngle(this, 'fp03', 90.0f, 0.0f, 180.0f)              // 'maximum moving angle'
+		    , mMinMoveAngle(this, 'fp04', 45.0f, 0.0f, 180.0f)              // 'minimum moving angle'
+		    , mWaitingProbability(this, 'fp11', 0.25f, 0.0f, 1.0f)          // 'waiting probability'
+		    , mMaxWaitingTime(this, 'fp12', 2.0f, 0.0f, 10.0f)              // 'maximum waiting time'
+		    , mMinWaitingTime(this, 'fp13', 1.0f, 0.0f, 10.0f)              // 'minimum waiting time'
+		    , mUnderwaterMoveSpeed(this, 'fp21', 25.0f, 0.0f, 1000.0f)      // 'underwater movement speed'
+		    , mUnderwaterRotationRate(this, 'fp22', 0.05f, 0.0f, 1.0f)      // 'underwater rotation rate'
+		    , mUnderwaterRotationMaxSpeed(this, 'fp23', 1.0f, 0.0f, 360.0f) // 'underwater rotation maximum speed'
 		{
 		}
 

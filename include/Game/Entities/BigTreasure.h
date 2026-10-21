@@ -229,49 +229,49 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                                  // _2BC
-	f32 mStateTimer;                            // _2C0
-	f32 mAttackLimitTimer;                      // _2C4
-	StateID mNextState;                         // _2C8
-	Vector3f mTargetPosition;                   // _2CC
-	f32 mShadowScale;                           // _2D8
-	bool mIsFastMatAnim;                        // _2DC
-	bool mIsWeaponAttacked[0x4];                // _2DD, used to determine if the weapon should shake
-	IKSystemMgr* mIkSystemMgr;                  // _2E4
-	IKSystemParms* mIkSystemParms;              // _2E8
-	BigTreasureGroundCallBack* mGroundCallBack; // _2EC
-	BigTreasureShadowMgr* mShadowMgr;           // _2F0
-	BigTreasureAttackMgr* mAttackMgr;           // _2F4
-	Vector3f mKosiJointPos;                     // _2F8
-	Vector3f mJointPositions[4][4];             // _304
-	Pellet* mTreasures[4];                      // _3C4, elec / fire / gas / water
-	Pellet* mLouie;                             // _3D4, King of Bugs
-	f32 mTreasureHealth[4];                     // _3D8, elec / fire / gas / water
-	f32 mTreasureShakeAngle[4];                 // _3E8, used to make treasures shake while being attacked
-	CollPart* mTreasureCollParts[4];            // _3F8, elec / fire / gas / water
-	int mAttackIndex;                           // _408, see AttackID enum
-	J3DGXColorS10 mTargetMatBodyColor;          // _40C
-	J3DGXColorS10 mCurrMatBodyColor;            // _414
-	int mTargetEyeColorIdx;                     // _41C, 0 = going to dark, 1 = going to light (indexes _438, _45C)
-	f32 mClusterEyeAnimSpeeds[3];               // _420, r=0, g=1, b=2
-	f32 mSideEyeAnimSpeeds[3];                  // _42C, r=0, g=1, b=2
-	EyeColor mTargetClusterEyeColor[2];         // _438, 0 = dark, 1 = light, bounces between
-	EyeColor mCurrClusterEyeColor;              // _450
-	EyeColor mTargetSideEyeColor[2];            // _45C, 0 = dark, 1 = light, bounces between
-	EyeColor mCurrSideEyeColor;                 // _474
-	efx::TOootaFoot* mFootFX[4];                // _480
-	efx::TDamaFootw* mFootWFX[4];               // _490
-	efx::TDamaSmoke* mTreasureSmokeFX[4];       // _4A0
-	efx::TOootaStartBody* mStartBodyFX;         // _4B0
-	efx::TOootaStartOta* mStartTreasureFX[4];   // _4B4
-	efx::TOootaStartLeg* mStartLegFX[4][3];     // _4C4
-	efx::TOootaDeadLeg* mDeadLegFX[4][4];       // _4F4, leg bubble effect on death
-	efx::TOootaDeadBody* mDeadBodyFX;           // _534, body bubble effect on death
-	efx::TOootaDeadAwa* mDeadAwaFX;             // _538, mouth bubble effect on death
-	efx::TOootaChangeLeg* mChangeLegFX[4][4];   // _53C
-	efx::TOootaChangeBody* mChangeBodyFX;       // _57C
-	efx::TOootaParticle* mShineParticleFX;      // _580
-	                                            // _584 = PelletView
+	FSM* mFsm;                                        // _2BC
+	f32 mStateTimer;                                  // _2C0
+	f32 mAttackLimitTimer;                            // _2C4
+	StateID mNextState;                               // _2C8
+	Vector3f mTargetPosition;                         // _2CC
+	f32 mShadowScale;                                 // _2D8
+	bool mIsFastMatAnim;                              // _2DC
+	bool mIsWeaponAttacked[0x4];                      // _2DD, used to determine if the weapon should shake
+	IKSystemMgr* mIkSystemMgr;                        // _2E4
+	IKSystemParms* mIkSystemParms;                    // _2E8
+	BigTreasureGroundCallBack* mGroundCallBack;       // _2EC
+	BigTreasureShadowMgr* mShadowMgr;                 // _2F0
+	BigTreasureAttackMgr* mAttackMgr;                 // _2F4
+	Vector3f mKosiJointPos;                           // _2F8
+	Vector3f mJointPositions[4][4];                   // _304
+	Pellet* mTreasures[4];                            // _3C4, elec / fire / gas / water
+	Pellet* mLouie;                                   // _3D4, King of Bugs
+	f32 mTreasureHealth[4];                           // _3D8, elec / fire / gas / water
+	f32 mTreasureShakeAngle[4];                       // _3E8, used to make treasures shake while being attacked
+	CollPart* mTreasureCollParts[4];                  // _3F8, elec / fire / gas / water
+	int mAttackIndex;                                 // _408, see AttackID enum
+	J3DGXColorS10 mTargetMatBodyColor;                // _40C
+	J3DGXColorS10 mCurrMatBodyColor;                  // _414
+	int mTargetEyeColorIdx;                           // _41C, 0 = going to dark, 1 = going to light (indexes _438, _45C)
+	f32 mClusterEyeAnimSpeeds[3];                     // _420, r=0, g=1, b=2
+	f32 mSideEyeAnimSpeeds[3];                        // _42C, r=0, g=1, b=2
+	EyeColor mTargetClusterEyeColor[2];               // _438, 0 = dark, 1 = light, bounces between
+	EyeColor mCurrClusterEyeColor;                    // _450
+	EyeColor mTargetSideEyeColor[2];                  // _45C, 0 = dark, 1 = light, bounces between
+	EyeColor mCurrSideEyeColor;                       // _474
+	efx::TChasePos2* mFootFX[4];                      // _480
+	efx::TChasePos* mFootWFX[4];                      // _490
+	efx::TChasePos* mTreasureSmokeFX[4];              // _4A0
+	efx::TChaseMtx* mStartBodyFX;                     // _4B0
+	efx::TChaseMtxT* mStartTreasureFX[4];             // _4B4
+	efx::TChasePosPosLocalYScale* mStartLegFX[4][3];  // _4C4
+	efx::TChasePosPosLocalYScale3* mDeadLegFX[4][4];  // _4F4, leg bubble effect on death
+	efx::TChaseMtx3* mDeadBodyFX;                     // _534, body bubble effect on death
+	efx::TChaseMtx* mDeadAwaFX;                       // _538, mouth bubble effect on death
+	efx::TChasePosPosLocalYScale* mChangeLegFX[4][4]; // _53C
+	efx::TChaseMtx* mChangeBodyFX;                    // _57C
+	efx::TOootaParticle* mShineParticleFX;            // _580
+	                                                  // _584 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -302,80 +302,80 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mBaseFactor(this, 'fp01', "ベース係数", 3.0f, 0.0f, 10.0f)                   // 'base factor'
-		    , mRaiseDecelFactor(this, 'fp02', "上げ減速係数", -0.2f, -5.0f, 5.0f)          // 'raising deceleration factor'
-		    , mDownwardDecelFactor(this, 'fp03', "下げ加速係数", 0.5f, -5.0f, 5.0f)        // 'downward acceleration factor'
-		    , mMinReducedAccelFactor(this, 'fp04', "最低減加速係数", -2.0f, -10.0f, 10.0f) // 'min reduced acceleration factor'
-		    , mMaxDecelAccelFactor(this, 'fp05', "最高減加速係数", 10.0f, -10.0f, 10.0f)   // 'max deceleration acceleration factor'
-		    , mLegSwing(this, 'fp06', "足の振り上げ", 120.0f, 0.0f, 200.0f)                // 'leg swing'
-		    , mElectricityWaitTime(this, 'fp10', "予備時間(電気)", 2.5f, 0.0f, 10.0f)      // 'wait time (electricity)'
-		    , mFireWaitTime1(this, 'fp11', "予備時間(火:1)", 2.8f, 0.0f, 10.0f)            // 'wait time (fire:1)'
-		    , mFireWaitTime2(this, 'fp31', "予備時間(火:2)", 2.5f, 0.0f, 10.0f)            // 'wait time (fire:2)'
-		    , mGasWaitTime(this, 'fp12', "予備時間(ガス)", 2.5f, 0.0f, 10.0f)              // 'wait time (gas)'
-		    , mWaterWaitTime(this, 'fp13', "予備時間(水)", 2.5f, 0.0f, 10.0f)              // 'wait time (water)'
-		    , mElecAttackTimeMax(this, 'fp20', "攻撃時間(電気)", 5.0f, 0.0f, 10.0f)        // 'attack time (electricity)'
-		    , mFireAttackTimeMax(this, 'fp21', "攻撃時間(火)", 5.0f, 0.0f, 10.0f)          // 'attack time (fire)'
-		    , mGasAttackTimeMax(this, 'fp22', "攻撃時間(ガス)", 5.0f, 0.0f, 10.0f)         // 'attack time (gas)'
-		    , mWaterAttackTimeMax(this, 'fp23', "攻撃時間(水)", 5.0f, 0.0f, 10.0f)         // 'attack time (water)'
+		    , mBaseFactor(this, 'fp01', 3.0f, 0.0f, 10.0f)               // 'base factor'
+		    , mRaiseDecelFactor(this, 'fp02', -0.2f, -5.0f, 5.0f)        // 'raising deceleration factor'
+		    , mDownwardDecelFactor(this, 'fp03', 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
+		    , mMinReducedAccelFactor(this, 'fp04', -2.0f, -10.0f, 10.0f) // 'min reduced acceleration factor'
+		    , mMaxDecelAccelFactor(this, 'fp05', 10.0f, -10.0f, 10.0f)   // 'max deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', 120.0f, 0.0f, 200.0f)              // 'leg swing'
+		    , mElectricityWaitTime(this, 'fp10', 2.5f, 0.0f, 10.0f)      // 'wait time (electricity)'
+		    , mFireWaitTime1(this, 'fp11', 2.8f, 0.0f, 10.0f)            // 'wait time (fire:1)'
+		    , mFireWaitTime2(this, 'fp31', 2.5f, 0.0f, 10.0f)            // 'wait time (fire:2)'
+		    , mGasWaitTime(this, 'fp12', 2.5f, 0.0f, 10.0f)              // 'wait time (gas)'
+		    , mWaterWaitTime(this, 'fp13', 2.5f, 0.0f, 10.0f)            // 'wait time (water)'
+		    , mElecAttackTimeMax(this, 'fp20', 5.0f, 0.0f, 10.0f)        // 'attack time (electricity)'
+		    , mFireAttackTimeMax(this, 'fp21', 5.0f, 0.0f, 10.0f)        // 'attack time (fire)'
+		    , mGasAttackTimeMax(this, 'fp22', 5.0f, 0.0f, 10.0f)         // 'attack time (gas)'
+		    , mWaterAttackTimeMax(this, 'fp23', 5.0f, 0.0f, 10.0f)       // 'attack time (water)'
 
-		    , mBounceCoefficient1_1(this, 'fe00', "跳返係数(1-1)", 0.75f, 0.0f, 1.0f)         // 'bounce coefficient (1-1)'
-		    , mFrictionCoefficient1_1(this, 'fe01', "摩擦係数(1-1)", 0.65f, 0.0f, 1.0f)       // 'friction coefficient (1-1)'
-		    , mBaseMuzzleVelocityXZ1_1(this, 'fe02', "XZ初速Base(1-1)", 100.0f, 0.0f, 500.0f) // 'XZ initial velocity Base (1-1)'
-		    , mRandMuzzleVelocityXZ1_1(this, 'fe03', "XZ初速Rand(1-1)", 220.0f, 0.0f, 500.0f) // 'XZ initial velocity Rand (1-1)'
-		    , mBaseMuzzleVelocityY1_1(this, 'fe04', "Y初速Base(1-1)", 170.0f, 0.0f, 500.0f)   // 'Y initial velocity Base (1-1)'
-		    , mRandMuzzleVelocityY1_1(this, 'fe05', "Y初速Rand(1-1)", 200.0f, 0.0f, 500.0f)   // 'Y initial velocity Rand (1-1)'
-		    , mDischargeStart1_1(this, 'fe06', "放電開始(1-1)", 2.7f, 0.0f, 5.0f)             // 'discharge start (1-1)'
-		    , mChainInterval1_1(this, 'fe08', "連鎖間隔(1-1)", 0.02f, 0.0f, 1.0f)             // 'chain interval (1-1)'
-		    , mDischargeCount1_1(this, 'fe07', "放電数(1-1)", 10, 0, 16)                      // 'number of discharges (1-1)'
+		    , mBounceCoefficient1_1(this, 'fe00', 0.75f, 0.0f, 1.0f)       // 'bounce coefficient (1-1)'
+		    , mFrictionCoefficient1_1(this, 'fe01', 0.65f, 0.0f, 1.0f)     // 'friction coefficient (1-1)'
+		    , mBaseMuzzleVelocityXZ1_1(this, 'fe02', 100.0f, 0.0f, 500.0f) // 'XZ initial velocity Base (1-1)'
+		    , mRandMuzzleVelocityXZ1_1(this, 'fe03', 220.0f, 0.0f, 500.0f) // 'XZ initial velocity Rand (1-1)'
+		    , mBaseMuzzleVelocityY1_1(this, 'fe04', 170.0f, 0.0f, 500.0f)  // 'Y initial velocity Base (1-1)'
+		    , mRandMuzzleVelocityY1_1(this, 'fe05', 200.0f, 0.0f, 500.0f)  // 'Y initial velocity Rand (1-1)'
+		    , mDischargeStart1_1(this, 'fe06', 2.7f, 0.0f, 5.0f)           // 'discharge start (1-1)'
+		    , mChainInterval1_1(this, 'fe08', 0.02f, 0.0f, 1.0f)           // 'chain interval (1-1)'
+		    , mDischargeCount1_1(this, 'fe07', 10, 0, 16)                  // 'number of discharges (1-1)'
 
-		    , mBounceCoefficient1_2(this, 'fe10', "跳返係数(1-2)", 0.7f, 0.0f, 1.0f)          // 'bounce coefficient (1-2)'
-		    , mFrictionCoefficient1_2(this, 'fe11', "摩擦係数(1-2)", 0.65f, 0.0f, 1.0f)       // 'friction coefficient (1-2)'
-		    , mBaseMuzzleVelocityXZ1_2(this, 'fe12', "XZ初速Base(1-2)", 80.0f, 0.0f, 500.0f)  // 'XZ initial velocity Base (1-2)'
-		    , mRandMuzzleVelocityXZ1_2(this, 'fe13', "XZ初速Rand(1-2)", 250.0f, 0.0f, 500.0f) // 'XZ initial velocity Rand (1-2)'
-		    , mBaseMuzzleVelocityY1_2(this, 'fe14', "Y初速Base(1-2)", 350.0f, 0.0f, 500.0f)   // 'Y initial velocity Base (1-2)'
-		    , mRandMuzzleVelocityY1_2(this, 'fe15', "Y初速Rand(1-2)", 100.0f, 0.0f, 500.0f)   // 'Y initial velocity Rand (1-2)'
-		    , mDischargeStart1_2(this, 'fe16', "放電開始(1-2)", 4.5f, 0.0f, 5.0f)             // 'discharge start (1-2)'
-		    , mChainInterval1_2(this, 'fe18', "連鎖間隔(1-2)", 0.02f, 0.0f, 1.0f)             // 'chain interval (1-2)'
-		    , mDischargeCount1_2(this, 'fe17', "放電数(1-2)", 12, 0, 16)                      // 'number of discharges (1-2)'
+		    , mBounceCoefficient1_2(this, 'fe10', 0.7f, 0.0f, 1.0f)        // 'bounce coefficient (1-2)'
+		    , mFrictionCoefficient1_2(this, 'fe11', 0.65f, 0.0f, 1.0f)     // 'friction coefficient (1-2)'
+		    , mBaseMuzzleVelocityXZ1_2(this, 'fe12', 80.0f, 0.0f, 500.0f)  // 'XZ initial velocity Base (1-2)'
+		    , mRandMuzzleVelocityXZ1_2(this, 'fe13', 250.0f, 0.0f, 500.0f) // 'XZ initial velocity Rand (1-2)'
+		    , mBaseMuzzleVelocityY1_2(this, 'fe14', 350.0f, 0.0f, 500.0f)  // 'Y initial velocity Base (1-2)'
+		    , mRandMuzzleVelocityY1_2(this, 'fe15', 100.0f, 0.0f, 500.0f)  // 'Y initial velocity Rand (1-2)'
+		    , mDischargeStart1_2(this, 'fe16', 4.5f, 0.0f, 5.0f)           // 'discharge start (1-2)'
+		    , mChainInterval1_2(this, 'fe18', 0.02f, 0.0f, 1.0f)           // 'chain interval (1-2)'
+		    , mDischargeCount1_2(this, 'fe17', 12, 0, 16)                  // 'number of discharges (1-2)'
 
-		    , mBounceCoefficient2_1(this, 'fe20', "跳返係数(2-1)", 0.97f, 0.0f, 1.0f)        // 'bounce coefficient (2-1)'
-		    , mFrictionCoefficient2_1(this, 'fe21', "摩擦係数(2-1)", 0.75f, 0.0f, 1.0f)      // 'friction coefficient (2-1)'
-		    , mBaseMuzzleVelocityXZ2_1(this, 'fe22', "XZ初速Base(2-1)", 60.0f, 0.0f, 500.0f) // 'XZ initial velocity Base (2-1)'
-		    , mRandMuzzleVelocityXZ2_1(this, 'fe23', "XZ初速Rand(2-1)", 70.0f, 0.0f, 500.0f) // 'XZ initial velocity Rand (2-1)'
-		    , mBaseMuzzleVelocityY2_1(this, 'fe24', "Y初速Base(2-1)", 350.0f, 0.0f, 500.0f)  // 'Y initial velocity Base (2-1)'
-		    , mRandMuzzleVelocityY2_1(this, 'fe25', "Y初速Rand(2-1)", 100.0f, 0.0f, 500.0f)  // 'Y initial velocity Rand (2-1)'
-		    , mDischargeStart2_1(this, 'fe26', "放電開始(2-1)", 0.5f, 0.0f, 5.0f)            // 'discharge start (2-1)'
-		    , mChainInterval2_1(this, 'fe28', "連鎖間隔(2-1)", 0.25f, 0.0f, 1.0f)            // 'chain interval (2-1)'
-		    , mDischargeCount2_1(this, 'fe27', "放電数(2-1)", 8, 0, 16)                      // 'number of discharges (2-1)'
+		    , mBounceCoefficient2_1(this, 'fe20', 0.97f, 0.0f, 1.0f)      // 'bounce coefficient (2-1)'
+		    , mFrictionCoefficient2_1(this, 'fe21', 0.75f, 0.0f, 1.0f)    // 'friction coefficient (2-1)'
+		    , mBaseMuzzleVelocityXZ2_1(this, 'fe22', 60.0f, 0.0f, 500.0f) // 'XZ initial velocity Base (2-1)'
+		    , mRandMuzzleVelocityXZ2_1(this, 'fe23', 70.0f, 0.0f, 500.0f) // 'XZ initial velocity Rand (2-1)'
+		    , mBaseMuzzleVelocityY2_1(this, 'fe24', 350.0f, 0.0f, 500.0f) // 'Y initial velocity Base (2-1)'
+		    , mRandMuzzleVelocityY2_1(this, 'fe25', 100.0f, 0.0f, 500.0f) // 'Y initial velocity Rand (2-1)'
+		    , mDischargeStart2_1(this, 'fe26', 0.5f, 0.0f, 5.0f)          // 'discharge start (2-1)'
+		    , mChainInterval2_1(this, 'fe28', 0.25f, 0.0f, 1.0f)          // 'chain interval (2-1)'
+		    , mDischargeCount2_1(this, 'fe27', 8, 0, 16)                  // 'number of discharges (2-1)'
 
-		    , mBounceCoefficient2_2(this, 'fe30', "跳返係数(2-2)", 0.2f, 0.0f, 1.0f)          // 'bounce coefficient (2-2)'
-		    , mFrictionCoefficient2_2(this, 'fe31', "摩擦係数(2-2)", 0.985f, 0.0f, 1.0f)      // 'friction coefficient (2-2)'
-		    , mBaseMuzzleVelocityXZ2_2(this, 'fe32', "XZ初速Base(2-2)", 100.0f, 0.0f, 500.0f) // 'XZ initial velocity Base (2-2)'
-		    , mRandMuzzleVelocityXZ2_2(this, 'fe33', "XZ初速Rand(2-2)", 90.0f, 0.0f, 500.0f)  // 'XZ initial velocity Rand (2-2)'
-		    , mBaseMuzzleVelocityY2_2(this, 'fe34', "Y初速Base(2-2)", 70.0f, 0.0f, 500.0f)    // 'Y initial velocity Base (2-2)'
-		    , mRandMuzzleVelocityY2_2(this, 'fe35', "Y初速Rand(2-2)", 20.0f, 0.0f, 500.0f)    // 'Y initial velocity Rand (2-2)'
-		    , mDischargeStart2_2(this, 'fe36', "放電開始(2-2)", 0.2f, 0.0f, 5.0f)             // 'discharge start (2-2)'
-		    , mChainInterval2_2(this, 'fe38', "連鎖間隔(2-2)", 0.15f, 0.0f, 1.0f)             // 'chain interval (2-2)'
-		    , mDischargeCount2_2(this, 'fe37', "放電数(2-2)", 14, 0, 16)                      // 'number of discharges (2-2)'
+		    , mBounceCoefficient2_2(this, 'fe30', 0.2f, 0.0f, 1.0f)        // 'bounce coefficient (2-2)'
+		    , mFrictionCoefficient2_2(this, 'fe31', 0.985f, 0.0f, 1.0f)    // 'friction coefficient (2-2)'
+		    , mBaseMuzzleVelocityXZ2_2(this, 'fe32', 100.0f, 0.0f, 500.0f) // 'XZ initial velocity Base (2-2)'
+		    , mRandMuzzleVelocityXZ2_2(this, 'fe33', 90.0f, 0.0f, 500.0f)  // 'XZ initial velocity Rand (2-2)'
+		    , mBaseMuzzleVelocityY2_2(this, 'fe34', 70.0f, 0.0f, 500.0f)   // 'Y initial velocity Base (2-2)'
+		    , mRandMuzzleVelocityY2_2(this, 'fe35', 20.0f, 0.0f, 500.0f)   // 'Y initial velocity Rand (2-2)'
+		    , mDischargeStart2_2(this, 'fe36', 0.2f, 0.0f, 5.0f)           // 'discharge start (2-2)'
+		    , mChainInterval2_2(this, 'fe38', 0.15f, 0.0f, 1.0f)           // 'chain interval (2-2)'
+		    , mDischargeCount2_2(this, 'fe37', 14, 0, 16)                  // 'number of discharges (2-2)'
 
-		    , mPatternCheckFlame(this, 'fe99', "パターンチェック", 0, 0, 4)    // 'pattern check'
-		    , mFlameScale1(this, 'ff00', "火炎スケール(1)", 1.0f, 0.5f, 5.0f)  // 'flame scale (1)'
-		    , mFlameScale2(this, 'ff10', "火炎スケール(2)", 1.25f, 0.5f, 5.0f) // 'flame scale (2)'
+		    , mPatternCheckFlame(this, 'fe99', 0, 0, 4)     // 'pattern check'
+		    , mFlameScale1(this, 'ff00', 1.0f, 0.5f, 5.0f)  // 'flame scale (1)'
+		    , mFlameScale2(this, 'ff10', 1.25f, 0.5f, 5.0f) // 'flame scale (2)'
 
-		    , mPatternCheckRotation(this, 'fg99', "パターンチェック", 0, 0, 2)       // 'pattern check'
-		    , mRotationSpeed1(this, 'fg00', "回転スピード(1)", 0.015f, 0.01f, 0.03f) // 'rotation speed (1)'
-		    , mRotationSpeed2(this, 'fg10', "回転スピード(2)", 0.02f, 0.01f, 0.03f)  // 'rotation speed (2)'
-		    , mReversalTime2_1(this, 'fg30', "反転時間(2-1)", 30.0f, 0.0f, 30.0f)    // 'reversal time (2-1)'
-		    , mReversalTime2_2(this, 'fg40', "反転時間(2-2)", 2.0f, 0.0f, 30.0f)     // 'reversal time (2-2)'
+		    , mPatternCheckRotation(this, 'fg99', 0, 0, 2)        // 'pattern check'
+		    , mRotationSpeed1(this, 'fg00', 0.015f, 0.01f, 0.03f) // 'rotation speed (1)'
+		    , mRotationSpeed2(this, 'fg10', 0.02f, 0.01f, 0.03f)  // 'rotation speed (2)'
+		    , mReversalTime2_1(this, 'fg30', 30.0f, 0.0f, 30.0f)  // 'reversal time (2-1)'
+		    , mReversalTime2_2(this, 'fg40', 2.0f, 0.0f, 30.0f)   // 'reversal time (2-2)'
 
-		    , mPatternCheckWater(this, 'fg99', "パターンチェック", 0, 0, 3)            // 'pattern check'
-		    , mWaterDischargeInterval1(this, 'fw00', "放水間隔(1)", 0.5f, 0.1f, 1.0f)  // 'water discharge interval (1)'
-		    , mRandomAngle1(this, 'fw01', "ランダム角度(1)", 0.5f, 0.0f, 1.0f)         // 'random angle (1)'
-		    , mRandomDistance1(this, 'fw02', "ランダム距離(1)", 100.0f, 0.0f, 500.0f)  // 'random distance (1)'
-		    , mWaterDischargeInterval2(this, 'fw10', "放水間隔(2)", 0.25f, 0.1f, 1.0f) // 'water discharge interval (2)
-		    , mRandomAngle2(this, 'fw11', "ランダム角度(2)", 0.4f, 0.0f, 1.0f)         // 'random angle (2)'
-		    , mRandomDistance2(this, 'fw12', "ランダム距離(2)", 50.0f, 0.0f, 500.0f)   // 'random distance (2)'
-		    , mPatternCheck4(this, 'fw99', "パターンチェック", 0, 0, 2)                // 'pattern check'
+		    , mPatternCheckWater(this, 'fg99', 0, 0, 3)                 // 'pattern check'
+		    , mWaterDischargeInterval1(this, 'fw00', 0.5f, 0.1f, 1.0f)  // 'water discharge interval (1)'
+		    , mRandomAngle1(this, 'fw01', 0.5f, 0.0f, 1.0f)             // 'random angle (1)'
+		    , mRandomDistance1(this, 'fw02', 100.0f, 0.0f, 500.0f)      // 'random distance (1)'
+		    , mWaterDischargeInterval2(this, 'fw10', 0.25f, 0.1f, 1.0f) // 'water discharge interval (2)
+		    , mRandomAngle2(this, 'fw11', 0.4f, 0.0f, 1.0f)             // 'random angle (2)'
+		    , mRandomDistance2(this, 'fw12', 50.0f, 0.0f, 500.0f)       // 'random distance (2)'
+		    , mPatternCheck4(this, 'fw99', 0, 0, 2)                     // 'pattern check'
 		{
 		}
 
@@ -664,16 +664,16 @@ struct BigTreasureElecAttack : public CNode {
 
 	// _00      = VTBL
 	// _00-_18  = CNode
-	Obj* mOwner;                           // _18
-	BigTreasureAttackData* mAttackData;    // _1C
-	bool mIsVisibleNode;                   // _20, has spawned in overworld - first node doesn't spawn and stays in TD
-	Sys::Triangle* mFloorTri;              // _24
-	Vector3f mVelocity;                    // _28
-	Vector3f mPosition;                    // _34
-	BigTreasureElecAttack* mConnectedNode; // _40, next node in chain that was activated by this node
-	efx::TOootaElec* mEfxElec;             // _44
-	efx::TOootaElecparts* mEfxElecParts;   // _48
-	efx::TOootaPhouden* mEfxPhouden;       // _4C
+	Obj* mOwner;                             // _18
+	BigTreasureAttackData* mAttackData;      // _1C
+	bool mIsVisibleNode;                     // _20, has spawned in overworld - first node doesn't spawn and stays in TD
+	Sys::Triangle* mFloorTri;                // _24
+	Vector3f mVelocity;                      // _28
+	Vector3f mPosition;                      // _34
+	BigTreasureElecAttack* mConnectedNode;   // _40, next node in chain that was activated by this node
+	efx::TChasePosPosLocalZScale3* mEfxElec; // _44
+	efx::TChasePos* mEfxElecParts;           // _48
+	efx::TChasePos2* mEfxPhouden;            // _4C
 };
 
 struct BigTreasureFireAttack : public CNode {
@@ -739,7 +739,7 @@ struct BigTreasureWaterAttack : public CNode {
 	BigTreasureAttackData* mAttackData; // _1C
 	Vector3f mVelocity;                 // _20
 	Vector3f mPosition;                 // _2C
-	efx::TOootaWbomb* mEfxWaterBomb;    // _38
+	efx::TChasePos4* mEfxWaterBomb;     // _38
 };
 
 struct BigTreasureAttackMgr {
@@ -787,34 +787,34 @@ struct BigTreasureAttackMgr {
 	void startNewElecList();
 	void finishElecAttack();
 
-	bool mIsStartAttack[BIGATTACK_Count];          // _00
-	Obj* mObj;                                     // _04
-	f32 mAttackTimer1;                             // _08, used by all attacks
-	f32 mAttackTimer2;                             // _0C, used by gas (reverse rot) and elec (discharge)
-	CNode* mActiveFireList;                        // _10
-	CNode* mFireAttackNodes;                       // _14
-	efx::TOootaFire* mEfxFire;                     // _18
-	Vector3f mFireEmitDirection;                   // _1C
-	Vector3f mFireNodePosition[BIGFIRE_TypeCount]; // _28, indexed by BigTreasureFireTypes
-	CNode* mActiveGasList;                         // _4C
-	CNode* mGasAttackNodes;                        // _50
-	f32 mGasAttackAngles[4];                       // _54
-	Vector3f mGasEmitPosition;                     // _64
-	Vector3f mGasSePosition[4];                    // _70
-	efx::TOootaGas* mEfxGas[4];                    // _A0
-	CNode* mActiveWaterList;                       // _B0
-	CNode* mWaterAttackNodes;                      // _B4
-	efx::TOootaWbomb* mEfxWaterBomb;               // _B8
-	Vector3f mWaterEmitPosition;                   // _BC
-	CNode* mActiveElecList;                        // _C8
-	CNode* mElecAttackNodes;                       // _CC
-	efx::TOootaElecLeg* mEfxElecLeg[4][3];         // _D0
-	efx::TOootaElecAttack1* mEfxElecAttack1;       // _100
-	efx::TOootaElecAttack2* mEfxElecAttack2;       // _104
-	int mElecSENodeIDs[3];                         // _108
-	JointShadowRootNode* mShadowRootNode;          // _114
-	AttackShadowNode** mAttackShadowNodes;         // _118, array of 16 ptrs
-	BigTreasureAttackData* mAttackData;            // _11C
+	bool mIsStartAttack[BIGATTACK_Count];            // _00
+	Obj* mObj;                                       // _04
+	f32 mAttackTimer1;                               // _08, used by all attacks
+	f32 mAttackTimer2;                               // _0C, used by gas (reverse rot) and elec (discharge)
+	CNode* mActiveFireList;                          // _10
+	CNode* mFireAttackNodes;                         // _14
+	efx::TOootaFire* mEfxFire;                       // _18
+	Vector3f mFireEmitDirection;                     // _1C
+	Vector3f mFireNodePosition[BIGFIRE_TypeCount];   // _28, indexed by BigTreasureFireTypes
+	CNode* mActiveGasList;                           // _4C
+	CNode* mGasAttackNodes;                          // _50
+	f32 mGasAttackAngles[4];                         // _54
+	Vector3f mGasEmitPosition;                       // _64
+	Vector3f mGasSePosition[4];                      // _70
+	efx::TChasePosYRot2* mEfxGas[4];                 // _A0
+	CNode* mActiveWaterList;                         // _B0
+	CNode* mWaterAttackNodes;                        // _B4
+	efx::TChasePos4* mEfxWaterBomb;                  // _B8
+	Vector3f mWaterEmitPosition;                     // _BC
+	CNode* mActiveElecList;                          // _C8
+	CNode* mElecAttackNodes;                         // _CC
+	efx::TChasePosPosLocalZScale* mEfxElecLeg[4][3]; // _D0
+	efx::TChasePos* mEfxElecAttack1;                 // _100
+	efx::TChasePos2* mEfxElecAttack2;                // _104
+	int mElecSENodeIDs[3];                           // _108
+	JointShadowRootNode* mShadowRootNode;            // _114
+	AttackShadowNode** mAttackShadowNodes;           // _118, array of 16 ptrs
+	BigTreasureAttackData* mAttackData;              // _11C
 };
 /////////////////////////////////////////////////////////////////
 

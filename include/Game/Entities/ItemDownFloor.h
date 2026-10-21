@@ -191,8 +191,6 @@ struct Mgr : public TNodeItemMgr {
 	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
 	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
 	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual char* getCaveName(int);                                       // _BC
-	virtual int getCaveID(char*);                                         // _C0
 	virtual BaseItem* doNew() { return new Item; }                        // _A0 (weak)
 	virtual u32 generatorGetID() { return 'dwfl'; }                       // _58 (weak)
 	virtual u32 generatorLocalVersion() { return '0002'; }                // _68 (weak)

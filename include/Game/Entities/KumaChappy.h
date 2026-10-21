@@ -112,9 +112,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mPoisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f)          // eat white pikmin damage
-		    , mHealthGaugeTimer(this, 'fp11', "死亡 ～ ゲージ出現", 30.0f, 1.0f, 500.0f) // 'death ~ gauge appears`
-		    , mRespawnRate(this, 'fp12', "ゲージ出現 ～ 復活", 10.0f, 1.0f, 500.0f)      // 'gauge appears ~ revival'
+		    , mPoisonDamage(this, 'fp01', 300.0f, 0.0f, 10000.0f)  // eat white pikmin damage
+		    , mHealthGaugeTimer(this, 'fp11', 30.0f, 1.0f, 500.0f) // 'death ~ gauge appears`
+		    , mRespawnRate(this, 'fp12', 10.0f, 1.0f, 500.0f)      // 'gauge appears ~ revival'
 		{
 		}
 

@@ -475,8 +475,8 @@ struct Obj : public Kabuto::Obj {
 
 	// _00		= VTBL
 	// _00-_2E4 = Kabuto::Obj
-	efx::TKkabutoRot* mEfxRot;   // _2E4
-	efx::TKkabutoWait* mEfxWait; // _2E8
+	efx::TChasePos* mEfxRot;  // _2E4
+	efx::TChasePos* mEfxWait; // _2E8
 };
 
 struct Mgr : public Kabuto::Mgr {

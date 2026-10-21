@@ -761,13 +761,13 @@ void Obj::escapeCheckNavi()
  */
 void Obj::createEffect()
 {
-	mEfxEyeL    = new efx::TKurageEye();
-	mEfxEyeR    = new efx::TKurageEye();
+	mEfxEyeL    = new efx::TChaseMtx(PID_KurageEye, nullptr);
+	mEfxEyeR    = new efx::TChaseMtx(PID_KurageEye, nullptr);
 	mEfxHire    = new efx::TKurageHire();
-	mEfxKira    = new efx::TKurageKira(&mPosition);
+	mEfxKira    = new efx::TChasePos(PID_KurageKira, &mPosition);
 	mEfxSui     = new efx::TKurageSui();
-	mEfxGepu    = new efx::TKurageGepu(&mPosition);
-	mEfxDeadrun = new efx::TKurageDeadrun();
+	mEfxGepu    = new efx::TChasePos(PID_KurageGepu, &mPosition);
+	mEfxDeadrun = new efx::TChaseMtxT(PID_KurageDeadRun);
 }
 
 /**
@@ -873,7 +873,7 @@ void Obj::createBodyBombEffect()
 	Vector3f pos;
 	worldMat->getTranslation(pos);
 
-	efx::TKurageBomb bombFX;
+	efx::TSimple2 bombFX(PID_KurageBomb_1, PID_KurageBomb_2);
 	efx::Arg fxArg(pos);
 	bombFX.create(&fxArg);
 }

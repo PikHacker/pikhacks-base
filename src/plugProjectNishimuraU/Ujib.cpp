@@ -428,7 +428,7 @@ void Obj::breakTargetBridge()
 void Obj::createAppearEffect()
 {
 	Matrixf* worldMat = mModel->getJoint("ujinnko_o")->getWorldMatrix();
-	efx::TUjinkoAp appearFX(worldMat);
+	efx::TSimpleMtx2 appearFX(worldMat, PID_UjinkoAp_1, PID_UjinkoAp_2);
 	appearFX.create(nullptr);
 }
 
@@ -439,7 +439,7 @@ void Obj::createAppearEffect()
 void Obj::createDisAppearEffect()
 {
 	Matrixf* worldMat = mModel->getJoint("ujinnko_o")->getWorldMatrix();
-	efx::TUjinkoHd hideFX(worldMat);
+	efx::TSimpleMtx2 hideFX(worldMat, PID_UjinkoHd_1, PID_UjinkoHd_2);
 	hideFX.create(nullptr);
 }
 
@@ -451,7 +451,7 @@ void Obj::createBridgeEffect()
 {
 	Vector3f fxPos = mModel->getJoint("kamujnt")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(fxPos);
-	efx::TUjinkoEat eatFX;
+	efx::TSimple1 eatFX(PID_UjinkoEat);
 	eatFX.create(&fxArg);
 }
 
@@ -463,7 +463,7 @@ void Obj::createEatEffect()
 {
 	Vector3f fxPos = mModel->getJoint("kamujnt")->getWorldMatrix()->getColumn(3);
 	efx::Arg fxArg(fxPos);
-	efx::TUjinkoPkate eatFX;
+	efx::TSimple1 eatFX(PID_UjinkoPkate);
 	eatFX.create(&fxArg);
 }
 

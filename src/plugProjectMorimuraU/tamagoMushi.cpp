@@ -584,7 +584,7 @@ void Obj::ballMove()
 void Obj::createHideEffect()
 {
 	efx::Arg arg(mPosition);
-	efx::TUjinkoHd effect(mModel->mJoints->getWorldMatrix());
+	efx::TSimpleMtx2 effect(mModel->mJoints->getWorldMatrix(), PID_UjinkoHd_1, PID_UjinkoHd_2);
 	effect.create(&arg);
 }
 
@@ -595,7 +595,7 @@ void Obj::createHideEffect()
 void Obj::createAppearEffect()
 {
 	efx::Arg arg(mPosition);
-	efx::TTamagoAp effect(mModel->mJoints->getWorldMatrix());
+	efx::TSimpleMtx2 effect(mModel->mJoints->getWorldMatrix(), PID_TamagoAp_1, PID_TamagoAp_2);
 	effect.create(&arg);
 }
 

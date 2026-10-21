@@ -14,7 +14,7 @@
  */
 
 namespace efx {
-struct TFrogPota;
+struct TChasePos;
 } // namespace efx
 
 namespace Game {
@@ -90,7 +90,7 @@ struct Obj : public EnemyBase {
 	StateID mNextState;       // _2D4
 	bool mIsInAir;            // _2D8
 	bool mIsFalling;          // _2D9
-	efx::TFrogPota* mEfxPota; // _2DC
+	efx::TChasePos* mEfxPota; // _2DC
 	                          // _2E0 = PelletView
 };
 
@@ -114,10 +114,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "FrogParms")
-		    , mAirTime(this, 'fp01', "空中時間", 1.5f, 0.0f, 5.0f)            // 'air time'
-		    , mJumpSpeed(this, 'fp02', "ジャンプ速度", 400.0f, 0.0f, 1000.0f) // 'jump speed'
-		    , mJumpFailChance(this, 'fp03', "失敗確率", 0.2f, 0.0f, 1.0f)     // 'probability of failure'
-		    , mFallSpeed(this, 'fp04', "落下初速度", 300.0f, 0.0f, 500.0f)    // 'initial fall velocity'
+		    , mAirTime(this, 'fp01', 1.5f, 0.0f, 5.0f)        // 'air time'
+		    , mJumpSpeed(this, 'fp02', 400.0f, 0.0f, 1000.0f) // 'jump speed'
+		    , mJumpFailChance(this, 'fp03', 0.2f, 0.0f, 1.0f) // 'probability of failure'
+		    , mFallSpeed(this, 'fp04', 300.0f, 0.0f, 500.0f)  // 'initial fall velocity'
 		{
 		}
 

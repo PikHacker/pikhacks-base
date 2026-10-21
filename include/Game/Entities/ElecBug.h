@@ -90,9 +90,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFlipTime(this, 'fp01', "ひっくり返り時間", 5.0f, 0.0f, 10.0f) // 'flip time'
-		    , mWaitTime(this, 'fp02', "ウェイト時間", 1.5f, 0.0f, 10.0f)     // 'wait time'
-		    , mDischargeTime(this, 'fp11', "放電時間", 3.0f, 0.0f, 10.0f)    // 'discharge time'
+		    , mFlipTime(this, 'fp01', 5.0f, 0.0f, 10.0f)      // 'flip time'
+		    , mWaitTime(this, 'fp02', 1.5f, 0.0f, 10.0f)      // 'wait time'
+		    , mDischargeTime(this, 'fp11', 3.0f, 0.0f, 10.0f) // 'discharge time'
 		{
 		}
 

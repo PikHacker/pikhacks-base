@@ -4,7 +4,6 @@
 #include "PSGame/CameraMgr.h"
 #include "PSGame/EnvSe.h"
 #include "PSGame/PikScene.h"
-#include "PSGame/SoundCreatureMgr.h"
 #include "PSGame/SoundTable.h"
 #include "PSGame/SysFactory.h"
 #include "PSM/BossSeq.h"

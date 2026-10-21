@@ -158,9 +158,9 @@ struct Obj : public EnemyBase {
 	Vector3f mAttackPositions[5];   // _2D8, indexed by mAttackAnimIdx
 	SnakeJointMgr* mSnakeJointMgr;  // _314
 	SnakeCrowShadowMgr* mShadowMgr; // _318
-	efx::THebiRot* mEfxRotate;      // _31C
-	efx::THebiWait* mEfxWait;       // _320
-	efx::THebiDead* mEfxDead;       // _324
+	efx::TForever* mEfxRotate;      // _31C
+	efx::TForever* mEfxWait;        // _320
+	efx::TChaseMtxT4* mEfxDead;     // _324
 	                                // _328 = PelletView
 };
 
@@ -191,11 +191,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFastAppearChance(this, 'fp01', "通常出現率", 0.8f, 0.0f, 1.0f)    // 'normal appearance rate'
-		    , mWaitTime(this, 'fp11', "潜る迄の時間", 2.0f, 0.0f, 10.0f)         // 'time to dive'
-		    , mUndergroundTime(this, 'fp12', "地中での時間", 1.0f, 0.0f, 10.0f)  // 'time in the ground'
-		    , mPoisonDamage(this, 'fp21', "白ピクミン", 300.0f, 0.0f, 10000.0f)  // 'white pikmin'
-		    , mWFGHealth(this, 'fp31', "Forest 2 Life", 7500.0f, 0.0f, 99999.0f) // (White Flower Garden Life)
+		    , mFastAppearChance(this, 'fp01', 0.8f, 0.0f, 1.0f)   // 'normal appearance rate'
+		    , mWaitTime(this, 'fp11', 2.0f, 0.0f, 10.0f)          // 'time to dive'
+		    , mUndergroundTime(this, 'fp12', 1.0f, 0.0f, 10.0f)   // 'time in the ground'
+		    , mPoisonDamage(this, 'fp21', 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mWFGHealth(this, 'fp31', 7500.0f, 0.0f, 99999.0f)   // (White Flower Garden Life)
 		{
 		}
 

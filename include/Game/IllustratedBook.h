@@ -120,17 +120,17 @@ struct CameraParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "cameraParms")
-		    , mRadius(this, 'f000', "半径", 350.0f, 0.0f, 2000.0f)                // 'radius'
-		    , mInitialHeight(this, 'f001', "高さ　初期値", 500.0f, 0.0f, 1000.0f) // 'height initial value'
-		    , mMinHeight(this, 'f002', "高さ　最小値", 0.0f, 0.0f, 1000.0f)       // 'height min value'
-		    , mMaxHeight(this, 'f003', "高さ　最大値", 700.0f, 0.0f, 1000.0f)     // 'height max value'
-		    , mOffsetX(this, 'f004', "オフセット　ｘ", 0.0f, -500.0f, 500.0f)     // 'offset X'
-		    , mOffsetY(this, 'f005', "オフセット　ｙ", 0.0f, -500.0f, 500.0f)     // 'offset Y'
-		    , mOffsetZ(this, 'f006', "オフセット　ｚ", 0.0f, -500.0f, 500.0f)     // 'offset Z'
-		    , mInitialViewAngle(this, 'f009', "画角　初期値", 30.0f, 0.0f, 90.0f) // 'view angle initial value'
-		    , mMinViewAngle(this, 'f007', "画角　最小値", 0.1f, 0.0f, 90.0f)      // 'view angle min value'
-		    , mMaxViewAngle(this, 'f008', "画角　最大値", 90.0f, 0.0f, 90.0f)     // 'view angle max value'
-		    , mInitialRotation(this, 'f010', "回転　初期値", 0.0f, 0.0f, 360.0f)  // 'rotation initial value'
+		    , mRadius(this, 'f000', 350.0f, 0.0f, 2000.0f)        // 'radius'
+		    , mInitialHeight(this, 'f001', 500.0f, 0.0f, 1000.0f) // 'height initial value'
+		    , mMinHeight(this, 'f002', 0.0f, 0.0f, 1000.0f)       // 'height min value'
+		    , mMaxHeight(this, 'f003', 700.0f, 0.0f, 1000.0f)     // 'height max value'
+		    , mOffsetX(this, 'f004', 0.0f, -500.0f, 500.0f)       // 'offset X'
+		    , mOffsetY(this, 'f005', 0.0f, -500.0f, 500.0f)       // 'offset Y'
+		    , mOffsetZ(this, 'f006', 0.0f, -500.0f, 500.0f)       // 'offset Z'
+		    , mInitialViewAngle(this, 'f009', 30.0f, 0.0f, 90.0f) // 'view angle initial value'
+		    , mMinViewAngle(this, 'f007', 0.1f, 0.0f, 90.0f)      // 'view angle min value'
+		    , mMaxViewAngle(this, 'f008', 90.0f, 0.0f, 90.0f)     // 'view angle max value'
+		    , mInitialRotation(this, 'f010', 0.0f, 0.0f, 360.0f)  // 'rotation initial value'
 		{
 		}
 
@@ -220,9 +220,9 @@ struct PositionParms : public CNode {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "PositionParms")
-		    , mAppearPosX(this, 'f000', "出現位置　ｘ", 0.0f, -10000.0f, 10000.0f) // 'appearance position X'
-		    , mAppearPosY(this, 'f001', "出現位置　ｙ", 0.0f, -10000.0f, 10000.0f) // 'appearance position Y'
-		    , mAppearPosZ(this, 'f002', "出現位置　ｚ", 0.0f, -10000.0f, 10000.0f) // 'appearance position Z'
+		    , mAppearPosX(this, 'f000', 0.0f, -10000.0f, 10000.0f) // 'appearance position X'
+		    , mAppearPosY(this, 'f001', 0.0f, -10000.0f, 10000.0f) // 'appearance position Y'
+		    , mAppearPosZ(this, 'f002', 0.0f, -10000.0f, 10000.0f) // 'appearance position Z'
 		{
 		}
 
@@ -257,9 +257,9 @@ struct EnemyParms : public CNode {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "enemyParms")
-		    , mSize(this, 'f001', "大きさ", 10.0f, 0.0f, 1000.0f)         // 'size'
-		    , mAppearRange(this, 'f000', "出現範囲", 0.0f, 0.0f, 1000.0f) // 'occurrence range'
-		    , mAppearNum(this, 'i000', "出現数", 1, 1, 99)                // 'number of occurrences'
+		    , mSize(this, 'f001', 10.0f, 0.0f, 1000.0f)       // 'size'
+		    , mAppearRange(this, 'f000', 0.0f, 0.0f, 1000.0f) // 'occurrence range'
+		    , mAppearNum(this, 'i000', 1, 1, 99)              // 'number of occurrences'
 		{
 		}
 
@@ -296,9 +296,9 @@ struct ItemParms : public CNode {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "enemyParms")
-		    , mOffsetX(this, 'f000', "オフセットｘ", 0.0f, -10000.0f, 10000.0f) // 'offset X'
-		    , mOffsetY(this, 'f001', "オフセットｙ", 0.0f, -10000.0f, 10000.0f) // 'offset Y'
-		    , mOffsetZ(this, 'f002', "オフセットｚ", 0.0f, -10000.0f, 10000.0f) // 'offset Z'
+		    , mOffsetX(this, 'f000', 0.0f, -10000.0f, 10000.0f) // 'offset X'
+		    , mOffsetY(this, 'f001', 0.0f, -10000.0f, 10000.0f) // 'offset Y'
+		    , mOffsetZ(this, 'f002', 0.0f, -10000.0f, 10000.0f) // 'offset Z'
 		{
 		}
 

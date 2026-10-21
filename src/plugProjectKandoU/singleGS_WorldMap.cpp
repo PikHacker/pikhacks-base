@@ -286,18 +286,6 @@ void SelectState::draw(SingleGameSection* game, Graphics& gfx)
 
 		gfx.mPerspGraph.setPort();
 		particle2dMgr->draw(0, 0);
-
-		if (sParentHeapFreeSize && sParentHeapFreeSize_Last && (sParentHeapFreeSize != sParentHeapFreeSize_Last)) {
-			gfx.mOrthoGraph.setPort();
-			J2DPrint print(JFWSystem::systemFont, 0.0f);
-			print.initiate();
-			print.mCharColor.set(JUtility::TColor(255, 19, 55, 255));
-			print.mGradientColor.set(JUtility::TColor(0, 0, 0, 255));
-			print.mGlyphWidth  = 16.0f;
-			print.mGlyphHeight = 16.0f;
-			print.print(60.0f, 120.0f, "* %d %d %d", sParentHeapFreeSize_Last - sParentHeapFreeSize, sParentHeapFreeSize_Last,
-			            sParentHeapFreeSize);
-		}
 	}
 }
 

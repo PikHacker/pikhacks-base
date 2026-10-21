@@ -159,7 +159,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 		}
 
 		callable = true;
-		if (BaseHIOParms::sTekiChappyFlag && piki->isFPFlag(FPFLAGS_IsWildBulbmin)) {
+		if (piki->isFPFlag(FPFLAGS_IsWildBulbmin)) {
 			piki->resetFPFlag(FPFLAGS_IsWildBulbmin);
 			GameStat::alivePikis.inc(piki);
 		}

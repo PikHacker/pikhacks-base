@@ -10,7 +10,7 @@ namespace Armor {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ヨロイムシマネージャ"; // worm manager
+	mName = "armor"; // worm manager
 }
 
 /**

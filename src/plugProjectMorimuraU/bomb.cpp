@@ -114,7 +114,7 @@ Obj::Obj()
 	mDoReduceVelocity    = 0;
 	mFsm                 = nullptr;
 	mEfxLight            = nullptr;
-	mAnimator            = new ProperAnimator;
+	mAnimator            = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 	mEfxLight = new efx::TChaseMtxT(PID_BombrockLight);
 }

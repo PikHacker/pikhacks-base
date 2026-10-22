@@ -10,7 +10,7 @@ namespace Frog {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "イモガエルマネージャ"; // tree frog manager
+	mName = "frog"; // tree frog manager
 }
 
 /**

@@ -61,7 +61,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 Obj::Obj()
 {
 	mFsm      = nullptr;
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 }
 

@@ -958,8 +958,6 @@ void GameState::update_GameChallenge(VsGameSection* section)
 	if (gameSystem->isVersusMode()) {
 		if (Screen::gGame2DMgr->check_VsStatus() == 2 && mSubState == 1 && !(moviePlayer->isFlag(MVP_IsActive))) {
 			mSubState = 2;
-		} else if (mSubState == 1) {
-			Screen::gGame2DMgr->check_VsStatus(); // probably in a leftover && check
 		}
 
 		og::Screen::DispMemberVs disp;

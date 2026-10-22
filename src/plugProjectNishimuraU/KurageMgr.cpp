@@ -10,7 +10,7 @@ namespace Kurage {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "クラゲドックリマネージャ"; // jellyfish manager
+	mName = "kurage"; // jellyfish manager
 }
 
 /**

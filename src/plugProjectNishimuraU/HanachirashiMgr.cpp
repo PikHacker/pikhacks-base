@@ -17,7 +17,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/Hanachirashi/hanachirashi_m
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "フウセンハナチラシマネージャ"; // blossom-scattering blimp manager
+	mName = "hanachirashi"; // blossom-scattering blimp manager
 }
 
 /**

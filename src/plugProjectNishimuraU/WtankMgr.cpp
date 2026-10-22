@@ -15,7 +15,7 @@ static const char* cTankChangeTexName = "/enemy/data/Wtank/mizu_butadokkuri_main
 Mgr::Mgr(int objLimit, u8 modelType)
     : Tank::Mgr(objLimit, modelType)
 {
-	mName = "ミズブタドックリマネージャ"; // water pig dog manager
+	mName = "wtank"; // water pig dog manager
 }
 
 /**

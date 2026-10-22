@@ -331,21 +331,6 @@ struct BlendAccelerationFunc : public SysShape::BlendFunction {
 	// _00		= VTABLE
 };
 
-/**
- * @size{0x60}
- */
-struct ProperAnimator : public EnemyBlendAnimatorBase {
-	ProperAnimator()
-	    : EnemyBlendAnimatorBase()
-	{
-	}
-
-	// vtable (EnemyBlendAnimatorBase, _00, _08-_28)
-	// virtual ~ProperAnimator() { } // _08 (weak)
-
-	// _00		= VTABLE
-	// _00-_60	= EnemyBlendAnimatorBase
-};
 } // namespace Pelplant
 } // namespace Game
 

@@ -15,7 +15,7 @@ namespace Baby {
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 
 	setFSM(new FSM);
 	createEffect();

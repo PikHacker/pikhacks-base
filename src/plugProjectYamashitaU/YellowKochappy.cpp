@@ -8,7 +8,6 @@ namespace YellowKochappy {
  */
 Obj::Obj()
 {
-	mAnimator = new KochappyBase::ProperAnimator;
 	setFSM(new KochappyBase::FSM);
 }
 

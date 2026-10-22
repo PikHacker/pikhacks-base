@@ -18,7 +18,7 @@ namespace Pom {
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 }
 
@@ -183,39 +183,6 @@ void Obj::initMouthSlots()
 }
 
 /**
- * @note Address: N/A
- * @note Size: 0xB4
- */
-void Obj::setPomColor(int pikiKind)
-{
-	mPikiKind = (EPikiKind)pikiKind;
-	switch (mPikiKind) {
-	case Blue:
-		mRgbColor.r = mRgbColor.g = 50;
-		mRgbColor.b               = 255;
-		break;
-	case Red:
-		mRgbColor.r = 255;
-		mRgbColor.g = mRgbColor.b = 20;
-		break;
-	case Yellow:
-		mRgbColor.r = mRgbColor.g = 255;
-		mRgbColor.b               = 20;
-		break;
-	case Purple:
-		mRgbColor.r = 28;
-		mRgbColor.g = 0;
-		mRgbColor.b = 52;
-		break;
-	case White:
-		mRgbColor.r = 200;
-		mRgbColor.g = 255;
-		mRgbColor.b = 220;
-		break;
-	}
-}
-
-/**
  * @note Address: 0x80254E8C
  * @note Size: 0x510
  */
@@ -252,6 +219,39 @@ void Obj::setPomParms()
 		mTotalSlotCount = C_PROPERPARMS.mQueenMaxSlots.mValue;
 		mShotMultiplier = C_PROPERPARMS.mQueenShotMultiplier.mValue;
 		mRgbColor.a     = 255;
+	}
+}
+
+/**
+ * @note Address: N/A
+ * @note Size: 0xB4
+ */
+void Obj::setPomColor(int pikiKind)
+{
+	mPikiKind = (EPikiKind)pikiKind;
+	switch (mPikiKind) {
+	case Blue:
+		mRgbColor.r = mRgbColor.g = 50;
+		mRgbColor.b               = 255;
+		break;
+	case Red:
+		mRgbColor.r = 255;
+		mRgbColor.g = mRgbColor.b = 20;
+		break;
+	case Yellow:
+		mRgbColor.r = mRgbColor.g = 255;
+		mRgbColor.b               = 20;
+		break;
+	case Purple:
+		mRgbColor.r = 28;
+		mRgbColor.g = 0;
+		mRgbColor.b = 52;
+		break;
+	case White:
+		mRgbColor.r = 200;
+		mRgbColor.g = 255;
+		mRgbColor.b = 220;
+		break;
 	}
 }
 

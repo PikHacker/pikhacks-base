@@ -12,7 +12,7 @@ namespace UmiMushi {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ウミムシマネージャ"; // sea worm manager
+	mName = "umimushi"; // sea worm manager
 }
 
 /**

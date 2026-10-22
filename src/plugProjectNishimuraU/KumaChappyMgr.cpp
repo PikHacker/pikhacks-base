@@ -10,7 +10,7 @@ namespace KumaChappy {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "クマチャッピーマネージャ"; // bear chappy manager
+	mName = "kumachappy"; // bear chappy manager
 }
 
 /**

@@ -10,7 +10,7 @@ namespace Hana {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ハナドックリマネージャ"; // hanadokkuri manager
+	mName = "hana"; // hanadokkuri manager
 }
 
 /**

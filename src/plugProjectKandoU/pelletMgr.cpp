@@ -3388,19 +3388,6 @@ void PelletMgr::doSimpleDraw(Viewport* viewport)
 }
 
 /**
- * @note Address: 0x8016EBB4
- * @note Size: 0x1D4
- */
-void PelletMgr::setupSoundViewerAndBas()
-{
-	Iterator<GenericObjectMgr> iter(this);
-	CI_LOOP(iter)
-	{
-		*iter;
-	}
-}
-
-/**
  * @note Address: 0x8016ED88
  * @note Size: 0x14
  */

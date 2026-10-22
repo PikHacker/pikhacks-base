@@ -16,7 +16,7 @@ char* cKabutoChangeTexName = "/enemy/data/Kabuto/babykabuto_green_s3tc.bti";
 Mgr::Mgr(int p1, u8 p2)
     : Kabuto::Mgr(p1, p2)
 {
-	mName = "固定カブトマネージャ"; // fixed beetle manager
+	mName = "fkabuto"; // fixed beetle manager
 }
 
 /**

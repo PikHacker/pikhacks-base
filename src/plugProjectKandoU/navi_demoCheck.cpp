@@ -65,11 +65,6 @@ bool Navi::demoCheck()
 		return false;
 	}
 
-	// Seems to be an unused leftover of the beta gate cutscene that played when near the gate
-	if (itemGateMgr) {
-		playData->isDemoFlag(DEMO_First_Gate_Down);
-	}
-
 	// Finding white and black candypop bud
 	{
 		EnemyMgrBase* candypopBudMgr = generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Pom);
@@ -167,15 +162,11 @@ bool Navi::demoCheck()
 								break;
 							}
 						}
-
-// INTNS: Added this code for poor new modders wondering why they crash
-#if FOR_MODDING
-						JUT_ASSERT(targetPiki, "No yellow pikmin found for yellow onion cutscene\n");
-#endif
-
-						arg.mOrigin                = targetPiki->getPosition();
-						arg.mAngle                 = targetPiki->getFaceDir();
-						moviePlayer->mTargetObject = targetPiki;
+						if (targetPiki) {
+							arg.mOrigin                = targetPiki->getPosition();
+							arg.mAngle                 = targetPiki->getFaceDir();
+							moviePlayer->mTargetObject = targetPiki;
+						}
 						moviePlayer->play(arg);
 					}
 				}
@@ -216,16 +207,13 @@ bool Navi::demoCheck()
 							}
 						}
 
-// INTNS: Added this code for poor new modders wondering why they crash
-#if FOR_MODDING
-						JUT_ASSERT(targetPiki, "No blue pikmin found for blue onion cutscene\n");
-#endif
+						if (targetPiki) {
+							arg.mOrigin                = targetPiki->getPosition();
+							arg.mAngle                 = targetPiki->getFaceDir();
+							arg.mSoundPosition         = targetPiki->getSound_PosPtr();
+							moviePlayer->mTargetObject = targetPiki;
+						}
 
-						arg.mOrigin        = targetPiki->getPosition();
-						arg.mAngle         = targetPiki->getFaceDir();
-						arg.mSoundPosition = targetPiki->getSound_PosPtr();
-
-						moviePlayer->mTargetObject = targetPiki;
 						moviePlayer->play(arg);
 					}
 				}

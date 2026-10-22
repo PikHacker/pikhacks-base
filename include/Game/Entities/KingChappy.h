@@ -356,14 +356,6 @@ enum AnimID {
 	KINGANIM_AnimCount, // 14
 };
 
-struct ProperAnimator : public EnemyBlendAnimatorBase {
-	virtual ~ProperAnimator() { } // _08 (weak)
-
-	// _00      = VTBL
-	// _00-_60  = EnemyBlendAnimatorBase
-	SysShape::Animator mSpecificAnimator; // _60
-};
-
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 struct State : public EnemyFSMState {

@@ -18,7 +18,7 @@ static const char cMatAnimBrkTexName[] = "/enemy/data/BigTreasure/oootakara_mode
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "オオオタカラマネージャ"; // big otakara manager
+	mName = "bigtreasure"; // big otakara manager
 
 	char* treasures[] = { "elec", "fire", "gas", "water", "loozy" };
 	int treasureCount = sizeof(treasures) / sizeof(char*);
@@ -78,9 +78,7 @@ void Mgr::loadModelData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(mModelData, J3DMODEL_UseSingleSharedDL, mMtxBufferSize);
-	P2ASSERTLINE(120, model);
-	return model;
+	return new SysShape::Model(mModelData, J3DMODEL_UseSingleSharedDL, mMtxBufferSize);
 }
 
 } // namespace BigTreasure

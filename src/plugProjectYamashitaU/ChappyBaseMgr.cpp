@@ -13,7 +13,7 @@ namespace ChappyBase {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "チャッピーベースマネージャ"; // chappybase manager
+	mName = "chappy"; // chappybase manager
 }
 
 /**

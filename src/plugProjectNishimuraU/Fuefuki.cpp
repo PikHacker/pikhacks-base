@@ -33,7 +33,7 @@ namespace Fuefuki {
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 	createFootmarks();
 	createEffect();

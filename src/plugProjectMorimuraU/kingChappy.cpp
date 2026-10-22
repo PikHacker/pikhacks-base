@@ -110,7 +110,6 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mWalkingTimer             = 0;
 	mCanEatBombs              = false;
 
-	P2ASSERTLINE(121, mModel);
 	J3DJoint* joint;
 	J3DModelData* modelData = mModel->mJ3dModel->mModelData;
 
@@ -184,7 +183,7 @@ Obj::Obj()
     , mIsBig(false)
 {
 
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyBlendAnimatorBase;
 	setFSM(new FSM);
 	curK = nullptr;
 
@@ -241,7 +240,7 @@ void Obj::doUpdate()
  */
 void Obj::doAnimationUpdateAnimator()
 {
-	ProperAnimator* animator = static_cast<ProperAnimator*>(mAnimator);
+	EnemyBlendAnimatorBase* animator = static_cast<EnemyBlendAnimatorBase*>(mAnimator);
 	if (animator->mAnimator.mIsBlendEnabled) {
 		f32 frameRate = sys->mDeltaTime;
 		frameRate     = EnemyAnimatorBase::defaultAnimSpeed * frameRate;
@@ -881,8 +880,7 @@ void Obj::checkAttack(bool check)
 	}
 
 	if (check) {
-		ProperAnimator* animator = static_cast<ProperAnimator*>(mAnimator);
-		P2ASSERTLINE(1098, animator);
+		EnemyBlendAnimatorBase* animator = static_cast<EnemyBlendAnimatorBase*>(mAnimator);
 		if (animator->mAnimator.mIsBlendEnabled) {
 			return;
 		}
@@ -963,7 +961,7 @@ void Obj::checkFlick(bool check)
 	}
 
 	if (check) {
-		if (static_cast<ProperAnimator*>(mAnimator)->mAnimator.mIsBlendEnabled) {
+		if (static_cast<EnemyBlendAnimatorBase*>(mAnimator)->mAnimator.mIsBlendEnabled) {
 			return;
 		}
 	}
@@ -1011,7 +1009,7 @@ void Obj::checkDead(bool check)
 	}
 
 	if (check) {
-		if (static_cast<ProperAnimator*>(mAnimator)->mAnimator.mIsBlendEnabled) {
+		if (static_cast<EnemyBlendAnimatorBase*>(mAnimator)->mAnimator.mIsBlendEnabled) {
 			return;
 		}
 	}
@@ -1039,7 +1037,7 @@ void Obj::checkTurn(bool check)
 	}
 
 	if (check) {
-		if (static_cast<ProperAnimator*>(mAnimator)->mAnimator.mIsBlendEnabled) {
+		if (static_cast<EnemyBlendAnimatorBase*>(mAnimator)->mAnimator.mIsBlendEnabled) {
 			return;
 		}
 	}
@@ -1061,8 +1059,8 @@ void Obj::startMotionSelf(int animIdx, SysShape::MotionListener* listener)
 		listener = this;
 	}
 
-	bool isBlendAnimating    = false;
-	ProperAnimator* animator = static_cast<ProperAnimator*>(mAnimator);
+	bool isBlendAnimating            = false;
+	EnemyBlendAnimatorBase* animator = static_cast<EnemyBlendAnimatorBase*>(mAnimator);
 	if (mAllowAnimBlending && !animator->mAnimator.mIsBlendEnabled) {
 		SysShape::Animator& sysAnim = animator->getAnimator(0);
 		f32 frame;

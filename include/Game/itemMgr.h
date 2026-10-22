@@ -42,7 +42,6 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	virtual void initDependency() = 0;                                        // _38
 	virtual void killAll() { }                                                // _3C (weak)
 	virtual void setup(BaseItem*) { }                                         // _40 (weak)
-	virtual void setupSoundViewerAndBas();                                    // _44
 	virtual void onLoadResources() { }                                        // _48 (weak)
 	virtual bool loadEverytime() { return true; }                             // _4C (weak)
 	virtual void updateUseList(GenItemParm*, int);                            // _50
@@ -132,7 +131,6 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 
 	void addMgr(BaseItemMgr*);
 	void initDependency();
-	void setupSoundViewerAndBas();
 	void clearGlobalPointers();
 
 	int getIndexByMgr(BaseItemMgr*);

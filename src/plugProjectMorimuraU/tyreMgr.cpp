@@ -10,7 +10,7 @@ namespace Tyre {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "タイヤマネージャ"; // tire manager
+	mName = "tyre"; // tire manager
 }
 
 /**

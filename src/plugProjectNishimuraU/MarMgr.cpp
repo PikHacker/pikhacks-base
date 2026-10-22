@@ -17,7 +17,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/Mar/fuusen_model.brk";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "フウセンドックリマネージャ"; // blimp manager
+	mName = "mar"; // blimp manager
 }
 
 /**

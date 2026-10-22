@@ -13,7 +13,7 @@ namespace KochappyBase {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "コチャッピーベースマネージャ";
+	mName = "kochappybase";
 }
 
 /**

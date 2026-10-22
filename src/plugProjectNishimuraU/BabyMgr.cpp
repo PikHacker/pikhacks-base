@@ -10,7 +10,7 @@ namespace Baby {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ベビーチャッピーマネージャ"; // baby chappy manager
+	mName = "baby"; // baby chappy manager
 }
 
 /**

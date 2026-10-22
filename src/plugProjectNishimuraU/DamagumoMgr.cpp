@@ -18,7 +18,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/Damagumo/damagumo_model.brk
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ダマグモマネージャ"; // damagumo manager
+	mName = "damagumo"; // damagumo manager
 }
 
 /**
@@ -99,9 +99,7 @@ void Mgr::loadTexData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(mModelData, J3DMODEL_UseSingleSharedDL, mMtxBufferSize);
-	P2ASSERTLINE(143, model);
-	return model;
+	return new SysShape::Model(mModelData, J3DMODEL_UseSingleSharedDL, mMtxBufferSize);
 }
 
 } // namespace Damagumo

@@ -508,13 +508,6 @@ enum AnimID {
 	BIGTREASUREANIM_AnimCount,     // 30
 };
 
-struct ProperAnimator : public EnemyBlendAnimatorBase {
-	virtual ~ProperAnimator() { } // _08 (weak)
-
-	// _00 		= VTBL
-	// _00-_60	= EnemyBlendAnimatorBase
-};
-
 struct BigTreasureShadowMgr {
 	BigTreasureShadowMgr(Obj*);
 

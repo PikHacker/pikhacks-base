@@ -6,8 +6,6 @@
 namespace Game {
 namespace Sokkuri {
 
-const char statename[] = "246-SokkuriState";
-
 /**
  * @note Address: 0x802EFA24
  * @note Size: 0x330

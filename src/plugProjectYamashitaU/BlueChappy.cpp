@@ -8,7 +8,6 @@ namespace BlueChappy {
  */
 Obj::Obj()
 {
-	mAnimator = new ChappyBase::ProperAnimator;
 	setFSM(new ChappyBase::FSM);
 	createEffect();
 }

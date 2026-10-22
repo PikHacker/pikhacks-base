@@ -10,7 +10,7 @@ namespace Tadpole {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "オタママネージャ"; // otama manager
+	mName = "tadpole"; // otama manager
 }
 
 /**

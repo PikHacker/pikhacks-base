@@ -669,11 +669,6 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 		return;
 	}
 
-	if (isDebugCollision()) {
-		getCreatureName();
-		op->getCreatureName();
-	}
-
 	bool flickCheck = false;
 	if (!isCollisionFlick() || !op->isCollisionFlick()) {
 		flickCheck = true;

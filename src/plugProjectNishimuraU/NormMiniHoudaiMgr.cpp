@@ -10,7 +10,7 @@ namespace NormMiniHoudai {
 Mgr::Mgr(int objLimit, u8 modelType)
     : MiniHoudai::Mgr(objLimit, modelType)
 {
-	mName = "ノーマルチビホウダイマネージャ"; // normal little houdai manager
+	mName = "minihoudai"; // normal little houdai manager
 }
 
 /**

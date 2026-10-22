@@ -12,7 +12,7 @@ namespace OtakaraBase {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "オタカラムシマネージャ"; // otakara manager
+	mName = "otakara"; // otakara manager
 }
 
 /**

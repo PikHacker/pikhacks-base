@@ -1,4 +1,3 @@
-#include "types.h"
 #include "Game/Entities/Kabuto.h"
 #include "JSystem/J3D/J3DSys.h"
 

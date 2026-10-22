@@ -9,7 +9,6 @@ namespace Kochappy {
  */
 Obj::Obj()
 {
-	mAnimator = new KochappyBase::ProperAnimator;
 	setFSM(new KochappyBase::FSM);
 }
 

@@ -10,7 +10,7 @@ namespace Miulin {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ミウリンマネージャ"; // miulin manager
+	mName = "miulin"; // miulin manager
 }
 
 /**

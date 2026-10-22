@@ -10,7 +10,7 @@ namespace GasHiba {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ガスヒバマネージャ"; // gas hiba manager
+	mName = "gashiba"; // gas hiba manager
 }
 
 /**

@@ -10,7 +10,7 @@ namespace Jigumo {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ジグモマネージャ"; // jigumo manager
+	mName = "jigumo"; // jigumo manager
 }
 
 /**

@@ -14,7 +14,7 @@ namespace Hanachirashi {
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 	createEffect();
 	mMatAnimators = new Sys::MatLoopAnimator[2];

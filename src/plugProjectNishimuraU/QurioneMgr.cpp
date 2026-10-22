@@ -74,7 +74,7 @@ void Generator::doReadOldVersion(Stream&)
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "クリオネマネージャ"; // clione (sea angel) manager
+	mName = "qurione"; // clione (sea angel) manager
 }
 
 /**

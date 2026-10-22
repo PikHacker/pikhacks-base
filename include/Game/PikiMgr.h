@@ -54,7 +54,6 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	void setMovieDraw(bool drawOn);
 	void debugShapeDL(char* text);
 	void setVsXlu(int naviIndex, bool ghostIconNotActive);
-	void setupSoundViewerAndBas();
 	int getColorTransportScale(int color);
 	void allocStorePikmins();
 	void clearStorePikmins();

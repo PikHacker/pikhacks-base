@@ -19,7 +19,7 @@ namespace DangoMushi {
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyBlendAnimatorBase;
 	setFSM(new FSM);
 	createEffect();
 	mMatLoopAnimator = new Sys::MatLoopAnimator;
@@ -796,7 +796,7 @@ void Obj::startBlendAnimation(int animIdx, bool blendAnim)
  */
 void Obj::endBlendAnimation()
 {
-	SysShape::Animator& anim     = static_cast<ProperAnimator*>(mAnimator)->getAnimator(1);
+	SysShape::Animator& anim     = static_cast<EnemyBlendAnimatorBase*>(mAnimator)->getAnimator(1);
 	SysShape::AnimInfo* animInfo = anim.mAnimInfo;
 	int animId;
 	if (animInfo) {

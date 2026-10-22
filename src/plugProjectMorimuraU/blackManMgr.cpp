@@ -13,7 +13,7 @@ namespace BlackMan {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "黒い人マネージャ"; // black man manager
+	mName = "blackman"; // black man manager
 }
 
 /**

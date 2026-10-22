@@ -14,7 +14,7 @@ namespace Game {
  */
 KumaKochappy::Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 	createChappyRelation();
 }

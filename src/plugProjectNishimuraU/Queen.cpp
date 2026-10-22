@@ -19,7 +19,7 @@ namespace Queen {
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 	mShadowMgr       = new QueenShadowMgr(this);
 	mMatLoopAnimator = new Sys::MatLoopAnimator;

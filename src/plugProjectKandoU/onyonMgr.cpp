@@ -382,11 +382,6 @@ bool Onyon::sound_culling()
  */
 bool InteractSuckDone::actOnyon(Onyon* item)
 {
-	// Causes the glitch regarding sprouts and objects brought to onions during cutscenes
-	if (item->isMovieActor() && !item->isMovieExtra()) {
-		return false;
-	}
-
 #if defined(VERSION_JP)
 	P2ASSERTLINE(889, mCreature->isPellet());
 #else
@@ -559,8 +554,6 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 				pellet->getPikiBirthCount(min, max);
 				item->mToBirth += max;
 			}
-		} else {
-			pellet->getKind();
 		}
 	}
 
@@ -1040,6 +1033,7 @@ void Onyon::startWaitMotion()
 			}
 		}
 	}
+	FORCE_DONT_INLINE;
 }
 
 /**
@@ -1704,14 +1698,6 @@ BaseItem* ItemOnyon::Mgr::generatorBirth(Vector3f& pos, Vector3f& angle, GenItem
 	onyon->mFaceDir = angle.y;
 	onyon->setPosition(pos, false);
 	return onyon;
-}
-
-/**
- * @note Address: 0x80179E7C
- * @note Size: 0x4
- */
-void ItemOnyon::Mgr::setupSoundViewerAndBas()
-{
 }
 
 /**

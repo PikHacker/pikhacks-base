@@ -10,7 +10,7 @@ namespace Fuefuki {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "フエフキムシマネージャ"; // flute player manager
+	mName = "fuefuki"; // flute player manager
 }
 
 /**

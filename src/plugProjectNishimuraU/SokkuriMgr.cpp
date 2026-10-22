@@ -10,7 +10,7 @@ namespace Sokkuri {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ソックリマネージャ"; // look-alike manager
+	mName = "sokkuri"; // look-alike manager
 }
 
 /**

@@ -12,7 +12,7 @@ namespace Tank {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ブタドックリマネージャ"; // pig dog manager
+	mName = "tank"; // pig dog manager
 }
 
 /**

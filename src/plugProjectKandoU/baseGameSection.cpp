@@ -800,13 +800,7 @@ void BaseGameSection::initGenerators()
 		position        = Vector3f(-40.0f, 0.0f, 2.0f);
 		if (gameSystem->isVersusMode()) {
 			Onyon* redOnyon = ItemOnyon::mgr->getOnyon(Red);
-#if defined(VERSION_PAL)
-			P2ASSERTLINE(2742, redOnyon);
-#elif defined(VERSION_JP)
-			P2ASSERTLINE(2734, redOnyon);
-#else
 			P2ASSERTLINE(2739, redOnyon);
-#endif
 			position = redOnyon->getPosition();
 		} else {
 			if (!mapMgr->getDemoMatrix()) {
@@ -840,13 +834,7 @@ void BaseGameSection::initGenerators()
 		position    = Vector3f(-60.0f, 0.0f, -10.0f);
 		if (gameSystem->isVersusMode()) {
 			Onyon* blueOnyon = ItemOnyon::mgr->getOnyon(Blue);
-#if defined(VERSION_PAL)
-			P2ASSERTLINE(2794, blueOnyon);
-#elif defined(VERSION_JP)
-			P2ASSERTLINE(2786, blueOnyon);
-#else
 			P2ASSERTLINE(2791, blueOnyon);
-#endif
 			position = blueOnyon->getPosition();
 		} else {
 			if (!mapMgr->getDemoMatrix()) {
@@ -882,35 +870,6 @@ void BaseGameSection::initGenerators()
 		}
 		break;
 	}
-
-	case 1:
-#if defined(VERSION_PAL)
-		JUT_PANICLINE(2856, "KESHIMASU!\n"); // erase?
-#elif defined(VERSION_JP)
-		JUT_PANICLINE(2848, "KESHIMASU!\n"); // erase?
-#else
-		JUT_PANICLINE(2853, "KESHIMASU!\n"); // erase?
-#endif
-		mapMgr->getMapRotation();
-		Vector3f offset(-60.0f, 0.0f, 2.0f);
-#if defined(VERSION_PAL)
-		JUT_ASSERTLINE(2862, mapMgr->getDemoMatrix(), "no demomatrix\n");
-#elif defined(VERSION_JP)
-		JUT_ASSERTLINE(2854, mapMgr->getDemoMatrix(), "no demomatrix\n");
-#else
-		JUT_ASSERTLINE(2859, mapMgr->getDemoMatrix(), "no demomatrix\n");
-#endif
-		offset       = mapMgr->getDemoMatrix()->mtxMult(offset);
-		offset.y     = mapMgr->getMinY(offset) + 8.5f;
-		Navi* olimar = naviMgr->getAt(NAVIID_Olimar);
-		olimar->setCamera(mOlimarCamera);
-		olimar->setController(mControllerP1);
-		olimar = naviMgr->birth();
-		olimar->init(nullptr);
-		olimar->setCamera(mLouieCamera);
-		olimar->setController(mControllerP2);
-		olimar->setPosition(offset, false);
-		break;
 
 	case 2: {
 		Navi* olimar = naviMgr->getAt(NAVIID_Olimar);
@@ -1071,13 +1030,6 @@ void BaseGameSection::onCameraBlendFinished(CameraArg* arg)
 	if (gameSystem->isStoryMode()) {
 		if (!playData->isDemoFlag(DEMO_First_Use_Louie) && playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
 			Navi* louie = naviMgr->getAt(NAVIID_Louie);
-#if defined(VERSION_PAL)
-			JUT_ASSERTLINE(3091, louie, "louie null");
-#elif defined(VERSION_JP)
-			JUT_ASSERTLINE(3083, louie, "louie null");
-#else
-			JUT_ASSERTLINE(3088, louie, "louie null");
-#endif
 			MoviePlayArg louieStart("x05_louiestart", nullptr, nullptr, 0);
 			louieStart.setTarget(louie);
 			moviePlayer->mTargetObject = louie;
@@ -2255,11 +2207,6 @@ void BaseGameSection::setupFloatMemory()
 	cameraMgr->setCameraAngle(angle, CAMNAVI_Both);
 
 	cameraMgr->controllerUnLock(CAMNAVI_Both);
-
-	pikiMgr->setupSoundViewerAndBas();
-	naviMgr->setupSoundViewerAndBas();
-	itemMgr->setupSoundViewerAndBas();
-	pelletMgr->setupSoundViewerAndBas();
 
 	onSetSoundScene();
 	gameSystem->setFlag(GAMESYS_IsSoundSceneActive);

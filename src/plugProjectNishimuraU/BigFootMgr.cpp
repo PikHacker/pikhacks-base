@@ -17,7 +17,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/BigFoot/ooashi_model.brk";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "オオアシマネージャ"; // big foot manager
+	mName = "bigfoot"; // big foot manager
 }
 
 /**
@@ -87,9 +87,7 @@ void Mgr::loadTexData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(mModelData, J3DMODEL_UseSingleSharedDL, mMtxBufferSize);
-	P2ASSERTLINE(134, model);
-	return model;
+	return new SysShape::Model(mModelData, J3DMODEL_UseSingleSharedDL, mMtxBufferSize);
 }
 
 } // namespace BigFoot

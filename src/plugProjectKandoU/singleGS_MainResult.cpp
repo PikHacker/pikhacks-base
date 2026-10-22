@@ -134,11 +134,11 @@ void MainResultState::exec(SingleGameSection* game)
 		}
 		game->BaseHIOSection::doUpdate();
 		return;
-	case Result_Unused1: // this state seems to never be used
-		mStartTimer -= sys->mDeltaTime;
-		if (mStartTimer < 0.0f)
-			mStatus = Result_ScreenActive;
-		break;
+	// case Result_Unused1: // this state seems to never be used
+	// 	mStartTimer -= sys->mDeltaTime;
+	// 	if (mStartTimer < 0.0f)
+	// 		mStatus = Result_ScreenActive;
+	// 	break;
 	case Result_OpenWait:
 		if (++mCounter >= 199 || mControl->getButtonDown() & Controller::PRESS_A) {
 			open2D(game);

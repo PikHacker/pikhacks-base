@@ -10,7 +10,7 @@ namespace Ujib {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ウジンコ♂マネージャ"; // ujinko ♂ manager
+	mName = "ujiB"; // ujinko ♂ manager
 }
 
 /**

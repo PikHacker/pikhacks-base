@@ -71,7 +71,7 @@ void Generator::doReadOldVersion(Stream&)
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "電撃ヒバマネージャ"; // electric hiba manager
+	mName = "elechiba"; // electric hiba manager
 }
 
 /**

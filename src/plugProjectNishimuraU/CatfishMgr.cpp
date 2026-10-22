@@ -1,4 +1,3 @@
-#include "types.h"
 #include "Game/Entities/Catfish.h"
 
 namespace Game {
@@ -11,7 +10,7 @@ namespace Catfish {
 Mgr::Mgr(int p1, u8 p2)
     : EnemyMgrBase(p1, p2)
 {
-	mName = "ナマズマネージャ"; // catfish manager
+	mName = "catfish"; // catfish manager
 }
 
 /**

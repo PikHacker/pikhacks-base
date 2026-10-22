@@ -12,7 +12,7 @@ namespace TamagoMushi {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "タマゴムシマネージャ"; // egg bug manager
+	mName = "tamagomushi"; // egg bug manager
 }
 
 /**

@@ -18,7 +18,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/Houdai/houdai_model.brk";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ホウダイマネージャ"; // houdai manager
+	mName = "houdai"; // houdai manager
 }
 
 /**

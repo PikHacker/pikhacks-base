@@ -6,8 +6,6 @@
 namespace Game {
 namespace Imomushi {
 
-const char statename[] = "246-ImomushiState";
-
 /**
  * @note Address: 0x802BA0D8
  * @note Size: 0x4D4

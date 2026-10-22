@@ -138,7 +138,7 @@ Obj::Obj()
     , mPathNode(nullptr)
     , mHeldTreasureNum(0)
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 	mEfxHide  = new efx::TPanHide;
 	mEfxSmoke = new efx::TPanSmoke(&mPosition);

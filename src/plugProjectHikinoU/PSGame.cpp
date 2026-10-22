@@ -1031,17 +1031,12 @@ u16 seqCpuSync(JASTrack* track, u16 command)
 	u32 cmd = command;
 	switch (cmd) {
 	case 0x3000:
-		// even though the inline already HAS an assertion
-		P2ASSERTLINE(1875, Rappa::getRappa(0));
 		return Rappa::getRappa(0)->syncCpu_TblNo(track);
 	case 0x3001:
-		P2ASSERTLINE(1879, Rappa::getRappa(0));
 		return Rappa::getRappa(0)->syncCpu_WaitChk(track);
 	case 0x3002:
-		P2ASSERTLINE(1883, Rappa::getRappa(1));
 		return Rappa::getRappa(1)->syncCpu_TblNo(track);
 	case 0x3003:
-		P2ASSERTLINE(1887, Rappa::getRappa(1));
 		return Rappa::getRappa(1)->syncCpu_WaitChk(track);
 	case 0x5000:
 		return Game::playData->isStoryFlag(Game::STORY_DebtPaid);

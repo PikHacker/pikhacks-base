@@ -10,7 +10,7 @@ namespace SnakeCrow {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ヘビガラスマネージャ"; // snake crow manager
+	mName = "snakecrow"; // snake crow manager
 }
 
 /**

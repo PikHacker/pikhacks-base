@@ -18,7 +18,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/FireChappy/yakichappy.brk";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ヤキチャッピーマネージャ"; // yaki chappy manager
+	mName = "firechappy"; // yaki chappy manager
 }
 
 /**

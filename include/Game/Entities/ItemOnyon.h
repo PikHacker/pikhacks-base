@@ -184,7 +184,6 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	virtual void doSimulation(f32 constraint) { TO_ITEMMGR(mNodeObjectMgr)->doSimulation(constraint); }   // _18 (weak)
 	virtual ~Mgr();                                                                                       // _A0
 	virtual void initDependency();                                                                        // _38
-	virtual void setupSoundViewerAndBas();                                                                // _44
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*);                                 // _5C
 	virtual void generatorWrite(Stream&, GenItemParm*);                                                   // _60
 	virtual void generatorRead(Stream&, GenItemParm*, u32);                                               // _64

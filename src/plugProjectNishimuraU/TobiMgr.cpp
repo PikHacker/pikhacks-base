@@ -10,7 +10,7 @@ namespace Tobi {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "トビンコマネージャ"; // tobinko manager
+	mName = "tobi"; // tobinko manager
 }
 
 /**

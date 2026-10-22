@@ -456,12 +456,4 @@ void NaviMgr::doSimulation(f32 rate)
 	}
 }
 
-/**
- * @note Address: 0x8015BA20
- * @note Size: 0x4
- */
-void NaviMgr::setupSoundViewerAndBas()
-{
-}
-
 } // namespace Game

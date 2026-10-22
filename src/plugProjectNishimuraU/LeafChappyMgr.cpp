@@ -10,7 +10,7 @@ namespace LeafChappy {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "葉っぱチャッピーマネージャ"; // leaf chappy manager
+	mName = "leafchappy"; // leaf chappy manager
 }
 
 /**

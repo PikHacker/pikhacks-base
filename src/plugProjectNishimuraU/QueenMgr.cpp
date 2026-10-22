@@ -17,7 +17,7 @@ static const char* cMatAnimBtkTexName = "/enemy/data/Queen/queenchappy_model.btk
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "クィーンチャッピーマネージャ"; // queen chappy manager
+	mName = "queen"; // queen chappy manager
 }
 
 /**
@@ -87,7 +87,6 @@ void Mgr::loadTexData()
 SysShape::Model* Mgr::createModel()
 {
 	SysShape::Model* model = new SysShape::Model(mModelData, 0x40000, mMtxBufferSize);
-	P2ASSERTLINE(134, model);
 	return model;
 }
 

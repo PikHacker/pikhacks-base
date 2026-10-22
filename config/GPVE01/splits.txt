@@ -687,9 +687,6 @@ JSystem/J3D/J3DAnmLoader.cpp:
 	.data       start:0x804A1FB8 end:0x804A2048
 	.sdata2     start:0x80516A90 end:0x80516A98
 
-JSystem/J3D/J3DModelSaver.cpp:
-	.text       start:0x80074438 end:0x80074440
-
 JSystem/J3D/J3DGD.cpp:
 	.text       start:0x80074440 end:0x800771C0
 	.data       start:0x804A2048 end:0x804A20F0
@@ -2010,10 +2007,6 @@ plugProjectYamashitaU/generalEnemyMgr.cpp:
 	.sbss       start:0x80515860 end:0x80515870
 	.sdata2     start:0x805179A0 end:0x805179D0
 
-plugProjectYamashitaU/kochappyAnimator.cpp:
-	.text       start:0x8010F2A8 end:0x8010F31C
-	.data       start:0x804AB628 end:0x804AB650
-
 plugProjectYamashitaU/kochappy.cpp:
 	.text       start:0x8010F31C end:0x8010F874
 	.data       start:0x804AB650 end:0x804AB998
@@ -2052,10 +2045,6 @@ plugProjectYamashitaU/chappyState.cpp:
 	.rodata     start:0x8047AEA8 end:0x8047AEC8
 	.data       start:0x804AC038 end:0x804AC1E8
 	.sdata2     start:0x80517AA0 end:0x80517B10
-
-plugProjectYamashitaU/chappyAnimator.cpp:
-	.text       start:0x80119710 end:0x80119784
-	.data       start:0x804AC1E8 end:0x804AC210
 
 plugProjectYamashitaU/chappyMgr.cpp:
 	.text       start:0x80119784 end:0x80119BFC
@@ -2980,9 +2969,6 @@ plugProjectKandoU/gamePlayDataMemCard.cpp:
 	.sbss       start:0x80515C28 end:0x80515C30
 	.sdata2     start:0x8051A078 end:0x8051A090
 
-plugProjectKandoU/baseHIOparms.cpp:
-	.sdata      start:0x80514AE8 end:0x80514AF0
-
 plugProjectKandoU/radarInfo.cpp:
 	.text       start:0x8021E28C end:0x8021EED8
 	.data       start:0x804C0860 end:0x804C0880
@@ -3361,10 +3347,6 @@ plugProjectNishimuraU/RumbleMgr.cpp:
 	.sbss       start:0x80515D28 end:0x80515D30
 	.sdata2     start:0x8051A978 end:0x8051A990
 
-plugProjectNishimuraU/PomAnimator.cpp:
-	.text       start:0x80253E18 end:0x80253E8C
-	.data       start:0x804C1C08 end:0x804C1C30
-
 plugProjectNishimuraU/PomMgr.cpp:
 	.text       start:0x80253E8C end:0x802547A4
 	.ctors      start:0x804730C4 end:0x804730C8
@@ -3389,10 +3371,6 @@ plugProjectNishimuraU/FrogState.cpp:
 	.rodata     start:0x80484D08 end:0x80484D20
 	.data       start:0x804C2188 end:0x804C2338
 	.sdata2     start:0x8051AA28 end:0x8051AAA0
-
-plugProjectNishimuraU/FrogAnimator.cpp:
-	.text       start:0x802580AC end:0x80258120
-	.data       start:0x804C2338 end:0x804C2360
 
 plugProjectNishimuraU/FrogMgr.cpp:
 	.text       start:0x80258120 end:0x80258548
@@ -3425,10 +3403,6 @@ plugProjectNishimuraU/UjibState.cpp:
 	.data       start:0x804C2C78 end:0x804C2E98
 	.sdata2     start:0x8051AB98 end:0x8051ABF8
 
-plugProjectNishimuraU/UjibAnimator.cpp:
-	.text       start:0x8025CCD4 end:0x8025CD48
-	.data       start:0x804C2E98 end:0x804C2EC0
-
 plugProjectNishimuraU/KoganeState.cpp:
 	.text       start:0x8025CD48 end:0x8025D898
 	.rodata     start:0x80485380 end:0x80485390
@@ -3447,10 +3421,6 @@ plugProjectNishimuraU/Kogane.cpp:
 	.data       start:0x804C30A8 end:0x804C33F8
 	.sdata2     start:0x8051AC28 end:0x8051AC88
 
-plugProjectNishimuraU/KoganeAnimator.cpp:
-	.text       start:0x8025F020 end:0x8025F094
-	.data       start:0x804C33F8 end:0x804C3420
-
 plugProjectNishimuraU/QurioneState.cpp:
 	.text       start:0x8025F094 end:0x8025FA8C
 	.rodata     start:0x804853E8 end:0x804853F8
@@ -3468,10 +3438,6 @@ plugProjectNishimuraU/Qurione.cpp:
 	.rodata     start:0x80485760 end:0x80485770
 	.data       start:0x804C3650 end:0x804C3A78
 	.sdata2     start:0x8051ACF0 end:0x8051AD40
-
-plugProjectNishimuraU/QurioneAnimator.cpp:
-	.text       start:0x8026134C end:0x802613C0
-	.data       start:0x804C3A78 end:0x804C3AA0
 
 plugProjectNishimuraU/RumbleData.cpp:
 	.text       start:0x802613C0 end:0x8026152C
@@ -3494,10 +3460,6 @@ plugProjectNishimuraU/RockState.cpp:
 	.sbss       start:0x80515D40 end:0x80515D48
 	.sdata2     start:0x8051AD48 end:0x8051AD80
 
-plugProjectNishimuraU/RockAnimator.cpp:
-	.text       start:0x8026287C end:0x802628F0
-	.data       start:0x804C3FE8 end:0x804C4010
-
 plugProjectNishimuraU/RockMgr.cpp:
 	.text       start:0x802628F0 end:0x80262FF0
 	.rodata     start:0x80485798 end:0x80485AD8
@@ -3514,10 +3476,6 @@ plugProjectNishimuraU/UjiaState.cpp:
 	.rodata     start:0x80485AD8 end:0x80485AF0
 	.data       start:0x804C4560 end:0x804C4738
 	.sdata2     start:0x8051AE08 end:0x8051AE60
-
-plugProjectNishimuraU/UjiaAnimator.cpp:
-	.text       start:0x80265CA0 end:0x80265D14
-	.data       start:0x804C4738 end:0x804C4760
 
 plugProjectNishimuraU/UjiaMgr.cpp:
 	.text       start:0x80265D14 end:0x80266080
@@ -3537,10 +3495,6 @@ plugProjectNishimuraU/TobiState.cpp:
 	.data       start:0x804C4B80 end:0x804C4DC0
 	.sdata2     start:0x8051AED8 end:0x8051AF40
 
-plugProjectNishimuraU/TobiAnimator.cpp:
-	.text       start:0x802693D4 end:0x80269448
-	.data       start:0x804C4DC0 end:0x804C4DE8
-
 plugProjectNishimuraU/TobiMgr.cpp:
 	.text       start:0x80269448 end:0x802698AC
 	.rodata     start:0x80485B50 end:0x80485E80
@@ -3558,10 +3512,6 @@ plugProjectNishimuraU/HibaState.cpp:
 	.data       start:0x804C5208 end:0x804C52C0
 	.sdata2     start:0x8051AFE0 end:0x8051B000
 
-plugProjectNishimuraU/HibaAnimator.cpp:
-	.text       start:0x8026B848 end:0x8026B8BC
-	.data       start:0x804C52C0 end:0x804C52E8
-
 plugProjectNishimuraU/HibaMgr.cpp:
 	.text       start:0x8026B8BC end:0x8026BE8C
 	.rodata     start:0x80485E90 end:0x804861B8
@@ -3577,10 +3527,6 @@ plugProjectNishimuraU/GasHibaState.cpp:
 	.text       start:0x8026C68C end:0x8026CC0C
 	.data       start:0x804C5800 end:0x804C58B8
 	.sdata2     start:0x8051B038 end:0x8051B058
-
-plugProjectNishimuraU/GasHibaAnimator.cpp:
-	.text       start:0x8026CC0C end:0x8026CC80
-	.data       start:0x804C58B8 end:0x804C58E0
 
 plugProjectNishimuraU/GasHibaMgr.cpp:
 	.text       start:0x8026CC80 end:0x8026D14C
@@ -3598,10 +3544,6 @@ plugProjectNishimuraU/ElecHibaState.cpp:
 	.text       start:0x8026DFD8 end:0x8026E994
 	.data       start:0x804C5D08 end:0x804C5DE0
 	.sdata2     start:0x8051B098 end:0x8051B0C0
-
-plugProjectNishimuraU/ElecHibaAnimator.cpp:
-	.text       start:0x8026E994 end:0x8026EA08
-	.data       start:0x804C5DE0 end:0x804C5E08
 
 plugProjectNishimuraU/ElecHibaMgr.cpp:
 	.text       start:0x8026EA08 end:0x8026F258
@@ -3621,10 +3563,6 @@ plugProjectNishimuraU/SaraiState.cpp:
 	.data       start:0x804C62C8 end:0x804C64A0
 	.sdata2     start:0x8051B110 end:0x8051B1B0
 
-plugProjectNishimuraU/SaraiAnimator.cpp:
-	.text       start:0x80272490 end:0x80272504
-	.data       start:0x804C64A0 end:0x804C64C8
-
 plugProjectNishimuraU/SaraiMgr.cpp:
 	.text       start:0x80272504 end:0x80272BC4
 	.rodata     start:0x80486890 end:0x80486C50
@@ -3642,10 +3580,6 @@ plugProjectNishimuraU/TankState.cpp:
 	.rodata     start:0x80486C68 end:0x80486C80
 	.data       start:0x804C68F8 end:0x804C6A40
 	.sdata2     start:0x8051B268 end:0x8051B2D8
-
-plugProjectNishimuraU/TankAnimator.cpp:
-	.text       start:0x802759A4 end:0x80275A18
-	.data       start:0x804C6A40 end:0x804C6A68
 
 plugProjectNishimuraU/TankMgr.cpp:
 	.text       start:0x80275A18 end:0x80275D8C
@@ -3673,10 +3607,6 @@ plugProjectNishimuraU/TadpoleState.cpp:
 	.data       start:0x804C72C0 end:0x804C73E0
 	.sdata2     start:0x8051B390 end:0x8051B400
 
-plugProjectNishimuraU/TadpoleAnimator.cpp:
-	.text       start:0x802781F0 end:0x80278264
-	.data       start:0x804C73E0 end:0x804C7408
-
 plugProjectNishimuraU/TadpoleMgr.cpp:
 	.text       start:0x80278264 end:0x802785D0
 	.rodata     start:0x80486CE8 end:0x80486D20
@@ -3693,10 +3623,6 @@ plugProjectNishimuraU/ElecBugState.cpp:
 	.rodata     start:0x80486D20 end:0x80486D60
 	.data       start:0x804C7838 end:0x804C7A00
 	.sdata2     start:0x8051B450 end:0x8051B4C8
-
-plugProjectNishimuraU/ElecBugAnimator.cpp:
-	.text       start:0x8027A828 end:0x8027A89C
-	.data       start:0x804C7A00 end:0x804C7A28
 
 plugProjectNishimuraU/ElecBugMgr.cpp:
 	.text       start:0x8027A89C end:0x8027AC88
@@ -3736,10 +3662,6 @@ plugProjectNishimuraU/Mar.cpp:
 	.text       start:0x8027F50C end:0x80281E9C
 	.data       start:0x804C88A8 end:0x804C8C78
 	.sdata2     start:0x8051B598 end:0x8051B618
-
-plugProjectNishimuraU/MarAnimator.cpp:
-	.text       start:0x80281E9C end:0x80281F10
-	.data       start:0x804C8C78 end:0x804C8CA0
 
 plugProjectNishimuraU/MarMgr.cpp:
 	.text       start:0x80281F10 end:0x80282614
@@ -3783,20 +3705,12 @@ plugProjectNishimuraU/ArmorState.cpp:
 	.data       start:0x804C9850 end:0x804C9A90
 	.sdata2     start:0x8051B728 end:0x8051B798
 
-plugProjectNishimuraU/ArmorAnimator.cpp:
-	.text       start:0x80287AFC end:0x80287B70
-	.data       start:0x804C9A90 end:0x804C9AB8
-
 plugProjectNishimuraU/QueenState.cpp:
 	.text       start:0x80287B70 end:0x80288E40
 	.ctors      start:0x804730D0 end:0x804730D4
 	.data       start:0x804C9AB8 end:0x804C9C08
 	.sbss       start:0x80515D48 end:0x80515D50
 	.sdata2     start:0x8051B798 end:0x8051B800
-
-plugProjectNishimuraU/QueenAnimator.cpp:
-	.text       start:0x80288E40 end:0x80288EB4
-	.data       start:0x804C9C08 end:0x804C9C30
 
 plugProjectNishimuraU/QueenMgr.cpp:
 	.text       start:0x80288EB4 end:0x802894D4
@@ -3817,10 +3731,6 @@ plugProjectNishimuraU/BabyState.cpp:
 	.text       start:0x8028C584 end:0x8028D04C
 	.data       start:0x804CA348 end:0x804CA458
 	.sdata2     start:0x8051B888 end:0x8051B8C8
-
-plugProjectNishimuraU/BabyAnimator.cpp:
-	.text       start:0x8028D04C end:0x8028D0C0
-	.data       start:0x804CA458 end:0x804CA480
 
 plugProjectNishimuraU/BabyMgr.cpp:
 	.text       start:0x8028D0C0 end:0x8028D470
@@ -3867,10 +3777,6 @@ plugProjectNishimuraU/SnakeCrowState.cpp:
 	.sbss       start:0x80515D58 end:0x80515D60
 	.sdata2     start:0x8051B9F8 end:0x8051BA68
 
-plugProjectNishimuraU/SnakeCrowAnimator.cpp:
-	.text       start:0x80292B28 end:0x80292B9C
-	.data       start:0x804CB458 end:0x804CB480
-
 plugProjectNishimuraU/SnakeCrowMgr.cpp:
 	.text       start:0x80292B9C end:0x80293094
 	.rodata     start:0x804883F0 end:0x80488730
@@ -3891,10 +3797,6 @@ plugProjectNishimuraU/KumaChappyState.cpp:
 	.data       start:0x804CB9E8 end:0x804CBB78
 	.sdata2     start:0x8051BAE0 end:0x8051BB48
 
-plugProjectNishimuraU/KumaChappyAnimator.cpp:
-	.text       start:0x80299240 end:0x802992B4
-	.data       start:0x804CBB78 end:0x804CBBA0
-
 plugProjectNishimuraU/KumaChappyMgr.cpp:
 	.text       start:0x802992B4 end:0x802996A0
 	.rodata     start:0x804888E0 end:0x80488C10
@@ -3911,10 +3813,6 @@ plugProjectNishimuraU/FuefukiState.cpp:
 	.rodata     start:0x80488C10 end:0x80488C20
 	.data       start:0x804CBFD8 end:0x804CC168
 	.sdata2     start:0x8051BBF0 end:0x8051BC70
-
-plugProjectNishimuraU/FuefukiAnimator.cpp:
-	.text       start:0x8029BBC4 end:0x8029BC38
-	.data       start:0x804CC168 end:0x804CC190
 
 plugProjectNishimuraU/FuefukiMgr.cpp:
 	.text       start:0x8029BC38 end:0x8029C1C4
@@ -3960,10 +3858,6 @@ plugProjectNishimuraU/HanachirashiState.cpp:
 	.data       start:0x804CCF30 end:0x804CD150
 	.sdata2     start:0x8051BD08 end:0x8051BD90
 
-plugProjectNishimuraU/HanachirashiAnimator.cpp:
-	.text       start:0x802A12B4 end:0x802A1328
-	.data       start:0x804CD150 end:0x804CD178
-
 plugProjectNishimuraU/HanachirashiMgr.cpp:
 	.text       start:0x802A1328 end:0x802A1AE8
 	.rodata     start:0x804890B8 end:0x804894B8
@@ -3982,10 +3876,6 @@ plugProjectNishimuraU/DamagumoState.cpp:
 	.data       start:0x804CD5D0 end:0x804CD700
 	.sbss       start:0x80515D68 end:0x80515D70
 	.sdata2     start:0x8051BE48 end:0x8051BEA0
-
-plugProjectNishimuraU/DamagumoAnimator.cpp:
-	.text       start:0x802A5058 end:0x802A50CC
-	.data       start:0x804CD700 end:0x804CD728
 
 plugProjectNishimuraU/DamagumoMgr.cpp:
 	.text       start:0x802A50CC end:0x802A57A4
@@ -4026,10 +3916,6 @@ plugProjectNishimuraU/KurageState.cpp:
 	.sbss       start:0x80515D80 end:0x80515D88
 	.sdata2     start:0x8051C020 end:0x8051C0A0
 
-plugProjectNishimuraU/KurageAnimator.cpp:
-	.text       start:0x802AD090 end:0x802AD104
-	.data       start:0x804CE0E0 end:0x804CE108
-
 plugProjectNishimuraU/KurageMgr.cpp:
 	.text       start:0x802AD104 end:0x802AD6F0
 	.rodata     start:0x80489A38 end:0x80489DA8
@@ -4050,10 +3936,6 @@ plugProjectNishimuraU/BombSaraiState.cpp:
 	.sbss       start:0x80515D88 end:0x80515D90
 	.sdata2     start:0x8051C130 end:0x8051C1C0
 
-plugProjectNishimuraU/BombSaraiAnimator.cpp:
-	.text       start:0x802B2130 end:0x802B21A4
-	.data       start:0x804CE880 end:0x804CE8A8
-
 plugProjectNishimuraU/BombSaraiMgr.cpp:
 	.text       start:0x802B21A4 end:0x802B27CC
 	.rodata     start:0x80489EE0 end:0x8048A250
@@ -4071,10 +3953,6 @@ plugProjectNishimuraU/OtakaraBaseState.cpp:
 	.rodata     start:0x8048A2C0 end:0x8048A338
 	.data       start:0x804CED28 end:0x804CEF68
 	.sdata2     start:0x8051C248 end:0x8051C290
-
-plugProjectNishimuraU/OtakaraBaseAnimator.cpp:
-	.text       start:0x802B5E24 end:0x802B5E98
-	.data       start:0x804CEF68 end:0x804CEF90
 
 plugProjectNishimuraU/OtakaraBaseMgr.cpp:
 	.text       start:0x802B5E98 end:0x802B624C
@@ -4137,10 +4015,6 @@ plugProjectNishimuraU/ImomushiState.cpp:
 	.data       start:0x804D05A0 end:0x804D07E0
 	.sdata2     start:0x8051C330 end:0x8051C3A0
 
-plugProjectNishimuraU/ImomushiAnimator.cpp:
-	.text       start:0x802BBC60 end:0x802BBCD4
-	.data       start:0x804D07E0 end:0x804D0808
-
 plugProjectNishimuraU/ImomushiMgr.cpp:
 	.text       start:0x802BBCD4 end:0x802BC138
 	.rodata     start:0x8048A900 end:0x8048AC30
@@ -4159,10 +4033,6 @@ plugProjectNishimuraU/HoudaiState.cpp:
 	.data       start:0x804D0C30 end:0x804D0D80
 	.sbss       start:0x80515D90 end:0x80515D98
 	.sdata2     start:0x8051C418 end:0x8051C478
-
-plugProjectNishimuraU/HoudaiAnimator.cpp:
-	.text       start:0x802BED6C end:0x802BEDE0
-	.data       start:0x804D0D80 end:0x804D0DA8
 
 plugProjectNishimuraU/HoudaiMgr.cpp:
 	.text       start:0x802BEDE0 end:0x802BF47C
@@ -4206,10 +4076,6 @@ plugProjectNishimuraU/BigFootState.cpp:
 	.sbss       start:0x80515DA8 end:0x80515DB0
 	.sdata2     start:0x8051C668 end:0x8051C6B0
 
-plugProjectNishimuraU/BigFootAnimator.cpp:
-	.text       start:0x802C6EE4 end:0x802C6F58
-	.data       start:0x804D1AA8 end:0x804D1AD0
-
 plugProjectNishimuraU/BigFootMgr.cpp:
 	.text       start:0x802C6F58 end:0x802C7810
 	.rodata     start:0x8048B218 end:0x8048B640
@@ -4238,10 +4104,6 @@ plugProjectNishimuraU/SnakeWholeState.cpp:
 	.sbss       start:0x80515DB8 end:0x80515DC0
 	.sdata2     start:0x8051C7D0 end:0x8051C848
 
-plugProjectNishimuraU/SnakeWholeAnimator.cpp:
-	.text       start:0x802CE268 end:0x802CE2DC
-	.data       start:0x804D2330 end:0x804D2358
-
 plugProjectNishimuraU/SnakeWholeMgr.cpp:
 	.text       start:0x802CE2DC end:0x802CE798
 	.rodata     start:0x8048B808 end:0x8048BB38
@@ -4267,10 +4129,6 @@ plugProjectNishimuraU/OniKurageState.cpp:
 	.data       start:0x804D27A8 end:0x804D29C0
 	.sbss       start:0x80515DC8 end:0x80515DD0
 	.sdata2     start:0x8051C8E8 end:0x8051C970
-
-plugProjectNishimuraU/OniKurageAnimator.cpp:
-	.text       start:0x802D3924 end:0x802D3998
-	.data       start:0x804D29C0 end:0x804D29E8
 
 plugProjectNishimuraU/OniKurageMgr.cpp:
 	.text       start:0x802D3998 end:0x802D3F84
@@ -4320,10 +4178,6 @@ plugProjectNishimuraU/KabutoState.cpp:
 	.data       start:0x804D38E8 end:0x804D3B30
 	.sdata2     start:0x8051CD58 end:0x8051CDC8
 
-plugProjectNishimuraU/KabutoAnimator.cpp:
-	.text       start:0x802E3CF4 end:0x802E3D68
-	.data       start:0x804D3B30 end:0x804D3B58
-
 plugProjectNishimuraU/KabutoMgr.cpp:
 	.text       start:0x802E3D68 end:0x802E4178
 	.rodata     start:0x8048CC98 end:0x8048CD30
@@ -4339,10 +4193,6 @@ plugProjectNishimuraU/KumaKochappyState.cpp:
 	.rodata     start:0x8048CD30 end:0x8048CD40
 	.data       start:0x804D3FA0 end:0x804D40E8
 	.sdata2     start:0x8051CE60 end:0x8051CEB0
-
-plugProjectNishimuraU/KumaKochappyAnimator.cpp:
-	.text       start:0x802E6C70 end:0x802E6CE4
-	.data       start:0x804D40E8 end:0x804D4110
 
 plugProjectNishimuraU/KumaKochappyMgr.cpp:
 	.text       start:0x802E6CE4 end:0x802E7050
@@ -4362,10 +4212,6 @@ plugProjectNishimuraU/MiniHoudaiState.cpp:
 	.data       start:0x804D4548 end:0x804D4728
 	.sbss       start:0x80515DE8 end:0x80515DF0
 	.sdata2     start:0x8051CF10 end:0x8051CF78
-
-plugProjectNishimuraU/MiniHoudaiAnimator.cpp:
-	.text       start:0x802EBCE0 end:0x802EBD54
-	.data       start:0x804D4728 end:0x804D4750
 
 plugProjectNishimuraU/MiniHoudaiMgr.cpp:
 	.text       start:0x802EBD54 end:0x802EBFF8
@@ -4391,10 +4237,6 @@ plugProjectNishimuraU/SokkuriState.cpp:
 	.rodata     start:0x8048CDE8 end:0x8048CE20
 	.data       start:0x804D4CC0 end:0x804D4E50
 	.sdata2     start:0x8051D090 end:0x8051D0F0
-
-plugProjectNishimuraU/SokkuriAnimator.cpp:
-	.text       start:0x802F0B90 end:0x802F0C04
-	.data       start:0x804D4E50 end:0x804D4E78
 
 plugProjectNishimuraU/SokkuriMgr.cpp:
 	.text       start:0x802F0C04 end:0x802F1264
@@ -4626,15 +4468,6 @@ plugProjectOgawaU/ogSE.cpp:
 plugProjectOgawaU/ogCounterDay.cpp:
 	.text       start:0x8030D2B8 end:0x8030D790
 	.data       start:0x804D81F8 end:0x804D8228
-
-plugProjectOgawaU/testScene.cpp:
-	.text       start:0x8030D790 end:0x8030D868
-	.data       start:0x804D8228 end:0x804D8240
-
-plugProjectOgawaU/testObj.cpp:
-	.text       start:0x8030D868 end:0x8030DA00
-	.rodata     start:0x8048E078 end:0x8048E090
-	.data       start:0x804D8240 end:0x804D8288
 
 plugProjectOgawaU/ogSceneGround.cpp:
 	.text       start:0x8030DA00 end:0x8030DEB8
@@ -5099,9 +4932,6 @@ plugProjectHikinoU/PSBgmTask.cpp:
 	.sbss       start:0x80515EF8 end:0x80515F00
 	.sdata2     start:0x8051E178 end:0x8051E188
 
-plugProjectHikinoU/PSCreatureMgr.cpp:
-	.text       start:0x8033EE98 end:0x8033EE9C
-
 plugProjectHikinoU/PSAutoBgm_MeloArranger.cpp:
 	.text       start:0x8033EE9C end:0x8033F010
 	.text       start:0x8033F010 end:0x8033F148
@@ -5188,10 +5018,6 @@ plugProjectMorimuraU/bombState.cpp:
 	.sbss       start:0x80515F28 end:0x80515F30
 	.sdata2     start:0x8051E300 end:0x8051E320
 
-plugProjectMorimuraU/bombAnimator.cpp:
-	.text       start:0x80349D64 end:0x80349DD8
-	.data       start:0x804DBA50 end:0x804DBA78
-
 plugProjectMorimuraU/bombMgr.cpp:
 	.text       start:0x80349DD8 end:0x8034A21C
 	.rodata     start:0x804904E8 end:0x80490808
@@ -5207,10 +5033,6 @@ plugProjectMorimuraU/eggState.cpp:
 	.text       start:0x8034B3C4 end:0x8034B63C
 	.data       start:0x804DBEE0 end:0x804DBF60
 	.sdata2     start:0x8051E370 end:0x8051E380
-
-plugProjectMorimuraU/eggAnimator.cpp:
-	.text       start:0x8034B63C end:0x8034B6B0
-	.data       start:0x804DBF60 end:0x804DBF88
 
 plugProjectMorimuraU/eggMgr.cpp:
 	.text       start:0x8034B6B0 end:0x8034BB30
@@ -5228,10 +5050,6 @@ plugProjectMorimuraU/panModokiState.cpp:
 	.rodata     start:0x80490B38 end:0x80490B48
 	.data       start:0x804DC3A8 end:0x804DC580
 	.sdata2     start:0x8051E3D0 end:0x8051E458
-
-plugProjectMorimuraU/panModokiAnimator.cpp:
-	.text       start:0x8034E94C end:0x8034E9C0
-	.data       start:0x804DC580 end:0x804DC5A8
 
 plugProjectMorimuraU/panModokiMgr.cpp:
 	.text       start:0x8034E9C0 end:0x8034F5E0
@@ -5251,10 +5069,6 @@ plugProjectMorimuraU/plantsMgr.cpp:
 	.text       start:0x80353D4C end:0x80358358
 	.rodata     start:0x80490F18 end:0x804910D8
 	.data       start:0x804DD178 end:0x804E0698
-
-plugProjectMorimuraU/plantsAnimator.cpp:
-	.text       start:0x80358358 end:0x803583CC
-	.data       start:0x804E0698 end:0x804E06C0
 
 plugProjectMorimuraU/plants.cpp:
 	.text       start:0x803583CC end:0x803591BC
@@ -5292,10 +5106,6 @@ plugProjectMorimuraU/miulinState.cpp:
 	.data       start:0x804E2348 end:0x804E24B0
 	.sdata2     start:0x8051E780 end:0x8051E7F0
 
-plugProjectMorimuraU/miulinAnimator.cpp:
-	.text       start:0x80363EE4 end:0x80363F58
-	.data       start:0x804E24B0 end:0x804E24D8
-
 plugProjectMorimuraU/miulinMgr.cpp:
 	.text       start:0x80363F58 end:0x80364454
 	.rodata     start:0x804916B0 end:0x80491A18
@@ -5314,10 +5124,6 @@ plugProjectMorimuraU/jigumoState.cpp:
 	.data       start:0x804E2908 end:0x804E2B40
 	.sbss       start:0x80515F58 end:0x80515F60
 	.sdata2     start:0x8051E870 end:0x8051E920
-
-plugProjectMorimuraU/jigumoAnimator.cpp:
-	.text       start:0x80368858 end:0x803688CC
-	.data       start:0x804E2B40 end:0x804E2B68
 
 plugProjectMorimuraU/jigumoMgr.cpp:
 	.text       start:0x803688CC end:0x80368EA0
@@ -5348,10 +5154,6 @@ plugProjectMorimuraU/tamagoMushiState.cpp:
 	.text       start:0x8036CCF0 end:0x8036D914
 	.data       start:0x804E3390 end:0x804E34B0
 	.sdata2     start:0x8051EA00 end:0x8051EA50
-
-plugProjectMorimuraU/tamagoMushiAnimator.cpp:
-	.text       start:0x8036D914 end:0x8036D988
-	.data       start:0x804E34B0 end:0x804E34D8
 
 plugProjectMorimuraU/tamagoMushiMgr.cpp:
 	.text       start:0x8036D988 end:0x8036EBA8
@@ -5393,10 +5195,6 @@ plugProjectMorimuraU/umiMushiState.cpp:
 	.sbss       start:0x80515FC0 end:0x80515FC8
 	.sdata2     start:0x8051ECC8 end:0x8051ED40
 
-plugProjectMorimuraU/umiMushiAnimator.cpp:
-	.text       start:0x803826C8 end:0x8038273C
-	.data       start:0x804E4540 end:0x804E4568
-
 plugProjectMorimuraU/umiMushiMgr.cpp:
 	.text       start:0x8038273C end:0x80383100
 	.rodata     start:0x804936D8 end:0x80493AE8
@@ -5414,10 +5212,6 @@ plugProjectMorimuraU/shijimiChouState.cpp:
 	.text       start:0x80387718 end:0x8038844C
 	.data       start:0x804E4AA8 end:0x804E4BC8
 	.sdata2     start:0x8051EE10 end:0x8051EE78
-
-plugProjectMorimuraU/shijimiChouAnimator.cpp:
-	.text       start:0x8038844C end:0x803884C0
-	.data       start:0x804E4BC8 end:0x804E4BF0
 
 plugProjectMorimuraU/shijimiChouMgr.cpp:
 	.text       start:0x803884C0 end:0x80389634
@@ -5487,10 +5281,6 @@ plugProjectMorimuraU/blackManState.cpp:
 	.sbss       start:0x80516050 end:0x80516058
 	.sdata2     start:0x8051F370 end:0x8051F3E8
 
-plugProjectMorimuraU/blackManAnimator.cpp:
-	.text       start:0x803A5354 end:0x803A53C8
-	.data       start:0x804E5BE8 end:0x804E5C10
-
 plugProjectMorimuraU/blackManMgr.cpp:
 	.text       start:0x803A53C8 end:0x803A5DB0
 	.rodata     start:0x80495258 end:0x80495670
@@ -5509,10 +5299,6 @@ plugProjectMorimuraU/tyreState.cpp:
 	.text       start:0x803AB864 end:0x803ABDEC
 	.data       start:0x804E61D8 end:0x804E62B0
 	.sdata2     start:0x8051F568 end:0x8051F598
-
-plugProjectMorimuraU/tyreAnimator.cpp:
-	.text       start:0x803ABDEC end:0x803ABE60
-	.data       start:0x804E62B0 end:0x804E62D8
 
 plugProjectMorimuraU/tyreMgr.cpp:
 	.text       start:0x803ABE60 end:0x803AC2F0
@@ -5890,18 +5676,6 @@ plugProjectEbisawaU/ebiScreenOmakeGame.cpp:
 	.data       start:0x804EA350 end:0x804EA3A0
 	.sdata2     start:0x8051FEC8 end:0x8051FEF0
 
-plugProjectEbisawaU/ebiScreenInfoWindow.cpp:
-	.text       start:0x803F1A80 end:0x803F1A80
-	.text       start:0x803F1A80 end:0x803F1A80
-	.text       start:0x803F1A80 end:0x803F1A80
-	.text       start:0x803F1A80 end:0x803F1A80
-	.text       start:0x803F1A80 end:0x803F1B04
-	.text       start:0x803F1B04 end:0x803F1B04
-	.text       start:0x803F1B04 end:0x803F1B04
-	.text       start:0x803F1B04 end:0x803F1B04
-	.text       start:0x803F1B04 end:0x803F1B04
-	.text       start:0x803F1B04 end:0x803F1B04
-
 plugProjectKonoU/khWorldMap.cpp:
 	.text       start:0x803F1B04 end:0x803F8694
 	.ctors      start:0x80473208 end:0x8047320C
@@ -6185,12 +5959,6 @@ sysGCU/sysTimers.cpp:
 sysGCU/modelMgr.cpp:
 	.text       start:0x8042AB00 end:0x8042AFC4
 	.rodata     start:0x80499E68 end:0x80499EE8
-
-sysGCU/heapStatus.cpp:
-	.text       start:0x8042AFC4 end:0x8042B46C
-	.rodata     start:0x80499EE8 end:0x80499EF8
-	.data       start:0x804EBE60 end:0x804EBE88
-	.sdata2     start:0x80520598 end:0x805205A8
 
 sysGCU/light.cpp:
 	.text       start:0x8042B46C end:0x8042BD0C
@@ -6562,12 +6330,6 @@ sysGCU/pikmin2AramMgr.cpp:
 sysGCU/messageAnalyzer.cpp:
 	.text       start:0x804560C8 end:0x80456184
 	.data       start:0x804EDC60 end:0x804EDCC8
-
-utilityU/menu.cpp:
-	.text       start:0x80456184 end:0x80456AF8
-	.rodata     start:0x8049CD78 end:0x8049CD98
-	.data       start:0x804EDCC8 end:0x804EDD50
-	.sdata2     start:0x80520BE8 end:0x80520C00
 
 utilityU/PSMainSide_Director.cpp:
 	.text       start:0x80456AF8 end:0x804595B0

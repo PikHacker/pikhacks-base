@@ -10,7 +10,7 @@ namespace BombSarai {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "バクダンサライマネージャ"; // bakudan sarai manager
+	mName = "bombsarai"; // bakudan sarai manager
 }
 
 /**

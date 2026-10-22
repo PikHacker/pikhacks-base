@@ -11,7 +11,6 @@ Obj::Obj()
 {
 	mEfxTest     = nullptr;
 	mGlobalAlpha = 0xFF;
-	mAnimator    = new ChappyBase::ProperAnimator;
 	setFSM(new ChappyBase::FSM);
 	createEffect();
 }

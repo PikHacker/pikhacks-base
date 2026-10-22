@@ -15,7 +15,7 @@ static const char* cOtakaraChangeTexName = "/enemy/data/FireOtakara/otakara_red_
 Mgr::Mgr(int objLimit, u8 modelType)
     : OtakaraBase::Mgr(objLimit, modelType)
 {
-	mName = "火オタカラムシマネージャ"; // fire otakara manager
+	mName = "fireotakara"; // fire otakara manager
 }
 
 /**

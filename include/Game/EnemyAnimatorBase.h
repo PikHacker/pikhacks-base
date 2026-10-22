@@ -12,13 +12,8 @@ struct EnemyAnimatorBase {
 	virtual void setAnimMgr(SysShape::AnimMgr* newMgr)         = 0; // _0C
 	virtual SysShape::Animator& getAnimator()                  = 0; // _10
 	virtual SysShape::Animator& getAnimator(int animatorIndex) = 0; // _14
-
-	/**
-	 * @brief Runs the animate function of an inherited animator based on the frame count. The progress will reverse if
-	 * it reaches the end and will playback forwards if it reaches the start.
-	 */
-	virtual void animate(f32 speed);                    // _18
-	virtual void animate(int animatorIndex, f32 speed); // _1C (weak)
+	virtual void animate(f32 speed);                                // _18
+	virtual void animate(int animatorIndex, f32 speed);             // _1C (weak)
 
 	virtual void resetAnimSpeed() { mSpeed = defaultAnimSpeed; } // _20 (weak)
 	virtual u32 getTypeID() { return 'base'; }                   // _24 (weak)
@@ -39,6 +34,19 @@ struct EnemyAnimatorBase {
 	BitFlag<u32> mFlags; // _0C
 };
 
+// for enemies that dont need blend anim
+struct EnemyAnimatorCommon : public EnemyAnimatorBase {
+	virtual ~EnemyAnimatorCommon() { }                                            // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr) { mAnimator.mAnimMgr = mgr; } // _0C
+	virtual SysShape::Animator& getAnimator() { return mAnimator; }               // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int idx) { return mAnimator; }        // _14
+	virtual u32 getTypeID() { return 'comn'; }                                    // _24 (weak)
+
+	// _00 		= VTBL
+	// _00-_10	= EnemyAnimatorBase
+	SysShape::Animator mAnimator; // _10
+};
+
 struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	EnemyBlendAnimatorBase();
 
@@ -47,11 +55,6 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	virtual SysShape::Animator& getAnimator();        // _10
 	virtual SysShape::Animator& getAnimator(int idx); // _14
 	virtual void animate(f32 speed);                  // _18
-
-	virtual void animate(int animatorIndex, f32 speed) // _1C (weak)
-	{
-		EnemyAnimatorBase::animate(animatorIndex, speed);
-	}
 
 	virtual u32 getTypeID() { return 'blnd'; } // _24 (weak)
 

@@ -22,7 +22,7 @@ const f32 cFlickKamuJointOffset[2]   = { 10.0f, -10.0f };
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator();
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM());
 	createEffect();
 }

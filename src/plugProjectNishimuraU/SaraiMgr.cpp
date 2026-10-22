@@ -10,7 +10,7 @@ namespace Sarai {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "サライムシマネージャ"; // saraimushi/salamander manager (lol?)
+	mName = "sarai"; // saraimushi/salamander manager (lol?)
 }
 
 /**

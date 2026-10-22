@@ -13,7 +13,7 @@ namespace KingChappy {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "キングチャッピーマネージャー"; // king chappy manager
+	mName = "kingchappy"; // king chappy manager
 }
 
 /**
@@ -51,7 +51,6 @@ void Mgr::requestState(Obj* kingChappy, int stateID)
 {
 	for (int i = 0; i < getMaxObjects(); i++) {
 		Obj* enemy = static_cast<Obj*>(getEnemy(i));
-		P2ASSERTLINE(65, enemy);
 		if (enemy->isAlive() && enemy != kingChappy && stateID != enemy->getStateID() && enemy->getStateID() != KINGCHAPPY_Dead) {
 			if (enemy->forceTransit(stateID)) {
 				return;

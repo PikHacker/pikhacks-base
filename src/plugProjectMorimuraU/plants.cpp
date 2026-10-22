@@ -79,7 +79,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
  */
 Plants::Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 }
 
 /**

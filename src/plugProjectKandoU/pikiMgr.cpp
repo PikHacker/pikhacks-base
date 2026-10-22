@@ -45,8 +45,6 @@ PikiMgr::PikiMgr()
  */
 void PikiMgr::init()
 {
-	JUT_PANICLINE(0, "who use this ??\n");
-
 	// UNUSED FUNCTION
 }
 
@@ -461,14 +459,6 @@ void PikiMgr::doEntry()
 }
 
 /**
- * @note Address: 0x8015F848
- * @note Size: 0x4
- */
-void PikiMgr::setupSoundViewerAndBas()
-{
-}
-
-/**
  * @note Address: 0x8015F84C
  * @note Size: 0x74
  */
@@ -733,7 +723,6 @@ void PikiMgr::saveAllPikmins(PikiContainer& container)
 	for (int j = 0; j < saveCount; j++) {
 		container(saveList[j])++;
 	}
-	container.dump("saveAllPikmins");
 }
 
 } // namespace Game

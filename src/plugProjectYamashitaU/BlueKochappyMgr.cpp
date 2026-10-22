@@ -15,7 +15,7 @@ static const char* cKochappyChangeTexName = "/enemy/data/BlueKochappy/kochappy_b
 Mgr::Mgr(int objLimit, u8 modelType)
     : KochappyBase::Mgr(objLimit, modelType)
 {
-	mName = "青コチャッピーマネージャ"; // blue kochappy manager
+	mName = "bluekochappy"; // blue kochappy manager
 }
 
 /**

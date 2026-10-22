@@ -10,7 +10,7 @@ namespace Hiba {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
-	mName = "ヒバマネージャ"; // hiba manager
+	mName = "hiba"; // hiba manager
 }
 
 /**

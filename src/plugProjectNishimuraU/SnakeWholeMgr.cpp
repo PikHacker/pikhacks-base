@@ -10,7 +10,7 @@ namespace SnakeWhole {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ヘビガラス全身マネージャ"; // snake crow whole body manager
+	mName = "snakewhole"; // snake crow whole body manager
 }
 
 /**

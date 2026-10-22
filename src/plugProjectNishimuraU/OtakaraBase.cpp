@@ -14,7 +14,7 @@ namespace OtakaraBase {
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator();
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 }
 

@@ -71,7 +71,6 @@ void SingleGame::FSM::init(SingleGameSection* section)
 	registerState(new GameState);
 	registerState(new CaveState);
 	registerState(new DayEndState);
-	registerState(new CaveDayEndState);
 	registerState(new MainResultState);
 	registerState(new CaveResultState);
 	registerState(new MovieState);
@@ -168,71 +167,6 @@ void SingleGame::State::accountEarnings(SingleGameSection* game, PelletCropMemor
 			}
 		}
 	}
-}
-
-/**
- * @note Address: 0x80152788
- * @note Size: 0x160
- */
-void SingleGame::CaveDayEndState::init(SingleGameSection* game, StateArg* arg)
-{
-	moviePlayer->reset();
-
-	game->mDisplayWiper = game->mWipeOutFader;
-	mFadeTimer          = 2.5f;
-	game->mWipeOutFader->start(mFadeTimer);
-
-	gameSystem->setPause(1, "cavedayend", 3);
-
-	if (!PSMGetSceneMgrCheck()) {
-		return;
-	}
-
-	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
-	mgr->checkScene();
-	PSSystem::Scene* scene = mgr->mScenes->mChild;
-	if (scene) {
-		scene->stopAllSound(mFadeTimer / sys->mDeltaTime);
-	}
-}
-
-/**
- * @note Address: 0x801528E8
- * @note Size: 0xB4
- */
-void SingleGame::CaveDayEndState::exec(SingleGameSection* section)
-{
-	section->BaseGameSection::doUpdate();
-	section->updateCaveScreen();
-
-	mFadeTimer -= sys->mDeltaTime;
-	if (mFadeTimer <= 0.0f) {
-		section->advanceDayCount();
-		gameSystem->mTimeMgr->setStartTime();
-		pikiMgr->forceEnterPikmins(0);
-		section->clearHeap();
-
-		transit(section, SGS_Select, nullptr);
-	}
-}
-
-/**
- * @note Address: 0x801529CC
- * @note Size: 0x3C
- */
-void SingleGame::CaveDayEndState::draw(SingleGameSection* section, Graphics& gfx)
-{
-	section->BaseGameSection::doDraw(gfx);
-	section->drawCaveScreen();
-}
-
-/**
- * @note Address: 0x80152A08
- * @note Size: 0x34
- */
-void SingleGame::CaveDayEndState::cleanup(SingleGameSection* section)
-{
-	gameSystem->setPause(false, "cavedayend", 3);
 }
 
 /**

@@ -218,13 +218,6 @@ enum AnimID {
 	DANGOANIM_AnimCount, // 9
 };
 
-struct ProperAnimator : public EnemyBlendAnimatorBase {
-	virtual ~ProperAnimator() { } // _08 (weak)
-
-	// _00 		= VTBL
-	// _00-_60	= EnemyBlendAnimatorBase
-};
-
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 struct DangoStateArg : public StateArg {

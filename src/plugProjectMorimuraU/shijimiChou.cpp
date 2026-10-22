@@ -130,7 +130,7 @@ Obj::Obj()
 	mEfxDown       = nullptr;
 	mSoundCluster  = nullptr;
 
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 
 	mEfxDown = new efx::TChouDown(&mPosition);

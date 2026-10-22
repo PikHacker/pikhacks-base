@@ -332,7 +332,6 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	void load();
 	void loadResources_float();
 	void setMovieDraw(bool isMoviePlaying);
-	void setupSoundViewerAndBas();
 	void setupNavi(Navi* navi);
 
 	// Unused/inlined:

@@ -116,7 +116,7 @@ Obj::Obj()
 	mShadowMgr           = nullptr;
 	mEfxHamon            = nullptr;
 	mWaterBoxTyre        = nullptr;
-	mAnimator            = new ProperAnimator;
+	mAnimator            = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 	mEfxSmoke1 = new efx::TChasePosYRot(&mPosition, &mFaceDir, PID_KageTyreSmoke);
 	mEfxSmoke2 = new efx::TChasePosYRot(&mPosition, &mFaceDir, PID_KageTyreSmoke);

@@ -10,7 +10,7 @@ namespace ElecBug {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "デンキムシマネージャ"; // electric beetle manager
+	mName = "elecbug"; // electric beetle manager
 }
 
 /**

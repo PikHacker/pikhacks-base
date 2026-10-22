@@ -16,7 +16,7 @@ namespace Pom {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ポンガシ草マネージャ"; // pongashi plant manager
+	mName = "pom"; // pongashi plant manager
 }
 
 /**

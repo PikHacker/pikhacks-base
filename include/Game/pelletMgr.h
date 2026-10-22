@@ -122,7 +122,6 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	bool makePelletInitArg(PelletInitArg&, PelletMgr::OtakaraItemCode&);
 	void makeOtakaraItemCode(char*, PelletMgr::OtakaraItemCode&);
 	void addMgr(BasePelletMgr*);
-	void setupSoundViewerAndBas();
 	void decode(s32, u8&, int&);
 	int encode(u8, int);
 	BasePelletMgr* getMgrByID(u8);

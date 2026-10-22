@@ -7,8 +7,6 @@
 namespace Game {
 namespace Kabuto {
 
-const char filename[] = "246-KabutoMgr";
-
 /**
  * @note Address: 0x802E3D68
  * @note Size: 0x50
@@ -16,7 +14,7 @@ const char filename[] = "246-KabutoMgr";
 Mgr::Mgr(int p1, u8 p2)
     : EnemyMgrBase(p1, p2)
 {
-	mName = "カブトマネージャ"; // beetle manager
+	mName = "kabuto"; // beetle manager
 }
 
 /**

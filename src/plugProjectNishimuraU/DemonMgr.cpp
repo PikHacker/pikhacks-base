@@ -10,7 +10,7 @@ namespace Demon {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "オニサライマネージャ"; // onisarai manager
+	mName = "demon"; // onisarai manager
 }
 
 /**

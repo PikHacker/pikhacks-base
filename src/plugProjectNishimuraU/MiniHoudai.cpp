@@ -15,7 +15,7 @@ namespace MiniHoudai {
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 	createShotGun();
 	createEffect();

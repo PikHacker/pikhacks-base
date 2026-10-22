@@ -142,7 +142,6 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	mFsm->start(this, JIGUMO_Appear, nullptr);
 
-	P2ASSERTLINE(158, mModel);
 	J3DModelData* data = mModel->mJ3dModel->getModelData();
 	mKamuJointIdx      = mModel->getJointIndex("kamu_joint1");
 	P2ASSERTLINE(163, mKamuJointIdx);
@@ -160,23 +159,14 @@ Obj::Obj()
     , mCanBeEarthquaked(true)
     , mFsm(nullptr)
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 
-	mEfxAttack = new efx::TJgmAttack(&mPosition);
-	P2ASSERTLINE(188, mEfxAttack);
-
+	mEfxAttack  = new efx::TJgmAttack(&mPosition);
 	mEfxAttackW = new efx::TJgmAttackW(&mEffectPosition, &mFaceDir);
-	P2ASSERTLINE(191, mEfxAttackW);
-
-	mEfxBack = new efx::TJgmBack(&mPosition);
-	P2ASSERTLINE(194, mEfxBack);
-
-	mEfxBackW = new efx::TJgmBackW(&mEffectPosition, &mFaceDir);
-	P2ASSERTLINE(197, mEfxBackW);
-
-	mEfxSmoke = new efx::TImoSmoke(&mEffectPosition);
-	P2ASSERTLINE(200, mEfxBack); // MORIMURA THIS IS EVEN THE WRONG VARIABLE
+	mEfxBack    = new efx::TJgmBack(&mPosition);
+	mEfxBackW   = new efx::TJgmBackW(&mEffectPosition, &mFaceDir);
+	mEfxSmoke   = new efx::TImoSmoke(&mEffectPosition);
 
 	curJ = nullptr;
 }

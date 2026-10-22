@@ -18,7 +18,7 @@ static const char* cMatAnimBrkTexName = "/enemy/data/DangoMushi/dangomushi.brk";
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ダンゴムシマネージャ"; // pill bug manager
+	mName = "dangomushi"; // pill bug manager
 }
 
 /**
@@ -88,7 +88,6 @@ void Mgr::loadTexData()
 SysShape::Model* Mgr::createModel()
 {
 	SysShape::Model* model = new SysShape::Model(mModelData, J3DMODEL_ShareDL, mMtxBufferSize);
-	P2ASSERTLINE(132, model != nullptr);
 
 	for (u16 i = 0; i < mModelData->getMaterialNum(); i++) {
 		const char* name = mModelData->mMaterialTable.mMaterialNames->getName(i);

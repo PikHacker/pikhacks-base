@@ -38,7 +38,7 @@ void BigFootGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox)
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 
 	createIKSystem();

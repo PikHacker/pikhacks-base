@@ -140,7 +140,7 @@ Obj::Obj()
     , mSize(PELPLANTSIZE_Middle)
     , mFarmPow(0)
 {
-	mAnimator = new ProperAnimator();
+	mAnimator = new EnemyBlendAnimatorBase();
 	setFSM(new FSM());
 	mPelFlags.clear();
 }

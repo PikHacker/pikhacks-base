@@ -182,17 +182,6 @@ enum AnimID {
 	QURIONEANIM_AnimCount,  // 5
 };
 
-struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() { }                                   // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C
-	virtual SysShape::Animator& getAnimator() { return mAnimator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int idx);               // _14
-
-	// _00 		= VTBL
-	// _00-_10	= EnemyAnimatorBase
-	SysShape::Animator mAnimator; // _10
-};
-
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum StateID {

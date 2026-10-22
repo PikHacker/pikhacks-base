@@ -296,7 +296,7 @@ Obj::Obj()
 	mNeedAppearBgm      = 0;
 	mIsMoviePlaying     = 0;
 
-	mAnimator        = new ProperAnimator;
+	mAnimator        = new EnemyAnimatorCommon;
 	mMatLoopAnimator = new Sys::MatLoopAnimator;
 
 	setFSM(new FSM);

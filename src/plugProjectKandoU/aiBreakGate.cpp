@@ -26,15 +26,7 @@ ActBreakGate::ActBreakGate(Game::Piki* parent)
  */
 void ActBreakGate::init(ActionArg* actionArg)
 {
-	bool isCorrectArg = false;
-	if (actionArg) {
-		bool strCheck = strcmp("ActBreakGateArg", actionArg->getName()) == 0;
-		if (strCheck) {
-			isCorrectArg = true;
-		}
-	}
-
-	P2ASSERTLINE(98, isCorrectArg);
+	P2ASSERTLINE(98, actionArg);
 
 	Game::GameStat::workPikis.inc(mParent);
 

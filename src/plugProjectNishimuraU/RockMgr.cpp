@@ -80,7 +80,7 @@ void Generator::doReadOldVersion(Stream&)
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "落石マネージャ"; // rockfall manager
+	mName = "rock"; // rockfall manager
 }
 
 /**

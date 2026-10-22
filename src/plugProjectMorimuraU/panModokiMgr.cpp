@@ -12,7 +12,7 @@ namespace PanModoki {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "パンモドキマネージャ"; // bread manager
+	mName = "panmodoki"; // bread manager
 }
 
 /**
@@ -43,7 +43,7 @@ namespace OoPanModoki {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "大パンモドキマネージャ"; // big bread manager
+	mName = "oopanmodoki"; // big bread manager
 }
 
 /**

@@ -272,14 +272,8 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 					int type = pelt->mPelletColor;
 					// Spicy berries.
 					if ((int)pelt->mPelletColor == SPRAY_TYPE_SPICY) {
-						// a whole lot of redundant checks in here
-						playData->getDopeFruitCount(type);
-						playData->isDemoFlag(DEMO_First_Spicy_Berry);
-						playData->isDemoFlag(DEMO_First_Spicy_Spray_Made);
 						int dope0 = playData->getDopeFruitCount(type);
 						playData->addDopeFruit(type);
-						playData->getDopeFruitCount(SPRAY_TYPE_SPICY);
-						playData->getDopeFruitCount(SPRAY_TYPE_BITTER);
 						// play the first berry cutscene if it hasnt been seen
 						if (!playData->isDemoFlag(DEMO_First_Spicy_Berry)) {
 							playData->setDemoFlag(DEMO_First_Spicy_Berry);
@@ -315,14 +309,8 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 
 						// Bitter berries.
 					} else {
-						// a whole lot of redundant checks in here
-						playData->getDopeFruitCount(type);
-						playData->isDemoFlag(DEMO_First_Bitter_Berry);
-						playData->isDemoFlag(DEMO_First_Bitter_Spray_Made);
 						int dope0 = playData->getDopeFruitCount(type);
 						playData->addDopeFruit(type);
-						playData->getDopeFruitCount(SPRAY_TYPE_SPICY);
-						playData->getDopeFruitCount(SPRAY_TYPE_BITTER);
 						// play the first berry cutscene if it hasnt been seen
 						if (!playData->isDemoFlag(DEMO_First_Bitter_Berry)) {
 							playData->setDemoFlag(DEMO_First_Bitter_Berry);

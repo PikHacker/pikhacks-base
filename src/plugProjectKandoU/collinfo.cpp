@@ -19,32 +19,6 @@
 #include "types.h"
 #include "Vector3.h"
 
-/**
- * One of the few remnants of the Age editing tools that probably existed - see P1.
- *
- * This lives in here because it's never called or used anywhere else, and its functions
- * are needed for weak function ordering in this file, so.
- *
- * @note Size: 0x198.
- */
-struct AgePlatform : public Platform {
-	AgePlatform();
-
-	virtual ~AgePlatform() { } // _08 (weak)
-
-	void directCreate(u8*);
-	void createGrid(int, int);
-
-	// Unused/inlined:
-	void setVertices(ArrayContainer<Vector3f>& vertices, Vector3f* array, int count) { vertices.setArray(array, count); }
-	void addVertex(ArrayContainer<Vector3f>& vertices, Vector3f& vertex) { vertices.addOne(vertex); }
-
-	// _00     = VTBL
-	// _00-_1C = Platform
-	Sys::OBBTree mOBBTree;         // _01C
-	Sys::GridDivider mGridDivider; // _14C
-};
-
 bool CollTree::mDebug;
 
 /**
@@ -213,39 +187,6 @@ Platform* PlatAttacher::getPlatform(int i)
 {
 	P2ASSERTBOUNDSLINE(318, 0, i, mNumShapes);
 	return &mPlatforms[i];
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0xC8
- */
-AgePlatform::AgePlatform()
-{
-	Sys::GridInfo info;
-	// some other unknown nonsense here.
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x6C
- */
-void AgePlatform::directCreate(u8* data)
-{
-	// this is a guess, but it fits the function size + generates the right weak function ordering.
-	RamStream input(data, -1);
-	mOBBTree.read(input);
-	setTriDivider(&mOBBTree);
-	mGridDivider.read(input);
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x40
- */
-void AgePlatform::createGrid(int x, int z)
-{
-	// again, a guess, but size is right + generates the right weak function ordering.
-	mGridDivider.create(mGridDivider.mBoundingBox, x, z, mTriDivider->mVertexTable, mTriDivider->mTriangleTable);
 }
 
 /**

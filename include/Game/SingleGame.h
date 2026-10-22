@@ -99,25 +99,6 @@ struct State : public FSMState<SingleGameSection> {
 	char* mName; // _0C, unused/educated guess
 };
 
-/**
- * @size{0x14}
- */
-struct CaveDayEndState : public State {
-	inline CaveDayEndState()
-	    : State(SGS_CaveDayEnd)
-	{
-	}
-
-	virtual void init(SingleGameSection*, StateArg*); // _08
-	virtual void exec(SingleGameSection*);            // _0C
-	virtual void cleanup(SingleGameSection*);         // _10
-	virtual void draw(SingleGameSection*, Graphics&); // _20
-
-	// _00     = VTBL
-	// _00-_10 = State
-	f32 mFadeTimer; // _10
-};
-
 struct CaveResultArg : public StateArg {
 	u16 mGameState; // _00 make enum eventually, 1 = geyser, 2 = navis down, 3 = extinction, 4 = giveup
 };

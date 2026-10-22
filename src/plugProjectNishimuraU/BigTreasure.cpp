@@ -40,7 +40,7 @@ void BigTreasureGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox)
  */
 Obj::Obj()
 {
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyBlendAnimatorBase;
 	setFSM(new FSM);
 
 	createIKSystem();
@@ -142,8 +142,8 @@ void Obj::doAnimationUpdateAnimator()
 {
 	SysShape::BlendLinearFun linearBlend;
 	f32 animTime = EnemyAnimatorBase::defaultAnimSpeed * sys->mDeltaTime;
-	static_cast<ProperAnimator*>(mAnimator)->animate(&linearBlend, 60.0f * sys->mDeltaTime, animTime, animTime);
-	static_cast<ProperAnimator*>(mAnimator)->mAnimator.setModelCalc(mModel, 0);
+	static_cast<EnemyBlendAnimatorBase*>(mAnimator)->animate(&linearBlend, 60.0f * sys->mDeltaTime, animTime, animTime);
+	static_cast<EnemyBlendAnimatorBase*>(mAnimator)->mAnimator.setModelCalc(mModel, 0);
 }
 
 /**
@@ -1446,7 +1446,7 @@ void Obj::updateMaterialColor()
 void Obj::startBlendAnimation(int animIdx, bool doBlendAnim)
 {
 	if (doBlendAnim) {
-		SysShape::Animator& animator = static_cast<ProperAnimator*>(mAnimator)->getAnimator(0);
+		SysShape::Animator& animator = static_cast<EnemyBlendAnimatorBase*>(mAnimator)->getAnimator(0);
 		SysShape::AnimInfo* animInfo = animator.mAnimInfo;
 		f32 time;
 
@@ -1480,7 +1480,7 @@ void Obj::startBlendAnimation(int animIdx, bool doBlendAnim)
  */
 void Obj::endBlendAnimation()
 {
-	SysShape::Animator& animator = static_cast<ProperAnimator*>(mAnimator)->getAnimator(1);
+	SysShape::Animator& animator = static_cast<EnemyBlendAnimatorBase*>(mAnimator)->getAnimator(1);
 	SysShape::AnimInfo* animInfo = animator.mAnimInfo;
 	int animIdx;
 	if (animInfo) {
@@ -1502,7 +1502,7 @@ void Obj::endBlendAnimation()
  */
 int Obj::getCurrAnimationIndex()
 {
-	SysShape::AnimInfo* animInfo = static_cast<ProperAnimator*>(mAnimator)->getAnimator(0).mAnimInfo;
+	SysShape::AnimInfo* animInfo = static_cast<EnemyBlendAnimatorBase*>(mAnimator)->getAnimator(0).mAnimInfo;
 	if (animInfo) {
 		return animInfo->mId;
 	}

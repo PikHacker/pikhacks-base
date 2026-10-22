@@ -245,11 +245,8 @@ void BaseItem::move(f32 step)
 void BaseItem::movieStartAnimation(u32 animId)
 {
 	if (mAnimator.mAnimMgr) {
-		getCreatureName();
 		mAnimator.startAnim(animId, nullptr);
 		mAnimSpeed = 30.0f;
-	} else {
-		getCreatureName();
 	}
 }
 
@@ -259,7 +256,6 @@ void BaseItem::movieStartAnimation(u32 animId)
  */
 void BaseItem::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
 {
-	getTypeName();
 	mAnimator.startExAnim(animInfo);
 	mAnimSpeed = 30.0f;
 	P2ASSERTLINE(498, mAnimator.assertValid(mModel));
@@ -670,14 +666,6 @@ void BaseItemMgr::loadResources()
 }
 
 /**
- * @note Address: 0x801CD41C
- * @note Size: 0x4
- */
-void BaseItemMgr::setupSoundViewerAndBas()
-{
-}
-
-/**
  * @note Address: 0x801CD420
  * @note Size: 0x14C
  */
@@ -881,21 +869,6 @@ void ItemMgr::doSimpleDraw(Viewport* viewport)
 	{
 		GenericObjectMgr* item = (*iterator);
 		item->doSimpleDraw(viewport);
-	}
-}
-
-/**
- * setupSoundViewerAndBas__Q24Game7ItemMgrFv
- * @note Address: 0x801CEAC4
- * @note Size: 0x1E4
- */
-void ItemMgr::setupSoundViewerAndBas()
-{
-	Iterator<GenericObjectMgr> iterator(this);
-	CI_LOOP(iterator)
-	{
-		BaseItemMgr* item = (BaseItemMgr*)(*iterator);
-		item->setupSoundViewerAndBas();
 	}
 }
 

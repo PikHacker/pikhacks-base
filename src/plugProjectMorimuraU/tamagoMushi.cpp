@@ -76,7 +76,7 @@ Obj::Obj()
 {
 	mKoshiJoint = nullptr;
 	mFsm        = nullptr;
-	mAnimator   = new ProperAnimator;
+	mAnimator   = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 }
 

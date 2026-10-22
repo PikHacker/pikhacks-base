@@ -230,7 +230,7 @@ Obj::Obj()
 	mFsm           = nullptr;
 	mJointIndices  = nullptr;
 
-	mAnimator = new ProperAnimator;
+	mAnimator = new EnemyAnimatorCommon;
 	setFSM(new FSM);
 	mMatAnim   = new Sys::MatLoopAnimator;
 	mShadowMgr = new UmimushiShadowMgr(this);

@@ -10,7 +10,7 @@ namespace Imomushi {
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "イモムシマネージャ"; // caterpillar manager
+	mName = "imomushi"; // caterpillar manager
 }
 
 /**

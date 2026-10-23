@@ -86,7 +86,7 @@ struct SceneMgr {
 		return mEndScene;
 	}
 
-	inline void checkScene() { P2ASSERTLINE(199, mScenes != nullptr); }
+	inline void checkScene() { }
 
 	inline Scene* getChildScene()
 	{

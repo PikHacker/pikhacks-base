@@ -23,8 +23,6 @@
 
 namespace Game {
 
-u8 Piki::sGraspSituationOptimise = 1;
-
 /**
  * @note Address: 0x801B07C0
  * @note Size: 0xBA0

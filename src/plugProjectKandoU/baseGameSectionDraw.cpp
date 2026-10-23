@@ -8,7 +8,6 @@
 #include "JSystem/J3D/J3DSys.h"
 
 #include "ParticleMgr.h"
-#include "SysTimers.h"
 #include "IDelegate.h"
 #include "System.h"
 #include "Light.h"

@@ -39,21 +39,6 @@ void GenItem::updateUseList(Generator* gen, int i)
 }
 
 /**
- * @note Address: 0x801ACE80
- * @note Size: 0x6C
- */
-void GenItem::doEvent(u32 idx)
-{
-	if ((int*)idx == &mMgrIndex) {
-		if (mParm) {
-			delete mParm;
-		}
-		mItemMgr = itemMgr->getMgrByIndex(mMgrIndex);
-		mParm    = mItemMgr->generatorNewItemParm();
-	}
-}
-
-/**
  * @note Address: 0x801ACEEC
  * @note Size: 0x68
  */
@@ -65,19 +50,6 @@ void GenItem::generatorMakeMatrix(Matrixf& matrix, Vector3f& pos)
 	Vector3f rotation = Vector3f(x, y, z);
 
 	matrix.makeTR(pos, rotation);
-}
-
-/**
- * @note Address: 0x801ACF54
- * @note Size: 0x50
- */
-J3DModelData* GenItem::getShape()
-{
-	BaseItemMgr* baseMgr = mItemMgr;
-	if (baseMgr && mParm) {
-		return baseMgr->generatorGetShape(mParm);
-	}
-	return nullptr;
 }
 
 /**

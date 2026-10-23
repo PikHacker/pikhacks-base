@@ -65,8 +65,6 @@ void DirectorBase::initCheck()
  */
 void DirectorBase::exec()
 {
-	JUT_ASSERTLINE(101, OSGetThreadPriority(OSGetCurrentThread()) == 0x10, "\nNot Called From Main Thread\n");
-
 	if (mIsBegin == true) {
 		powerOn();
 		doUpdateRequest();
@@ -118,7 +116,6 @@ void DirectorBase::playInit(JASTrack* track)
  */
 void DirectorBase::directOn()
 {
-	JUT_ASSERTLINE(184, OSGetThreadPriority(OSGetCurrentThread()) == 0x10, "\nNot Called From Main Thread\n");
 	if (sToolMode != 1 && mState != 0) {
 		directOnInner();
 	}
@@ -152,7 +149,6 @@ void DirectorBase::directOnInner()
 void DirectorBase::directOff()
 {
 	if (sToolMode != 1) {
-		JUT_ASSERTLINE(219, OSGetThreadPriority(OSGetCurrentThread()) == 0x10, "\nNot Called From Main Thread\n");
 
 		if (mState == 1 || mState == 2) {
 			return;
@@ -222,8 +218,6 @@ void DirectorBase::powerOff()
  */
 void OneShotDirector::exec()
 {
-	JUT_ASSERTLINE(336, OSGetThreadPriority(OSGetCurrentThread()) == 0x10, "\nNot Called From Main Thread\n");
-
 	if (mIsBegin == true) {
 		powerOn();
 		doUpdateRequest();

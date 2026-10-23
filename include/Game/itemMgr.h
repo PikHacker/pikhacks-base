@@ -51,7 +51,6 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	virtual void generatorWrite(Stream&, GenItemParm*) { }                    // _60 (weak)
 	virtual void generatorRead(Stream&, GenItemParm*, u32) { }                // _64 (weak)
 	virtual u32 generatorLocalVersion() { return '0000'; }                    // _68 (weak)
-	virtual J3DModelData* generatorGetShape(GenItemParm*);                    // _6C
 	virtual GenItemParm* generatorNewItemParm();                              // _70
 
 	J3DModelData* getModelData(int);

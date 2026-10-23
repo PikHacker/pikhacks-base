@@ -42,7 +42,7 @@ void CaveResultState::init(SingleGameSection* section, StateArg* arg)
 	playData->mCavePokoCount = 0;
 	gameSystem->detachObjectMgr(generalEnemyMgr);
 	gameSystem->detachObjectMgr(mapMgr);
-	gameSystem->setPause(true, "caver-init", 3);
+	gameSystem->setPause(true, 3);
 
 	Screen::gGame2DMgr->mScreenMgr->reset();
 	Screen::gGame2DMgr->setGamePad(mController);

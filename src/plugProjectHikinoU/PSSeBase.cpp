@@ -52,9 +52,6 @@ void EnvSeBase::doMoveParamRequest()
 	case JASTrack::JASParam_Pitch:
 		mSound->setPitch(mMoveParam.mValue, mMoveParam.mMoveTime, mMoveParam.mSoundType);
 		break;
-
-	default:
-		P2ASSERTLINE(62, false);
 	}
 
 	mMoveParam.mValue     = 0.0f;
@@ -117,9 +114,6 @@ void EnvSeBase::exec()
 			doMoveParamRequest();
 		}
 		return;
-	default:
-		P2ASSERTLINE(132, false);
-		break;
 	}
 }
 
@@ -343,7 +337,6 @@ ClusterSe::Factory::Factory(u8 count)
 ClusterSe::Part* ClusterSe::Factory::constructPart()
 {
 	Part* parts = new Part[mCount];
-	P2ASSERTLINE(484, parts);
 	return parts;
 }
 
@@ -368,7 +361,6 @@ void ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory& factory)
  */
 void ClusterSe::Mgr::play(u8 count, JAInter::Object* obj)
 {
-	P2ASSERTLINE(522, obj);
 	for (u8 i = 0; i < mCount; i++) {
 		mParts[i].play(count, obj);
 	}

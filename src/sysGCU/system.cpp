@@ -192,36 +192,6 @@ void myTask(void* data)
 }
 
 /**
- * @note Address: 0x80422230
- * @note Size: 0x54
- */
-System::FragmentationChecker::FragmentationChecker(char* name, bool)
-{
-	mName     = name;
-	u32 free  = JKRGetCurrentHeap()->getFreeSize();
-	u32 total = JKRGetCurrentHeap()->getTotalFreeSize();
-	mSize     = total - free;
-}
-
-/**
- * @note Address: 0x80422284
- * @note Size: 0x5C
- */
-System::FragmentationChecker::~FragmentationChecker()
-{
-	JKRGetCurrentHeap()->getFreeSize();
-	JKRGetCurrentHeap()->getTotalFreeSize();
-}
-
-/**
- * @note Address: 0x804222E0
- * @note Size: 0x3C
- */
-int System::assert_fragmentation(char*)
-{
-}
-
-/**
  * @note Address: 0x8042231C
  * @note Size: 0x10
  */
@@ -388,8 +358,6 @@ void System::construct()
 	_34 = 0;
 
 	mDvdThread = new DvdThread(0x8000, 16, 29);
-
-	mTimers = new SysTimers;
 
 	mResetMgr = new ResetManager(0.5f);
 

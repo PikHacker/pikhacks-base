@@ -96,13 +96,6 @@ struct GameFlow : public ISectionMgr {
 	void setSection();
 
 	/**
-	 * @brief Gets the information of a game section.
-	 * @param sectionId The ID of the section.
-	 * @return Pointer to the SectionInfo structure.
-	 */
-	static SectionInfo* getSectionInfo(int sectionId);
-
-	/**
 	 * @brief Creates a game section.
 	 * @param heap The heap to allocate the section from.
 	 * @return Pointer to the created game section.

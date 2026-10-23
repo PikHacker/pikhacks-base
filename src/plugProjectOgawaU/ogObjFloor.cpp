@@ -346,10 +346,6 @@ void ObjFloor::doCreate(JKRArchive* arc)
 	og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_FLOOR)) {
 		mDisp = disp;
-
-	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		mDisp = new og::Screen::DispMemberFloor;
-
 	} else {
 		JUT_PANICLINE(452, "ERR! in ObjFloor Create失敗！\n");
 	}

@@ -440,6 +440,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	// turn toward target creature's position at turnSpeed rate, up to a max of maxTurnAngle
 	inline f32 turnToTarget(Creature* target, f32 turnSpeed, f32 maxTurnAngle)
 	{
+		FORCE_DONT_INLINE;
 		f32 angleDist = getAngDist(target);
 		f32 angle     = clamp(angleDist * turnSpeed, TORADIANS(maxTurnAngle));
 		f32 a         = roundAng(angle + getFaceDir());
@@ -522,6 +523,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	// check if target is out of a given angle, distance radius, and eyesight
 	inline bool isTargetOutOfRange(Creature* target, f32 pAngle, f32 pPrivateRadius, f32 pSightRadius, f32 pFov, f32 pViewAngle)
 	{
+		FORCE_DONT_INLINE;
+
 		// Calculate the separation between us and target
 		f32 x, y, z;
 		x = target->getPosition().x - getPosition().x;

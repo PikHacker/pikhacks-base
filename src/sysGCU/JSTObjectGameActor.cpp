@@ -119,17 +119,6 @@ void ObjectGameActor::update()
 		break;
 	case 4:
 		JUT_PANICLINE(365, "DON'T USE [SRT_COMMAND_GOTO]\n");
-		if (mapMgr) {
-			mTranslation2.y = mapMgr->getMinY(mTranslation2);
-		}
-		if (moviePlayer->isFlag(MVP_IsFinished)) {
-			mGameObject->movieSetTranslation(mTranslation2, 0.0f);
-			moviePlayer->unsuspend(1, false);
-			mSRTCommand = 0;
-		} else if (mGameObject->movieGotoPosition(mTranslation2)) {
-			moviePlayer->unsuspend(1, false);
-			mSRTCommand = 0;
-		}
 		break;
 	case 3:
 		f32 calc = mRotation2.y * DEG2RAD * PI;

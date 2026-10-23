@@ -44,8 +44,6 @@ void ObjSpecialItem::doCreate(JKRArchive* arc)
 	og::Screen::DispMemberSpecialItem* disp = static_cast<og::Screen::DispMemberSpecialItem*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_SPECIAL_ITEM)) {
 		mDisp = disp;
-	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		mDisp = new og::Screen::DispMemberSpecialItem();
 	} else {
 		JUT_PANICLINE(81, "ERR! in ObjTest Create失敗！\n");
 	}

@@ -55,14 +55,6 @@ f32 SeSound::psACos(f32 val)
 }
 
 /**
- * @note Address: 0x80470F84
- * @note Size: 0x4
- */
-void SeSound::onGet()
-{
-}
-
-/**
  * @note Address: 0x80470F88
  * @note Size: 0xA4
  */
@@ -76,7 +68,6 @@ void SeSound::onRelease()
 	}
 
 	Creature* creature = static_cast<Creature*>(mCreatureObj);
-	P2ASSERTLINE(184, creature);
 
 	if (creature->getPlayingHandleNum() != 0) {
 		return;
@@ -95,7 +86,6 @@ void SeSound::initParameter(void* mainSoundPtr, JAInter::Actor* actor, u32 id, u
 	if (mIsPlayingWithActor) {
 		if (mCreatureObj) {
 			Creature* creature = static_cast<Creature*>(mCreatureObj);
-			P2ASSERTLINE(208, creature);
 
 			if (creature->getPlayingHandleNum() == 0) {
 				ObjMgr::getInstance()->append(creature);

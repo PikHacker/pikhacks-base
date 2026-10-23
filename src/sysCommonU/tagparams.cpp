@@ -284,6 +284,7 @@ void TagParameters::read(Stream& stream)
 		bool isEnd = isEndToken(str);
 
 		if (isEnd) {
+			delete str;
 			break;
 		}
 
@@ -299,6 +300,7 @@ void TagParameters::read(Stream& stream)
 				node->doRead(stream);
 			}
 		}
+		delete str;
 	}
 }
 

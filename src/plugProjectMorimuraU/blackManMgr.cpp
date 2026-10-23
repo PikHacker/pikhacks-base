@@ -85,7 +85,6 @@ J3DModelData* Mgr::doLoadBmd(void* filename)
 SysShape::Model* Mgr::createModel()
 {
 	SysShape::Model* model = new SysShape::Model(mModelData, J3DMODEL_ShareDL, mMtxBufferSize);
-	P2ASSERTLINE(128, model != nullptr);
 
 	for (u16 i = 0; i < mModelData->getMaterialNum(); i++) {
 		const char* name = mModelData->mMaterialTable.mMaterialNames->getName(i);

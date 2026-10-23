@@ -595,15 +595,6 @@ EnemyGeneratorBase* GenObjectEnemy::createEnemyGenerator()
 }
 
 /**
- * @note Address: 0x801267D0
- * @note Size: 0x2C
- */
-J3DModelData* GenObjectEnemy::getShape()
-{
-	return generalEnemyMgr->getJ3DModelData((int)mEnemyID);
-}
-
-/**
  * @note Address: 0x801267FC
  * @note Size: 0x40
  */

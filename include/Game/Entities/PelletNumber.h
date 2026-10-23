@@ -21,13 +21,12 @@ namespace PelletNumber {
 #define PELLET_NUMBER_MAXCOLLPART (128)
 
 struct Object : public Pellet {
-	Object() { }
+	Object() { mPelletKind = PelletType::Number; }
 
-	virtual void constructor();                         // _02C
-	virtual void do_onInit(CreatureInitArg* arg);       // _1CC
-	virtual u8 getKind() { return PelletType::Number; } // _1F4 (weak)
-	virtual void changeMaterial();                      // _1F8
-	virtual void createKiraEffect(Vector3f& pos);       // _1FC
+	virtual void constructor();                   // _02C
+	virtual void do_onInit(CreatureInitArg* arg); // _1CC
+	virtual void changeMaterial();                // _1F8
+	virtual void createKiraEffect(Vector3f& pos); // _1FC
 
 	// _00      = VTBL
 	// _00-_458 = Pellet

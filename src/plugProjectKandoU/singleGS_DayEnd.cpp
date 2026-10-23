@@ -38,7 +38,7 @@ void DayEndState::init(SingleGameSection* game, StateArg* arg)
 	P2ASSERTLINE(67, castedArg != nullptr);
 	mDayEndType = castedArg->mEndType;
 	mTimer      = 0.0f;
-	gameSystem->setPause(true, "dayend", 3);
+	gameSystem->setPause(true, 3);
 	mStatus = DESTATE_PlayCutscene;
 	mLeftBehindPikis.clear();
 	if (game->mTheExpHeap != nullptr) {
@@ -132,7 +132,7 @@ void DayEndState::exec(SingleGameSection* game)
 				arg.mPelletName    = (char*)id;
 				arg.mDelegateStart = game->mMovieStartCallback;
 				moviePlayer->play(arg);
-				gameSystem->setPause(true, "s01_dayend", 3);
+				gameSystem->setPause(true, 3);
 				mStatus = DESTATE_Cleanup;
 				break;
 			case DETYPE_PikminZero: {
@@ -140,7 +140,7 @@ void DayEndState::exec(SingleGameSection* game)
 				MoviePlayArg arg("s06_dayend_pikminzero", name, game->mMovieFinishCallback, 0);
 				arg.mDelegateStart = game->mMovieStartCallback;
 				moviePlayer->play(arg);
-				gameSystem->setPause(0, "s06_dayend", 3);
+				gameSystem->setPause(0, 3);
 				mStatus = DESTATE_Cleanup;
 				break;
 			}
@@ -149,7 +149,7 @@ void DayEndState::exec(SingleGameSection* game)
 				MoviePlayArg arg("s04_dayend_orimadown", name, game->mMovieFinishCallback, 0);
 				arg.mDelegateStart = game->mMovieStartCallback;
 				moviePlayer->play(arg);
-				gameSystem->setPause(0, "s04_dayend", 3);
+				gameSystem->setPause(0, 3);
 				mStatus = DESTATE_Cleanup;
 				break;
 			}
@@ -159,7 +159,7 @@ void DayEndState::exec(SingleGameSection* game)
 	case DESTATE_Cleanup:
 		if (moviePlayer && !moviePlayer->isFlag(MVP_IsActive)) {
 			pikiMgr->forceEnterPikmins(false);
-			gameSystem->setPause(true, "dayend-cache", 3);
+			gameSystem->setPause(true, 3);
 			game->advanceDayCount();
 			gameSystem->mTimeMgr->setStartTime();
 			gameSystem->detachObjectMgr(generalEnemyMgr);
@@ -309,7 +309,7 @@ void DayEndState::cleanup(SingleGameSection* game)
 	GameStat::getMapPikmins(AllPikminCalcs);
 	int alivePikis = GameStat::alivePikis;
 	int mePikis    = GameStat::mePikis;
-	gameSystem->setPause(false, "dayend;cln", 3);
+	gameSystem->setPause(false, 3);
 	gameSystem->resetFlag(GAMESYS_DisableDeathCounter);
 }
 

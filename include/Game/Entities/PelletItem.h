@@ -12,16 +12,15 @@
 namespace Game {
 namespace PelletItem {
 struct Object : public Pellet {
-	Object() { }
+	Object() { mPelletKind = PelletType::Upgrade; }
 
-	virtual void constructor();                          // _2C
-	virtual void do_onInit(CreatureInitArg*);            // _1CC
-	virtual void onBounce();                             // _1D8
-	virtual u8 getKind() { return PelletType::Upgrade; } // _1F4 (weak)
-	virtual void sound_otakaraEventStart();              // _20C
-	virtual void sound_otakaraEventRestart();            // _210
-	virtual void sound_otakaraEventStop();               // _214
-	virtual void sound_otakaraEventFinish();             // _218
+	virtual void constructor();               // _2C
+	virtual void do_onInit(CreatureInitArg*); // _1CC
+	virtual void onBounce();                  // _1D8
+	virtual void sound_otakaraEventStart();   // _20C
+	virtual void sound_otakaraEventRestart(); // _210
+	virtual void sound_otakaraEventStop();    // _214
+	virtual void sound_otakaraEventFinish();  // _218
 
 	// _00      = VTBL
 	// _00-_458 = Pellet

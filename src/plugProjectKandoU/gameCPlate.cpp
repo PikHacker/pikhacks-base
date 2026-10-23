@@ -169,7 +169,6 @@ void CPlate::setPosNeutral(Vector3f& p1, f32 p2, Vector3f& p3, f32 p4)
 int CPlate::getSlot(Creature* piki, SlotChangeListener* listener, bool doCheckValid)
 {
 	if (!doCheckValid) {
-		static_cast<Piki*>(piki)->mNavi->getOlimarData();
 		if (mSlotCount >= 100) {
 			return -1;
 		}

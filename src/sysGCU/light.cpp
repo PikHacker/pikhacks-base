@@ -123,46 +123,6 @@ void LightObj::drawPos(Graphics& gfx, Camera& cam)
  */
 void LightObj::drawPos(Graphics& gfx, Matrixf& transformationMtx)
 {
-	// If the debug flag is not set, return.
-	if (!(mDebugState & LDS_DrawDebug)) {
-		return;
-	}
-
-	gfx.initPrimDraw(&transformationMtx);
-
-	Matrixf debugMtx;
-	debugMtx.makeT(mPosition);
-
-	gfx.mDrawColor.set(mColor);
-
-	// Debug draw the light position based on type.
-	Vector3f pos;
-	switch (mTypeFlag) {
-	case TYPE_Spec: {
-		Vector3f elev = mElevation;
-		elev *= mSphereRadius * 10.0f;
-		pos = mPosition + elev;
-
-		gfx.drawLine(mPosition, pos);
-		gfx.drawSphere(10.0f, &debugMtx);
-		break;
-	}
-	case TYPE_Spot: {
-		gfx.drawSphere(10.0f, &debugMtx);
-
-		Vector3f elev = mElevation;
-		elev *= mSphereRadius * 10.0f;
-		pos = mPosition + elev;
-
-		gfx.drawCone(mPosition, pos, mCutoffAngle, 16);
-		break;
-	}
-	case TYPE_1: {
-		gfx.drawSphere(10.0f, &debugMtx);
-		gfx.drawSphere(mSphereRadius * 10.0f, &debugMtx);
-		break;
-	}
-	}
 }
 
 /**

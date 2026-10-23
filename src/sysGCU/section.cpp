@@ -162,8 +162,6 @@ void Section::main()
 	drawInit(*mGraphics, Section::One);
 #endif
 	do {
-		sys->mTimers->newFrame();
-
 		beginFrame();
 		beginRender();
 

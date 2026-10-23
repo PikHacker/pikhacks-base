@@ -29,22 +29,6 @@ void GenPellet::initialise()
 }
 
 /**
- * @note Address: 0x802028B4
- * @note Size: 0x6C
- */
-void GenPellet::doEvent(u32 flag)
-{
-	// weird check?
-	if (flag == (int)&mPelType) {
-		if (mGenParm) {
-			delete mGenParm;
-		}
-		mManager = pelletMgr->getMgrByID(mPelType);
-		mGenParm = mManager->generatorNewPelletParm();
-	}
-}
-
-/**
  * @note Address: 0x80202920
  * @note Size: 0x68
  */
@@ -57,19 +41,6 @@ void GenPellet::generatorMakeMatrix(Matrixf& mtx, Vector3f& pos)
 
 	Vector3f ang(x, y, z);
 	mtx.makeTR(pos, ang);
-}
-
-/**
- * @note Address: 0x80202988
- * @note Size: 0x50
- */
-J3DModelData* GenPellet::getShape()
-{
-	if (mManager && mGenParm) {
-		return mManager->generatorGetShape(mGenParm);
-	} else {
-		return nullptr;
-	}
 }
 
 /**
@@ -151,7 +122,6 @@ void GenPellet::updateUseList(Generator*, int)
 {
 	mManager = pelletMgr->getMgrByID(mPelType);
 	mManager->setUse(mGenParm->mIndex);
-	mManager->getPelletConfig(mGenParm->mIndex);
 }
 
 /**

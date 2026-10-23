@@ -400,9 +400,6 @@ bool InteractEat::actPellet(Pellet* pellet)
 bool InteractSuck::actPellet(Pellet* pellet)
 {
 	PelletGoalStateArg pelletGoalArg(mCreature);
-	if (mCreature) {
-		mCreature->getTypeName();
-	}
 	pellet->mPelletSM->transit(pellet, PELSTATE_GoalWait, &pelletGoalArg);
 	pellet->finishDisplayCarryInfo();
 	return true;
@@ -427,6 +424,7 @@ Pellet::Pellet()
 	mPelletView  = nullptr;
 	clearCarryColor();
 	mPelletCarry = new PelletCarry;
+	mPelletKind  = -1;
 }
 
 /**
@@ -780,7 +778,6 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	}
 
 	mSlots.clear();
-	mIsAlwaysCarried = 0;
 
 	mSlotCount = getPelletConfigMax();
 
@@ -947,7 +944,7 @@ bool Pellet::panmodokiCarryable()
  */
 bool Pellet::isCarried()
 {
-	if (mIsAlwaysCarried || isPicked()) {
+	if (isPicked()) {
 		return true;
 	}
 	return false;
@@ -1269,9 +1266,7 @@ void Pellet::update()
 		if (getTotalCarryPikmins() < getPelletConfigMin()) {
 			endPick(false);
 			mPelletCarry->reset();
-			if (mIsAlwaysCarried == 0) {
-				setVelocity(Vector3f::zero);
-			}
+			setVelocity(Vector3f::zero);
 		}
 	}
 
@@ -1339,12 +1334,12 @@ void Pellet::update()
 		mRigid.mConfigs[0].mMomentum        = Vector3f(0.0f);
 		mRigid.mConfigs[0].mRotatedMomentum = Vector3f(0.0f);
 
-		if (((mIsAlwaysCarried == 0) && !(mPickFlags & 1)) || (mFloorTriangle == nullptr)) {
+		if (!(mPickFlags & 1) || (mFloorTriangle == nullptr)) {
 			velocityPtr->y = -((frametime * _aiConstants->mGravity.mData) - velocityPtr->y);
 		}
 		mAcceleration.y  = 0.0f;
 		Vector3f moveVel = *velocityPtr;
-		if (isCollisionFlick() && (mPelletFlag != 1) && !(mPickFlags & 1) && (mIsAlwaysCarried == 0)) {
+		if (isCollisionFlick() && (mPelletFlag != 1) && !(mPickFlags & 1)) {
 			moveVel += mAcceleration;
 		}
 
@@ -1385,7 +1380,7 @@ void Pellet::update()
 
 			mFloorTriangle = info.mFloorTriangle;
 
-			if (!(mPickFlags & 1) && (mIsAlwaysCarried == 0)) {
+			if (!(mPickFlags & 1)) {
 				Vector3f normal = info.mFloorNormal;
 				Vector3f fallVelocity(0.0f, -(_aiConstants->mGravity.mData * sys->getDeltaTime()), 0.0f);
 
@@ -1412,14 +1407,14 @@ void Pellet::update()
 	} else if (type > 0) {
 		mRigid.computeForces(0);
 
-		if (!(mPickFlags & 1) && (mIsAlwaysCarried == 0)) {
+		if (!(mPickFlags & 1)) {
 			computeForces(mConfig->mParams.mFriction.mData);
 		}
 
 		bool someCheck              = true;
 		mRigid.mConfigs[0].mForce.y = -_aiConstants->mGravity.mData;
 		if ((getStateID() == PELSTATE_Normal) && (mHasCollided != 0) && !isPicked()) {
-			if (mRigid.mConfigs[0].mVelocity.length() < 10.0f && mRigid.mConfigs[0].mMomentum.length() < 100.0f && mIsAlwaysCarried == 0) {
+			if (mRigid.mConfigs[0].mVelocity.length() < 10.0f && mRigid.mConfigs[0].mMomentum.length() < 100.0f) {
 				f32 time = sys->getDeltaTime();
 
 				Sys::Sphere ball3;
@@ -1449,7 +1444,7 @@ void Pellet::update()
 		f32 halfFrame    = sys->getDeltaTime() / 2;
 
 		if (someCheck) {
-			if (isCollisionFlick() && !(mPickFlags & 1) && (mIsAlwaysCarried == 0)) {
+			if (isCollisionFlick() && !(mPickFlags & 1)) {
 				mAcceleration.y = 0.0f;
 				mRigid.mConfigs[0].mVelocity += mAcceleration;
 			}
@@ -1835,7 +1830,7 @@ void Pellet::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 bool Pellet::isSlotFree(s16 slot)
 {
 	if (slot == 9999) {
-		return (mIsAlwaysCarried == 0);
+		return true;
 	}
 
 	P2ASSERTBOUNDSLINE(3686, 0, slot, mSlotCount);
@@ -1850,9 +1845,6 @@ bool Pellet::isSlotFree(s16 slot)
 int Pellet::getSpeicalSlot()
 {
 	s16 slot = 9999;
-	if (mIsAlwaysCarried > 0) {
-		slot = -1;
-	}
 	return slot;
 }
 
@@ -2816,15 +2808,6 @@ void BasePelletMgr::setCollTree(Pellet* pellet, int partIndex)
 GenPelletParm* BasePelletMgr::generatorNewPelletParm()
 {
 	return new GenPelletParm;
-}
-
-/**
- * @note Address: 0x8016C960
- * @note Size: 0x8
- */
-J3DModelData* BasePelletMgr::generatorGetShape(GenPelletParm*)
-{
-	return nullptr;
 }
 
 /**

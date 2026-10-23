@@ -47,10 +47,6 @@ void ObjCourseName::doCreate(JKRArchive* arc)
 	og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_COURSE_NAME)) {
 		mDisp = disp;
-
-	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		mDisp = new og::Screen::DispMemberCourseName;
-
 	} else {
 		JUT_PANICLINE(101, "ERR! in ObjCourseName Create失敗！\n");
 	}

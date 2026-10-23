@@ -35,7 +35,6 @@ struct SeSound : public JAISe {
 
 	virtual f32 setDistanceVolumeCommon(f32, u8);                                          // _BC
 	virtual void initParameter(void*, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*); // _C8
-	virtual void onGet();                                                                  // _CC
 	virtual void onRelease();                                                              // _D0
 	virtual void setSeDistancePan(u8);                                                     // _DC
 	virtual void setSeDistanceDolby(u8);                                                   // _EC

@@ -74,38 +74,21 @@ void Mgr::loadResource()
 	JKRArchive* archive;
 	char pathBuffer[512];
 
-	// PAL removed support for loading the US and JP pellet list folders via the game region
-	// (yet they bothered to keep support for the Kando pelletlist file that doesnt even exist in any region)
-#if defined(VERSION_PAL)
-	if (gGameConfig.mParms.mPelletMultiLang.mData) {
+	switch (sys->mRegion) {
+	case System::LANG_French:
+	case System::LANG_German:
+	case System::LANG_Italian:
+	case System::LANG_Spanish:
 		sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "pal", "pal");
-		archive = JKRMountArchive(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
-	} else {
-		JUT_PANICLINE(145, "don't use this !\n");
-		archive = JKRMountArchive("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
+		break;
+	case System::LANG_Japanese:
+		sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "jpn", "jpn");
+		break;
+	case System::LANG_English:
+		sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "us", "us");
+		break;
 	}
-#else
-	if (gGameConfig.mParms.mPelletMultiLang.mData) {
-		switch (sys->mRegion) {
-		case System::LANG_French:
-		case System::LANG_German:
-		case System::LANG_Italian:
-			break;
-		case System::LANG_Japanese:
-			sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "jpn", "jpn");
-			break;
-		case System::LANG_English:
-			sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "us", "us");
-			break;
-		case System::LANG_Spanish:
-			break;
-		}
-		archive = JKRMountArchive(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
-	} else {
-		JUT_PANICLINE(145, "don't use this !\n");
-		archive = JKRMountArchive("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
-	}
-#endif
+	archive = JKRMountArchive(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 
 	JUT_ASSERTLINE(154, archive, "no pelletlist.szs\n");
 

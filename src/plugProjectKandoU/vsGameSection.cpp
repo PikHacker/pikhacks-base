@@ -533,8 +533,8 @@ void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controlle
 	bool open = Screen::gGame2DMgr->open_CaveMoreMenu(cave);
 	if (open) {
 		mHole = hole;
-		gameSystem->setPause(true, "op-c-more", 3);
-		gameSystem->setMoviePause(true, "op-c-more");
+		gameSystem->setPause(true, 3);
+		gameSystem->setMoviePause(true);
 	}
 }
 
@@ -575,8 +575,8 @@ void VsGameSection::openKanketuMenu(ItemBigFountain::Item* fountain, Controller*
 	if (open) {
 		mFountain = fountain;
 		mMenuFlags.set(VsSection_MenuKanketuOpen);
-		gameSystem->setPause(true, "op-kk", 3);
-		gameSystem->setMoviePause(true, "op-kk");
+		gameSystem->setPause(true, 3);
+		gameSystem->setMoviePause(true);
 	}
 }
 
@@ -605,20 +605,20 @@ bool VsGameSection::updateCaveMenus()
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Confirm:
 			playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->getAt(NAVIID_Olimar)->mHealth;
 			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->getAt(NAVIID_Louie)->mHealth;
-			gameSystem->setPause(false, "more-yes", 3);
-			gameSystem->setMoviePause(false, "more-yes");
+			gameSystem->setPause(false, 3);
+			gameSystem->setMoviePause(false);
 			mMenuFlags.unset(VsSection_MenuCaveMoreOpen);
 			goNextFloor(mHole);
 			return true;
 
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Cancel:
-			gameSystem->setPause(false, "more-no", 3);
-			gameSystem->setMoviePause(false, "more-no");
+			gameSystem->setPause(false, 3);
+			gameSystem->setMoviePause(false);
 			mMenuFlags.unset(VsSection_MenuCaveMoreOpen);
 			break;
 
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Unused:
-			gameSystem->setMoviePause(false, "more-zenkai");
+			gameSystem->setMoviePause(false);
 			break;
 		}
 
@@ -628,8 +628,8 @@ bool VsGameSection::updateCaveMenus()
 			break;
 
 		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Confirm:
-			gameSystem->setPause(false, "kk-yes", 3);
-			gameSystem->setMoviePause(false, "kk-yes");
+			gameSystem->setPause(false, 3);
+			gameSystem->setMoviePause(false);
 			mMenuFlags.unset(VsSection_MenuKanketuOpen);
 			MoviePlayArg arg("s0C_cv_escape", nullptr, mMovieFinishCallback, 0);
 			arg.mOrigin        = mFountain->getPosition();
@@ -641,8 +641,8 @@ bool VsGameSection::updateCaveMenus()
 			return true;
 
 		case Screen::Game2DMgr::CHECK2D_KanketuMenu_Cancel:
-			gameSystem->setPause(false, "kk-no", 3);
-			gameSystem->setMoviePause(false, "kk-no");
+			gameSystem->setPause(false, 3);
+			gameSystem->setMoviePause(false);
 			mMenuFlags.unset(VsSection_MenuKanketuOpen);
 			break;
 
@@ -694,7 +694,6 @@ void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int unused2)
 {
 	Vector3f start;
 	mapMgr->getStartPosition(start, unused2);
-	setPikmin.dump("createFallPikmins");
 	Navi* orima = naviMgr->getAt(NAVIID_Olimar);
 	start       = orima->getPosition();
 	start.y     = mapMgr->getMinY(start);

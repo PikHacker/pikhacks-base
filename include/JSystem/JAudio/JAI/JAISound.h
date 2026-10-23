@@ -84,7 +84,6 @@ struct JAISound : public JSULink<JAISound> {
 	virtual f32 setDistanceDolbyCommon();                                                                    // _C4
 	virtual void initParameter(void* handlePtr, JAInter::Actor* actor, u32 soundID, u32 fadeTime, u8 camId,
 	                           JAInter::SoundInfo* info); // _C8
-	virtual void onGet() { }                              // _CC (weak)
 	virtual void onRelease() { }                          // _D0 (weak)
 
 	~JAISound() { }

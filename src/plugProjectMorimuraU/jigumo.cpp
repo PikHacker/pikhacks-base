@@ -52,15 +52,12 @@ void Obj::setParameters()
 	}
 
 	// Scale mouth collision and ensure minimum size
-	// There is one mouth slot though, so this is a bit overkill
-	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 radius = C_PARMS->mMouthSlotBaseSize * mScaleModifier;
-		if (radius < 25.0f) {
-			radius = 25.0f;
-		}
-
-		mMouthSlots.getSlot(i)->mRadius = radius;
+	f32 radius = C_PARMS->mMouthSlotBaseSize * mScaleModifier;
+	if (radius < 25.0f) {
+		radius = 25.0f;
 	}
+
+	mMouthSlots.getSlot(0)->mRadius = radius;
 
 	mCurLodSphere.mRadius = mScaleModifier * C_GENERALPARMS.mOffCameraRadius();
 	mBodyRadius           = mScaleModifier * C_GENERALPARMS.mPikminDamageRadius();
@@ -98,14 +95,12 @@ void Obj::birth(Vector3f& position, f32 faceDir)
 	}
 
 	// Set the mouth slot's radius to the proper size, ensure 25.0f minimum
-	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 radius = C_PARMS->mMouthSlotBaseSize * mScaleModifier;
-		if (radius < 25.0f) {
-			radius = 25.0f;
-		}
-
-		mMouthSlots.getSlot(i)->mRadius = radius;
+	f32 radius = C_PARMS->mMouthSlotBaseSize * mScaleModifier;
+	if (radius < 25.0f) {
+		radius = 25.0f;
 	}
+
+	mMouthSlots.getSlot(0)->mRadius = radius;
 }
 
 /**

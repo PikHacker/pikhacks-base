@@ -612,7 +612,6 @@ void PikiMgr::killDayEndPikmins(PikiContainer& container)
 		PikiKillArg arg(CKILL_DontCountAsDeath); // we already counted it as a death, don't double count
 		killList[j]->kill(&arg);
 	}
-	container.dump("PikiContainer");
 }
 
 /**

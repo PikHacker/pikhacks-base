@@ -129,7 +129,7 @@ void MainResultState::exec(SingleGameSection* game)
 			mStatus = Result_OpenWait;
 			MoviePlayArg arg("s02_dayend_result", nullptr, game->mMovieFinishCallback, 0);
 			moviePlayer->play(arg);
-			gameSystem->setPause(false, "mr_load", 3);
+			gameSystem->setPause(false,  3);
 			mCounter = 0;
 		}
 		game->BaseHIOSection::doUpdate();

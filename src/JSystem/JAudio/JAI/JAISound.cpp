@@ -1382,7 +1382,6 @@ JAISound* JAInter::LinkSound::getSound()
 		mFreeList->remove(link);
 		mUsedList->prepend(link);
 		sound = link->getObject();
-		sound->onGet();
 	}
 	return sound;
 }

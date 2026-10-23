@@ -215,58 +215,69 @@ void CourseInfo::read(Stream& stream)
 {
 	char* currentBytes = stream.readString(nullptr, 0);
 	if (strcmp(currentBytes, "name") == 0) {
-		mName        = stream.readString(nullptr, 0);
+		mName = stream.readString(nullptr, 0);
+		delete currentBytes;
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "folder") == 0) {
-		mFolder      = stream.readString(nullptr, 0);
+		mFolder = stream.readString(nullptr, 0);
+		delete currentBytes;
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "abe_folder") == 0) {
-		mAbeFolder   = stream.readString(nullptr, 0);
+		mAbeFolder = stream.readString(nullptr, 0);
+		delete currentBytes;
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "model") == 0) {
-		mModelPath   = stream.readString(nullptr, 0);
+		mModelPath = stream.readString(nullptr, 0);
+		delete currentBytes;
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "collision") == 0) {
 		mCollisionPath = stream.readString(nullptr, 0);
-		currentBytes   = stream.readString(nullptr, 0);
+		delete currentBytes;
+		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "waterbox") == 0) {
 		mWaterboxPath = stream.readString(nullptr, 0);
-		currentBytes  = stream.readString(nullptr, 0);
+		delete currentBytes;
+		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "mapcode") == 0) {
 		mMapcodePath = stream.readString(nullptr, 0);
+		delete currentBytes;
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "farm") == 0) {
-		mFarmPath    = stream.readString(nullptr, 0);
+		mFarmPath = stream.readString(nullptr, 0);
+		delete currentBytes;
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "route") == 0) {
-		mRoutePath   = stream.readString(nullptr, 0);
+		mRoutePath = stream.readString(nullptr, 0);
+		delete currentBytes;
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "start") == 0) {
 		mStartPosition.read(stream);
+		delete currentBytes;
 		currentBytes = stream.readString(nullptr, 0);
 	}
 
 	if (strcmp(currentBytes, "startangle") == 0) {
-		mStartAngle = stream.readFloat();
-		stream.readString(nullptr, 0);
+		mStartAngle  = stream.readFloat();
+		currentBytes = stream.readString(nullptr, 0);
+		delete currentBytes;
 
 		// Convert angle to radians
 		Vector3f vec(0.0f, TORADIANS(mStartAngle), 0.0f);
@@ -492,9 +503,5 @@ void Stages::read(Stream& stream)
 		mCourseInfo.add(newInfo);
 	}
 }
-
-const char selectCourse[] = "Select Course";
-const char caveCount[]    = "%s : %d caves\n";
-const char measureThing[] = "[%s] %d/%d";
 
 } // namespace Game

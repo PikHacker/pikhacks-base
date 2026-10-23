@@ -2347,11 +2347,6 @@ void PikiFlyingState::collisionCallback(Piki* piki, CollEvent& event)
 		if (!piki->invokeAI(&event, true)) {
 			piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 		}
-
-		// uh-huh.
-		if (piki->mBrain->getCurrAction()) {
-			piki->mBrain->getCurrAction();
-		}
 	}
 }
 

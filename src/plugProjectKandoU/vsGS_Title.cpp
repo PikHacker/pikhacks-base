@@ -16,10 +16,6 @@
 #include "Game/Navi.h"
 #include "System.h"
 
-namespace {
-char* cMaps[4] = { "caveinfo.txt", "caveinfo_metal.txt", "caveinfo_conc.txt", "caveinfo_tsuchi.txt" };
-}
-
 namespace Game {
 namespace VsGame {
 /**
@@ -62,7 +58,7 @@ void TitleState::init(VsGameSection* section, StateArg* arg)
 	_2C         = 0;
 
 	mCaveInfoType = VSCAVEINFO_Default;
-	strcpy(section->mCaveInfoFilename, cMaps[mCaveInfoType]);
+	strcpy(section->mCaveInfoFilename, "");
 
 	_20       = 0;
 	mStageNum = section->mChallengeStageList->mStageData.getChildCount(); // Stage Num
@@ -232,7 +228,6 @@ void TitleState::execChallenge(VsGameSection* section)
 			playData->setDopeCount(1, data->mStartNumBitter);
 
 			section->mTimeLimit = 0.0f;
-			data->mPikiContainer.dump("PikiContainer");
 
 			transit(section, VGS_Load, &load);
 			break;
@@ -340,7 +335,6 @@ void TitleState::execVs(VsGameSection* section)
 			playData->setDopeCount(1, data->mStartNumBitter);
 
 			section->mTimeLimit = 0.999f + data->mTimeLimit;
-			data->mPikiContainer.dump("PikiContainer");
 
 			transit(section, VGS_Load, &load);
 		}

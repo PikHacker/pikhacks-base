@@ -3,7 +3,6 @@
 
 #include "JSystem/JGeometry.h"
 #include "DvdThreadCommand.h"
-#include "SysTimers.h"
 #include "BitFlag.h"
 #include "node.h"
 
@@ -87,14 +86,6 @@ struct System : public OSMutex {
 #endif
 	};
 
-	struct FragmentationChecker {
-		FragmentationChecker(char*, bool);
-		~FragmentationChecker();
-
-		u32 mSize;   // _00
-		char* mName; // _04
-	};
-
 	struct GXVerifyArg {
 		GXVerifyArg();
 	};
@@ -110,7 +101,6 @@ struct System : public OSMutex {
 	static _GXRenderModeObj* getRenderModeObj();
 	static int getRenderModeWidth() { return getRenderModeObj()->fbWidth; }
 	static int getRenderModeHeight() { return getRenderModeObj()->efbHeight; }
-	static int assert_fragmentation(char*);
 	static void loadSoundResource();
 	static void initialize();
 
@@ -207,7 +197,6 @@ struct System : public OSMutex {
 	u32 mCpuRetraceCount;                 // _1C
 	u32 mCpuLockCount;                    // _20
 	Graphics* mGfx;                       // _24
-	SysTimers* mTimers;                   // _28
 	u32 mRenderModeStatus;                // _2C
 	u32 _30;                              // _30
 	u32 _34;                              // _34
@@ -223,9 +212,9 @@ struct System : public OSMutex {
 	Game::CommonSaveData::Mgr* mPlayData; // _60
 	f32 mFrameRate;                       // _64
 	DvdThreadCommand mThreadCommand;      // _68
-	LanguageID mRegion;  // _D4
-	BitFlag<u32> mFlags; // _D8
-	struct JUTRomFont* mRomFont; // _DC (PAL: _D4)
+	LanguageID mRegion;                   // _D4
+	BitFlag<u32> mFlags;                  // _D8
+	struct JUTRomFont* mRomFont;          // _DC (PAL: _D4)
 };
 
 extern System* sys;

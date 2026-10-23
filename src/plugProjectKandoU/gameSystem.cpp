@@ -174,7 +174,7 @@ void GameSystem::startFadewhite()
  * @note Address: 0x801B4F84
  * @note Size: 0x8
  */
-void GameSystem::setMoviePause(bool isMoviePause, char*)
+void GameSystem::setMoviePause(bool isMoviePause)
 {
 	mIsMoviePause = isMoviePause;
 }
@@ -183,7 +183,7 @@ void GameSystem::setMoviePause(bool isMoviePause, char*)
  * @note Address: 0x801B4F8C
  * @note Size: 0x8
  */
-void GameSystem::setFrozen(bool isFrozen, char*)
+void GameSystem::setFrozen(bool isFrozen)
 {
 	mIsFrozen = isFrozen;
 }
@@ -192,9 +192,9 @@ void GameSystem::setFrozen(bool isFrozen, char*)
  * @note Address: 0x801B4F94
  * @note Size: 0x2C
  */
-u32 GameSystem::setPause(bool isPausedSoft, char* str, int pauseID)
+u32 GameSystem::setPause(bool isPausedSoft, int pauseID)
 {
-	startPause(isPausedSoft, pauseID, str);
+	startPause(isPausedSoft, pauseID);
 }
 
 /**
@@ -222,7 +222,7 @@ bool GameSystem::paused()
  * @note Address: 0x801B4FF0
  * @note Size: 0x50
  */
-int GameSystem::startPause(bool isPausedSoft, int pauseID, char* str)
+int GameSystem::startPause(bool isPausedSoft, int pauseID)
 {
 	if (isPausedSoft && paused()) {
 		return TRUE;

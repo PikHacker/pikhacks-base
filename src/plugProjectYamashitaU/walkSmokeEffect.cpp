@@ -69,12 +69,6 @@ void Mgr::alloc(int count)
 	if (mObjects == nullptr) {
 		mNumObjects = count;
 		mObjects    = new Obj[mNumObjects];
-
-		if (mObjects == nullptr) {
-			// failed to allocate an object array
-			JUT_PANICLINE(168, "alloc error\n");
-		}
-
 	} else {
 		// object array already allocated
 		JUT_PANICLINE(173, "second alloc");

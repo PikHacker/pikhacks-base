@@ -221,13 +221,6 @@ bool TEnemyPiyo::create(Arg* arg)
 		docreate = true;
 		mEmitter->setScaleOnly(scale);
 		f32 offs = (scale - 1.0f) * 0.5f + 1.0f;
-		volatile Vector3f vec1, vec2; // dumb way to get the stack in here.
-		vec1.x = scale;
-		vec1.y = scale;
-		vec1.z = scale;
-		vec2.x = offs;
-		vec2.y = offs;
-		vec2.z = offs;
 		mEmitter->setGlobalScale(offs);
 
 	} else {
@@ -253,10 +246,6 @@ bool TEnemyPoisonL::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -281,10 +270,6 @@ bool TEnemyPoisonS::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -308,10 +293,6 @@ bool TSekikaLOff::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -335,10 +316,6 @@ bool TSekikaLOn::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -362,10 +339,6 @@ bool TSekikaSOff::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -389,10 +362,6 @@ bool TSekikaSOn::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -416,10 +385,6 @@ bool TEnemyDead_ArgScale::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -641,10 +606,6 @@ bool TEnemyDead::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -879,10 +840,6 @@ bool TEnemyWalkSmokeM::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -902,10 +859,6 @@ bool TEnemyWalkSmokeS::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -923,10 +876,6 @@ bool TEnemyDownSmoke::create(Arg* arg)
 	if (TSimple1::create(arg)) {
 		f32 scale = mScale;
 		docreate  = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -950,10 +899,6 @@ bool TEnemyDownWat::create(Arg* arg)
 
 	if (TSimple3::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 		mEmitters[1]->setScale(scale);
 		mEmitters[2]->setScale(scale);
@@ -979,10 +924,6 @@ bool TEnemyDive::create(Arg* arg)
 
 	if (TSimple2::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 		mEmitters[1]->setScale(scale);
 	} else {
@@ -1303,10 +1244,6 @@ bool TEnemyBombM::create(Arg* arg)
 
 	if (TSimple4::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 		mEmitters[1]->setScale(scale);
 		mEmitters[2]->setScale(scale);
@@ -1333,10 +1270,6 @@ bool TEnemyBombS::create(Arg* arg)
 
 	if (TSimple4::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 		mEmitters[1]->setScale(scale);
 		mEmitters[2]->setScale(scale);
@@ -1395,10 +1328,6 @@ bool TEnemyApsmokeM::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -1423,10 +1352,6 @@ bool TEnemyApsmokeS::create(Arg* arg)
 
 	if (TSimple1::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitters[0]->setScale(scale);
 	} else {
 		docreate = false;
@@ -1451,10 +1376,6 @@ bool TEnemyHamonM::create(Arg* arg)
 
 	if (TSync::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitter->setScale(scale);
 	} else {
 		docreate = false;
@@ -1478,10 +1399,6 @@ bool TEnemyHamonMInd::create(Arg* arg)
 
 	if (TSync::create(arg)) {
 		docreate = true;
-		volatile Vector3f scaleVec; // dumb.
-		scaleVec.x = scale;
-		scaleVec.y = scale;
-		scaleVec.z = scale;
 		mEmitter->setScale(scale);
 	} else {
 		docreate = false;

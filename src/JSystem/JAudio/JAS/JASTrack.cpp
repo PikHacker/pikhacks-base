@@ -1769,11 +1769,6 @@ f32 JASTrack::panCalc(f32 valA, f32 valB, f32 weight, u8 calcType)
 	return 0.0f;
 }
 
-#if defined(VERSION_US_DEMO) || defined(VERSION_PAL)
-// sure.
-static volatile f32 c32[8] ATTRIBUTE_ALIGN(32) = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
-#endif
-
 /**
  * @note Address: 0x800A2658
  * @note Size: 0xF4

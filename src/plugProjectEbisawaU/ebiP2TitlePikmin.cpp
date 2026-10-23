@@ -31,15 +31,6 @@ Pikmin::TBoidParamMgr::TBoidParamMgr()
 
 /**
  * @note Address: N/A
- * @note Size: 0x4C
- */
-/* void Pikmin::TBoidParamMgr::startState((ebi::title::Pikmin::TBoidParamMgr::enumState, f32))
-{
-    // UNUSED FUNCTION
-} */
-
-/**
- * @note Address: N/A
  * @note Size: 0x130
  */
 void Pikmin::TBoidParamMgr::update()

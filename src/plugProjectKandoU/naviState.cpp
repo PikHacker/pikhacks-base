@@ -2482,8 +2482,8 @@ void NaviContainerState::init(Navi* navi, StateArg* stateArg)
 	}
 
 	if (mIsScreenOpen) {
-		gameSystem->setFrozen(true, "open-cont");
-		gameSystem->setMoviePause(true, "open-cont");
+		gameSystem->setFrozen(true);
+		gameSystem->setMoviePause(true);
 	}
 
 	_18           = true;
@@ -2609,8 +2609,8 @@ void NaviContainerState::enterPikis(Navi* navi, int maxPikis)
  */
 void NaviContainerState::cleanup(Navi* navi)
 {
-	gameSystem->setFrozen(false, "open-cont");
-	gameSystem->setMoviePause(false, "open-cont");
+	gameSystem->setFrozen(false);
+	gameSystem->setMoviePause(false);
 }
 
 /**

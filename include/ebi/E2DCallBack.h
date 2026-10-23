@@ -167,6 +167,7 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 
 	inline void setPaneColors(int colorID)
 	{
+		FORCE_DONT_INLINE;
 		mIsEnabled = false;
 		if (mPane) {
 			mFonts[colorID].applyColorsToPane(static_cast<J2DTextBox*>(mPane));

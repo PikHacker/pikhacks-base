@@ -18,12 +18,7 @@ namespace Game {
 BaseHIOSection::BaseHIOSection(JKRHeap* heap)
     : Section(nullptr, heap, false)
 {
-	System::assert_fragmentation("BaseHIOSection");
-	mRootNode         = nullptr;
-	u32 freeSize      = JKRHeap::sCurrentHeap->getFreeSize();
-	u32 totalFreeSize = JKRHeap::sCurrentHeap->getTotalFreeSize();
-
-	JUT_ASSERTLINE(314, freeSize == totalFreeSize, "fragmentation occurred : after sound\n");
+	mRootNode = nullptr;
 }
 
 /**

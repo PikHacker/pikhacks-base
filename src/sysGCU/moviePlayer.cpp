@@ -164,7 +164,7 @@ int MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 		mNaviID        = arg.mNaviID;
 		P2ASSERTLINE(594, config);
 
-		mIsPaused              = gameSystem->setPause(true, "moviePl:play", 3);
+		mIsPaused              = gameSystem->setPause(true, 3);
 		mOffset                = nullptr;
 		bool test              = false;
 		MovieConfig* posConfig = mCurrentConfig;
@@ -452,7 +452,6 @@ void MoviePlayer::loadResource()
 	} else {
 		JUT_PANICLINE(957, "no demo.szs\n");
 	}
-	JUT_ASSERTLINE(960, mStbFile, "resource open failed!\n");
 
 	parse(true);
 	sys->endChangeCurrentHeap();
@@ -513,7 +512,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			sys->endChangeCurrentHeap();
 		}
 		if (mThreadCommand.mMode == DvdThreadCommand::CM_Completed && mFadeTimer <= 0.0f) {
-			gameSystem->setPause(false, "moviePl:loaddone", 3);
+			gameSystem->setPause(false, 3);
 			gameSystem->paused();
 			if (mDelegate2) {
 				mDelegate2->invoke(mCurrentConfig, 0, mNaviID);
@@ -570,7 +569,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			stop();
 			static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInDemo = false;
 			cameraMgr->controllerUnLock(2);
-			gameSystem->setPause(0, "moviePl:donecall", 3);
+			gameSystem->setPause(0, 3);
 			if (Screen::gGame2DMgr) {
 				Screen::gGame2DMgr->restartFinalFloorSound();
 			}
@@ -618,7 +617,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 				mDemoState = DEMOSTATE_Finishing;
 				mFadeTimer = 2.0f;
 				mCanFinish = false;
-				gameSystem->setPause(true, nullptr, 3);
+				gameSystem->setPause(true, 3);
 				gameSystem->startFadeout(1.0f);
 				mDemoPSM->onDemoFadeoutStart(30);
 				mObjectSystem->entry();
@@ -780,12 +779,9 @@ void MoviePlayer::unsuspend(s32 msg, bool flag)
 	if (flag) {
 		int id = mCurrentConfig->mMsgPauseNum;
 		if (id == 0 || mMessageEndCount >= id) {
-			gameSystem->setPause(true, "moviePl:unsuspend", 0);
-			for (int i = 0; i < 100; i++) {
-				// silly
-			}
+			gameSystem->setPause(true, 0);
 		} else {
-			gameSystem->setPause(false, "moviePl:g33/susp", 3);
+			gameSystem->setPause(false, 3);
 		}
 		mDemoPSM->onMessageEnd(mMessageEndCount);
 		mMessageEndCount++;
@@ -882,7 +878,7 @@ void MoviePlayer::skip()
 	mCanFinish = false;
 	gameSystem->startFadeout(1.0f);
 	mDemoPSM->onDemoFadeoutStart(30);
-	gameSystem->setPause(true, "moviePl:skip", 0);
+	gameSystem->setPause(true, 0);
 
 	// gets rid of all objects with IDs starting with #
 	JGadget::TLinkList<JStudio::stb::TObject, -12>& objects = mStudioControl->referObjectContainer();

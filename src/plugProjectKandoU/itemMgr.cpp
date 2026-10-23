@@ -169,7 +169,6 @@ void BaseItem::update()
 	if (isAlive()) {
 		updateCell();
 		if (0 > mCellLayerIndex || mCellLayerIndex > 10) {
-			getTypeName();
 			JUT_PANICLINE(365, "cellLayerindex overflow\n");
 		}
 		do_updateLOD();
@@ -561,22 +560,6 @@ void BaseItemMgr::loadCollision(JKRFileLoader* loader, char* path)
 GenItemParm* BaseItemMgr::generatorNewItemParm()
 {
 	return new GenItemParm();
-}
-
-/**
- * @note Address: 0x801CD0EC
- * @note Size: 0x64
- */
-J3DModelData* BaseItemMgr::generatorGetShape(Game::GenItemParm* parm)
-{
-	int shapeID = parm->getShapeID();
-	J3DModelData* modelData;
-	if (!(0 > shapeID || shapeID >= mModelDataMax)) {
-		modelData = mModelData[shapeID];
-	} else {
-		modelData = nullptr;
-	}
-	return modelData;
 }
 
 /**

@@ -50,7 +50,6 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	virtual void doSetView(int viewportNumber) { }               // _10 (weak)
 	virtual void doViewCalc() { }                                // _14 (weak)
 	virtual void doSimulation(f32 rate) { }                      // _18 (weak)
-	virtual J3DModelData* generatorGetShape(GenPelletParm*);     // _80
 	virtual GenPelletParm* generatorNewPelletParm();             // _84
 	virtual Pellet* getObjectPtr(void*) = 0;                     // _88
 	virtual void* getNext(void*)        = 0;                     // _8C

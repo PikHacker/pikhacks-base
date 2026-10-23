@@ -462,9 +462,8 @@ bool TControl::update(Controller* control1, Controller* control2)
 				}
 				mTextRenderProc->mYOffset = calc * (mTimer2 - mTimer1) + mTimer1;
 
-				// I would imagine the second of these was supposed to be for controller 2, but very cool
 				if ((control1 && control1->getButton() & Controller::PRESS_B)
-				    || (control1 && control1->getButton() & Controller::PRESS_B)) {
+				    || (control2 && control2->getButton() & Controller::PRESS_B)) {
 					mTimer += sys->mDeltaTime * 2.0f;
 				} else {
 					mTimer += sys->mDeltaTime;

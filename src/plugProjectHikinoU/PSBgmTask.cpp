@@ -218,8 +218,6 @@ void TaskEntry_PitMod::makeEntry(f32 pitch, f32 speed, u32 waitTime)
  */
 void TaskEntry_MuteVolume::makeEntry(f32 value, u32 length)
 {
-	f32 temp_f0;
-
 	OSDisableInterrupts();
 	mMuteTask1.mDoMuteTrack = false;
 	mMuteTask1.mEnabled     = true;

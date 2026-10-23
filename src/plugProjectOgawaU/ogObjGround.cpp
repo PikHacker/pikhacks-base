@@ -52,12 +52,8 @@ void ObjGround::doCreate(JKRArchive* arc)
 	og::Screen::DispMemberGround* disp = static_cast<og::Screen::DispMemberGround*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_GROUND)) {
 		mDisp = disp;
-
-	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		mDisp = new og::Screen::DispMemberGround;
-
 	} else {
-		JUT_PANICLINE(186, "ERR! in ObjCave Create失敗！\n"); // yes they used the wrong class name - lmao
+		JUT_PANICLINE(186, "ERR! in ObjGround Create失敗！\n");
 	}
 
 	mSunMeter     = new og::Screen::SunMeter;

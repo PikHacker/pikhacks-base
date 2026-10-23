@@ -77,28 +77,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 
 	if (piki->isZikatu()) {
 		int pikiKind = piki->getKind();
-		if (pikiKind == Purple) {
-			if (piki->getStateID() != PIKISTATE_Holein) {
-				Vector3f pikiPos = piki->getPosition();
-				Vector3f closestCavePos;
-				f32 closestHoleDist                 = FLOAT_DIST_MAX;
-				Container<BaseItem>* iCaveContainer = ItemCave::mgr;
-				Iterator<BaseItem> iCave(iCaveContainer);
-				CI_LOOP(iCave)
-				{
-					BaseItem* cave   = *iCave;
-					Vector3f cavePos = cave->getPosition();
-					f32 distance     = cavePos.distance(pikiPos);
-					if (distance < closestHoleDist) {
-						closestHoleDist = distance;
-						closestCavePos  = cavePos;
-					}
-				}
-				HoleinStateArg holeInArg(closestCavePos);
-				piki->mFsm->transit(piki, PIKISTATE_Holein, &holeInArg);
-				return false;
-			}
-		} else if (!(moviePlayer->mDemoState != DEMOSTATE_Inactive || (u32)pikiKind - 1 > Red && pikiKind != Blue)) {
+		if (moviePlayer->mDemoState == DEMOSTATE_Inactive || pikiKind < Purple) {
 			piki->setZikatu(false);
 			GameStat::zikatuPikis.dec(piki->getKind());
 			if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && piki->getKind() == Red) {

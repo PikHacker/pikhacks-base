@@ -886,64 +886,38 @@ int THiScore::getRecord(int type, int id)
 	int orderID = mHiscoreDataOrder[id];
 	P2ASSERTLINE(1049, orderID <= 16);
 
-	bool debug = false;
-	if (mIsSection) {
-		debug = true;
-	}
-
 	switch (type) {
 	case ClearRank1:
-		if (debug) {
-			return 1.0f + 10.0f * randFloat();
-		}
 		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(0);
 		}
 		return -1;
 
 	case ClearRank2:
-		if (debug) {
-			return 10.0f + 100.0f * randFloat();
-		}
 		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(1);
 		}
 		return -1;
 
 	case ClearRank3:
-		if (debug) {
-			if (randFloat() < 0.5f) {
-				return -1;
-			}
-			return 110.0f + 1000.0f * randFloat();
-		}
 		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(2);
 		}
 		return -1;
 
 	case CompleteRank1:
-		if (debug) {
-			return 10.f + 100.0f * randFloat();
-		}
 		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(0);
 		}
 		return -1;
 
 	case CompleteRank2:
-		if (debug) {
-			return 110.0f + 100.0f * randFloat();
-		}
 		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(1);
 		}
 		return -1;
 
 	case CompleteRank3:
-		if (debug) {
-			return 1100.0f + 100000.0f * randFloat();
-		}
 		if (sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_DebtRepayed)) {
 			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(2);
 		}

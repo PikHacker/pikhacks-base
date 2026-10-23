@@ -145,12 +145,10 @@ struct GenBase : public Parameters {
 	virtual void doWrite(Stream&) { }                    // _08 (weak)
 	virtual void ramSaveParameters(Stream&);             // _0C
 	virtual void ramLoadParameters(Stream&);             // _10
-	virtual void doEvent(u32) { }                        // _14 (weak)
 	virtual void doRead(Stream&) { }                     // _18 (weak)
 	virtual void update(Generator*) { }                  // _1C (weak)
 	virtual void render(Graphics&, Generator*) { }       // _20 (weak)
 	virtual u32 getLatestVersion() { return 'udef'; }    // _24 (weak)
-	virtual J3DModelData* getShape() { return nullptr; } // _28 (weak)
 
 	void readVersion(Stream&);
 	void read(Stream&);
@@ -246,9 +244,7 @@ struct GenItem : public GenObject {
 	virtual void doWrite(Stream&);                                            // _08
 	virtual void ramSaveParameters(Stream&);                                  // _0C
 	virtual void ramLoadParameters(Stream&);                                  // _10
-	virtual void doEvent(u32);                                                // _14
 	virtual void doRead(Stream&);                                             // _18
-	virtual J3DModelData* getShape();                                         // _28
 	virtual void updateUseList(Generator*, int);                              // _2C
 	virtual Creature* generate(Generator*);                                   // _30
 	virtual Creature* birth(GenArg*);                                         // _34
@@ -287,9 +283,7 @@ struct GenPellet : public GenObject {
 	virtual void doWrite(Stream&);                                            // _08
 	virtual void ramSaveParameters(Stream&);                                  // _0C
 	virtual void ramLoadParameters(Stream&);                                  // _10
-	virtual void doEvent(u32);                                                // _14
 	virtual void doRead(Stream&);                                             // _18
-	virtual J3DModelData* getShape();                                         // _28
 	virtual void updateUseList(Generator*, int);                              // _2C
 	virtual Creature* generate(Generator*);                                   // _30 (weak)
 	virtual Creature* birth(GenArg*);                                         // _34
@@ -333,7 +327,6 @@ struct GenObjectEnemy : public GenObject {
 	virtual void doWrite(Stream&);               // _08
 	virtual void doRead(Stream&);                // _18
 	virtual void render(Graphics&, Generator*);  // _20
-	virtual J3DModelData* getShape();            // _28
 	virtual void updateUseList(Generator*, int); // _2C
 	virtual Creature* generate(Generator*);      // _30
 	virtual Creature* birth(GenArg*);            // _34

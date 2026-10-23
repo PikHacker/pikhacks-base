@@ -829,7 +829,6 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 	soundInfo._05                = 1;
 
 	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
-	P2ASSERTLINE(1393, soundInfo._05 < 5);
 
 	if (info.isCaveFloor()) {
 		// we're in a 'cave' (story mode cave, 2P battle, vs or challenge mode)
@@ -1014,9 +1013,6 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
  */
 void ConductorSelector::getConductorFile(char const* path, CaveFloorInfo&, u8*, char*)
 {
-	JUT_PANICLINE(999, "%s_%02d_0.cnd");
-	JUT_PANICLINE(999, "\nnot find Seq\n");
-	JUT_PANICLINE(999, "%s_%02d_%1d.cnd");
 	// UNUSED FUNCTION
 }
 
@@ -1059,8 +1055,7 @@ u16 seqCpuSync(JASTrack* track, u16 command)
 					JAInter::SystemInterface::outerInit(JAInter::SequenceMgr::getPlayTrackInfo(i), temp, route,
 					                                    childSeq->mSoundInfo.mFlag >> 8, cmd & 1);
 					JAInter::SequenceMgr::getPlayTrackInfo(i)->_04 |= 1 << route;
-					ret = 0;
-					i   = JAIGlobalParameter::getParamSeqPlayTrackMax(); // stupid way to break but ok
+					return 0;
 				}
 			}
 		}

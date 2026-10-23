@@ -719,7 +719,6 @@ DirectorBase* DirectedBgm::getDirectorP(u8 id)
 SeqTrackRoot* DirectedBgm::newSeqTrackRoot()
 {
 	SeqTrackRoot* track = new SeqTrackRoot;
-	P2ASSERTLINE(839, track);
 	return track;
 }
 
@@ -730,7 +729,6 @@ SeqTrackRoot* DirectedBgm::newSeqTrackRoot()
 SeqTrackChild* DirectedBgm::newSeqTrackChild(u8, SeqTrackRoot& track)
 {
 	SeqTrackChild* newtrack = new SeqTrackChild(*(const_cast<const SeqTrackRoot*>(mRootTrack)));
-	P2ASSERTLINE(847, newtrack);
 	return newtrack;
 }
 
@@ -930,7 +928,6 @@ JumpBgmSeq::JumpBgmSeq(char const* bmsFileName, JAInter::SoundInfo const& info, 
 SeqTrackRoot* JumpBgmSeq::newSeqTrackRoot()
 {
 	SeqTrackRoot* track = new SeqTrackRoot_JumpBgm(&mJumpPort);
-	P2ASSERTLINE(1211, track);
 	return track;
 }
 

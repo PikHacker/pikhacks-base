@@ -210,8 +210,6 @@ void CaveState::draw(SingleGameSection* game, Graphics& gfx)
 				Cave::randMapMgr->captureRadarMap(gfx);
 			}
 			game->BaseGameSection::doDraw(gfx);
-			game->drawCaveScreen();
-			game->test_draw_treasure_detector();
 		}
 	}
 }
@@ -226,22 +224,18 @@ void CaveState::check_SMenu(SingleGameSection* game)
 	int state = Screen::gGame2DMgr->check_SMenu();
 	switch (state) {
 	case Screen::Game2DMgr::CHECK2D_SMenu_Cancel: // unpause and resume gameplay
-		gameSystem->setPause(false, "sm-canc", 3);
-		gameSystem->setMoviePause(false, "sm-canc");
+		gameSystem->setPause(false, 3);
+		gameSystem->setMoviePause(false);
 		return;
 	case Screen::Game2DMgr::CHECK2D_SMenu_EscapeCave:
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-		gameSystem->setMoviePause(false, "sm-giveup");
+		gameSystem->setMoviePause(false);
 		if (moviePlayer->mDemoState != DEMOSTATE_Inactive)
 			return;
 		MoviePlayArg arg("s12_cv_giveup", nullptr, game->mMovieFinishCallback, 0);
 		arg.mDelegateStart = game->mMovieStartCallback;
 		Onyon* onyon       = ItemOnyon::mgr->mPod;
-#if defined(VERSION_JP)
-		JUT_ASSERTLINE(789, onyon, "no pod demo 12");
-#else
 		JUT_ASSERTLINE(792, onyon, "no pod demo 12");
-#endif
 		arg.mOrigin = onyon->getPosition();
 		arg.mAngle  = onyon->getFaceDir();
 		moviePlayer->play(arg);
@@ -272,8 +266,8 @@ void CaveState::check_SMenu(SingleGameSection* game)
 			if (!Screen::gGame2DMgr->open_SMenu(disp)) {
 				return;
 			}
-			gameSystem->setPause(true, "open-sm", 3);
-			gameSystem->setMoviePause(true, "open-sm");
+			gameSystem->setPause(true, 3);
+			gameSystem->setMoviePause(true);
 		}
 		break;
 	case Screen::Game2DMgr::CHECK2D_SMenu_Opened:
@@ -294,7 +288,7 @@ void CaveState::check_SMenu(SingleGameSection* game)
 void CaveState::cleanup(SingleGameSection* game)
 {
 	gameSystem->resetFlag(GAMESYS_IsPlaying);
-	gameSystem->setMoviePause(false, "cavestate:cleanup");
+	gameSystem->setMoviePause(false);
 	game->setDraw2DCreature(nullptr);
 	if (game->mTheExpHeap) {
 		PSMCancelToPauseOffMainBgm();

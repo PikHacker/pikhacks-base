@@ -292,7 +292,6 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual bool deferPikiCollision() { return true; }               // _20 (weak)
 	virtual void do_update() { }                                     // _1EC (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent);     // _1F0 (weak, thunk at _1BC)
-	virtual u8 getKind() = 0;                                        // _1F4
 	virtual void changeMaterial() { }                                // _1F8 (weak)
 	virtual void createKiraEffect(Vector3f&) { }                     // _1FC (weak)
 	virtual void getCarryInfoParam(CarryInfoParam& infoParam);       // _200 (not weak, thunk at _1C8)
@@ -349,6 +348,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void startDiscoverDisable(u8);
 	void updateDiscoverDisable();
 	bool discoverDisabled();
+
+	inline u8 getKind() { return mPelletKind; }
 
 	inline void setValidColor(u16 color)
 	{
@@ -435,6 +436,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	f32 mDepth;                       // _320
 	bool mIsBounced;                  // _324
 	bool mIsInWater;                  // _325
+	u8 mPelletKind;                   //
 	TexCaster::Caster* mCaster;       // _328
 	u8 mPelletFlag;                   // _32C
 	u8 mDiscoverDisable;              // _32D
@@ -462,7 +464,6 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	f32 mAngleOffset;                 // _3E0
 	BitFlag2<u32, 4> mSlots;          // _3E4
 	s16 mSlotCount;                   // _3F4
-	u8 mIsAlwaysCarried;              // _3F6, is never set to true, probably testing
 	u32 mPikminCount[PikiColorCount]; // _3F8
 	u32 mTotalCarriers;               // _414, might be for non-pikmin carriers?
 	f32 mCarryPower;                  // _418

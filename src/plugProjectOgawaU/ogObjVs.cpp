@@ -74,11 +74,7 @@ void ObjVs::doCreate(JKRArchive* arc)
 	if (disp->isID(OWNER_OGA, MEMBER_VS)) {
 		mDisp = disp;
 	} else {
-		if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-			mDisp = new og::Screen::DispMemberVs;
-		} else {
-			JUT_PANICLINE(246, "ERR! in ObjVs Create失敗！\n");
-		}
+		JUT_PANICLINE(246, "ERR! in ObjVs Create失敗！\n");
 	}
 
 	mBloGroup = new og::Screen::BloGroup(2);

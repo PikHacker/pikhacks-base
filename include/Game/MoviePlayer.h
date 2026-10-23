@@ -139,6 +139,7 @@ struct MoviePlayArg {
 		mStreamID      = 0;
 		_14            = 0;
 		mSoundPosition = nullptr;
+		FORCE_DONT_INLINE;
 	}
 
 	inline MoviePlayArg(char* movieName, char* courseName, IDelegate3<MovieConfig*, u32, u32>* p3, u32 naviID)
@@ -154,6 +155,7 @@ struct MoviePlayArg {
 		mStreamID      = 0;
 		_14            = 0;
 		mSoundPosition = nullptr;
+		FORCE_DONT_INLINE;
 	}
 
 	inline void setTarget(Creature* creature)

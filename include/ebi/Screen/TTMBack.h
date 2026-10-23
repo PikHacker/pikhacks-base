@@ -11,7 +11,6 @@ struct TTMBack : public TScreenBase {
 	TTMBack()
 	    : mScreenObj(nullptr)
 	{
-		mOpenCloseCounter.setValue((u32)0); // even though the ctor already does this, smh
 	}
 
 	virtual void doSetArchive(JKRArchive*);             // _24

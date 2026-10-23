@@ -167,22 +167,10 @@ void Section::loadResource()
 #else
 	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/demoMovieLogo_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 #endif
-#if defined(VERSION_PAL)
-	P2ASSERTLINE(431, arc);
-#elif defined(VERSION_JP)
-	P2ASSERTLINE(422, arc);
-#else
-	P2ASSERTLINE(428, arc);
-#endif
 
+	P2ASSERTLINE(428, arc);
 	ResTIMG* timg = JKRGetImageResource("/data/timg/pikmin2_logo.bti");
-#if defined(VERSION_PAL)
-	P2ASSERTLINE(436, timg);
-#elif defined(VERSION_JP)
-	P2ASSERTLINE(427, timg);
-#else
 	P2ASSERTLINE(433, timg);
-#endif
 
 	mLogoTexture = new JUTTexture(timg);
 }

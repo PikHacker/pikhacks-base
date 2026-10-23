@@ -137,15 +137,12 @@ void PelletCropMemory::obtainPellet(Pellet* pellet)
 	if (pellet->getKind() == PelletType::Treasure) {
 		int id = pellet->getConfigIndex();
 		mOtakara(id) |= KindCounter::KCF_Earned;
-		pellet->getConfigName();
 	} else if (pellet->getKind() == PelletType::Upgrade) {
 		int id = pellet->getConfigIndex();
 		mItem(id) |= KindCounter::KCF_Earned;
-		pellet->getConfigName();
 	} else if (pellet->getKind() == PelletType::Carcass) {
 		int id = pellet->getConfigIndex();
 		mCarcass(id) |= KindCounter::KCF_Earned;
-		pellet->getConfigName();
 	}
 }
 
@@ -517,16 +514,8 @@ void PlayData::setDevelopSetting(bool isDevelop, bool setDemos)
  */
 int PlayData::calcPlayMinutes()
 {
-	OSCalendarTime calendar1;
-	OSCalendarTime calendar2;
-	OSCalendarTime calendar3;
-
 	OSTime time = OSGetTime(); // mistake?
-	OSTicksToCalendarTime(time, &calendar1);
-	OSTicksToCalendarTime(mOsTime, &calendar2);
-
 	OSTime diff = time - mOsTime;
-	OSTicksToCalendarTime(diff, &calendar3);
 
 	return (int)(diff / OS_TIMER_CLOCK) / 60;
 }
@@ -784,20 +773,14 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 	if (pellet->getKind() == PelletType::Treasure) {
 		int id = pellet->getConfigIndex();
 		(mem->mOtakara(id))++;
-		pellet->getConfigName();
-		(mem->mOtakara(id));
 
 	} else if (pellet->getKind() == PelletType::Upgrade) {
 		int id = pellet->getConfigIndex();
 		(mem->mItem(id))++;
-		pellet->getConfigName();
-		(mem->mItem(id));
 
 	} else if (pellet->getKind() == PelletType::Carcass) {
 		int id = pellet->getConfigIndex();
 		(mem->mCarcass(id))++;
-		pellet->getConfigName();
-		(mem->mCarcass(id));
 	}
 
 	BasePelletMgr* mgr = 0;
@@ -826,20 +809,14 @@ void PlayData::obtainPellet_Cave(Game::Pellet* pellet)
 	if (pellet->getKind() == PelletType::Treasure) {
 		int id = pellet->getConfigIndex();
 		(mem->mOtakara(id))++;
-		pellet->getConfigName();
-		(mem->mOtakara(id));
 
 	} else if (pellet->getKind() == PelletType::Upgrade) {
 		int id = pellet->getConfigIndex();
 		(mem->mItem(id))++;
-		pellet->getConfigName();
-		(mem->mItem(id));
 
 	} else if (pellet->getKind() == PelletType::Carcass) {
 		int id = pellet->getConfigIndex();
 		(mem->mCarcass(id))++;
-		pellet->getConfigName();
-		(mem->mCarcass(id));
 	}
 
 	// treasures in caves are not marked in the piklopedia yet, that is done on cave escape (SingleGame::State::accountEarnings)
@@ -1302,7 +1279,7 @@ void PlayData::CaveOtakara::read(Stream& input)
 {
 	u8 existingCaveCount = mCaveCount;
 	mCaveCount           = input.readByte();
-	JUT_ASSERTLINE(1797, existingCaveCount == mCaveCount, "セーブしたときと洞窟の数があいません\n");
+	JUT_ASSERTLINE(1797, existingCaveCount == mCaveCount, "cave count error\n");
 	for (int i = 0; i < mCaveCount; i++) {
 		mOtakaraCountsOld[i] = input.readByte();
 		mVisitStatus[i]      = input.readByte();

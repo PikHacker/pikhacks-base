@@ -160,33 +160,29 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 void Mgr::initObjects()
 {
 	char path[PATH_MAX];
-	if (isValidEnemyTypeID()) {
-		char* collisionFolder = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->mCollName;
-		if (*collisionFolder == '\0') {
-			collisionFolder = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
-		}
+	char* collisionFolder = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->mCollName;
+	if (*collisionFolder == '\0') {
+		collisionFolder = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
+	}
 
-		sprintf(path, "%s/enemyColl.txt", collisionFolder);
-		SysShape::Model* model = createModel();
+	sprintf(path, "%s/enemyColl.txt", collisionFolder);
+	SysShape::Model* model = createModel();
 
-		for (int i = 0; i < getMaxObjects(); i++) {
-			Obj* enemy = static_cast<Obj*>(getEnemy(i));
-			P2ASSERTLINE(201, enemy);
-			enemy->mCreatureID = i;
-			enemy->mMgr        = this;
-			enemy->mModel      = model;
-		}
+	for (int i = 0; i < getMaxObjects(); i++) {
+		Obj* enemy         = static_cast<Obj*>(getEnemy(i));
+		enemy->mCreatureID = i;
+		enemy->mMgr        = this;
+		enemy->mModel      = model;
+	}
 
-		mCollPartFactory = CollPartFactory::load(gParmArc, "JigumoHouse/enemyColl.txt");
-		P2ASSERTLINE(220, mCollPartFactory);
+	mCollPartFactory = CollPartFactory::load(gParmArc, "JigumoHouse/enemyColl.txt");
+	P2ASSERTLINE(220, mCollPartFactory);
 
-		for (int i = 0; i < getMaxObjects(); i++) {
-			Obj* enemy = static_cast<Obj*>(getEnemy(i));
-			P2ASSERTLINE(224, enemy);
-			enemy->mCollTree = new CollTree();
-			enemy->mCollTree->createFromFactory(model, mCollPartFactory, nullptr);
-			enemy->mCollTree->attachModel(model);
-		}
+	for (int i = 0; i < getMaxObjects(); i++) {
+		Obj* enemy       = static_cast<Obj*>(getEnemy(i));
+		enemy->mCollTree = new CollTree();
+		enemy->mCollTree->createFromFactory(model, mCollPartFactory, nullptr);
+		enemy->mCollTree->attachModel(model);
 	}
 }
 

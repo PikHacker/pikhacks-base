@@ -59,7 +59,6 @@ u8 ObjCalc_2PGame::getPlayerNo(Vec& pos)
 		{
 			Game::Navi* navi = *it;
 			Vector3f npos    = navi->getPosition();
-			P2ASSERTLINE(65, &npos != 0);
 			P2ASSERTLINE(66, i < 2);
 
 			dists[i] = PSMath::calcSquareDistance(pos, npos);
@@ -89,7 +88,6 @@ u8 ObjCalc_2PGame::getPlayerNo(PSM::Creature* obj)
 		return obj->mGameObj->getSound_AILOD()->mSoundVPID;
 	default:
 		JUT_PANICLINE(125, "ありえないケース1");
-		JUT_PANICLINE(128, "ありえないケース2");
 		return 0;
 	}
 }

@@ -121,6 +121,7 @@ void TekiInfo::read(Stream& stream)
 	if (parsedBuffer[0] != '\0') {
 		pelletMgr->makeOtakaraItemCode(parsedBuffer, mOtakaraItemCode);
 	}
+	delete inputString;
 
 	mWeight = stream.readInt();
 	mType   = static_cast<BaseGen::CaveGenType>(stream.readInt());
@@ -193,11 +194,6 @@ FloorInfo::FloorInfo()
 	mGateInfo.clearRelations();
 	mCapInfo.clearRelations();
 }
-
-static char* enum_floor_alpha_types[]
-    = { "土", "メタル", "コンクリーツ", "タイル", nullptr, nullptr };  // 'soil', 'metal', 'concrete', 'tile', -, -
-static char* enum_floor_beta_types[] = { "通常", "ボス", "やすらぎ" }; // 'normal', 'boss', 'rest'
-static char* enum_floor_hiddens[]    = { "なし", "あり" };             // 'none', 'available'
 
 /**
  * @note Address: 0x801D68C0

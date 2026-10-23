@@ -395,11 +395,6 @@ struct PlayData : public CNode {
 
 	inline PelletFirstMemory* getZukanStat() { return mZukanStat; }
 
-	inline int getDataSize(Stream& stream, int streamStartPos)
-	{
-		return stream.getStreamDistance(streamStartPos) + generatorCache->getHeapUsedSize();
-	}
-
 	inline void setSaveFlag(int a, void* delegate)
 	{
 		mLoadType           = a;
@@ -470,8 +465,6 @@ struct PlayData : public CNode {
 	int mPikminToday[StoredPikiCount + 1];     // _118
 
 	static u32 mVersion;
-	static int sCurrPlayDataSize;
-	static int sMaxPlayDataSize;
 };
 
 extern PlayData* playData;

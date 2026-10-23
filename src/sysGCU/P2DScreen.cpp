@@ -26,19 +26,12 @@ Mgr::Mgr()
 J2DPane* Mgr::addCallBack(u64 tag, Node* newNode)
 {
 	P2ASSERTLINE(73, newNode);
-	s8* tagBytes = (s8*)&tag;
 
 	J2DPane* pane = search(tag);
 	if (pane) {
 		newNode->mPane = pane;
 		newNode->doInit();
 		mScreenNode.add(newNode);
-	} else {
-		for (int i = 0; i < 8; i++) {
-			if (!tagBytes[i]) {
-				tagBytes[i] = 0x3F;
-			}
-		}
 	}
 
 	return pane;

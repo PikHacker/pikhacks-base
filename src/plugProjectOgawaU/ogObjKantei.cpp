@@ -92,11 +92,7 @@ void ObjKantei::doCreate(JKRArchive* arc)
 	if (disp->isID(OWNER_OGA, MEMBER_KANTEI)) {
 		mDisp = disp;
 	} else {
-		if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-			mDisp = new og::Screen::DispMemberKantei;
-		} else {
-			JUT_PANICLINE(258, "ERR! in ObjKantei Create失敗！\n");
-		}
+		JUT_PANICLINE(258, "ERR! in ObjKantei Create失敗！\n");
 	}
 
 	mCurrItemValue         = mDisp->mPelletValue;

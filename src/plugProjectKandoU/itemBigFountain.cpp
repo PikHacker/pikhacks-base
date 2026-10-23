@@ -324,7 +324,6 @@ void Item::update()
 	mSoundObj->exec();
 	updateCell();
 	if (mCellLayerIndex < 0 || mCellLayerIndex > 10) {
-		getTypeName();
 		JUT_PANICLINE(424, "cellLayerindex overflow\n");
 	}
 	do_updateLOD();

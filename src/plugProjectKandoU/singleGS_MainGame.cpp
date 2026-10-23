@@ -478,7 +478,7 @@ void GameState::exec(SingleGameSection* game)
 		pikiMgr->forceEnterPikmins(false);
 		game->saveToGeneratorCache(game->mCurrentCourseInfo);
 		game->advanceDayCount();
-		gameSystem->setPause(false, "repay-done", 3);
+		gameSystem->setPause(false, 3);
 		EndingArg arg(0);
 		transit(game, SGS_Ending, &arg);
 		return;
@@ -487,7 +487,7 @@ void GameState::exec(SingleGameSection* game)
 		pikiMgr->forceEnterPikmins(false);
 		game->saveToGeneratorCache(game->mCurrentCourseInfo);
 		game->advanceDayCount();
-		gameSystem->setPause(false, "repay-done", 3);
+		gameSystem->setPause(false, 3);
 		EndingArg arg(EndingState::Ending_IsComplete);
 		transit(game, SGS_Ending, &arg);
 		return;
@@ -495,7 +495,7 @@ void GameState::exec(SingleGameSection* game)
 
 	case RDS_DemoPlaying: {
 		PSPause_StartMenuOff();
-		gameSystem->setPause(false, "repay-done", 3);
+		gameSystem->setPause(false, 3);
 		return;
 	}
 	}
@@ -513,27 +513,23 @@ void GameState::exec(SingleGameSection* game)
 	case Screen::Game2DMgr::CHECK2D_SMenu_Opened:
 		break;
 	case Screen::Game2DMgr::CHECK2D_SMenu_Cancel:
-		gameSystem->setMoviePause(false, "sm-canc");
-		gameSystem->setPause(false, "sm-canc", 3);
+		gameSystem->setMoviePause(false);
+		gameSystem->setPause(false, 3);
 		break;
 	case Screen::Game2DMgr::CHECK2D_SMenu_GoToSunset:
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-		gameSystem->setMoviePause(false, "sm-ugot");
-		gameSystem->setPause(false, "sm-ugot", 3);
+		gameSystem->setMoviePause(false);
+		gameSystem->setPause(false, 3);
 		DayEndArg arg(DayEndState::DETYPE_Normal);
 		transit(game, SGS_DayEnd, &arg);
 		return;
 	case Screen::Game2DMgr::CHECK2D_SMenu_ReturnToFileSelect:
-#if defined(VERSION_JP)
-		P2ASSERTLINE(1301, Screen::gGame2DMgr->mScreenMgr->reset() == 1);
-#else
 		P2ASSERTLINE(1304, Screen::gGame2DMgr->mScreenMgr->reset() == 1);
-#endif
 		playData->mDeadNaviID.typeView = 0;
 		naviMgr->clearDeadCount();
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-		gameSystem->setMoviePause(false, "sm-zenk");
-		gameSystem->setPause(false, "sm-zenk", 3);
+		gameSystem->setMoviePause(false);
+		gameSystem->setPause(false, 3);
 		game->clearHeap();
 		transit(game, SGS_File, nullptr);
 		return;
@@ -551,8 +547,8 @@ void GameState::exec(SingleGameSection* game)
 			og::Screen::DispMemberSMenuAll disp;
 			game->setDispMemberSMenu(disp);
 			if (Screen::gGame2DMgr->open_SMenu(disp)) {
-				gameSystem->setPause(true, "open-sm", 3);
-				gameSystem->setMoviePause(true, "open-sm");
+				gameSystem->setPause(true, 3);
+				gameSystem->setMoviePause(true);
 			}
 		}
 	}
@@ -690,8 +686,6 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 
 	// Check first treasure collected day end
 	if (config->is("s10_suck_treasure")) {
-		playData->getGroundOtakaraNum(0);
-
 		// Check valley of repose treasures collected, if 1 now, and 0 at day start, play day end cutscene
 		if (playData->getGroundOtakaraNum(0) == 1 && playData->getGroundOtakaraNum_Old(0) == 0) {
 			char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
@@ -947,7 +941,6 @@ bool GameState::needRepayDemo()
 	}
 
 	bool result = false;
-	playData->getRepayLevel();
 	if (playData->checkRepayLevelFirstClear()) {
 		result = true;
 	}
@@ -967,8 +960,8 @@ void GameState::startRepayDemo()
 {
 	if (!mCheckRepay) {
 		mCheckRepay = true;
-		gameSystem->setPause(true, "start-repay", 3);
-		gameSystem->setMoviePause(true, "start-repay");
+		gameSystem->setPause(true, 3);
+		gameSystem->setMoviePause(true);
 		mRepayTimer = 5.0f;
 
 		int level = playData->getRepayLevel();
@@ -997,7 +990,7 @@ GameState::RepayDemoState GameState::updateRepayDemo()
 {
 	if (mCheckRepay) {
 		if ((u8)Screen::gGame2DMgr->check_PayDept()) {
-			gameSystem->setMoviePause(false, "check-repay");
+			gameSystem->setMoviePause(false);
 			mCheckRepay = false;
 			if (playData->isCompletePelletTrigger()) {
 				return RDS_GameComplete;
@@ -1038,8 +1031,6 @@ void GameState::draw(SingleGameSection* game, Graphics& gfx)
 	}
 
 	game->BaseGameSection::doDraw(gfx);
-	game->drawMainMapScreen();
-	game->test_draw_treasure_detector();
 }
 
 /**
@@ -1049,7 +1040,7 @@ void GameState::draw(SingleGameSection* game, Graphics& gfx)
 void GameState::cleanup(SingleGameSection* game)
 {
 	gameSystem->resetFlag(GAMESYS_IsPlaying);
-	gameSystem->setMoviePause(false, "gamestate::cleanup");
+	gameSystem->setMoviePause(false);
 	if (game->mTheExpHeap) {
 		PSMCancelToPauseOffMainBgm();
 	}

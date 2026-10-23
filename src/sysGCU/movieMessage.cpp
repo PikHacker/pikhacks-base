@@ -580,7 +580,7 @@ bool TControl::update(Controller* pad1, Controller* pad2)
 		case MODEFLAG_Inactive:
 			if (ret) {
 				if (Game::gameSystem) {
-					mIsPaused = Game::gameSystem->setPause(1, "message", 3);
+					mIsPaused = Game::gameSystem->setPause(1, 3);
 				}
 				setMode(MODEFLAG_Start);
 				mIsActive = true;

@@ -336,9 +336,6 @@ f32 Item::getCurrMaxLife()
  */
 void Item::createTreasure()
 {
-	// obvs more to it than this, but this is required to generate PelletInitArg text
-	PelletInitArg initArg;
-	pelletMgr->makePelletInitArg(initArg, 0);
 }
 
 /**
@@ -394,17 +391,7 @@ bool Item::isVisible()
  */
 bool Item::ignoreAtari(Creature* obj)
 {
-	// this should definitely be an inlined isVisible but it isn't cooperating here
-	bool check;
-	if (!mPellet) {
-		check = false;
-	} else if (mTotalLife / mPellet->getBuryDepthMax() > 0.85f) {
-		check = false;
-	} else {
-		check = true;
-	}
-
-	if (!check) {
+	if (!isVisible()) {
 		Piki* piki = static_cast<Piki*>(obj);
 		if (piki->isPiki() && piki->getKind() == White) {
 			return false;

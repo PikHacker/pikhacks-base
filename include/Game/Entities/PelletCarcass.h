@@ -12,9 +12,7 @@
 namespace Game {
 namespace PelletCarcass {
 struct Object : public Pellet {
-	Object() { }
-
-	virtual u8 getKind() { return PelletType::Carcass; } // _1F4 (weak)
+	Object() { mPelletKind = PelletType::Carcass; }
 
 	// _00      = VTBL
 	// _00-_458 = Pellet

@@ -22,31 +22,10 @@ void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::Move
 	Sphere* moveSphere = moveInfo.mMoveSphere;
 	f32 traceRadius    = moveSphere->mRadius;
 
-	// Check if advanced trace optimization is enabled
-	if (Game::MapMgr::mTraceMoveOptLevel >= 2) {
-		// Create a sphere representing the root sphere in the transformed space
-		Sphere rootSphere = mRoot.mSphere;
-		// Create a sphere representing the trace movement
-		Sphere traceSphere(moveSphere->mPosition, traceRadius);
-
-		rootSphere.mPosition = rootSphere.mPosition + startMatrix.getTranslation();
-
-		// If there's no intersection between the two spheres, return early
-		if (!rootSphere.intersect(traceSphere)) {
-			return;
-		}
-	}
-
 	moveSphere->mPosition = endMatrix.mtxMult(moveSphere->mPosition);
 
 	// Create a sphere representing the hit sphere
 	Sphere hitSphere(moveSphere->mPosition, traceRadius);
-
-	// If we're using simple optimisation and we're not intersecting the hit sphere, update position
-	if (Game::MapMgr::mTraceMoveOptLevel < 2 && !mRoot.mSphere.intersect(hitSphere)) {
-		moveSphere->mPosition = startMatrix.mtxMult(moveSphere->mPosition);
-		return;
-	}
 
 	// Perform the trace movement
 	mRoot.traceMove_new(moveInfo, *mVertexTable, *mTriangleTable, startMatrix, endMatrix, hitCount, resultTriangles, hitDist,

@@ -503,8 +503,8 @@ void ZukanState::init(SingleGameSection* game, StateArg* arg)
 {
 	mBackupHeap = JKRGetCurrentHeap();
 	gameSystem->setFlag(GAMESYS_IsGameWorldActive);
-	gameSystem->setPause(false, "zukan", 3);
-	gameSystem->setMoviePause(false, "zukan");
+	gameSystem->setPause(false, 3);
+	gameSystem->setMoviePause(false);
 	sParentHeapFreeSize = mBackupHeap->getFreeSize();
 	mParentHeap         = JKRExpHeap::create(mBackupHeap->getFreeSize(), mBackupHeap, true);
 	mParentHeap->becomeCurrentHeap();
@@ -1391,7 +1391,6 @@ void ZukanState::dvdloadA()
 	stream.setMode(STREAM_MODE_TEXT, 1);
 	mCourseInfo = new CourseInfo;
 	mCourseInfo->read(stream);
-	mCourseInfo->dump();
 	Stages::createMapMgr(mCourseInfo, nullptr);
 
 	cellMgr     = new CellPyramid;
@@ -1423,7 +1422,7 @@ void ZukanState::dvdloadA()
  */
 void ZukanState::createTeki(int)
 {
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::SceneMgr* mgr   = PSSystem::getSceneMgr();
 	PSM::Scene_Objects* scene = static_cast<PSM::Scene_Objects*>(mgr->getChildScene());
 	scene->detachObjMgr();
 

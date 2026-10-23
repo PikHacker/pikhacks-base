@@ -192,10 +192,6 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 		} else if (disp_more->mPikiInDanger) {
 			mAnaTypeSub = ANADEMOSUB_PikiInDanger;
 		}
-
-	} else if (disp_main->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		mDisp = new og::Screen::DispMemberAnaDemo;
-
 	} else {
 		JUT_PANICLINE(431, "ERR! in ObjAnaDemo Create失敗！\n");
 	}

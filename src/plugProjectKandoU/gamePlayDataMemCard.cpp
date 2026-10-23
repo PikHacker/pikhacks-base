@@ -9,9 +9,6 @@
 
 namespace Game {
 
-int PlayData::sCurrPlayDataSize = 0;
-int PlayData::sMaxPlayDataSize  = 0;
-
 u32 PlayData::mVersion = 'j009';
 
 /**
@@ -202,10 +199,6 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 
 	mBeforeSaveDelegate         = nullptr;
-	PlayData::sCurrPlayDataSize = dataSize;
-	if (PlayData::sMaxPlayDataSize < dataSize) {
-		PlayData::sMaxPlayDataSize = dataSize;
-	}
 }
 
 /**
@@ -220,9 +213,6 @@ void PlayData::read(Stream& input)
 	version.read(input);
 	int id        = version.getID();
 	u32 versionID = id;
-	if (mVersion != id) {
-		ID32 unusedVersion(mVersion);
-	}
 
 	if (versionID >= 'j004') {
 		mTreasureCount = input.readInt();
@@ -305,12 +295,7 @@ void PlayData::read(Stream& input)
 		mPikminToday[i]     = input.readInt();
 	}
 
-	int dataSize = getDataSize(input, startPosition);
 	generatorCache->read(input);
-	PlayData::sCurrPlayDataSize = dataSize;
-	if (PlayData::sMaxPlayDataSize < dataSize) {
-		PlayData::sMaxPlayDataSize = dataSize;
-	}
 }
 
 /**

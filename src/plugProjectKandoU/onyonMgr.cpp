@@ -47,9 +47,6 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 #endif
 		}
 
-		// Redundant call
-		GameStat::getAllPikmins(mOnyonType);
-
 		// This whole section of code is almost entirely redundant, it spawns a new sprout,
 		// kills it, then spawns the actual sprout it uses, WTF?
 		if (code == CC_MovieCommand6 || !GameStat::checkZikatu(static_cast<EPikiKind>(mOnyonType))) {
@@ -1855,32 +1852,6 @@ void ItemOnyon::Mgr::initDependency()
 		Onyon* item = static_cast<Onyon*>(*iterOnyon);
 		item->initDependency();
 	}
-}
-
-/**
- * @note Address: 0x8017A620
- * @note Size: 0x4C
- */
-J3DModelData* ItemOnyon::Mgr::generatorGetShape(GenItemParm* parm)
-{
-	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
-
-	int objType;
-	switch (onyonparm->mOnyonIndex) {
-	case ONYON_TYPE_RED:
-	case ONYON_TYPE_BLUE:
-	case ONYON_TYPE_YELLOW:
-		objType = ONYON_OBJECT_ONYON;
-		break;
-	case ONYON_TYPE_POD:
-		objType = ONYON_OBJECT_POD;
-		break;
-	case ONYON_TYPE_SHIP:
-		objType = ONYON_OBJECT_SHIP;
-		break;
-	}
-
-	return mModelData[objType];
 }
 
 /**

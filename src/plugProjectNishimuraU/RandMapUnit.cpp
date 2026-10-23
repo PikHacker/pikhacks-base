@@ -67,6 +67,7 @@ void EditMapUnit::read(Stream* stream)
 			char* name       = stream->readString(nullptr, 0);
 			mUnitNames[i][j] = new char[strlen(name) + 1];
 			strcpy(mUnitNames[i][j], name);
+			delete name;
 
 			mDirections[i][j] = stream->readInt();
 			mXOffsets[i][j]   = stream->readInt();

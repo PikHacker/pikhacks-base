@@ -545,13 +545,8 @@ void FSMState00_SelectData::do_exec(TMgr* mgr)
 		int prev            = mgr->mCurrSelection;
 		mgr->mCountNumInterface.update();
 
-		// I'M DONE WITH YOUR BULLSHIT, GAME
-		// I'M DOOOOOOOOOOOOOOOOOOOOOOOOOONE
-		bool save;
-		for (int i = 0; i < 1; i++) {
-			save = !mgr->mMainScreen.getFileData(mgr->mCurrSelection)->mIsNewFile
-			    || mgr->mMainScreen.getFileData(mgr->mCurrSelection)->mIsBrokenFile;
-		}
+		bool save = !mgr->mMainScreen.getFileData(mgr->mCurrSelection)->mIsNewFile
+		         || mgr->mMainScreen.getFileData(mgr->mCurrSelection)->mIsBrokenFile;
 
 		if (prev != mgr->mCurrSelection) {
 			mgr->mMainScreen.outDataBall(prev);

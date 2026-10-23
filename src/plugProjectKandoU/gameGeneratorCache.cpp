@@ -662,10 +662,6 @@ void CourseCache::write(Stream& output)
  */
 void CourseCache::read(Stream& input)
 {
-	char header[256];
-	sprintf(header, "CourseCache %d", mCourseIndex);
-	// some testing leftover
-
 	mCourseIndex    = input.readInt();
 	mOffset         = input.readInt();
 	mSize           = input.readInt();

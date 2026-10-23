@@ -159,7 +159,7 @@ u32 BaseGameSection::waitSyncLoad(bool allowPause)
 	endFrame();
 
 	if (!allowPause) {
-		gameSystem->setPause(true, "waitSyncLoad", 3);
+		gameSystem->setPause(true, 3);
 	}
 
 	while (true) {
@@ -174,7 +174,7 @@ u32 BaseGameSection::waitSyncLoad(bool allowPause)
 		if (mDvdThreadCommand.mMode != DvdThreadCommand::CM_Completed) {
 			// Wait for the DVD thread to finish
 		} else if (!allowPause) {
-			gameSystem->setPause(false, "waitSyncLoad", 3);
+			gameSystem->setPause(false, 3);
 			return;
 		} else {
 			break;
@@ -220,25 +220,20 @@ void BaseGameSection::init()
 
 	BaseHIOSection::initHIO(nullptr);
 
-	mTreasureLightMgr = new TreasureLight::Mgr;
-	System::assert_fragmentation("BaseGameSection::initHIO");
+	mTreasureLightMgr    = new TreasureLight::Mgr;
 	moviePlayer          = new MoviePlayer;
 	mMovieFinishCallback = new Delegate3<BaseGameSection, MovieConfig*, u32, u32>(this, movieDone);
 	mMovieStartCallback  = new Delegate3<BaseGameSection, MovieConfig*, u32, u32>(this, onMovieStart);
 
 	sys->setFrameRate(2);
-	System::assert_fragmentation("BaseGameSection::MoviePlayer");
 	initJ3D();
 	mapMgr = nullptr;
-	System::assert_fragmentation("BaseGameSection::InitJ3D");
-	System::assert_fragmentation("BaseGameSection::Before 2D");
 
 	og::Lib2D::create();
 	Screen::Game2DMgr::create();
 	static_cast<newScreen::Mgr*>(Screen::gGame2DMgr->mScreenMgr)->mInitialised = 1;
-	System::assert_fragmentation("BaseGameSection::Game2DMgr");
-	mXfbBoundsY = 0;
-	mXfbBoundsX = 0;
+	mXfbBoundsY                                                                = 0;
+	mXfbBoundsX                                                                = 0;
 	onInit();
 	mTreasureGetState = 0;
 }
@@ -487,8 +482,6 @@ void BaseGameSection::initJ3D()
 
 	j3dSys.setDrawBuffer(mOpaqueDrawBuffer->get(DB_NormalLayer)->mBuffer, J3DSys::SYSDRAW_Opa);
 	j3dSys.setDrawBuffer(mTransparentDrawBuffer->get(DB_NormalLayer)->mBuffer, J3DSys::SYSDRAW_Xlu);
-
-	System::FragmentationChecker frag("poyo1", false);
 }
 
 /**

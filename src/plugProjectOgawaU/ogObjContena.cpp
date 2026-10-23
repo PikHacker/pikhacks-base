@@ -121,10 +121,6 @@ void ObjContena::doCreate(JKRArchive* arc)
 			JUT_PANICLINE(230, "UFOMENU --> CONTENA ERR!\n");
 		}
 		mPayedDebt = dispufo->mHasPaidDebt;
-
-	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		mDisp = new og::Screen::DispMemberContena;
-
 	} else {
 		JUT_PANICLINE(242, "ERR! in ObjContena Create失敗！\n");
 	}

@@ -116,7 +116,6 @@ struct TMgr {
 	ebi::Screen::TOmakeCardE mOmakeCardE; // _468
 	ebi::Screen::TOmakeGame mOmakeGame;   // _5DC
 	bool mIsFinished;                     // _890
-	EUTCounter _894;                      // _894, unused
 	FSMStateMachine mStateMachine;        // _89C
 	FSMState* mCurrentState;              // _8B8
 };

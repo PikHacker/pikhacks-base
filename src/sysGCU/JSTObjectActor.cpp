@@ -250,7 +250,6 @@ bool ObjectActor::setShape()
 	}
 
 	mModel = new J3DModel(mModelData, 0, 1);
-	JUT_ASSERTLINE(290, mModel, "pModel_ null");
 	mModelFileId = mShape;
 	sys->endChangeCurrentHeap();
 	return true;
@@ -314,46 +313,6 @@ void ObjectActor::mountArchive()
  */
 void ObjectActor::parseUserData_(u32 p1, void const* p2)
 {
-	OSReport("data-ID : %u (0x%08x)\n", p1, (u32)p2);
-	typedef JGadget::binary::TValueIterator_misaligned<s16> IntIterator;
-	JStudio::stb::TParseData_fixed<0x22, IntIterator> ints(p2);
-	if (ints.isEnd()) {
-		return;
-	}
-	if (!ints.isValid()) {
-		return;
-	}
-	IntIterator i(ints.begin());
-	for (; i != ints.end(); ++i) {
-		int index = std::distance(ints.begin(), i);
-		OSReport("int16:%d,%d,%d\n", index, *i, ints.begin()[index]);
-	}
-	typedef JGadget::binary::TValueIterator_misaligned<char> CharIterator;
-	JStudio::stb::TParseData_fixed<0x51, CharIterator> chars(i.get());
-	if (chars.isEnd()) {
-		return;
-	}
-	if (!chars.isValid()) {
-		return;
-	}
-	CharIterator c(chars.begin());
-	for (; c != chars.end(); ++c) {
-		int index = getIndex(chars.begin(), c);
-		OSReport("char:%d,%c,%c\n", index, *c, chars.begin()[index]);
-	}
-	JStudio::stb::TParseData_string strings(c.get());
-	if (strings.isEnd()) {
-		return;
-	}
-	if (!strings.isValid()) {
-		return;
-	}
-	const char* str = strings.getData();
-	for (u32 n = 0; n < strings.size();) {
-		OSReport("string:%u,%s\n", n, str);
-		n++;
-		str = strchr(str, 0) + 1;
-	}
 }
 
 /**

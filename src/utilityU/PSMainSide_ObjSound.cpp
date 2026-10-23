@@ -1405,7 +1405,6 @@ void Otakara::setGoalOnyon(Game::Creature* onyon)
 			actor->remove(mOtaEvent);
 			mOnyon = static_cast<Game::Onyon*>(onyon);
 
-			P2ASSERTLINE(2041, mOtaEvent);
 			actor = static_cast<ListDirectorActor*>(static_cast<OtakaraEventLink_2PBattle*>(mOtaEvent)->getTargetDirector()->mActor);
 			actor->append(mOtaEvent);
 		}

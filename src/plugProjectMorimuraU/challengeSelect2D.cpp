@@ -1243,11 +1243,6 @@ TChallengeSelect::TChallengeSelect()
  */
 TChallengeSelect::~TChallengeSelect()
 {
-	if (mDebugHeap) {
-		mDisp->mDebugExpHeap->freeAll();
-		mDebugHeap->destroy();
-	}
-	mDebugHeap = nullptr;
 }
 
 /**
@@ -1276,77 +1271,8 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 		mIsSection = true;
 	}
 
-	if (mIsSection) {
-		if (mDebugHeapParent) {
-			mDebugHeap = JKRExpHeap::create(0x100000, mDebugHeapParent, true);
-			P2ASSERTLINE(1339, mDebugHeap);
-			mDisp                        = new (mDebugHeap, 0) DispMemberChallengeSelect;
-			mDisp->mDebugExpHeap         = mDebugHeap;
-			mDisp->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
-			getOwner()->setDispMember(mDisp);
-		} else {
-			JUT_PANICLINE(1349, "set DebugHeapParent. mail to morimun.\n");
-		}
-		mStageList = new Game::ChallengeGame::StageList;
-		void* file = JKRDvdRipper::loadToMainRAM("/user/Matoba/challenge/stages.txt", nullptr, Switch_0, 0, nullptr,
-		                                         JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
-		if (file) {
-			RamStream strm(file, -1);
-			strm.setMode(STREAM_MODE_TEXT, 1);
-			mStageList->read(strm);
-		}
-	}
-
 	if (!mIsSection) {
 		mDisp->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
-	}
-
-	if (mIsSection) {
-		int id = randInt(30);
-		if (mAllCourseOpen) {
-			id = CHALLENGE_COURSE_COUNT;
-		}
-		selection  = randInt(id);
-		mStageData = new DebugStageData*[CHALLENGE_COURSE_COUNT];
-		for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
-			mStageData[i]              = new DebugStageData;
-			mStageData[i]->mIsPerfect  = false;
-			mStageData[i]->mIsComplete = false;
-			mStageData[i]->mIsChange   = false;
-			mStageData[i]->mIsUnlocked = false;
-			if (i <= id) {
-				f32 comp = randFloat();
-				if (comp < 0.2f) {
-					mStageData[i]->mIsPerfect = true;
-				} else if (comp < 0.5f) {
-					mStageData[i]->mIsComplete = true;
-				} else {
-					mStageData[i]->mIsUnlocked = true;
-				}
-				if (!mStageData[i]->mIsPerfect) {
-					if (randFloat() < 0.5f) {
-						mStageData[i]->mIsChange = true;
-					}
-				}
-				Game::ChallengeGame::StageData* data = mStageList->getStageData(i);
-				if (data) {
-					mStageData[i]->mFloors      = data->mFloorCounts;
-					mStageData[i]->mBitterSpray = data->mStartNumBitter;
-					mStageData[i]->mSpicySpray  = data->mStartNumSpicy;
-					mStageData[i]->mPikis[0]    = 100;
-					mStageData[i]->mPikis[1]    = data->mPikiContainer.getColorSum(0);
-					mStageData[i]->mPikis[2]    = data->mPikiContainer.getColorSum(2);
-					mStageData[i]->mPikis[3]    = data->mPikiContainer.getColorSum(4);
-					mStageData[i]->mPikis[4]    = data->mPikiContainer.getColorSum(3);
-					mStageData[i]->mScore1      = -1;
-					mStageData[i]->mScore2      = -1;
-					if (randFloat() < 0.5f) {
-						mStageData[i]->mScore1 = randFloat() * 100000.0f;
-						mStageData[i]->mScore2 = randFloat() * 100000.0f;
-					}
-				}
-			}
-		}
 	}
 
 	mCurrentSelection = selection;
@@ -1938,12 +1864,6 @@ bool TChallengeSelect::doUpdate()
 		mEfxDive->create(&arg);
 	}
 
-	// debug for forcing the entering demo to start
-	if (mIsSection && mForceDemoStart) {
-		mForceDemoStart = false;
-		demoStart();
-	}
-
 	return false;
 }
 
@@ -2067,107 +1987,42 @@ void TChallengeSelect::setInfo(int stageID)
 	P2ASSERTLINE(2230, stageID < CHALLENGE_COURSE_COUNT);
 #endif
 
-	if (mIsSection) {
-		// debug way of setting stage data
-		DebugStageData* data = mStageData[stageID];
-		mPikiCounts[0]       = data->mPikis[0];
-		mPikiCounts[1]       = data->mPikis[2];
-		mPikiCounts[2]       = data->mPikis[1];
-		mPikiCounts[3]       = data->mPikis[3];
-		mPikiCounts[4]       = data->mPikis[4];
-		mDopeCount[0]        = data->mBitterSpray;
-		mDopeCount[1]        = data->mSpicySpray;
-		mFloorCount          = data->mFloors;
-		if (data->mScore1 == -1) {
-			mHighScoreCounter[0]->setBlind(true);
-		} else {
-			mHighScoreValue[0] = data->mScore1;
-			mHighScoreCounter[0]->setBlind(false);
-		}
+	// regular way of setting stage data
+	Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(stageID);
+	mPikiCounts[0]                          = info->mPikiContainer->getColorSum(Game::Red);
+	mPikiCounts[1]                          = info->mPikiContainer->getColorSum(Game::Yellow);
+	mPikiCounts[2]                          = info->mPikiContainer->getColorSum(Game::Blue);
+	mPikiCounts[3]                          = info->mPikiContainer->getColorSum(Game::White);
+	mPikiCounts[4]                          = info->mPikiContainer->getColorSum(Game::Purple);
+	mDopeCount[0]                           = info->mSprayCounts[0];
+	mDopeCount[1]                           = info->mSprayCounts[1];
+	mFloorCount                             = info->mFloorCount;
 
-		if (data->mScore2 == -1) {
-			mHighScoreCounter[1]->setBlind(true);
-		} else {
-			mHighScoreValue[1] = data->mScore2;
-			mHighScoreCounter[1]->setBlind(false);
-		}
+	if (info->mHighscore1P->getScore(0) == -1) {
+		mHighScoreCounter[0]->setBlind(true);
 	} else {
-		// regular way of setting stage data
-		Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(stageID);
-		mPikiCounts[0]                          = info->mPikiContainer->getColorSum(Game::Red);
-		mPikiCounts[1]                          = info->mPikiContainer->getColorSum(Game::Yellow);
-		mPikiCounts[2]                          = info->mPikiContainer->getColorSum(Game::Blue);
-		mPikiCounts[3]                          = info->mPikiContainer->getColorSum(Game::White);
-		mPikiCounts[4]                          = info->mPikiContainer->getColorSum(Game::Purple);
-		mDopeCount[0]                           = info->mSprayCounts[0];
-		mDopeCount[1]                           = info->mSprayCounts[1];
-		mFloorCount                             = info->mFloorCount;
+		mHighScoreValue[0] = info->mHighscore1P->getScore(0);
+		mHighScoreCounter[0]->setBlind(false);
+	}
 
-		if (info->mHighscore1P->getScore(0) == -1) {
-			mHighScoreCounter[0]->setBlind(true);
-		} else {
-			mHighScoreValue[0] = info->mHighscore1P->getScore(0);
-			mHighScoreCounter[0]->setBlind(false);
-		}
-
-		if (info->mHighscore2P->getScore(0) == -1) {
-			mHighScoreCounter[1]->setBlind(true);
-		} else {
-			mHighScoreValue[1] = info->mHighscore2P->getScore(0);
-			mHighScoreCounter[1]->setBlind(false);
-		}
+	if (info->mHighscore2P->getScore(0) == -1) {
+		mHighScoreCounter[1]->setBlind(true);
+	} else {
+		mHighScoreValue[1] = info->mHighscore2P->getScore(0);
+		mHighScoreCounter[1]->setBlind(false);
 	}
 
 	// make sure all new values are legal
-#if defined(VERSION_PAL)
-	JUT_ASSERTLINE(2306, mHighScoreValue[0] <= 1000000, "hiscore1p = %d\n", mHighScoreValue[0]);
-#elif defined(VERSION_JP)
-	JUT_ASSERTLINE(2253, mHighScoreValue[0] <= 1000000, "hiscore1p = %d\n", mHighScoreValue[0]);
-#elif defined(VERSION_US_DEMO1)
-	JUT_ASSERTLINE(2297, mHighScoreValue[0] <= 1000000, "hiscore1p = %d\n", mHighScoreValue[0]);
-#else
 	JUT_ASSERTLINE(2295, mHighScoreValue[0] <= 1000000, "hiscore1p = %d\n", mHighScoreValue[0]);
-#endif
-#if defined(VERSION_PAL)
-	JUT_ASSERTLINE(2307, mHighScoreValue[1] <= 1000000, "hiscore2p = %d\n", mHighScoreValue[1]);
-#elif defined(VERSION_JP)
-	JUT_ASSERTLINE(2254, mHighScoreValue[1] <= 1000000, "hiscore2p = %d\n", mHighScoreValue[1]);
-#elif defined(VERSION_US_DEMO1)
-	JUT_ASSERTLINE(2298, mHighScoreValue[1] <= 1000000, "hiscore2p = %d\n", mHighScoreValue[1]);
-#else
 	JUT_ASSERTLINE(2296, mHighScoreValue[1] <= 1000000, "hiscore2p = %d\n", mHighScoreValue[1]);
-#endif
+
 	for (int i = 0; i < 5; i++) {
-#if defined(VERSION_PAL)
-		JUT_ASSERTLINE(2309, mPikiCounts[i] <= 100, "piki(%d) = %d\n", i, mPikiCounts[i]);
-#elif defined(VERSION_JP)
-		JUT_ASSERTLINE(2256, mPikiCounts[i] <= 100, "piki(%d) = %d\n", i, mPikiCounts[i]);
-#elif defined(VERSION_US_DEMO1)
-		JUT_ASSERTLINE(2300, mPikiCounts[i] <= 100, "piki(%d) = %d\n", i, mPikiCounts[i]);
-#else
 		JUT_ASSERTLINE(2298, mPikiCounts[i] <= 100, "piki(%d) = %d\n", i, mPikiCounts[i]);
-#endif
 	}
 	for (int i = 0; i < 2; i++) {
-#if defined(VERSION_PAL)
-		JUT_ASSERTLINE(2313, mDopeCount[i] <= 100, "doping(%d) = %d\n", i, mDopeCount[i]);
-#elif defined(VERSION_JP)
-		JUT_ASSERTLINE(2260, mDopeCount[i] <= 100, "doping(%d) = %d\n", i, mDopeCount[i]);
-#elif defined(VERSION_US_DEMO1)
-		JUT_ASSERTLINE(2304, mDopeCount[i] <= 100, "doping(%d) = %d\n", i, mDopeCount[i]);
-#else
 		JUT_ASSERTLINE(2302, mDopeCount[i] <= 100, "doping(%d) = %d\n", i, mDopeCount[i]);
-#endif
 	}
-#if defined(VERSION_PAL)
-	JUT_ASSERTLINE(2316, mFloorCount <= 100, "floor = %d\n", mFloorCount);
-#elif defined(VERSION_JP)
-	JUT_ASSERTLINE(2263, mFloorCount <= 100, "floor = %d\n", mFloorCount);
-#elif defined(VERSION_US_DEMO1)
-	JUT_ASSERTLINE(2307, mFloorCount <= 100, "floor = %d\n", mFloorCount);
-#else
 	JUT_ASSERTLINE(2305, mFloorCount <= 100, "floor = %d\n", mFloorCount);
-#endif
 
 	// make all the counters shake
 	for (int i = 0; i < 2; i++) {
@@ -2188,18 +2043,12 @@ void TChallengeSelect::setInfo(int stageID)
 void TChallengeSelect::setStageName(int id)
 {
 	J2DPane* pane1 = mPaneLevelName[0];
-	if (mIsSection) {
-		Game::ChallengeGame::StageData* data = mStageList->getStageData(id);
-		pane1->setMsgID(mOffsMesg->getMsgID(data->mStageIndex - 1));
-		pane1 = mPaneLevelName[1];
-		pane1->setMsgID(mOffsMesg->getMsgID(data->mStageIndex - 1));
-	} else {
-		Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
-		Game::Challenge2D_TitleInfo::Info* info = title(id);
-		pane1->setMsgID(mOffsMesg->getMsgID(info->mStageIndex - 1));
-		pane1 = mPaneLevelName[1];
-		pane1->setMsgID(mOffsMesg->getMsgID(info->mStageIndex - 1));
-	}
+
+	Game::Challenge2D_TitleInfo& title      = *mDisp->mTitleInfo;
+	Game::Challenge2D_TitleInfo::Info* info = title(id);
+	pane1->setMsgID(mOffsMesg->getMsgID(info->mStageIndex - 1));
+	pane1 = mPaneLevelName[1];
+	pane1->setMsgID(mOffsMesg->getMsgID(info->mStageIndex - 1));
 }
 
 /**
@@ -2210,45 +2059,26 @@ int TChallengeSelect::getState(int id)
 {
 	FORCE_DONT_INLINE; // bad but needed for isChangeState, unless theres a proper way
 
-#if defined(VERSION_PAL)
-	P2ASSERTLINE(2370, id < CHALLENGE_COURSE_COUNT);
-#elif defined(VERSION_JP)
-	P2ASSERTLINE(2317, id < CHALLENGE_COURSE_COUNT);
-#elif defined(VERSION_US_DEMO1)
-	P2ASSERTLINE(2361, id < CHALLENGE_COURSE_COUNT);
-#else
 	P2ASSERTLINE(2359, id < CHALLENGE_COURSE_COUNT);
-#endif
-	if (mIsSection) {
-		if (mStageData[id]->mIsPerfect) {
-			return TChallengePanel::ChallengePanel_Perfect;
-		}
-		if (mStageData[id]->mIsComplete) {
-			return TChallengePanel::ChallengePanel_Cleared;
-		}
-		if (mStageData[id]->mIsUnlocked) {
-			return TChallengePanel::ChallengePanel_Unbeaten;
-		}
-	} else {
-		u8 flag = (*mDisp->mTitleInfo)(id)->mDisplayFlag.typeView;
-		if (flag & 0x20) {
-			return (int)(-(flag >> 4 & 1)) + 2; // highly questionable
-		}
-		if (flag & 0x10) {
-			return TChallengePanel::ChallengePanel_Unbeaten;
-		}
-		if (flag & 8) {
-			return TChallengePanel::ChallengePanel_NotOpen;
-		}
-		if (flag & 4) {
-			return TChallengePanel::ChallengePanel_Perfect;
-		}
-		if (flag & 2) {
-			return TChallengePanel::ChallengePanel_Cleared;
-		}
-		if (flag & 1) {
-			return TChallengePanel::ChallengePanel_Unbeaten;
-		}
+
+	u8 flag = (*mDisp->mTitleInfo)(id)->mDisplayFlag.typeView;
+	if (flag & 0x20) {
+		return (int)(-(flag >> 4 & 1)) + 2; // highly questionable
+	}
+	if (flag & 0x10) {
+		return TChallengePanel::ChallengePanel_Unbeaten;
+	}
+	if (flag & 8) {
+		return TChallengePanel::ChallengePanel_NotOpen;
+	}
+	if (flag & 4) {
+		return TChallengePanel::ChallengePanel_Perfect;
+	}
+	if (flag & 2) {
+		return TChallengePanel::ChallengePanel_Cleared;
+	}
+	if (flag & 1) {
+		return TChallengePanel::ChallengePanel_Unbeaten;
 	}
 	return TChallengePanel::ChallengePanel_NotOpen;
 }
@@ -2259,28 +2089,17 @@ int TChallengeSelect::getState(int id)
  */
 int TChallengeSelect::getAfterState(int id)
 {
-#if defined(VERSION_PAL)
-	P2ASSERTLINE(2420, id < CHALLENGE_COURSE_COUNT);
-#elif defined(VERSION_JP)
-	P2ASSERTLINE(2367, id < CHALLENGE_COURSE_COUNT);
-#elif defined(VERSION_US_DEMO1)
-	P2ASSERTLINE(2411, id < CHALLENGE_COURSE_COUNT);
-#else
 	P2ASSERTLINE(2409, id < CHALLENGE_COURSE_COUNT);
-#endif
-	if (mIsSection) {
+
+	Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(id);
+	if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsKunsho)) {
 		return TChallengePanel::ChallengePanel_Perfect;
-	} else {
-		Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(id);
-		if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsKunsho)) {
-			return TChallengePanel::ChallengePanel_Perfect;
-		} else if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsClear)) {
-			return TChallengePanel::ChallengePanel_Cleared;
-		} else if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsOpen)) {
-			return TChallengePanel::ChallengePanel_Unbeaten;
-		}
-		return TChallengePanel::ChallengePanel_NotOpen;
+	} else if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsClear)) {
+		return TChallengePanel::ChallengePanel_Cleared;
+	} else if (info->mDisplayFlag.isSet(Game::PlayChallengeGameData::CourseState::CSF_IsOpen)) {
+		return TChallengePanel::ChallengePanel_Unbeaten;
 	}
+	return TChallengePanel::ChallengePanel_NotOpen;
 }
 
 /**
@@ -2289,30 +2108,18 @@ int TChallengeSelect::getAfterState(int id)
  */
 bool TChallengeSelect::isChangeState(int id)
 {
-#if defined(VERSION_PAL)
-	P2ASSERTLINE(2446, id < CHALLENGE_COURSE_COUNT);
-#elif defined(VERSION_JP)
-	P2ASSERTLINE(2393, id < CHALLENGE_COURSE_COUNT);
-#elif defined(VERSION_US_DEMO1)
-	P2ASSERTLINE(2437, id < CHALLENGE_COURSE_COUNT);
-#else
 	P2ASSERTLINE(2435, id < CHALLENGE_COURSE_COUNT);
-#endif
-	if (mIsSection) {
-		if (mStageData[id]->mIsChange)
-			return true;
-	} else {
-		Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(id);
-		getState(id);
-		if (info->mDisplayFlag.isSet(8)) {
-			return true;
-		}
-		if (info->mDisplayFlag.isSet(16)) {
-			return true;
-		}
-		if (info->mDisplayFlag.isSet(32)) {
-			return true;
-		}
+
+	Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(id);
+	getState(id);
+	if (info->mDisplayFlag.isSet(8)) {
+		return true;
+	}
+	if (info->mDisplayFlag.isSet(16)) {
+		return true;
+	}
+	if (info->mDisplayFlag.isSet(32)) {
+		return true;
 	}
 	return false;
 }
@@ -2323,18 +2130,10 @@ bool TChallengeSelect::isChangeState(int id)
  */
 int TChallengeSelect::getIndexMax()
 {
-	if (mIsSection) {
-		for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
-			if (mPanelList[i]->mState == TChallengePanel::ChallengePanel_NotOpen) {
-				return i;
-			}
-		}
-	} else {
-		for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
-			Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(i);
-			if (mPanelList[i]->mState == TChallengePanel::ChallengePanel_NotOpen && !(info->mDisplayFlag.isSet(8))) {
-				return i;
-			}
+	for (int i = 0; i < CHALLENGE_COURSE_COUNT; i++) {
+		Game::Challenge2D_TitleInfo::Info* info = (*mDisp->mTitleInfo)(i);
+		if (mPanelList[i]->mState == TChallengePanel::ChallengePanel_NotOpen && !(info->mDisplayFlag.isSet(8))) {
+			return i;
 		}
 	}
 	return CHALLENGE_COURSE_COUNT;

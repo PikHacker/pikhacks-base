@@ -53,10 +53,6 @@ void ObjCave::doCreate(JKRArchive* arc)
 	og::Screen::DispMemberCave* disp = static_cast<og::Screen::DispMemberCave*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_CAVE)) {
 		mDisp = disp;
-
-	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-		mDisp = new og::Screen::DispMemberCave;
-
 	} else {
 		JUT_PANICLINE(189, "ERR! in ObjCave Create失敗！\n");
 	}

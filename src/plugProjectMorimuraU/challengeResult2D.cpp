@@ -346,7 +346,6 @@ void TMovePane::rolling()
 void TMovePane::stick()
 {
 	turn();
-	JUT_ASSERTLINE(445, mStickPane, "no stick pane\n");
 	mPaneGoal.x = mStickPosition.x + mStickPane->mGlobalMtx[0][3];
 	mPaneGoal.y = mStickPosition.y + mStickPane->mGlobalMtx[1][3];
 }
@@ -366,8 +365,7 @@ void TMovePane::forceTurn()
  */
 void TMovePane::startStick(J2DPane* pane)
 {
-	mState = 4;
-	P2ASSERTLINE(471, pane);
+	mState           = 4;
 	mStickPane       = pane;
 	mStickPosition.x = mPaneGoal.x - mStickPane->mGlobalMtx[0][3];
 	mStickPosition.y = mPaneGoal.y - mStickPane->mGlobalMtx[1][3];
@@ -785,11 +783,6 @@ TChallengeResult::TChallengeResult()
  */
 TChallengeResult::~TChallengeResult()
 {
-	if (mDebugHeap) {
-		mDisp->mHeap->freeAll();
-		mDebugHeap->destroy();
-	}
-
 	mDebugHeap = nullptr;
 }
 
@@ -817,24 +810,6 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 		mIsSection = true;
 	}
 
-	if (mIsSection) {
-		if (mDebugHeapParent) {
-			mDebugHeap = JKRExpHeap::create(0x100000, mDebugHeapParent, true);
-			P2ASSERTLINE(975, mDebugHeap);
-			mDisp        = new (mDebugHeap, 0) DispMemberChallengeResult;
-			mDisp->mHeap = mDebugHeap;
-		} else {
-			JUT_PANICLINE(982, "set DebugHeapParent. mail to morimun.\n");
-		}
-		mStageList = new Game::ChallengeGame::StageList;
-		void* file = JKRDvdRipper::loadToMainRAM("/user/Matoba/challenge/stages.txt", nullptr, Switch_0, 0, nullptr,
-		                                         JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
-		if (file) {
-			RamStream strm(file, -1);
-			strm.setMode(STREAM_MODE_TEXT, 1);
-			mStageList->read(strm);
-		}
-	}
 	mControls = getGamePad();
 	P2ASSERTLINE(1006, mControls);
 
@@ -868,14 +843,10 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 	screen->search('Peffect')->show();
 	screen->search('Peffect1')->show();
 
-	mPane1 = screen->search('Tyel1');
-	P2ASSERTLINE(1058, mPane1);
-	mPane2 = screen->search('Tyel2');
-	P2ASSERTLINE(1061, mPane2);
-	mPanePlayerNum = screen->search('Tyel3');
-	P2ASSERTLINE(1064, mPanePlayerNum);
+	mPane1               = screen->search('Tyel1');
+	mPane2               = screen->search('Tyel2');
+	mPanePlayerNum       = screen->search('Tyel3');
 	mPanePlayerNumShadow = screen->search('Tyel4');
-	P2ASSERTLINE(1067, mPanePlayerNumShadow);
 
 	mOnyonMovePane[0] = new TMovePane;
 	mOnyonPane[0]     = screen->search('NRED');
@@ -887,7 +858,6 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 	mOnyonPane[2]     = screen->search('NBLUE');
 
 	for (int i = 0; i < 3; i++) {
-		P2ASSERTLINE(1081, mOnyonMovePane[i]);
 		mOnyonMovePane[i]->setPane(mOnyonPane[i]);
 	}
 
@@ -902,15 +872,12 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 	mCounter1 = setTCounterRV(screen, 'Ppoko00', 'Ppoko01', 'Ppoko04', &mScoreTotal, 5, 5, mArchive);
 
 	J2DPane* pane = screen->search('Ppoko02');
-	P2ASSERTLINE(1103, pane);
 	pane->hide();
 
 	pane = screen->search('Ppoko03');
-	P2ASSERTLINE(1107, pane);
 	pane->hide();
 
 	pane = screen->search('Ppoko04');
-	P2ASSERTLINE(1111, pane);
 	pane->hide();
 
 	mHighScoreCounter[0] = setTCounterRV(screen, 'P1st01', 'P1st02', 'P1st05', &mScoreTotal, 5, 5, mArchive);
@@ -920,76 +887,60 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 	mHighScoreCounter[2] = setTCounterRV(screen, 'P3rd01', 'P3rd02', 'P3rd05', &mScoreTotal, 5, 5, mArchive);
 	mHighScoreCounter[2]->getMotherPane()->hide();
 
-	mPane6 = screen->search('Peffect1');
-	P2ASSERTLINE(1126, mPane6);
+	mPane6      = screen->search('Peffect1');
 	mScissorPic = new TScissorPane;
 
 	mHighScoreCounter[2]->getMotherPane()->getParentPane()->appendChild(mScissorPic);
 	mCounters1[0] = setTCounterRV(screen, 'P1st01', 'P1st02', 'P1st05', &mHighScoreValues[0], 5, 5, mArchive);
 
 	pane = screen->search('P1st01');
-	P2ASSERTLINE(1135, pane);
 	pane->hide();
 
 	pane = screen->search('P1st02');
-	P2ASSERTLINE(1139, pane);
 	pane->hide();
 
 	pane = screen->search('P1st03');
-	P2ASSERTLINE(1143, pane);
 	pane->hide();
 
 	pane = screen->search('P1st04');
-	P2ASSERTLINE(1147, pane);
 	pane->hide();
 
 	pane = screen->search('P1st05');
-	P2ASSERTLINE(1151, pane);
 	pane->hide();
 
 	mCounters1[1] = setTCounterRV(screen, 'P2nd01', 'P2nd02', 'P2nd05', &mHighScoreValues[1], 5, 5, mArchive);
 
 	pane = screen->search('P2nd01');
-	P2ASSERTLINE(1158, pane);
 	pane->hide();
 
 	pane = screen->search('P2nd02');
-	P2ASSERTLINE(1162, pane);
 	pane->hide();
 
 	pane = screen->search('P2nd03');
-	P2ASSERTLINE(1166, pane);
 	pane->hide();
 
 	pane = screen->search('P2nd04');
-	P2ASSERTLINE(1170, pane);
 	pane->hide();
 
 	pane = screen->search('P2nd05');
-	P2ASSERTLINE(1174, pane);
 	pane->hide();
 
 	mCounters1[2] = setTCounterRV(screen, 'P3rd01', 'P3rd02', 'P3rd05', &mHighScoreValues[2], 5, 5, mArchive);
 	_1CC          = 30.0f;
 
 	pane = screen->search('P3rd01');
-	P2ASSERTLINE(1181, pane);
 	pane->hide();
 
 	pane = screen->search('P3rd02');
-	P2ASSERTLINE(1185, pane);
 	pane->hide();
 
 	pane = screen->search('P3rd03');
-	P2ASSERTLINE(1189, pane);
 	pane->hide();
 
 	pane = screen->search('P3rd04');
-	P2ASSERTLINE(1193, pane);
 	pane->hide();
 
 	pane = screen->search('P3rd05');
-	P2ASSERTLINE(1197, pane);
 	pane->hide();
 
 	TScissorPane* tpane = new TScissorPane;
@@ -999,47 +950,37 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 	mCounter3 = setTCounterRV(screen, 'Pkase01', 'Pkase02', 'Pkase04', &mPokoCount, 5, 0, mArchive);
 
 	pane = screen->search('Pkase01');
-	P2ASSERTLINE(1208, pane);
 	pane->hide();
 
 	pane = screen->search('Pkase02');
-	P2ASSERTLINE(1212, pane);
 	pane->hide();
 
 	pane = screen->search('Pkase03');
-	P2ASSERTLINE(1216, pane);
 	pane->hide();
 
 	pane = screen->search('Pkase04');
-	P2ASSERTLINE(1220, pane);
 	pane->hide();
 
 	mCounter5 = setTCounterRV(screen, 'Ppiki01', 'Ppiki02', 'Ppiki03', &mPikiCount, 4, 0, mArchive);
 
 	pane = screen->search('Ppiki01');
-	P2ASSERTLINE(1227, pane);
 	pane->hide();
 
 	pane = screen->search('Ppiki02');
-	P2ASSERTLINE(1231, pane);
 	pane->hide();
 
 	pane = screen->search('Ppiki03');
-	P2ASSERTLINE(1235, pane);
 	pane->hide();
 
 	mCounter4 = setTCounterRV(screen, 'Ptime01', 'Ptime02', 'Ptime03', &mTimeBonus, 5, 0, mArchive);
 
 	pane = screen->search('Ptime01');
-	P2ASSERTLINE(1242, pane);
 	pane->hide();
 
 	pane = screen->search('Ptime02');
-	P2ASSERTLINE(1246, pane);
 	pane->hide();
 
 	pane = screen->search('Ptime03');
-	P2ASSERTLINE(1250, pane);
 	pane->hide();
 
 	mResultCounters[0] = new TChallengeResultCounter(&mPokoCount, 5, 4);
@@ -1323,62 +1264,23 @@ void TChallengeResult::setInfo()
 		mCounters1[i]->setBlind(false);
 	}
 
-	if (mIsSection) {
-		mRankInSlot = mTestRankInOrder;
-		if (randFloat() < 0.5f) {
-			mFlags[0] |= ChalResult_Is2Player;
+	Game::Challenge2D_ResultInfo* info = mDisp->mResultInfo;
+	mFlags[0]                          = info->mDisplayFlag.byteView[0];
+	mScoreTotal                        = info->mScore;
+	mPokoCount                         = info->mPokos;
+	mTimeBonus                         = info->mTimeLeft;
+	mPikiCount                         = info->mPikminLeft;
+	for (int i = 0; i < 3; i++) {
+		if (info->mHighScore->getScore(i) == -1) {
+			mCounters1[i]->setBlind(true);
+		} else {
+			mHighScoreValues[i] = info->mHighScore->getScore(i);
 		}
-		if (mTestDemo) {
-			if (mComplete) {
-				mFlags[0] |= 4;
-			} else {
-				mFlags[0] |= 2;
-			}
-		}
-		mHighScoreValues[0] = randFloat() * 90000.0f + 1000.0f;
-		mHighScoreValues[1] = randFloat() * 9000.0f + 100.0f;
-		mHighScoreValues[2] = randFloat() * 900.0f + 10.0f;
-		mScoreTotal         = randFloat() * 90000.0f + 100.0f;
-		mPokoCount          = mTestDefaultPokoScore;
-		mTimeBonus          = randFloat() * 900.0f + 1000.0f;
-		mPikiCount          = randFloat() * 9999.0f;
-
-		f32 test = randFloat();
-		if (test < 0.1f) {
-			for (int i = 0; i < 3; i++) {
-				mCounters1[i]->setBlind(false);
-			}
-		} else if (test < 0.2f) {
-			mCounters1[1]->setBlind(true);
-			mCounters1[2]->setBlind(true);
-		} else if (test < 0.4f) {
-			mCounters1[2]->setBlind(true);
-		}
-		rand();
-		Game::ChallengeGame::StageData* data = mStageList->getStageData(mTestStageId);
-		P2ASSERTLINE(1683, data);
-		int id = data->mStageIndex - 1;
-		mPane1->setMsgID(mMesgOffs->getMsgID(id));
-		mPane2->setMsgID(mMesgOffs->getMsgID(id));
-	} else {
-		Game::Challenge2D_ResultInfo* info = mDisp->mResultInfo;
-		mFlags[0]                          = info->mDisplayFlag.byteView[0];
-		mScoreTotal                        = info->mScore;
-		mPokoCount                         = info->mPokos;
-		mTimeBonus                         = info->mTimeLeft;
-		mPikiCount                         = info->mPikminLeft;
-		for (int i = 0; i < 3; i++) {
-			if (info->mHighScore->getScore(i) == -1) {
-				mCounters1[i]->setBlind(true);
-			} else {
-				mHighScoreValues[i] = info->mHighScore->getScore(i);
-			}
-		}
-		mRankInSlot = info->mHighScore->entryScore(info->mScore);
-		mPane1->setMsgID(mMesgOffs->getMsgID(info->mDisplayIndex - 1));
-		mPane2->setMsgID(mMesgOffs->getMsgID(info->mDisplayIndex - 1));
-		startDemo();
 	}
+	mRankInSlot = info->mHighScore->entryScore(info->mScore);
+	mPane1->setMsgID(mMesgOffs->getMsgID(info->mDisplayIndex - 1));
+	mPane2->setMsgID(mMesgOffs->getMsgID(info->mDisplayIndex - 1));
+	startDemo();
 
 	JUT_ASSERTLINE(1713, mHighScoreValues[0] < 1000000, "hiscore0 = %d\n", mHighScoreValues[0]);
 	JUT_ASSERTLINE(1714, mHighScoreValues[1] < 1000000, "hiscore1 = %d\n", mHighScoreValues[1]);
@@ -1467,15 +1369,7 @@ void TChallengeResult::updateDemo()
 		for (int i = 0; i < 3; i++) {
 			int id1 = mOnyonMovePane[i]->getID();
 			int id2 = mOnyonMovePane[i]->getState();
-			{
-				// yes this really cant be a macro since the order of checks is inverted for some reason
-				// unless you want to add a whole new macro for this alone of course :)
-				bool check = false;
-				if (3 >= id1 && id1 >= 0) {
-					check = true;
-				}
-				P2ASSERTLINE(1813, check);
-			}
+
 			if (mResultCounters[id1]->checkState(2) == false) {
 				if (mOnyonMovePane[i]->mCounter > 0) {
 					if (id2 == 0) {

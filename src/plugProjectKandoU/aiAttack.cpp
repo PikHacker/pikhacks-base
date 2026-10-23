@@ -16,8 +16,6 @@ namespace PikiAI {
  */
 void ActAttack::getInfo(char* dest)
 {
-	char* actions[] = { "SA", "AJ", "JA", "JP", "LT" };
-	sprintf(dest, "attack %s", actions[mAttackID]);
 }
 
 /**
@@ -48,14 +46,7 @@ ActAttack::ActAttack(Game::Piki* piki)
  */
 void ActAttack::init(ActionArg* initarg)
 {
-	bool incorrectArg = false;
-	if (initarg) {
-		bool comp = (strcmp("ActAttackArg", initarg->getName()) == 0);
-		if (comp) {
-			incorrectArg = true;
-		}
-	}
-	P2ASSERTLINE(144, incorrectArg);
+	P2ASSERTLINE(144, initarg);
 	ActAttackArg* attackArg = static_cast<ActAttackArg*>(initarg);
 	mCreature               = attackArg->mCreature;
 	mCollPart               = attackArg->mCollPart;

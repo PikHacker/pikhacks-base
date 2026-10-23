@@ -109,7 +109,6 @@ void Item::update()
 	updateCell();
 
 	if (mCellLayerIndex < 0 || mCellLayerIndex > 10) {
-		getTypeName();
 		JUT_PANICLINE(245, "cellLayerindex overflow\n");
 	}
 

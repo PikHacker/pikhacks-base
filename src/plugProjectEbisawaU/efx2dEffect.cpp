@@ -199,8 +199,6 @@ bool WorldMap::T2DShstar2::create(Arg* arg)
 
 	f32 scale = args->mScale;
 	if (TSimple1::create(arg)) {
-		volatile Vector3f idk = scale;
-
 		mEmitters[0]->setScale(scale);
 
 		return true;
@@ -220,8 +218,6 @@ bool WorldMap::T2DNewmap::create(Arg* arg)
 
 	f32 scale = args->mScale;
 	if (TSimple2::create(arg)) {
-		volatile Vector3f idk = scale;
-
 		mEmitters[0]->setScale(scale);
 		mEmitters[1]->setScale(scale);
 

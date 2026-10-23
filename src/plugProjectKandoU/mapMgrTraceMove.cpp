@@ -59,7 +59,7 @@ Sys::TriIndexList* MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f
 Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game::MoveInfo& info, f32 deltaTime)
 {
 	Sys::Sphere* moveSphere = info.mMoveSphere;
-	Vector3f* velocity      = info.mVelocity; 
+	Vector3f* velocity      = info.mVelocity;
 
 	Sys::VertexTable* vertTable = coll.mDivider->mVertexTable;
 
@@ -81,16 +81,9 @@ Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game:
 
 			// if optimisation level is high enough, get rid of things we're not even barely touching
 			// (NB: opt level is 1 in vanilla)
-			if (mTraceMoveOptLevel >= 1) {
-				if (!tri->fastIntersect(*moveSphere)) {
-					mMissedIntersectionCount++;
-					continue;
-				}
-			}
-
-			// debug printing enabled probably
-			if (traceMoveDebug) {
-				Sys::Triangle::debug = true;
+			if (!tri->fastIntersect(*moveSphere)) {
+				mMissedIntersectionCount++;
+				continue;
 			}
 
 			Sys::Triangle::SphereSweep sweep;
@@ -151,7 +144,6 @@ Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game:
 				// shift position along line of impact so we're not physically overlapping the object
 				moveSphere->mPosition = moveSphere->mPosition + sweep.mNormal * sweep.mDistanceFromRadius;
 			}
-			Sys::Triangle::debug = false;
 		}
 	}
 

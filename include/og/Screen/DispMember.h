@@ -134,6 +134,7 @@ struct DispMemberCave : public DispMemberBase {
 		mIsSpicyUnlocked   = false;
 		mRadarEnabled      = false;
 		mAllTreasureGotten = false;
+		FORCE_DONT_INLINE;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCave); } // _08 (weak)
@@ -336,6 +337,7 @@ struct DispMemberGround : public DispMemberBase {
 		mHasSpicy           = false;
 		mRadarEnabled       = false;
 		mAllTreasuresGotten = false;
+		FORCE_DONT_INLINE;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberGround); } // _08 (weak)

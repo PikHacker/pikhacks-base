@@ -118,7 +118,6 @@ Creature* GenObjectPiki::birth(GenArg* arg)
 		newPiki->setPosition(arg->mPosition, false);
 		newPiki->changeShape(color);
 		newPiki->changeHappa(Leaf);
-		JUT_ASSERTLINE(184, !newPiki->isZikatu(), "dame\n"); // 'not good' lol
 	}
 
 	return newPiki;

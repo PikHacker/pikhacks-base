@@ -429,11 +429,13 @@ void Mgr::generatorRead(Stream& stream, GenItemParm* parm, u32 flag)
 	for (int i = 0; i < 0x20; i++) {
 		gparm->mCaveFilename[i] = name[i];
 	}
+	delete name;
 
 	name = stream.readString(nullptr, 0);
 	for (int i = 0; i < 0x20; i++) {
 		gparm->_24[i] = name[i];
 	}
+	delete name;
 
 	if (flag >= '0001') {
 		gparm->mId.read(stream);

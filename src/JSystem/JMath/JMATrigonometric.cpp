@@ -4,7 +4,6 @@
 
 namespace JMath {
 
-// not sure why this file gets specifications, ¯\_(ツ)_/¯
 f32 TAtanTable<1024, f32>::atan_(f32 v) const
 {
 

@@ -223,9 +223,6 @@ bool Generator::loadCreature(Stream& input)
 {
 	if (mObject) {
 		mCreature = mObject->generate(this);
-		if (mCreature) {
-			mCreature->getTypeName();
-		}
 	}
 	if (mCreature) {
 		mCreature->mGenerator = this;

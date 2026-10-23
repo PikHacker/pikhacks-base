@@ -14,7 +14,7 @@ struct J3DMaterial;
 namespace Game {
 namespace PelletOtakara {
 struct Object : public Pellet {
-	Object() { }
+	Object() { mPelletKind = PelletType::Treasure; }
 
 	virtual void constructor();                           // _2C
 	virtual void getShadowParam(ShadowParam& settings);   // _134
@@ -26,7 +26,6 @@ struct Object : public Pellet {
 	virtual void sound_otakaraEventRestart();             // _210
 	virtual void sound_otakaraEventStop();                // _214
 	virtual void sound_otakaraEventFinish();              // _218
-	virtual u8 getKind() { return PelletType::Treasure; } // _1F4 (weak)
 	virtual s32 getBedamaColor() { return mBedamaColor; } // _1E8 (weak)
 
 	// _00      = VTBL

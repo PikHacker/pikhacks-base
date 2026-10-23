@@ -443,8 +443,6 @@ void TParticleCallBack_KchYodare::execute(JPABaseEmitter* emit, JPABaseParticle*
 bool TKchYodareBaseChaseMtx::create(Arg* arg)
 {
 	P2ASSERTLINE(388, arg);
-	bool nameCheck = strcmp("ArgKchYodare", arg->getName()) == 0;
-	P2ASSERTLINE(389, nameCheck);
 
 	ArgKchYodare* argp = static_cast<ArgKchYodare*>(arg);
 	f32 y              = argp->mGroundYPos;

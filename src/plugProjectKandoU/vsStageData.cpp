@@ -36,6 +36,7 @@ void StageData::read(Stream& stream)
 		if (caveinfoFilename[i] == 0)
 			break;
 	}
+	delete caveinfoFilename;
 	mPikiContainer.read(stream);
 	if (version >= 1) {
 		mTimeLimit      = stream.readFloat();
@@ -77,15 +78,11 @@ StageList::StageList()
  */
 void StageList::read(Stream& stream)
 {
-	bool isAllocationHalted = (gameSystem) ? gameSystem->mSection->disableAllocHalt() : true;
-	s32 stageNum            = stream.readInt();
+	s32 stageNum = stream.readInt();
 	for (int i = 0; i < stageNum; i++) {
 		StageData* currStageData = new StageData;
 		currStageData->read(stream);
 		mStageData.add(currStageData);
-	}
-	if (gameSystem && isAllocationHalted) {
-		gameSystem->mSection->enableAllocHalt();
 	}
 }
 
@@ -133,6 +130,7 @@ void StageData::read(Stream& stream)
 		if (caveinfoFilename[i] == 0)
 			break;
 	}
+	delete caveinfoFilename;
 	mPikiContainer.read(stream);
 	mTimeLimit      = stream.readFloat();
 	mStartNumBitter = stream.readInt();
@@ -148,6 +146,7 @@ void StageData::read(Stream& stream)
 			if (layoutFileName[i] == 0)
 				break;
 		}
+		delete layoutFileName;
 	}
 	if (version >= 4) {
 		mStartNumYellowMarbles = stream.readInt();
@@ -169,15 +168,11 @@ StageList::StageList()
  */
 void StageList::read(Stream& stream)
 {
-	bool b       = (gameSystem) ? gameSystem->mSection->disableAllocHalt() : true;
 	s32 stageNum = stream.readInt();
 	for (int i = 0; i < stageNum; i++) {
 		StageData* currStageData = new StageData;
 		currStageData->read(stream);
 		mStageData.add(currStageData);
-	}
-	if (gameSystem && b) {
-		gameSystem->mSection->enableAllocHalt();
 	}
 }
 

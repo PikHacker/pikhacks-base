@@ -163,8 +163,6 @@ void Obj::onInit(CreatureInitArg* arg)
 		mFSM->start(this, WRAITH_Fall, nullptr);
 	}
 
-	P2ASSERTLINE(178, mMatLoopAnimator);
-
 	mMatLoopAnimator->start(C_MGR->mTexAnimation);
 
 	mPostFlickState = -1;
@@ -182,11 +180,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	mEscapeMoveSpeed        = 0.0f;
 	curB                    = nullptr;
 
-	P2ASSERTLINE(209, mModel);
-
 	J3DModelData* modelData = mModel->mJ3dModel->mModelData;
-
-	P2ASSERTLINE(212, modelData);
 
 	mChestJointIndex     = mModel->getJointIndex("chest");
 	mLeftHandJointIndex  = mModel->getJointIndex("handLend");
@@ -246,9 +240,6 @@ void Obj::onInit(CreatureInitArg* arg)
 	mActiveColor = mTargetColor;
 
 	modelData = mModel->mJ3dModel->mModelData;
-
-	// if you need this many P2ASSERTs then maybe you're the one who needs sanity checked
-	P2ASSERTLINE(294, modelData);
 
 	u16 kageMatIdx = modelData->mMaterialTable.mMaterialNames->getIndex("kage_mat");
 
@@ -1497,7 +1488,6 @@ void Obj::jointMtxCalc(int jointIdx)
 		f32 sinVal1 = C_PARMS->mArmRotationA * absF(sinf(mTyre->mCurrentRotation2));
 		f32 sinVal2 = C_PARMS->mArmRotationB * absF(sinf(mTyre->mCurrentRotation2));
 		vec2.y      = sinVal2;
-		getStateID(); // unused
 
 		if (mTyre->mCurrentRotation2 < 0.0f) {
 			if (jointIdx == 0) {

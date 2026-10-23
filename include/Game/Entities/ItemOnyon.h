@@ -187,7 +187,6 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*);                                 // _5C
 	virtual void generatorWrite(Stream&, GenItemParm*);                                                   // _60
 	virtual void generatorRead(Stream&, GenItemParm*, u32);                                               // _64
-	virtual J3DModelData* generatorGetShape(GenItemParm*);                                                // _6C
 	virtual GenItemParm* generatorNewItemParm();                                                          // _70
 	virtual Onyon* get(void* index) { return static_cast<Onyon*>(mNodeObjectMgr.get(index)); }            // _A4 (weak)
 	virtual void* getNext(void* index) { return mNodeObjectMgr.getNext(index); }                          // _A8 (weak)

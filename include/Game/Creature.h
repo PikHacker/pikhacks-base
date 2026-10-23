@@ -372,6 +372,8 @@ struct Creature : public CellObject {
 
 	inline f32 getAngDist(Creature* other)
 	{
+		FORCE_DONT_INLINE;
+
 		Vector3f otherPos;
 		otherPos = other->getPosition();
 
@@ -386,6 +388,8 @@ struct Creature : public CellObject {
 
 	inline f32 getAngDist(Vector3f& targetPos)
 	{
+		FORCE_DONT_INLINE;
+
 		Vector3f pos;
 		pos = getPosition();
 

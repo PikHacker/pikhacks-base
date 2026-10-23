@@ -114,9 +114,9 @@ void GameState::do_init(VsGameSection* section)
 
 	} else {
 		open_GameChallenge(section, Screen::Game2DMgr::CAVEOPEN_ReadyGo);
-		gameSystem->setPause(false, "vs-readygo", 3);
-		gameSystem->setPause(true, "vs readygo", 6);
-		gameSystem->setMoviePause(true, "vs readygo");
+		gameSystem->setPause(false, 3);
+		gameSystem->setPause(true, 6);
+		gameSystem->setMoviePause(true);
 		setFlag(VSGS_ReadyGoOpen);
 		gameSystem->setFlag(GAMESYS_IsPlaying);
 		section->setCamController();
@@ -160,8 +160,8 @@ void GameState::exec(VsGameSection* section)
 	if (isFlag(VSGS_ReadyGoOpen)) {
 		switch (Screen::gGame2DMgr->check_ReadyGo()) {
 		case Screen::Game2DMgr::CHECK2D_ReadyGo_Finished:
-			gameSystem->setPause(false, "vs-rg-arr", 3);
-			gameSystem->setMoviePause(false, "vs-rg-arr");
+			gameSystem->setPause(false, 3);
+			gameSystem->setMoviePause(false);
 			resetFlag(VSGS_ReadyGoOpen);
 			gameSystem->setFlag(GAMESYS_IsPlaying);
 			break;
@@ -282,8 +282,8 @@ void GameState::exec(VsGameSection* section)
 			section->mTimeLimit -= sys->mDeltaTime * 0.5f;
 			if (section->mTimeLimit <= 0.0f && !isFlag(VSGS_TimeUp)) {
 				gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-				gameSystem->setPause(true, "timeup", 3);
-				gameSystem->setMoviePause(true, "timeup");
+				gameSystem->setPause(true, 3);
+				gameSystem->setMoviePause(true);
 				setFlag(VSGS_TimeUp);
 
 				if (!gameSystem->isMultiplayerMode()) {
@@ -303,20 +303,20 @@ void GameState::exec(VsGameSection* section)
 
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Confirm:
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-			gameSystem->setPause(false, "cmore-yes", 3);
-			gameSystem->setMoviePause(false, "cmore-yes");
+			gameSystem->setPause(false, 3);
+			gameSystem->setMoviePause(false);
 			section->goNextFloor(section->mHole);
 			setFlag(VSGS_EnteringCave);
 			return;
 
 		case Screen::Game2DMgr::CHECK2D_CaveMoreMenu_Cancel:
-			gameSystem->setPause(false, "cmore-no", 3);
-			gameSystem->setMoviePause(false, "cmore-no");
+			gameSystem->setPause(false, 3);
+			gameSystem->setMoviePause(false);
 			break;
 
 		case Screen::Game2DMgr::CHECK2D_CaveInMenu_Unused:
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-			gameSystem->setMoviePause(false, "cmore-zenk");
+			gameSystem->setMoviePause(false);
 			break;
 		}
 	}
@@ -333,7 +333,7 @@ void GameState::exec(VsGameSection* section)
 
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			setFlag(VSGS_WinLoseReasonOpen);
-			gameSystem->setPause(true, nullptr, 3);
+			gameSystem->setPause(true, 3);
 
 			int redReason  = -1;
 			int blueReason = -1;
@@ -412,8 +412,8 @@ void GameState::checkSMenu(VsGameSection* section)
 {
 	switch (Screen::gGame2DMgr->check_SMenu()) {
 	case Screen::Game2DMgr::CHECK2D_SMenu_Cancel:
-		gameSystem->setPause(false, "sm-canc", 3);
-		gameSystem->setMoviePause(false, "sm-canc");
+		gameSystem->setPause(false, 3);
+		gameSystem->setMoviePause(false);
 	case Screen::Game2DMgr::CHECK2D_SMenu_Opened:
 		return;
 
@@ -426,7 +426,7 @@ void GameState::checkSMenu(VsGameSection* section)
 		return;
 
 	case Screen::Game2DMgr::CHECK2D_SMenu_QuitChallenge:
-		gameSystem->setMoviePause(false, "sm-quit");
+		gameSystem->setMoviePause(false);
 		if (gameSystem->isVersusMode()) {
 			section->mVsWinner = -1;
 			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
@@ -452,8 +452,8 @@ void GameState::checkSMenu(VsGameSection* section)
 			moviePlayer->play(movieArgs);
 			return;
 		}
-		gameSystem->setMoviePause(false, "sm-quit");
-		gameSystem->setPause(false, "sm-quit", 3);
+		gameSystem->setMoviePause(false);
+		gameSystem->setPause(false, 3);
 		return;
 	}
 
@@ -467,8 +467,8 @@ void GameState::checkSMenu(VsGameSection* section)
 			sMenu.mOpenMode = versus;
 			Screen::gGame2DMgr->setGamePad(section->mControllerP1);
 			if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
-				gameSystem->setPause(true, "open-sm", 3);
-				gameSystem->setMoviePause(true, "open-sm");
+				gameSystem->setPause(true, 3);
+				gameSystem->setMoviePause(true);
 			}
 
 		} else if (gameSystem->isMultiplayerMode()) {
@@ -481,8 +481,8 @@ void GameState::checkSMenu(VsGameSection* section)
 				sMenu.mOpenMode = versus;
 				Screen::gGame2DMgr->setGamePad(section->mControllerP2);
 				if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
-					gameSystem->setPause(true, "open-sm", 3);
-					gameSystem->setMoviePause(true, "open-sm");
+					gameSystem->setPause(true, 3);
+					gameSystem->setMoviePause(true);
 				}
 			}
 		}
@@ -518,7 +518,7 @@ void GameState::draw(VsGameSection* section, Graphics& gfx)
 void GameState::cleanup(VsGameSection* section)
 {
 	gameSystem->resetFlag(GAMESYS_IsPlaying);
-	gameSystem->setMoviePause(false, "vsgs_game:clean");
+	gameSystem->setMoviePause(false);
 	PSMCancelToPauseOffMainBgm();
 }
 
@@ -718,8 +718,8 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 			open_GameChallenge(section, Screen::Game2DMgr::CAVEOPEN_ReadyGo);
 		}
 
-		gameSystem->setPause(true, "readygo", 6);
-		gameSystem->setMoviePause(true, "readygo");
+		gameSystem->setPause(true, 6);
+		gameSystem->setMoviePause(true);
 		setFlag(VSGS_ReadyGoOpen);
 
 	} else if (config->is("s0B_cv_coursein")) {
@@ -769,8 +769,8 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 unu
 				open_GameChallenge(section, Screen::Game2DMgr::CAVEOPEN_ReadyGo);
 			}
 
-			gameSystem->setPause(true, "readygo2", 6);
-			gameSystem->setMoviePause(true, "readygo2");
+			gameSystem->setPause(true, 6);
+			gameSystem->setMoviePause(true);
 			setFlag(VSGS_ReadyGoOpen);
 
 		} else if (isFinalFloor) {

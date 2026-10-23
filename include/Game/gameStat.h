@@ -56,8 +56,6 @@ struct PikiNaviCounter {
 
 	inline int getTotal(int naviID)
 	{
-		P2ASSERTBOUNDSLINE(115, 0, naviID, 7);
-
 		PikiCounter& counter = mCounter[naviID];
 		return counter;
 	}
@@ -65,7 +63,7 @@ struct PikiNaviCounter {
 	inline int getCount(int naviID, int color)
 	{
 		// I'm pretty sure the assert was meant to be on color instead of the navi id
-		P2ASSERTBOUNDSLINE(119, 0, naviID, 7);
+		P2ASSERTBOUNDSLINE(119, 0, color, PikiColorCount);
 
 		PikiCounter& counter = mCounter[naviID];
 		return counter(color);

@@ -16,12 +16,12 @@ struct Object : public Pellet {
 	Object()
 	    : Pellet()
 	{
+		mPelletKind = PelletType::Berry;
 	}
 
-	virtual void do_onInit(CreatureInitArg*);          // _1CC
-	virtual void do_update();                          // _1EC
-	virtual u8 getKind() { return PelletType::Berry; } // _1F4 (weak)
-	virtual void changeMaterial();                     // _1F8
+	virtual void do_onInit(CreatureInitArg*); // _1CC
+	virtual void do_update();                 // _1EC
+	virtual void changeMaterial();            // _1F8
 
 	// _00      = VTBL
 	// _00-_458 = Pellet

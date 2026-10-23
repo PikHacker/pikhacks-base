@@ -29,7 +29,6 @@ bool TVsSelect::mLoopDrum       = false;
 bool TVsSelect::mCanCancel      = false;
 TVsSelect::StaticValues TVsSelect::mScrollParm;
 
-u32 unk[]                            = { 1, 2, 3, 0 };
 ResTIMG* TVsSelect::mOrimaTexture[5] = { nullptr };
 ResTIMG* TVsSelect::mLouieTexture[5] = { nullptr };
 
@@ -625,11 +624,6 @@ TVsSelect::TVsSelect()
  */
 TVsSelect::~TVsSelect()
 {
-	if (mDebugHeap) {
-		mDispMember->mDebugExpHeap->freeAll();
-		mDebugHeap->destroy();
-	}
-	mDebugHeap = nullptr;
 }
 
 /**
@@ -638,8 +632,6 @@ TVsSelect::~TVsSelect()
  */
 void TVsSelect::setDebugHeapParent(JKRHeap* heap)
 {
-	mDebugHeapParent = heap;
-	P2ASSERTLINE(769, mDebugHeapParent);
 }
 
 /**
@@ -659,30 +651,6 @@ void TVsSelect::doCreate(JKRArchive* arc)
 		something   = mDispMember->mStageNumber;
 	} else {
 		mIsSection = true;
-	}
-
-	if (mIsSection) {
-		if (mDebugHeapParent) {
-			mDebugHeap = JKRExpHeap::create(0x200000, mDebugHeapParent, true);
-			P2ASSERTLINE(800, mDebugHeap);
-			mDispMember                        = new (mDebugHeap, 0) DispMemberVsSelect;
-			mDispMember->mDebugExpHeap         = mDebugHeap;
-			mDispMember->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
-			mDispMember->mRedWinCount          = randInt(99);
-			mDispMember->mBlueWinCount         = randInt(99);
-			mDispMember->mRedWinCount          = 2;
-			mDispMember->mBlueWinCount         = 0;
-			mDispMember->mStageCount           = VS_Stage_Count;
-			if (randFloat() > 0.5f) {
-				mDispMember->mVsWinner = 0;
-			} else {
-				mDispMember->mVsWinner = 1;
-			}
-			mDispMember->mVsWinner = 0; // so much for the random thing we just did
-			getOwner()->setDispMember(mDispMember);
-		} else {
-			JUT_PANICLINE(820, "set DebugHeapParent. mail to morimun.\n");
-		}
 	}
 
 	if (!mIsSection) {

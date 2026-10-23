@@ -108,14 +108,6 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 {
 	Matrixf mtx;
 	Matrixf invMtx;
-	if (MapMgr::mTraceMoveOptLevel >= 2) {
-		Sys::Sphere sphere = mPlatform->getTriDivider()->mRoot.mSphere;
-		sphere.mPosition   = sphere.mPosition + mMatrix->getColumn(3);
-
-		if (!sphere.intersect(*info.mMoveSphere)) {
-			return;
-		}
-	}
 
 	PSMTXCopy(mMatrix->mMatrix.mtxView, mtx.mMatrix.mtxView);
 
@@ -131,14 +123,11 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 	info.mOtherTriangle = nullptr;
 
 	Sys::OBBTree* triDivider = mPlatform->getTriDivider();
-	if (mGlobalPlatform && MapMgr::mTraceMoveOptLevel >= 3) {
-		mGlobalPlatform->getTriDivider()->traceMove_global(info, step);
-	} else if (useFixCollision && isFlag(PLATFLAG_IsCollisionStatic)) {
+	if (useFixCollision && isFlag(PLATFLAG_IsCollisionStatic)) {
 		triDivider->traceMove(mtx, mStaticCollMtx, info, step);
 	} else {
 		triDivider->traceMove(mtx, invMtx, info, step);
 	}
-
 
 	if (info.mMovingCreature) {
 		if (info.mFloorTriangle) {
@@ -456,13 +445,6 @@ void PlatMgr::getCurrTri(CurrTriInfo& info)
  */
 bool PlatMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 {
-	// completely unused calc lol
-	Vector3f edgeVec;
-	edgeVec.x = info.mIntersectEdge.mStartPos.x - info.mIntersectEdge.mEndPos.x;
-	edgeVec.y = info.mIntersectEdge.mStartPos.y - info.mIntersectEdge.mEndPos.y;
-	edgeVec.z = info.mIntersectEdge.mStartPos.z - info.mIntersectEdge.mEndPos.z;
-	edgeVec.length();
-
 	Iterator<PlatInstance> iter(this);
 
 	f32 minDist = 12800000.0f;

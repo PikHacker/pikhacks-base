@@ -1672,28 +1672,22 @@ void Navi::addDamage(f32 damage, bool playSound)
 void Navi::enterAllPikis()
 {
 	Iterator<Piki> iterator(pikiMgr);
-	int pikis = 0;
-	Piki* buffer[MAX_PIKI_COUNT];
 	CI_LOOP(iterator)
 	{
-		Piki* piki = *iterator;
-		if (piki->isAlive()) {
-			buffer[pikis++] = piki;
-		}
-	}
-
-	for (int i = 0; i < pikis; i++) {
+		Piki* piki    = *iterator;
 		Onyon* target = nullptr;
-		Piki* piki    = buffer[i];
-		if (piki->getKind() <= Yellow) {
-			target = ItemOnyon::mgr->getOnyon(piki->getKind());
-		} else {
-			target = ItemOnyon::mgr->mUfo;
-		}
 
-		if (target) {
-			PikiAI::CreatureActionArg arg(target);
-			piki->mBrain->start(PikiAI::ACT_Enter, &arg);
+		if (piki->isAlive()) {
+			if (piki->getKind() <= Yellow) {
+				target = ItemOnyon::mgr->getOnyon(piki->getKind());
+			} else {
+				target = ItemOnyon::mgr->mUfo;
+			}
+
+			if (target) {
+				PikiAI::CreatureActionArg arg(target);
+				piki->mBrain->start(PikiAI::ACT_Enter, &arg);
+			}
 		}
 	}
 }
@@ -1786,30 +1780,20 @@ void Navi::clearThrowDisable()
  */
 void Navi::holeinAllPikis(Vector3f& pos)
 {
-	naviMgr->getAliveOrima(ALIVEORIMA_Active);
-	Piki* buffer[MAX_PIKI_COUNT];
-	int pikis = 0;
-
 	Iterator<Creature> iterator(mCPlateMgr);
 	CI_LOOP(iterator)
 	{
 		Piki* piki = static_cast<Piki*>(*iterator);
 		if (piki->isAlive()) {
 			if (piki->mCurrentState->transittable(PIKISTATE_Holein) && piki->mCurrentState->soft_transittable(PIKISTATE_Holein)) {
-				buffer[pikis] = piki;
-				pikis++;
+				HoleinStateArg arg(pos);
+				piki->mFsm->transit(piki, PIKISTATE_Holein, &arg);
 			} else {
 				piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
-				buffer[pikis] = piki;
-				pikis++;
+				HoleinStateArg arg(pos);
+				piki->mFsm->transit(piki, PIKISTATE_Holein, &arg);
 			}
 		}
-	}
-
-	for (int i = 0; i < pikis; i++) {
-		Piki* piki = buffer[i];
-		HoleinStateArg arg(pos);
-		piki->mFsm->transit(piki, PIKISTATE_Holein, &arg);
 	}
 }
 
@@ -1819,29 +1803,20 @@ void Navi::holeinAllPikis(Vector3f& pos)
  */
 void Navi::fountainonAllPikis(Vector3f& pos)
 {
-	Piki* buffer[MAX_PIKI_COUNT];
-	int pikis = 0;
-
 	Iterator<Creature> iterator(mCPlateMgr);
 	CI_LOOP(iterator)
 	{
 		Piki* piki = static_cast<Piki*>(*iterator);
 		if (piki->isAlive() && (int)piki->getKind() != Bulbmin) {
 			if (piki->mCurrentState->transittable(PIKISTATE_Fountainon) && piki->mCurrentState->soft_transittable(PIKISTATE_Fountainon)) {
-				buffer[pikis] = piki;
-				pikis++;
+				FountainonStateArg arg(pos);
+				piki->mFsm->transit(piki, PIKISTATE_Fountainon, &arg);
 			} else {
 				piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
-				buffer[pikis] = piki;
-				pikis++;
+				FountainonStateArg arg(pos);
+				piki->mFsm->transit(piki, PIKISTATE_Fountainon, &arg);
 			}
 		}
-	}
-
-	for (int i = 0; i < pikis; i++) {
-		Piki* piki = buffer[i];
-		FountainonStateArg arg(pos);
-		piki->mFsm->transit(piki, PIKISTATE_Fountainon, &arg);
 	}
 }
 
@@ -1860,19 +1835,12 @@ void Navi::demowaitAllPikis()
 		Piki* piki = static_cast<Piki*>(*iterator);
 		if (piki->isAlive() && (int)piki->getKind() != Bulbmin) {
 			if (piki->mCurrentState->transittable(PIKISTATE_DemoWait) && piki->mCurrentState->soft_transittable(PIKISTATE_DemoWait)) {
-				buffer[pikis] = piki;
-				pikis++;
+				piki->mFsm->transit(piki, PIKISTATE_DemoWait, nullptr);
 			} else {
 				piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
-				buffer[pikis] = piki;
-				pikis++;
+				piki->mFsm->transit(piki, PIKISTATE_DemoWait, nullptr);
 			}
 		}
-	}
-
-	for (int i = 0; i < pikis; i++) {
-		Piki* piki = buffer[i];
-		piki->mFsm->transit(piki, PIKISTATE_DemoWait, nullptr);
 	}
 }
 
@@ -1925,14 +1893,9 @@ bool Navi::releasePikis()
 	int i;
 	for (int cColor = 0; cColor < 8; cColor++) {
 		for (i = 0; i < pikis; i++) {
-			if (cColor != Yellow) {
-				if (cColor == buffer[i]->getKind()) {
-					number[cColor]++;
-					position[cColor] += buffer[i]->getPosition();
-				} // WHY WHAT WHY / WHY IS YELLOW SPECIAL
-			} else if (buffer[i]->getKind() == Yellow) {
-				number[Yellow]++;
-				position[Yellow] += buffer[i]->getPosition();
+			if (cColor == buffer[i]->getKind()) {
+				number[cColor]++;
+				position[cColor] += buffer[i]->getPosition();
 			}
 		}
 	}
@@ -2215,9 +2178,6 @@ u32 Navi::ogGetNextThrowPiki()
 	Piki* nextPiki = mNextThrowPiki;
 	return (!nextPiki) ? 0 : ((PikiGrowthStageCount * nextPiki->mPikiKind) + 1) + nextPiki->mHappaKind;
 }
-
-// extern f32 pikmin2_cosf(f32 theta);
-// extern f32 pikmin2_sinf(f32 theta);
 
 /**
  * @note Address: 0x80146A54

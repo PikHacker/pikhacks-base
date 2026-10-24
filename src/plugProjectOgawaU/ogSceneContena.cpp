@@ -29,10 +29,10 @@ void Contena::doCreateObj(JKRArchive* archive)
 	registObj(new ObjContena("contena screen"), archive);
 
 	Screen::DispMemberBase* dispMember = mDispMember;
-	if (dispMember->isID(OWNER_OGA, MEMBER_CONTENA)) {
+	if (dispMember->isID(MEMBER_CONTENA)) {
 		mSceneType = SCENE_CONTENA_BLUE;
 	} else {
-		Screen::DispMemberUfoMenu* ufoMenu = static_cast<Screen::DispMemberUfoMenu*>(dispMember->getSubMember(OWNER_OGA, MEMBER_UFO_MENU));
+		Screen::DispMemberUfoMenu* ufoMenu = static_cast<Screen::DispMemberUfoMenu*>(dispMember->getSubMember(MEMBER_UFO_MENU));
 		switch (ufoMenu->mContenaType) {
 		case 1:
 			mSceneType = SCENE_CONTENA_WHITE;

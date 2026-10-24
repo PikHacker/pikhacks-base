@@ -325,10 +325,10 @@ bool SceneBase::setBackupScene()
 bool SceneBase::setDispMember(og::Screen::DispMemberBase* disp)
 {
 	bool result = false;
-	if (disp->isID(getOwnerID(), getMemberID()) || disp->getSubMember(getOwnerID(), getMemberID())) {
+	if (disp->isID(getMemberID()) || disp->getSubMember(getMemberID())) {
 		memcpy(mDispMember, (void*)disp, disp->getSize());
 		result = true;
-	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
+	} else if (disp->isID(MEMBER_DUMMY)) {
 		result = setDefaultDispMember();
 	}
 

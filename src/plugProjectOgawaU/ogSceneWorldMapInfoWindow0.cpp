@@ -22,7 +22,7 @@ void WorldMapInfoWindow0::doCreateObj(JKRArchive* archive)
 	registObj(new ObjWorldMapInfoWindow0("WorldMapInfoWindow0 screen"), archive);
 
 	Screen::DispMemberWorldMapInfoWin0* disp = static_cast<Screen::DispMemberWorldMapInfoWin0*>(mDispMember);
-	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
+	if (disp->isID(MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
 		setColorBG(0, 0, 0, disp->mBgAlpha);
 	}
 }
@@ -44,7 +44,7 @@ int WorldMapInfoWindow0::doGetFinishState()
 {
 	Screen::DispMemberWorldMapInfoWin0* disp = static_cast<Screen::DispMemberWorldMapInfoWin0*>(mDispMember);
 	int state                                = 0;
-	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
+	if (disp->isID(MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
 		state = disp->mResult;
 	}
 	return state;

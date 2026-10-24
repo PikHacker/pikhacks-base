@@ -263,6 +263,8 @@ struct Navi : public FakePiki, virtual public PelletView {
 	s32 mSprayCounts[2];                    // _25C proven signed by Navi::hasDope
 	bool mHideModel;                        // _268
 	u8 mPluckingCounter;                    // _26A
+	bool mCommandOn1;                       // _30C
+	bool mCommandOn2;                       // _30D
 	PSM::Navi* mSoundObj;                   // _26C
 	NaviFSM* mFsm;                          // _270
 	NaviState* mCurrentState;               // _274
@@ -277,12 +279,10 @@ struct Navi : public FakePiki, virtual public PelletView {
 	Sys::MatRepeatAnimator* mCursorMatAnim; // _298
 	Sys::MatLoopAnimator* mArrowMatAnim;    // _29C
 	f32 mHealth;                            // _2A0
-	u8 mInvincibleTimer;                    // _2A4
 	Piki* mNextThrowPiki;                   // _2A8
 	f32 mHoldPikiTimer;                     // _2B0
 	f32 mHoldPikiCharge;                    // _2B4, neither charge is used for anything
 	f32 mHoldPikiCharge2;                   // _2B8
-	u8 mThrowTimer;                         // _2BC, use NAVI_THROWSTATE enum
 	SysShape::Joint* mBeaconJoint;          // _2C0
 	Vector3f mBeaconPosition;               // _2C4
 	efx::TNaviEffect* mEffectsObj;          // _2D0
@@ -292,13 +292,13 @@ struct Navi : public FakePiki, virtual public PelletView {
 	Vector3f mCStickTargetVector;           // _2E0
 	Vector3f mCStickPosition;               // _2EC
 	f32 mCStickAngle;                       // _2F8
+	u8 mInvincibleTimer;                    // _2A4
+	u8 mThrowTimer;                         // _2BC, use NAVI_THROWSTATE enum
 	u8 _2FC;                                // _2FC
 	u8 _2FD;                                // _2FD
 	int mCStickState;                       // _300
 	int mCStickIncrement;                   // _304
 	f32 mSceneAnimationTimer;               // _308
-	bool mCommandOn1;                       // _30C
-	bool mCommandOn2;                       // _30D
 	                                        // PelletView: _310 - _320
 };
 

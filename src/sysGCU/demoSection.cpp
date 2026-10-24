@@ -101,7 +101,6 @@ bool Section::doUpdate()
 {
 	mTimer += sys->mDeltaTime;
 
-	BaseHIOSection::doUpdate();
 	if (mMoviePlayer.isFinishPlaying()) {
 		mIsMainActive = false;
 	}

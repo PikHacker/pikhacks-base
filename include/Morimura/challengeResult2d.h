@@ -24,7 +24,6 @@ struct DispMemberChallengeResult : public og::Screen::DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallengeResult); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }                     // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CHALLENGE_RESULT; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -226,7 +225,6 @@ struct TChallengeResultScene : public THIOScene {
 	virtual const char* getResName() const { return ""; }                    // _1C (weak)
 	virtual void doCreateObj(JKRArchive*) { }                                // _20 (weak)
 	virtual SceneType getSceneType() { return SCENE_CHALLENGE_RESULT; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }                // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_CHALLENGE_RESULT; } // _10 (weak)
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);                  // _24
 

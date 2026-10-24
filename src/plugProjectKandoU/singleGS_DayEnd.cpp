@@ -307,8 +307,6 @@ void DayEndState::cleanup(SingleGameSection* game)
 {
 	playData->setPikminCounts_Today();
 	GameStat::getMapPikmins(AllPikminCalcs);
-	int alivePikis = GameStat::alivePikis;
-	int mePikis    = GameStat::mePikis;
 	gameSystem->setPause(false, 3);
 	gameSystem->resetFlag(GAMESYS_DisableDeathCounter);
 }

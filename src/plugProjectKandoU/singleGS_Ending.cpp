@@ -115,7 +115,6 @@ void EndingState::do_dvdload()
 void EndingState::exec(SingleGameSection* game)
 {
 	if (mMainHeap || mStatus == 0) {
-		game->BaseHIOSection::doUpdate();
 		Screen::gGame2DMgr->update();
 		switch (mStatus) {
 		case EndingStatus_InitLoad:

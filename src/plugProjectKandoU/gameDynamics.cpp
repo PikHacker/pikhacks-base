@@ -1,50 +1,5 @@
-#include "DynamicsParms.h"
 #include "Game/Rigid.h"
 #include "trig.h"
-
-DynamicsParms* DynamicsParms::mInstance;
-
-/**
- * @note Address: 0x80139C60
- * @note Size: 0x334
- */
-DynamicsParms::DynamicsParms()
-    : Parameters(nullptr, "Dynamics")
-    , mNewFriction(this, 'd009', true, false, true) // 'new friction'
-    , mStaParm(this, 'd011', 140.0f, 0.0f, 5000.0f)
-    , mStatic(this, 'd010', 10.0f, 0.0f, 5000.0f)
-    , mMicroCollision(this, 'd000', 0.015f, 0.0f, 10.0f)
-    , mFrictionDuringResolve(this, 'd001', false, false, true) // 'friction during Resolve'
-    , mElasticity(this, 'd002', 0.3f, 0.0f, 1.0f)
-    , mFriction(this, 'd003', true, false, true)                // 'friction'
-    , mFrictionTangentVelocity(this, 'd004', true, false, true) // 'friction:tanvel' - tangent velocity?
-    , mFixedFriction(this, 'd005', true, false, true)           // 'fixed friction'
-    , mFixedFrictionValue(this, 'd006', 100.0f, 0.0f, 10000.0f) // 'fixed friction value'
-    , mNoRotationEffect(this, 'd007', true, false, true)        // 'no rotation effect'
-    , mRotatingMomentDamp(this, 'd008', 0.05f, 0.0f, 1.0f)      // 'rotating moment Damp'
-{
-	mInstance = this;
-}
-
-/**
- * @note Address: 0x80139F94
- * @note Size: 0x74
- */
-DynamicsParms::~DynamicsParms()
-{
-	mInstance = nullptr;
-}
-
-/**
- * @note Address: 0x8013A008
- * @note Size: 0x48
- */
-void DynamicsParms::globalInstance()
-{
-	if (!mInstance) {
-		mInstance = new DynamicsParms;
-	}
-}
 
 /**
  * @note Address: 0x8013A050
@@ -106,7 +61,7 @@ void Game::Rigid::computeForces(int configIdx)
 	config->mForce      = Vector3f(0.0f);
 	config->mTorque     = Vector3f(0.0f);
 
-	f32 dampVal = DynamicsParms::mInstance->mRotatingMomentDamp.mValue;
+	f32 dampVal = 0.05f;
 	if (dampVal > 0.0f) {
 		config->mMomentum = config->mMomentum - config->mMomentum * dampVal;
 	}

@@ -86,7 +86,6 @@ Model* ModelMgr::createModel(int modelIndex, int heapIndex)
 	if (mDelegate) {
 		mDelegate->invoke(model);
 	}
-	JUT_ASSERTLINE(184, model != nullptr, "failed to new model ! id %d idx %d\n", modelIndex, heapIndex);
 	sys->endChangeCurrentHeap();
 	return model;
 }

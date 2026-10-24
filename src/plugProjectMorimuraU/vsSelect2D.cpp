@@ -646,7 +646,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 
 	DispMemberVsSelect* disp = static_cast<DispMemberVsSelect*>(getDispMember());
 	int something            = 0;
-	if (disp->isID(OWNER_MRMR, MEMBER_VS_SELECT)) {
+	if (disp->isID(MEMBER_VS_SELECT)) {
 		mDispMember = disp;
 		something   = mDispMember->mStageNumber;
 	} else {

@@ -20,15 +20,6 @@ void DispMemberCpy(u8*, og::Screen::DispMemberBase*)
 
 /**
  * @note Address: N/A
- * @note Size: 0x48
- */
-ScreenOwnerID getSceneOwnerName(SceneBase* scene)
-{
-	return scene->getOwnerID();
-}
-
-/**
- * @note Address: N/A
  * @note Size: 0x40
  */
 ScreenMemberID getSceneMemberName(SceneBase* scene)
@@ -230,14 +221,11 @@ bool Mgr::reset()
 {
 	bool ret = false;
 	if (isCurrentSceneLoading()) {
-		u32 owner = mBackupScene->getOwnerID();
-		char buf[12];
-		og::Screen::TagToName(owner, buf);
 		ScreenMemberID member = mBackupScene->getMemberID();
 		char buf2[12];
 		og::Screen::TagToName(member, buf2);
 		// This is the "lockout skip crash" that can happen randomly when you lockout skip
-		JUT_PANICLINE(427, "can't reset. owner[%s]  member[%s]\n", buf, buf2);
+		JUT_PANICLINE(427, "can't reset.  member[%s]\n", buf2);
 	} else {
 		gResMgr2D->destroyAll();
 		mFlags.clear();
@@ -289,13 +277,10 @@ bool Mgr::startScene(StartSceneArg* arg)
 			}
 		}
 	} else {
-		char ownerStr[12];
-		og::Screen::TagToName((u32)mBackupScene->getOwnerID(), ownerStr);
-
 		char memberIdStr[12];
 		og::Screen::TagToName(mBackupScene->getMemberID(), memberIdStr);
 
-		JUT_PANICLINE(530, "can't startScene.\n owner[%s] member[%s]\n", ownerStr, memberIdStr);
+		JUT_PANICLINE(530, "can't startScene.\n member[%s]\n", memberIdStr);
 		result = false;
 	}
 
@@ -648,28 +633,21 @@ void Mgr::copyDispMember(u8* destAddress, u8* sourceAddress)
 	og::Screen::DispMemberBase* destMember = reinterpret_cast<og::Screen::DispMemberBase*>(destAddress);
 	og::Screen::DispMemberBase* srcMember  = reinterpret_cast<og::Screen::DispMemberBase*>(sourceAddress);
 
-	ScreenOwnerID backupOwnerID   = mBackupScene->getOwnerID();
 	ScreenMemberID backupMemberID = mBackupScene->getMemberID();
 
-	if (srcMember->isID(backupOwnerID, backupMemberID) || srcMember->getSubMember(backupOwnerID, backupMemberID)) {
+	if (srcMember->isID(backupMemberID) || srcMember->getSubMember(backupMemberID)) {
 		memcpy(destAddress, sourceAddress, srcMember->getSize());
 		destMember->setSubMemberAll();
 		return;
 	}
 
-	char ownerStr[12];
 	char memberStr[12];
-
-	char srcOwnerStr[12];
 	char srcMemberStr[12];
 
-	og::Screen::TagToName((u64)srcMember->getOwnerID(), srcOwnerStr);
 	og::Screen::TagToName((u64)srcMember->getMemberID(), srcMemberStr);
-
-	og::Screen::TagToName((u32)backupOwnerID, ownerStr);
 	og::Screen::TagToName(backupMemberID, memberStr);
 
-	JUT_PANICLINE(1098, "to   [%s] [%s]\nfrom [%s] [%s]\n", ownerStr, memberStr, srcOwnerStr, srcMemberStr);
+	JUT_PANICLINE(1098, "to [%s]\nfrom [%s]\n", memberStr, srcMemberStr);
 }
 
 /**

@@ -20,23 +20,4 @@ bool EnemyParmsBase::loadSettingFile(JKRArchive* archive, char* name)
 	return false;
 }
 
-/**
- * @note Address: 0x8012A2D8
- * @note Size: 0x24
- */
-void EnemyParmsBase::setDebugParm(u32 parm)
-{
-	mFlags[0].set((u16)parm);
-	mFlags[1].set(parm >> 16);
-}
-
-/**
- * @note Address: 0x8012A2FC
- * @note Size: 0x24
- */
-void EnemyParmsBase::resetDebugParm(u32 parm)
-{
-	mFlags[0].unset((u16)parm);
-	mFlags[1].unset(parm >> 16);
-}
 } // namespace Game

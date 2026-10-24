@@ -36,7 +36,6 @@ struct Challenge1P : public ChallengeBase {
 
 	virtual const char* getResName() const { return "res_challenge_1p.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_CHALLENGE_1P; }           // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_CHALLENGE_1P; }      // _10 (weak)
 	virtual bool isDrawInDemo() const { return false; }                       // _18 (weak)
 	virtual void doCreateObj(JKRArchive*);                                    // _20
@@ -54,7 +53,6 @@ struct Challenge2P : public ChallengeBase {
 
 	virtual const char* getResName() const { return "res_challenge_2p.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_CHALLENGE_2P; }           // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_CHALLENGE_2P; }      // _10 (weak)
 	virtual bool isDrawInDemo() const { return false; }                       // _18 (weak)
 	virtual void doCreateObj(JKRArchive*);                                    // _20

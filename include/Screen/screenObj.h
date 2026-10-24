@@ -129,7 +129,6 @@ struct SceneBase {
 	~SceneBase();
 
 	virtual SceneType getSceneType()     = 0;                          // _08
-	virtual ScreenOwnerID getOwnerID()   = 0;                          // _0C
 	virtual ScreenMemberID getMemberID() = 0;                          // _10
 	virtual bool isUseBackupSceneInfo() { return false; }              // _14 (weak)
 	virtual bool isDrawInDemo() const { return true; }                 // _18 (weak)

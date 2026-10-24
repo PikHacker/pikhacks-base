@@ -50,7 +50,7 @@ void ObjWinLose::doCreate(JKRArchive* arc)
 
 	int arg[2] = { 0, 0 };
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_WIN_LOSE)) {
+	if (!getDispMember()->isID(MEMBER_WIN_LOSE)) {
 		JUT_PANICLINE(79, "disp member err");
 	}
 
@@ -215,7 +215,7 @@ bool ObjWinLose::updateAnimation()
 		}
 	}
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_WIN_LOSE)) {
+	if (!getDispMember()->isID(MEMBER_WIN_LOSE)) {
 		JUT_PANICLINE(276, "disp member err");
 	}
 

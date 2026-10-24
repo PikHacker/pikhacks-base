@@ -3129,14 +3129,6 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 		piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, piki, nullptr);
 		break;
 	}
-
-	case 8:
-#if defined(VERSION_PAL)
-		JUT_PANICLINE(4121, "rapCnt の使い方がよくなので凍結中! (RAPTURE)\n");
-#else
-		JUT_PANICLINE(4112, "rapCnt の使い方がよくなので凍結中! (RAPTURE)\n");
-#endif
-		break;
 	}
 }
 

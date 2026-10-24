@@ -233,7 +233,6 @@ struct CaveInfo : public CNode {
 	virtual ~CaveInfo() { }           // _08 (weak)
 	virtual void read(Stream& input); // _10
 
-	void disablePelplant();
 	int getFloorMax();
 	FloorInfo* getFloorInfo(int floorIndex);
 	static CaveInfo* load(char* path);

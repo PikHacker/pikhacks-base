@@ -68,7 +68,6 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 
 	// _00 = VTBL
 	// _04 = ptr to _BaseItemMgrParent2
-	char* mItemName;                   // _08
 	LoadResource::Node* mResourceNode; // _0C
 	u32 _10;                           // _10
 	u32 _14;                           // _14

@@ -22,7 +22,6 @@ struct AnaDemo : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return "res_ana_demo.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return mSceneType; }               // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }              // _0C (weak)
 	virtual ScreenMemberID getMemberID()
 	{
 		ScreenMemberID id = _MEMBER_EMPTY_STRING;

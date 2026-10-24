@@ -22,7 +22,6 @@ struct DispCaveResult : public og::Screen::DispMemberBase {
 	DispCaveResult(Game::Result::TNode*, u32, u32, u32, u32, bool, JKRHeap*, bool);
 
 	virtual u32 getSize() { return sizeof(DispCaveResult); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }            // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CAVE_RESULT; } // _10 (weak)
 
 	void init(Game::Result::TNode*, u32, bool);
@@ -190,7 +189,6 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 struct SceneCaveResult : public ::Screen::SceneBase {
 	virtual const char* getResName() const { return ""; }               // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_CAVE_RESULT; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }             // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_CAVE_RESULT; } // _10 (weak)
 	virtual void doCreateObj(JKRArchive*) { }                           // _20 (weak)
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);             // _24

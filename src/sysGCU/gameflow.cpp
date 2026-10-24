@@ -62,8 +62,6 @@ void GameFlow::run()
  */
 void GameFlow::setSection()
 {
-	JKRHeap::sCurrentHeap->getFreeSize();
-
 	switch (mActiveSectionFlag) {
 	case SN_Boot:
 		mSection           = new BootSection(JKRGetCurrentHeap());

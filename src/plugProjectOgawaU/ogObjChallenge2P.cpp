@@ -36,7 +36,7 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 	mScreenP2 = new ScreenSet;
 
 	og::Screen::DispMemberChallenge2P* disp = static_cast<og::Screen::DispMemberChallenge2P*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_CHALLENGE_2P)) {
+	if (disp->isID(MEMBER_CHALLENGE_2P)) {
 		mDisp = disp;
 	} else {
 		JUT_PANICLINE(151, "ERR! in ObjChallenge2P Create失敗！\n");

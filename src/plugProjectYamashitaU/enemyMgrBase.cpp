@@ -38,7 +38,6 @@ EnemyMgrBase::EnemyMgrBase(int objLimit, u8 viewNum)
 	mObjLimit           = objLimit;
 	mNumObjects         = 0;
 	mParms              = nullptr;
-	mGenerator          = nullptr;
 	mStoneInfo.mLength  = 0;
 	mStoneInfo.mObjList = nullptr;
 }
@@ -302,25 +301,6 @@ void EnemyMgrBase::init(EnemyParmsBase* parms)
 	initStoneSetting();
 	initParms();
 	initObjects();
-	initGenerator();
-}
-
-/**
- * @note Address: 0x8012F928
- * @note Size: 0x24
- */
-void EnemyMgrBase::setDebugParm(u32 debugParm)
-{
-	mParms->setDebugParm(debugParm);
-}
-
-/**
- * @note Address: 0x8012F94C
- * @note Size: 0x24
- */
-void EnemyMgrBase::resetDebugParm(u32 debugParm)
-{
-	mParms->resetDebugParm(debugParm);
 }
 
 /**
@@ -574,15 +554,6 @@ J3DModelData* EnemyMgrBase::doLoadBmd(void* bmd)
 J3DModelData* EnemyMgrBase::doLoadBdl(void* bdl)
 {
 	return J3DModelLoaderDataBase::loadBinaryDisplayList(bdl, J3DMLF_DoBdlMaterialCalc);
-}
-
-/**
- * @note Address: 0x801303E8
- * @note Size: 0x90
- */
-void EnemyMgrBase::initGenerator()
-{
-	mGenerator = new EnemyGeneratorBase("EnemyGenerator");
 }
 
 /**

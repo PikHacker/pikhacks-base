@@ -118,7 +118,6 @@ void ObjectSpecialActor::update()
  */
 void ObjectSpecialActor::JSGSetAnimation(u32 commandID)
 {
-	JSGGetName();
 	JUT_ASSERTLINE(187, mCurrCommandCount < 16, "too many commands !\n");
 	mCommands[mCurrCommandCount++] = commandID;
 }

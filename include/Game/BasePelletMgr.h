@@ -15,11 +15,7 @@ struct PelletConfig;
 struct GenPelletParm;
 struct Pellet;
 
-// BasePelletMgr inherits something virtual, but I cannot work out what
-// it seems like all these BaseXMgrs are inheriting something virtual....
-struct _BasePelletMgrParent2 { };
-
-struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrParent2 {
+struct BasePelletMgr : public GenericObjectMgr {
 	BasePelletMgr(PelletList::cKind);
 
 	////////// VTABLE
@@ -132,7 +128,6 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 
 	// _00-_54 	= BasePelletMgr
 	// _54-_6C	= Container
-	// _6C-_70	= ptr to _BasePelletMgrParent2 (maybe??)
 	MonoObjectMgr<T> mMonoObjectMgr; // _70
 };
 

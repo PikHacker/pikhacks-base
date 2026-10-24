@@ -25,7 +25,6 @@ struct DispReadyGo : public og::Screen::DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispReadyGo); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }         // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_READY_GO; } // _10 (weak)
 
 	// _00     = VTBL
@@ -99,7 +98,6 @@ struct SceneReadyGo : public ::Screen::SceneBase {
 	virtual const char* getResName() const { return "ready_go.szs"; }             // _1C (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                          // _14 (weak)
 	virtual SceneType getSceneType() { return SCENE_READY_GO; }                   // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                       // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_READY_GO; }              // _10 (weak)
 	virtual void doCreateObj(JKRArchive* arc) { registObj(new ObjReadyGo, arc); } // _20 (weak)
 	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                       // _30

@@ -484,7 +484,6 @@ ZukanState::ZukanState()
 	mCurrObjHeap      = nullptr;
 	mTexture2         = nullptr;
 	mTexture          = nullptr;
-	mHeapSize         = 0;
 	mExtraHeapFor2D   = nullptr;
 	_108              = 0.0f;
 	mChangeSelTimer   = 0.0f;
@@ -1397,7 +1396,6 @@ void ZukanState::dvdloadA()
 	platCellMgr = nullptr;
 	BoundBox2d bound(12800000.0f, 12800000.0f, -12800000.0f, -12800000.0f);
 	mapMgr->getBoundBox2d(bound);
-	JKRGetCurrentHeap()->getFreeSize();
 	cellMgr->create(bound, 64.0f);
 	gameSystem->addObjectMgr(mapMgr);
 
@@ -1456,8 +1454,6 @@ void ZukanState::dvdloadB_common()
 			mMainHeap->becomeCurrentHeap();
 		}
 	}
-	mHeapSize = mMainHeap->getFreeSize();
-	OSReport("FreeSizeA :%d \n", mHeapSize);
 	mCurrObjHeap = JKRExpHeap::create(mMainHeap->getFreeSize(), mMainHeap, true);
 	mCurrObjHeap->becomeCurrentHeap();
 
@@ -1495,7 +1491,7 @@ void ZukanState::dvdloadB_teki()
 		Vector3f posOffset;
 		posOffset.set(posParms->mParms.mAppearPosX(), posParms->mParms.mAppearPosY(), posParms->mParms.mAppearPosZ());
 
-		OSReport("free:%d \n", count, JKRGetCurrentHeap()->getFreeSize());
+		// OSReport("free:%d \n", count, JKRGetCurrentHeap()->getFreeSize());
 		bool makeSpectralids = false;
 		TekiStat::Info* info = playData->mTekiStatMgr.getTekiInfo(mCurrentEnemyIndex);
 		if (info && info->mKilledTekiCount > 16) {
@@ -1638,10 +1634,6 @@ void ZukanState::dvdloadB_teki()
 			break;
 		}
 
-		if (initCarrotCount <= 0) {
-			return;
-		}
-
 		for (int i = 0; i < initCarrotCount; i++) {
 			Piki* piki = pikiMgr->birth();
 			if (piki) {
@@ -1650,10 +1642,6 @@ void ZukanState::dvdloadB_teki()
 				piki->changeShape(Carrot);
 
 				Vector3f lookAtPos = mCamera->getLookAtPosition();
-
-				Vector3f viewVec;
-				viewVec = mCamera->getViewVector();
-				viewVec.length(); // unused + regswaps
 
 				f32 randAngle = TAU * randFloat();
 				f32 randDist  = 100.0f * randFloat();
@@ -1782,17 +1770,14 @@ void ZukanState::clearHeapB_common()
 void ZukanState::clearHeapB_teki()
 {
 	if (mCurrObjHeap) {
-		Pellet* buffer[200];
+		Pellet* buffer[20];
 		int i = 0;
 		PelletIterator iterator;
 		CI_LOOP(iterator)
 		{
-			// you know, just in case you had 200 pellets loaded at once
 			Pellet* pelt = *iterator;
-			if (i < 200) {
+			if (i < 20) {
 				buffer[i++] = pelt;
-			} else {
-				JUT_PANICLINE(3164, "too many pellet\n");
 			}
 		}
 		for (int j = 0; j < i; j++) {
@@ -1802,7 +1787,7 @@ void ZukanState::clearHeapB_teki()
 		dynParticleMgr->resetMgr();
 
 		int j = 0;
-		Piki* buffer2[200];
+		Piki* buffer2[MAX_PIKI_COUNT];
 		Iterator<Piki> iterator2(pikiMgr);
 		CI_LOOP(iterator2)
 		{
@@ -1834,17 +1819,15 @@ void ZukanState::clearHeapB_pellet()
 {
 	if (mCurrObjHeap) {
 		if (mCurrentPellet) {
-			Pellet* buffer[200];
+			Pellet* buffer[20];
 			int i = 0;
 			PelletIterator iterator;
 			CI_LOOP(iterator)
 			{
 				// you know, just in case you had 200 pellets loaded at once
 				Pellet* pelt = *iterator;
-				if (i < 200) {
+				if (i < 20) {
 					buffer[i++] = pelt;
-				} else {
-					JUT_PANICLINE(3221, "too many pellet\n");
 				}
 			}
 			for (int j = 0; j < i; j++) {

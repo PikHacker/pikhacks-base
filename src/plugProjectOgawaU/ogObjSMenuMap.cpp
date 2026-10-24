@@ -574,10 +574,10 @@ u8 ObjSMenuMap::calcCaveNameAlpha()
 void ObjSMenuMap::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberSMenuAll* dispfull = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
-	mDisp = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_MAP));
+	mDisp                                    = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember(MEMBER_START_MENU_MAP));
 	if (!mDisp) {
 		dispfull = new og::Screen::DispMemberSMenuAll;
-		mDisp    = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_MAP));
+		mDisp    = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember(MEMBER_START_MENU_MAP));
 	}
 
 	// set up MapCounter object
@@ -715,7 +715,7 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 		paneRocketOld->hide();
 		paneRocketGold->hide();
 		og::Screen::DispMemberSMenuPause* disp2
-		    = static_cast<og::Screen::DispMemberSMenuPause*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE));
+		    = static_cast<og::Screen::DispMemberSMenuPause*>(dispfull->getSubMember(MEMBER_START_MENU_PAUSE));
 		if (disp2->mPokoCount >= DEBT_AMOUNT) {
 			// debt is paid!
 			paneRocketGold->show(); // shiny!

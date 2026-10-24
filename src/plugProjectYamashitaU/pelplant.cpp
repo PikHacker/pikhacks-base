@@ -294,9 +294,6 @@ void Obj::doAnimation()
 		case PELLET_NUMBER_TWENTY:
 			neckScale = 12.0f;
 			break;
-		default:
-			JUT_PANICLINE(663, "Unknown Pellet size. %d \n", mSize);
-			break;
 		}
 
 		Vector3f translation = Vector3f(neckScale, 0.0f, 0.0f);
@@ -546,7 +543,7 @@ bool Obj::neckJointCallBack(J3DJoint* joint, int p2)
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
-	mName = "ペレット草マネージャ"; // pellet plant manager
+	mName = "pelplant"; // pellet plant manager
 }
 
 /**

@@ -36,7 +36,6 @@ struct Ground : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return "res_ground.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_GROUND; }           // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }            // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GROUND; }      // _10 (weak)
 	virtual bool isDrawInDemo() const { return false; }                 // _18 (weak)
 	virtual void doCreateObj(JKRArchive*);                              // _20

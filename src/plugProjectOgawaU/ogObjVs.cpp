@@ -71,7 +71,7 @@ void ObjVs::doCreate(JKRArchive* arc)
 	mScreenP2 = new ScreenSet;
 
 	og::Screen::DispMemberVs* disp = static_cast<og::Screen::DispMemberVs*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_VS)) {
+	if (disp->isID(MEMBER_VS)) {
 		mDisp = disp;
 	} else {
 		JUT_PANICLINE(246, "ERR! in ObjVs Create失敗！\n");

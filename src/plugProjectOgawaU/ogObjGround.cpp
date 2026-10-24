@@ -50,7 +50,7 @@ ObjGround::~ObjGround()
 void ObjGround::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberGround* disp = static_cast<og::Screen::DispMemberGround*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_GROUND)) {
+	if (disp->isID(MEMBER_GROUND)) {
 		mDisp = disp;
 	} else {
 		JUT_PANICLINE(186, "ERR! in ObjGround Create失敗！\n");
@@ -175,9 +175,6 @@ void ObjGround::doDraw(Graphics& gfx)
 
 	if (mBloGroup)
 		mBloGroup->draw(&gfx.mPerspGraph);
-
-	if (mDisp->mHasRadar)
-		mOtakara->draw(gfx.mPerspGraph);
 }
 
 /**

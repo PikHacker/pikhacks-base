@@ -66,10 +66,8 @@ void JUTRomFont::loadImage(JKRHeap* heap)
 	}
 
 	if (spFontHeader_ == nullptr) {
-		JUTReportConsole_f("Font Encode Type %d\n", OSGetFontEncode());
 		spAboutEncoding_ = &saoAboutEncoding_[OSGetFontEncode()];
 		byteCount        = (spAboutEncoding_->mDataSize);
-		JUTReportConsole_f("IPLROM fontdata size : %u\n", byteCount);
 		spFontHeader_ = (OSFontHeader*)JKRHeap::alloc(byteCount, 0x20, heap);
 		OSInitFont(spFontHeader_);
 		mFixedWidth = spFontHeader_->width;

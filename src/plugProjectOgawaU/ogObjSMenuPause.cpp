@@ -99,11 +99,11 @@ ObjSMenuPause::~ObjSMenuPause()
 void ObjSMenuPause::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberBase* dispfull = getDispMember();
-	mDisp = static_cast<og::Screen::DispMemberSMenuPause*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE));
+	mDisp                                = static_cast<og::Screen::DispMemberSMenuPause*>(dispfull->getSubMember(MEMBER_START_MENU_PAUSE));
 	if (!mDisp) {
 		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
 		dispfull                                = newdisp;
-		mDisp = static_cast<og::Screen::DispMemberSMenuPause*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE));
+		mDisp = static_cast<og::Screen::DispMemberSMenuPause*>(newdisp->getSubMember(MEMBER_START_MENU_PAUSE));
 	}
 	mIsDay1 = static_cast<og::Screen::DispMemberSMenuAll*>(dispfull)->mIsDay1;
 

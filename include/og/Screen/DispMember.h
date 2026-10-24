@@ -37,14 +37,13 @@ struct DispMemberBase {
 	}
 
 	virtual u32 getSize()     = 0;       // _08
-	virtual u32 getOwnerID()  = 0;       // _0C
 	virtual u64 getMemberID() = 0;       // _10
 	virtual void doSetSubMemberAll() { } // _14 (weak)
 
-	bool isID(u32, u64);
+	bool isID(u64);
 	void getMemberName(char*);
 	bool setSubMember(DispMemberBase*);
-	DispMemberBase* getSubMember(u32, u64);
+	DispMemberBase* getSubMember(u64);
 	void setSubMemberAll();
 
 	// _00 = VTBL
@@ -66,7 +65,6 @@ struct DispMemberAnaDemo : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberAnaDemo); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }              // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_ANA_DEMO; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -91,7 +89,6 @@ struct DispMemberDayEndCount : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberDayEndCount); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }                 // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_DAY_END_COUNT; }      // _10 (weak)
 
 	// _00     = VTBL
@@ -110,7 +107,6 @@ struct DispMemberHurryUp : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberHurryUp); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }             // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_HURRY_UP; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -138,7 +134,6 @@ struct DispMemberCave : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCave); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }           // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CAVE; }        // _10 (weak)
 
 	// _00     = VTBL
@@ -170,7 +165,6 @@ struct DispMemberCaveMore : public DispMemberAnaDemo {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCaveMore); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CAVE_MORE; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -192,7 +186,6 @@ struct DispMemberChallenge1P : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallenge1P); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CHALLENGE_1P; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -221,7 +214,6 @@ struct DispMemberChallenge2P : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallenge2P); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CHALLENGE_2P; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -242,7 +234,6 @@ struct DispMemberContena : public DispMemberBase {
 	inline DispMemberContena() { }
 
 	virtual u32 getSize() { return sizeof(DispMemberContena); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }              // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CONTENA; }        // _10 (weak)
 
 	inline DataContena* getDataContena() { return &mDataContena; }
@@ -262,7 +253,6 @@ struct DispMemberCourseName : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCourseName); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                 // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_COURSE_NAME; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -276,7 +266,6 @@ struct DispMemberCourseName : public DispMemberBase {
 struct DispMemberDummy : public DispMemberBase {
 
 	virtual u32 getSize() { return sizeof(DispMemberDummy); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }            // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_DUMMY; }        // _10 (weak)
 
 	// _00     = VTBL
@@ -289,7 +278,6 @@ struct DispMemberFinalMessage : public DispMemberBase {
 	inline DispMemberFinalMessage() { mFinalState = 0; } // ::Screen::Game2DMgr::CHECK2D_FinalMessage_NotOpen
 
 	virtual u32 getSize() { return sizeof(DispMemberFinalMessage); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                   // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_FINAL_MSG; }           // _10 (weak)
 
 	// _00     = VTBL
@@ -309,7 +297,6 @@ struct DispMemberFloor : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberFloor); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }            // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_FLOOR; }        // _10 (weak)
 
 	// _00     = VTBL
@@ -341,7 +328,6 @@ struct DispMemberGround : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberGround); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }             // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_GROUND; }        // _10 (weak)
 
 	// _00     = VTBL
@@ -377,7 +363,6 @@ struct DispMemberKanketuMenu : public DispMemberAnaDemo {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberKanketuMenu); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_KANKETU_MENU; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -408,7 +393,6 @@ struct DispMemberKantei : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberKantei); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }             // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_KANTEI; }        // _10 (weak)
 
 	// _00     = VTBL
@@ -434,7 +418,6 @@ struct DispMemberSave : public DispMemberBase {
 	inline DispMemberSave() { mDoSound = false; }
 
 	virtual u32 getSize() { return sizeof(DispMemberSave); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }           // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_SAVE; }        // _10 (weak)
 
 	// _00     = VTBL
@@ -446,7 +429,6 @@ struct DispMemberSave : public DispMemberBase {
 struct DispMemberSMenuCont : public DispMemberBase {
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuCont); }    // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                   // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_START_MENU_CONTROLS; } // _10 (weak)
 
 	// _00     = VTBL
@@ -469,7 +451,6 @@ struct DispMemberSMenuItem : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuItem); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_START_MENU_ITEM; }  // _10 (weak)
 
 	// _00     = VTBL
@@ -507,7 +488,6 @@ struct DispMemberSMenuMap : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuMap); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_START_MENU_MAP; }  // _10 (weak)
 
 	// _00     = VTBL
@@ -534,7 +514,6 @@ struct DispMemberSMenuPause : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuPause); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                 // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_START_MENU_PAUSE; }  // _10 (weak)
 
 	// _00     = VTBL
@@ -557,7 +536,6 @@ struct DispMemberSMenuPauseDoukutu : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuPauseDoukutu); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                        // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_START_MENU_PAUSE_DOUKUTU; } // _10 (weak)
 
 	// _00     = VTBL
@@ -575,7 +553,6 @@ struct DispMemberSMenuPauseVS : public DispMemberBase {
 	inline DispMemberSMenuPauseVS() { mState = og::Screen::MENUFINISH_GetFromSubMember; }
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuPauseVS); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                   // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_START_MENU_PAUSE_VS; } // _10 (weak)
 
 	// _00     = VTBL
@@ -598,7 +575,6 @@ struct DispMemberSMenuAll : public DispMemberBase {
 	};
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuAll); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_START_MENU_ALL; }  // _10 (weak)
 	virtual void doSetSubMemberAll()
 	{
@@ -632,7 +608,6 @@ struct DispMemberSpecialItem : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSpecialItem); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_SPECIAL_ITEM; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -650,7 +625,6 @@ struct DispMemberUfoMenu : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberUfoMenu); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }              // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_UFO_MENU; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -671,7 +645,6 @@ struct DispMemberUfoGroup : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberUfoGroup); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_UFO_GROUP; }       // _10 (weak)
 	virtual void doSetSubMemberAll()                             // _14 (weak)
 	{
@@ -709,7 +682,6 @@ struct DispMemberVs : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberVs); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }         // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_VS; }        // _10 (weak)
 
 	inline void setMarbleConditions(bool red, bool blue)
@@ -745,7 +717,6 @@ struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberWorldMapInfoWin0); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                       // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_WORLD_MAP_INFO_WINDOW_0; } // _10 (weak)
 
 	// _00     = VTBL
@@ -766,7 +737,6 @@ struct DispMemberWorldMapInfoWin1 : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberWorldMapInfoWin1); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                       // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_WORLD_MAP_INFO_WINDOW_1; } // _10 (weak)
 
 	// _00     = VTBL

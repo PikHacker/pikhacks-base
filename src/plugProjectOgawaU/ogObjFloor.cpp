@@ -344,7 +344,7 @@ void ObjFloor::setCaveMsgID(u32 caveid, char* buffer)
 void ObjFloor::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_FLOOR)) {
+	if (disp->isID(MEMBER_FLOOR)) {
 		mDisp = disp;
 	} else {
 		JUT_PANICLINE(452, "ERR! in ObjFloor Create失敗！\n");
@@ -478,7 +478,7 @@ bool newScreen::ObjFloor::commonUpdate()
 	bool ret                             = false;
 	og::Screen::DispMemberFloor* disp    = nullptr;
 	og::Screen::DispMemberBase* baseDisp = getDispMember();
-	if (baseDisp->isID(OWNER_OGA, MEMBER_FLOOR)) {
+	if (baseDisp->isID(MEMBER_FLOOR)) {
 		disp = static_cast<og::Screen::DispMemberFloor*>(baseDisp);
 	}
 
@@ -554,7 +554,7 @@ bool newScreen::ObjFloor::commonUpdate()
 			ret = true;
 	} else {
 		og::Screen::DispMemberFloor* disp2 = static_cast<og::Screen::DispMemberFloor*>(getDispMember());
-		if (disp2->isID(OWNER_OGA, MEMBER_FLOOR)) {
+		if (disp2->isID(MEMBER_FLOOR)) {
 			if (disp2->mDoEnd) {
 				mDoFadeout = true;
 				mDoEnd     = true;

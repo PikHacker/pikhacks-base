@@ -287,7 +287,6 @@ bool BaseGameSection::doUpdate()
 			j3dSetView(viewport, false);
 		}
 	}
-	BaseHIOSection::doUpdate();
 	if (platMgr) {
 		platMgr->resetOnCount();
 	}
@@ -562,8 +561,6 @@ void BaseGameSection::initGenerators()
 		dayGeneratorMgr->mName = "Generator(DAY)";
 		addGenNode(dayGeneratorMgr);
 
-		GeneratorMgr::cursorCallback = new Delegate1<BaseGameSection, Vector3f&>(this, changeGeneratorCursor);
-
 		GenObjectEnemy::initialise();
 		GenItem::initialise();
 		GenPellet::initialise();
@@ -775,19 +772,13 @@ void BaseGameSection::initGenerators()
 	}
 
 	PelletBirthBuffer::birthAll();
-	Iterator<Navi> iNavi = naviMgr;
-	int naviCount        = 0;
-	CI_LOOP(iNavi)
-	{
-		naviCount++;
-	}
+	int naviCount = naviMgr->mActiveCount;
 	switch (naviCount) {
 	case 0: {
 		Navi* olimar;
 		Navi* louie;
 		bool olimarAlive = false;
 		Vector3f position;
-		Vector3f velocity = Vector3f(0.0f);
 
 		f32 mapRotation = mapMgr->getMapRotation();
 		position        = Vector3f(-40.0f, 0.0f, 2.0f);
@@ -804,7 +795,6 @@ void BaseGameSection::initGenerators()
 			} else {
 				position   = mapMgr->getDemoMatrix()->mtxMult(position);
 				position.y = mapMgr->getMinY(position);
-				velocity   = Vector3f(0.0f);
 			}
 		}
 		olimar = naviMgr->birth();
@@ -813,7 +803,6 @@ void BaseGameSection::initGenerators()
 		olimar->setCamera(mOlimarCamera);
 		olimar->setController(mControllerP1);
 		olimar->setPosition(position, false);
-		olimar->setVelocity(velocity);
 
 		if (playData->mDeadNaviID.typeView & 1) {
 
@@ -838,7 +827,6 @@ void BaseGameSection::initGenerators()
 			} else {
 				position   = mapMgr->getDemoMatrix()->mtxMult(position);
 				position.y = mapMgr->getMinY(position);
-				velocity   = Vector3f(0.0f);
 			}
 		}
 		louie = naviMgr->birth();
@@ -849,7 +837,6 @@ void BaseGameSection::initGenerators()
 		louie->setController(mControllerP2);
 		louie->mFaceDir = roundAng(mapRotation);
 		louie->setPosition(position, false);
-		louie->setVelocity(velocity);
 		if (!(playData->mDeadNaviID.typeView >> 1 & 1)) {
 			louie->mHealth = playData->mNaviLifeMax[1];
 		}
@@ -1356,14 +1343,6 @@ void BaseGameSection::draw_Ogawa2D(Graphics& gfx)
 }
 
 /**
- * @note Address: 0x8014F1D8
- * @note Size: 0x4
- */
-void BaseGameSection::test_draw_treasure_detector()
-{
-}
-
-/**
  * @note Address: 0x8014F1DC
  * @note Size: 0x1BC
  */
@@ -1517,14 +1496,6 @@ void BaseGameSection::doSimpleDraw(Viewport* vp)
 void BaseGameSection::doAnimation()
 {
 	Navi* olimar = naviMgr->getAt(NAVIID_Olimar);
-	if (!gameSystem->isZukanMode() && generatorMgr) {
-		Vector3f olimarPos = olimar->getPosition();
-		generatorMgr->updateCursorPos(olimarPos);
-		onceGeneratorMgr->updateCursorPos(olimarPos);
-		limitGeneratorMgr->updateCursorPos(olimarPos);
-		plantsGeneratorMgr->updateCursorPos(olimarPos);
-		dayGeneratorMgr->updateCursorPos(olimarPos);
-	}
 
 	if (testPathfinder) {
 		testPathfinder->update();
@@ -1539,15 +1510,6 @@ void BaseGameSection::doAnimation()
 	if (!gameSystem->isZukanMode()) {
 		updateSplitter();
 	}
-}
-
-/**
- * @note Address: 0x8014F754
- * @note Size: 0x4C
- */
-void BaseGameSection::changeGeneratorCursor(Vector3f& vec)
-{
-	naviMgr->getAt(NAVIID_Olimar)->setPosition(vec, false);
 }
 
 /**
@@ -1839,7 +1801,6 @@ void BaseGameSection::clearHeap()
 	mTheExpHeap = nullptr;
 	theExpHeap  = nullptr;
 	mBackupHeap->becomeCurrentHeap();
-	JKRGetCurrentHeap()->getFreeSize();
 }
 
 /**
@@ -2030,11 +1991,8 @@ void BaseGameSection::setupFloatMemory()
 	lifeGaugeMgr = new LifeGaugeMgr;
 	lifeGaugeMgr->loadResource();
 
-	if (gameSystem->isStoryMode()) {
-		carryInfoMgr = new CarryInfoMgr(48);
-	} else {
-		carryInfoMgr = new CarryInfoMgr(64);
-	}
+	carryInfoMgr = new CarryInfoMgr(64);
+
 	carryInfoMgr->loadResource();
 
 	platMgr   = new PlatMgr;
@@ -2070,9 +2028,7 @@ void BaseGameSection::setupFloatMemory()
 		incave = true;
 	}
 	itemMgr = new ItemMgr;
-	if (isDevelopSection()) {
-		itemMgr->createManagers(3);
-	} else if (incave) {
+	if (incave) {
 		itemMgr->createManagers(1);
 	} else {
 		itemMgr->createManagers(2);
@@ -2102,9 +2058,6 @@ void BaseGameSection::setupFloatMemory()
 				mapunit->read(path);
 				mapunit->setEditNumber(getVsEditNumber());
 			}
-		}
-		if (challengeDisablePelplant()) {
-			info->disablePelplant();
 		}
 		mapMgr = new RoomMapMgr(info);
 		static_cast<RoomMapMgr*>(mapMgr)->createRandomMap(getCurrFloor(), mapunit);
@@ -2173,7 +2126,6 @@ void BaseGameSection::setupFloatMemory()
 	cellMgr = new CellPyramid;
 	BoundBox2d bounds(12800000.0f, 12800000.0f, -12800000.0f, -12800000.0f);
 	mapMgr->getBoundBox2d(bounds);
-	JKRGetCurrentHeap()->getFreeSize();
 	cellMgr->create(bounds, 108.0f);
 	if (!cave) {
 		platCellMgr = new CellPyramid;

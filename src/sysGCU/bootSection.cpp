@@ -921,7 +921,6 @@ bool BootSection::doUpdate()
 			particle2dMgr->update();
 		}
 	}
-	BaseHIOSection::doUpdate();
 	return mIsMainActive;
 }
 

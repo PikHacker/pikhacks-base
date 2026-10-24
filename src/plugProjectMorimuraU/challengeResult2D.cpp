@@ -804,7 +804,7 @@ void TChallengeResult::doCreate(JKRArchive* arc)
 {
 	mArchive                        = arc;
 	DispMemberChallengeResult* disp = static_cast<DispMemberChallengeResult*>(getDispMember());
-	if (disp->isID(OWNER_MRMR, MEMBER_CHALLENGE_RESULT)) {
+	if (disp->isID(MEMBER_CHALLENGE_RESULT)) {
 		mDisp = disp;
 	} else {
 		mIsSection = true;

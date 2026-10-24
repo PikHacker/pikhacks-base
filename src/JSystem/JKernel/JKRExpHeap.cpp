@@ -820,6 +820,8 @@ bool JKRExpHeap::check()
  */
 bool JKRExpHeap::dump()
 {
+	return;
+
 	lock();
 	bool result   = check();
 	u32 usedBytes = 0;
@@ -862,6 +864,8 @@ bool JKRExpHeap::dump()
  */
 bool JKRExpHeap::dump_sort()
 {
+	return;
+
 	lock();
 	bool result   = check();
 	u32 usedBytes = 0;

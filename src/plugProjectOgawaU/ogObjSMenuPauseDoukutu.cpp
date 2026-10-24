@@ -59,10 +59,10 @@ ObjSMenuPauseDoukutu::~ObjSMenuPauseDoukutu()
 void ObjSMenuPauseDoukutu::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberBase* newdisp = getDispMember();
-	mDisp = static_cast<og::Screen::DispMemberSMenuPauseDoukutu*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_DOUKUTU));
+	mDisp = static_cast<og::Screen::DispMemberSMenuPauseDoukutu*>(newdisp->getSubMember(MEMBER_START_MENU_PAUSE_DOUKUTU));
 	if (!mDisp) {
 		newdisp = new og::Screen::DispMemberSMenuPauseDoukutu;
-		mDisp   = static_cast<og::Screen::DispMemberSMenuPauseDoukutu*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_DOUKUTU));
+		mDisp   = static_cast<og::Screen::DispMemberSMenuPauseDoukutu*>(newdisp->getSubMember(MEMBER_START_MENU_PAUSE_DOUKUTU));
 	}
 
 	mIsDay1 = static_cast<og::Screen::DispMemberSMenuAll*>(newdisp)->mIsDay1; // hmm.

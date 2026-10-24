@@ -33,10 +33,10 @@ ObjSMenuCont::~ObjSMenuCont()
 void ObjSMenuCont::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberSMenuAll* dispfull = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
-	mDisp = static_cast<og::Screen::DispMemberSMenuCont*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_CONTROLS));
+	mDisp = static_cast<og::Screen::DispMemberSMenuCont*>(dispfull->getSubMember(MEMBER_START_MENU_CONTROLS));
 	if (!mDisp) {
 		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
-		mDisp = static_cast<og::Screen::DispMemberSMenuCont*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_CONTROLS));
+		mDisp = static_cast<og::Screen::DispMemberSMenuCont*>(newdisp->getSubMember(MEMBER_START_MENU_CONTROLS));
 	}
 
 	mScreenCont = new P2DScreen::Mgr_tuning;

@@ -34,7 +34,6 @@ struct SingleGameSection : public BaseGameSection {
 	virtual bool doUpdate();                                                  // _3C
 	virtual void doDraw(Graphics& gfx);                                       // _40
 	virtual int getCurrFloor() { return mCurrentFloor; }                      // _58 (weak)
-	virtual bool isDevelopSection() { return false; }                         // _5C (weak)
 	virtual void startMainBgm();                                              // _64
 	virtual void section_fadeout();                                           // _68
 	virtual void goNextFloor(ItemHole::Item* hole);                           // _6C

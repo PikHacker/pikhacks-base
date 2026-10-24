@@ -375,7 +375,6 @@ CItemFSM* Item::createFSM()
 Mgr::Mgr()
     : TNodeItemMgr()
 {
-	mItemName = "Hole";
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/dungeon_hole";
 }

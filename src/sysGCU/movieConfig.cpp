@@ -177,7 +177,6 @@ MovieConfig* MovieList::findConfig(char* movieName, char* mapName)
  */
 void MovieList::getConfig(int i)
 {
-	P2ASSERTLINE(100, i > 0);
 }
 
 /**

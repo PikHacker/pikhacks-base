@@ -232,14 +232,6 @@ int ObjectSystem::JSGFindObject(JStage::TObject** outObject, const char* name, J
 		newObj = new ObjectCamera(name, mMoviePlayer);
 		break;
 	default:
-		JGadget::TList_pointer<JStage::TObject*>::iterator iterStart = mObjListPointer.begin();
-		JGadget::TList_pointer<JStage::TObject*>::iterator iterEnd   = mObjListPointer.end();
-		while (iterStart != iterEnd) {
-			JStage::TObject* obj = static_cast<JStage::TObject*>(*iterStart);
-
-			++iterStart;
-		}
-		JUT_PANICLINE(449, "JSGFindObject---- %d not found\n"); // nice oopsie
 		break;
 	case JStage::TEO_System:
 	case JStage::TEO_AmbientLight:

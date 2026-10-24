@@ -450,7 +450,6 @@ bool Obj::damageCallBack(Creature* creature, f32 strength, CollPart* part)
 		return true;
 	}
 	P2ASSERTLINE(678, creature);
-	creature->isPiki();
 	Piki* piki = static_cast<Piki*>(creature);
 	if (part) {
 		if (piki->isAlive() && piki->isStickTo()) {

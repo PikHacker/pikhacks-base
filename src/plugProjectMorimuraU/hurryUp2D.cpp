@@ -112,7 +112,7 @@ void THurryUp2D::doCreate(JKRArchive* arc)
 	mArchive = arc;
 
 	og::Screen::DispMemberGround* disp = static_cast<og::Screen::DispMemberGround*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_GROUND)) {
+	if (disp->isID(MEMBER_GROUND)) {
 		mDisp = &disp->mHurryUp;
 	} else {
 		mDisp      = new og::Screen::DispMemberHurryUp;

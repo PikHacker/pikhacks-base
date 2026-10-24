@@ -505,32 +505,19 @@ void GeneratorCache::write(Stream& output)
 
 		CourseCache* cache = findCache(mRootCache, i);
 		if (cache) {
-			output.textWriteTab(output.mTabCount);
 			output.writeByte(0);
-			output.textWriteText("\t# Alive\r\n");
 
 		} else {
 			cache = findCache(mFreeCache, i);
-
 			JUT_ASSERTLINE(945, cache, "no cache : %d\n", i);
-			output.textWriteTab(output.mTabCount);
 			output.writeByte(255);
-			output.textWriteText("\t# Dead\r\n");
 		}
 		cache->write(output);
 	}
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mHeapSize);
-	output.textWriteText("\t# heapSize\r\n");
-
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mFreeOffset);
-	output.textWriteText("\t# freeOffset\r\n");
-
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mFreeSize);
-	output.textWriteText("\t# freeSize\r\n");
 
 	int j        = 0;
 	int heapOffs = 0;
@@ -616,41 +603,23 @@ void CourseCache::write(Stream& output)
 	sprintf(header, "CourseCache %d", mCourseIndex);
 	output.textBeginGroup(header);
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mCourseIndex);
-	output.textWriteText("# courseindex\r\n");
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mOffset);
-	output.textWriteText("# offset\r\n");
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mSize);
-	output.textWriteText("# size\r\n");
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mGeneratorCount);
-	output.textWriteText("# numGenerators\r\n");
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mGeneratorSize);
-	output.textWriteText("# generatorSize\r\n");
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mCreatureCount);
-	output.textWriteText("# numCreatures\r\n");
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mCreatureSize);
-	output.textWriteText("# creatureSize\r\n");
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mPikiheadCount);
-	output.textWriteText("# numPikiheads\r\n");
 
-	output.textWriteTab(output.mTabCount);
 	output.writeInt(mPikiheadSize);
-	output.textWriteText("# pikiheadSize\r\n");
 
 	output.textEndGroup();
 }

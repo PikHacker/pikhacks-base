@@ -335,9 +335,6 @@ JAISound* CreatureAnime::startSound(u32 soundID, u32 a2)
  */
 void CreatureAnime::startSound(u8 id, u32 soundID, u32 a3)
 {
-	JUT_PANICLINE(466, "使用禁止再生関数"); // "Disabled playback functions"
-
-	JAIBasic::msBasic->startSoundVecT(soundID, &mSounds[id], _24, a3, 0, PSMGetPlayerNo(this));
 }
 
 /**
@@ -346,9 +343,6 @@ void CreatureAnime::startSound(u8 id, u32 soundID, u32 a3)
  */
 void CreatureAnime::startSound(JAISound** se, u32 soundID, u32 a3)
 {
-	JUT_PANICLINE(482, "使用禁止再生関数"); // "Disabled playback functions"
-
-	JAIBasic::msBasic->startSoundVecT(soundID, se, _24, a3, 0, PSMGetPlayerNo(this));
 }
 
 /**

@@ -23,7 +23,6 @@ struct DispWinLose : public og::Screen::DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispWinLose); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }         // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_WIN_LOSE; } // _10 (weak)
 
 	// _00     = VTBL
@@ -35,7 +34,6 @@ struct DispWinLose : public og::Screen::DispMemberBase {
 struct DispWinLoseReason : public og::Screen::DispMemberBase {
 
 	virtual u32 getSize() { return sizeof(DispWinLoseReason); }  // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }                // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_WIN_LOSE_REASON; } // _10 (weak)
 
 	// _00     = VTBL
@@ -142,7 +140,6 @@ struct ObjWinLoseReason : public ::Screen::ObjBase {
 struct SceneWinLose : public ::Screen::SceneBase {
 	virtual const char* getResName() const { return "win_lose.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_WIN_LOSE; }       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }           // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_WIN_LOSE; }  // _10 (weak)
 	virtual void doCreateObj(JKRArchive* archive)                     // _20 (weak)
 	{
@@ -158,7 +155,6 @@ struct SceneWinLoseReason : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return "win_lose_reason.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_WIN_LOSE_REASON; }       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                  // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_WIN_LOSE_REASON; }  // _10 (weak)
 	virtual void doCreateObj(JKRArchive*);                                   // _20
 	virtual void doUpdateActive();                                           // _2C

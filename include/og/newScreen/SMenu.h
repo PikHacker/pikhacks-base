@@ -73,7 +73,6 @@ struct SMenuCont : public SceneSMenuBase {
 
 	virtual const char* getResName() const { return "res_s_menu_controller.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU_CONTROLS; }         // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                       // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_CONTROLS; }    // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                           // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                                         // _20
@@ -91,7 +90,6 @@ struct SMenuItem : public SceneSMenuBase {
 
 	virtual const char* getResName() const { return "res_s_menu_item.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU_ITEMS; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                 // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_ITEM; }  // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                     // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                                   // _20
@@ -109,7 +107,6 @@ struct SMenuMap : public SceneSMenuBase {
 
 	virtual const char* getResName() const { return "res_s_menu_map.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU_MAP; }       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_MAP; }  // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                    // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                                  // _20
@@ -127,7 +124,6 @@ struct SMenuPause : public SceneSMenuBase {
 
 	virtual const char* getResName() const { return "res_s_menu_pause.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU; }             // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_PAUSE; }  // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                      // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                                    // _20
@@ -144,7 +140,6 @@ struct SMenuPauseDoukutu : public SceneSMenuBase {
 
 	virtual const char* getResName() const { return "res_s_menu_pause_doukutu.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU_DOUKUTU; }             // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                          // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_PAUSE_DOUKUTU; }  // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                              // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                                            // _20
@@ -162,7 +157,6 @@ struct SMenuPauseVS : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return "res_s_menu_pause_VS.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU_VS; }             // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                     // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_PAUSE_VS; }  // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                         // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                                       // _20

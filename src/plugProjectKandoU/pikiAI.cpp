@@ -125,26 +125,8 @@ int Piki::graspSituation_Fast(Game::Creature** outTarget)
 		case OBJTYPE_Gate: { // can we attack the gate?
 			// not if the Pikmin was recently poisoned
 			if (!gasInvicible()) {
-				ItemGate* gate    = static_cast<ItemGate*>(creature);
-				bool isAttackable = true;
-				// not if a poison pipe is nearby when White Pikmin haven't found and we are... a White Pikmin? Cool check
-				if (gameSystem->isStoryMode() && !playData->hasMetPikmin(White) && getKind() != White) {
-					Vector3f gatePos = gate->getPosition();
-					Sys::Sphere gateSearchSphere(gatePos, GATE_GAS_PIPE_RANGE);
-					CellIteratorArg gateIterArg(gateSearchSphere);
-					CellIterator gateIter(gateIterArg);
-					CI_LOOP(gateIter)
-					{
-						Creature* target = static_cast<Creature*>(*gateIter);
-						if (target->isTeki() && target->isAlive()
-						    && static_cast<EnemyBase*>(target)->getEnemyTypeID() == EnemyTypeID::EnemyID_GasHiba) {
-							isAttackable = false;
-							break;
-						}
-					}
-				}
-
-				if (gate->isAlive() && isAttackable) {
+				ItemGate* gate = static_cast<ItemGate*>(creature);
+				if (gate->isAlive()) {
 					f32 workDist = gate->getWorkDistance(mBoundingSphere);
 					if (!isActionSet && workDist < minDist && workDist < pikiMgr->mParms->mPikiParms.mGateSearchRange()) {
 						minDist = workDist;
@@ -463,24 +445,6 @@ bool Piki::invokeAI(Game::PlatEvent* event)
 				return false;
 			}
 
-			// not if a poison pipe is nearby when White Pikmin haven't found and we are... a White Pikmin? Cool check
-			if (gameSystem->isStoryMode() && !playData->hasMetPikmin(White) && getKind() != White) {
-				Vector3f itemPos = item->getPosition();
-
-				Sys::Sphere sphere(itemPos, GATE_GAS_PIPE_RANGE);
-
-				CellIteratorArg iterArg(sphere);
-				CellIterator iter(iterArg);
-
-				CI_LOOP(iter)
-				{
-					Creature* creature = static_cast<Creature*>(*iter);
-					if (creature->isTeki() && creature->isAlive()
-					    && static_cast<EnemyBase*>(creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_GasHiba) {
-						return false;
-					}
-				}
-			}
 			PikiAI::ActBreakGateArg breakGateArg;
 			breakGateArg.mGate = static_cast<ItemGate*>(item);
 			return mBrain->start(PikiAI::ACT_BreakGate, &breakGateArg);

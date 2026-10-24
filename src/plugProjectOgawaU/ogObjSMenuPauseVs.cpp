@@ -43,13 +43,13 @@ ObjSMenuPauseVS::~ObjSMenuPauseVS()
 void ObjSMenuPauseVS::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberBase* newdisp = getDispMember();
-	mDisp = static_cast<og::Screen::DispMemberSMenuPauseVS*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_VS));
+	mDisp = static_cast<og::Screen::DispMemberSMenuPauseVS*>(newdisp->getSubMember(MEMBER_START_MENU_PAUSE_VS));
 	if (!mDisp) {
 		newdisp = new og::Screen::DispMemberSMenuPauseVS;
-		mDisp   = static_cast<og::Screen::DispMemberSMenuPauseVS*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_VS));
+		mDisp   = static_cast<og::Screen::DispMemberSMenuPauseVS*>(newdisp->getSubMember(MEMBER_START_MENU_PAUSE_VS));
 	}
 
-	if (newdisp->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
+	if (newdisp->isID(MEMBER_START_MENU_ALL)) {
 		if (static_cast<og::Screen::DispMemberSMenuAll*>(newdisp)->mOpenMode == og::Screen::DispMemberSMenuAll::Open_ChallengeMode) {
 			mType = 1;
 		}

@@ -18,7 +18,7 @@ namespace Screen {
  */
 bool ObjReadyGo::doUpdateFadein()
 {
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_READY_GO)) {
+	if (!getDispMember()->isID(MEMBER_READY_GO)) {
 		JUT_PANICLINE(61, "disp member err");
 	}
 
@@ -41,7 +41,7 @@ void ObjReadyGo::doCreate(JKRArchive* arc)
 	char* nameList[2][3]
 	    = { "ready_go.blo", "ready_go.bck", "ready_go.bpk", "ready_go_reverse.blo", "ready_go_reverse.bck", "ready_go_reverse.bpk" };
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_READY_GO)) {
+	if (!getDispMember()->isID(MEMBER_READY_GO)) {
 		JUT_PANICLINE(89, "disp member err");
 	}
 
@@ -103,7 +103,7 @@ void ObjReadyGo::doDraw(Graphics& gfx)
  */
 bool ObjReadyGo::doUpdateFadeout()
 {
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_READY_GO)) {
+	if (!getDispMember()->isID(MEMBER_READY_GO)) {
 		JUT_PANICLINE(159, "disp member err");
 	}
 
@@ -137,7 +137,7 @@ bool ObjReadyGo::doUpdateFadeout()
 bool ObjReadyGo::updateAnimation()
 {
 	bool done = false;
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_READY_GO)) {
+	if (!getDispMember()->isID(MEMBER_READY_GO)) {
 		JUT_PANICLINE(195, "disp member err");
 	}
 

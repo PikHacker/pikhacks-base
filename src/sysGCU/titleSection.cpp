@@ -74,15 +74,7 @@ void Section::doExit()
 	mgr->deleteCurrentScene();
 	mThpPlayer->stop();
 	if (!Screen::gGame2DMgr->mScreenMgr->reset()) {
-#if defined(VERSION_PAL)
-		JUT_PANICLINE(577, "game2DMgr::reset error\n");
-#elif defined(VERSION_JP)
-		JUT_PANICLINE(497, "game2DMgr::reset error\n");
-#elif defined(VERSION_US_DEMO1)
-		JUT_PANICLINE(533, "game2DMgr::reset error\n");
-#else
 		JUT_PANICLINE(527, "game2DMgr::reset error\n");
-#endif
 	}
 }
 
@@ -392,7 +384,7 @@ void Section::doUpdateOmake()
 
 	mOmakeMgr.update();
 	if (mOmakeMgr.mIsFinished) {
-		mgr = PSSystem::getSceneMgr();
+		mgr                    = PSSystem::getSceneMgr();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 		f32 rate               = (ebi::E2DFader::kFadeTime / sys->mDeltaTime);
 		rate                   = ROUND_F32_TO_U8(rate);
@@ -401,7 +393,7 @@ void Section::doUpdateOmake()
 
 	if (mOmakeMgr.isMovieState()) {
 		if (mMovieIndex < 0) {
-			mgr = PSSystem::getSceneMgr();
+			mgr                    = PSSystem::getSceneMgr();
 			PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 			seq->stopSeq(0);
 			mMovieIndex = sMovieIndex[mOmakeMgr.getMovieID()];
@@ -549,7 +541,6 @@ bool Section::doUpdate()
 		break;
 	}
 
-	BaseHIOSection::doUpdate();
 	particle2dMgr->update();
 #if defined(VERSION_PAL)
 	// build info button sequence??

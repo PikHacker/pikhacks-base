@@ -38,7 +38,7 @@ ObjChallenge1P::~ObjChallenge1P()
 void ObjChallenge1P::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberChallenge1P* disp = static_cast<og::Screen::DispMemberChallenge1P*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_CHALLENGE_1P)) {
+	if (disp->isID(MEMBER_CHALLENGE_1P)) {
 		mDisp = disp;
 	} else {
 		JUT_PANICLINE(122, "ERR! in ObjChallenge1P Create失敗！\n");

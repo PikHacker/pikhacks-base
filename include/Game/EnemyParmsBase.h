@@ -147,15 +147,7 @@ struct EnemyParmsBase : public CreatureParms {
 		Parm<int> mShakeOffBlowD;          // _7CC, ip07
 	};
 
-	EnemyParmsBase()
-	{
-		mFlags[0].clear();
-		mFlags[1].clear();
-	}
-
 	bool loadSettingFile(JKRArchive* archive, char* name);
-	void setDebugParm(u32);
-	void resetDebugParm(u32);
 
 	virtual void read(Stream& input) // _08 (weak)
 	{
@@ -165,7 +157,6 @@ struct EnemyParmsBase : public CreatureParms {
 
 	// _00-_D8 = CreatureParms
 	// _D8		 = VTBL
-	BitFlag<u16> mFlags[2]; // _DC
 	Parms mGeneral;         // _E0
 };
 } // namespace Game

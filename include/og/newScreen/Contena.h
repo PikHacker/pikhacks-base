@@ -26,7 +26,6 @@ struct Contena : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return "res_contena.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return mSceneType; }              // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }             // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_CONTENA; }      // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                 // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                               // _20

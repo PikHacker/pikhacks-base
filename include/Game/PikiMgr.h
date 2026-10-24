@@ -55,10 +55,6 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	void debugShapeDL(char* text);
 	void setVsXlu(int naviIndex, bool ghostIconNotActive);
 	int getColorTransportScale(int color);
-	void allocStorePikmins();
-	void clearStorePikmins();
-	void saveStorePikmins(Condition<Piki>* cond);
-	void getStorePikmin(int, int);
 	void moveAllPikmins(Vector3f& pos, f32 radius, Condition<Piki>* cond);
 	void forceEnterPikmins(u8 check);
 	void killDayEndPikmins(PikiContainer& container);
@@ -74,7 +70,6 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	static bool throwPikiDebug;
 
 	s32 mDopedPikis;               // _30
-	s32* mStoredPikis;             // _34
 	u8 mFlags[2];                  // _38
 	J3DModelData* mBluPikiModel;   // _3C, blue
 	J3DModelData* mRedPikiModel;   // _40, red

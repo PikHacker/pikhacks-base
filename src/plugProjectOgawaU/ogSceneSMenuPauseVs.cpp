@@ -38,9 +38,8 @@ int SMenuPauseVS::doGetFinishState()
 {
 	Screen::DispMemberBase* dispAll = mDispMember;
 	int state                       = 0;
-	if (dispAll->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
-		Screen::DispMemberSMenuPauseVS* dispVs
-		    = (Screen::DispMemberSMenuPauseVS*)dispAll->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_VS);
+	if (dispAll->isID(MEMBER_START_MENU_ALL)) {
+		Screen::DispMemberSMenuPauseVS* dispVs = (Screen::DispMemberSMenuPauseVS*)dispAll->getSubMember(MEMBER_START_MENU_PAUSE_VS);
 		if (dispVs) {
 			state = dispVs->mState;
 		}

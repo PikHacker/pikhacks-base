@@ -20,7 +20,6 @@ struct StartSceneArg;
 struct EndSceneArg;
 struct MgrCommand;
 
-ScreenOwnerID getSceneOwnerName(SceneBase* scene);
 ScreenMemberID getSceneMemberName(SceneBase* scene);
 
 struct MgrBase : public JKRDisposer {

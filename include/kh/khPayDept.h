@@ -13,7 +13,6 @@ struct DispPayDept : public og::Screen::DispMemberBase {
 	DispPayDept(PayDeptType, int);
 
 	virtual u32 getSize() { return sizeof(DispPayDept); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }         // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_PAY_DEBT; } // _10 (weak)
 
 	// _00     = VTBL
@@ -55,7 +54,6 @@ struct ScenePayDept : public ::Screen::SceneBase {
 	virtual const char* getResName() const { return ""; }            // _1C (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }             // _14 (weak)
 	virtual SceneType getSceneType() { return SCENE_PAY_DEPT; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }          // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_PAY_DEBT; } // _10 (weak)
 	virtual void doCreateObj(JKRArchive*) { }                        // _20 (weak)
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);          // _24

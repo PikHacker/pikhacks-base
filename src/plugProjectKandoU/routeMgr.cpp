@@ -296,31 +296,6 @@ void WayPoint::killLink(s16)
  */
 void WayPoint::write(Stream& output)
 {
-	char buf[256];
-	sprintf(buf, "waypoint %d", mIndex);
-
-	output.textBeginGroup(buf);
-
-	output.textWriteTab(output.mTabCount);
-	output.writeShort(mIndex);
-	output.textWriteText("\t# index\r\n");
-
-	output.textWriteTab(output.mTabCount);
-	output.writeShort(getNumFromLinks());
-	output.textWriteText("\t# numLinks\r\n");
-
-	for (int i = 0; i < getNumFromLinks(); i++) {
-		output.textWriteTab(output.mTabCount);
-		output.writeShort(getFromLink(i));
-		output.textWriteText("\t# link %d\r\n", i);
-	}
-
-	output.textWriteTab(output.mTabCount);
-	mPosition.write(output);
-	output.writeFloat(mRadius);
-	output.textWriteText("\r\n");
-
-	output.textEndGroup();
 }
 
 /**
@@ -691,9 +666,7 @@ void RouteMgr::sonarCheck(RouteMgr::SonarArg&)
  */
 void RouteMgr::write(Stream& output)
 {
-	output.textWriteTab(output.mTabCount);
 	output.writeShort(mCount);
-	output.textWriteText("\t# numWayPoints\r\n");
 
 	Iterator<WayPoint> iter(this);
 	CI_LOOP(iter)

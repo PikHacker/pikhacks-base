@@ -115,7 +115,6 @@ struct BaseGameSection : public BaseHIOSection {
 	virtual bool sendMessage(GameMessage& msg) { return false; }              // _50 (weak)
 	virtual void pre2dDraw(Graphics& gfx) { }                                 // _54 (weak)
 	virtual int getCurrFloor() { return -1; }                                 // _58 (weak)
-	virtual bool isDevelopSection() { return true; }                          // _5C (weak)
 	virtual void addChallengeScore(int) { }                                   // _60 (weak)
 	virtual void startMainBgm() { }                                           // _64 (weak)
 	virtual void section_fadeout() { }                                        // _68 (weak)
@@ -124,7 +123,6 @@ struct BaseGameSection : public BaseHIOSection {
 	virtual void goMainMap(ItemBigFountain::Item* geyser) { }                 // _74 (weak)
 	virtual u32 getCaveID() { return 'none'; }                                // _78 (weak)
 	virtual CourseInfo* getCurrentCourseInfo() { return nullptr; }            // _7C (weak)
-	virtual bool challengeDisablePelplant() { return true; }                  // _80 (weak)
 	virtual char* getCaveFilename() { return "caveinfo.txt"; }                // _84 (weak)
 	virtual char* getEditorFilename() { return "random"; }                    // _88 (weak)
 	virtual int getVsEditNumber() { return -2; }                              // _8C (weak)
@@ -188,14 +186,12 @@ struct BaseGameSection : public BaseHIOSection {
 	void setDefaultPSSceneInfo(PSGame::SceneInfo&);
 	void prepareHoleIn(Vector3f&, bool);
 	void prepareFountainOn(Vector3f&);
-	void test_draw_treasure_detector();
 	void directDraw(Graphics& gfx, Viewport*);
 	void directDrawPost(Graphics& gfx, Viewport*);
 	void j3dSetView(Viewport*, bool);
 	void doSimulation(f32);
 	void doSimpleDraw(Viewport*);
 	void doAnimation();
-	void changeGeneratorCursor(Vector3f&);
 	void doEntry();
 	void doSetView(int viewportNumber);
 	void doViewCalc();

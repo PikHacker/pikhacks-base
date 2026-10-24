@@ -65,14 +65,6 @@ struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	{
 		mMgr->setupSoundViewerAndBas();
 	}
-	virtual void setDebugParm(u32 p1) // _6C (weak)
-	{
-		mMgr->setDebugParm(p1);
-	}
-	virtual void resetDebugParm(u32 p1) // _70 (weak)
-	{
-		mMgr->resetDebugParm(p1);
-	}
 	virtual void startMovie() // _74 (weak)
 	{
 		mMgr->startMovie();

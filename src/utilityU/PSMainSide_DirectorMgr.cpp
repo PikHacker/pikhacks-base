@@ -32,8 +32,6 @@ DirectorMgr_Scene::DirectorMgr_Scene(DirectorMgr_Scene* owner, u8 directorCount)
 			case Director_Tempo:
 				mCopyActorList[i] = new PSSystem::DirectorCopyActor(nullptr, nullptr);
 				break;
-			default:
-				JUT_PANICLINE(60, "P2Assert");
 			}
 		}
 	} else {

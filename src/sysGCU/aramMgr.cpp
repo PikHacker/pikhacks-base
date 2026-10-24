@@ -179,8 +179,6 @@ void ARAM::Mgr::dump()
 {
 	u32 max = 0xFFFFFFFF;
 	u32 min = 0;
-	JKRAram::sAramObject->mAramHeap->getFreeSize();
-	JKRAram::sAramObject->mAramHeap->getFreeSize();
 	JKRAramBlock* status;
 	FOREACH_NODE(Node, mResourceList.mChild, node)
 	{

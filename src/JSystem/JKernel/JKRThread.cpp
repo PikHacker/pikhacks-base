@@ -7,7 +7,6 @@
 
 JSUList<JKRThread> JKRThread::sThreadList(false);
 JSUList<JKRTask> JKRTask::sTaskList;
-OSMessageQueue JKRTask::sEndMsgQueue; // THIS ISN'T EVEN USED. needed bc of .comm bug lol. lmao.
 
 JKRThreadSwitch* JKRThreadSwitch::sManager;
 u32 JKRThreadSwitch::sTotalCount;

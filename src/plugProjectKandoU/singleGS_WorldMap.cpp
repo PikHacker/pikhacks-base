@@ -41,8 +41,6 @@ void SelectState::init(SingleGameSection*, StateArg*)
 	Screen::gGame2DMgr->mScreenMgr->reset();
 	sParentHeapFreeSize_Last = sParentHeapFreeSize;
 	sParentHeapFreeSize      = JKRHeap::sCurrentHeap->getFreeSize();
-	JKRHeap::sCurrentHeap->getFreeSize();
-	JKRHeap::sCurrentHeap->getTotalFreeSize();
 	playData->mDeadNaviID.typeView = 0;
 	naviMgr->clearDeadCount();
 	mNewLevelOpen = false;
@@ -57,12 +55,9 @@ void SelectState::initNext(SingleGameSection* section)
 	sys->setFrameRate(1);
 	mState = SELECTSTATE_Load;
 
-	mParentHeap = JKRHeap::sCurrentHeap;
-	mParentHeap->getFreeSize();
+	mParentHeap         = JKRHeap::sCurrentHeap;
 	sParentHeapFreeSize = mParentHeap->getFreeSize();
-	mParentHeap->getFreeSize();
-	mParentHeap->getTotalFreeSize();
-	mWMapHeap = JKRExpHeap::create(mParentHeap->getFreeSize(), mParentHeap, true);
+	mWMapHeap           = JKRExpHeap::create(mParentHeap->getFreeSize(), mParentHeap, true);
 	mWMapHeap->becomeCurrentHeap();
 
 	if (playData->courseOpen(2) && (playData->isStoryFlag(STORY_DebtPaid)) && !playData->courseOpen(3)) {

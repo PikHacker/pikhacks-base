@@ -36,16 +36,16 @@ ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const* name)
 void ObjWorldMapInfoWindow0::doCreate(JKRArchive* arc)
 {
 	Screen::DispMemberBase* disp = getDispMember();
-	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
+	if (disp->isID(MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
 		mDispWmap = reinterpret_cast<Screen::DispMemberWorldMapInfoWin0*>(disp);
-	} else if (disp->isID(OWNER_MRMR, MEMBER_VS_SELECT)) {
+	} else if (disp->isID(MEMBER_VS_SELECT)) {
 		mDispWmap = reinterpret_cast<Morimura::DispMemberVsSelect*>(disp)->mDispWorldMapInfoWin0;
-	} else if (disp->isID(OWNER_MRMR, MEMBER_CHALLENGE_SELECT)) {
+	} else if (disp->isID(MEMBER_CHALLENGE_SELECT)) {
 		mDispWmap = reinterpret_cast<Morimura::DispMemberChallengeSelect*>(disp)->mDispWorldMapInfoWin0;
-	} else if (disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ENEMY)) {
+	} else if (disp->isID(MEMBER_ZUKAN_ENEMY)) {
 		mDispWmap = reinterpret_cast<Morimura::DispMemberZukanEnemy*>(disp)->mDispWorldMapInfoWin0;
 		P2ASSERTLINE(125, mDispWmap != nullptr);
-	} else if (disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ITEM)) {
+	} else if (disp->isID(MEMBER_ZUKAN_ITEM)) {
 		mDispWmap = reinterpret_cast<Morimura::DispMemberZukanItem*>(disp)->mDispWorldMapInfoWin0;
 		P2ASSERTLINE(129, mDispWmap != nullptr);
 	}

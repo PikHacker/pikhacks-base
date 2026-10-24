@@ -9,11 +9,10 @@ namespace Screen {
  * @note Address: 0x8030F31C
  * @note Size: 0x80
  */
-bool DispMemberBase::isID(u32 ownerID, u64 memberID)
+bool DispMemberBase::isID(u64 memberID)
 {
-	u32 thisOwnerID  = getOwnerID();
 	u64 thisMemberID = getMemberID();
-	if ((ownerID == thisOwnerID) && (memberID == thisMemberID)) {
+	if (memberID == thisMemberID) {
 		return true;
 	}
 	return false;
@@ -34,19 +33,11 @@ void DispMemberBase::getMemberName(char* outName)
  */
 bool DispMemberBase::setSubMember(og::Screen::DispMemberBase* newSubMember)
 {
-	char ownerName[12];
-	char memberName[12];
-	char subMemberOwnerName[12];
-	char subMemberMemberName[12];
 	DispMemberBase* potentialParent = this;
 	newSubMember->mSubMember        = nullptr;
-	og::Screen::TagToName(getOwnerID(), ownerName);
-	og::Screen::TagToName(getMemberID(), memberName);
 	for (int i = 10; i != 0; i--) {
 		if (potentialParent->mSubMember == nullptr) {
 			potentialParent->mSubMember = newSubMember;
-			og::Screen::TagToName(newSubMember->getOwnerID(), subMemberOwnerName);
-			og::Screen::TagToName(newSubMember->getMemberID(), subMemberMemberName);
 			return true;
 		}
 		potentialParent = potentialParent->mSubMember;
@@ -58,7 +49,7 @@ bool DispMemberBase::setSubMember(og::Screen::DispMemberBase* newSubMember)
  * @note Address: 0x8030F4C0
  * @note Size: 0x10C
  */
-DispMemberBase* DispMemberBase::getSubMember(u32 ownerID, u64 memberID)
+DispMemberBase* DispMemberBase::getSubMember(u64 memberID)
 {
 	DispMemberBase* member = this;
 	for (int i = 0; i < 10; i++) {
@@ -68,13 +59,7 @@ DispMemberBase* DispMemberBase::getSubMember(u32 ownerID, u64 memberID)
 			break;
 		}
 
-		char ownerName[12];
-		char memberName[12];
-		u32 mo = subMember->getOwnerID();
-		u64 mm = subMember->getMemberID();
-		TagToName(mo, ownerName);
-		TagToName(mm, memberName);
-		if (subMember->isID(ownerID, memberID)) {
+		if (subMember->isID(memberID)) {
 			return subMember;
 		}
 		member = subMember;

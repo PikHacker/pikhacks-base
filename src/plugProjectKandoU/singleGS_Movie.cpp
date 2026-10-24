@@ -26,11 +26,9 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 
 	mBackupHeap = nullptr;
 	mBackupHeap = JKRGetCurrentHeap();
-	mBackupHeap->getFreeSize();
 
 	mMovieHeap = JKRExpHeap::create(mBackupHeap->getFreeSize(), mBackupHeap, true);
 	mMovieHeap->becomeCurrentHeap();
-	mMovieHeap->getFreeSize();
 	mMoviePlayer = new THPPlayer;
 	mMoviePlayer->init(nullptr);
 	mIsMovieLoaded = false;

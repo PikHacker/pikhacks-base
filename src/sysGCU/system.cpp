@@ -333,8 +333,6 @@ System::System()
 #if !defined(VERSION_PAL)
 	mFlags.clear();
 #endif
-	mSysHeap->getTotalFreeSize();
-	mSysHeap->getTotalFreeSize();
 }
 
 /**
@@ -396,11 +394,6 @@ void System::constructWithDvdAccessFirst()
 
 	Game::gGameConfig.load("gameConfig.ini");
 	createSoundSystem();
-
-	mSysHeap->getTotalFreeSize();
-	mSysHeap->getTotalFreeSize();
-	mSysHeap->getFreeSize();
-	mSysHeap->getFreeSize();
 	old->becomeCurrentHeap();
 }
 
@@ -426,11 +419,6 @@ void System::constructWithDvdAccessSecond()
 	Game::stageList = new Game::Stages;
 	Game::PlayData::construct();
 	Game::MovieList::construct();
-
-	mSysHeap->getTotalFreeSize();
-	mSysHeap->getTotalFreeSize();
-	mSysHeap->getFreeSize();
-	mSysHeap->getFreeSize();
 	old->becomeCurrentHeap();
 }
 

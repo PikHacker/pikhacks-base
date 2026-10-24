@@ -610,7 +610,6 @@ struct ZukanState : public State {
 	JKRHeap* mMainHeap;                         // _D8
 	JKRExpHeap* mCurrObjHeap;                   // _DC
 	JKRHeap* mBackupHeap;                       // _E0
-	u32 mHeapSize;                              // _E4
 	ResultTexMgr::Mgr* mResultTexture;          // _E8
 	IllustratedBook::EnemyTexMgr* mEnemyTexMgr; // _EC
 	JKRExpHeap* mExtraHeapFor2D;                // _F0

@@ -251,8 +251,6 @@ void FakePiki::updateWalkAnimation()
 		otherIdx      = IPikiAnims::NIGERU;
 	}
 
-	isNavi();
-
 	if (otherIdx != boundIdx) {
 		if (boundIdx == IPikiAnims::WAIT && otherIdx != IPikiAnims::ASIBUMI) {
 			_230 = 4;
@@ -306,7 +304,7 @@ void FakePiki::updateWalkAnimation()
  */
 bool FakePiki::sNeckCallback(J3DJoint* joint, int jointIdx)
 {
-	if (jointIdx == 0 && OptimiseController::mInstance->mPikminNeck.mValue) {
+	if (jointIdx == 0) {
 		Matrixf* worldMat = J3DMtxCalc::mMtxBuffer->getWorldMatrix(joint->getJntNo());
 
 		f32 phi   = sCurrNeckPhi;

@@ -23,7 +23,6 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateTurnToHome(KOCHAPPY_TurnToHome));
 	registerState(new StateGoHome(KOCHAPPY_GoHome));
 	registerState(new StatePress(KOCHAPPY_Press));
-	registerState(new StateDemo(KOCHAPPY_Demo));
 }
 
 /**
@@ -55,7 +54,10 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 void StatePress::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
-		transit(enemy, KOCHAPPY_Demo, nullptr);
+		enemy->kill(nullptr);
+		if (gameSystem->mSection->getTimerType() != DEMOTIMER_Unlock_Switch_To_Louie && !playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
+			gameSystem->mSection->enableTimer(5.0f, DEMOTIMER_Unlock_Switch_To_Louie);
+		}
 	}
 }
 
@@ -165,7 +167,10 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
-		transit(enemy, KOCHAPPY_Demo, nullptr);
+		enemy->kill(nullptr);
+		if (gameSystem->mSection->getTimerType() != DEMOTIMER_Unlock_Switch_To_Louie && !playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
+			gameSystem->mSection->enableTimer(5.0f, DEMOTIMER_Unlock_Switch_To_Louie);
+		}
 	}
 }
 
@@ -687,28 +692,6 @@ void StateGoHome::cleanup(EnemyBase* enemy)
 {
 	enemy->resetAnimSpeed();
 	enemy->mTargetVelocity = Vector3f(0.0f);
-}
-
-/**
- * @note Address: 0x801121C8
- * @note Size: 0x3C
- */
-StateDemo::StateDemo(int stateID)
-    : State(stateID)
-{
-	mName = "demo";
-}
-
-/**
- * @note Address: 0x80112204
- * @note Size: 0x7C
- */
-void StateDemo::init(EnemyBase* enemy, StateArg* stateArg)
-{
-	enemy->kill(nullptr);
-	if (gameSystem->mSection->getTimerType() != DEMOTIMER_Unlock_Switch_To_Louie && !playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
-		gameSystem->mSection->enableTimer(5.0f, DEMOTIMER_Unlock_Switch_To_Louie);
-	}
 }
 
 } // namespace KochappyBase

@@ -16,7 +16,7 @@ namespace Screen {
 void ObjFinalFloor::doCreate(JKRArchive* arc)
 {
 	// Check if the display member is valid.
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_FINAL_FLOOR)) {
+	if (!getDispMember()->isID(MEMBER_FINAL_FLOOR)) {
 		JUT_PANICLINE(57, "disp member err");
 	}
 
@@ -89,7 +89,7 @@ bool ObjFinalFloor::doUpdateFadein()
 bool ObjFinalFloor::doUpdateFadeout()
 {
 	bool isCh = Game::gameSystem && Game::gameSystem->isChallengeMode();
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_FINAL_FLOOR)) {
+	if (!getDispMember()->isID(MEMBER_FINAL_FLOOR)) {
 #if defined(VERSION_JP)
 		JUT_PANICLINE(139, "disp member err");
 #else

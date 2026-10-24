@@ -57,7 +57,7 @@ void ObjUfoMenu::doCreate(JKRArchive* arc)
 {
 	mDisp                                = nullptr;
 	og::Screen::DispMemberUfoGroup* disp = static_cast<og::Screen::DispMemberUfoGroup*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_UFO_GROUP)) {
+	if (disp->isID(MEMBER_UFO_GROUP)) {
 		mDisp = disp;
 	} else {
 		mDisp = new og::Screen::DispMemberUfoGroup();

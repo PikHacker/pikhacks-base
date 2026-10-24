@@ -355,7 +355,6 @@ bool Item::complete()
  */
 Mgr::Mgr()
 {
-	mItemName = "Cave";
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/dungeon_hole";
 }

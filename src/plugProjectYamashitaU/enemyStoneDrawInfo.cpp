@@ -173,8 +173,6 @@ void FSMStateFit::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 		theta = 1.0f;
 	}
 
-	f32 cosTheta = cos(theta * HALF_PI); // Retail evaluates the cosine, but uses unit scale.
-
 	PSMTXIdentity(mtx->mMatrix.mtxView);
 	mtx->scale(1.0f);
 }

@@ -71,10 +71,10 @@ ObjSMenuItem::~ObjSMenuItem()
  */
 void ObjSMenuItem::doCreate(JKRArchive* arc)
 {
-	mDisp = static_cast<og::Screen::DispMemberSMenuItem*>(getDispMember()->getSubMember(OWNER_OGA, MEMBER_START_MENU_ITEM));
+	mDisp = static_cast<og::Screen::DispMemberSMenuItem*>(getDispMember()->getSubMember(MEMBER_START_MENU_ITEM));
 	if (!mDisp) {
 		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
-		mDisp = static_cast<og::Screen::DispMemberSMenuItem*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_ITEM));
+		mDisp = static_cast<og::Screen::DispMemberSMenuItem*>(newdisp->getSubMember(MEMBER_START_MENU_ITEM));
 	}
 
 	mScreenItems = new P2DScreen::Mgr_tuning;
@@ -189,7 +189,6 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 					itemNameTBox->show();
 					itemNameTBox->setMsgID('6130_00'); // "Incomplete"
 					itemNameTBox->setAlpha(128);       // grey out label
-
 				}
 			}
 

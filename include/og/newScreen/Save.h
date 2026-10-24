@@ -26,7 +26,6 @@ struct Save : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return ""; }        // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_SAVE; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }     // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_SAVE; } // _10 (weak)
 	virtual void doCreateObj(JKRArchive*);                       // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);      // _24

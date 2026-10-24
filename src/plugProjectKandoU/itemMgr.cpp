@@ -484,7 +484,6 @@ BaseItemMgr::BaseItemMgr(int p1)
 	mObjectPathComponent = nullptr;
 	mArchive             = nullptr;
 	mModelData           = nullptr;
-	mItemName            = "BaseItem";
 	mResourceNode        = nullptr;
 	_10                  = 0;
 	_14                  = 0;

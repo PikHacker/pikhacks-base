@@ -28,7 +28,7 @@ CourseName::~CourseName()
 void CourseName::doUserCallBackFunc(Resource::MgrCommand*)
 {
 	og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(mDispMember);
-	if (disp->isID(OWNER_OGA, MEMBER_COURSE_NAME)) {
+	if (disp->isID(MEMBER_COURSE_NAME)) {
 		mCourseIndex = disp->mCourseIndex;
 	} else {
 		JUT_PANICLINE(58, "DispMember ERR!\n", 0);

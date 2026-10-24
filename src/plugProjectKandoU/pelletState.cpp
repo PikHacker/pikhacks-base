@@ -322,7 +322,6 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 							doPlay = true;
 						} else if (!playData->isDemoFlag(DEMO_First_Bitter_Spray_Made)) {
 							// if enough berries are collected to make a spray, play the spray cutscene
-							playData->getDopeFruitCount(type);
 							if (dope0 + 1 >= _aiConstants->mDopeCount.mData) {
 								playData->setDemoFlag(DEMO_First_Bitter_Spray_Made);
 								// spawn in a nectar drop specifically for the cutscene to show to the player

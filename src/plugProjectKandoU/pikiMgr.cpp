@@ -35,7 +35,6 @@ PikiMgr::PikiMgr()
 	mUpdateMgr2 = new UpdateMgr;
 	mUpdateMgr2->create(10);
 
-	allocStorePikmins();
 	mFlags[1] = 0;
 }
 
@@ -173,10 +172,8 @@ void PikiMgr::loadResources(int viewNum)
 void PikiMgr::load(int viewNum)
 {
 	JKRHeap* heap = JKRGetCurrentHeap();
-	heap->getFreeSize();
 	JKRArchive* arc = JKRMountArchive("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
 	mModelArchive   = arc;
-	heap->getFreeSize();
 
 	JUT_ASSERTLINE(450, arc, "pikis.szs not found !\n");
 
@@ -470,46 +467,6 @@ int PikiMgr::getColorTransportScale(int color)
 	}
 
 	return 1;
-}
-
-/**
- * @note Address: 0x8015F8C0
- * @note Size: 0x3C
- */
-void PikiMgr::allocStorePikmins()
-{
-	mStoredPikis = new s32[PikiColorCount * PikiGrowthStageCount];
-	clearStorePikmins();
-}
-
-/**
- * @note Address: 0x8015F8FC
- * @note Size: 0x6C
- */
-void PikiMgr::clearStorePikmins()
-{
-	for (int i = 0; i < (PikiColorCount * PikiGrowthStageCount); i++) {
-		mStoredPikis[i] = 0;
-	}
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0x2C0
- */
-// void saveStorePikmins__Q24Game7PikiMgrFP23Condition<Game::Piki>()
-void PikiMgr::saveStorePikmins(Condition<Piki>*)
-{
-	// UNUSED FUNCTION
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0xC8
- */
-void PikiMgr::getStorePikmin(int, int)
-{
-	// UNUSED FUNCTION
 }
 
 /**

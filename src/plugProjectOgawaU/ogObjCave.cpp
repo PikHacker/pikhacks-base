@@ -51,7 +51,7 @@ ObjCave::~ObjCave()
 void ObjCave::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberCave* disp = static_cast<og::Screen::DispMemberCave*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_CAVE)) {
+	if (disp->isID(MEMBER_CAVE)) {
 		mDisp = disp;
 	} else {
 		JUT_PANICLINE(189, "ERR! in ObjCave Create失敗！\n");
@@ -223,10 +223,6 @@ void ObjCave::doDraw(Graphics& gfx)
 {
 	if (mBloGroup) {
 		mBloGroup->draw(&gfx.mPerspGraph);
-	}
-
-	if (mDisp->mDrawSensor) {
-		mOtakara->draw(gfx.mPerspGraph);
 	}
 }
 

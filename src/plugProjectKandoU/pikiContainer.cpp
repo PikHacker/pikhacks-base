@@ -119,15 +119,9 @@ int PikiContainer::getTotalSum()
  */
 void PikiContainer::write(Stream& output)
 {
-	char buffer[256];
-	output.textWriteTab(output.mTabCount);
-	output.textWriteText("# PikiCounter\r\n");
 	for (int col = 0; col < PikiColorCount; col++) {
 		for (int happa = 0; happa < PikiGrowthStageCount; happa++) {
-			output.textWriteTab(output.mTabCount);
 			output.writeInt(getCount(col, happa));
-			sprintf(buffer, "\t# col%d happa%d\r\n", col, happa);
-			output.textWriteText(buffer);
 		}
 	}
 }

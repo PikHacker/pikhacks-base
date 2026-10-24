@@ -379,14 +379,6 @@ bool Obj::isReachToGoal(f32 distance)
 	return false;
 }
 
-// sigh
-static void fixData(f32& p1, f32& p2, f32& p3)
-{
-	p1 = RAND_MAX;
-	p2 = -325.9493f;
-	p3 = 325.9493f;
-}
-
 /**
  * @note Address: 0x80365948
  * @note Size: 0x15C

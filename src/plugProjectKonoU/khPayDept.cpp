@@ -47,7 +47,7 @@ void ObjPayDept::doCreate(JKRArchive* arc)
 	char* paths2[3] = { "hensai_demo_kanryo.blo", "hensai_demo_kanryo.bck", "hensai_demo_kanryo.bpk" };
 	char* paths3[3] = { "hensai_demo_otakara.blo", "hensai_demo_otakara.bck", "hensai_demo_otakara.bpk" };
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
+	if (!getDispMember()->isID(MEMBER_PAY_DEBT)) {
 		JUT_PANICLINE(91, "disp member err");
 	}
 
@@ -97,7 +97,7 @@ void ObjPayDept::doCreate(JKRArchive* arc)
  */
 bool ObjPayDept::doUpdateFadein()
 {
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
+	if (!getDispMember()->isID(MEMBER_PAY_DEBT)) {
 		JUT_PANICLINE(150, "disp member err");
 	}
 
@@ -138,7 +138,7 @@ void ObjPayDept::doUpdateFadeoutFinish()
 {
 	PSStop2DStream();
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
+	if (!getDispMember()->isID(MEMBER_PAY_DEBT)) {
 		JUT_PANICLINE(183, "disp member err");
 	}
 
@@ -209,7 +209,7 @@ void ObjPayDept::searchNumPane(J2DPane* pane, int id1, int id2)
  */
 void ScenePayDept::doUserCallBackFunc(Resource::MgrCommand*)
 {
-	if (!mDispMember->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
+	if (!mDispMember->isID(MEMBER_PAY_DEBT)) {
 		JUT_PANICLINE(259, "disp member err");
 	}
 

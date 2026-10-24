@@ -321,7 +321,6 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 				return true;
 			}
 		}
-		return false;
 	}
 	return false;
 }
@@ -1110,8 +1109,7 @@ void Obj::setCarryDir(bool direct)
 	}
 	creature = getCarryTarget();
 	if (creature) {
-		Vector3f pos3 = Vector3f(mPosition.x - creature->getPosition().x, 0.0f, mPosition.z - creature->getPosition().z);
-		pos3.set(mPosition); // dumb
+		Vector3f pos3(mPosition); // dumb
 		PSMTXInverse(creature->mBaseTrMatrix.mMatrix.mtxView, matrix.mMatrix.mtxView);
 		Vector3f pos         = matrix.mtxMult(pos3);
 		mAlsoRotationOffset  = atan2(pos.x, pos.z);

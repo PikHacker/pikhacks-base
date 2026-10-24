@@ -1114,26 +1114,6 @@ bool Mgr::commandSavePlayerNoCheckSerialNo(s8 fileIndex, bool param_2)
 			}
 			playerInfo->mPlayer.mTreasures = playData->mZukanStat->calcEarnKinds();
 			playerInfo->mPlayer.mPlayTime  = time;
-		} else {
-#if defined(VERSION_PAL)
-			JUT_PANICLINE(2071, "dameck\n");
-#elif defined(VERSION_JP)
-			JUT_PANICLINE(2036, "dameck\n");
-#else
-			JUT_PANICLINE(2042, "dameck\n");
-#endif
-
-			// this code never gets reached smh.
-			playerInfo->mPlayer.mDay         = 0;
-			playerInfo->mPlayer.mRedPikis    = 1;
-			playerInfo->mPlayer.mBluePikis   = 2;
-			playerInfo->mPlayer.mYellowPikis = 3;
-			playerInfo->mPlayer.mWhitePikis  = 4;
-			playerInfo->mPlayer.mPurplePikis = 5;
-			playerInfo->mPlayer.mPokos       = 12345;
-			playerInfo->mPlayer.mCaveID      = 1;
-			playerInfo->mPlayer.mCaveFloor   = 99;
-			playerInfo->mPlayer.mTreasures   = 0;
 		}
 
 		RamStream ramStream(&playerInfo->mFileBuffer, PLAYER_FILE_SIZE);
@@ -1147,13 +1127,7 @@ bool Mgr::commandSavePlayerNoCheckSerialNo(s8 fileIndex, bool param_2)
 		}
 	}
 
-#if defined(VERSION_PAL)
-	P2ASSERTLINE(2108, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
-#elif defined(VERSION_JP)
-	P2ASSERTLINE(2073, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
-#else
 	P2ASSERTLINE(2079, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
-#endif
 
 	if (result) {
 		result = commandSaveGameOption(true, false);
@@ -1189,13 +1163,9 @@ int Mgr::getIndexPlayerInfo(s8 fileIndex, PlayerInfoHeader* infoHeader, bool* ou
 	doLoop = true;
 	while (doLoop) {
 		i++;
-#if defined(VERSION_PAL)
-		JUT_ASSERTLINE(2192, i < 5, "MemoryCardModify Error");
-#elif defined(VERSION_JP)
-		JUT_ASSERTLINE(2157, i < 5, "MemoryCardModify Error");
-#else
+
 		JUT_ASSERTLINE(2163, i < 5, "MemoryCardModify Error");
-#endif
+
 		doLoop = false;
 		for (int j = 0; j < 4; j++) {
 			if (checkPlayerNoPlayerInfo(j, fileIndex, &localHeader)) {
@@ -1242,13 +1212,7 @@ int Mgr::getIndexPlayerInfo(s8 fileIndex, PlayerInfoHeader* infoHeader, bool* ou
 bool Mgr::commandLoadPlayer(s8 fileIndex)
 {
 	u64 serial;
-#if defined(VERSION_PAL)
-	P2ASSERTBOUNDSLINE(2293, 0, fileIndex, 3);
-#elif defined(VERSION_JP)
-	P2ASSERTBOUNDSLINE(2258, 0, fileIndex, 3);
-#else
 	P2ASSERTBOUNDSLINE(2264, 0, fileIndex, 3);
-#endif
 #if defined(VERSION_PAL)
 	commandLoadGameOption(false);
 #else
@@ -1261,13 +1225,7 @@ bool Mgr::commandLoadPlayer(s8 fileIndex)
 		if (readCardSerialNo(&serial, CARDSLOT_SlotA)) {
 			u8* buffer = new (mHeap, -32) u8[PLAYER_BLOCK_SIZE];
 
-#if defined(VERSION_PAL)
-			P2ASSERTLINE(2319, buffer);
-#elif defined(VERSION_JP)
-			P2ASSERTLINE(2284, buffer);
-#else
 			P2ASSERTLINE(2290, buffer);
-#endif
 
 			sys->mPlayData->setCardSerialNo(serial);
 			if (loadPlayerProc(fileIndex, buffer)) {
@@ -1371,13 +1329,7 @@ bool Mgr::savePlayerProc(s8 fileIndex, u8* playerDataBuffer, bool check)
 	int idx;
 	bool result = false;
 
-#if defined(VERSION_PAL)
-	P2ASSERTBOUNDSLINE(2535, 0, fileIndex, 3);
-#elif defined(VERSION_JP)
-	P2ASSERTBOUNDSLINE(2500, 0, fileIndex, 3);
-#else
 	P2ASSERTBOUNDSLINE(2506, 0, fileIndex, 3);
-#endif
 
 	PlayerInfo* playerInfo = (PlayerInfo*)playerDataBuffer;
 	if (getIndexInvalidPlayerInfo(&idx, &tempIndex, fileIndex, playerInfo->mPlayer.mSaveCount, check)) {

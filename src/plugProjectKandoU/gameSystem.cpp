@@ -1,6 +1,4 @@
 #include "Game/GameSystem.h"
-#include "DynamicsParms.h"
-#include "CellMgrParms.h"
 #include "Game/DynParticle.h"
 #include "Game/AIConstants.h"
 #include "Game/Stickers.h"
@@ -13,7 +11,6 @@
 namespace Game {
 
 GameSystem* gameSystem;
-OptimiseController* OptimiseController::mInstance;
 
 /**
  * @note Address: 0x801B4A80
@@ -24,10 +21,7 @@ GameSystem::GameSystem(BaseGameSection* section)
 	mSection    = section;
 	mMode       = GSM_STORY_MODE;
 	mXfbTexture = nullptr;
-	DynamicsParms::globalInstance();
-	CellMgrParms::globalInstance();
 	mFlags.clear();
-	OptimiseController::globalInstance();
 	mIsMoviePause = false;
 }
 
@@ -37,7 +31,6 @@ GameSystem::GameSystem(BaseGameSection* section)
  */
 GameSystem::~GameSystem()
 {
-	OptimiseController::deleteInstance();
 }
 
 /**
@@ -94,7 +87,6 @@ void GameSystem::startFrame()
 		mFrameTimer = 0;
 	}
 
-	cellMgr->initFrame();
 	collisionUpdateMgr->update();
 
 	// Don't update the time of day unless the game is not paused, a cutscene is not playing, and it is not day 1
@@ -439,48 +431,6 @@ TObjectNode<GenericObjectMgr>* GameSystem::detachObjectMgr_reuse(GenericObjectMg
 	}
 
 	return nullptr;
-}
-
-/**
- * @note Address: N/A
- * @note Size: 0xFC
- */
-OptimiseController::OptimiseController()
-    : Parameters(nullptr, "Dynamics")
-    , mPikminNeck(this, 'c000', true, false, true)              // 'pikmin neck'
-    , mCollisionBufferEnabled(this, 'c001', false, false, true) // 'collision buffer enabled'
-{
-}
-
-/**
- * @note Address: 0x801B6050
- * @note Size: 0x68
- */
-OptimiseController::~OptimiseController()
-{
-	mInstance = nullptr;
-}
-
-/**
- * @note Address: 0x801B60B8
- * @note Size: 0x10C
- */
-void OptimiseController::globalInstance()
-{
-	if (!mInstance)
-		mInstance = new OptimiseController;
-}
-
-/**
- * @note Address: 0x801B61C4
- * @note Size: 0x48
- */
-void OptimiseController::deleteInstance()
-{
-	if (!mInstance) {
-		delete mInstance;
-	}
-	mInstance = nullptr;
 }
 
 } // namespace Game

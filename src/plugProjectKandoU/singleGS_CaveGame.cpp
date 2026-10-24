@@ -340,9 +340,7 @@ void CaveState::onNextFloor(SingleGameSection* game, ItemHole::Item* hole)
 {
 	BlackMan::Obj* waterwraith = ((RoomMapMgr*)mapMgr)->mWraith;
 	if (waterwraith) {
-		if (waterwraith->isAlive()) {
-			playData->mCaveSaveData.mWaterwraithTimer = waterwraith->getTimer();
-		} else {
+		if (!waterwraith->isAlive()) {
 			playData->mCaveSaveData.mIsWaterwraithAlive = false;
 		}
 	}

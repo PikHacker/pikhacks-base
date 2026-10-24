@@ -268,7 +268,6 @@ struct Piki : public FakePiki {
 	Vector3f mLeafStemPosition;       // _26C
 	SysShape::Joint* mHappaJoint1;    // _278
 	efx::Context* mEffectsContext;    // _27C
-	s16 mIsDoped;                     // _284
 	f32 mDopeTime;                    // _288
 	PikiFSM* mFsm;                    // _28C
 	PikiState* mCurrentState;         // _290
@@ -280,6 +279,7 @@ struct Piki : public FakePiki {
 	Color4 mOldDefaultColor;          // _2AB
 	Color4 mPikiColor;                // _2AF
 	f32 mColorFloat;                  // _2B4
+	s16 mIsDoped;                     // _284
 	u8 mPikiKind;                     // _2B8, aka Piki kind (Blue, Yellow, Red, etc.)
 	u8 mHappaKind;                    // _2B9, aka Happa kind (leaf, bud, flower)
 	SysShape::Model* mLeafModel;      // _2BC

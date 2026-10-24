@@ -2,7 +2,6 @@
 #include "Game/DynParticle.h"
 #include "Game/MapMgr.h"
 #include "Game/PlatInstance.h"
-#include "DynamicsParms.h"
 #include "Iterator.h"
 #include "types.h"
 
@@ -142,91 +141,37 @@ void DynCreature::updateParticlePositions()
  */
 void DynCreature::computeForces(f32 friction)
 {
-	if (DynamicsParms::mInstance->mNewFriction()) {
-		for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
-			if (!particle->mIsTouching) {
-				continue;
-			}
-
-			Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum;
-			Vector3f sep;
-			sep.x = particle->mPosition.x - mTransformedPosition.x;
-			sep.y = particle->mPosition.y - mTransformedPosition.y;
-			sep.z = particle->mPosition.z - mTransformedPosition.z;
-			crossVec.cross(crossVec, sep);
-			crossVec = crossVec + mRigid.mConfigs[0].mVelocity;
-
-			Vector3f& normal = particle->mCollisionNormal;
-			f32 dotProd2     = mRigid.mConfigs[0].mForce.dot(particle->mCollisionNormal);
-			Vector3f sep2    = normal * crossVec.dot(normal);
-			sep2             = crossVec - sep2;
-			sep2.normalise();
-
-			mRigid.mConfigs[0].mForce += particle->mCollisionNormal * dotProd2;
-
-			f32 staticLimit = DynamicsParms::mInstance->mStatic();
-			if (absF(sep2.dot(crossVec)) < staticLimit) {
-				sep2.normalise();
-				sep2 = sep2 * DynamicsParms::mInstance->mStaParm();
-				mRigid.mConfigs[0].mForce -= sep2;
-			} else {
-				sep2 = crossVec - normal * crossVec.dot(normal);
-				sep2.normalise();
-				f32 fixedFriction = DynamicsParms::mInstance->mFixedFrictionValue();
-				mRigid.mConfigs[0].mForce += sep2 * -fixedFriction;
-			}
-		}
-		return;
-	}
-
-	int validCount = 0;
-	int count      = 0;
-	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext, count++) {
-		if (particle->mIsTouching) {
-			validCount++;
-		}
-	}
-
-	if (validCount == 0) {
-		return;
-	}
-
-	if (!DynamicsParms::mInstance->mFriction()) {
-		return;
-	}
-
-	f32 prop = (f32)validCount / (f32)count;
-
-	if (DynamicsParms::mInstance->mFixedFriction()) {
-		friction = DynamicsParms::mInstance->mFixedFrictionValue();
-	}
-
-	f32 coeff = -friction * prop;
-
 	for (DynParticle* particle = mDynParticle; particle; particle = particle->mNext) {
 		if (!particle->mIsTouching) {
 			continue;
 		}
+
 		Vector3f crossVec = mRigid.mConfigs[0].mRotatedMomentum;
 		Vector3f sep;
 		sep.x = particle->mPosition.x - mTransformedPosition.x;
 		sep.y = particle->mPosition.y - mTransformedPosition.y;
 		sep.z = particle->mPosition.z - mTransformedPosition.z;
 		crossVec.cross(crossVec, sep);
-		crossVec     = crossVec + mRigid.mConfigs[0].mVelocity;
-		Vector3f vec = particle->mCollisionNormal * crossVec.dot(particle->mCollisionNormal);
-		vec          = crossVec - vec;
-		if (DynamicsParms::mInstance->mFrictionTangentVelocity()) {
-			vec.normalise();
-		}
+		crossVec = crossVec + mRigid.mConfigs[0].mVelocity;
 
-		Vector3f coeffVec         = vec * coeff;
-		Vector3f vec2             = mRigid.mConfigs[0].mForce + coeffVec;
-		mRigid.mConfigs[0].mForce = vec2;
+		Vector3f& normal = particle->mCollisionNormal;
+		f32 dotProd2     = mRigid.mConfigs[0].mForce.dot(particle->mCollisionNormal);
+		Vector3f sep2    = normal * crossVec.dot(normal);
+		sep2             = crossVec - sep2;
+		sep2.normalise();
 
-		if (!DynamicsParms::mInstance->mNoRotationEffect()) {
-			Vector3f vec3              = mRigid.mConfigs[0].mTorque;
-			mRigid.mConfigs[0].mTorque = vec3 + sep.cross(coeffVec);
+		mRigid.mConfigs[0].mForce += particle->mCollisionNormal * dotProd2;
+
+		f32 staticLimit = 10.0f;
+		if (absF(sep2.dot(crossVec)) < staticLimit) {
+			sep2.normalise();
+			sep2 = sep2 * 140.0f;
+			mRigid.mConfigs[0].mForce -= sep2;
+		} else {
+			sep2 = crossVec - normal * crossVec.dot(normal);
+			sep2.normalise();
+			f32 fixedFriction = 100.0f;
+			mRigid.mConfigs[0].mForce += sep2 * -fixedFriction;
 		}
 	}
 }
@@ -237,7 +182,7 @@ void DynCreature::computeForces(f32 friction)
  */
 void DynCreature::tracemoveCallback(Vector3f& point, Vector3f& normal)
 {
-	bool collCheck = mRigid.resolveCollision(0, point, normal, DynamicsParms::mInstance->mElasticity());
+	bool collCheck = mRigid.resolveCollision(0, point, normal, 0.3f);
 
 	if (mCurrentChildPtcl && collCheck) {
 		if (!mCanBounce) {
@@ -425,7 +370,7 @@ f32 DynCreature::getAngularEffect(Vector3f&, Vector3f&)
  * @note Address: 0x801A8EC8
  * @note Size: 0x44
  */
-void DynCreature::applyImpulse(Vector3f&, Vector3f& vel)
+void DynCreature::applyImpulse(Vector3f& vel)
 {
 	mRigid.mConfigs[0].mVelocity = mRigid.mConfigs[0].mVelocity + vel * mMass;
 }

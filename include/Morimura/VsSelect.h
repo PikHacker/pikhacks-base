@@ -97,7 +97,6 @@ struct DispMemberVsSelect : public og::Screen::DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberVsSelect); } // _08
-	virtual u32 getOwnerID() { return OWNER_MRMR; }              // _0C
 	virtual u64 getMemberID() { return MEMBER_VS_SELECT; }       // _10
 
 	// _00     = VTBL
@@ -193,7 +192,6 @@ struct TVsSelectScene : public THIOScene {
 	TVsSelectScene() { mConfirmEndWindow = nullptr; }
 	virtual const char* getResName() const { return "res_vsSelect.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_VS_SELECT; }          // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }             // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_VS_SELECT; }     // _10 (weak)
 	virtual void doCreateObj(JKRArchive*);                                // _20
 	virtual bool doStart(Screen::StartSceneArg*);                         // _3C

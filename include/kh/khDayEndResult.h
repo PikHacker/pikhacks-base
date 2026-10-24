@@ -69,7 +69,6 @@ struct DispDayEndResultIncP : public og::Screen::DispMemberBase {
 	DispDayEndResultIncP(const IncP*);
 
 	virtual u32 getSize() { return sizeof(DispDayEndResultIncP); }    // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }                     // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT_INC_P; } // _10 (weak)
 
 	// _00     = VTBL
@@ -84,7 +83,6 @@ struct DispDayEndResultItem : public og::Screen::DispMemberBase {
 	DispDayEndResultItem(Game::Result::TNode*, int, int, bool);
 
 	virtual u32 getSize() { return sizeof(DispDayEndResultItem); }   // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }                    // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT_ITEM; } // _10 (weak)
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
@@ -103,7 +101,6 @@ struct DispDayEndResultMail : public og::Screen::DispMemberBase {
 	DispDayEndResultMail(JKRHeap*, MailCategory);
 
 	virtual u32 getSize() { return sizeof(DispDayEndResultMail); }   // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }                    // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT_MAIL; } // _10 (weak)
 
 	// _00     = VTBL
@@ -121,7 +118,6 @@ struct DispDayEndResultMail : public og::Screen::DispMemberBase {
 struct DispDayEndResultTitl : public og::Screen::DispMemberBase {
 
 	virtual u32 getSize() { return sizeof(DispDayEndResultTitl); }    // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }                     // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT_TITLE; } // _10 (weak)
 
 	// _00     = VTBL
@@ -138,7 +134,6 @@ struct DispDayEndResult : public og::Screen::DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispDayEndResult); }  // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT; } // _10 (weak)
 	virtual void doSetSubMemberAll()
 	{
@@ -615,7 +610,6 @@ struct ObjDayEndResultTitl : public ::Screen::ObjBase {
 struct SceneDayEndResultIncP : public ::Screen::SceneBase {
 	virtual const char* getResName() const { return "result_fuetaheta.szs"; }    // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_INC_P; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                      // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_INC_P; } // _10 (weak)
 	virtual void doCreateObj(JKRArchive* archive)                                // _20 (weak)
 	{
@@ -629,7 +623,6 @@ struct SceneDayEndResultIncP : public ::Screen::SceneBase {
 struct SceneDayEndResultItem : public ::Screen::SceneBase {
 	virtual const char* getResName() const { return "result_item.szs"; }        // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_ITEM; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                     // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_ITEM; } // _10 (weak)
 	virtual void doCreateObj(JKRArchive* archive)                               // _20 (weak)
 	{
@@ -682,7 +675,6 @@ struct SceneDayEndResultMail : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return ""; }                       // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_MAIL; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                     // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_MAIL; } // _10 (weak)
 	virtual void doCreateObj(JKRArchive*) { }                                   // _20 (weak)
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);                     // _24
@@ -697,7 +689,6 @@ struct SceneDayEndResultMail : public ::Screen::SceneBase {
 struct SceneDayEndResultTitl : public ::Screen::SceneBase {
 	virtual const char* getResName() const { return "result_title_new.szs"; }    // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_TITL; }       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                      // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_TITLE; } // _10 (weak)
 	virtual void doCreateObj(JKRArchive* archive)                                // _20 (weak)
 	{

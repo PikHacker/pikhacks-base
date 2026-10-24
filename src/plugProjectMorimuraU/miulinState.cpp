@@ -453,7 +453,6 @@ void StateTurn::exec(EnemyBase* enemy)
 	}
 
 	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
-		JUT_ASSERTLINE(497, OBJ(enemy)->mNextState >= 0, "state -1\n");
 		transit(enemy, OBJ(enemy)->mNextState, nullptr);
 	}
 }

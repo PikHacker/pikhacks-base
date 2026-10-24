@@ -1622,7 +1622,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 	mArchive = arc;
 
 	DispMemberZukanEnemy* disp = static_cast<DispMemberZukanEnemy*>(getDispMember());
-	if (disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ENEMY)) {
+	if (disp->isID(MEMBER_ZUKAN_ENEMY)) {
 		mDispEnemy = disp;
 	}
 
@@ -3260,7 +3260,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	mArchive = arc;
 
 	DispMemberZukanItem* disp = static_cast<DispMemberZukanItem*>(getDispMember());
-	if (disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ITEM)) {
+	if (disp->isID(MEMBER_ZUKAN_ITEM)) {
 		mDispItem = disp;
 	}
 

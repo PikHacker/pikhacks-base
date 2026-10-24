@@ -79,7 +79,6 @@ struct DispMemberZukanEnemy : public DispMemberZukanBase {
 	DispMemberZukanEnemy() { }
 
 	virtual u32 getSize() { return sizeof(DispMemberZukanEnemy); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }                // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_ZUKAN_ENEMY; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -88,7 +87,6 @@ struct DispMemberZukanEnemy : public DispMemberZukanBase {
 
 struct DispMemberZukanItem : public DispMemberZukanBase {
 	virtual u32 getSize() { return sizeof(DispMemberZukanItem); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_ZUKAN_ITEM; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -100,7 +98,6 @@ struct TDEnemyScene : public THIOScene {
 
 	virtual const char* getResName() const { return "res_enemyZukan.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_ZUKAN_ENEMY; }          // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_ZUKAN_ENEMY; }     // _10 (weak)
 	virtual void doCreateObj(JKRArchive*);                                  // _20
 	virtual bool doStart(Screen::StartSceneArg*);                           // _3C
@@ -118,7 +115,6 @@ struct TDItemScene : public THIOScene {
 
 	virtual const char* getResName() const { return "res_itemZukan.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_ZUKAN_ITEM; }          // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }              // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_ZUKAN_ITEM; }     // _10 (weak)
 	virtual void doCreateObj(JKRArchive*);                                 // _20
 	virtual bool doStart(Screen::StartSceneArg*);                          // _3C

@@ -12,8 +12,6 @@ namespace Resource {
 inline Mgr2D::Mgr2D(JKRHeap* heap)
     : Mgr(heap, RESOURCE_MGR2D_HEAP_SIZE)
 {
-	P2ASSERTLINE(34, heap);
-
 	P2ASSERTLINE(36, !gResMgr2D);
 
 	gResMgr2D = this;

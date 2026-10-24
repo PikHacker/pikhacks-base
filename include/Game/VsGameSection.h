@@ -74,7 +74,6 @@ struct VsGameSection : public BaseGameSection {
 	virtual void startMainBgm();                                           // _64
 	virtual void section_fadeout();                                        // _68
 	virtual void goNextFloor(ItemHole::Item*);                             // _6C
-	virtual bool challengeDisablePelplant() { return false; }              // _80 (weak)
 	virtual bool player2enabled() { return true; }                         // _134 (weak)
 	virtual char* getCaveFilename() { return mCaveInfoFilename; }          // _84 (weak)
 	virtual char* getEditorFilename() { return mEditFilename; }            // _88 (weak)

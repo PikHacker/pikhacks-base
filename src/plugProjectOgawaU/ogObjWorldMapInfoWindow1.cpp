@@ -33,7 +33,7 @@ ObjWorldMapInfoWindow1::ObjWorldMapInfoWindow1(char const* name)
 void ObjWorldMapInfoWindow1::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberWorldMapInfoWin1* disp = static_cast<og::Screen::DispMemberWorldMapInfoWin1*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_1)) {
+	if (disp->isID(MEMBER_WORLD_MAP_INFO_WINDOW_1)) {
 		mDispWmap = disp;
 	}
 

@@ -182,7 +182,6 @@ struct CellLayer {
 struct CellPyramid : public SweepPrune::World {
 	CellPyramid();
 	void mapSearch(Sys::Sphere&, IDelegate1<CellObject*>*);
-	void initFrame();
 	u32 getCheckCount();
 	void resolveCollision();
 	void clearAllCollBuffer();

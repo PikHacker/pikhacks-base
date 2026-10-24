@@ -1672,22 +1672,28 @@ void Navi::addDamage(f32 damage, bool playSound)
 void Navi::enterAllPikis()
 {
 	Iterator<Piki> iterator(pikiMgr);
+	int pikis = 0;
+	Piki* buffer[MAX_PIKI_COUNT];
 	CI_LOOP(iterator)
 	{
-		Piki* piki    = *iterator;
-		Onyon* target = nullptr;
-
+		Piki* piki = *iterator;
 		if (piki->isAlive()) {
-			if (piki->getKind() <= Yellow) {
-				target = ItemOnyon::mgr->getOnyon(piki->getKind());
-			} else {
-				target = ItemOnyon::mgr->mUfo;
-			}
+			buffer[pikis++] = piki;
+		}
+	}
 
-			if (target) {
-				PikiAI::CreatureActionArg arg(target);
-				piki->mBrain->start(PikiAI::ACT_Enter, &arg);
-			}
+	for (int i = 0; i < pikis; i++) {
+		Onyon* target = nullptr;
+		Piki* piki    = buffer[i];
+		if (piki->getKind() <= Yellow) {
+			target = ItemOnyon::mgr->getOnyon(piki->getKind());
+		} else {
+			target = ItemOnyon::mgr->mUfo;
+		}
+
+		if (target) {
+			PikiAI::CreatureActionArg arg(target);
+			piki->mBrain->start(PikiAI::ACT_Enter, &arg);
 		}
 	}
 }
@@ -1780,20 +1786,30 @@ void Navi::clearThrowDisable()
  */
 void Navi::holeinAllPikis(Vector3f& pos)
 {
+	naviMgr->getAliveOrima(ALIVEORIMA_Active);
+	Piki* buffer[MAX_PIKI_COUNT];
+	int pikis = 0;
+
 	Iterator<Creature> iterator(mCPlateMgr);
 	CI_LOOP(iterator)
 	{
 		Piki* piki = static_cast<Piki*>(*iterator);
 		if (piki->isAlive()) {
 			if (piki->mCurrentState->transittable(PIKISTATE_Holein) && piki->mCurrentState->soft_transittable(PIKISTATE_Holein)) {
-				HoleinStateArg arg(pos);
-				piki->mFsm->transit(piki, PIKISTATE_Holein, &arg);
+				buffer[pikis] = piki;
+				pikis++;
 			} else {
 				piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
-				HoleinStateArg arg(pos);
-				piki->mFsm->transit(piki, PIKISTATE_Holein, &arg);
+				buffer[pikis] = piki;
+				pikis++;
 			}
 		}
+	}
+
+	for (int i = 0; i < pikis; i++) {
+		Piki* piki = buffer[i];
+		HoleinStateArg arg(pos);
+		piki->mFsm->transit(piki, PIKISTATE_Holein, &arg);
 	}
 }
 
@@ -1803,20 +1819,29 @@ void Navi::holeinAllPikis(Vector3f& pos)
  */
 void Navi::fountainonAllPikis(Vector3f& pos)
 {
+	Piki* buffer[MAX_PIKI_COUNT];
+	int pikis = 0;
+
 	Iterator<Creature> iterator(mCPlateMgr);
 	CI_LOOP(iterator)
 	{
 		Piki* piki = static_cast<Piki*>(*iterator);
 		if (piki->isAlive() && (int)piki->getKind() != Bulbmin) {
 			if (piki->mCurrentState->transittable(PIKISTATE_Fountainon) && piki->mCurrentState->soft_transittable(PIKISTATE_Fountainon)) {
-				FountainonStateArg arg(pos);
-				piki->mFsm->transit(piki, PIKISTATE_Fountainon, &arg);
+				buffer[pikis] = piki;
+				pikis++;
 			} else {
 				piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
-				FountainonStateArg arg(pos);
-				piki->mFsm->transit(piki, PIKISTATE_Fountainon, &arg);
+				buffer[pikis] = piki;
+				pikis++;
 			}
 		}
+	}
+
+	for (int i = 0; i < pikis; i++) {
+		Piki* piki = buffer[i];
+		FountainonStateArg arg(pos);
+		piki->mFsm->transit(piki, PIKISTATE_Fountainon, &arg);
 	}
 }
 
@@ -1835,12 +1860,19 @@ void Navi::demowaitAllPikis()
 		Piki* piki = static_cast<Piki*>(*iterator);
 		if (piki->isAlive() && (int)piki->getKind() != Bulbmin) {
 			if (piki->mCurrentState->transittable(PIKISTATE_DemoWait) && piki->mCurrentState->soft_transittable(PIKISTATE_DemoWait)) {
-				piki->mFsm->transit(piki, PIKISTATE_DemoWait, nullptr);
+				buffer[pikis] = piki;
+				pikis++;
 			} else {
 				piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
-				piki->mFsm->transit(piki, PIKISTATE_DemoWait, nullptr);
+				buffer[pikis] = piki;
+				pikis++;
 			}
 		}
+	}
+
+	for (int i = 0; i < pikis; i++) {
+		Piki* piki = buffer[i];
+		piki->mFsm->transit(piki, PIKISTATE_DemoWait, nullptr);
 	}
 }
 

@@ -137,7 +137,7 @@ ObjCaveResult::ObjCaveResult()
 void ObjCaveResult::doCreate(JKRArchive* arc)
 {
 
-	JUT_ASSERTLINE(191, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+	JUT_ASSERTLINE(191, getDispMember()->isID(MEMBER_CAVE_RESULT), "disp member err");
 
 	DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
 
@@ -283,7 +283,7 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
  */
 bool ObjCaveResult::doUpdate()
 {
-	JUT_ASSERTLINE(376, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+	JUT_ASSERTLINE(376, getDispMember()->isID(MEMBER_CAVE_RESULT), "disp member err");
 
 	DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
 	updateAnimation();
@@ -695,7 +695,7 @@ void ObjCaveResult::statusForceScroll()
 				mChangeStateDelay = msVal.mChangeStateInitialDelay;
 			}
 		} else {
-			JUT_ASSERTLINE(829, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+			JUT_ASSERTLINE(829, getDispMember()->isID(MEMBER_CAVE_RESULT), "disp member err");
 			getDispMember();
 			int i                     = 0;
 			Game::Result::TNode* node = static_cast<Game::Result::TNode*>(mResultNode->mChild);
@@ -748,7 +748,7 @@ void ObjCaveResult::statusDrumRoll()
 void ObjCaveResult::statusAllMoney()
 {
 	if (!mChangeStateDelay) {
-		JUT_ASSERTLINE(910, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+		JUT_ASSERTLINE(910, getDispMember()->isID(MEMBER_CAVE_RESULT), "disp member err");
 		DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
 		mTotalPokos          = disp->mTotalPokos;
 		mCounterTotalPokos->startPuyoUp(1.0f);
@@ -767,7 +767,7 @@ void ObjCaveResult::statusAllMoney()
 void ObjCaveResult::statusDecP()
 {
 	if (!mChangeStateDelay) {
-		JUT_ASSERTLINE(934, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+		JUT_ASSERTLINE(934, getDispMember()->isID(MEMBER_CAVE_RESULT), "disp member err");
 		DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
 		mDeadPiki            = disp->mDeadPikis;
 		mCounterDeadPiki->startPuyoUp(1.0f);

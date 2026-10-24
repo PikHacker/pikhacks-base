@@ -16,8 +16,6 @@ namespace PikiAI {
  */
 void ActTransport::getInfo(char* infoStringBuffer)
 {
-	char* stateName[3] = { "SLOT", "LIFT", "MOVE" };
-	sprintf(infoStringBuffer, "CARRY %s", stateName[mState]);
 }
 
 /**

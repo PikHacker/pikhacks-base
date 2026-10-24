@@ -1264,7 +1264,7 @@ void TChallengeSelect::doCreate(JKRArchive* arc)
 	int selection                   = 0;
 	mArchive                        = arc;
 	DispMemberChallengeSelect* disp = static_cast<DispMemberChallengeSelect*>(getDispMember());
-	if (disp->isID(OWNER_MRMR, MEMBER_CHALLENGE_SELECT)) {
+	if (disp->isID(MEMBER_CHALLENGE_SELECT)) {
 		mDisp     = disp;
 		selection = mDisp->mSelectedStageIndex;
 	} else {

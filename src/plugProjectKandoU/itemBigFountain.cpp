@@ -276,8 +276,6 @@ void Item::onInit(CreatureInitArg* initArg)
 	setCollisionFlick(false);
 	mAnimSpeed = 0.0f;
 
-	JUT_ASSERTLINE(364, mgr->mAnimMgr, "animMgr null @ big fountain\n");
-
 	mAnimator.mAnimMgr = mgr->mAnimMgr;
 	mAnimator.startAnim(0, this);
 
@@ -295,8 +293,6 @@ void Item::onInit(CreatureInitArg* initArg)
 		mFsm->start(this, BIGFOUNTAIN_Out, nullptr);
 	}
 
-	// weird but required for stack.
-	Vector3f(1.0f).set(mModel->mJ3dModel->mModelScale);
 	mMass    = 0.0f;
 	mFaceDir = 0.0f;
 }
@@ -496,7 +492,6 @@ Mgr::Mgr()
 {
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/kanketusen";
-	mItemName            = "帰還間欠泉"; // 'return geyser'
 	mParms               = new FountainParms;
 
 	void* data = JKRDvdRipper::loadToMainRAM("user/Abe/item/fountainParms.txt", nullptr, Switch_0, 0, nullptr,

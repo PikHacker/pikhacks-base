@@ -508,8 +508,6 @@ void Item::makeTrMatrix()
 		xVec.normalise();
 
 		zVec = xVec.cross(yVec);
-		// sigh. this is the only thing I've found that fixes these fucking registers
-		zVec = zVec;
 		zVec.normalise();
 
 		mBaseTrMatrix.setColumn(0, xVec);
@@ -684,7 +682,6 @@ bool Item::interactFue(InteractFue& whistle)
 Mgr::Mgr()
     : FixedSizeItemMgr<Item>()
 {
-	mItemName = "PikiHead";
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/pikihead";
 }

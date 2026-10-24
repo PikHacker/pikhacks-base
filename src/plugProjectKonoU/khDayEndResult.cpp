@@ -438,7 +438,7 @@ void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 
 	og::Screen::setCallBackMessage(mScreenMain);
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(502, "disp member err");
 #else
@@ -626,7 +626,7 @@ bool ObjDayEndResultItem::doUpdate()
 		mScrollMoveCounter = 0;
 		mStatus            = ITEMSTATUS_Normal;
 
-		if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 			JUT_PANICLINE(665, "disp member err");
 #else
@@ -684,7 +684,7 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 	ObjDayEndResultBase::doDraw(gfx);
 	gfx.mOrthoGraph.setPort();
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(723, "disp member err");
 #else
@@ -883,7 +883,7 @@ void ObjDayEndResultItem::statusForceScroll()
 			mScrollMoveCounter = 1;
 			mStatus            = ITEMSTATUS_DrumRoll;
 		} else {
-			if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+			if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 				JUT_PANICLINE(964, "disp member err");
 #else
@@ -927,7 +927,7 @@ void ObjDayEndResultItem::statusDrumRoll()
 void ObjDayEndResultItem::statusTotalValue()
 {
 	if (mTotalValueDelay == 0) {
-		if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 			JUT_PANICLINE(1017, "disp member err");
 #else
@@ -1066,7 +1066,7 @@ void ObjDayEndResultIncP::doCreate(JKRArchive* arc)
 
 	og::Screen::setCallBackMessage(mScreenMain);
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(1168, "disp member err");
 #else
@@ -1434,7 +1434,7 @@ void ObjDayEndResultIncP::statusFadeout()
 		return;
 	}
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(1551, "disp member err");
 #else
@@ -1605,7 +1605,7 @@ void ObjDayEndResultIncP::effectCommon()
 	mPikiCounterYesterday->startPuyoUp(1.0f);
 	mPikiCounterToday->startPuyoUp(1.0f);
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(1740, "disp member err");
 #else
@@ -1693,7 +1693,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 	mStarsAnimColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRGetResource("result_mail_constellation.bpk", arc)));
 	mScreenStars->setAnimation(mStarsAnimColor);
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(1912, "disp member err");
 #else
@@ -1786,7 +1786,7 @@ bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg* arg)
 	setInfAlpha(mScreenStars->search('Nall'));
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(2032, "disp member err");
 #else
@@ -1834,7 +1834,7 @@ bool ObjDayEndResultMail::doUpdateFadein()
  */
 bool ObjDayEndResultMail::doUpdate()
 {
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(2072, "disp member err");
 #else
@@ -2051,7 +2051,7 @@ void ObjDayEndResultMail::statusFadeinFromRight()
  */
 void ObjDayEndResultMail::statusWaitOpen()
 {
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(2299, "disp member err");
 #else
@@ -2435,7 +2435,7 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 		offset += (fileNameLen + 16) & ~0x3;
 	}
 
-	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_PAL)
 		JUT_PANICLINE(2700, "disp member err");
 #else

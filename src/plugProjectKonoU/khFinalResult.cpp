@@ -152,7 +152,7 @@ ObjFinalResult::ObjFinalResult()
  */
 void ObjFinalResult::doCreate(JKRArchive* arc)
 {
-	JUT_ASSERTLINE(214, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+	JUT_ASSERTLINE(214, getDispMember()->isID(MEMBER_FINAL_RESULT), "disp member err");
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 
 	mScreen = new P2DScreen::Mgr_tuning;
@@ -303,7 +303,7 @@ bool ObjFinalResult::doUpdate()
 			switch (mSaveMgr->mEndState) {
 			case ebi::Save::TMgr::End_SaveDone:
 			case ebi::Save::TMgr::End_SelectNoSave:
-				JUT_ASSERTLINE(382, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+				JUT_ASSERTLINE(382, getDispMember()->isID(MEMBER_FINAL_RESULT), "disp member err");
 				DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 				disp->mExitStatus     = ::Screen::Game2DMgr::CHECK2D_FinalResult_Finished;
 				break;
@@ -399,7 +399,7 @@ void ObjFinalResult::doDraw(Graphics& gfx)
 	pane2->hide();
 	pane3->show();
 
-	JUT_ASSERTLINE(479, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+	JUT_ASSERTLINE(479, getDispMember()->isID(MEMBER_FINAL_RESULT), "disp member err");
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 	TotalResultData* data = disp->mTotalResultData;
 	for (int i = 0; i < GAME_HIGHSCORE_COUNT; i++) {
@@ -658,7 +658,7 @@ void ObjFinalResult::statusForceScroll()
  */
 void ObjFinalResult::drawReplace(Graphics& gfx, int id)
 {
-	JUT_ASSERTLINE(726, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+	JUT_ASSERTLINE(726, getDispMember()->isID(MEMBER_FINAL_RESULT), "disp member err");
 	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
 	TotalResultData* data = disp->mTotalResultData;
 
@@ -807,7 +807,7 @@ JUtility::TColor ObjFinalResult::getClr(const JUtility::TColor& col1, const JUti
  */
 void SceneFinalResult::doUserCallBackFunc(Resource::MgrCommand*)
 {
-	JUT_ASSERTLINE(856, mDispMember->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+	JUT_ASSERTLINE(856, mDispMember->isID(MEMBER_FINAL_RESULT), "disp member err");
 	og::newScreen::makeLanguageResName(mName, "result_final.szs");
 	LoadResource::Arg arg(mName);
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);

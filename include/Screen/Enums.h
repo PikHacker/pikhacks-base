@@ -60,9 +60,6 @@ enum SceneType {
 	SCENE_DAY_END_RESULT_TITL
 };
 
-// Responsible developer.
-enum ScreenOwnerID { OWNER_KH = 'KH', OWNER_OGA = 'OGA', OWNER_MRMR = 'MRMR' };
-
 // 8-byte screen ID
 #pragma enumsalwaysint off
 #pragma longlong_enums on

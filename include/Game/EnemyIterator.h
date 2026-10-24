@@ -28,6 +28,7 @@ struct EnemyIterator {
 				mIndex = mContainer->getNext(mIndex);
 			}
 		}
+		FORCE_DONT_INLINE;
 	}
 	virtual void next() // _0C
 	{
@@ -42,6 +43,7 @@ struct EnemyIterator {
 				mIndex = mContainer->getNext(mIndex);
 			}
 		}
+		FORCE_DONT_INLINE;
 	}
 	virtual bool isDone() // _10
 	{

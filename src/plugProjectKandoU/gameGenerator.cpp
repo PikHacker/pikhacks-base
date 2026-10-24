@@ -18,7 +18,6 @@ GeneratorMgr* onceGeneratorMgr;
 GeneratorMgr* limitGeneratorMgr;
 GeneratorMgr* plantsGeneratorMgr;
 GeneratorMgr* dayGeneratorMgr;
-IDelegate1<Vector3f&>* GeneratorMgr::cursorCallback;
 
 /**
  * @note Address: 0x801AA6E4
@@ -285,7 +284,7 @@ void Generator::saveCreature(Stream& output)
 void Generator::generate()
 {
 	if (isExpired()) {
-		mCreature  = nullptr;
+		mCreature = nullptr;
 		return;
 	}
 
@@ -409,8 +408,6 @@ void Generator::read(Stream& input)
 	if (mObject) {
 		mObject->read(input);
 		mId = id;
-	} else {
-		temp.print();
 	}
 }
 
@@ -425,26 +422,16 @@ void Generator::write(Stream& output)
 	// Note that the entire functionality of outputting Generators as text is unused code
 	// Only binary is ever used by the actual game
 
-	output.textWriteTab(output.mTabCount);
 	ID32 id(GeneratorCurrentVersion);
 	id.write(output);
-	output.textWriteText("\t# version\r\n");
-
-	output.textWriteTab(output.mTabCount);
 	output.writeShort(mReservedNum);
-	output.textWriteText("\t# reserved\r\n");
-
-	output.textWriteTab(output.mTabCount);
 	output.writeShort(mDaysTillResurrection);
-	output.textWriteText("\t# 復活日数\r\n"); // 'resurrection days'
 
 	if (ramMode == RM_Disc) {
 		// write the generator's name when working with plain text
-		output.textWriteTab(output.mTabCount);
 		for (int i = 0; i < 32; i++) {
 			output.writeByte(mGenObjName[i]);
 		}
-		output.textWriteText("\t# <%s>\r\n", mGenObjName);
 	} else {
 		// binary skips writing the name, but does write additional values to keep track of its alive status
 		output.writeByte('\0');
@@ -459,17 +446,13 @@ void Generator::write(Stream& output)
 		output.writeShort((s16)mPosition.y + mOffset.y);
 		output.writeShort((s16)mPosition.z + mOffset.z);
 	} else {
-		output.textWriteTab(output.mTabCount);
 		output.writeFloat(mPosition.x);
 		output.writeFloat(mPosition.y);
 		output.writeFloat(mPosition.z);
-		output.textWriteText("\t# pos\r\n");
 
-		output.textWriteTab(output.mTabCount);
 		output.writeFloat(mOffset.x);
 		output.writeFloat(mOffset.y);
 		output.writeFloat(mOffset.z);
-		output.textWriteText("\t# offset\r\n");
 	}
 
 	if (mObject) {
@@ -499,7 +482,7 @@ GeneratorMgr::GeneratorMgr()
 	if (!GenObjectFactory::factory) {
 		GenObjectFactory::factory = new GenObjectFactoryFactory;
 	}
-	mName       = "GeneratorMgr";
+	mName = "GeneratorMgr";
 }
 
 /**
@@ -573,35 +556,6 @@ void GeneratorMgr::update()
 }
 
 /**
- * @note Address: N/A
- * @note Size: 0x55C
- */
-void GeneratorMgr::render(Graphics& gfx)
-{
-	// UNUSED FUNCTION
-	// obviously more to this, but this is enough to generate the weak functions below it
-	GeneratorMgr* mgr = getChild();
-	for (mgr; mgr; mgr = mgr->getNext()) {
-		mgr->render(gfx);
-	}
-}
-
-/**
- * @note Address: 0x801AB7C0
- * @note Size: 0x43C
- */
-void GeneratorMgr::updateCursorPos(Vector3f& position)
-{
-	mCursorPosition = (const Vector3f&)position; // forcing it to use the right operator=
-	if (getChild()) {
-		getChild()->updateCursorPos(position);
-	}
-	if (getNext()) {
-		getNext()->updateCursorPos(position);
-	}
-}
-
-/**
  * read__Q24Game12GeneratorMgrFR6Streamb
  * @note Address: 0x801ABC18
  * @note Size: 0x2F0
@@ -655,17 +609,6 @@ void GeneratorMgr::read(Stream& input, bool)
  */
 void GeneratorMgr::write(Stream& output)
 {
-	output.textWriteTab(output.mTabCount);
-	output.textWriteText("# generatorMgr <%s>\r\n");
-
-	output.textWriteTab(output.mTabCount);
-	output.textWriteText("\t# startPos\r\n");
-
-	output.textWriteTab(output.mTabCount);
-	output.textWriteText("\t# startDir\r\n");
-
-	output.textWriteTab(output.mTabCount);
-	output.textWriteText("\t# %d generators\r\n");
 }
 
 } // namespace Game

@@ -39,7 +39,6 @@ struct DispFinalResult : public og::Screen::DispMemberBase {
 	DispFinalResult(TotalResultData*, ResultType, JKRHeap*);
 
 	virtual u32 getSize() { return sizeof(DispFinalResult); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }             // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_FINAL_RESULT; } // _10 (weak)
 
 	// _00     = VTBL
@@ -156,7 +155,6 @@ struct ObjFinalResult : public ::Screen::ObjBase {
 struct SceneFinalResult : public ::Screen::SceneBase {
 	virtual const char* getResName() const { return ""; }                // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_FINAL_RESULT; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }              // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_FINAL_RESULT; } // _10 (weak)
 	virtual void doCreateObj(JKRArchive*) { }                            // _20 (weak)
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);              // _24

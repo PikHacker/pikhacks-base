@@ -747,7 +747,6 @@ void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 Mgr::Mgr()
     : TNodeItemMgr()
 {
-	mItemName = "Bridge";
 	setModelSize(BRIDGETYPE_COUNT);
 	mObjectPathComponent = "user/Kando/objects/bridge";
 	mParms               = new BridgeParms();

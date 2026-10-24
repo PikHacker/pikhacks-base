@@ -231,7 +231,7 @@ int Game2DMgr::check_VsStatus()
 {
 	int ret                        = 3;
 	og::Screen::DispMemberVs* disp = static_cast<og::Screen::DispMemberVs*>(mScreenMgr->getDispMember());
-	if (disp && disp->isID(OWNER_OGA, MEMBER_VS)) {
+	if (disp && disp->isID(MEMBER_VS)) {
 		switch (disp->mDoneState) {
 		case 0:
 			ret = 0;
@@ -616,7 +616,7 @@ bool Game2DMgr::update_Kantei()
 {
 	bool ret                           = true;
 	og::Screen::DispMemberKantei* disp = static_cast<og::Screen::DispMemberKantei*>(mScreenMgr->getDispMember());
-	if (disp && disp->isID(OWNER_OGA, MEMBER_KANTEI) && disp->mIsDone) {
+	if (disp && disp->isID(MEMBER_KANTEI) && disp->mIsDone) {
 		ret = false;
 	}
 	return ret;
@@ -860,7 +860,7 @@ int Game2DMgr::check_CaveInMenu()
 	int ret;
 	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(mScreenMgr->getDispMember());
 	if (disp) {
-		if (disp->isID(OWNER_OGA, MEMBER_ANA_DEMO)) {
+		if (disp->isID(MEMBER_ANA_DEMO)) {
 			if (disp->mExitStatus) {
 				ret = CHECK2D_CaveInMenu_MenuOpen;
 			} else {
@@ -929,7 +929,7 @@ int Game2DMgr::check_KanketuMenu()
 	int ret;
 	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(mScreenMgr->getDispMember());
 	if (disp) {
-		if (disp->isID(OWNER_OGA, MEMBER_KANKETU_MENU)) {
+		if (disp->isID(MEMBER_KANKETU_MENU)) {
 			if (disp->mExitStatus) {
 				ret = CHECK2D_KanketuMenu_MenuOpen;
 			} else {
@@ -978,7 +978,7 @@ int Game2DMgr::check_CaveMoreMenu()
 	int ret;
 	og::Screen::DispMemberAnaDemo* disp = static_cast<og::Screen::DispMemberAnaDemo*>(mScreenMgr->getDispMember());
 	if (disp) {
-		if (disp->isID(OWNER_OGA, MEMBER_CAVE_MORE)) {
+		if (disp->isID(MEMBER_CAVE_MORE)) {
 			if (disp->mExitStatus) {
 				ret = CHECK2D_CaveMoreMenu_MenuOpen;
 			} else {
@@ -1020,7 +1020,7 @@ int Game2DMgr::check_FinalResult() const
 	if (mScreenMgr->getSceneType() != SCENE_FINAL_RESULT) {
 		return CHECK2D_FinalResult_Error;
 	} else {
-		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT)) {
+		if (!mScreenMgr->getDispMember()->isID(MEMBER_FINAL_RESULT)) {
 #if defined(VERSION_JP)
 			JUT_PANICLINE(1628, "disp member err");
 #else
@@ -1053,7 +1053,7 @@ int Game2DMgr::check_CaveResult() const
 	if (mScreenMgr->getSceneType() != SCENE_CAVE_RESULT) {
 		return CHECK2D_CaveResult_Error;
 	} else {
-		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT)) {
+		if (!mScreenMgr->getDispMember()->isID(MEMBER_CAVE_RESULT)) {
 #if defined(VERSION_JP)
 			JUT_PANICLINE(1648, "disp member err");
 #else
@@ -1089,7 +1089,7 @@ int Game2DMgr::check_DayEndResult() const
 		return CHECK2D_DayResult_Error;
 	}
 
-	if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+	if (!mScreenMgr->getDispMember()->isID(MEMBER_DAY_END_RESULT)) {
 #if defined(VERSION_JP)
 		JUT_PANICLINE(1679, "disp member err");
 #else
@@ -1210,7 +1210,7 @@ int Game2DMgr::check_ReadyGo() const
 	if (mScreenMgr->getSceneType() != SCENE_READY_GO) {
 		return CHECK2D_ReadyGo_Error;
 	} else {
-		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_READY_GO)) {
+		if (!mScreenMgr->getDispMember()->isID(MEMBER_READY_GO)) {
 #if defined(VERSION_JP)
 			JUT_PANICLINE(1758, "disp member err");
 #else
@@ -1276,7 +1276,7 @@ int Game2DMgr::check_WinLose() const
 	if (mScreenMgr->getSceneType() != SCENE_WIN_LOSE) {
 		return CHECK2D_WinLose_Error;
 	} else {
-		if (!mScreenMgr->getDispMember()->isID(OWNER_KH, MEMBER_WIN_LOSE)) {
+		if (!mScreenMgr->getDispMember()->isID(MEMBER_WIN_LOSE)) {
 #if defined(VERSION_JP)
 			JUT_PANICLINE(1793, "disp member err");
 #else
@@ -1368,7 +1368,7 @@ int Game2DMgr::check_Contena()
 	SceneType id = mScreenMgr->getSceneType();
 	if ((u32)(id + ~SCENE_FLOOR) <= 3 || id == SCENE_CONTENA_PURPLE) {
 		og::Screen::DispMemberContena* disp = static_cast<og::Screen::DispMemberContena*>(mScreenMgr->getDispMember());
-		if (disp->isID(OWNER_OGA, MEMBER_CONTENA)) {
+		if (disp->isID(MEMBER_CONTENA)) {
 			switch (disp->mDataContena.mState) {
 			case 3:
 				ret = CHECK2D_Contena_Cancel;
@@ -1400,7 +1400,7 @@ int Game2DMgr::result_Contena()
 	SceneType id = mScreenMgr->getSceneType();
 	if ((u32)(id + ~SCENE_FLOOR) <= 3 || id == SCENE_CONTENA_PURPLE) {
 		og::Screen::DispMemberContena* disp = static_cast<og::Screen::DispMemberContena*>(mScreenMgr->getDispMember());
-		if (disp->isID(OWNER_OGA, MEMBER_CONTENA)) {
+		if (disp->isID(MEMBER_CONTENA)) {
 			ret = disp->mDataContena.mResult;
 		}
 	} else {

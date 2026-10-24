@@ -173,8 +173,6 @@ void ResultState::exec(VsGameSection* section)
 		}
 		break;
 	}
-
-	section->BaseHIOSection::doUpdate();
 }
 
 /**

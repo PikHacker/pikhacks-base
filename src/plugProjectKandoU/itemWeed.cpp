@@ -283,7 +283,6 @@ void Item::doSimpleDraw(Viewport* viewport)
  */
 Mgr::Mgr()
 {
-	mItemName            = "草と小石";
 	mObjectPathComponent = "user/Kando/objects/weed";
 	setModelSize(4);
 	loadArchive("arc.szs");

@@ -187,7 +187,6 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 #else
 	if (sys->mRegion == System::LANG_Japanese) {
 #endif
-		JKRAram::sAramObject->mAramHeap->getFreeSize();
 
 		JKRArchive* fontarc = JKRMountArchive(getCurrentFontResName(), JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Tail);
 #if defined(VERSION_PAL)

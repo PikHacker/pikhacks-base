@@ -33,7 +33,6 @@ struct DispMemberChallengeSelect : public og::Screen::DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallengeSelect); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }                     // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CHALLENGE_SELECT; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -216,7 +215,6 @@ struct TChallengeSelectScene : public THIOScene {
 	TChallengeSelectScene() { mConfirmEndWindow = nullptr; }
 	virtual const char* getResName() const { return "res_challengeSelect.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_CHALLENGE_SELECT; }          // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }                    // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_CHALLENGE_SELECT; }     // _10 (weak)
 	virtual void doCreateObj(JKRArchive*);                                       // _20 (weak)
 	virtual bool doStart(Screen::StartSceneArg*);                                // _3C

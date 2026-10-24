@@ -58,11 +58,11 @@ void TDayEndCount::doCreate(JKRArchive* arc)
 	mAlphaMax = 200;
 
 	og::Screen::DispMemberGround* dispfull = static_cast<og::Screen::DispMemberGround*>(getDispMember());
-	if (dispfull->isID(OWNER_OGA, MEMBER_GROUND)) {
+	if (dispfull->isID(MEMBER_GROUND)) {
 		mDispMember = &dispfull->mDayEndCount;
-	} else if (dispfull->isID(OWNER_OGA, MEMBER_CHALLENGE_1P)) {
+	} else if (dispfull->isID(MEMBER_CHALLENGE_1P)) {
 		mDispMember = &dispfull->mDayEndCount;
-	} else if (dispfull->isID(OWNER_OGA, MEMBER_CHALLENGE_2P)) {
+	} else if (dispfull->isID(MEMBER_CHALLENGE_2P)) {
 		mDispMember = &dispfull->mDayEndCount;
 	} else {
 		mDispMember = new og::Screen::DispMemberDayEndCount;

@@ -57,11 +57,8 @@ struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
 	virtual void alloc()                             = 0; // _6C
 	virtual EnemyBase* birth(EnemyBirthArg&)         = 0; // _70
 	virtual J3DModelData* getJ3DModelData() const    = 0; // _74
-	virtual EnemyGeneratorBase* getGenerator() const = 0; // _78
 	virtual void killAll(CreatureKillArg*)           = 0; // _7C
 	virtual void setupSoundViewerAndBas()            = 0; // _80
-	virtual void setDebugParm(u32)                   = 0; // _84
-	virtual void resetDebugParm(u32)                 = 0; // _88
 	virtual int getMaxObjects() const                = 0; // _8C
 	virtual void startMovie()                        = 0; // _90
 	virtual void endMovie()                          = 0; // _94
@@ -98,14 +95,8 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	{
 		return mModelData;
 	}
-	virtual EnemyGeneratorBase* getGenerator() const // _78 (weak)
-	{
-		return mGenerator;
-	}
 	virtual void killAll(CreatureKillArg*); // _7C
 	virtual void setupSoundViewerAndBas();  // _80
-	virtual void setDebugParm(u32);         // _84
-	virtual void resetDebugParm(u32);       // _88
 	virtual int getMaxObjects() const       // _8C
 	{
 		return mObjLimit;
@@ -135,7 +126,6 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void loadTexData();                       // _D0
 	virtual J3DModelData* doLoadBmd(void*);           // _D4
 	virtual J3DModelData* doLoadBdl(void*);           // _D8
-	virtual void initGenerator();                     // _DC
 
 	void init(EnemyParmsBase*);
 	bool isValidEnemyTypeID();
@@ -168,7 +158,6 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	int mObjLimit;                     // _2C
 	int mNumObjects;                   // _30
 	EnemyParmsBase* mParms;            // _34
-	EnemyGeneratorBase* mGenerator;    // _38
 	EnemyStone::Info mStoneInfo;       // _3C
 };
 

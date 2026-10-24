@@ -244,45 +244,22 @@ Creature* GenObjectEnemy::birth(Game::GenArg* genArg)
  */
 void GenObjectEnemy::doWrite(Stream& stream)
 {
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeShort((u16)mEnemyID);
-	stream.textWriteText("\t\t# %s \r\n", "teki");
-
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeByte(mTekiBirthType);
-	stream.textWriteText("\t\t# %s \r\n", "teki_birth_type");
-
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeShort((u16)mTekiNum);
-	stream.textWriteText("\t\t# %s \r\n", "teki_num");
-
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeFloat(mDirection);
-	stream.textWriteText("\t\t# %s \r\n", "face direction");
-
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeByte(mSpawnType);
-	stream.textWriteText("\t\t# %s \r\n", "0:point 1:circle");
-
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeFloat(mAppearRadius);
-	stream.textWriteText("\t\t# %s \r\n", "appear radius");
-
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeFloat(mEnemySize);
-	stream.textWriteText("\t\t# %s \r\n", "enemy size");
 
 	mOtakaraItemCode.write(stream);
-
 	mPelletInfo.write(stream);
 
 	EnemyGeneratorBase* gen = mEnemyGenerator;
 	if (gen) {
 		gen->mVersion = gen->getLatestVersion();
 
-		stream.textWriteTab(stream.mTabCount);
 		gen->mVersion.write(stream);
-		stream.textWriteText("\t\t# Version \r\n");
 		gen->doWrite(stream);
 	}
 }

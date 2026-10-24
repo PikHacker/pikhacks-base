@@ -197,9 +197,6 @@ Radar::Mgr::RadarSearchResult Radar::Mgr::calcNearestTreasure(Vector3f& naviPos,
 
 		treasureCount++;
 		Game::Creature* creature = static_cast<Game::Pellet*>(cPoint->mObject);
-		if (!creature->isTeki()) {
-			creature->isPellet();
-		}
 
 		Vector3f objPos = creature->getPosition();
 

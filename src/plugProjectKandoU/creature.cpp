@@ -449,10 +449,8 @@ void Creature::movie_begin(bool isMainActor)
 
 	if (!isMainActor) {
 		mFlags.set(CF_IsMovieExtra);
-		isPiki();
 	} else {
 		mFlags.unset(CF_IsMovieExtra);
-		isPiki();
 	}
 
 	on_movie_begin(isMainActor);
@@ -590,7 +588,7 @@ int Creature::getCellPikiCount()
  * @note Address: 0x8013BF2C
  * @note Size: 0xB0
  */
-void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
+void Creature::applyImpulse(Vector3f& impulse)
 {
 	Vector3f oldVelocity = getVelocity();
 	Vector3f newVelocity = oldVelocity;
@@ -765,8 +763,8 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 	Vector3f updatedVec2 = collisionNormal * -posFac;
 
 	if (!checkSum2) {
-		applyImpulse(pointSource, updatedVec1);
-		op->applyImpulse(pointDest, updatedVec2);
+		applyImpulse(updatedVec1);
+		op->applyImpulse(updatedVec2);
 		return;
 	}
 

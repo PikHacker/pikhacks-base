@@ -87,7 +87,6 @@ u8 ObjCalc_2PGame::getPlayerNo(PSM::Creature* obj)
 	case OBJCALC_0:
 		return obj->mGameObj->getSound_AILOD()->mSoundVPID;
 	default:
-		JUT_PANICLINE(125, "ありえないケース1");
 		return 0;
 	}
 }

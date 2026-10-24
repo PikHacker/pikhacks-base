@@ -2,7 +2,6 @@
 #include "math.h"
 #include "Game/cellPyramid.h"
 #include "BaseParm.h"
-#include "CellMgrParms.h"
 #include "fdlibm.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "P2Macros.h"
@@ -18,7 +17,7 @@ u8 CellPyramid::sSpeedUpResolveColl;
 CellPyramid* Cell::sCurrCellMgr;
 int CellPyramid::sCellBugID;
 
-u8 CellPyramid::sOptResolveColl     = 2;
+u8 CellPyramid::sOptResolveColl = 2;
 
 /**
  * @note Address: 0x801565C8
@@ -161,19 +160,7 @@ void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, u32 passID)
  */
 void Cell::resolveCollision()
 {
-	if (CellMgrParms::getInstance()->mCellParms.mUseBuffer()) {
-		resolveCollision_3();
-	} else {
-		(CellMgrParms::getInstance()->mCellParms.mMagicNumber()) ? resolveCollision_1() : resolveCollision_2();
-	}
-}
-
-/**
- * @note Address: 0x80156D44
- * @note Size: 0x4
- */
-void CellPyramid::initFrame()
-{
+	resolveCollision_1();
 }
 
 /**
@@ -1148,13 +1135,8 @@ void Cell::resolveCollision_3()
 		} else {
 			for (CellLeg* legB = legA->mNext; legB != nullptr; legB = legB->mNext) {
 				if (legA->mObject != legB->mObject) {
-					if (CellMgrParms::getInstance()->mCellParms.mMagicNumber()) {
-						if (legB->mObject != (CellObject*)legA->mObject->mPassID) {
-							legA->mObject->mPassID = (u32)legB->mObject;
-							legA->mObject->checkCollision(legB->mObject);
-							legA->mObject->updateCollisionBuffer(legB->mObject);
-						}
-					} else {
+					if (legB->mObject != (CellObject*)legA->mObject->mPassID) {
+						legA->mObject->mPassID = (u32)legB->mObject;
 						legA->mObject->checkCollision(legB->mObject);
 						legA->mObject->updateCollisionBuffer(legB->mObject);
 					}
@@ -1163,13 +1145,8 @@ void Cell::resolveCollision_3()
 			for (Cell* cell = mHeadCell; cell != nullptr; cell = cell->mHeadCell) {
 				for (CellLeg* legB = cell->mLeg; legB != nullptr; legB = legB->mNext) {
 					if (legA->mObject != legB->mObject) {
-						if (CellMgrParms::getInstance()->mCellParms.mMagicNumber()) {
-							if ((CellObject*)legA->mObject->mPassID != legB->mObject) {
-								legA->mObject->mPassID = (u32)legB->mObject;
-								legA->mObject->checkCollision(legB->mObject);
-								legA->mObject->updateCollisionBuffer(legB->mObject);
-							}
-						} else {
+						if ((CellObject*)legA->mObject->mPassID != legB->mObject) {
+							legA->mObject->mPassID = (u32)legB->mObject;
 							legA->mObject->checkCollision(legB->mObject);
 							legA->mObject->updateCollisionBuffer(legB->mObject);
 						}

@@ -879,7 +879,6 @@ void SingleGameSection::createFallPikmins()
 		origin = navi->getPosition();
 	}
 	origin.y = mapMgr->getMinY(origin);
-	naviMgr->getDeadOrima(0);
 
 	for (int color = 0; color < PikiColorCount; color++) {
 		for (int happa = 0; happa < 3; happa++) {

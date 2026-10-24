@@ -472,13 +472,5 @@ void OtakaraSensor::calcReaction()
 	mPane2->updateScale(mScale * mScaleMgr->calc());
 }
 
-/**
- * @note Address: 0x8032EA4C
- * @note Size: 0x4
- */
-void OtakaraSensor::draw(J2DGrafContext&)
-{
-}
-
 } // namespace Screen
 } // namespace og

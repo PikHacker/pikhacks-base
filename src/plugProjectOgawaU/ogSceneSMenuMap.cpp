@@ -20,7 +20,7 @@ void SMenuMap::doUserCallBackFunc(Resource::MgrCommand* command)
 {
 	Screen::DispMemberSMenuAll* dispMember = static_cast<Screen::DispMemberSMenuAll*>(mDispMember);
 	int courseIndex                        = 0;
-	if (dispMember->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
+	if (dispMember->isID(MEMBER_START_MENU_ALL)) {
 		courseIndex = dispMember->mSMenuMap.mCourseIndex;
 	} else {
 #if defined(VERSION_JP)

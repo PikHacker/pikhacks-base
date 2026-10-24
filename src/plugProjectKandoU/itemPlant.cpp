@@ -1441,7 +1441,6 @@ bool Plant::interactEat(InteractEat& eat)
  */
 Mgr::Mgr()
 {
-	mItemName = "Plant";
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/plants";
 	mParms               = new PlantParms;

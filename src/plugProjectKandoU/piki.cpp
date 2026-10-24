@@ -240,7 +240,7 @@ void Piki::onKill(CreatureKillArg* killArg)
 	mPikiUpdateContext.exit();
 
 	// If we're not a Bulbmin, decrement the number of alive Pikmin
-	if (!isBulbmin) {
+	if (!isBulbmin && !isZikatu()) {
 		GameStat::alivePikis.dec(this);
 	}
 
@@ -954,7 +954,7 @@ void Piki::platCallback(PlatEvent& event)
 
 	// Kill Pikmin for touching electric gates
 	// The Yellow Pikmin check here is redundant since InteractDenki already won't affect Yellows
-	if (isAlive() && !mCurrentState->dead() && event.mInstance->mId.match('elec', '*') && getKind() != Yellow) {
+	if (isAlive() && !mCurrentState->dead() && event.mInstance->mId.match('elec', '*')) {
 		mTekiKillID = -1;
 		InteractDenki zap(this, 0.0f, &Vector3f::zero);
 		stimulate(zap);
@@ -1115,21 +1115,21 @@ void Piki::updateColor()
  */
 void Piki::setPastel(bool isBright)
 {
-	mColorFloat   = 0.0f;
-	Color4* color = &pikiColors[getKind()];
+	// mColorFloat   = 0.0f;
+	// Color4* color = &pikiColors[getKind()];
 
-	if (!isBright) {
-		mPikiColor       = *color;
-		mOldDefaultColor = mDefaultColor;
-		return;
-	}
+	// if (!isBright) {
+	// 	mPikiColor       = *color;
+	// 	mOldDefaultColor = mDefaultColor;
+	// 	return;
+	// }
 
-	mPikiColor = *color;
+	// mPikiColor = *color;
 
-	mPikiColor.r     = (color->r + 160 < 255) ? color->r + 160 : 255;
-	mPikiColor.g     = (color->g + 160 < 255) ? color->g + 160 : 255;
-	mPikiColor.b     = (color->b + 160 < 255) ? color->b + 160 : 255;
-	mOldDefaultColor = mDefaultColor;
+	// mPikiColor.r     = (color->r + 160 < 255) ? color->r + 160 : 255;
+	// mPikiColor.g     = (color->g + 160 < 255) ? color->g + 160 : 255;
+	// mPikiColor.b     = (color->b + 160 < 255) ? color->b + 160 : 255;
+	// mOldDefaultColor = mDefaultColor;
 }
 
 /**
@@ -1307,63 +1307,61 @@ void Piki::do_updateLookCreature()
 		return;
 	}
 
-	if (OptimiseController::mInstance->mPikminNeck.mValue) {
-		if (mLookAtTargetCreature) {
-			mTargetLookTimer -= sys->mDeltaTime;
-			if (mTargetLookTimer > 0.0f) {
-				Vector3f targetPos = mLookAtTargetCreature->getPosition();
-				if (targetPos.distance(mPosition) > 200.0f) {
-					finishLook();
-				}
-				return;
+	if (mLookAtTargetCreature) {
+		mTargetLookTimer -= sys->mDeltaTime;
+		if (mTargetLookTimer > 0.0f) {
+			Vector3f targetPos = mLookAtTargetCreature->getPosition();
+			if (targetPos.distance(mPosition) > 200.0f) {
+				finishLook();
 			}
+			return;
+		}
+	}
+
+	if (mPikiUpdateContext.updatable()) {
+		switch (mAnimator.mSelfAnimator.getAnimIndex()) {
+		default:
+			finishLook();
+			return;
+		case IPikiAnims::IRAIRA:
+		case IPikiAnims::NIGERU:
+		case IPikiAnims::RUN2:
+		case IPikiAnims::WALK:
+		case IPikiAnims::WAIT:
+		case IPikiAnims::SUWARU:
+			break;
 		}
 
-		if (mPikiUpdateContext.updatable()) {
-			switch (mAnimator.mSelfAnimator.getAnimIndex()) {
-			default:
-				finishLook();
-				return;
-			case IPikiAnims::IRAIRA:
-			case IPikiAnims::NIGERU:
-			case IPikiAnims::RUN2:
-			case IPikiAnims::WALK:
-			case IPikiAnims::WAIT:
-			case IPikiAnims::SUWARU:
-				break;
+		Sys::Sphere sphere(mPosition, 200.0f);
+		CellIteratorArg iterArg(sphere);
+		iterArg.mUseCustomRadius = 1;
+		CellIterator iter(iterArg);
+		int counter = 0;
+		CI_LOOP(iter)
+		{
+			if (!static_cast<Creature*>(*iter)->isPiki()) {
+				counter++;
 			}
+		}
+		Creature* target = nullptr;
+		if (counter > 0) {
 
-			Sys::Sphere sphere(mPosition, 200.0f);
-			CellIteratorArg iterArg(sphere);
-			iterArg.mUseCustomRadius = 1;
-			CellIterator iter(iterArg);
-			int counter = 0;
+			f32 pikiNum = (f32)counter;
 			CI_LOOP(iter)
 			{
-				if (!static_cast<Creature*>(*iter)->isPiki()) {
-					counter++;
+				Creature* creature = static_cast<Creature*>(*iter);
+				if (!creature->isPiki()) {
+					if (randFloat() <= 1.0f / pikiNum) {
+						target = creature;
+						break;
+					}
+					pikiNum--;
 				}
 			}
-			Creature* target = nullptr;
-			if (counter > 0) {
 
-				f32 pikiNum = (f32)counter;
-				CI_LOOP(iter)
-				{
-					Creature* creature = static_cast<Creature*>(*iter);
-					if (!creature->isPiki()) {
-						if (randFloat() <= 1.0f / pikiNum) {
-							target = creature;
-							break;
-						}
-						pikiNum--;
-					}
-				}
-
-				if (target) {
-					startLookCreature(target);
-					mTargetLookTimer = 3.0f * randFloat() + 3.0f;
-				}
+			if (target) {
+				startLookCreature(target);
+				mTargetLookTimer = 3.0f * randFloat() + 3.0f;
 			}
 		}
 	}

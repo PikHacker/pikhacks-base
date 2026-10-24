@@ -325,8 +325,6 @@ void DNode::add(Game::DNode* newNode)
  */
 void DNode::concat(Game::DNode*)
 {
-	JUT_PANICLINE(480, "DNode concat Loop Err!\n");
-	JUT_PANICLINE(481, "cannot retrieve %d-th child (real child count = %d)!\n");
 }
 
 /**

@@ -746,7 +746,6 @@ void MoviePlayer::setCamera(Camera* cam)
 		return;
 	}
 
-	P2ASSERTLINE(1453, objcam);
 	if (getActiveGameCamera()) {
 		cam = mActingCamera;
 	}

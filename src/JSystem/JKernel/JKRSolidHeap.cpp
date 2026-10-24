@@ -273,12 +273,9 @@ bool JKRSolidHeap::dump()
 	u32 headSize = ((u32)mSolidHead - (u32)mStartAddress);
 	u32 tailSize = ((u32)mEndAddress - (u32)mSolidTail);
 	s32 htSize   = headSize + tailSize;
-	JUTReportConsole_f("head %08x: %08x\n", mStartAddress, headSize);
-	JUTReportConsole_f("tail %08x: %08x\n", mSolidTail, ((u32)mEndAddress - (u32)mSolidTail));
 
 	u32 totalSize  = mHeapSize;
 	f32 percentage = (f32)htSize / (f32)totalSize * 100.0f;
-	JUTReportConsole_f("%d / %d bytes (%6.2f%%) used\n", htSize, totalSize, percentage);
 	unlock();
 
 	return result;

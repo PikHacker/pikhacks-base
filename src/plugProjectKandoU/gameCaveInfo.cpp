@@ -479,23 +479,6 @@ CaveInfo::CaveInfo()
 }
 
 /**
- * @note Address: 0x801D74B0
- * @note Size: 0x40
- */
-void CaveInfo::disablePelplant()
-{
-	FOREACH_NODE(FloorInfo, mFloorInfo.mChild, floorInfo)
-	{
-		FOREACH_NODE(TekiInfo, floorInfo->mTekiInfo.mChild, tekiInfo)
-		{
-			if (tekiInfo->mEnemyID == EnemyTypeID::EnemyID_Pelplant) {
-				tekiInfo->mWeight = 0;
-			}
-		}
-	}
-}
-
-/**
  * @note Address: 0x801D74F0
  * @note Size: 0x8
  */

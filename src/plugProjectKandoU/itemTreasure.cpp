@@ -407,7 +407,6 @@ bool Item::ignoreAtari(Creature* obj)
  */
 Mgr::Mgr()
 {
-	mItemName            = "Treasure";
 	mObjectPathComponent = "user/Kando/objects/treasure";
 	mParameters          = new TreasureParms;
 

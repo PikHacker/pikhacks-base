@@ -13,8 +13,7 @@ namespace PikiAI {
  */
 void ActWeed::getInfo(char* infoStringBuffer)
 {
-	const char* states[2] = { "SA", "AJ" }; // 0 = stick attack, 1 = adjust
-	sprintf(infoStringBuffer, "Weed %s", states[mState]);
+
 }
 
 /**

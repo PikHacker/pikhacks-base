@@ -28,7 +28,6 @@ struct Vs : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return "res_vs.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_VS; }           // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }        // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_VS; }      // _10 (weak)
 	virtual bool isDrawInDemo() const { return false; }             // _18 (weak)
 	virtual void doCreateObj(JKRArchive*);                          // _20

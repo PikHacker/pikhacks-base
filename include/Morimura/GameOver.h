@@ -144,7 +144,6 @@ struct TGameOverScene : public TGameOverSceneBase {
 	} // _20 (weak)
 	virtual bool isUseBackupSceneInfo() { return false; }                // _14 (weak)
 	virtual SceneType getSceneType() { return SCENE_GAME_OVER_GENERAL; } // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }            // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; }    // _10 (weak)
 
 	// _00      = VTBL
@@ -161,7 +160,6 @@ struct TLujiDownScene : public TGameOverSceneBase {
 		mObject = obj;
 	} // _20 (weak)
 	virtual SceneType getSceneType() { return SCENE_LUJI_DOWN; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }         // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; } // _10 (weak)
 
 	// _00      = VTBL
@@ -178,7 +176,6 @@ struct TOrimaDownScene : public TGameOverSceneBase {
 		mObject = obj;
 	} // _20 (weak)
 	virtual SceneType getSceneType() { return SCENE_ORIMA_DOWN; }     // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }         // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; } // _10 (weak)
 
 	// _00      = VTBL
@@ -196,7 +193,6 @@ struct TPikminDownScene : public TGameOverSceneBase {
 	} // _20 (weak)
 	virtual bool isUseBackupSceneInfo() { return false; }                // _14 (weak)
 	virtual SceneType getSceneType() { return SCENE_GAME_OVER_GENERAL; } // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }            // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; }    // _10 (weak)
 
 	// _00      = VTBL
@@ -213,7 +209,6 @@ struct TPresidentDownScene : public TGameOverSceneBase {
 		mObject = obj;
 	} // _20 (weak)
 	virtual SceneType getSceneType() { return SCENE_PRESIDENT_DOWN; } // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }         // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; } // _10 (weak)
 
 	// _00      = VTBL

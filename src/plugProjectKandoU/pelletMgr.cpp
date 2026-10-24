@@ -3276,9 +3276,7 @@ void PelletMgr::OtakaraItemCode::read(Stream& stream)
  */
 void PelletMgr::OtakaraItemCode::write(Stream& stream)
 {
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeShort(mValue);
-	stream.textWriteText("# お宝アイテムコード\r\n"); // 'treasure item code'
 }
 
 /**

@@ -132,7 +132,6 @@ void MainResultState::exec(SingleGameSection* game)
 			gameSystem->setPause(false,  3);
 			mCounter = 0;
 		}
-		game->BaseHIOSection::doUpdate();
 		return;
 	// case Result_Unused1: // this state seems to never be used
 	// 	mStartTimer -= sys->mDeltaTime;
@@ -160,9 +159,6 @@ void MainResultState::exec(SingleGameSection* game)
 		mStartTimer -= sys->mDeltaTime;
 		if (mStartTimer < 0.0f) {
 			game->clearHeap();
-			FOREACH_NODE(Result::TNode, mResultNode.mChild, node)
-			{
-			}
 			transit(game, SGS_Select, nullptr);
 			return;
 		}
@@ -186,7 +182,6 @@ void MainResultState::exec(SingleGameSection* game)
 	}
 	Screen::gGame2DMgr->update();
 	game->mLightMgr->update();
-	game->BaseHIOSection::doUpdate();
 }
 
 /**

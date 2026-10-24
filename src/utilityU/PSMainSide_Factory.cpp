@@ -334,17 +334,17 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 		scene->mPersEnvMgr      = persMgr;
 
 		// use all 10 INSECT sounds in challenge mode (the amount that actually play depends on the map size)
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1));
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1));
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1));
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1));
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1));
 
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX2));
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX2));
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2));
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX2));
-		builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX2));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX2));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX2));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX2));
+		builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX2));
 
 		PSM::PersEnvInfo envInfo = { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
 		persMgr->_10             = 479.0f;
@@ -371,92 +371,92 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 			// In story mode caves, use different ambient noises based on the sublevel (from 1 - 15)
 			switch (static_cast<PSGame::CaveFloorInfo*>(info)->mFloorNum) {
 			case 0: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1));
 			} break;
 
 			case 1: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2));
 			} break;
 
 			case 2: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT02_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1));
 			} break;
 
 			case 3: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT03_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1));
 			} break;
 
 			case 4: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT04_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1));
 			} break;
 
 			case 5: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT01_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX1));
 			} break;
 
 			case 6: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECT05_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX1));
 			} break;
 
 			case 7: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX1));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP01_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX1));
 			} break;
 
 			case 8: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX1));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP06_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX1));
 			} break;
 
 			case 9: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX1));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP02_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX1));
 			} break;
 
 			case 10: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX1));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX1));
 			} break;
 
 			case 11: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
 			} break;
 
 			case 12: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
 			} break;
 
 			case 13: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
 			} break;
 
 			case 14:
 			default: {
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP05_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP04_MIX2));
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_INSECTDEEP03_MIX2));
 			} break;
 			}
 
@@ -477,12 +477,10 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				mgr = new PSSystem::EnvSeMgr;
 
 				PSGame::EnvSe_AutoPan* pan0 = new PSGame::EnvSe_AutoPan(PSSE_MP_WIND_BACK, 0.0f, 0.5f, 1.0f, 0.0018554f, 0.0008554f);
-				P2ASSERTLINE(778, pan0);
 				pan0->setDirection(true, false);
 				mgr->mEnvList.append(pan0);
 
 				PSGame::EnvSe_AutoPan* pan1 = new PSGame::EnvSe_AutoPan(PSSE_MP_WIND_BACK, 1.0f, 0.5f, 1.0f, 0.0018554f, 0.0008554f);
-				P2ASSERTLINE(785, pan1);
 				pan1->setDirection(false, true);
 				mgr->mEnvList.append(pan1);
 			} break;
@@ -493,9 +491,9 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				PersEnvManager* persMgr = new PersEnvManager(mgr);
 				scene->mPersEnvMgr      = persMgr;
 
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_SP_SUZUME)); // 'sparrow'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_SP_UGUISU)); // 'japanese warbler'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_SP_HIBARI)); // 'lark'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_BIRD_SP_SUZUME)); // 'sparrow'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_BIRD_SP_UGUISU)); // 'japanese warbler'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_BIRD_SP_HIBARI)); // 'lark'
 
 				PSM::PersEnvInfo envInfo = { 1500.0f, 379.0f, 579.0f, 1031.0f, 0.9f };
 				persMgr->_10             = 379.0f;
@@ -508,12 +506,12 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				PersEnvManager* persMgr = new PersEnvManager(mgr);
 				scene->mPersEnvMgr      = persMgr;
 
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA01));   // 'bear cicada'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN01)); // 'minmin cicada'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_NIINII01)); // 'niinii cicada'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA02));   // 'bear cicada'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN02)); // 'minmin cicada'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_SEMI_NIINII02)); // 'niinii cicada'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA01));   // 'bear cicada'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN01)); // 'minmin cicada'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_SEMI_NIINII01)); // 'niinii cicada'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_SEMI_KUMA02));   // 'bear cicada'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_SEMI_MINMIN02)); // 'minmin cicada'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_SEMI_NIINII02)); // 'niinii cicada'
 
 				PSM::PersEnvInfo envInfo = { 1500.0f, 479.0f, 707.0f, 808.0f, 1.0f };
 				persMgr->_10             = 479.0f;
@@ -526,10 +524,10 @@ void SceneMgr::initEnvironmentSe(PSM::Scene_Game* scene)
 				PersEnvManager* persMgr = new PersEnvManager(mgr);
 				scene->mPersEnvMgr      = persMgr;
 
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_KAMO));    // 'duck'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_MOZU));    // 'shrike'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_KAMO));    // 'duck'
-				builder.appendLink(new (JKRGetCurrentHeap(), -4) PSSystem::IdLink(PSSE_MP_BIRD_FA_TSUGUMI)); // 'thrush'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_BIRD_FA_KAMO));    // 'duck'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_BIRD_FA_MOZU));    // 'shrike'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_BIRD_FA_KAMO));    // 'duck'
+				builder.appendLink(new (-4) PSSystem::IdLink(PSSE_MP_BIRD_FA_TSUGUMI)); // 'thrush'
 
 				PSM::PersEnvInfo envInfo = { 1500.0f, 379.0f, 479.0f, 1131.0f, 1.0f };
 				persMgr->_10             = 379.0f;

@@ -33,7 +33,7 @@ ObjSave::~ObjSave()
 void ObjSave::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberSave* disp = static_cast<og::Screen::DispMemberSave*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_SAVE)) {
+	if (disp->isID(MEMBER_SAVE)) {
 		mDisp = disp;
 	} else {
 		JUT_PANICLINE(84, "ERR! in ObjSave Create失敗！\n");

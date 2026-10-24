@@ -1244,12 +1244,10 @@ void PlayData::read_CaveOtakara(Stream& ram)
  */
 void PlayData::write_CaveOtakara(Stream& ram)
 {
-	ram.textBeginGroup("＊洞窟情報＊");
 	u16 max = stageList->getCourseCount();
 	for (int i = 0; i < max; i++) {
 		mCaveOtakara[i].write(ram);
 	}
-	ram.textEndGroup();
 }
 
 /**
@@ -1258,16 +1256,10 @@ void PlayData::write_CaveOtakara(Stream& ram)
  */
 void PlayData::CaveOtakara::write(Stream& output)
 {
-	output.textWriteTab(output.mTabCount);
 	output.writeByte(mCaveCount);
-	output.textWriteText("# cave数\r\n");
 	for (int i = 0; i < mCaveCount; i++) {
-		output.textWriteTab(output.mTabCount);
 		output.writeByte(mOtakaraCountsOld[i]);
-		output.textWriteText("# 個数\r\n");
-		output.textWriteTab(output.mTabCount);
 		output.writeByte(mVisitStatus[i]);
-		output.textWriteText("# 状態\r\n");
 	}
 }
 

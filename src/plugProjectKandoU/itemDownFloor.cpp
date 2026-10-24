@@ -472,7 +472,6 @@ void Item::getCarryInfoParam(CarryInfoParam& param)
  */
 Mgr::Mgr()
 {
-	mItemName            = "DownFloor";
 	mObjectPathComponent = "user/Kando/objects/downfloor";
 	setModelSize(3);
 
@@ -527,7 +526,7 @@ void Mgr::setupPlatform(Item* item)
 {
 	Matrixf* worldMat = item->mModel->getJoint("move")->getWorldMatrix();
 	if (!worldMat) {
-		item->mModel->mJoints[0].getWorldMatrix(); // feel like worldMat is meant to get set to this, but it doesn't.
+		worldMat = item->mModel->mJoints[0].getWorldMatrix();
 	}
 
 	ID32 id('down');

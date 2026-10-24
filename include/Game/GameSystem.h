@@ -96,23 +96,6 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	BaseGameSection* mSection; // _58
 };
 
-struct OptimiseController : public JKRDisposer, public Parameters {
-	OptimiseController();
-
-	virtual ~OptimiseController(); // _08
-
-	static void globalInstance();
-	static void deleteInstance();
-
-	static OptimiseController* mInstance;
-
-	// _00     = VTBL
-	// _00-_18 = JKRDisposer
-	// _18-_24 = Parameters
-	Parm<bool> mPikminNeck;             // _24, c000, 'pikmin neck'
-	Parm<bool> mCollisionBufferEnabled; // _40, c001, 'collision buffer enabled'
-};
-
 extern GameSystem* gameSystem;
 
 } // namespace Game

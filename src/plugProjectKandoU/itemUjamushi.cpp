@@ -1012,7 +1012,6 @@ void Item::doSimpleDraw(Viewport* vp)
  */
 Mgr::Mgr()
 {
-	mItemName            = "Ujamushi";
 	mObjectPathComponent = "user/Kando/objects/ujamushi";
 	setModelSize(2);
 	loadArchive("arc.szs");

@@ -96,7 +96,6 @@ void FileState::exec(SingleGameSection* game)
 			particle2dMgr->update();
 		}
 
-		game->BaseHIOSection::doUpdate();
 		mFSMgr->update();
 
 		if (mFSMgr->isFinish()) {

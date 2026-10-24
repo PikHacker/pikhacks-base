@@ -18,7 +18,6 @@ struct DispMemberHighScore : public og::Screen::DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberHighScore); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_HIGH_SCORE; }       // _10 (weak)
 
 	// _00     = VTBL
@@ -162,7 +161,6 @@ struct THiScoreScene : public THIOScene {
 
 	} // _20 (weak)
 	virtual SceneType getSceneType() { return SCENE_HIGH_SCORE; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }          // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_HIGH_SCORE; } // _10 (weak)
 
 	// _00      = VTBL

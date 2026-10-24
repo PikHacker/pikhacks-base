@@ -108,10 +108,8 @@ struct GeneratorMgr : public CNode {
 	bool isRootMgr();
 	void read(Stream&, bool);
 	void write(Stream&);
-	void render(Graphics&);
 	void setDayLimit(int);
 	void update();
-	void updateCursorPos(Vector3f&);
 	void updateUseList();
 
 	GeneratorMgr* mNextMgr;   // _18
@@ -123,8 +121,6 @@ struct GeneratorMgr : public CNode {
 	int mGeneratorCount;      // _4C
 	Vector3f mStartPos;       // _5C
 	f32 mStartDir;            // _68, v0.1 adds the start direction
-
-	static IDelegate1<Vector3f&>* cursorCallback;
 };
 
 struct GenArg : public CreatureInitArg {

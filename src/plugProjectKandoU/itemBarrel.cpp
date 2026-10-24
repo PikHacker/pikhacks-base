@@ -380,7 +380,6 @@ bool Item::interactAttack(InteractAttack& interaction)
 Mgr::Mgr()
     : TNodeItemMgr()
 {
-	mItemName = "Barrel";
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/barrel";
 	mParms               = new BarrelParms();

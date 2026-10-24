@@ -148,7 +148,6 @@ enum StateID {
 	KOCHAPPY_TurnToHome = 6,
 	KOCHAPPY_GoHome     = 7,
 	KOCHAPPY_Press      = 8,
-	KOCHAPPY_Demo       = 9,
 	KOCHAPPY_Count,
 };
 
@@ -179,15 +178,6 @@ struct StateDead : public State {
 	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
 	virtual void exec(EnemyBase* enemy);                     // _0C
 	virtual void cleanup(EnemyBase* enemy);                  // _10
-
-	// _00		= VTBL
-	// _00-_10 	= EnemyFSMState
-};
-
-struct StateDemo : public State {
-	StateDemo(int);
-
-	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState

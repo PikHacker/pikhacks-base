@@ -165,12 +165,6 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 			gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mDayTime);
 		}
 	} break;
-	default:
-#if defined(VERSION_JP)
-		JUT_PANICLINE(829, "illegal state GameState::init\n");
-#else
-		JUT_PANICLINE(832, "illegal state GameState::init\n");
-#endif
 	}
 
 	gameSystem->mTimeMgr->resetFlag(TIMEFLAG_Stopped);
@@ -179,7 +173,6 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 		bool noPikisLeft = false;
 		for (int i = 0; i <= 2; i++) {
 			if (playData->hasContainer(i) && GameStat::getAllPikmins(i) == 0) {
-				playData->mPikiContainer.getColorSum(i);
 				noPikisLeft = true;
 				break;
 			}

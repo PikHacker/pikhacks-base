@@ -18,7 +18,6 @@ struct DispFinalFloor : public og::Screen::DispMemberBase {
 	DispFinalFloor() { mIs2Player = false; }
 
 	virtual u32 getSize() { return sizeof(DispFinalFloor); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_KH; }            // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_FINAL_FLOOR; } // _10 (weak)
 
 	// _00     = VTBL
@@ -103,7 +102,6 @@ struct SceneFinalFloor : public ::Screen::SceneBase {
 	virtual const char* getResName() const { return "final_floor.szs"; } // _1C (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                 // _14 (weak)
 	virtual SceneType getSceneType() { return SCENE_FINAL_FLOOR; }       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }              // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_FINAL_FLOOR; }  // _10 (weak)
 	virtual void doCreateObj(JKRArchive* arc)                            // _20 (weak)
 	{

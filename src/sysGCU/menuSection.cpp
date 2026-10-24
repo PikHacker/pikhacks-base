@@ -32,8 +32,6 @@ void MenuSection::run()
  */
 bool MenuSection::runChildSection()
 {
-	JKRHeap::sCurrentHeap->getFreeSize();
-
 	JKRExpHeap* expHeap  = JKRExpHeap::create(mDisplayHeap->getFreeSize(), mDisplayHeap, true);
 	JKRHeap* currentHeap = expHeap->becomeCurrentHeap();
 
@@ -52,7 +50,6 @@ bool MenuSection::runChildSection()
 
 	expHeap->destroy();
 	currentHeap->becomeCurrentHeap();
-	JKRHeap::sCurrentHeap->getFreeSize();
 
 	return (mCurrentSection != 0);
 }

@@ -64,7 +64,7 @@ SceneWinLoseReason::SceneWinLoseReason()
  */
 void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 {
-	if (!mDispMember->isID(OWNER_KH, MEMBER_WIN_LOSE_REASON)) {
+	if (!mDispMember->isID(MEMBER_WIN_LOSE_REASON)) {
 		JUT_PANICLINE(140, "disp member err");
 	}
 
@@ -183,7 +183,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		PSStart2DStream(streamID);
 		PSMuteSE_on2D();
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		PSM::Scene_Game* scene  = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
 		scene->stopAllSound(2);
 	}
 }

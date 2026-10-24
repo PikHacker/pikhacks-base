@@ -55,15 +55,9 @@ void Generator::doReadOldVersion(Stream& stream)
  */
 void Generator::doWrite(Stream& stream)
 {
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeByte(mInitialParam.mColor);
-	stream.textWriteText("\t\t# %s \r\n", "pellet type");
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeByte(mInitialParam.mAmount);
-	stream.textWriteText("\t\t# %s \r\n", "pellet size");
-	stream.textWriteTab(stream.mTabCount);
 	stream.writeByte(mInitialParam.mInitialState);
-	stream.textWriteText("\t\t# %s \r\n", "size");
 }
 
 } // namespace Pelplant

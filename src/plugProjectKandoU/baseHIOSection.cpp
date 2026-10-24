@@ -81,12 +81,6 @@ void BaseHIOSection::initHIO(Game::HIORootNode* node)
 	}
 
 	sys->addGenNode(mRootNode);
-
-	// Hide the process bar if it exists.
-	if (JUTProcBar::getManager()) {
-		JUTProcBar::getManager()->setVisible(false);
-		JUTProcBar::getManager()->setVisibleHeapBar(false);
-	}
 }
 
 /**

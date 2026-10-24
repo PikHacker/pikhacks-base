@@ -780,69 +780,69 @@ void Graphics::drawTile(Sys::Sphere&, Sys::Sphere&, JUTTexture*)
  */
 void Graphics::drawCone(Vector3f& start, Vector3f& end, f32 inAngle, int limit)
 {
-	f32 zy, yx;
-	Vector3f sep;
-	sep = end - start;
+	// f32 zy, yx;
+	// Vector3f sep;
+	// sep = end - start;
 
-	f32 angle = TORADIANS(inAngle);
-	f32 dist  = sep.length();
-	f32 sinTheta, cosTheta;
-	sincosf(angle, sinTheta, cosTheta);
-	f32 val = dist * (sinTheta / cosTheta);
-	sep *= 1.0f / dist;
+	// f32 angle = TORADIANS(inAngle);
+	// f32 dist  = sep.length();
+	// f32 sinTheta, cosTheta;
+	// sincosf(angle, sinTheta, cosTheta);
+	// f32 val = dist * (sinTheta / cosTheta);
+	// sep *= 1.0f / dist;
 
-	Vector3f xVec;
-	Vector3f yVec;
-	Vector3f xAxis(1.0f, 0.0f, 0.0f);
-	Vector3f yAxis(0.0f, 1.0f, 0.0f);
-	if (absF(sep.dot(yAxis)) < 1.0E-7f) {
-		xVec = cross(yAxis, sep);
-		xVec.normalise();
+	// Vector3f xVec;
+	// Vector3f yVec;
+	// Vector3f xAxis(1.0f, 0.0f, 0.0f);
+	// Vector3f yAxis(0.0f, 1.0f, 0.0f);
+	// if (absF(sep.dot(yAxis)) < 1.0E-7f) {
+	// 	xVec = cross(yAxis, sep);
+	// 	xVec.normalise();
 
-		yVec = xVec;
-		yVec.CP(sep);
-		yVec.normalise();
-	} else {
-		yVec = cross(xAxis, sep);
-		yVec.normalise();
+	// 	yVec = xVec;
+	// 	yVec.CP(sep);
+	// 	yVec.normalise();
+	// } else {
+	// 	yVec = cross(xAxis, sep);
+	// 	yVec.normalise();
 
-		// doing this by hand and not using an inline fixes the registers, but sucks
-		xVec.y = yVec.z * sep.x - yVec.x * sep.z;
-		yx     = yVec.y * sep.x;
-		yx     = yx;
-		xVec.z = yVec.x * sep.y - yx;
-		zy     = yVec.z * sep.y;
-		zy     = zy;
-		xVec.x = yVec.y * sep.z - zy;
-		xVec.normalise();
-	}
+	// 	// doing this by hand and not using an inline fixes the registers, but sucks
+	// 	xVec.y = yVec.z * sep.x - yVec.x * sep.z;
+	// 	yx     = yVec.y * sep.x;
+	// 	yx     = yx;
+	// 	xVec.z = yVec.x * sep.y - yx;
+	// 	zy     = yVec.z * sep.y;
+	// 	zy     = zy;
+	// 	xVec.x = yVec.y * sep.z - zy;
+	// 	xVec.normalise();
+	// }
 
-	Matrixf mtx;
-	mtx.setColumn(0, xVec);
-	mtx.setColumn(1, yVec);
-	mtx.setColumn(2, sep);
-	mtx.setColumn(3, start);
+	// Matrixf mtx;
+	// mtx.setColumn(0, xVec);
+	// mtx.setColumn(1, yVec);
+	// mtx.setColumn(2, sep);
+	// mtx.setColumn(3, start);
 
-	Matrixf concatMtx;
-	PSMTXConcat(mMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
+	// Matrixf concatMtx;
+	// PSMTXConcat(mMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
 
-	GXLoadPosMtxImm(concatMtx.mMatrix.mtxView, 0);
+	// GXLoadPosMtxImm(concatMtx.mMatrix.mtxView, 0);
 
-	for (int i = 0; i < limit; i++) {
-		f32 newAngle1 = (TAU * ((f32)i - 0.5f)) / (f32)limit;
-		f32 cos1      = val * cosf(newAngle1);
-		f32 sin1      = val * sinf(newAngle1);
-		Vector3f ln1(cos1, sin1, dist);
+	// for (int i = 0; i < limit; i++) {
+	// 	f32 newAngle1 = (TAU * ((f32)i - 0.5f)) / (f32)limit;
+	// 	f32 cos1      = val * cosf(newAngle1);
+	// 	f32 sin1      = val * sinf(newAngle1);
+	// 	Vector3f ln1(cos1, sin1, dist);
 
-		f32 newAngle2 = (TAU * ((f32)(i + 1) - 0.5f)) / (f32)limit;
-		f32 cos2      = val * cosf(newAngle2);
-		f32 sin2      = val * sinf(newAngle2);
-		Vector3f ln2(cos2, sin2, dist);
+	// 	f32 newAngle2 = (TAU * ((f32)(i + 1) - 0.5f)) / (f32)limit;
+	// 	f32 cos2      = val * cosf(newAngle2);
+	// 	f32 sin2      = val * sinf(newAngle2);
+	// 	Vector3f ln2(cos2, sin2, dist);
 
-		drawLine(Vector3f::zero, ln1);
-		drawLine(Vector3f::zero, ln2);
-		drawLine(ln1, ln2);
-	}
+	// 	drawLine(Vector3f::zero, ln1);
+	// 	drawLine(Vector3f::zero, ln2);
+	// 	drawLine(ln1, ln2);
+	// }
 }
 
 /**

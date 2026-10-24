@@ -39,7 +39,6 @@ struct KanteiDemo : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return "res_kantei.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_KANTEI_DEMO; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }            // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_KANTEI; }      // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                              // _20

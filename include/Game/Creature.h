@@ -293,7 +293,7 @@ struct Creature : public CellObject {
 	virtual void calcStickSlotGlobal(s16 slotIndex, Vector3f& position) { }              // _180 (weak)
 	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;                                // _184
 	virtual f32 getAngularEffect(Vector3f&, Vector3f&) { return 0.0f; }                  // _188 (weak)
-	virtual void applyImpulse(Vector3f&, Vector3f&);                                     // _18C
+	virtual void applyImpulse(Vector3f&);                                                // _18C
 	virtual bool ignoreAtari(Creature*) { return false; }                                // _190 (weak)
 	virtual Vector3f getSuckPos() { return getPosition(); }                              // _194 (weak)
 	virtual Vector3f getGoalPos() { return getPosition(); }                              // _198 (weak)

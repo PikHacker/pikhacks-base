@@ -46,7 +46,7 @@ ObjFinalMsg::~ObjFinalMsg()
 void ObjFinalMsg::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberFinalMessage* disp = static_cast<og::Screen::DispMemberFinalMessage*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_FINAL_MSG)) {
+	if (disp->isID(MEMBER_FINAL_MSG)) {
 		mDisp = disp;
 	} else {
 		mDisp = new og::Screen::DispMemberFinalMessage;

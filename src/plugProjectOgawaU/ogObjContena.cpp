@@ -106,9 +106,9 @@ void ObjContena::doCreate(JKRArchive* arc)
 	mController = getGamePad();
 
 	og::Screen::DispMemberContena* disp = static_cast<og::Screen::DispMemberContena*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_CONTENA)) {
+	if (disp->isID(MEMBER_CONTENA)) {
 		mDisp = disp;
-	} else if (disp->isID(OWNER_OGA, MEMBER_UFO_GROUP)) {
+	} else if (disp->isID(MEMBER_UFO_GROUP)) {
 		og::Screen::DispMemberUfoGroup* dispufo = reinterpret_cast<og::Screen::DispMemberUfoGroup*>(disp);
 		switch (dispufo->mUfoMenu.mContenaType) {
 		case 1:

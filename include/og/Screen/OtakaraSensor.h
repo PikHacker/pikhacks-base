@@ -21,7 +21,6 @@ struct OtakaraSensor {
 	void update();
 	void adjPos(f32, f32);
 	void adjScale(f32);
-	void draw(J2DGrafContext&);
 	void hide();
 	f32 calcLevel(f32);
 	void calcGrayColor();

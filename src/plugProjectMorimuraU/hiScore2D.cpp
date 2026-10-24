@@ -219,7 +219,7 @@ void THiScore::doCreate(JKRArchive* arc)
 	mArchive = arc;
 
 	DispMemberHighScore* disp = static_cast<DispMemberHighScore*>(getDispMember());
-	if (disp->isID(OWNER_MRMR, MEMBER_HIGH_SCORE)) {
+	if (disp->isID(MEMBER_HIGH_SCORE)) {
 		mDisp = disp;
 		P2ASSERTLINE(287, mDisp);
 		mIsAllTreasures = sys->getPlayCommonData()->mCommonStoryFlags.isSet(Game::PlayCommonData::CommonData_AllTreasures);

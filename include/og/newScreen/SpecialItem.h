@@ -19,7 +19,6 @@ struct SpecialItem : public ::Screen::SceneBase {
 
 	virtual const char* getResName() const { return "res_special_item.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return SCENE_SPECIAL_ITEM; }           // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_SPECIAL_ITEM; }      // _10 (weak)
 	virtual bool isUseBackupSceneInfo() { return true; }                      // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                                    // _20

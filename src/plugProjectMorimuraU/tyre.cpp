@@ -313,9 +313,6 @@ bool Obj::damageCallBack(Creature* obj, f32 damage, CollPart* coll)
  */
 bool Obj::hipdropCallBack(Creature* obj, f32 damage, CollPart* coll)
 {
-	if (obj) {
-		obj->isPiki();
-	}
 	return false;
 }
 

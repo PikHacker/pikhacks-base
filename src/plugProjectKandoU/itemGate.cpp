@@ -438,7 +438,6 @@ void ItemGate::getLifeGaugeParam(Game::LifeGaugeParam& param)
 ItemGateMgr::ItemGateMgr()
     : BaseItemMgr(1)
 {
-	mItemName            = "Gate";
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
 	loadArchive("gate-arc.szs");
@@ -786,7 +785,6 @@ void GateDownState::onKeyEvent(Game::ItemGate* gate, const SysShape::KeyEvent& k
  */
 ItemDengekiGate::Mgr::Mgr()
 {
-	mItemName            = "電撃ゲート"; // electric shock gate
 	mObjectPathComponent = "user/Kando/objects/gates";
 	setModelSize(1);
 	loadArchive("e-gate-arc.szs");

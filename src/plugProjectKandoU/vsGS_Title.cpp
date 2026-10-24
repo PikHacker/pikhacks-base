@@ -235,7 +235,6 @@ void TitleState::execChallenge(VsGameSection* section)
 		break;
 	}
 
-	section->BaseHIOSection::doUpdate();
 	Screen::gGame2DMgr->update();
 	if (particle2dMgr) {
 		particle2dMgr->update();
@@ -341,7 +340,6 @@ void TitleState::execVs(VsGameSection* section)
 		break;
 	}
 
-	section->BaseHIOSection::doUpdate();
 	Screen::gGame2DMgr->update();
 	if (particle2dMgr) {
 		particle2dMgr->update();

@@ -53,12 +53,10 @@ Creature* ObjectSystem::findCreature(const char* query) const
 
 	} else if (!strcmp(stringBuffer, "orimaAlive")) {
 		int i = targetChar - '1';
-		P2ASSERTBOUNDSINCLUSIVELINE(146, 0, i, 1);
 		creature = naviMgr->getAliveOrima(i);
 
 	} else if (!strcmp(stringBuffer, "orimaDead")) {
 		int i = targetChar - '1';
-		P2ASSERTBOUNDSINCLUSIVELINE(158, 0, i, 1);
 		creature = naviMgr->getDeadOrima(i);
 
 	} else if (!strcmp(stringBuffer, "onyon")) {

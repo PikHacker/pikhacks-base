@@ -582,7 +582,6 @@ Mgr::Mgr()
 {
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/honey";
-	mItemName            = "Honey";
 }
 
 /**

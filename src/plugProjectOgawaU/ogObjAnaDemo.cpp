@@ -163,11 +163,11 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberAnaDemo* disp_main = static_cast<og::Screen::DispMemberAnaDemo*>(getDispMember());
 
-	if (disp_main->isID(OWNER_OGA, MEMBER_ANA_DEMO)) {
+	if (disp_main->isID(MEMBER_ANA_DEMO)) {
 		mDisp    = disp_main;
 		mAnaType = ANADEMO_CaveEntry;
 
-	} else if (disp_main->isID(OWNER_OGA, MEMBER_KANKETU_MENU)) {
+	} else if (disp_main->isID(MEMBER_KANKETU_MENU)) {
 		og::Screen::DispMemberKanketuMenu* disp_kan = static_cast<og::Screen::DispMemberKanketuMenu*>(disp_main);
 		mDisp                                       = disp_kan;
 		if (disp_kan->mIsChallenge) {
@@ -182,7 +182,7 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 			mAnaTypeSub = ANADEMOSUB_PikiInDanger;
 		}
 
-	} else if (disp_main->isID(OWNER_OGA, MEMBER_CAVE_MORE)) {
+	} else if (disp_main->isID(MEMBER_CAVE_MORE)) {
 		og::Screen::DispMemberCaveMore* disp_more = static_cast<og::Screen::DispMemberCaveMore*>(disp_main);
 		mDisp                                     = disp_more;
 		mAnaType                                  = ANADEMO_CaveMore;

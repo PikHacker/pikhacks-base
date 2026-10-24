@@ -86,7 +86,6 @@ void LoadState::exec(VsGameSection* section)
 		mIsLoadStarted  = true;
 		mIsGameStarting = false;
 	} else {
-		section->BaseHIOSection::doUpdate();
 		if (particle2dMgr) {
 			particle2dMgr->update();
 		}

@@ -89,7 +89,7 @@ void ObjKantei::startItemName(u64)
 void ObjKantei::doCreate(JKRArchive* arc)
 {
 	og::Screen::DispMemberKantei* disp = static_cast<og::Screen::DispMemberKantei*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_KANTEI)) {
+	if (disp->isID(MEMBER_KANTEI)) {
 		mDisp = disp;
 	} else {
 		JUT_PANICLINE(258, "ERR! in ObjKantei Create失敗！\n");

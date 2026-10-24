@@ -1578,17 +1578,6 @@ void VertexTable::transform(Matrixf& mat)
  */
 void VertexTable::write(Stream& output)
 {
-	output.textBeginGroup((char*)mName);
-	output.textWriteTab(output.mTabCount);
-	output.writeInt(mLimit);
-	output.textWriteText("\r\n");
-
-	for (int i = 0; i < mLimit; i++) {
-		output.textWriteTab(output.mTabCount);
-		writeObject(output, mObjects[i]);
-		output.textWriteText("# %d/%d\r\n", i, mLimit);
-	}
-	output.textEndGroup();
 }
 
 /**

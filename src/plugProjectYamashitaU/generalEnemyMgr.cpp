@@ -747,8 +747,6 @@ void GeneralEnemyMgr::allocateEnemys(u8 viewNum, int heapSize)
 
 	mStoneMgr.loadResource();
 
-	P2ASSERTLINE(1844, currentHeap->getHeapType() == 'EXPH');
-
 	LoadResource::ArgAramOnly arg("/enemy/parm/enemyParms.szs");
 	arg.mHeap     = currentHeap;
 	arg.mAllocDir = JKRDvdRipper::ALLOC_DIR_BOTTOM;

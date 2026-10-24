@@ -39,7 +39,7 @@ int FinalMsg::doGetFinishState()
 	Screen::DispMemberFinalMessage* dispMember = static_cast<Screen::DispMemberFinalMessage*>(mDispMember);
 	int finalState                             = ::Screen::Game2DMgr::CHECK2D_FinalMessage_NotOpen;
 
-	if (dispMember->isID(OWNER_OGA, MEMBER_FINAL_MSG)) {
+	if (dispMember->isID(MEMBER_FINAL_MSG)) {
 		finalState = dispMember->mFinalState;
 	}
 

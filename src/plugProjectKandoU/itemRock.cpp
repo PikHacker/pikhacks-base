@@ -636,7 +636,6 @@ f32 Item::getWorkRadius()
  */
 Mgr::Mgr()
 {
-	mItemName = "荒廃オブジェクト"; // 'ruined object'
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/ojamarock";
 	mParms               = new RockParms;

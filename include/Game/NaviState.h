@@ -36,8 +36,8 @@ enum ENaviStateID {
 	NSID_Demo_HoleIn = 22,
 	NSID_Pellet      = 23,
 	NSID_CarryBomb   = 24,
-	NSID_Climb       = 25,
-	NSID_PathMove    = 26,
+	// NSID_Climb       = 25,
+	// NSID_PathMove    = 26,
 	NSID_StateCount, // 27
 };
 
@@ -568,48 +568,6 @@ struct NaviNukuState : public NaviState {
 	bool mIsActive;   // _14
 	s16 mAnimID;      // _16
 	bool mIsFollower; // _18
-};
-
-struct NaviPathMoveStateArg : StateArg {
-	Vector3f mPosition; // _00
-};
-
-struct NaviPathMoveState : public NaviState {
-	enum PathMoveSubState {
-		PATHMOVE_FindPath = 0,
-		PATHMOVE_Move     = 1,
-		PATHMOVE_MoveGoal = 2,
-	};
-
-	inline NaviPathMoveState()
-	    : NaviState(NSID_PathMove)
-	{
-	}
-
-	virtual void init(Navi*, StateArg*); // _08
-	virtual void exec(Navi*);            // _0C
-	virtual void cleanup(Navi*);         // _10
-
-	int initPathfinding(Navi*);
-	int execPathfinding(Navi*);
-	int execMove(Navi*);
-	int execMoveGoal(Navi*);
-
-	inline void releasePathfinder()
-	{
-		if (mPathfinderContextID != 0) {
-			testPathfinder->release(mPathfinderContextID);
-			mPathfinderContextID = 0;
-		}
-	}
-
-	// _00     = VTBL
-	// _00-_10 = NaviState
-	u16 mSubState;            // _10
-	u32 mPathfinderContextID; // _14
-	Vector3f mPosition;       // _18
-	PathNode* mNodes[2];      // _24
-	int _2C;                  // _2C
 };
 
 struct NaviPelletState : public NaviState {
